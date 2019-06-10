@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 18:39:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/10 20:21:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct				s_bits
 {
 	unsigned char	r : 1;
 	unsigned char	rr : 1;
-	unsigned char	dr : 1;
+//	unsigned char	dr : 1;
 	unsigned char	rd : 1;
 	unsigned char	l : 1;
 	unsigned char	ll : 1;
@@ -63,7 +63,7 @@ typedef struct				s_exec
 
 void	exec(t_exec *cmd);
 t_exec	*init_exec(int count, char **av);
-t_attr	*initialize_left(int spec, int right_fd, int left_fd, char *file);
+t_attr	*init_attr(int spec, int right_fd, int left_fd, char *file);
 
 
 /*

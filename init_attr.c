@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 18:34:07 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/10 18:39:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/10 20:21:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_attr		*initialize_left(int spec, int right_fd, int left_fd, char *file)
+t_attr		*init_attr(int spec, int right_fd, int left_fd, char *file)
 {
 	t_attr	*attr;
 

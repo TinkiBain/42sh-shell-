@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:17:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 18:54:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/10 20:32:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		exec_redir(t_attr *attr, int fd)
 	t_bits	bits;
 	int		return_value;
 
+	(void)fd;
 	return_value = 0;
 	while (attr)
 	{
@@ -25,11 +26,13 @@ int		exec_redir(t_attr *attr, int fd)
 			return_value = exec_open(attr->left_fd, attr->file);
 		else if (bits.r || bits.rr)
 			return_value = exec_redir_right(attr);
-		else if (bits.l || bits.ll || bits.lll)
-			return_value = exec_fill_fifo(attr, fd);
+	//	else if (bits.l || bits.ll || bits.lll)
+	//		return_value = exec_fill_fifo(attr, fd);
 		if (return_value == -1)
 			return (return_value);
+		attr = attr->next;
 	}
+	return(1);
 }
 
 int		exec_check_attr(t_exec *cmd, int fd)

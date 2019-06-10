@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/02 16:04:28 by dwisoky           #+#    #+#              #
-#    Updated: 2019/06/05 20:45:54 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/06/10 20:23:44 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 21sh
 FLAGS = -Wall -Wextra -Werror
-SRCS = main.c exec.c set_fd.c exec_fill_fifo.c exec_print_error.c exec_redir_right.c
+SRCS = main.c exec.c init_exec.c exec_open.c init_attr.c set_fd.c exec_print_error.c exec_redir_right.c
 OBJS = $(SRCS:.c=.o)
-INCLUDES = shell.h
+INCLUDES = shell.h -I libft/includes
 
 all:	$(NAME)
 
