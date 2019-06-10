@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 19:00:11 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/12/04 12:31:11 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/02/10 18:20:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "libft.h"
 
-# include "sh.h"
-# include "libft.h"
-# include <fcntl.h>
+void	*ft_realloc(void *ptr, size_t size)
+{
+	unsigned char	*new;
+	unsigned char	*tmp;
+	void			*res;
 
-int			exec_fill_fifo(t_attr *attr, int fd);
-void		return_fd(int fd[3]);
-void		set_fd(int fd[3]);
-int			exec_print_error(char *str);
-int			exec_redir_right(t_attr *cmd);
-
-
-int			exec_open(int fd, char *file);
-
-#endif
+	new = (size == 0) ? NULL : (unsigned char *)malloc(size);
+	res = (void *)new;
+	tmp = (unsigned char *)ptr;
+	if (ptr)
+	{
+		if (new)
+		{
+			while (size-- && *tmp)
+			{
+				*(new++) = *(tmp++);
+			}
+			while (size--)
+				*(new++) = 0;
+		}
+		free(ptr);
+	}
+	return (res);
+}

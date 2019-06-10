@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 19:00:11 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/22 16:05:43 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/01/04 23:27:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
-
-# include "sh.h"
-# include "libft.h"
-# include <fcntl.h>
-
-int			exec_fill_fifo(t_attr *attr, int fd);
-void		return_fd(int fd[3]);
-void		set_fd(int fd[3]);
-int			exec_print_error(char *str);
-int			exec_redir_right(t_attr *cmd);
-
-
-int			exec_open(int fd, char *file);
-
-#endif
+int	ft_isalnum(int c)
+{
+	if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z')
+			|| (c >= 'a' && c <= 'z'))
+		return (1);
+	else
+		return (0);
+}

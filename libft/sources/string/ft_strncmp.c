@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 19:00:11 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/21 20:16:18 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/01/06 15:34:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include <string.h>
 
-# include "sh.h"
-# include "libft.h"
-# include <fcntl.h>
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*a;
+	unsigned char	*b;
 
-int			exec_fill_fifo(t_attr *attr, int fd);
-void		return_fd(int fd[3]);
-void		set_fd(int fd[3]);
-int			exec_print_error(char *str);
-int			exec_redir_right(t_attr *cmd);
-
-
-int			exec_open(int fd, char *file);
-
-#endif
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (--n && *a != '\0' && *b != '\0' && *a == *b)
+	{
+		a++;
+		b++;
+	}
+	return (*a - *b);
+}

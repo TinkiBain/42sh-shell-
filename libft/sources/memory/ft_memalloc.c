@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 19:00:11 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/25 14:53:56 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/02/13 14:55:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "libft.h"
 
-# include "sh.h"
-# include "libft.h"
-# include <fcntl.h>
+void	*ft_memalloc(size_t size)
+{
+	unsigned char	*s;
 
-int			exec_fill_fifo(t_attr *attr, int fd);
-void		return_fd(int fd[3]);
-void		set_fd(int fd[3]);
-int			exec_print_error(char *str);
-int			exec_redir_right(t_attr *cmd);
-
-
-int			exec_open(int fd, char *file);
-
-#endif
+	s = NULL;
+	if (size == 0)
+		return (NULL);
+	s = (unsigned char *)malloc(sizeof(unsigned char) * size);
+	if (s == NULL)
+		return (NULL);
+	ft_bzero(s, size);
+	return ((void *)s);
+}

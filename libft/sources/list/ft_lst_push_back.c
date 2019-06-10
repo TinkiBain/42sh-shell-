@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.h                                             :+:      :+:    :+:   */
+/*   ft_lst_push_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 19:00:11 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/12/02 14:14:34 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/03/03 17:20:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXEC_H
-# define EXEC_H
+#include "libft.h"
 
-# include "sh.h"
-# include "libft.h"
-# include <fcntl.h>
+void	ft_lst_push_back(t_list **alst, t_list *lst_new)
+{
+	t_list	*tmp;
 
-int			exec_fill_fifo(t_attr *attr, int fd);
-void		return_fd(int fd[3]);
-void		set_fd(int fd[3]);
-int			exec_print_error(char *str);
-int			exec_redir_right(t_attr *cmd);
-
-
-int			exec_open(int fd, char *file);
-
-#endif
+	if (!alst || !lst_new)
+		return ;
+	if (!*alst)
+		*alst = lst_new;
+	else
+	{
+		tmp = *alst;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = lst_new;
+	}
+}
