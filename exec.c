@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:17:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/11 10:04:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/11 12:39:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,18 @@ int		exec_check_attr(t_exec *cmd, int fd)
 void	exec(t_exec *cmd)
 {
 	int		return_value;
-	int		fd[3];
+	int		*fd;
 
-	set_fd(fd);
+	fd = set_fd();
 	while (cmd)
 	{
+		if (cmd->ispipe)
+			
 		return_value = exec_check_attr(cmd, fd[0]);
 		if (return_value == -1)
 		{
 			return_fd(fd);
-			set_fd(fd);
+			fd = set_fd();
 			printf("ERROR return_value\n");
 		}
 		cmd = cmd->next;

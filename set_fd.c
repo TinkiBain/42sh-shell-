@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:28:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/04 19:33:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/11 10:22:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ void		return_fd(int fd[3])
 	close(fd[1]);
 	dup2(fd[2], 2);
 	close(fd[2]);
+	free (fd);
 }
 
-void		set_fd(int fd[3])
+int			*set_fd(void)
 {
-	dup2(0, fd[0]);
-	dup2(1, fd[1]);
-	dup2(2, fd[2]);
+	int		*fd;
+
+	fd = (int*)ft_xmalloc(sizeof(int));
+	fd[0] = dup(0);
+	fd[1] = dup(1);
+	fd[2] = dup(2);
+	return (fd);
 }
