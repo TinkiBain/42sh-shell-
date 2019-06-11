@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 22:07:04 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/10 15:46:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/11 19:06:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct	s_vector
 	size_t		count;
 }				t_vector;
 
-void		**ft_vector_add(void **arr, void *elem);
-void		**ft_vector_remove(void **arr, void *elem);
+int			ft_vector_add(t_vector *vector, void *elem);
+int			ft_vector_remove(t_vector *vector, void *elem);
 t_vector	*ft_vector_init(void *elem);
 
 #endif

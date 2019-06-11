@@ -1,46 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_add.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 15:57:38 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/11 18:04:19 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/06/11 16:25:32 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/06/11 18:09:03 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include "libft.h"
+#include <stdio.h>
 
-static void	realloc_vector_data(t_vector *vector)
+void	print_vector(t_vector *vector)
 {
-	void	**tmp;
-	size_t	i;
+	size_t		i;
 
-	vector->capacity += SIZE_DELTA;
-	tmp = (void **)ft_xmalloc(sizeof(void *) * vector->capacity);
-	ft_bzero(tmp, vector->capacity);
 	i = 0;
+	printf("count = %zu\ncapacity = %zu\nData:\n", vector->count, vector->capacity);
 	while (i < vector->count)
 	{
-		*(tmp + i) = *(vector->data + i);
+		printf("%s\n", (char *)(vector->data)[i]);
 		++i;
 	}
-	free(vector->data);
-	vector->data = tmp;
 }
 
-int			ft_vector_add(t_vector *vector, void *elem)
+int		main(int ac, char **av)
 {
-	void	**arr;
+	t_vector	*vector;
 
-	if (!elem)
-		return (0);
-	if (vector->capacity == (vector->count + 1))
-		realloc_vector_data(vector);
-	arr = vector->data;
-	arr[vector->count] = elem;
-	vector->count += 1;
+	vector = ft_vector_init(ft_strdup("Test"));
+	while (ac--)
+	{
+		++av;
+		printf("\n");
+		print_vector(vector);
+		ft_vector_add(vector, (void *)*av);
+	}
 	return (1);
 }
