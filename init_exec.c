@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 18:28:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/10 20:39:35 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/11 08:43:18 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ t_exec	*init_exec(int count, char **av)
 	i = 0;
 	while (*av)
 	{
-		printf("%s\n", *av);
 		exec->av[i] = ft_strdup(*av);
 		++av;
 		i++;
 	}
+	exec->av[i] = NULL;
 	exec->attr = NULL;
 	exec->next = NULL;
 	return (exec);

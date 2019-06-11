@@ -6,18 +6,17 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:17:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/10 20:32:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/11 08:43:48 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-int		exec_redir(t_attr *attr, int fd)
+int		exec_redir(t_attr *attr)
 {
 	t_bits	bits;
 	int		return_value;
 
-	(void)fd;
 	return_value = 0;
 	while (attr)
 	{
@@ -35,11 +34,12 @@ int		exec_redir(t_attr *attr, int fd)
 	return(1);
 }
 
-int		exec_check_attr(t_exec *cmd, int fd)
+int		exec_check_attr(t_exec *cmd)
 {
 	extern char **environ;
 
-	if (cmd->attr && exec_redir(cmd->attr, fd) < 0)
+	(void)cmd;
+	if (cmd->attr && exec_redir(cmd->attr) < 0)
 		return (-1);
 	if (fork() == 0)
 	{
@@ -58,7 +58,7 @@ void	exec(t_exec *cmd)
 	set_fd(fd);
 	while (cmd)
 	{
-		return_value = exec_check_attr(cmd, fd[0]);
+		return_value = exec_check_attr(cmd);
 		if (return_value == -1)
 		{
 			return_fd(fd);

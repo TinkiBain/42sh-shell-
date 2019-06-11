@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/05/29 15:22:50 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/06/11 08:17:29 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MEM=memory/
 STR=string/
 OUTPUT=output/
 OTHER=other/
-VECTOR=vector/
+#VECTOR=vector/
 
 SRCS_LIST=ft_lstdel.c	ft_lstdelone.c	ft_lstiter.c	ft_lst_push_front.c\
 		ft_lstnew.c		ft_lstsize.c	ft_lst_push_back.c
@@ -59,14 +59,14 @@ SRCS_OUTPUT=ft_putchar.c		ft_putchar_fd.c		ft_putendl.c\
 
 SRCS_OTHER=ft_range.c
 
-SRCS_VECTOR=ft_vector_add.c		ft_vector_remove.c
+#SRCS_VECTOR=ft_vector_add.c		ft_vector_remove.c
 
 SOURCES=$(addprefix $(LIST), $(SRCS_LIST))\
 	$(addprefix $(MEM), $(SRCS_MEM))\
 	$(addprefix $(STR), $(SRCS_STR))\
 	$(addprefix $(OUTPUT), $(SRCS_OUTPUT))\
 	$(addprefix $(OTHER), $(SRCS_OTHER))\
-	$(addprefix $(VECTOR), $(SRCS_VECTOR))
+#	$(addprefix $(VECTOR), $(SRCS_VECTOR))
 
 SRCS=$(addprefix $(SRCS_DIR), $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR), $(SOURCES:.c=.o))
@@ -86,7 +86,7 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)$(STR)
 	@mkdir -p $(OBJS_DIR)$(OUTPUT)
 	@mkdir -p $(OBJS_DIR)$(OTHER)
-	@mkdir -p $(OBJS_DIR)$(VECTOR)
+#	@mkdir -p $(OBJS_DIR)$(VECTOR)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@gcc $(FLAGS) $(INCLUDES) -c $< -o $@
