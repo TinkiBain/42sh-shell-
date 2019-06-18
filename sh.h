@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/11 12:38:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/13 17:03:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,5 @@ typedef struct				s_exec
 void	exec(t_exec *cmd);
 t_exec	*init_exec(int count, char **av, int ispipe);
 t_attr	*init_attr(int spec, int right_fd, int left_fd, char *file);
-
-
-/*
-typedef struct				s_attr_left
-{
-	struct s_attr			*next;
-	char					*file;
-	int						left_fd;
-	int						spec;
-}							t_attr_left;
-
-typedef struct				s_attr_right
-{
-	struct s_attr_right		*next;
-	char					*file;
-	int						spec;
-	int						left_fd;
-	int						right_fd;
-	int						close;
-}							t_attr_right;
-*/
-
 
 #endif

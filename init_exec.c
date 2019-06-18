@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 18:28:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/11 12:37:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/13 17:00:06 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_exec	*init_exec(int count, char **av, int ispipe)
 		++av;
 		i++;
 	}
-	cmd->ispipe = ispipe;
+	exec->ispipe = ispipe;
 	exec->av[i] = NULL;
 	exec->attr = NULL;
 	exec->next = NULL;
