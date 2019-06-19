@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 16:51:28 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/11 19:06:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/11 19:22:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_vector_remove(t_vector *vector, void *elem)
 	size_t	size;
 	size_t	i;
 
-	if (!elem)
+	if (!elem || vector->count == 0)
 		return (0);
 	arr = vector->data;
 	new_arr = (void **)ft_xmalloc(sizeof(void *) * vector->capacity);
@@ -35,6 +35,7 @@ int	ft_vector_remove(t_vector *vector, void *elem)
 			++i;
 		}
 	vector->data = new_arr;
+	--(vector->count);
 	free(elem);
 	free(arr);
 	return (1);

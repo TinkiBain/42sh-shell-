@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 15:57:38 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/11 18:04:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/11 19:13:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int			ft_vector_add(t_vector *vector, void *elem)
 		realloc_vector_data(vector);
 	arr = vector->data;
 	arr[vector->count] = elem;
-	vector->count += 1;
+	++(vector->count);
 	return (1);
 }
