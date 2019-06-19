@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:38:59 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/05 21:36:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/11 10:35:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			exec_fill_fifo_one_left(char *file)
 	while ((i = read(fd, &buf, 1023)))
 	{
 		buf[i] = '\0';
-		str = ft_strrejoin(str, buf);
+		str = ft_strjoin_free(str, buf, 1);
 	}
 	close(fd);
 	if (pipe(pipefd) < 0)
@@ -86,12 +86,12 @@ int			exec_fill_fifo(t_attr *attr, int fd)
 	return_value = 0;
 	while (attr)
 	{
-		if (attr->spec & L)
-			return_value = exec_fill_fifo_one_left(attr->right);
-		else if (attr->spec & LL)
-			exec_fill_fifo_two_left(attr->right, fd);
-		else if (attr->spec & LLL)
-			exec_fill_fifo_three_left(attr->right);
+		if (attr->spec.bits.l)
+			return_value = exec_fill_fifo_one_left(attr->file);
+		else if (attr->spec.bits.ll)
+			exec_fill_fifo_two_left(attr->file, fd);
+		else if (attr->spec.bits.lll)
+			exec_fill_fifo_three_left(attr->file);
 		if (return_value == -1)
 			return (-1);
 		attr = attr->next;
