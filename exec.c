@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:17:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/11 12:39:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/18 18:10:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	exec(t_exec *cmd)
 	fd = set_fd();
 	while (cmd)
 	{
-		if (cmd->ispipe)
-			
 		return_value = exec_check_attr(cmd, fd[0]);
 		if (return_value == -1)
 		{

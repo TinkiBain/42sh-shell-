@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_llitoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/05/11 04:05:55 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/05/13 22:12:22 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+char	*ft_llitoa(unsigned long long int nb)
 {
-	
-}
+	int		i;
+	int		j;
+	char	tmp[64];
+	char	*str;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	j = 0;
+	while (nb)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		tmp[j] = nb % 10 + '0';
+		nb /= 10;
+		++j;
 	}
+	str = (char*)ft_xmalloc(sizeof(char) * (j + 1));
+	i = 0;
+	while (j > 0)
+	{
+		str[i] = tmp[j - 1];
+		i++;
+		j--;
+	}
+	return (str);
 }

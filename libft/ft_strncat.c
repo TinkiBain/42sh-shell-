@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/23 15:34:19 by dwisoky           #+#    #+#             */
+/*   Updated: 2018/11/30 15:11:19 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+char		*ft_strncat(char *str1, const char *str2, size_t n)
 {
-	
-}
+	size_t i;
+	size_t j;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	i = 0;
+	j = 0;
+	if (n == 0)
+		return (str1);
+	while (str1[i] != '\0')
+		i++;
+	while (str2[j] != '\0' && j <= n - 1)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		str1[i + j] = str2[j];
+		j++;
 	}
+	str1[j + i] = '\0';
+	return (str1);
 }

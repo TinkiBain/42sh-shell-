@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/26 16:09:06 by dwisoky           #+#    #+#             */
+/*   Updated: 2018/11/28 15:50:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	
-}
+	size_t i;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	i = 0;
+	if (n == 0)
+		return (1);
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
 	}
+	if (i == n || s1[i] - s2[i] == 0)
+		return (1);
+	else
+		return (0);
 }

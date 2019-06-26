@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_putendl_nb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/02/13 16:14:10 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/02/18 08:39:00 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+void		ft_putendl_nb(char *s, int num)
 {
-	
-}
+	static char str[1000];
+	static int	i;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	if (i == 999 || num == 0)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		write(1, str, i);
+		i = 0;
+		return ;
+	}
+	while (*s != '\0' && s != NULL)
+	{
+		if (i == 999)
+		{
+			write(1, str, i);
+			i = 0;
+		}
+		str[i] = *s;
+		++i;
+		s++;
 	}
 }

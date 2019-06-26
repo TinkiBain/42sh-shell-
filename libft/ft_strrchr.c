@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/23 17:56:56 by dwisoky           #+#    #+#             */
+/*   Updated: 2018/11/29 20:51:58 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+char	*ft_strrchr(const char *str, int ch)
 {
-	
-}
+	char	*str1;
+	int		i;
+	int		k;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	i = 0;
+	k = 0;
+	str1 = (char*)str;
+	while (str1[i] != '\0' && str1[i] >= 0 && str1[i] <= 127)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		if (str1[i] == ch)
+			k = i;
+		i++;
 	}
+	if (ch == '\0')
+		return (&str1[i]);
+	if (str1[k] == ch)
+		return (&str1[k]);
+	else
+		return (NULL);
 }

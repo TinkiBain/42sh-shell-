@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_bf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/02/23 20:45:04 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/02/23 21:06:25 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+void			ft_putstr_bf(char *str, int nb)
 {
-	
-}
+	static char buf[2000];
+	static int	i;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	if (nb == 1 || i == 1999)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		write(1, buf, i);
+		return ;
+	}
+	while (*str)
+	{
+		buf[i] = *str;
+		++i;
+		if (i == 1999)
+		{
+			write(1, buf, 1999);
+			i = 0;
+		}
+		str++;
 	}
 }

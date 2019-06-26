@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/25 18:28:14 by dwisoky           #+#    #+#             */
+/*   Updated: 2018/11/28 14:10:45 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+char	*ft_strstr(const char *str1, const char *str2)
 {
-	
-}
+	int i;
+	int j;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	i = 0;
+	if (*str2 == '\0')
+		return ((char *)str1);
+	while (str1[i] != '\0')
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		j = 0;
+		while (str1[i + j] == str2[j])
+		{
+			if (str2[j + 1] == '\0')
+				return ((char*)&str1[i]);
+			j++;
+		}
+		i++;
 	}
+	return (NULL);
 }

@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/26 15:51:46 by dwisoky           #+#    #+#             */
+/*   Updated: 2018/11/26 15:59:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	
-}
+	int		i;
+	char	*str;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	i = 0;
+	if (s == NULL)
+		return (NULL);
+	while (s[i] != '\0' && s[i] >= 0 && s[i] <= 127)
+		i++;
+	if (!(str = (char*)malloc(i + 1)))
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0' && s[i] >= 0 && s[i] <= 127)
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		str[i] = (*f)(s[i]);
+		i++;
 	}
+	str[i] = '\0';
+	return (str);
 }

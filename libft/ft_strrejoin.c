@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_strrejoin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/12/28 21:26:12 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/04/14 17:02:46 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-void	parser(char *str, t_exec **exec)
+char	*ft_strrejoin(char *s1, char const *s2)
 {
-	
-}
+	int		i;
+	char	*str;
 
-int		main(void)
-{
-	char buf[1024];
-	t_exec	*exec;
-
-	exec = NULL;
-	while (1)
+	if (s1 == NULL || s2 == NULL)
+		return (s1);
+	i = ft_strlen(s1) + ft_strlen(s2);
+	if ((str = ft_strnew(i)) == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
+		str[i] = s1[i];
+		i++;
 	}
+	while (*s2 != '\0')
+	{
+		str[i] = *s2;
+		i++;
+		s2++;
+	}
+	str[i] = '\0';
+	ft_strdel(&s1);
+	return (str);
 }

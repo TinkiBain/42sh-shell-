@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/13 17:03:41 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/26 17:24:48 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct				s_bits
 {
 	unsigned char	r : 1;
 	unsigned char	rr : 1;
-//	unsigned char	dr : 1;
 	unsigned char	rd : 1;
 	unsigned char	l : 1;
 	unsigned char	ll : 1;
@@ -62,6 +61,7 @@ typedef struct				s_exec
 	int						ispipe;
 }							t_exec;
 
+void	lexer(char *str);
 void	exec(t_exec *cmd);
 t_exec	*init_exec(int count, char **av, int ispipe);
 t_attr	*init_attr(int spec, int right_fd, int left_fd, char *file);
