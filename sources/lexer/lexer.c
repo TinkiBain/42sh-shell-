@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 17:28:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/30 19:13:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void		lexer(char *buf)
 	{
 		printf("%d\n", begin->type);
 		printf("'%s'\n", begin->lexeme);
+		printf("%d\n", begin->fd);
+		printf("-------------------\n");
 		begin = begin->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 16:02:44 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/30 19:40:09 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,31 @@ size_t		lexer_check_word_and(char *begin, char *str, t_lex **lex)
 	return (str - begin);
 }
 
+size_t		lexer_fill_redir_right(char *str, t_lex **lex)
+{
+	char	*begin;
+
+	begin = str;
+	while (*str && !ft_isspace(*str) && !ft_isspec(*str))
+	{
+		if (*str == '\\')
+		{
+			++str;
+			if (*str)
+				++str;
+			else
+				break ;
+		}
+		if (*str == '-')
+			break ;
+		++str;
+	}
+	if (ft_isspace(*str))
+		--str;
+	(*lex)->lexeme = ft_strndup(begin, str - begin);
+	return (str - begin + 1);
+}
+
 size_t		lexer_check_redir(char *str, t_lex **lex)
 {
 	char	*begin;
@@ -93,7 +118,13 @@ size_t		lexer_check_redir(char *str, t_lex **lex)
 		return (0);
 	if (type == WORD)
 		return (lexer_check_word_and(begin, str, lex));
-	str += lexer_check_word(str, lex);
+	while (*str && ft_isspace(*str))
+		++str;
+	if (type & GREATAND || type & LESSAND)
+		str += lexer_fill_redir_right(str, lex);
+	else	
+		str += lexer_check_word(str, lex);
+	(*lex)->fd = fd;
 	(*lex)->type = type;
 	return (str - begin);
 }
