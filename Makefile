@@ -3,46 +3,87 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/29 21:37:46 by dwisoky           #+#    #+#              #
-#    Updated: 2019/06/29 21:40:27 by dwisoky          ###   ########.fr        #
+#    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
+#    Updated: 2019/06/30 16:32:01 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 21sh
+NAME=21sh
+FLAGS=-Wall -Wextra -Werror
+HEADER=
+# includes/lexer.h
 
-FLAGS = -Wall -Wextra -Werror
+SRCS_DIR=sources/
+OBJS_DIR=objects/
 
-SRCS = lexer/*.c
+LIBFT_DIR=libft
 
-#SRCS = parser.c
-#SRCS = main.c exec.c set_fd.c exec_fill_fifo.c exec_print_error.c exec_redir_right.c
+LEXER_DIR=lexer/
 
-OBJS = $(SRCS:.c=.o)
+SRCS_LEXER=\
+	lexer.c\
+	lexer_and_or.c\
+	lexer_check_redir.c\
+	lexer_get_token.c
 
-INCLUDES = includes
+SOURCES=\
+	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))
+
+SRCS=$(addprefix $(SRCS_DIR), $(SOURCES))
+OBJS=$(addprefix $(OBJS_DIR), $(SOURCES:.c=.o))
+
+OBJS_CLEAN=$(strip $(foreach f,$(OBJS),$(wildcard $(f))))
+NAME_CLEAN=$(strip $(NAME))
+
+LIBFT_A=$(LIBFT_DIR)/libft.a
+INCLUDES:=-I includes -I libft
+
+RED=\033[0;31m
+GREEN=\033[0;32m
+BLUE=\033[0;34m
+NC=\033[0m
+
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@echo "\x1b[39;01mCompilation...\x1b[39;01m"
-	@make --directory ./libft
-	@gcc $(FLAGS) $(OBJS) -o $(NAME) -L ./libft -lft -I libft
-	@echo "\x1b[37;01mYour 21sh is ready\x1b[37;01m"
+$(OBJS_DIR):
+	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
+	@mkdir -p $(OBJS_DIR)$(LEXER_DIR)
 
-$(OBJS):$(SRCS)
-	@gcc $(FLAGS) -c -g $< -I $(INCLUDES) -I libft -o $@
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
+	@gcc $(INCLUDES) $(FLAGS) -o $@ -c $<
+
+$(LIBFT_A):
+	@make -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT_A) $(OBJS_DIR) $(OBJS)
+	@echo "$(BLUE)Compiling executable...$(NC)"
+	@gcc $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME)
+	@echo "$(GREEN)Bin $(NAME) is ready to use!$(NC)"
 
 clean:
-	@echo "\033[34mDeliting o-files\033[34m"
-	@/bin/rm -f $(OBJS)
-	@make clean --directory ./libft
+ifneq ($(OBJS_CLEAN),)
+	@make clean -C $(LIBFT_DIR)
+	@rm -rf $(OBJS_DIR)
+	@echo "$(RED)$(NAME_CLEAN) objects files removed.$(NC)"
+else
+	@echo "$(RED)$(NAME_CLEAN) objects already cleaned$(NC)"
+endif
 
-fclean:	clean
-	@echo "\033[34mDeliting binary\033[34m"
-	@/bin/rm -f $(NAME)
-	@make fclean --directory ./libft
+fclean: clean
+ifneq ($(NAME_CLEAN),)
+	@make fclean -C $(LIBFT_DIR)
+	@rm -rf $(OBJS_DIR)
+	@rm -rf $(NAME)
+	@echo "$(RED)Bin $(NAME_CLEAN) removed.$(NC)"
+else
+	@echo "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)"
+endif
 
-re:	fclean all
+test:
+	gcc $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A)
 
+re: fclean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_check_redir.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/29 20:43:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/30 16:02:44 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 int			lexer_redir_and(char **str)
 {
-	*str++;
+	(*str)++;
 	if (**str && **str == '>' && ++(*str))
 	{
 		if (**str && **str == '>' && ++(*str))
 			return (ANDDGREAT);
 		return (ANDGREAT);
 	}
-	*str--;
+	(*str)--;
 	return (WORD);
 }
 
 int			lexer_redir_great(char **str)
 {
-	*str++;
+	(*str)++;
 	if (**str && **str == '>' && ++(*str))
 		return (DGREAT);
 	if (**str && **str == '&' && ++(*str))
@@ -37,7 +37,7 @@ int			lexer_redir_great(char **str)
 
 int			lexer_redir_less(char **str)
 {
-	*str++;
+	(*str)++;
 	if (**str && (**str) == '<' && ++(*str))
 	{
 		if (**str && (**str) == '-' && ++(*str))
@@ -54,7 +54,7 @@ int			lexer_redir_less(char **str)
 	return (LESS);
 }
 
-size_t		lexer_check_word(char *begin, char *str, t_lex **lex)
+size_t		lexer_check_word_and(char *begin, char *str, t_lex **lex)
 {
 	char	*tmp;
 	char	*src;
@@ -62,8 +62,8 @@ size_t		lexer_check_word(char *begin, char *str, t_lex **lex)
 	tmp = ft_strndup(begin, str - begin);
 	str++;
 	str += lexer_check_word(str, lex);
-	src = lex->lexeme;
-	lex->lexeme = ft_strrejoin(tmp, src);
+	src = (*lex)->lexeme;
+	(*lex)->lexeme = ft_strrejoin(tmp, src);
 	free(src);
 	return (str - begin);
 }
@@ -92,8 +92,8 @@ size_t		lexer_check_redir(char *str, t_lex **lex)
 	else
 		return (0);
 	if (type == WORD)
-		return (lexer_check_and(begin, lex));
+		return (lexer_check_word_and(begin, str, lex));
 	str += lexer_check_word(str, lex);
-	lex->type = type;
+	(*lex)->type = type;
 	return (str - begin);
 }

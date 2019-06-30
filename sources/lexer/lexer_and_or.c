@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_and_or.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:34:38 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/29 18:38:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/30 03:03:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 size_t			lexer_and_or(char *str, t_lex **lex)
 {
 	if (*str == '&' && *(str + 1) && *(str + 1) == '&')
-		*lex->type = AND;
+		(*lex)->type = AND;
 	else if (*str == '|' && *(str + 1) && *(str + 1) == '|')
-		*lex->type = OR;
+		(*lex)->type = OR;
 	else
 		return (0);
 	return (2);

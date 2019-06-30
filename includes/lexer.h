@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/29 19:45:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/30 15:59:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,17 @@
 # define WORD 4
 # define AND 8
 # define OR 16
-# define REDIR 32
+# define GREAT 32
+# define DGREAT 64
+# define GREATAND 128
+# define LESS 256
+# define DLESS 512
+# define TLESS 1024
+# define DLESSDASH 2048
+# define LESSAND 4096
+# define LESSGREAT 8192
+# define ANDGREAT 16384
+# define ANDDGREAT 32768
 
 typedef struct		s_lex
 {

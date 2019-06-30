@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/29 19:46:11 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/30 17:28:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void		lexer(char *buf)
 			++buf;
 			continue ;
 		}
-		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|') || !*(buf + 1)))
+		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|') || !*(buf + 1)) && ++buf)
 			lex->type = PIPE;
-		else if (*buf == ';')
+		else if (*buf == ';' && ++buf)
 			lex->type = SEMICOLON;
 		else
 			buf = lexer_get_token(buf, &lex);
@@ -49,9 +49,13 @@ void		lexer(char *buf)
 	}
 	free(lex);
 	lex = NULL;
+	while (begin)
+	{
+		printf("%d\n", begin->type);
+		printf("'%s'\n", begin->lexeme);
+		begin = begin->next;
+	}
 }
-
-/* TO DO */
 
 int			main(void)
 {
