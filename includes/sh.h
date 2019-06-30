@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:24:48 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/30 21:39:45 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct				s_exec
 }							t_exec;
 
 void	lexer(char *str);
+//void	parser(t_lex *lex);
 void	exec(t_exec *cmd);
 t_exec	*init_exec(int count, char **av, int ispipe);
 t_attr	*init_attr(int spec, int right_fd, int left_fd, char *file);

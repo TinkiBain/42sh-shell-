@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 15:59:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/06/30 21:38:31 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_lex
 	char			*lexeme;
 	int				type;
 	struct s_lex	*next;
+	struct s_lex	*prev;
 }					t_lex;
 
 char				*lexer_get_token(char *str, t_lex **lex);

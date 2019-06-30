@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 19:13:13 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/06/30 21:39:10 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_lex		*init_lex(void)
+t_lex		*init_lex(t_lex *prev)
 {
 	t_lex	*lex;
 
@@ -20,6 +20,7 @@ t_lex		*init_lex(void)
 	lex->lexeme = NULL;
 	lex->type = 0;
 	lex->next = NULL;
+	lex->prev = prev;
 	lex->fd = 0;
 	return (lex);
 }
@@ -27,10 +28,8 @@ t_lex		*init_lex(void)
 void		lexer(char *buf)
 {
 	t_lex	*lex;
-	t_lex	*begin;
 
-	lex = init_lex();
-	begin = lex;
+	lex = init_lex(NULL);
 	while (*buf)
 	{
 		if (ft_isspace(*buf))
@@ -44,18 +43,21 @@ void		lexer(char *buf)
 			lex->type = SEMICOLON;
 		else
 			buf = lexer_get_token(buf, &lex);
-		lex->next = init_lex();
+		lex->next = init_lex(lex);
 		lex = lex->next;
 	}
-	free(lex);
-	lex = NULL;
-	while (begin)
+	lex = lex->prev;
+	free(lex->next);
+	lex->next = NULL;
+	while (lex->prev)
+		lex = lex->prev;
+	while (lex)
 	{
-		printf("%d\n", begin->type);
-		printf("'%s'\n", begin->lexeme);
-		printf("%d\n", begin->fd);
+		printf("%d\n", lex->type);
+		printf("'%s'\n", lex->lexeme);
+		printf("%d\n", lex->fd);
 		printf("-------------------\n");
-		begin = begin->next;
+		lex = lex->next;
 	}
 }
 

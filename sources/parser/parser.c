@@ -5,29 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:14:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/26 17:20:54 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/06/30 21:35:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	parser(char *str, t_exec **exec)
+t_list		*init_list(void)
 {
-	
+	t_list	*list;
+
+	list = (t_list*)ft_xmalloc(sizeof(t_list));
+	list->next = NULL;
+	list->and_or = NULL;
+	list->sep = 0;
+	return (list);
 }
 
-int		main(void)
+void		parser(t_lex *lex)
 {
-	char buf[1024];
-	t_exec	*exec;
+	t_list	*list;
 
-	exec = NULL;
-	while (1)
-	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		parser(buf, &exec);
-	}
+	list = init_list();
+	
 }
