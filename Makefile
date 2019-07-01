@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/01 10:09:42 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/07/01 13:22:45 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ PARSER_DIR=parser/
 
 SRCS_PARSER=\
 	parser.c\
-	parser_and_or.c
+	parser_and_or.c\
+	parser_print_error.c
 
 SOURCES=\
 	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))\

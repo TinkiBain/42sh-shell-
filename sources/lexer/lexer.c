@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 13:00:00 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/01 15:29:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void		lexer(char *buf)
 	lex->next = NULL;
 	while (lex->prev)
 		lex = lex->prev;
+	if (lex->type & SEMICOLON)
+		lex = lex->next;
+	free(lex->prev);
+	lex->prev = NULL;
 /*	while (lex)
 	{
 		printf("%d\n", lex->type);

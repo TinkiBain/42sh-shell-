@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 13:00:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/01 15:47:12 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct			s_pars_list
 	int					sep;
 }						t_pars_list;
 
+void					free_lex(t_lex **lex);
+void					*parser_print_error(char *error);
 t_pars_list				*parser(t_lex **lex, t_pars_list *list_down);
 t_and_or				*parser_and_or(t_lex **lex);
 
