@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 21:35:16 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/01 13:00:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,14 @@ typedef struct			s_and_or
 	int					and_or_if;
 }						t_and_or;
 
-typedef struct			s_list
+typedef struct			s_pars_list
 {
-	struct s_list		*list;
+	struct s_pars_list	*list;
 	t_and_or			*and_or;
 	int					sep;
-}						t_list;
+}						t_pars_list;
+
+t_pars_list				*parser(t_lex **lex, t_pars_list *list_down);
+t_and_or				*parser_and_or(t_lex **lex);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/06/30 16:32:01 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/07/01 10:09:42 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,15 @@ SRCS_LEXER=\
 	lexer_check_redir.c\
 	lexer_get_token.c
 
+PARSER_DIR=parser/
+
+SRCS_PARSER=\
+	parser.c\
+	parser_and_or.c
+
 SOURCES=\
-	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))
+	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))\
+	$(addprefix $(PARSER_DIR), $(SRCS_PARSER))
 
 SRCS=$(addprefix $(SRCS_DIR), $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR), $(SOURCES:.c=.o))
@@ -52,6 +59,7 @@ all: $(NAME)
 $(OBJS_DIR):
 	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
 	@mkdir -p $(OBJS_DIR)$(LEXER_DIR)
+	@mkdir -p $(OBJS_DIR)$(PARSER_DIR)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@gcc $(INCLUDES) $(FLAGS) -o $@ -c $<
