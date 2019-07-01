@@ -6,14 +6,13 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/01 13:22:45 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/07/01 21:02:02 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=21sh
-FLAGS=-Wall -Wextra -Werror
-HEADER=
-# includes/lexer.h
+FLAGS=-Wall -Wextra -Werror -g
+HEADER=includes/sh.h
 
 SRCS_DIR=sources/
 OBJS_DIR=objects/
@@ -33,9 +32,13 @@ PARSER_DIR=parser/
 SRCS_PARSER=\
 	parser.c\
 	parser_and_or.c\
-	parser_print_error.c
+	parser_print_error.c\
+	parser_pipeline.c
 
-SOURCES=\
+SRCS_WITHOUT_DIR=\
+	main.c
+
+SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))\
 	$(addprefix $(PARSER_DIR), $(SRCS_PARSER))
 

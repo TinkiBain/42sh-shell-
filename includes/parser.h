@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 15:47:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/01 20:43:07 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "sh.h"
 # include "lexer.h"
 
 typedef struct			s_io_redirect
@@ -34,7 +33,7 @@ typedef struct			s_cmd_prefix
 {
 	struct s_cmd_prefix	*cmd_pref;
 	t_io_redirect		*io_redir;
-	char				*assignment_word;	
+	char				*assignment_word;
 }						t_cmd_prefix;
 
 typedef struct			s_cmd
@@ -45,10 +44,17 @@ typedef struct			s_cmd
 	char				*cmd_name;
 }						t_cmd;
 
+typedef struct			s_pipe_sequence
+{
+	t_cmd					*cmd;
+	struct s_pipe_sequence	*next;
+	int						pipe_op;
+}						t_pipe_sequence;
+
 typedef struct			s_pipeline
 {
-	struct s_pipeline	*pipeline;
-	t_cmd				*cmd;
+	t_lex				*lexem;
+//	t_pipe_sequence		*pipe_sequence;
 	int					bang;
 }						t_pipeline;
 
@@ -68,7 +74,8 @@ typedef struct			s_pars_list
 
 void					free_lex(t_lex **lex);
 void					*parser_print_error(char *error);
-t_pars_list				*parser(t_lex **lex, t_pars_list *list_down);
-t_and_or				*parser_and_or(t_lex **lex);
+t_pars_list				*parser(t_lex **lex, t_pars_list *list_down, int type);
+t_and_or				*parser_and_or(t_lex **lex, t_and_or *elem_down, int type);
+t_pipeline				*parser_pipeline(t_lex **lex);
 
 #endif

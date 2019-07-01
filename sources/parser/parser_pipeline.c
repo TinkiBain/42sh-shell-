@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_and_or.c                                     :+:      :+:    :+:   */
+/*   parser_pipeline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/29 18:34:38 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 17:29:36 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/07/01 16:14:49 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/07/01 16:38:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "parser.h"
 
-size_t			lexer_and_or(char *str, t_lex **lex)
+t_pipeline          *init_pipeline(void)
 {
-	if (*str == '&' && *(str + 1) && *(str + 1) == '&')
-		(*lex)->type = AND_IF;
-	else if (*str == '|' && *(str + 1) && *(str + 1) == '|')
-		(*lex)->type = OR_IF;
-	else
-		return (0);
-	return (2);
+    t_pipeline      *pipeline;
+
+    pipeline = (t_pipeline*)ft_xmalloc(sizeof(t_pipeline));
+    pipeline->lexem = NULL;
+    pipeline->bang = 0;
+    return (pipeline);
+}
+
+t_pipeline          *parser_pipeline(t_lex **lex)
+{
+    t_pipeline      *pipeline;
+
+    pipeline = init_pipeline();
+    pipeline->lexem = *lex;
+    return (pipeline);
 }

@@ -6,12 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 15:29:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/01 20:48:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "parser.h"
+#include "sh.h"
 
 t_lex		*init_lex(t_lex *prev)
 {
@@ -26,7 +25,7 @@ t_lex		*init_lex(t_lex *prev)
 	return (lex);
 }
 
-void		lexer(char *buf)
+t_lex		*lexer(char *buf)
 {
 	t_lex	*lex;
 
@@ -64,19 +63,5 @@ void		lexer(char *buf)
 		printf("-------------------\n");
 		lex = lex->next;
 	}*/
-	parser(&lex, NULL);
-}
-
-int			main(void)
-{
-	char	buf[1024];
-
-	while (1)
-	{
-		buf[read(0, &buf, 1023) - 1] = '\0';
-		if (ft_strequ("exit", buf))
-			break ;
-		lexer(buf);
-	}
-	return (0);
+	return (lex);
 }

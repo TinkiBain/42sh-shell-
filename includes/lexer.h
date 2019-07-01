@@ -6,20 +6,20 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 10:18:48 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/01 21:01:43 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "sh.h"
+# include "libft.h"
 
 # define PIPE 1
 # define SEMICOLON 2
 # define WORD 4
-# define AND 8
-# define OR 16
+# define AND_IF 8
+# define OR_IF 16
 # define GREAT 32
 # define DGREAT 64
 # define GREATAND 128

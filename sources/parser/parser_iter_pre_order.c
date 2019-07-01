@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_and_or.c                                     :+:      :+:    :+:   */
+/*   parser_iter_pre_order.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/29 18:34:38 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 17:29:36 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/07/01 21:06:39 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/07/01 21:27:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "sh.h"
 
-size_t			lexer_and_or(char *str, t_lex **lex)
+static void	iter_and_or(t_and_or *root)
 {
-	if (*str == '&' && *(str + 1) && *(str + 1) == '&')
-		(*lex)->type = AND_IF;
-	else if (*str == '|' && *(str + 1) && *(str + 1) == '|')
-		(*lex)->type = OR_IF;
-	else
-		return (0);
-	return (2);
+	if (root->and_or)
+		iter_and_or(root->and_or);
+	printf("%s\n", root->pipeline);
+	if ()
 }
+
+void	parser_iter_pre_order(t_pars_list *root)
+{
+	if (root->list)
+		parser_iter_pre_order(root->list);
+	while (1)
+	{
+		(void)root;
+	}
+}
+int printf(char *format, ...);
