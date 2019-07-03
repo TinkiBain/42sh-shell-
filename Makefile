@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/02 17:16:29 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/07/03 15:00:41 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS_PARSER=\
 	parser_and_or.c\
 	parser_print_error.c\
 	parser_pipeline.c\
-	parser_iter_pre_order.c
+	parser_iter_in_order.c
 
 SRCS_WITHOUT_DIR=\
 	main.c

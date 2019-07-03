@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/02 21:21:35 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:00:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			main(void)
 		{
 			lex = lexer(buf);
 			list = parser(&lex, NULL, 0);
-			parser_iter_pre_order(list);
+			parser_iter_in_order(list);
 			ft_putstr("\n------------------------\n");
 			free(tmp);
 		}
