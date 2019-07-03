@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 20:44:03 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:13:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,7 @@
 # include "parser.h"
 # include "lexer.h"
 
-// # define R 1
-// # define RR 2
-// # define DR 4
-// # define RD 8
-// # define C 16
-// # define L 32
-// # define LL 64
-// # define LLL 128
-// # define O 256
+int g_errno;
 
 typedef struct				s_bits
 {

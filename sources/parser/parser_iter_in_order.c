@@ -37,13 +37,13 @@ static void	pipeline_iter(t_pipeline *root)
 
 static void	and_or_iter_in_order(t_and_or *root)
 {
+	pipeline_iter(root->pipeline);
 	if (root->and_or)
 	{
-		and_or_iter_in_order(root->and_or);
 		if (root->and_or_if == AND_IF || root->and_or_if == OR_IF)
 			print_token_number(root->and_or_if);
+		and_or_iter_in_order(root->and_or);
 	}
-	pipeline_iter(root->pipeline);
 }
 
 void	parser_iter_in_order(t_pars_list *root)
