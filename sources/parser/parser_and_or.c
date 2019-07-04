@@ -6,13 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/03 18:19:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 12:56:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-// include "sh.h" for using g_errno
-#include "sh.h"
 
 t_and_or		*parser_init_and_or(void)
 {
@@ -25,14 +23,13 @@ t_and_or		*parser_init_and_or(void)
 	return (elem);
 }
 
-t_and_or		*parser_and_or(t_lex **lex, t_and_or *elem_down, int semicolon)
+t_and_or		*parser_and_or(t_lex **lex)
 {
 	t_and_or	*elem;
 	t_lex		**tmp;
 	t_lex		**begin;
 	int			type;
 
-	(void)elem_down;
 	begin = lex;
 	tmp = begin;
 	elem = parser_init_and_or();
@@ -44,15 +41,10 @@ t_and_or		*parser_and_or(t_lex **lex, t_and_or *elem_down, int semicolon)
 			free_lex(lex);
 			elem->pipeline = parser_pipeline(begin);
 			elem->and_or_if = type;
-			elem->and_or = parser_and_or(tmp, elem, type);
+			elem->and_or = parser_and_or(tmp);
 			break ;
 		}
 		lex = &(*lex)->next;
-	}
-	if (!tmp && semicolon)
-	{
-		parser_print_error(";");
-		g_errno = SEMICOLON;
 	}
 	elem->pipeline = parser_pipeline(begin);
 	return (elem);

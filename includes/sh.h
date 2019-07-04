@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/03 18:13:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 12:56:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "libft.h"
 # include "parser.h"
 # include "lexer.h"
-
-int g_errno;
 
 typedef struct				s_bits
 {

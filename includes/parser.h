@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/03 15:00:07 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 12:54:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct			s_pars_list
 void					free_lex(t_lex **lex);
 void					*parser_print_error(char *error);
 t_pars_list				*parser(t_lex **lex, t_pars_list *list_down, int type);
-t_and_or				*parser_and_or(t_lex **lex, t_and_or *elem_down, int type);
+t_and_or				*parser_and_or(t_lex **lex);
 t_pipeline				*parser_pipeline(t_lex **lex);
 
 void					parser_iter_in_order(t_pars_list *root);
