@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 12:54:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:22:51 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void				free_lex(t_lex **lex)
 {
 	if ((*lex)->lexeme)
+	{
 		free((*lex)->lexeme);
+		(*lex)->lexeme = NULL;
+	}
 	free(*lex);
 	*lex = NULL;
 }

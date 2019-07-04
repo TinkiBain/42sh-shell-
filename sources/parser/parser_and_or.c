@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 12:56:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:24:19 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_and_or		*parser_and_or(t_lex **lex)
 		{
 			tmp = &(*lex)->next;
 			free_lex(lex);
-			elem->pipeline = parser_pipeline(begin);
 			elem->and_or_if = type;
 			elem->and_or = parser_and_or(tmp);
 			break ;
