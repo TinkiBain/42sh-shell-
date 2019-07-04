@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/03 15:00:41 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/07/04 20:47:19 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,19 @@ SRCS_PARSER=\
 	parser_and_or.c\
 	parser_print_error.c\
 	parser_pipeline.c\
-	parser_iter_in_order.c
+	parser_pipe_sequence.c\
+	parser_cmd.c
+
+AST_ITER_DIR=ast_iter/
+
+SRCS_AST_ITER=\
+	ast_iter_in_order.c
 
 SRCS_WITHOUT_DIR=\
 	main.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
+	$(addprefix $(AST_ITER_DIR), $(SRCS_AST_ITER))\
 	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))\
 	$(addprefix $(PARSER_DIR), $(SRCS_PARSER))
 
@@ -63,6 +70,7 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
+	@mkdir -p $(OBJS_DIR)$(AST_ITER_DIR)
 	@mkdir -p $(OBJS_DIR)$(LEXER_DIR)
 	@mkdir -p $(OBJS_DIR)$(PARSER_DIR)
 

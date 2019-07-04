@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_fd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:28:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/11 10:22:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/04 19:40:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		return_fd(int fd[3])
 	close(fd[1]);
 	dup2(fd[2], 2);
 	close(fd[2]);
-	free (fd);
+	free(fd);
 }
 
 int			*set_fd(void)

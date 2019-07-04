@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 19:40:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/04 19:43:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ size_t		lexer_check_redir(char *str, t_lex **lex)
 		++str;
 	if (type & GREATAND || type & LESSAND)
 		str += lexer_fill_redir_right(str, lex);
-	else	
+	else
 		str += lexer_check_word(str, lex);
 	(*lex)->fd = fd;
 	(*lex)->type = type;

@@ -1,50 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_and_or.c                                    :+:      :+:    :+:   */
+/*   parser_pipe_sequence.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 20:50:37 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/07/04 20:31:43 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/07/04 22:45:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static t_and_or	*init_and_or(void)
+static t_pipe_sequence	*init_pipe_sequence(void)
 {
-	t_and_or	*elem;
+	t_pipe_sequence		*pipe_seq;
 
-	elem = (t_and_or*)ft_xmalloc(sizeof(t_and_or));
-	elem->and_or = NULL;
-	elem->pipeline = NULL;
-	elem->and_or_if = 0;
-	return (elem);
+	pipe_seq = (t_pipe_sequence*)ft_xmalloc(sizeof(t_pipe_sequence));
+	pipe_seq->cmd = NULL;
+	pipe_seq->next = NULL;
+	pipe_seq->pipe_op = 0;
+	return (pipe_seq);
 }
 
-t_and_or		*parser_and_or(t_lex **lex)
+t_pipe_sequence	*parser_pipe_sequence(t_lex **lex)
 {
-	t_and_or	*elem;
-	t_lex		**tmp;
-	t_lex		**begin;
-	int			type;
+	t_pipe_sequence	*pipe_seq;
+	t_lex			**tmp;
+	t_lex			**begin;
 
 	begin = lex;
 	tmp = begin;
-	elem = init_and_or();
+	pipe_seq = init_pipe_sequence();
 	while (*lex)
 	{
-		if ((type = (*lex)->type) & AND_IF || type & OR_IF)
+		if ((*lex)->type & PIPE_SYMB)
 		{
 			tmp = &(*lex)->next;
 			free_lex(lex);
-			elem->and_or_if = type;
-			elem->and_or = parser_and_or(tmp);
+			pipe_seq->pipe_op = 1;
+			pipe_seq->next = parser_pipe_sequence(tmp);
 			break ;
 		}
 		lex = &(*lex)->next;
 	}
-	elem->pipeline = parser_pipeline(begin);
-	return (elem);
+	pipe_seq->cmd = parser_cmd(begin);
+	return (pipe_seq);
 }

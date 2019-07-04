@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 21:01:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 21:34:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,23 @@
 
 # include "libft.h"
 
-# define PIPE 1
-# define SEMICOLON 2
-# define WORD 4
-# define AND_IF 8
-# define OR_IF 16
-# define GREAT 32
-# define DGREAT 64
-# define GREATAND 128
-# define LESS 256
-# define DLESS 512
-# define TLESS 1024
-# define DLESSDASH 2048
-# define LESSAND 4096
-# define LESSGREAT 8192
-# define ANDGREAT 16384
-# define ANDDGREAT 32768
+# define PIPE_SYMB	1
+# define SEMICOLON	2
+# define WORD		4
+# define AND_IF		8
+# define OR_IF		16
+# define BANG		32
+# define GREAT		64
+# define DGREAT		128
+# define GREATAND	256
+# define LESS		512
+# define DLESS		1024
+# define TLESS		2048
+# define DLESSDASH	4096
+# define LESSAND	8192
+# define LESSGREAT	16384
+# define ANDGREAT	32768
+# define ANDDGREAT	65536
 
 typedef struct		s_lex
 {

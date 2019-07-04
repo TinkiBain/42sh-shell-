@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 12:56:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 19:37:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "parser.h"
 # include "lexer.h"
 
-typedef struct				s_bits
+typedef struct	s_bits
 {
 	unsigned char	r : 1;
 	unsigned char	rr : 1;
@@ -28,34 +28,34 @@ typedef struct				s_bits
 	unsigned char	ld : 1;
 	unsigned char	o : 1;
 	unsigned char	c : 1;
-}							t_bits;
+}				t_bits;
 
-typedef union				u_spec
+typedef union	u_spec
 {
-	unsigned int			value;
-	t_bits					bits;
-}							t_spec;
+	unsigned int	value;
+	t_bits			bits;
+}				t_spec;
 
-typedef struct				s_attr
+typedef struct	s_attr
 {
-	struct s_attr			*next;
-	char					*file;
-	t_spec					spec;
-	int						left_fd;
-	int						right_fd;
-}							t_attr;
+	struct s_attr	*next;
+	char			*file;
+	t_spec			spec;
+	int				left_fd;
+	int				right_fd;
+}				t_attr;
 
-typedef struct				s_exec
+typedef struct	s_exec
 {
-	struct s_exec			*next;
-	t_attr					*attr;
-	char					**av;
-	int						ispipe;
-}							t_exec;
+	struct s_exec	*next;
+	t_attr			*attr;
+	char			**av;
+	int				ispipe;
+}				t_exec;
 
-t_lex	*lexer(char *str);
-void	exec(t_exec *cmd);
-t_exec	*init_exec(int count, char **av, int ispipe);
-t_attr	*init_attr(int spec, int right_fd, int left_fd, char *file);
+t_lex				*lexer(char *str);
+void				exec(t_exec *cmd);
+t_exec				*init_exec(int count, char **av, int ispipe);
+t_attr				*init_attr(int spec, int right_fd, int left_fd, char *file);
 
 #endif

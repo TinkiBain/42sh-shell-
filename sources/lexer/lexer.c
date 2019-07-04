@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/01 20:48:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:38:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ t_lex		*init_lex(t_lex *prev)
 	return (lex);
 }
 
+void		check_first_semicolon_token(t_lex **begin)
+{
+	t_lex	*lex;
+
+	if ((*begin)->type & SEMICOLON)
+	{
+		lex = *begin;
+		lex = lex->next;
+		free(lex->prev);
+		lex->prev = NULL;
+		*begin = lex;
+	}
+}
+
 t_lex		*lexer(char *buf)
 {
 	t_lex	*lex;
@@ -32,13 +46,11 @@ t_lex		*lexer(char *buf)
 	lex = init_lex(NULL);
 	while (*buf)
 	{
-		if (ft_isspace(*buf))
-		{
-			++buf;
+		if (ft_isspace(*buf) && ++buf)
 			continue ;
-		}
-		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|') || !*(buf + 1)) && ++buf)
-			lex->type = PIPE;
+		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|')
+							|| !*(buf + 1)) && ++buf)
+			lex->type = PIPE_SYMB;
 		else if (*buf == ';' && ++buf)
 			lex->type = SEMICOLON;
 		else
@@ -51,17 +63,17 @@ t_lex		*lexer(char *buf)
 	lex->next = NULL;
 	while (lex->prev)
 		lex = lex->prev;
-	if (lex->type & SEMICOLON)
-		lex = lex->next;
-	free(lex->prev);
-	lex->prev = NULL;
-/*	while (lex)
-	{
-		printf("%d\n", lex->type);
-		printf("'%s'\n", lex->lexeme);
-		printf("%d\n", lex->fd);
-		printf("-------------------\n");
-		lex = lex->next;
-	}*/
+	check_first_semicolon_token(&lex);
 	return (lex);
 }
+
+/*
+**	while (lex)
+**	{
+**		printf("%d\n", lex->type);
+**		printf("'%s'\n", lex->lexeme);
+**		printf("%d\n", lex->fd);
+**		printf("-------------------\n");
+**		lex = lex->next;
+**	}
+*/

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:17:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/18 18:10:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/04 19:38:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		exec_redir(t_attr *attr, int fd)
 			return (return_value);
 		attr = attr->next;
 	}
-	return(1);
+	return (1);
 }
 
 int		exec_check_attr(t_exec *cmd, int fd)

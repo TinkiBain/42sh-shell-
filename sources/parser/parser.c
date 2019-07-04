@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 17:22:51 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/04 19:45:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ t_pars_list			*parser(t_lex **lex, t_pars_list *list_down, int type)
 
 	if (!*lex)
 		return (list_down);
-	if ((*lex)->type & SEMICOLON)
-	{
-		parser_print_error(";;");
-		return (NULL);
-	}
 	list_pars = init_pars_list(type);
 	if (list_down)
 		list_pars->list = list_down;
@@ -65,3 +60,11 @@ t_pars_list			*parser(t_lex **lex, t_pars_list *list_down, int type)
 	list_pars->and_or = parser_and_or(begin);
 	return (list_pars);
 }
+
+/*
+**	if ((*lex)->type & SEMICOLON)
+**	{
+**		parser_print_error(";;");
+**		return (NULL);
+**	}
+*/
