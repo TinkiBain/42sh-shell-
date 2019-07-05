@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 21:40:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/05 02:03:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,21 @@ typedef struct			s_cmd_prefix
 	char				*assignment_word;
 }						t_cmd_prefix;
 
+enum			e_type_cmd
+{
+	TYPE_CMD,
+	TYPE_NAME,
+	TYPE_REDIR_IN,
+	TYPR_REDIR_OUT,
+};
+
 typedef struct			s_cmd
 {
 	t_cmd_prefix		*cmd_pref;
 	t_cmd_suffix		*cmd_suf;
 	char				*cmd_word;
 	char				*cmd_name;
+	enum e_type_cmd		type;
 }						t_cmd;
 
 typedef struct			s_pipe_sequence

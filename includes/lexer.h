@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 21:34:45 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/05 11:42:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
 # define AND_IF		8
 # define OR_IF		16
 # define BANG		32
-# define GREAT		64
-# define DGREAT		128
-# define GREATAND	256
-# define LESS		512
-# define DLESS		1024
-# define TLESS		2048
-# define DLESSDASH	4096
-# define LESSAND	8192
-# define LESSGREAT	16384
+# define LESS		64
+# define DLESS		128
+# define DLESSDASH	256
+# define TLESS		512
+# define LESSAND	1024
+# define LESSGREAT	2048
+# define GREAT		4096
+# define DGREAT		8192
+# define GREATAND	16384
 # define ANDGREAT	32768
 # define ANDDGREAT	65536
 

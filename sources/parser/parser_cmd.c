@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 20:47:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/04 22:29:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:25:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,9 @@ static t_cmd	*init_cmd(void)
 t_cmd	*parser_cmd(t_lex **lex)
 {
 	t_cmd		*cmd;
-	t_lex		**tmp;
-	t_lex		**begin;
 	int			type;
 
 
-	begin = lex;
-	tmp = begin;
 	cmd = init_cmd();
 	while (*lex)
 	{
