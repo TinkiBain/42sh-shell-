@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/04 22:57:37 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/05 22:26:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	and_or_iter_in_order(t_and_or *root)
 	{
 		if (root->and_or_if == AND_IF || root->and_or_if == OR_IF)
 			print_token_number(root->and_or_if);
-		ft_putstr("\n");
+		// ft_putstr("\n");
 		and_or_iter_in_order(root->and_or);
 	}
 }
