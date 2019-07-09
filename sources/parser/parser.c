@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 19:45:23 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:25:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void				free_lex(t_lex **lex)
 {
+	if (!(*lex))
+		return ;
 	if ((*lex)->lexeme)
 	{
 		free((*lex)->lexeme);
@@ -40,6 +42,7 @@ t_pars_list			*parser(t_lex **lex, t_pars_list *list_down, int type)
 	t_lex			**tmp;
 	t_lex			**begin;
 
+	printf("PARSER\n");
 	if (!*lex)
 		return (list_down);
 	list_pars = init_pars_list(type);

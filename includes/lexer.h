@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/05 20:23:55 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:16:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define GREATAND	16384
 # define ANDGREAT	32768
 # define ANDDGREAT	65536
+# define CLOBBER	131072
 
 typedef struct		s_lex
 {

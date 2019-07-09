@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 20:38:11 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:27:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,16 @@ void		check_first_semicolon_token(t_lex **begin)
 	}
 }
 
+static int	lexer_check_separator(char *str)
+{
+	if (*str == ';')
+		return (1);
+	if (*str == '&')
+		if (*(str + 1) && (*(str + 1) != '&' &&  *(str + 1) != '>'))
+			return (1);
+	return (0);
+}
+
 t_lex		*lexer(char *buf)
 {
 	t_lex	*lex;
@@ -51,7 +61,7 @@ t_lex		*lexer(char *buf)
 		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|')
 							|| !*(buf + 1)) && ++buf)
 			lex->type = PIPE_SYMB;
-		else if (*buf == ';' && ++buf)
+		else if (lexer_check_separator(buf) && ++buf)
 			lex->type = SEMICOLON;
 		else
 			buf = lexer_get_token(buf, &lex);
@@ -63,7 +73,7 @@ t_lex		*lexer(char *buf)
 	lex->next = NULL;
 	while (lex->prev)
 		lex = lex->prev;
-	check_first_semicolon_token(&lex);
+	check_first_semicolon_token(&lex);	
 	return (lex);
 }
 

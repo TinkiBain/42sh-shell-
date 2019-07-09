@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 17:30:53 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/30 17:26:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:23:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ size_t		lexer_check_word(char *str, t_lex **lex)
 		else
 			++str;
 	}
-	(*lex)->lexeme = ft_strndup(begin, str - begin - 1);
+	(*lex)->lexeme = ft_strndup(begin, str - begin);
 	(*lex)->type = WORD;
 	return (str - begin);
 }
@@ -69,7 +69,7 @@ char		*lexer_get_token(char *str, t_lex **lex)
 {
 	size_t	i;
 
-	if ((i = lexer_and_or(str, lex)))
+	if ((*str == '&'|| *str == '|') && (i = lexer_and_or(str, lex)))
 		return (str + i);
 	else if ((i = lexer_check_redir(str, lex)))
 		return (str + i);

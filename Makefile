@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/05 22:26:28 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/07/08 19:58:59 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRCS_LEXER=\
 PARSER_DIR=parser/
 
 SRCS_PARSER=\
-	init_io_redirect.c\
 	parser.c\
 	parser_and_or.c\
 	parser_cmd.c\

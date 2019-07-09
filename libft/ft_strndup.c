@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 05:45:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/05/22 05:46:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/09 18:29:22 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ char	*ft_strndup(const char *src, int j)
 	if (j < len)
 		len = j;
 	str = (char*)ft_xmalloc(sizeof(char) * (len + 1));
-	while (i <= len)
+	while (i < len)
 	{
 		str[i] = src[i];
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }

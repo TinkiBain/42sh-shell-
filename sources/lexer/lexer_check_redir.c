@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 19:43:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/09 19:23:31 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int			lexer_redir_and(char **str)
 {
 	(*str)++;
+	if (**str && **str == '|')
+		return (CLOBBER);
 	if (**str && **str == '>' && ++(*str))
 	{
 		if (**str && **str == '>' && ++(*str))
@@ -22,7 +24,7 @@ int			lexer_redir_and(char **str)
 		return (ANDGREAT);
 	}
 	(*str)--;
-	return (WORD);
+	return (0);
 }
 
 int			lexer_redir_great(char **str)
@@ -52,20 +54,6 @@ int			lexer_redir_less(char **str)
 	if (**str && (**str) == '>' && ++(*str))
 		return (LESSGREAT);
 	return (LESS);
-}
-
-size_t		lexer_check_word_and(char *begin, char *str, t_lex **lex)
-{
-	char	*tmp;
-	char	*src;
-
-	tmp = ft_strndup(begin, str - begin);
-	str++;
-	str += lexer_check_word(str, lex);
-	src = (*lex)->lexeme;
-	(*lex)->lexeme = ft_strrejoin(tmp, src);
-	free(src);
-	return (str - begin);
 }
 
 size_t		lexer_fill_redir_right(char *str, t_lex **lex)
@@ -116,8 +104,8 @@ size_t		lexer_check_redir(char *str, t_lex **lex)
 		type = lexer_redir_and(&str);
 	else
 		return (0);
-	if (type == WORD)
-		return (lexer_check_word_and(begin, str, lex));
+	if (type == 0)
+		return (0);
 	while (*str && ft_isspace(*str))
 		++str;
 	if (type & GREATAND || type & LESSAND)
