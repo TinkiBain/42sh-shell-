@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/08 21:13:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 20:22:18 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct			s_pipe_sequence
 
 typedef struct			s_pipeline
 {
-	// need to remove line below this comment
-	t_lex				*lexem;
 	t_pipe_sequence		*pipe_sequence;
 	int					bang;
 }						t_pipeline;
@@ -84,6 +82,7 @@ void					parser_cmd_suffix(t_lex **lex, t_cmd_suffix **cmd_suffix);
 t_io_redirect			*parser_io_redirect(t_lex *lex);
 t_pipe_sequence			*parser_pipe_sequence(t_lex **lex);
 t_pipeline				*parser_pipeline(t_lex **lex);
+void					parser_free_tree(t_pars_list *list);
 
 void					ast_iter_in_order(t_pars_list *root);
 

@@ -6,44 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/04 19:22:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/10 20:15:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-void		print_pipeline(t_pipeline *pipeline)
-{
-	printf("	--PIPELINE--	\n");
-	while (pipeline->lexem)
-	{
-		printf("%s\n", pipeline->lexem->lexeme);
-		pipeline->lexem = pipeline->lexem->next;
-	}
-}
-
-void		print_and_or(t_and_or *list)
-{
-	if (!list)
-		return ;
-	if (list->and_or)
-		print_and_or(list->and_or);
-	printf("	--AND_OR--	\n");
-	printf("%d\n", list->and_or_if);
-	print_pipeline(list->pipeline);
-}
-
-void		print_list(t_pars_list *list)
-{
-	if (!list)
-		return ;
-	if (list->list)
-		print_list(list->list);
-	printf("	--LIST--	\n");
-	printf("%d\n", list->sep);
-	if (list->and_or)
-		print_and_or(list->and_or);
-}
 
 int			main(void)
 {
@@ -63,6 +30,7 @@ int			main(void)
 			lex = lexer(buf);
 			list = parser(&lex, NULL, 0);
 			ast_iter_in_order(list);
+			parser_free_tree(list);
 			ft_putstr("\n------------------------\n");
 			free(tmp);
 		}

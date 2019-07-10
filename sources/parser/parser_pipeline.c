@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 16:14:49 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 18:47:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 20:17:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static t_pipeline	*init_pipeline(void)
 	t_pipeline	*pipeline;
 
 	pipeline = (t_pipeline*)ft_xmalloc(sizeof(t_pipeline));
-	pipeline->lexem = NULL;
 	pipeline->bang = 0;
 	return (pipeline);
 }

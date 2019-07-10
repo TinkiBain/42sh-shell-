@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/08 19:58:59 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/07/10 20:07:09 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS_PARSER=\
 	parser_io_redirect.c\
 	parser_pipe_sequence.c\
 	parser_pipeline.c\
-	parser_print_error.c
+	parser_print_error.c\
+	parser_free_tree.c
 
 AST_ITER_DIR=ast_iter/
 
