@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 18:02:24 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 18:48:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void		ast_iter_in_order(t_pars_list *root)
 {
 	if (!root)
 		return ;
-	printf("tyt\n");
 	if (root->list)
 	{
 		ast_iter_in_order(root->list);

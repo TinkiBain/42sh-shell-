@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/09 21:24:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 18:47:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_and_or		*parser_and_or(t_lex **lex)
 	t_lex		**begin;
 	int			type;
 
-	printf("AND_OR\n");
 	begin = lex;
 	tmp = begin;
 	elem = init_and_or();

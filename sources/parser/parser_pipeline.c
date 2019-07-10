@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 16:14:49 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/09 21:16:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 18:47:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_pipeline			*parser_pipeline(t_lex **lex)
 		pipeline->bang = 1;
 		*lex = (*lex)->next;
 	}
-	printf("PIPILINE\n");
 	pipeline->pipe_sequence = parser_pipe_sequence(lex);
 	return (pipeline);
 }
