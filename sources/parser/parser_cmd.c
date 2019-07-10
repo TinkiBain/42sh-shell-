@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 20:47:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 17:39:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 17:45:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_cmd	*parser_cmd(t_lex **lex)
 	printf("PARSER_CMD\n");
 	cmd = init_cmd();
 	lex = parser_cmd_prefix(lex, &cmd->cmd_pref);
+	if (!lex)
+		return (cmd);
 	if (*lex && *lex == *tmp)
 		cmd->cmd_name = ft_strdup((*lex)->lexeme);
 	else if (*lex)

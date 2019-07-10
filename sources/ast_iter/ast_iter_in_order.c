@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/09 19:58:44 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 18:02:24 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	print_io_redir(t_io_redirect *redir)
 	ft_putnbr(redir->io_number);
 	print_token_number(redir->type);
 	ft_putstr(redir->file_name);
+	write(1, " ", 1);
 }
 
 static void	print_cmd(t_cmd *cmd)
