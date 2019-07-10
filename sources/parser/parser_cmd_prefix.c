@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 20:34:31 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/09 17:07:29 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/09 21:57:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ t_lex				**parser_cmd_prefix(t_lex **lex, t_cmd_prefix **pref)
 		lex = &(*lex)->next;
 		free_lex(tmp);
 	}
-	return (lex);
+	return (NULL);
 }

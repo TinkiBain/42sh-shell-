@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/09 19:27:33 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/09 21:44:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_lex		*lexer(char *buf)
 	lex->next = NULL;
 	while (lex->prev)
 		lex = lex->prev;
-	check_first_semicolon_token(&lex);	
+	check_first_semicolon_token(&lex);
 	return (lex);
 }
 
