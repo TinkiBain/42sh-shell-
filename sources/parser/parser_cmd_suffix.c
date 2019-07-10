@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 22:18:22 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 17:39:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/10 20:44:03 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static t_cmd_suffix	*init_cmd_suffix(t_lex *lex)
 	return (cmd_suf);
 }
 
-void				parser_cmd_suffix(t_lex **lex, t_cmd_suffix **cmd_suffix)
+void				parser_cmd_suffix(t_lex *lex, t_cmd_suffix **cmd_suffix)
 {
-	t_lex			**tmp;
+	t_lex			*tmp;
 
-	while (*lex)
+	while (lex)
 	{
 		tmp = lex;
-		*cmd_suffix = init_cmd_suffix(*lex);
-		lex = &(*lex)->next;
-		free_lex(tmp);
+		*cmd_suffix = init_cmd_suffix(lex);
+		lex = lex->next;
+		free_lex(&tmp);
 		cmd_suffix = &(*cmd_suffix)->cmd_suf;
 	}
 }
