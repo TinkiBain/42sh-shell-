@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/15 19:22:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 19:33:51 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int			main(void)
 			list = parser(lex, NULL, 0);
 			ast_iter_in_order(list);
 			parser_free_tree(list);
-			while (lex->prev)
+			while (src->prev)
 			{
-				src = lex;
-				free_lex(src);
-				lex = lex->prev;
+				lex = src;
+				src = src->prev;
+				free_lex(lex);
 			}
-			free_lex(lex);
+			free_lex(src);
 			ft_putstr("\n------------------------\n");
 			free(tmp);
 		}
