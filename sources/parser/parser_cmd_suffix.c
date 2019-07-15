@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 22:18:22 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 20:44:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:44:21 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void				parser_cmd_suffix(t_lex *lex, t_cmd_suffix **cmd_suffix)
 		tmp = lex;
 		*cmd_suffix = init_cmd_suffix(lex);
 		lex = lex->next;
-		free_lex(&tmp);
 		cmd_suffix = &(*cmd_suffix)->cmd_suf;
 	}
 }

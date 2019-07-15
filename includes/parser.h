@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/10 20:56:10 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:40:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ typedef struct			s_pars_list
 void					free_lex(t_lex **lex);
 void					*parser_print_error(char *error);
 t_io_redirect			*init_io_redirect(void);
-t_pars_list				*parser(t_lex **lex, t_pars_list *list_down, int type);
-t_and_or				*parser_and_or(t_lex **lex);
-t_cmd					*parser_cmd(t_lex **lex);
-t_lex					**parser_cmd_prefix(t_lex **lex, t_cmd_prefix **pref);
+t_pars_list				*parser(t_lex *lex, t_pars_list *list_down, int type);
+t_and_or				*parser_and_or(t_lex *lex);
+t_cmd					*parser_cmd(t_lex *lex);
+t_lex					*parser_cmd_prefix(t_lex *lex, t_cmd_prefix **pref);
 void					parser_cmd_suffix(t_lex *lex, t_cmd_suffix **cmd_suffix);
 t_io_redirect			*parser_io_redirect(t_lex *lex);
-t_pipe_sequence			*parser_pipe_sequence(t_lex **lex);
-t_pipeline				*parser_pipeline(t_lex **lex);
+t_pipe_sequence			*parser_pipe_sequence(t_lex *lex);
+t_pipeline				*parser_pipeline(t_lex *lex);
 void					parser_free_tree(t_pars_list *list);
 
 void					ast_iter_in_order(t_pars_list *root);

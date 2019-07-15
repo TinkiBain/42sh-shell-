@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 20:15:04 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:15:35 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			main(void)
 		if (*(tmp = ft_strtrim(buf)))
 		{
 			lex = lexer(buf);
-			list = parser(&lex, NULL, 0);
+			list = parser(lex, NULL, 0);
 			ast_iter_in_order(list);
 			parser_free_tree(list);
 			ft_putstr("\n------------------------\n");

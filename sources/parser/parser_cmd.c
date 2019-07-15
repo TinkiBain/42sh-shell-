@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 20:47:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 20:56:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 18:41:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static t_cmd	*init_cmd(void)
 {
-	t_cmd	*elem;
+	t_cmd		*elem;
 
 	elem = (t_cmd*)ft_xmalloc(sizeof(t_cmd));
 	elem->cmd_pref = NULL;
@@ -25,24 +25,22 @@ static t_cmd	*init_cmd(void)
 	return (elem);
 }
 
-t_cmd	*parser_cmd(t_lex **lex)
+t_cmd			*parser_cmd(t_lex *lex)
 {
 	t_cmd		*cmd;
-	t_lex		**tmp;
+	t_lex		*tmp;
 
 	if (!lex)
 		return (NULL);
-	tmp = lex;
 	cmd = init_cmd();
-	lex = parser_cmd_prefix(lex, &cmd->cmd_pref);
-	if (!lex)
+	tmp = parser_cmd_prefix(lex, &cmd->cmd_pref);
+	if (!tmp)
 		return (cmd);
-	if (*lex && *lex == *tmp)
-		cmd->cmd_name = ft_strdup((*lex)->lexeme);
-	else if (*lex)
-		cmd->cmd_word = ft_strdup((*lex)->lexeme);
-	tmp = &(*lex)->next;
-	free_lex(lex);
-	parser_cmd_suffix(*tmp, &(cmd->cmd_suf));
+	if (lex == tmp)
+		cmd->cmd_name = ft_strdup(tmp->lexeme);
+	else
+		cmd->cmd_word = ft_strdup(tmp->lexeme);
+	tmp = tmp->next;
+	parser_cmd_suffix(tmp, &(cmd->cmd_suf));
 	return (cmd);
 }
