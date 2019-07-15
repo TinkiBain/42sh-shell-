@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/15 18:40:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 19:11:38 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct			s_pars_list
 	int					sep;
 }						t_pars_list;
 
-void					free_lex(t_lex **lex);
 void					*parser_print_error(char *error);
 t_io_redirect			*init_io_redirect(void);
 t_pars_list				*parser(t_lex *lex, t_pars_list *list_down, int type);

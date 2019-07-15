@@ -6,17 +6,27 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/15 18:15:35 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 19:22:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+void		free_lex(t_lex *lex)
+{
+	if (!lex)
+		return ;
+	if (lex->lexeme)
+		free(lex->lexeme);
+	free(lex);
+}
 
 int			main(void)
 {
 	char		buf[1024];
 	t_pars_list	*list;
 	t_lex		*lex;
+	t_lex		*src;
 	char		*tmp;
 
 	ft_putstr("------------------------\n");
@@ -28,9 +38,19 @@ int			main(void)
 		if (*(tmp = ft_strtrim(buf)))
 		{
 			lex = lexer(buf);
+			src = lex;
+			while (src->next)
+				src = src->next;
 			list = parser(lex, NULL, 0);
 			ast_iter_in_order(list);
 			parser_free_tree(list);
+			while (lex->prev)
+			{
+				src = lex;
+				free_lex(src);
+				lex = lex->prev;
+			}
+			free_lex(lex);
 			ft_putstr("\n------------------------\n");
 			free(tmp);
 		}
