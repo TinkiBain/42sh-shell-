@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 18:48:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/15 20:44:15 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,32 @@ static void	print_io_redir(t_io_redirect *redir)
 
 static void	print_cmd(t_cmd *cmd)
 {
-	if (cmd->cmd_pref)
+	t_cmd_suffix	*suff;
+	t_cmd_prefix	*pref;
+
+	pref = cmd->cmd_pref;
+	if (pref)
 	{
-		while (cmd->cmd_pref)
+		while (pref)
 		{
-			if (cmd->cmd_pref->assignment_word)
-				print_token_word(cmd->cmd_pref->assignment_word);
+			if (pref->assignment_word)
+				print_token_word(pref->assignment_word);
 			else
-				print_io_redir(cmd->cmd_pref->io_redir);
-			cmd->cmd_pref = cmd->cmd_pref->cmd_pref;
+				print_io_redir(pref->io_redir);
+			pref = pref->cmd_pref;
 		}
 		print_token_word(cmd->cmd_word);
 	}
 	else
 		print_token_word(cmd->cmd_name);
-	while (cmd->cmd_suf)
+	suff = cmd->cmd_suf;
+	while (suff)
 	{
-		if (cmd->cmd_suf->word)
-			print_token_word(cmd->cmd_suf->word);
+		if (suff->word)
+			print_token_word(suff->word);
 		else
-			print_io_redir(cmd->cmd_suf->io_redir);
-		cmd->cmd_suf = cmd->cmd_suf->cmd_suf;
+			print_io_redir(suff->io_redir);
+		suff = suff->cmd_suf;
 	}
 }
 
@@ -93,7 +98,6 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
 	if (pipe_seq)
 	{
-		//print_token_word(pipe_seq->cmd->cmd_word);
 		print_cmd(pipe_seq->cmd);
 		if (pipe_seq->pipe_op)
 		{
