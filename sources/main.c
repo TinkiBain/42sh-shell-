@@ -6,11 +6,12 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/26 17:05:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 21:06:31 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include "parser.h"
 
 void		free_lex(t_lex *lex)
 {
@@ -42,8 +43,9 @@ int			main(void)
 			while (src->next)
 				src = src->next;
 			list = parser(lex, NULL, 0);
-			printf("END PARSER\n");
-			ast_iter_in_order(list);
+			if (!g_error_pars)
+				ast_iter_in_order(list);
+			g_error_pars = 0;
 			parser_free_tree(list);
 			while (src->prev)
 			{

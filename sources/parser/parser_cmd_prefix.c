@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 20:34:31 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/15 18:40:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 21:07:30 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static t_cmd_prefix	*init_cmd_prefix(t_lex	*lex)
+static t_cmd_prefix	*init_cmd_prefix(t_lex *lex)
 {
 	t_cmd_prefix	*cmd_pref;
 
@@ -49,7 +49,7 @@ t_lex				*parser_cmd_prefix(t_lex *lex, t_cmd_prefix **pref)
 {
 	t_lex			*tmp;
 
-	while(lex)
+	while (lex)
 	{
 		tmp = lex;
 		if (lex->type & WORD && (parser_prefix_check(lex->lexeme)))

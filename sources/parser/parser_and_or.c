@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 17:42:16 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 20:24:23 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_and_or		*parser_and_or(t_lex *lex)
 
 	begin = lex;
 	if (lex->type & AND_IF || lex->type & OR_IF)
-		return (NULL);
+		return (parser_print_error("&&"));
 	elem = init_and_or();
 	while (lex->next)
 	{
@@ -40,11 +40,13 @@ t_and_or		*parser_and_or(t_lex *lex)
 			tmp = lex->next->next;
 			elem->and_or_if = lex->next->type;
 			lex->next = NULL;
-			elem->and_or = parser_and_or(tmp);
+			if (!(elem->and_or = parser_and_or(tmp)))
+				return (parser_free_and_or(elem));
 			break ;
 		}
 		lex = lex->next;
 	}
-	elem->pipeline = parser_pipeline(begin);
+	if (!(elem->pipeline = parser_pipeline(begin)))
+		return (parser_free_and_or(elem));
 	return (elem);
 }

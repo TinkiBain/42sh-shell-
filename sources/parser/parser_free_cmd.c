@@ -6,12 +6,11 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:44:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 17:48:59 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 21:08:17 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
 
 static void		parser_free_io_redir(t_io_redirect *io_redir)
 {
@@ -42,10 +41,10 @@ static void		parser_free_cmd_prefix(t_cmd_prefix *cmd_prefix)
 	free(cmd_prefix);
 }
 
-void			parser_free_cmd(t_cmd *cmd)
+void			*parser_free_cmd(t_cmd *cmd)
 {
 	if (!cmd)
-		return ;
+		return (NULL);
 	if (cmd->cmd_word)
 		free(cmd->cmd_word);
 	cmd->cmd_word = NULL;
@@ -60,4 +59,5 @@ void			parser_free_cmd(t_cmd *cmd)
 	cmd->cmd_suf = NULL;
 	free(cmd);
 	cmd = NULL;
+	return (NULL);
 }
