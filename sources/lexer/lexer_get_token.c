@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 17:30:53 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/09 20:56:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 16:56:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ size_t		lexer_check_word(char *str, t_lex **lex)
 	while (*str && !ft_isspace(*str) && !ft_isspec(*str))
 	{
 		if (*str == '"')
-			str = lexer_find_simbol(str, '"');
+			str = lexer_find_simbol(++str, '"');
 		else if (*str == '\'')
-			str = lexer_find_simbol(str, '\'');
+			str = lexer_find_simbol(++str, '\'');
 		else if (*str == '\\')
 		{
 			++str;

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/09 19:23:31 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 16:34:30 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ size_t		lexer_fill_redir_right(char *str, t_lex **lex)
 				break ;
 		}
 		if (*str == '-')
+		{
+			++str;
 			break ;
+		}
 		++str;
 	}
 	if (ft_isspace(*str))
