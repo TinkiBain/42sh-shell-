@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/15 19:11:38 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 17:49:34 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_io_redirect			*parser_io_redirect(t_lex *lex);
 t_pipe_sequence			*parser_pipe_sequence(t_lex *lex);
 t_pipeline				*parser_pipeline(t_lex *lex);
 void					parser_free_tree(t_pars_list *list);
+void					parser_free_cmd(t_cmd *cmd);
 
 void					ast_iter_in_order(t_pars_list *root);
 

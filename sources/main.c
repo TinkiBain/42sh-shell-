@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/26 17:03:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 17:05:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,9 @@ int			main(void)
 			lex = lexer(buf);
 			src = lex;
 			while (src->next)
-			{
-				printf("%s\n", src->lexeme);
 				src = src->next;
-			}
-			printf("%s\n", src->lexeme);
 			list = parser(lex, NULL, 0);
+			printf("END PARSER\n");
 			ast_iter_in_order(list);
 			parser_free_tree(list);
 			while (src->prev)

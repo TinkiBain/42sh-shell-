@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 16:26:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 18:12:49 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,6 @@ t_lex		*init_lex(t_lex *prev)
 	lex->prev = prev;
 	lex->fd = 0;
 	return (lex);
-}
-
-void		check_first_semicolon_token(t_lex **begin)
-{
-	t_lex	*lex;
-
-	if ((*begin)->type & SEMICOLON)
-	{
-		lex = *begin;
-		lex = lex->next;
-		free(lex->prev);
-		lex->prev = NULL;
-		*begin = lex;
-	}
 }
 
 static int	lexer_check_separator(char *str)
@@ -73,7 +59,6 @@ t_lex		*lexer(char *buf)
 	lex->next = NULL;
 	while (lex->prev)
 		lex = lex->prev;
-	check_first_semicolon_token(&lex);
 	return (lex);
 }
 
