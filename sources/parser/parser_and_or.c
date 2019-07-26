@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 20:24:23 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/26 22:05:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ t_and_or		*parser_and_or(t_lex *lex)
 	t_lex		*tmp;
 	t_lex		*begin;
 
-	begin = lex;
+	if (!(lex && (begin = lex)))
+		return (NULL);
+	// вместе в возравтом должна отработать операция ">"
 	if (lex->type & AND_IF || lex->type & OR_IF)
 		return (parser_print_error("&&"));
 	elem = init_and_or();
