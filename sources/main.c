@@ -6,12 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/27 15:55:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/27 16:05:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "parser.h"
+#include "exec.h"
 
 void		free_lex(t_lex *lex)
 {

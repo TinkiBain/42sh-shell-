@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/06/11 10:19:41 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/27 16:04:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
+
+int			g_res_exec;
 
 int			exec_fill_fifo(t_attr *attr, int fd);
 void		return_fd(int fd[3]);

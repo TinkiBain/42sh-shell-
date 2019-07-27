@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/27 15:55:11 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/07/27 17:26:51 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,16 @@ AST_ITER_DIR=ast_iter/
 
 SRCS_AST_ITER=\
 	ast_print_in_order.c
+
+EXEC_DIR=exec/
+
+SRCS_EXEC=\
+	exec.c\
+	exec_fill_fifo.c\
+	exec_open.c\
+	exec_print_error.c\
+	exec_redir_right.c\
+	ft_pipe.c
 
 SRCS_WITHOUT_DIR=\
 	main.c
