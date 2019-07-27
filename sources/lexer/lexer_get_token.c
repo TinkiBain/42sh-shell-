@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 17:30:53 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 16:56:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/27 21:04:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*lexer_find_simbol(char *str, char c)
 {
 	while (*str)
 	{
-		if (*str == '\\')
+		if (c != '\'' && *str == '\\')
 		{
 			++str;
 			if (*str)
