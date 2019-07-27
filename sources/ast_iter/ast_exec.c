@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/27 16:29:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/27 19:43:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
 	if (pipe_seq)
 	{
-		print_cmd(pipe_seq->cmd);
 		if (pipe_seq->pipe_op)
 		{
 			print_token_number(PIPE_SYMB);
 			pipe_sequence_iter(pipe_seq->next);
 		}
+		print_cmd(pipe_seq->cmd);
 	}
 }
 
@@ -112,7 +112,7 @@ static void	pipeline_iter(t_pipeline *root)
 {
 	pipe_sequence_iter(root->pipe_sequence);
 	if (root->bang)
-		ft_putstr("!");
+		g_res_exec = ~g_res_exec;
 }
 
 static void	and_or_iter_in_order(t_and_or *root)
