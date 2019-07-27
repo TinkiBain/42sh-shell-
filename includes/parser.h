@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 21:03:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/27 15:55:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ void					*parser_free_and_or(t_and_or *list);
 void					*parser_free_pipeline(t_pipeline *list);
 void					*parser_free_pipe_sequence(t_pipe_sequence *list);
 
-void					ast_iter_in_order(t_pars_list *root);
+void					ast_print_in_order(t_pars_list *root);
 
 #endif

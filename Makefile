@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/26 17:49:52 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/07/27 15:55:11 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS_PARSER=\
 AST_ITER_DIR=ast_iter/
 
 SRCS_AST_ITER=\
-	ast_iter_in_order.c
+	ast_print_in_order.c
 
 SRCS_WITHOUT_DIR=\
 	main.c
