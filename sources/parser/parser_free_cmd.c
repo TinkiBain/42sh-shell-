@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_free_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 17:44:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 21:08:17 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/07/28 21:50:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,19 @@ static void		parser_free_cmd_prefix(t_cmd_prefix *cmd_prefix)
 	free(cmd_prefix);
 }
 
+static void		parser_free_cmd_av(t_vector *vec)
+{
+	ft_strarrdel((char ***)&vec->v);
+	free(vec);
+}
+
 void			*parser_free_cmd(t_cmd *cmd)
 {
 	if (!cmd)
 		return (NULL);
-	if (cmd->cmd_word)
-		free(cmd->cmd_word);
-	cmd->cmd_word = NULL;
+	if (cmd->cmd_av)
+		parser_free_cmd_av(cmd->cmd_av);
+	cmd->cmd_av = NULL;
 	if (cmd->cmd_name)
 		free(cmd->cmd_name);
 	cmd->cmd_name = NULL;

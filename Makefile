@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/27 17:26:51 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/07/28 18:48:29 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ OBJS_CLEAN=$(strip $(foreach f,$(OBJS),$(wildcard $(f))))
 NAME_CLEAN=$(strip $(NAME))
 
 LIBFT_A=$(LIBFT_DIR)/libft.a
-INCLUDES:=-I includes -I libft
+INCLUDES:=-I includes -I libft/include
 
 RED=\033[0;31m
 GREEN=\033[0;32m
