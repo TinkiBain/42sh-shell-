@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_free_tree_old.c                             :+:      :+:    :+:   */
+/*   parser_free_tree.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 19:44:41 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/28 15:32:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/15 20:43:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void		parser_free_pipe_sequence(t_pipe_sequence *pipe_sequence)
 	if (pipe_sequence->cmd)
 	{
 		cmd = pipe_sequence->cmd;
-		if (cmd->cmd_av)
-			ft_vector_free(cmd->cmd_av);
+		if (cmd->cmd_word)
+			free(cmd->cmd_word);
 		if (cmd->cmd_name)
 			free(cmd->cmd_name);
 		if (cmd->cmd_pref)

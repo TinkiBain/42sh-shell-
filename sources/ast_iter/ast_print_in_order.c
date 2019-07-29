@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/28 22:17:03 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/27 15:55:02 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,6 @@ static void	print_io_redir(t_io_redirect *redir)
 	write(1, " ", 1);
 }
 
-static void	print_av(char **av)
-{
-	// ft_putendl(av[0]);
-	// ft_putendl(av[1]);
-	// ft_putendl(av[2]);
-	// while (*av)
-	// {
-	// 	ft_putstr(*av);
-		++av;
-	// 	if (*av)
-	// 		ft_putchar(' ');
-	// }
-}
-
 static void	print_cmd(t_cmd *cmd)
 {
 	t_cmd_suffix	*suff;
@@ -93,16 +79,16 @@ static void	print_cmd(t_cmd *cmd)
 				print_io_redir(pref->io_redir);
 			pref = pref->cmd_pref;
 		}
-		print_av((char **)cmd->cmd_av->v);
+		print_token_word(cmd->cmd_word);
 	}
 	else
 		print_token_word(cmd->cmd_name);
 	suff = cmd->cmd_suf;
 	while (suff)
 	{
-		// if (suff->word)
-		// 	print_token_word(suff->word);
-		// else
+		if (suff->word)
+			print_token_word(suff->word);
+		else
 			print_io_redir(suff->io_redir);
 		suff = suff->cmd_suf;
 	}

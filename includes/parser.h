@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/28 21:56:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/27 15:55:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "lexer.h"
-# include "ft_vector.h"
 
 int						g_error_pars;
 
@@ -43,7 +42,7 @@ typedef struct			s_cmd
 {
 	t_cmd_prefix		*cmd_pref;
 	t_cmd_suffix		*cmd_suf;
-	t_vector			*cmd_av;
+	char				*cmd_word;
 	char				*cmd_name;
 }						t_cmd;
 
@@ -80,7 +79,7 @@ t_pars_list				*parser(t_lex *lex, t_pars_list *list_down, int type);
 t_and_or				*parser_and_or(t_lex *lex);
 t_cmd					*parser_cmd(t_lex *lex);
 t_lex					*parser_cmd_prefix(t_lex *lex, t_cmd_prefix **pref);
-void					parser_cmd_suffix(t_lex *lex, t_cmd_suffix **cmd_suffix, t_cmd *cmd);
+void					parser_cmd_suffix(t_lex *lex, t_cmd_suffix **cmd_suffix);
 t_io_redirect			*parser_io_redirect(t_lex *lex);
 t_pipe_sequence			*parser_pipe_sequence(t_lex *lex);
 t_pipeline				*parser_pipeline(t_lex *lex);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/28 15:22:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/27 19:43:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	print_cmd(t_cmd *cmd)
 				print_io_redir(pref->io_redir);
 			pref = pref->cmd_pref;
 		}
-		print_token_word(cmd->cmd_av);
+		print_token_word(cmd->cmd_word);
 	}
 	else
 		print_token_word(cmd->cmd_name);
@@ -97,14 +97,14 @@ static void	print_cmd(t_cmd *cmd)
 
 static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
-	extern char	**environ;
-
 	if (pipe_seq)
 	{
 		if (pipe_seq->pipe_op)
+		{
+			print_token_number(PIPE_SYMB);
 			pipe_sequence_iter(pipe_seq->next);
+		}
 		print_cmd(pipe_seq->cmd);
-
 	}
 }
 
