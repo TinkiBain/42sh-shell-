@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/27 19:43:17 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/29 20:05:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static void	pipeline_iter(t_pipeline *root)
 {
 	pipe_sequence_iter(root->pipe_sequence);
 	if (root->bang)
-		g_res_exec = ~g_res_exec;
+		g_res_exec = (!g_res_exec) ? 1 : 0;
 }
 
 static void	and_or_iter_in_order(t_and_or *root)

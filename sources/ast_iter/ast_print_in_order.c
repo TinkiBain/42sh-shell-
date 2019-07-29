@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/27 15:55:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/29 19:52:03 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static void	print_token_word(char *word)
 	ft_putstr("\'");
 	ft_putstr(word);
 	ft_putstr("\'");
+}
+
+static void	print_token_assignment_word(char *word)
+{
+	ft_putstr("$(\'");
+	ft_putstr(word);
+	ft_putstr("\')");
 }
 
 static void	print_token_number(int type)
@@ -57,6 +64,7 @@ static void	print_token_number(int type)
 
 static void	print_io_redir(t_io_redirect *redir)
 {
+	write(1, " ", 1);
 	ft_putnbr(redir->io_number);
 	print_token_number(redir->type);
 	ft_putstr(redir->file_name);
@@ -74,12 +82,13 @@ static void	print_cmd(t_cmd *cmd)
 		while (pref)
 		{
 			if (pref->assignment_word)
-				print_token_word(pref->assignment_word);
+				print_token_assignment_word(pref->assignment_word);
 			else
 				print_io_redir(pref->io_redir);
 			pref = pref->cmd_pref;
 		}
-		print_token_word(cmd->cmd_word);
+		if (cmd->cmd_word)
+			print_token_word(cmd->cmd_word);
 	}
 	else
 		print_token_word(cmd->cmd_name);
