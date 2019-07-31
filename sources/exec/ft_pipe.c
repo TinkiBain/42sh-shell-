@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 12:43:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/31 18:59:13 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:10:02 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ void			ft_pipe(char ***av, int fd)
 			close(pipefd[0]);
 			execve(**av, *av, environ);
 		}
-		waitpid(pid2, NULL, 0);
+		close(pipefd[1]);
+		close(pipefd[0]);
 	}
-	waitpid(pid1, NULL, 0);
 	close(pipefd[1]);
+	close(pipefd[0]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 }
 
 int				main(void)

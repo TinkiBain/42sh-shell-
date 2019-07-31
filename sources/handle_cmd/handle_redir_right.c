@@ -6,15 +6,37 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:24:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/30 17:42:14 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/31 19:10:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+static int	get_right_fd(char *file_name, int type)
+{
+	int		fd;
+	int		flag;
+	char	*tmp;
+
+	tmp = file_name;
+	while (*tmp)
+	{
+		if (!ft_isdigit(*(tmp++)))
+			break ;
+	}
+	if (!*tmp)
+		fd = ft_atoi(file_name);
+	else
+	{
+
+	}
+	return (fd);
+}
+
 int		handle_redir_right(t_io_redirect *redir)
 {
 	int	fd;
+	int	right_fd;
 
 	if (redir->file_name && (fd = 1))
 	{
