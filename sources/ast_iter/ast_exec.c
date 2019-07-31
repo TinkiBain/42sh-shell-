@@ -6,60 +6,31 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/29 21:22:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:25:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "exec.h"
 
-static void	print_token_word(char *word)
+static void	handle_token_assignment_word(char *word)
 {
-	ft_putstr("\'");
-	ft_putstr(word);
-	ft_putstr("\'");
+	char	*p;
+	char	*name;
+	char	*value;
+
+	p = ft_strchr(word, '=');
+	if (p)
+	{
+		name = ft_strndup(word, p - word);
+		value = ft_strdup(p + 1);
+	}
 }
 
-static void	print_token_number(int type)
-{
-	if (type & SEMICOLON)
-		ft_putstr(";");
-	else if (type & PIPE_SYMB)
-		ft_putstr("|");
-	else if (type & AND_IF)
-		ft_putstr("&&");
-	else if (type & OR_IF)
-		ft_putstr("||");
-	else if (type & GREAT)
-		ft_putstr(">");
-	else if (type & DGREAT)
-		ft_putstr(">>");
-	else if (type & GREATAND)
-		ft_putstr(">&");
-	else if (type & LESS)
-		ft_putstr("<");
-	else if (type & DLESS)
-		ft_putstr("<<");
-	else if (type & TLESS)
-		ft_putstr("<<<");
-	else if (type & DLESSDASH)
-		ft_putstr("<<-");
-	else if (type & LESS)
-		ft_putstr("<");
-	else if (type & LESSAND)
-		ft_putstr("<&");
-	else if (type & LESSGREAT)
-		ft_putstr("<>");
-	else if (type & ANDGREAT)
-		ft_putstr("&>");
-	else if (type & ANDDGREAT)
-		ft_putstr("&>>");
-}
-
-static void	print_io_redir(t_io_redirect *redir)
+static void	handle_io_redir(t_io_redirect *redir)
 {
 	ft_putnbr(redir->io_number);
-	print_token_number(redir->type);
+	// print_token_number(redir->type);
 	ft_putstr(redir->file_name);
 	write(1, " ", 1);
 }
@@ -91,14 +62,14 @@ static void	cmd_pref_iter(t_cmd_prefix *pref)
 	while (pref)
 	{
 		if (pref->assignment_word)
-			print_token_word(pref->assignment_word);
+			handle_token_assignment_word(pref->assignment_word);
 		else
-			print_io_redir(pref->io_redir);
+			handle_io_redir(pref->io_redir);
 		pref = pref->cmd_pref;
 	}
 }
 
-static void	cmd_iter(t_cmd *cmd)
+static void	handle_cmd(t_cmd *cmd)
 {
 	t_cmd_suffix	*suff;
 	t_cmd_prefix	*pref;
@@ -121,9 +92,12 @@ static void	cmd_iter(t_cmd *cmd)
 		if (suff->word)
 			push_back_av(&av, suff->word);
 		else
-			print_io_redir(suff->io_redir);
+			handle_io_redir(suff->io_redir);
 		suff = suff->cmd_suf;
 	}
+	// if (*av)
+	// 	call_exec(av);
+
 	// ft_putendl("\nav:\n");
 	// while (*av)
 	// {
@@ -143,7 +117,7 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 		// pipe_sequence_iter(pipe_seq->next, pipefd[0]);
 	}
 	else
-		cmd_iter(pipe_seq->cmd);
+		handle_cmd(pipe_seq->cmd);
 }
 
 static void	pipeline_iter(t_pipeline *root)

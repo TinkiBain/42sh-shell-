@@ -6,32 +6,24 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 12:43:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/11 12:44:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/07/31 18:59:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-static void		ft_execve(char **av, int fd)
-{
-	extern char	**environ;
-
-	if (fork() == 0)
-	{
-		dup2(fd, 0);
-		execve(*av, av, environ);
-	}
-}
+#include "signal.h"
 
 void			ft_pipe(char ***av, int fd)
 {
 	extern char	**environ;
 	pid_t		pid;
+	pid_t		pid1;
+	pid_t		pid2;
 	int			pipefd[2];
 
 	if (pipe(pipefd) < -1)
 		exit(-1);
-	if ((pid = fork()) == 0)
+	if ((pid1 = fork()) == 0)
 	{
 		close(pipefd[0]);
 		dup2(fd, 0);
@@ -41,12 +33,35 @@ void			ft_pipe(char ***av, int fd)
 	}
 	else
 	{
-		wait(NULL);
-		close(pipefd[1]);
-		if (*(av + 2) != NULL)
-			ft_pipe(++av, pipefd[0]);
-		else
-			ft_execve(*(++av), pipefd[0]);
-		close(pipefd[0]);
+		++av;
+		if ((pid2 = fork()) == 0)
+		{
+			close(pipefd[1]);
+			dup2(pipefd[0], 0);
+			close(pipefd[0]);
+			execve(**av, *av, environ);
+		}
+		waitpid(pid2, NULL, 0);
 	}
+	waitpid(pid1, NULL, 0);
+	close(pipefd[1]);
+}
+
+int				main(void)
+{
+	// char	*s0[] = {"/bin/ls", "-lh", NULL};
+	// char	*s1[] = {"/bin/cat", "-e", NULL};
+	// char	*s2[] = {"/usr/bin/wc", "-l", NULL};
+	char	*s0[] = {"/bin/cat", NULL, NULL};
+	char	*s1[] = {"/usr/bin/head", "-c" ,"5", NULL};
+	char	***av;
+
+	av = (char ***)ft_xmalloc(sizeof(char **) * 4);
+	av[0] = s0;
+	av[1] = s1;
+	// av[2] = s2;
+	av[2] = NULL;
+	av[3] = NULL;
+	ft_pipe(av, 0);
+	return (0);
 }
