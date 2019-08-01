@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/01 19:11:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/01 19:30:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,25 @@ static void	handle_cmd(t_cmd *cmd)
 	// }
 }
 
+void			handle_last_cmd_in_pipe(int fd, t_cmd *cmd)
+{
+	pid_t		pid2;
+	int			status;
+
+	if ((pid2 = fork()) == 0)
+	{
+		dup2(fd, 0);
+		close(fd);
+		handle_cmd(cmd);
+	}
+	waitpid(pid2, &status, 0);
+	// g_res_exec = WEXITSTATUS(status);
+}
+
 void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
 {
 	extern char	**environ;
 	pid_t		pid1;
-	pid_t		pid2;
 	int			pipefd[2];
 
 	if (pipe(pipefd) < -1)
@@ -131,27 +145,14 @@ void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
 		if (pipe_seq->pipe_op)
 			ast_handle_pipe(pipe_seq, pipefd[0]);
 		else
-		{
-			if ((pid2 = fork()) == 0)
-			{
-				dup2(pipefd[0], 0);
-				close(pipefd[0]);
-				handle_cmd(pipe_seq->cmd);
-			}
-			waitpid(pid2, NULL, 0);
-		}
+			handle_last_cmd_in_pipe(pipefd[0], pipe_seq->cmd);
 		close(pipefd[0]);
 	}
-	close(pipefd[0]);
 	waitpid(pid1, NULL, 0);
 }
 
 static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
-	// pid_t		pid1;
-	// pid_t		pid2;
-	// int			pipefd[2];
-
 	if (pipe_seq->pipe_op)
 	{
 		ast_handle_pipe(pipe_seq, 0);
