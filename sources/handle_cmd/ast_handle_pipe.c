@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipe.c                                          :+:      :+:    :+:   */
+/*   ast_handle_pipe.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 12:43:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/31 19:10:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/01 17:09:18 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "signal.h"
 
-void			ft_pipe(char ***av, int fd)
+void			ast_handle_pipe(char ***av, int fd)
 {
 	extern char	**environ;
 	pid_t		pid;
@@ -41,8 +41,8 @@ void			ft_pipe(char ***av, int fd)
 			close(pipefd[0]);
 			execve(**av, *av, environ);
 		}
-		close(pipefd[1]);
-		close(pipefd[0]);
+		// close(pipefd[1]);
+		// close(pipefd[0]);
 	}
 	close(pipefd[1]);
 	close(pipefd[0]);
@@ -55,7 +55,7 @@ int				main(void)
 	// char	*s0[] = {"/bin/ls", "-lh", NULL};
 	// char	*s1[] = {"/bin/cat", "-e", NULL};
 	// char	*s2[] = {"/usr/bin/wc", "-l", NULL};
-	char	*s0[] = {"/bin/cat", NULL, NULL};
+	char	*s0[] = {"/bin/cat", "-e", NULL};
 	char	*s1[] = {"/usr/bin/head", "-c" ,"5", NULL};
 	char	***av;
 
@@ -65,6 +65,6 @@ int				main(void)
 	// av[2] = s2;
 	av[2] = NULL;
 	av[3] = NULL;
-	ft_pipe(av, 0);
+	ast_handle_pipe(av, 0);
 	return (0);
 }
