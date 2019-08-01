@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 16:34:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/01 21:25:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ size_t		lexer_fill_redir_right(char *str, t_lex **lex)
 		}
 		++str;
 	}
-	if (ft_isspace(*str))
-		--str;
 	(*lex)->lexeme = ft_strndup(begin, str - begin);
-	return (str - begin + 1);
+	return (str - begin);
 }
 
 size_t		lexer_check_redir(char *str, t_lex **lex)
