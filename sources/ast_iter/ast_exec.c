@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/30 14:25:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/01 19:11:28 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void	handle_cmd(t_cmd *cmd)
 	t_cmd_suffix	*suff;
 	t_cmd_prefix	*pref;
 	char			**av;
+	extern char		**environ;
 
 	av = (char**)ft_xmalloc(sizeof(char*) * (1));
 	*av = NULL;
@@ -95,6 +96,7 @@ static void	handle_cmd(t_cmd *cmd)
 			handle_io_redir(suff->io_redir);
 		suff = suff->cmd_suf;
 	}
+	execve(*av, av, environ);
 	// if (*av)
 	// 	call_exec(av);
 
@@ -105,16 +107,54 @@ static void	handle_cmd(t_cmd *cmd)
 	// }
 }
 
+void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
+{
+	extern char	**environ;
+	pid_t		pid1;
+	pid_t		pid2;
+	int			pipefd[2];
+
+	if (pipe(pipefd) < -1)
+		exit(-1);
+	if ((pid1 = fork()) == 0)
+	{
+		close(pipefd[0]);
+		dup2(fd, 0);
+		dup2(pipefd[1], 1);
+		close(pipefd[1]);
+		handle_cmd(pipe_seq->cmd);
+	}
+	else
+	{
+		close(pipefd[1]);
+		pipe_seq = pipe_seq->next;
+		if (pipe_seq->pipe_op)
+			ast_handle_pipe(pipe_seq, pipefd[0]);
+		else
+		{
+			if ((pid2 = fork()) == 0)
+			{
+				dup2(pipefd[0], 0);
+				close(pipefd[0]);
+				handle_cmd(pipe_seq->cmd);
+			}
+			waitpid(pid2, NULL, 0);
+		}
+		close(pipefd[0]);
+	}
+	close(pipefd[0]);
+	waitpid(pid1, NULL, 0);
+}
+
 static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
-	// pid_t		pid;
+	// pid_t		pid1;
+	// pid_t		pid2;
 	// int			pipefd[2];
 
 	if (pipe_seq->pipe_op)
 	{
-		// if (pipe(pipefd) < -1)
-		// 	exit(-1);
-		// pipe_sequence_iter(pipe_seq->next, pipefd[0]);
+		ast_handle_pipe(pipe_seq, 0);
 	}
 	else
 		handle_cmd(pipe_seq->cmd);
