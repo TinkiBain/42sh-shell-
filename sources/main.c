@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 20:05:26 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 20:41:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,14 @@ int			main(int ac, char **av)
 		if (ft_strequ(*(av + 1), "-p"))
 			TYPE_OF_PROGRAM = 1;
 	}
-	ft_putstr("-----------------------------------------\n");
 	while (1)
 	{
+		write(1, "sh: ", 4);
 		buf[read(0, &buf, 1023) - 1] = '\0';
 		if (ft_strequ("exit", buf))
 			break ;
 		if (*(tmp = ft_strtrim(buf)))
 		{
-			printf("%s\n", get_bin(buf, g_table));
 			lex = lexer(buf);
 			src = lex;
 			while (src->next)
@@ -88,7 +87,6 @@ int			main(int ac, char **av)
 				free_lex(lex);
 			}
 			free_lex(src);
-			ft_putstr("\n-----------------------------------------\n");
 			free(tmp);
 			int i = 0;
 			while (i < 1023)
