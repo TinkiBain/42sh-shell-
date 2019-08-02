@@ -6,13 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/01 21:23:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 13:06:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "parser.h"
 #include "exec.h"
+
+int			TYPE_OF_PROGRAM;
 
 void		free_lex(t_lex *lex)
 {
@@ -23,7 +25,7 @@ void		free_lex(t_lex *lex)
 	free(lex);
 }
 
-int			main(void)
+int			main(int ac, char **av)
 {
 	char		buf[1024];
 	t_pars_list	*list;
@@ -31,6 +33,11 @@ int			main(void)
 	t_lex		*src;
 	char		*tmp;
 
+	if (ac > 1)
+	{
+		if (ft_strequ(*(av + 1), "-p"))
+			TYPE_OF_PROGRAM = 1;
+	}
 	ft_putstr("-----------------------------------------\n");
 	while (1)
 	{
@@ -46,10 +53,14 @@ int			main(void)
 			list = parser(lex, NULL, 0);
 			if (!g_error_pars)
 			{
-				// ft_putendl("\nprint AST:");
-				ast_print_in_order(list);
-				// ft_putendl("\n\ncall exec in AST:");
-				// ast_exec(list);
+				if (TYPE_OF_PROGRAM)
+				{
+					ft_putendl("\nprint AST:");
+					ast_print_in_order(list);
+					// ft_putendl("\n\ncall exec in AST:");
+				}
+				else
+					ast_exec(list);
 			}
 			g_error_pars = 0;
 			parser_free_tree(list);

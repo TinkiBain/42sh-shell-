@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/11 12:43:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/01 17:09:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 17:57:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			ast_handle_pipe(char ***av, int fd)
 	pid_t		pid2;
 	int			pipefd[2];
 
-	if (pipe(pipefd) < -1)
+	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid1 = fork()) == 0)
 	{

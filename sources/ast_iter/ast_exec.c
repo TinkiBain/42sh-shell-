@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/01 19:30:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 17:57:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,11 @@ static void	handle_cmd(t_cmd *cmd)
 	execve(*av, av, environ);
 	// if (*av)
 	// 	call_exec(av);
-
-	// ft_putendl("\nav:\n");
-	// while (*av)
-	// {
-	// 	ft_putendl(*(av++));
-	// }
 }
 
 void			handle_last_cmd_in_pipe(int fd, t_cmd *cmd)
 {
 	pid_t		pid2;
-	int			status;
 
 	if ((pid2 = fork()) == 0)
 	{
@@ -118,19 +111,18 @@ void			handle_last_cmd_in_pipe(int fd, t_cmd *cmd)
 		close(fd);
 		handle_cmd(cmd);
 	}
-	waitpid(pid2, &status, 0);
-	// g_res_exec = WEXITSTATUS(status);
+	waitpid(pid2, &g_res_exec, 0);
 }
 
 void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
 {
 	extern char	**environ;
-	pid_t		pid1;
+	pid_t		pid;
 	int			pipefd[2];
 
-	if (pipe(pipefd) < -1)
+	if (pipe(pipefd) == -1)
 		exit(-1);
-	if ((pid1 = fork()) == 0)
+	if ((pid = fork()) == 0)
 	{
 		close(pipefd[0]);
 		dup2(fd, 0);
@@ -148,17 +140,24 @@ void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
 			handle_last_cmd_in_pipe(pipefd[0], pipe_seq->cmd);
 		close(pipefd[0]);
 	}
-	waitpid(pid1, NULL, 0);
+	waitpid(pid, NULL, 0);
 }
 
 static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
+	pid_t		pid;
+
 	if (pipe_seq->pipe_op)
 	{
 		ast_handle_pipe(pipe_seq, 0);
 	}
 	else
-		handle_cmd(pipe_seq->cmd);
+	{
+		if ((pid = fork()) == 0)
+			handle_cmd(pipe_seq->cmd);
+		else
+			waitpid(pid, &g_res_exec, 0);
+	}
 }
 
 static void	pipeline_iter(t_pipeline *root)
@@ -177,6 +176,10 @@ static void	and_or_iter_in_order(t_and_or *root)
 	pipeline_iter(root->pipeline);
 	if (root->and_or)
 	{
+		if (WIFEXITED(g_res_exec))
+			g_res_exec = WEXITSTATUS(g_res_exec);
+		else
+			g_res_exec = 1;
 		if ((root->and_or_if == AND_IF && !g_res_exec) || (root->and_or_if == OR_IF && g_res_exec))
 			and_or_iter_in_order(root->and_or);
 	}
