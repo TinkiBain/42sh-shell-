@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/30 15:19:00 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 19:48:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include "parser.h"
 # include "lexer.h"
 # include "cmd.h"
+# include "hash.h"
 
 # define PROJECT_NAME "21sh"
+
+t_hash			**g_table;
 
 typedef struct	s_bits
 {

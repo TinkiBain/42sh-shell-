@@ -6,13 +6,16 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 13:06:23 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 20:05:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "parser.h"
 #include "exec.h"
+// #include "get_env.h"
+// #include "hash.h"
+#include "lib_wtalea.h"
 
 int			TYPE_OF_PROGRAM;
 
@@ -25,6 +28,18 @@ void		free_lex(t_lex *lex)
 	free(lex);
 }
 
+void		fill_g_hash_table(void)
+{
+	char			*v_path;
+
+	v_path = NULL;
+	if ((g_table = (t_hash **)ft_memalloc(sizeof(t_hash) * HASH_LEN)) == NULL)
+		die_log("malloc in main");
+	if ((v_path = getenv("PATH")) == NULL)
+		die_log("malloc in main");
+	create_bin(v_path, (t_hash ***)&g_table);
+}
+
 int			main(int ac, char **av)
 {
 	char		buf[1024];
@@ -33,6 +48,7 @@ int			main(int ac, char **av)
 	t_lex		*src;
 	char		*tmp;
 
+	fill_g_hash_table();
 	if (ac > 1)
 	{
 		if (ft_strequ(*(av + 1), "-p"))
@@ -46,6 +62,7 @@ int			main(int ac, char **av)
 			break ;
 		if (*(tmp = ft_strtrim(buf)))
 		{
+			printf("%s\n", get_bin(buf, g_table));
 			lex = lexer(buf);
 			src = lex;
 			while (src->next)
@@ -78,5 +95,6 @@ int			main(int ac, char **av)
 				buf[i++] = '\0';
 		}
 	}
+	del_hash(&g_table);
 	return (0);
 }

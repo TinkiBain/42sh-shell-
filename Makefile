@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/02 19:22:01 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/02 20:30:42 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,13 +59,32 @@ SRCS_EXEC=\
 	exec_redir_right.c\
 	ft_pipe.c
 
+HASH_DIR=hash_table/
+
+SRCS_HASH=\
+	create_bin.c\
+	create_env.c\
+	create_hash.c\
+	del_hash.c\
+	get_bin.c\
+	null_hash.c\
+	paste_path.c\
+	search_env_str.c
+
+DIR_LIB_WTALEA=lib_wtalea/
+
+SRCS_LIB_WTALEA=\
+	die_log.c
+
 SRCS_WITHOUT_DIR=\
 	main.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(AST_ITER_DIR), $(SRCS_AST_ITER))\
 	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))\
-	$(addprefix $(PARSER_DIR), $(SRCS_PARSER))
+	$(addprefix $(PARSER_DIR), $(SRCS_PARSER))\
+	$(addprefix $(HASH_DIR), $(SRCS_HASH))\
+	$(addprefix $(DIR_LIB_WTALEA), $(SRCS_LIB_WTALEA))
 
 SRCS=$(addprefix $(SRCS_DIR), $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR), $(SOURCES:.c=.o))
@@ -90,6 +109,8 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)$(AST_ITER_DIR)
 	@mkdir -p $(OBJS_DIR)$(LEXER_DIR)
 	@mkdir -p $(OBJS_DIR)$(PARSER_DIR)
+	@mkdir -p $(OBJS_DIR)$(HASH_DIR)
+	@mkdir -p $(OBJS_DIR)$(DIR_LIB_WTALEA)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@gcc $(INCLUDES) $(FLAGS) -o $@ -c $<

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 18:59:40 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/05/22 05:48:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/02 19:23:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ void				ft_free_map(char **map);
 char				*ft_llitoa(unsigned long long int nb);
 unsigned long long	ft_atolli(char *str);
 char				*ft_strndup(const char *src, int j);
+
+void				ft_free_char_arr(void ***arr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 17:57:13 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/02 20:00:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ static void	handle_cmd(t_cmd *cmd)
 	{
 		cmd_pref_iter(pref);
 		if (cmd->cmd_word)
-			push_back_av(&av, cmd->cmd_word);
+			push_back_av(&av, get_bin(cmd->cmd_word, g_table));
 	}
 	else
-		push_back_av(&av, cmd->cmd_name);
+		push_back_av(&av, get_bin(cmd->cmd_name, g_table));
 	suff = cmd->cmd_suf;
 	while (suff)
 	{
