@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/07/29 21:16:19 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/02 19:22:01 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS_LEXER=\
 	lexer.c\
 	lexer_and_or.c\
 	lexer_check_redir.c\
-	lexer_get_token.c
+	lexer_get_token.c\
+	lexer_bang.c
 
 PARSER_DIR=parser/
 

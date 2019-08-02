@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 18:12:49 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/02 19:22:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_lex		*lexer(char *buf)
 			lex->type = PIPE_SYMB;
 		else if (lexer_check_separator(buf) && ++buf)
 			lex->type = SEMICOLON;
+		else if (*buf == '!' && ft_isspace(*(buf + 1)))
+			buf = lexer_bang(buf, lex);
 		else
 			buf = lexer_get_token(buf, &lex);
 		lex->next = init_lex(lex);
@@ -61,14 +63,3 @@ t_lex		*lexer(char *buf)
 		lex = lex->prev;
 	return (lex);
 }
-
-/*
-**	while (lex)
-**	{
-**		printf("%d\n", lex->type);
-**		printf("'%s'\n", lex->lexeme);
-**		printf("%d\n", lex->fd);
-**		printf("-------------------\n");
-**		lex = lex->next;
-**	}
-*/
