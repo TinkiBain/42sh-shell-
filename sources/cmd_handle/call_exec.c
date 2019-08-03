@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 21:28:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 21:46:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		print_error_command(char *s)
 
 static int		call_nonbuilin_exec(char *path, char **split, char **env)
 {
-	pid_t	pid;
+	pid_t		pid;
 
 	if (!access(path, X_OK))
 	{
@@ -42,7 +42,8 @@ static int		call_nonbuilin_exec(char *path, char **split, char **env)
 
 void			call_exec(char **split, char ***env)
 {
-	char *tmp;
+	char		*tmp;
+	char		*p;
 
 	if (ft_strequ(split[0], "exit"))
 		exit(EXIT_SUCCESS);
@@ -58,9 +59,10 @@ void			call_exec(char **split, char ***env)
 		ft_unsetenv(split + 1);
 	else if (ft_strequ(split[0], "hash"))
 		ft_hash();
-	else if ((tmp = get_bin(split[0], g_table)))
+	else if ((p = get_bin(split[0], g_table)))
 	{
-		split[0] = tmp;
+		tmp = split[0];
+		split[0] = p;
 		call_nonbuilin_exec(tmp, split, *env);
 	}
 	else if (ft_strchr(split[0], '/'))

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 14:22:58 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 19:40:08 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 21:48:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void		ft_type(char **av)
 {
+	char	*path;
+
 	if (av)
 		while (*av)
 		{
@@ -22,10 +24,11 @@ void		ft_type(char **av)
 				ft_putstr(*av);
 				ft_putendl(" is a shell builtin");
 			}
-			else if (get_bin(*av, g_table))
+			else if ((path = get_bin(*av, g_table)))
 			{
 				ft_putstr(*av);
-				ft_putendl(" is a shell builtin");
+				ft_putstr(" is ");
+				ft_putendl(path);
 			}
 			else
 			{
