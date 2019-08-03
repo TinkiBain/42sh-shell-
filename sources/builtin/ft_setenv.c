@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 17:48:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 20:09:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ static void	replace_var(char *av, char **tmp, char ***env)
 		free(*tmp);
 		*tmp = var;
 	}
-	else
-		*env = (char **)ft_vector_add((void **)*env, (void *)var);
+	(void)env;
+	// else
+	// 	*env = (char **)ft_vector_add((void **)*env, (void *)var);
 }
 
 int			ft_setenv(char **av)
 {
-	char	*p;
-	char	**tmp;
-	char	**environ;
+	char		*p;
+	char		**tmp;
+	extern char	**environ;
 
 	if (!environ)
 		return (0);
@@ -46,8 +47,8 @@ int			ft_setenv(char **av)
 		replace_var(*av, tmp, &environ);
 		if (ft_strnequ(*av, "PATH=", 5))
 		{
-			ft_free_double_ptr_arr(&g_table);
-			fill_g_hash_table();
+			ft_free_double_ptr_arr((void ***)&g_table);
+			fill_hash_table();
 		}
 		++av;
 	}

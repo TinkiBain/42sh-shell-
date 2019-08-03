@@ -6,11 +6,12 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 13:59:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 20:05:43 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include <stdio.h>
 
 static char	*get_previous_pwd(char **env)
 {
@@ -29,7 +30,7 @@ static char	*get_previous_pwd(char **env)
 	return (getcwd(NULL, 1024));
 }
 
-static void	change_dir(char *path, char ***env)
+static void	change_dir(char *path)
 {
 	char	**arr;
 
@@ -38,7 +39,7 @@ static void	change_dir(char *path, char ***env)
 	chdir(path);
 	arr[1] = ft_strjoin_free("PWD=", getcwd(NULL, 1024), 2);
 	arr[2] = NULL;
-	ft_setenv(arr, env, NULL);
+	ft_setenv(arr);
 	free(arr);
 }
 
@@ -67,7 +68,7 @@ static void	ft_open_dir(char *av, char ***env)
 		path = ft_strdup(av);
 	if (path && (dp = opendir(path)) != NULL)
 	{
-		change_dir(path, env);
+		change_dir(path);
 		closedir(dp);
 	}
 	else
@@ -75,18 +76,20 @@ static void	ft_open_dir(char *av, char ***env)
 	free(path);
 }
 
-int			ft_cd(char **av, char ***env)
+int			ft_cd(char **av)
 {
+	extern char	**environ;
+
 	if (!av)
 		return (0);
 	if (!av[0])
-		ft_open_dir(NULL, env);
+		ft_open_dir(NULL, &environ);
 	else if (av[1] != NULL)
 	{
 		ft_putstr(PROJECT_NAME);
 		ft_putstr(": cd: too many arguments");
 	}
 	else
-		ft_open_dir(av[0], env);
+		ft_open_dir(av[0], &environ);
 	return (1);
 }

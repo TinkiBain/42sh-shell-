@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 20:00:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 21:31:25 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,8 @@ static void	handle_cmd(t_cmd *cmd)
 			handle_io_redir(suff->io_redir);
 		suff = suff->cmd_suf;
 	}
-	execve(*av, av, environ);
-	// if (*av)
-	// 	call_exec(av);
+	if (*av)
+		execve(*av, av, environ);
 }
 
 void			handle_last_cmd_in_pipe(int fd, t_cmd *cmd)

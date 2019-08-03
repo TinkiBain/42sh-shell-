@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/03 19:06:19 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/03 20:13:28 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,17 @@ OBJS_DIR=objects/
 LIBFT_DIR=libft
 
 LEXER_DIR=lexer/
+PARSER_DIR=parser/
+BUILTIN_DIR=builtin/
+AST_ITER_DIR=ast_iter/
+CMD_HANDLE_DIR=cmd_handle/
+HASH_DIR=hash_table/
+# lib_wtalea need to remove
+DIR_LIB_WTALEA=lib_wtalea/
+# EXEC_DIR=exec/
+
+SRCS_WITHOUT_DIR=\
+	main.c
 
 SRCS_LEXER=\
 	lexer.c\
@@ -27,8 +38,6 @@ SRCS_LEXER=\
 	lexer_check_redir.c\
 	lexer_get_token.c\
 	lexer_bang.c
-
-PARSER_DIR=parser/
 
 SRCS_PARSER=\
 	parser.c\
@@ -43,23 +52,22 @@ SRCS_PARSER=\
 	parser_free_tree.c\
 	parser_free_cmd.c
 
-AST_ITER_DIR=ast_iter/
+SRCS_BUILTIN=\
+	ft_cd.c\
+	ft_echo.c\
+	ft_env.c\
+	ft_hash.c\
+	ft_setenv.c\
+	ft_type.c\
+	ft_unsetenv.c
 
 SRCS_AST_ITER=\
 	ast_exec.c\
 	ast_print_in_order.c
 
-EXEC_DIR=exec/
-
-SRCS_EXEC=\
-	exec.c\
-	exec_fill_fifo.c\
-	exec_open.c\
-	exec_print_error.c\
-	exec_redir_right.c\
-	ft_pipe.c
-
-HASH_DIR=hash_table/
+SRCS_CMD_HANDLE=\
+	call_exec.c\
+	check_builtin.c
 
 SRCS_HASH=\
 	create_bin.c\
@@ -71,17 +79,22 @@ SRCS_HASH=\
 	paste_path.c\
 	search_env_str.c
 
-DIR_LIB_WTALEA=lib_wtalea/
+# SRCS_EXEC=\
+# 	exec.c\
+# 	exec_fill_fifo.c\
+# 	exec_open.c\
+# 	exec_print_error.c\
+# 	exec_redir_right.c\
+# 	ft_pipe.c
 
 SRCS_LIB_WTALEA=die_log.c
 
-SRCS_WITHOUT_DIR=\
-	main.c
-
 SOURCES=$(SRCS_WITHOUT_DIR)\
-	$(addprefix $(AST_ITER_DIR), $(SRCS_AST_ITER))\
+	$(addprefix $(BUILTIN_DIR), $(SRCS_BUILTIN))\
 	$(addprefix $(LEXER_DIR), $(SRCS_LEXER))\
 	$(addprefix $(PARSER_DIR), $(SRCS_PARSER))\
+	$(addprefix $(CMD_HANDLE_DIR), $(SRCS_CMD_HANDLE))\
+	$(addprefix $(AST_ITER_DIR), $(SRCS_AST_ITER))\
 	$(addprefix $(HASH_DIR), $(SRCS_HASH))\
 	$(addprefix $(DIR_LIB_WTALEA), $(SRCS_LIB_WTALEA))
 
@@ -105,9 +118,11 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
-	@mkdir -p $(OBJS_DIR)$(AST_ITER_DIR)
+	@mkdir -p $(OBJS_DIR)$(BUILTIN_DIR)
 	@mkdir -p $(OBJS_DIR)$(LEXER_DIR)
 	@mkdir -p $(OBJS_DIR)$(PARSER_DIR)
+	@mkdir -p $(OBJS_DIR)$(AST_ITER_DIR)
+	@mkdir -p $(OBJS_DIR)$(CMD_HANDLE_DIR)
 	@mkdir -p $(OBJS_DIR)$(HASH_DIR)
 	@mkdir -p $(OBJS_DIR)$(DIR_LIB_WTALEA)
 

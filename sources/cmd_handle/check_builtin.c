@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_type.c                                          :+:      :+:    :+:   */
+/*   check_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/03 14:22:58 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 19:40:08 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/03 19:32:27 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/03 21:29:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "libft.h"
 
-void		ft_type(char **av)
+int		check_builtin(char *cmd)
 {
-	if (av)
-		while (*av)
-		{
-			if (check_builtin(*av))
-			{
-				ft_putstr(*av);
-				ft_putendl(" is a shell builtin");
-			}
-			else if (get_bin(*av, g_table))
-			{
-				ft_putstr(*av);
-				ft_putendl(" is a shell builtin");
-			}
-			else
-			{
-				ft_putstr(PROJECT_NAME);
-				ft_putstr(": type: ");
-				ft_putstr(*av);
-				ft_putendl(": not found");
-			}
-			++av;
-		}
+	if (ft_strequ(cmd, "exit") || ft_strequ(cmd, "cd") ||
+			ft_strequ(cmd, "echo") || ft_strequ(cmd, "env") ||
+			ft_strequ(cmd, "setenv") || ft_strequ(cmd, "unsetenv") ||
+			ft_strequ(cmd, "hash") || ft_strequ(cmd, "type"))
+		return (1);
+	return (0);
 }
