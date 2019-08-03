@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 17:40:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/02 20:14:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:06:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,13 @@ void			create_bin(char *str, t_hash ***table)
 	int		i;
 	char	**cp;
 
+	if (!str)
+		return ;
 	cp = NULL;
 	i = 0;
 	if ((cp = ft_strsplit(str, ':')) == NULL)
 		die_log("malloc in get_bin");
 	while (*(cp + i))
 		split_hash(*(cp + i++), table);
-	ft_free_char_arr((void ***)&cp);
+	ft_free_double_ptr_arr((void ***)&cp);
 }

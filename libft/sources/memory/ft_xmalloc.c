@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_xmalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 15:32:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/12/10 15:37:04 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/05/29 15:19:46 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/03 15:02:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	*ft_xmalloc(size_t size)
 {
-	new->next = *alst;
-	*alst = new;
+	void	*res;
+
+	if (size == 0 || !(res = malloc(size)))
+		exit(-1);
+	ft_bzero(res, size);
+	return (res);
 }

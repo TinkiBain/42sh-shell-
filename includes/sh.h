@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/02 19:48:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/03 19:02:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "lexer.h"
 # include "cmd.h"
 # include "hash.h"
+# include "lib_wtalea.h"
 
 # define PROJECT_NAME "21sh"
 

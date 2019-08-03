@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:38:02 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/11/30 15:15:59 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/03 13:23:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-void	ft_memdel(void **ap)
+int		ft_echo(char **av)
 {
-	if (ap != NULL && *ap != NULL)
+	int		flag;
+
+	flag = 1;
+	if (*av && ft_strequ("-n", *av))
 	{
-		free(*ap);
-		*ap = NULL;
+		flag = 0;
+		++av;
 	}
+	while (*av)
+	{
+		ft_putstr(*av);
+		if (*(++av))
+			write(1, " ", 1);
+	}
+	if (flag)
+		write(1, "\n", 1);
+	return (1);
 }

@@ -1,19 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.h                                          :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 16:01:23 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/03 19:06:27 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/03/17 22:03:12 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/03 14:40:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_ENV_H
+#include "sh.h"
 
-#include "libft.h"
+int		ft_env(char **av, char **env)
+{
+	char	**arr;
+	char	**tmp;
 
-char			*search_bucks(char *str, char ***g_env);
-
-#endif
+	if (*av == NULL)
+		while (*env)
+		{
+			ft_putendl(*env);
+			++env;
+		}
+	else
+	{
+		if (ft_strequ("-s", *av))
+		{
+			arr = ft_sort_str_array(env, 0);
+			tmp = arr;
+			while (*arr)
+			{
+				ft_putendl(*arr);
+				++arr;
+			}
+			ft_free_double_ptr_arr(&tmp);
+		}
+	}
+	return (1);
+}

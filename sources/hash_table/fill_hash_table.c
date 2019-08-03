@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xmalloc.c                                       :+:      :+:    :+:   */
+/*   fill_hash_table.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/06 22:25:41 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/04/23 04:25:02 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/08/03 17:49:40 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/03 19:02:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-void		*ft_xmalloc(size_t size)
+void		fill_hash_table(void)
 {
-	char	*tmp;
-	size_t	i;
-
-	if (!(tmp = malloc(size)))
-	{
-		write(2, "Error malloc\n", 13);
-		exit(-1);
-	}
-	i = -1;
-	while (++i < size)
-		tmp[i] = '\0';
-	return (tmp);
+	if (g_table)
+		del_hash(&g_table);
+	g_table = (t_hash **)ft_xmalloc(sizeof(t_hash) * HASH_LEN);
+	create_bin(getenv("PATH"), (t_hash ***)&g_table);
 }

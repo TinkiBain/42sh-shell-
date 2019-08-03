@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 14:57:01 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/12/01 15:03:18 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/22 22:30:44 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/03/13 19:23:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (alst == NULL || del == NULL)
-		return ;
-	del((*alst)->content, (*alst)->content_size);
-	free(*alst);
-	*alst = NULL;
+	unsigned char	*mem;
+
+	if (!b)
+		return (b);
+	mem = (unsigned char *)b;
+	while (len--)
+		*(mem++) = (unsigned char)c;
+	return (b);
 }

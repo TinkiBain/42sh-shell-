@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 19:45:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/11/27 16:59:50 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/25 15:22:29 by ggwin-go          #+#    #+#             */
+/*   Updated: 2018/11/29 18:10:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
+#include <stdlib.h>
 
-void	*ft_memchr(const void *str1, int c, size_t n)
+void	ft_memdel(void **ap)
 {
-	unsigned long	i;
-	const char		*s1;
-
-	s1 = (const char*)str1;
-	i = 0;
-	while (i < n)
+	if (ap != NULL)
 	{
-		if (*(s1 + i) == (char)c)
-			return ((void*)s1 + i);
-		i++;
+		free(*ap);
+		*ap = NULL;
 	}
-	return (NULL);
 }

@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_char_arr.c                                 :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/12 20:50:07 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 19:23:27 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/24 16:30:42 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/01/04 21:05:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-void		ft_free_char_arr(void ***arr)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	unsigned char	*c_s;
+	unsigned long	*l_s;
 
-	i = 0;
-	if (arr && *arr)
+	l_s = (unsigned long *)s;
+	while (n / (sizeof(long) * 5))
 	{
-		while ((*arr)[i])
-		{
-			free((*arr)[i]);
-			(*arr)[i] = NULL;
-			++i;
-		}
-		free(*arr);
-		*arr = NULL;
+		*(l_s++) = 0;
+		*(l_s++) = 0;
+		*(l_s++) = 0;
+		*(l_s++) = 0;
+		*(l_s++) = 0;
+		n -= (sizeof(long) * 5);
 	}
+	while (n / sizeof(long))
+	{
+		*(l_s++) = 0;
+		n -= sizeof(long);
+	}
+	c_s = (unsigned char *)l_s;
+	while (n--)
+		*(c_s++) = 0;
 }

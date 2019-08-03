@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.h                                          :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 16:01:23 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/03 19:06:27 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/12/04 12:31:11 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/02/10 18:20:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_ENV_H
-
 #include "libft.h"
 
-char			*search_bucks(char *str, char ***g_env);
+void	*ft_realloc(void *ptr, size_t size)
+{
+	unsigned char	*new;
+	unsigned char	*tmp;
+	void			*res;
 
-#endif
+	new = (size == 0) ? NULL : (unsigned char *)malloc(size);
+	res = (void *)new;
+	tmp = (unsigned char *)ptr;
+	if (ptr)
+	{
+		if (new)
+		{
+			while (size-- && *tmp)
+			{
+				*(new++) = *(tmp++);
+			}
+			while (size--)
+				*(new++) = 0;
+		}
+		free(ptr);
+	}
+	return (res);
+}

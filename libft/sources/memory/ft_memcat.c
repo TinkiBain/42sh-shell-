@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_memcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 15:04:40 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/12/01 15:20:40 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/12/30 01:36:31 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/02/10 18:19:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void	ft_memcat(void *dst, const void *src, size_t start, size_t size)
 {
-	t_list *tmp;
-	t_list *srp;
-
-	if (alst == NULL || del == NULL)
+	if (!dst || !src)
 		return ;
-	srp = *alst;
-	while (srp != NULL)
-	{
-		tmp = srp->next;
-		ft_lstdelone(&srp, del);
-		srp = tmp;
-	}
-	*alst = NULL;
+	dst = &((unsigned char *)dst)[start];
+	(void)ft_memmove(dst, src, size);
 }

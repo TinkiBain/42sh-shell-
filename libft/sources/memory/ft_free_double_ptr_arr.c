@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_wtalea.h                                       :+:      :+:    :+:   */
+/*   ft_free_double_ptr_arr.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 16:04:20 by wtalea            #+#    #+#             */
-/*   Updated: 2019/07/27 17:11:04 by wtalea           ###   ########.fr       */
+/*   Created: 2019/01/12 20:50:07 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/03 14:05:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_WTALEA_H
-
 #include "libft.h"
 
-void	die_log(char *str);
+void		ft_free_double_ptr_arr(void ***arr)
+{
+	int	i;
 
-#endif
+	i = 0;
+	if (arr && *arr)
+	{
+		while ((*arr)[i])
+		{
+			free((*arr)[i]);
+			(*arr)[i] = NULL;
+			++i;
+		}
+		free(*arr);
+		*arr = NULL;
+	}
+}

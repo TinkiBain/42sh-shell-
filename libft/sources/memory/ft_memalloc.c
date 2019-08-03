@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 18:08:33 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/11/30 17:20:29 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/25 14:53:56 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/02/13 14:55:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *str1, const void *str2, size_t n)
+void	*ft_memalloc(size_t size)
 {
-	size_t	i;
-	char	*s;
-	char	*s1;
+	unsigned char	*s;
 
-	if (str1 == NULL && str2 == NULL)
+	s = NULL;
+	if (size == 0)
 		return (NULL);
-	if (str1 == str2)
-		return (str1);
-	s = (char*)str1;
-	s1 = (char*)str2;
-	i = 0;
-	while (i < n)
-	{
-		s[i] = s1[i];
-		i++;
-	}
-	return (s);
+	s = (unsigned char *)malloc(sizeof(unsigned char) * size);
+	if (s == NULL)
+		return (NULL);
+	ft_bzero(s, size);
+	return ((void *)s);
 }

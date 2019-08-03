@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_map.c                                      :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/24 19:41:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/04/24 19:42:13 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/12/04 14:07:21 by ggwin-go          #+#    #+#             */
+/*   Updated: 2018/12/07 20:50:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void		ft_free_map(char **map)
+void	ft_swap(void **a, void **b)
 {
-	int		i;
+	void	*c;
 
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		++i;
-	}
-	free(map);
+	c = *a;
+	*a = *b;
+	*b = c;
 }
