@@ -3,36 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 12:31:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/02/10 18:20:17 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/12/17 16:41:05 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/02/11 05:47:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_realloc(void *ptr, size_t size)
+void	*ft_realloc(void **ptr, size_t oldsize, size_t newsize)
 {
-	unsigned char	*new;
-	unsigned char	*tmp;
-	void			*res;
+	void	*ret;
 
-	new = (size == 0) ? NULL : (unsigned char *)malloc(size);
-	res = (void *)new;
-	tmp = (unsigned char *)ptr;
+	ret = ft_memalloc(newsize);
+	if (!ret)
+		return (NULL);
 	if (ptr)
 	{
-		if (new)
-		{
-			while (size-- && *tmp)
-			{
-				*(new++) = *(tmp++);
-			}
-			while (size--)
-				*(new++) = 0;
-		}
-		free(ptr);
+		ft_memcpy(ret, *ptr, oldsize < newsize ? oldsize : newsize);
+		free(*ptr);
+		*ptr = ret;
 	}
-	return (res);
+	return (ret);
 }

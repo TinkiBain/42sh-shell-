@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/03 17:39:20 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/04 15:42:09 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,16 @@ HEADER=includes/libft.h
 SRCS_DIR=sources/
 OBJS_DIR=objects/
 
-MEM=memory/
-STR=string/
-OUTPUT=output/
-OTHER=other/
+MEM_DIR=memory/
+STR_DIR=string/
+OUTPUT_DIR=output/
+FT_PRINTF_DIR=ft_printf/
+FT_STRING_DIR=ft_string/
+FT_VECTOR_DIR=ft_vector/
+LIST_DIR=list/
+DLIST_DIR=dlist/
+
+SRCS_WITHOUT_DIR=get_next_line.c
 
 SRCS_MEM=ft_bzero.c			ft_memalloc.c				ft_memccpy.c\
 		ft_memchr.c			ft_memcmp.c					ft_memcpy.c\
@@ -51,10 +57,42 @@ SRCS_OUTPUT=ft_putchar.c		ft_putchar_fd.c		ft_putendl.c\
 			ft_putendl_fd.c		ft_putnbr.c			ft_putnbr_fd.c\
 			ft_putstr.c			ft_putstr_fd.c
 
-SOURCES=\
-	$(addprefix $(MEM), $(SRCS_MEM))\
-	$(addprefix $(STR), $(SRCS_STR))\
-	$(addprefix $(OUTPUT), $(SRCS_OUTPUT))
+SRCS_FT_PRINTF=convert_float.c	convert_integer.c		ft_fdprintf.c\
+	ft_printf.c					ft_vfdprintf.c			ft_vprintf.c\
+	get_color.c					get_conversion.c		get_flags.c\
+	get_length.c				get_precision.c			get_width.c\
+	handle_char.c				handle_color.c			handle_conversion.c\
+	handle_float.c				handle_integer.c		handle_string.c\
+	handle_unknown.c			handle_wchar.c			handle_wstring.c\
+	number_to_string.c			number_to_string_e.c	number_to_string_f.c
+
+SRCS_FT_STRING=str_addback.c	str_addfront.c			str_compare.c\
+	str_copy.c					str_create.c			str_delarr.c\
+	str_delete.c				str_duplicate.c			str_fixlen.c\
+	str_get.c					str_insert.c			str_remove.c\
+	str_split.c					str_substring.c			str_zero.c
+
+SRCS_FT_VECTOR=vec_addback.c	vec_addfront.c			vec_create.c\
+	vec_delete.c				vec_duplicate.c			vec_get.c\
+	vec_zero.c
+
+SRCS_LIST=ft_lstadd.c			ft_lstaddback.c			ft_lstdel.c\
+	ft_lstdelone.c				ft_lstiter.c			ft_lstmap.c\
+	ft_lstnew.c					ft_lstsize.c
+
+SRCS_DLIST=ft_dlstadd.c			ft_dlstaddback.c		ft_dlstdel.c\
+	ft_dlstdelend.c				ft_dlstdelfront.c		ft_dlstdelone.c\
+	ft_dlstiter.c				ft_dlstnew.c			ft_dlstsize.c
+
+SOURCES=$(SRCS_WITHOUT_DIR)\
+	$(addprefix $(MEM_DIR), $(SRCS_MEM))\
+	$(addprefix $(STR_DIR), $(SRCS_STR))\
+	$(addprefix $(OUTPUT_DIR), $(SRCS_OUTPUT))\
+	$(addprefix $(FT_PRINTF_DIR), $(SRCS_FT_PRINTF))\
+	$(addprefix $(FT_STRING_DIR), $(SRCS_FT_STRING))\
+	$(addprefix $(FT_VECTOR_DIR), $(SRCS_FT_VECTOR))\
+	$(addprefix $(LIST_DIR), $(SRCS_LIST))\
+	$(addprefix $(DLIST_DIR), $(SRCS_DLIST))
 
 RED=\033[0;31m
 GREEN=\033[0;32m
@@ -71,9 +109,14 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	@echo "$(BLUE)Compiling $(NAME_CLEAN:.a=) objects files...$(NC)"
-	@mkdir -p $(OBJS_DIR)$(MEM)
-	@mkdir -p $(OBJS_DIR)$(STR)
-	@mkdir -p $(OBJS_DIR)$(OUTPUT)
+	@mkdir -p $(OBJS_DIR)$(MEM_DIR)
+	@mkdir -p $(OBJS_DIR)$(STR_DIR)
+	@mkdir -p $(OBJS_DIR)$(OUTPUT_DIR)
+	@mkdir -p $(OBJS_DIR)$(FT_PRINTF_DIR)
+	@mkdir -p $(OBJS_DIR)$(FT_STRING_DIR)
+	@mkdir -p $(OBJS_DIR)$(FT_VECTOR_DIR)
+	@mkdir -p $(OBJS_DIR)$(LIST_DIR)
+	@mkdir -p $(OBJS_DIR)$(DLIST_DIR)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 	@gcc $(FLAGS) $(INCLUDES) -c $< -o $@

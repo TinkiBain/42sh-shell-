@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 21:31:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/04 15:49:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@
 # include <sys/stat.h>
 # include <stdio.h>
 
-// typedef struct		s_list
-// {
-// 	char			*name;
-// 	char			*path;
-// 	size_t			name_len;
-// 	size_t			path_len;
-// 	struct s_list	*next;
-// }					t_list;
+typedef unsigned char			t_uchar;
+typedef unsigned int			t_uint;
+typedef unsigned long int		t_ulint;
+typedef long long int			t_llint;
+typedef unsigned long long int	t_ullint;
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memalloc(size_t size);
@@ -40,18 +37,9 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				ft_memdel(void **ap);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
-void				*ft_realloc(void *ptr, size_t size);
+void				*ft_realloc(void **ptr, size_t oldsize, size_t newsize);
 void				ft_swap(void *a, void *b);
 void				*ft_xmalloc(size_t size);
-
-// void				ft_lst_push_back(t_list **alst, t_list *lst_new);
-// void				ft_lst_push_front(t_list **alst, t_list *lst_new);
-// void				ft_lstdelone(t_list **alst);
-// void				ft_lstdel(t_list **alst);
-// void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-// t_list				*ft_lstnew(const char *name, const char *path);
-// t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-// size_t				ft_lstsize(t_list *lst);
 
 int					ft_atoi(const char *str);
 int					ft_gnl(const int fd, char **line);
@@ -107,5 +95,47 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *str);
 void				ft_putstr_fd(char const *s, int fd);
+
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+t_list				*ft_lstnew(void const *content, size_t content_size);
+void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void				ft_lstaddback(t_list **alst, t_list *new);
+size_t				ft_lstsize(t_list *lst);
+
+typedef struct		s_dlist
+{
+	void			*content;
+	size_t			content_size;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}					t_dlist;
+
+int					get_next_line(const int fd, char **line);
+int					get_lines(int fd, char ***lines, int n);
+
+t_dlist				*ft_dlstnew(void const *content, size_t content_size);
+void				ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstdelfront(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstdelend(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstadd(t_dlist **alst, t_dlist *new);
+void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
+void				ft_dlstaddback(t_dlist **alst, t_dlist *new);
+size_t				ft_dlstsize(t_dlist *lst);
+
+int					ft_printf(const char *format, ...);
+int					ft_vprintf(const char *format, va_list ap);
+int					ft_fdprintf(int fd, const char *format, ...);
+int					ft_vfdprintf(int fd, const char *format, va_list ap);
 
 #endif
