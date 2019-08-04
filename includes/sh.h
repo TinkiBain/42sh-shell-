@@ -6,13 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/04 21:01:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/04 22:52:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SH_H
 # define SH_H
 
+# include "defs.h"
 # include "libft.h"
 # include "parser.h"
 # include "lexer.h"
@@ -20,8 +21,6 @@
 # include "hash.h"
 # include "ft_readline.h"
 # include "lib_wtalea.h"
-
-# define PROJECT_NAME "21sh"
 
 t_hash			**g_table;
 

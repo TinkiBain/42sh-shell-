@@ -1,6 +1,6 @@
 # For readline
 .42sh.history
-./rl_log
+rl_log
 
 # Valgrind checklist
 valgrind-out.txt

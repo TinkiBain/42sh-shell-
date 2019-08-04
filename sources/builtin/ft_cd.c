@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 20:05:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/04 22:41:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static void	cd_error(char *av, int tilda_error)
 {
 	if (!(*av == '~' && tilda_error))
 	{
-		ft_putstr(PROJECT_NAME);
-		ft_putstr(": cd: ");
+		ft_putstr(PROJECT_NAME ": cd: ");
 		perror(av);
 	}
 }
@@ -86,8 +85,7 @@ int			ft_cd(char **av)
 		ft_open_dir(NULL, &environ);
 	else if (av[1] != NULL)
 	{
-		ft_putstr(PROJECT_NAME);
-		ft_putstr(": cd: too many arguments");
+		ft_putstr(PROJECT_NAME ": cd: too many arguments");
 	}
 	else
 		ft_open_dir(av[0], &environ);

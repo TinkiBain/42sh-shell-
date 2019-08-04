@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 21:46:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/04 22:43:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static int		print_error_command(char *s)
 {
-	ft_putstr(PROJECT_NAME);
-	ft_putstr(": command not found: ");
+	ft_putstr(PROJECT_NAME ": command not found: ");
 	ft_putendl(s);
 	return (1);
 }
@@ -33,8 +32,7 @@ static int		call_nonbuilin_exec(char *path, char **split, char **env)
 	}
 	else
 	{
-		ft_putstr(PROJECT_NAME);
-		ft_putstr(": permission denied: ");
+		ft_putstr(PROJECT_NAME ": permission denied: ");
 		ft_putendl(path);
 	}
 	return (1);

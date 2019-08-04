@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 14:22:58 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 21:48:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/04 22:41:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void		ft_type(char **av)
 			}
 			else
 			{
-				ft_putstr(PROJECT_NAME);
-				ft_putstr(": type: ");
+				ft_putstr(PROJECT_NAME ": type: ");
 				ft_putstr(*av);
 				ft_putendl(": not found");
 			}
