@@ -15,6 +15,7 @@ a.out
 # Temporary files
 *.DS_Store
 *.swp
+*.swo
 test*
 
 # Prerequisites

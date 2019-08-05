@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_print_in_order.c                               :+:      :+:    :+:   */
+/*   print_ast.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -135,13 +135,13 @@ static void	and_or_iter_in_order(t_and_or *root)
 	}
 }
 
-void		ast_print_in_order(t_pars_list *root)
+void		print_ast(t_pars_list *root)
 {
 	if (!root)
 		return ;
 	if (root->list)
 	{
-		ast_print_in_order(root->list);
+		print_ast(root->list);
 		if (root->sep)
 			print_token_number(SEMICOLON);
 		ft_putstr("\n");

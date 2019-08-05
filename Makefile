@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/05 17:16:56 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/05 21:00:29 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ OBJS_DIR=objects
 
 LIBFT_DIR=libft
 
-LEXER_DIR=lexer
-PARSER_DIR=parser
+AST_DIR=ast
+include $(SRCS_DIR)/$(AST_DIR)/ast.mk
+
 BUILTIN_DIR=builtin
-AST_ITER_DIR=ast_iter
 CMD_HANDLE_DIR=cmd_handle
 
 HASH_DIR=hash_table
@@ -39,50 +39,22 @@ include $(SRCS_DIR)/$(READLINE_DIR)/readline.mk
 
 # lib_wtalea need to remove
 DIR_LIB_WTALEA=lib_wtalea
+SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
 	main.c
-
-SRCS_LEXER=\
-	lexer.c\
-	lexer_and_or.c\
-	lexer_check_redir.c\
-	lexer_get_token.c\
-	lexer_bang.c
-
-SRCS_PARSER=\
-	parser.c				parser_and_or.c			parser_cmd.c\
-	parser_cmd_prefix.c		parser_cmd_suffix.c		parser_io_redirect.c\
-	parser_pipe_sequence.c	parser_pipeline.c		parser_print_error.c\
-	parser_free_tree.c		parser_free_cmd.c
 
 SRCS_BUILTIN=\
 	ft_cd.c			ft_echo.c		ft_env.c		ft_hash.c\
 	ft_setenv.c		ft_type.c		ft_unsetenv.c
 
-SRCS_AST_ITER=\
-	ast_exec.c		ast_print_in_order.c
-
 SRCS_CMD_HANDLE=\
 	call_exec.c		check_builtin.c
 
-# EXEC_DIR=exec/
-# SRCS_EXEC=\
-# 	exec.c\
-# 	exec_fill_fifo.c\
-# 	exec_open.c\
-# 	exec_print_error.c\
-# 	exec_redir_right.c\
-# 	ft_pipe.c
-
-SRCS_LIB_WTALEA=die_log.c
-
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
-	$(addprefix $(LEXER_DIR)/, $(SRCS_LEXER))\
-	$(addprefix $(PARSER_DIR)/, $(SRCS_PARSER))\
 	$(addprefix $(CMD_HANDLE_DIR)/, $(SRCS_CMD_HANDLE))\
-	$(addprefix $(AST_ITER_DIR)/, $(SRCS_AST_ITER))\
+	$(addprefix $(AST_DIR)/, $(SRCS_AST))\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
 	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))
@@ -102,6 +74,7 @@ NC=\033[0m
 
 .PHONY: all clean fclean re
 
+CREATE_AST_SUBDIRS=$(addprefix $(OBJS_DIR)/$(AST_DIR)/, $(AST_SUBDIRS))
 CREATE_READLINE_SUBDIRS=$(addprefix $(OBJS_DIR)/$(READLINE_DIR)/, $(READLINE_SUBDIRS))
 CREATE_HASH_SUBDIRS=$(addprefix $(OBJS_DIR)/$(HASH_DIR)/, $(HASH_SUBDIRS))
 
@@ -109,10 +82,9 @@ all: $(NAME)
 
 $(OBJS_DIR):
 	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
+	@mkdir -p $(OBJS_DIR)/$(AST_DIR)
+	@mkdir -p $(CREATE_AST_SUBDIRS)
 	@mkdir -p $(OBJS_DIR)/$(BUILTIN_DIR)
-	@mkdir -p $(OBJS_DIR)/$(LEXER_DIR)
-	@mkdir -p $(OBJS_DIR)/$(PARSER_DIR)
-	@mkdir -p $(OBJS_DIR)/$(AST_ITER_DIR)
 	@mkdir -p $(OBJS_DIR)/$(CMD_HANDLE_DIR)
 	@mkdir -p $(OBJS_DIR)/$(READLINE_DIR)
 	@mkdir -p $(CREATE_READLINE_SUBDIRS)

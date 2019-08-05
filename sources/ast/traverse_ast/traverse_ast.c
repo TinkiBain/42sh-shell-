@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_exec.c                                         :+:      :+:    :+:   */
+/*   traverse_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -184,13 +184,13 @@ static void	and_or_iter_in_order(t_and_or *root)
 	}
 }
 
-void		ast_exec(t_pars_list *root)
+void		traverse_ast(t_pars_list *root)
 {
 	if (!root)
 		return ;
 	if (root->list)
 	{
-		ast_exec(root->list);
+		traverse_ast(root->list);
 	}
 	if (root->and_or)
 		and_or_iter_in_order(root->and_or);

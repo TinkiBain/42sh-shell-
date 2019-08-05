@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/04 23:39:25 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/05 20:56:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int			main(int ac, char **av)
 					if (TYPE_OF_PROGRAM)
 					{
 						ft_putendl("print AST:");
-						ast_print_in_order(list);
+						print_ast(list);
 						ft_putstr("\n");
 					}
 					else
-						ast_exec(list);
+						traverse_ast(list);
 				}
 				g_error_pars = 0;
 				parser_free_tree(list);
