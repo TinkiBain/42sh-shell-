@@ -6,13 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/04 22:52:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/05 10:35:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SH_H
 # define SH_H
 
+# include <sys/wait.h>
 # include "defs.h"
 # include "libft.h"
 # include "parser.h"

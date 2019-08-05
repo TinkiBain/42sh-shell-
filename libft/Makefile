@@ -6,12 +6,13 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/04 15:42:09 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/05 09:42:21 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libft.a
 
+CC=clang
 FLAGS=-Wall -Wextra -Werror
 INCLUDES=-I includes
 HEADER=includes/libft.h
@@ -119,7 +120,7 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)$(DLIST_DIR)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
-	@gcc $(FLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS_DIR) $(OBJS)
 	@ar rc $(NAME) $(OBJS)

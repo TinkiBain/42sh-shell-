@@ -6,11 +6,13 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/04 19:11:25 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/05 09:42:39 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=21sh
+
+CC=clang
 FLAGS=-Wall -Wextra -Werror -g
 HEADER=includes/sh.h
 
@@ -166,14 +168,14 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)$(DIR_LIB_WTALEA)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
-	@gcc $(INCLUDES) $(FLAGS) -o $@ -c $<
+	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
 
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
 
 $(NAME): $(LIBFT_A) $(OBJS_DIR) $(OBJS)
 	@echo "$(BLUE)Compiling executable...$(NC)"
-	@gcc $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
+	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
 	@echo "$(GREEN)Bin $(NAME) is ready to use!$(NC)"
 
 clean:
@@ -196,6 +198,6 @@ else
 endif
 
 test:
-	gcc $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
+	$(CC) $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
 
 re: fclean all
