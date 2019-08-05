@@ -1,0 +1,40 @@
+	#		insert # in the beginning end send it (comment)
+.	' '		->
+	v		execute vim with current string (or visual mode in zsh)
+.	j		history next
+.	k		history prev
+.	l		->
+.	h		<-
+	w		to start of next word (by spaces and non-alpha)
+	W		to start next bigword (by spaces)
+.	e		to end of next word
+	E		to end of next bigword
+.	b		to start of prev word
+	B		to start of prev bigword
+.	ˆ		to first non-blank char
+.	$		to last char
+.	0		to first char
+	|		to n char, 1 default
+	f		find on the left
+	F		find on the right
+	;		repeat most recent f/F
+	,		repeat, reverse direction
+.	a		insert mode after cpos
+.	A		insert mode after eol
+.	i		insert mode at cpos
+.	I		insert mode at the beginning
+	r		replace cur char
+.	R		insert + overwrite mode
+	c		delete from cpos to motion
+	C		C delete to the end and go to insert mode
+	S		clear and insert mode
+.	x		delete under cursor
+.	X		delete before cursor
+	d		delete to motion
+	D		delete to the end
+	y		yank (copy) to motion
+	Y		yank to the end
+	p		paste after
+	P		paste before
+	u		undo 
+	U		undo all

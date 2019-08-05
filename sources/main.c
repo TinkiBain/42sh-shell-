@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/05 20:56:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/05 22:06:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			main(int ac, char **av)
 	{
 		if (ft_strequ(*(av + 1), "-p"))
 			TYPE_OF_PROGRAM = 1;
+		else if (ft_strequ(*(av + 1), "-v"))
+			g_options.vi_mode = 1;
 	}
 	while (1)
 	{

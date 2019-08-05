@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 12:01:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/05 16:57:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static void		check_hs(t_line *line, t_action action)
 		str_delete(&line->hs.query);
 }
 
-static void		perform_action(t_line *line, t_vector *key_bindings)
+static void		perform_action(t_line *line)
 {
 	t_binding	*b;
 	int			i;
 
 	if (check_arg(line))
 		return ;
-	b = find_binding(key_bindings, line->keybuf);
+	b = find_binding(&line->key_bindings, line->keybuf);
 	if (b && b->action)
 	{		
 		i = -1;
@@ -69,12 +69,12 @@ static int		is_ansiseq(char buf[KEYBUF_SIZE])
 	return (0);
 }
 
-int				input_loop(t_line *line, t_vector *key_bindings)
+int				input_loop(t_line *line)
 {
 	int		ret;
 
 	if (line->vi_mode)
-		return (vi_input_loop(line, key_bindings));
+		return (vi_input_loop(line));
 	while ((ret = read(STDIN, line->keybuf, 1) > 0 && *line->keybuf != NL))
 	{
 		if (*line->keybuf == ESC)
@@ -87,7 +87,7 @@ int				input_loop(t_line *line, t_vector *key_bindings)
 		}
 		if (*line->keybuf == CTRL_D && line->str->len == 0)
 			return (1);
-		perform_action(line, key_bindings);
+		perform_action(line);
 		loginfo_line(line);
 		ft_bzero(line->keybuf, KEYBUF_SIZE);
 	}

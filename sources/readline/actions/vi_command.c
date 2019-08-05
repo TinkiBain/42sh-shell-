@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_loop.h                                       :+:      :+:    :+:   */
+/*   vi_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 16:45:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 16:56:58 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/05 21:02:11 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/05 21:02:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_LOOP_H
-# define INPUT_LOOP_H
+#include "actions.h"
 
-# include "ft_readline.h"
-
-int		input_loop(t_line *line);
-int		vi_input_loop(t_line *line);
-
-extern int	g_logfd;
-
-#endif
+void		vi_command(t_line *line)
+{
+	line->vi_mode = VI_COMMAND;
+	line->overwrite_mode = 0;
+	backward_char(line);
+}
