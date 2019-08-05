@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/05 15:11:41 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/05 21:41:52 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ SRCS_READLINE_ACTIONS=\
 	next_history.c			overwrite_mode.c		previous_history.c\
 	reset_history_search.c	reset_line.c			reverse_search_history.c\
 	self_insert.c			transpose_chars.c		transpose_words.c\
-	unix_line_discard.c		unix_word_rubout.c		yank.c
+	unix_line_discard.c		unix_word_rubout.c		yank.c\
+	vi_command.c			vi_insert_at.c			vi_insert_after.c\
+	vi_insert_beginning.c	vi_insert_end.c			vi_insert_overwrite.c\
+	vi_beginning_of_line_nonblank.c\
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c

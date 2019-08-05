@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 21:10:35 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/05 21:50:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ static void init_line(t_line *line, char *prompt, char *oldline)
 	g_line = line;
 	line->prompt = str_xcopy(prompt);
 	line->vi_mode = g_options.vi_mode;
+	line->vi_mode = 0;
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
+	init_bindings(line->vi_mode, &line->key_bindings);
 }
 
 static void	clear_line(t_line *line, int exit, t_history **history)
@@ -52,6 +54,7 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 	str_delete(&line->kill_buffer);
 	str_delete(&line->hs.query);
 	str_delete(&line->oldstr);
+	clear_bindings(&line->key_bindings);
 	if (exit)
 	{
 		ft_putstr_fd("exit", STDOUT);
@@ -68,7 +71,6 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 char	*ft_readline(char *prompt, char *oldline)
 {
 	t_line		line;
-	t_vector	key_bindings;
 	int			exit;
 
 	logopen();
@@ -78,13 +80,11 @@ char	*ft_readline(char *prompt, char *oldline)
 		return (NULL);
 	term_setup();
 	init_line(&line, prompt, oldline);
-	init_bindings(line.vi_mode, &key_bindings);
 	init_linebuf(&line);
 	update_line(NULL);
-	exit = input_loop(&line, &key_bindings);
+	exit = input_loop(&line);
 	clear_linebuf();
 	clear_line(&line, exit, &g_history);
-	clear_bindings(&key_bindings);
 	term_restore();
 	logclose();
 	return (line.result);

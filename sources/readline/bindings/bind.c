@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:10:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 11:57:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/05 13:52:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	bind(t_vector *key_bindings, int key, t_action action)
 	new.key = key;
 	new.action = action;
 	new.sequence = get_sequence(key);
-	vec_xaddback(key_bindings, &new); /* todo: vec_xaddback */
+	vec_xaddback(key_bindings, &new);
 	/* todo: check for duplicates */
 }
 

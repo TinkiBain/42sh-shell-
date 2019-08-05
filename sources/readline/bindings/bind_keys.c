@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:06:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 11:17:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/05 17:26:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	bind_keys1(t_vector *key_bindings)
 
 static void bind_keys2(t_vector *key_bindings)
 {
+	bind(key_bindings, CTRL_C, reset_line);
 	bind(key_bindings, CTRL_K, kill_line);
 	bind(key_bindings, CTRL_U, unix_line_discard);
 	bind(key_bindings, CTRL_W, unix_word_rubout);
