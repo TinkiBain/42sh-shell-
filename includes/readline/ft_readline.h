@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 21:04:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/05 22:08:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_history		*g_history;
 
 struct 			s_options
 {
-	int vi_mode : 1;
+	int vi_mode;
 }				g_options;
 
 // typedef struct	s_rlargs
