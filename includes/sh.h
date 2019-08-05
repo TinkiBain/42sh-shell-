@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/05 10:35:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/05 21:20:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include <sys/wait.h>
 # include "defs.h"
 # include "libft.h"
-# include "parser.h"
-# include "lexer.h"
-# include "exec.h"
+# include "ast.h"
 # include "hash.h"
 # include "ft_readline.h"
 # include "lib_wtalea.h"
