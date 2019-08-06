@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 15:19:39 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/02 15:41:24 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/06 15:20:58 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ static	char	*find_path(char *name, unsigned int key, t_hash *table)
 	return (NULL);
 }
 
-char			*get_bin(char *name, t_hash **table)
+char			*get_bin(char *name)
 {
 	unsigned int	key;
 	char			*path;
+	extern	t_hash	**g_table;
 
 	key = 0;
 	path = NULL;
 	key = generate_hash(name, ft_strlen(name));
-	if (*(table + (key % HASH_LEN)))
-		path = find_path(name, key, *(table + (key % HASH_LEN)));
+	if (*(g_table + (key % HASH_LEN)))
+		path = find_path(name, key, *(g_table + (key % HASH_LEN)));
 	return (path);
 }

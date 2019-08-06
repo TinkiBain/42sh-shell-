@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/05 21:46:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:34:48 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void		traverse_cmd(t_cmd *cmd)
 	{
 		traverse_cmd_pref(pref);
 		if (cmd->cmd_word)
-			push_back_av(&av, get_bin(cmd->cmd_word, g_table));
+			push_back_av(&av, get_bin(cmd->cmd_word));
 	}
 	else
-		push_back_av(&av, get_bin(cmd->cmd_name, g_table));
+		push_back_av(&av, get_bin(cmd->cmd_name));
 	suff = cmd->cmd_suf;
 	while (suff)
 	{

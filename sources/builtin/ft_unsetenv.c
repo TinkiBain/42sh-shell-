@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 20:10:13 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:32:35 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_unsetenv(char **av)
 			// *environ = (char **)ft_vector_remove((void **)*environ, (void *)*tmp);
 			if (len == 4 && ft_strnequ(*av, "PATH", 4))
 			{
-				ft_free_double_ptr_arr((void ***)&g_table);
+				del_hash();
 				// free_binary_tree();
 			}
 		}

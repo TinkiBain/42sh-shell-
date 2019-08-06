@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/04 22:43:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:33:52 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			call_exec(char **split, char ***env)
 		ft_unsetenv(split + 1);
 	else if (ft_strequ(split[0], "hash"))
 		ft_hash();
-	else if ((p = get_bin(split[0], g_table)))
+	else if ((p = get_bin(split[0])))
 	{
 		tmp = split[0];
 		split[0] = p;

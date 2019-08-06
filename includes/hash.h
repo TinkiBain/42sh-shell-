@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 19:57:15 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/03 19:03:54 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:23:40 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct		s_hash
 
 void				null_hash(t_hash *table[HASH_LEN]);
 char				*paste_path(char *str1, char *str2);
-void				create_bin(char *str, t_hash ***table);
-void				del_hash(t_hash ***table);
-char				*get_bin(char *name, t_hash **table);
+void				create_bin(char *str);
+void				del_hash(void);
+char				*get_bin(char *name);
 void				fill_hash_table(void);
 
 #endif

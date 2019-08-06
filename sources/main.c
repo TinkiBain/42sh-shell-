@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/05 22:06:04 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:23:29 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int			main(int ac, char **av)
 		}
 		ft_strdel(&buf);
 	}
-	del_hash(&g_table);
+	del_hash();
 	history_clear(g_history);
 	return (g_res_exec);
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/05 21:20:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 14:47:25 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "hash.h"
 # include "ft_readline.h"
 # include "lib_wtalea.h"
-
-t_hash			**g_table;
 
 typedef struct	s_bits
 {

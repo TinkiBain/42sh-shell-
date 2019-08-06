@@ -6,12 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 17:40:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/03 19:06:13 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:36:56 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_env.h"
 #include "hash.h"
+
+t_hash			**g_table;
 
 t_hash			*create_hash(char *name, char *path, unsigned int key)
 {
@@ -79,7 +81,7 @@ static	void	split_hash(char *str, t_hash ***table)
 	}
 }
 
-void			create_bin(char *str, t_hash ***table)
+void			create_bin(char *str)
 {
 	int		i;
 	char	**cp;
@@ -91,6 +93,6 @@ void			create_bin(char *str, t_hash ***table)
 	if ((cp = ft_strsplit(str, ':')) == NULL)
 		die_log("malloc in get_bin");
 	while (*(cp + i))
-		split_hash(*(cp + i++), table);
+		split_hash(*(cp + i++), &g_table);
 	ft_free_double_ptr_arr((void ***)&cp);
 }
