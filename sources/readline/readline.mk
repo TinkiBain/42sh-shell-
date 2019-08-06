@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/05 21:41:52 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/06 18:32:52 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS_READLINE_ACTIONS=\
 	unix_line_discard.c		unix_word_rubout.c		yank.c\
 	vi_command.c			vi_insert_at.c			vi_insert_after.c\
 	vi_insert_beginning.c	vi_insert_end.c			vi_insert_overwrite.c\
-	vi_beginning_of_line_nonblank.c\
+	vi_beginning_of_line_nonblank.c					transpose_words_supp.c\
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c

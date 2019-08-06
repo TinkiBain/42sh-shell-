@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 21:41:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/06 18:18:08 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	end_of_line(t_line *line);
 
 void	transpose_chars(t_line *line);
 void	transpose_words(t_line *line);
+void	tw_trans_words(char *str, char *add, int len, t_line *line);
 
 void	overwrite_mode(t_line *line);
 
