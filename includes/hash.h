@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 19:57:15 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/06 15:23:40 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/06 20:51:00 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define HASH_H
 
 # include "libft.h"
+# include "ft_vector.h"
 # include "lib_wtalea.h"
 # include <dirent.h>
 
@@ -35,5 +36,7 @@ void				create_bin(char *str);
 void				del_hash(void);
 char				*get_bin(char *name);
 void				fill_hash_table(void);
+
+t_vector			*get_vec_prog(char *str);
 
 #endif
