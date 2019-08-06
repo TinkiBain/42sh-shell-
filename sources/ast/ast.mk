@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/06 18:31:52 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/06 20:37:45 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,10 @@ SRCS_TRAVERSE_AST=\
 	traverse_pipeline.c\
 	redir_set.c\
 	redir_reset.c\
-	redir_less.c
+	redirect_error.c\
+	redir_less.c\
+	redir_tless.c\
+	redir_great.c
 
 SRCS_PRINT_AST=\
 	print_ast.c

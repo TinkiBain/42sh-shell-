@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 20:21:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 21:22:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ int			ft_unsetenv(char **av);
 void		redir_reset(void);
 void		redir_set(void);
 int			redirect(t_io_redirect *redir);
+int			redirect_error_fd(int fd);
+int			redirect_error_file(char *file);
+int			redirect_error_open(char *file);
 int			redir_less(t_io_redirect *redir);
 int			redir_dless(t_io_redirect *redir);
+int			redir_tless(t_io_redirect *redir);
+int			redir_great(t_io_redirect *redir, int dgreat);
 
 #endif

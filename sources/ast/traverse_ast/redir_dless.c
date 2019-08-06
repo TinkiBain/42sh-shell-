@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_dlees.c                                      :+:      :+:    :+:   */
+/*   redir_dless.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 17:57:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 18:28:50 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/08/06 19:58:10 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-int		redir_dlees(t_io_redirect *redir)
+int		redir_dless(t_io_redirect *redir)
 {
 	int	left_fd;
 	int	pipefd[2];
