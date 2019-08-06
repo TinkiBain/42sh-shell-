@@ -6,18 +6,50 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 17:57:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 20:42:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_exit(char **av)
+#include "libft.h"
+#include "defs.h"
+
+static void	check_arg_count(char **av)
 {
-	// need to check count of arguments, check *av is_numeric, return *av or 0;
-	(void)av;
-	// char	*tmp;
-	// if (*av)
-	// {
-	// 	while ()
-	// }
-	return (0);
+	char	ac;
+
+	ac = 0;
+	while (*(av++))
+	{
+		++ac;
+		if (ac > 1)
+		{
+			ft_putendl_fd(PROJECT_NAME ": exit: too many arguments", 2);
+			exit(1);
+		}
+	}
+}
+
+int			ft_exit(char **av)
+{
+	char	*tmp;
+	char	res;
+
+	if (av && *av)
+	{
+		check_arg_count(av);
+		tmp = *av;
+		while (*tmp)
+		{
+			if (!ft_isdigit(*(tmp++)))
+			{
+				ft_putstr_fd(PROJECT_NAME ": exit: ", 2);
+				ft_putstr_fd(*av, 2);
+				ft_putendl_fd(": numeric argument required", 2);
+				exit(255);
+			}
+		}
+		res = (char)ft_atoi(*av);
+		exit(res);
+	}
+	exit(0);
 }

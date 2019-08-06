@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 18:35:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/06 20:21:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int			g_res_exec;
 int			g_fd[3];
 
+int			call_exec(char **av, char ***env);
 int			check_builtin(char *cmd);
 int			ft_cd(char **av);
 int			ft_echo(char **av);
@@ -34,13 +35,5 @@ void		redir_set(void);
 int			redirect(t_io_redirect *redir);
 int			redir_less(t_io_redirect *redir);
 int			redir_dless(t_io_redirect *redir);
-// int			exec_fill_fifo(t_attr *attr, int fd);
-// void		return_fd(int fd[3]);
-// int			*set_fd(void);
-// int			exec_print_error(char *str);
-// int			exec_redir_right(t_attr *cmd);
-
-
-// int			exec_open(int fd, char *file);
 
 #endif
