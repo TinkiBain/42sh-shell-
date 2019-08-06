@@ -1,21 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.c                                :+:      :+:    :+:   */
+/*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/05 21:41:12 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/05 21:46:21 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/06 17:15:05 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/08/06 18:42:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "exec.h"
 
-void	redirect(t_io_redirect *redir)
+int		redirect(t_io_redirect *redir)
 {
-	ft_putnbr(redir->io_number);
-	// print_token_number(redir->type);
-	ft_putstr(redir->file_name);
-	write(1, " ", 1);
+	if (redir->type & LESS)
+		return (redir_less(redir));
+/*	else if (redir->type & DLESS)
+		return (redir_dlees(redir));
+	else if (redir->type & DLESSDASH)
+		return (redir_dless_dash(redir));
+	else if (redir->type & TLESS)
+		return (redir_tless(redir));
+	else if (redir->type & LESSAND)
+		return (redir_lessand(redir));
+	else if (redir->type & LESSGREAT)
+		return (redir_less_great(redir));
+	else if (redir->type & GREAT)
+		return (redir_great(redir));
+	else if (redir->type & DGREAT)
+		return (redir_dgreat(redir));
+	else if (redir->type & GREATAND)
+		return (redir_great_and);
+	else if (redir->type & ANDGREAT)
+		return (redir_and_great(redir));
+	else if (redir->type & ANDDGREAT)
+		return (redir_add_dgreat(redir));
+	else
+		return (redir_clobber(redir));*/
+	return (-1);
 }

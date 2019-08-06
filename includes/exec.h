@@ -6,14 +6,18 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 17:58:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 18:35:47 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
+#include "parser.h"
+#include "lexer.h"
+
 int			g_res_exec;
+int			g_fd[3];
 
 int			check_builtin(char *cmd);
 int			ft_cd(char **av);
@@ -25,6 +29,11 @@ int			ft_setenv(char **av);
 void		ft_type(char **av);
 int			ft_unsetenv(char **av);
 
+void		redir_reset(void);
+void		redir_set(void);
+int			redirect(t_io_redirect *redir);
+int			redir_less(t_io_redirect *redir);
+int			redir_dless(t_io_redirect *redir);
 // int			exec_fill_fifo(t_attr *attr, int fd);
 // void		return_fd(int fd[3]);
 // int			*set_fd(void);
