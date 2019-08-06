@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_io_redir.c                                :+:      :+:    :+:   */
+/*   redirect.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "sh.h"
 
-void	traverse_io_redir(t_io_redirect *redir)
+void	redirect(t_io_redirect *redir)
 {
 	ft_putnbr(redir->io_number);
 	// print_token_number(redir->type);

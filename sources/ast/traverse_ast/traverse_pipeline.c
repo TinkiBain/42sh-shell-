@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/05 21:36:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/06 17:40:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,22 @@ static void	ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
 	waitpid(pid, NULL, 0);
 }
 
+static char	*get_cmd_name(t_cmd *cmd)
+{
+	if (cmd->cmd_pref)
+	{
+		if (cmd->cmd_word)
+			return (cmd->cmd_word);
+	}
+	else
+		return (cmd->cmd_name);
+	return (NULL);
+}
+
 static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 {
 	pid_t		pid;
+	char		*cmd_name;
 
 	if (pipe_seq->pipe_op)
 	{
@@ -64,10 +77,22 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 	}
 	else
 	{
-		if ((pid = fork()) == 0)
-			traverse_cmd(pipe_seq->cmd);
-		else
-			waitpid(pid, &g_res_exec, 0);
+		if ((cmd_name = get_cmd_name(pipe_seq->cmd)))
+		{
+			if (check_builtin(cmd_name))
+			{
+				// redir_set();
+				traverse_cmd(pipe_seq->cmd);
+				// redir_reset();
+			}
+			else
+			{
+				if ((pid = fork()) == 0)
+					traverse_cmd(pipe_seq->cmd);
+				else
+					waitpid(pid, &g_res_exec, 0);
+			}
+		}
 	}
 }
 

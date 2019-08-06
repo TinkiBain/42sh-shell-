@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 15:33:52 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/06 18:04:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,55 +16,46 @@ static int		print_error_command(char *s)
 {
 	ft_putstr(PROJECT_NAME ": command not found: ");
 	ft_putendl(s);
-	return (1);
+	exit(1);
 }
 
-static int		call_nonbuilin_exec(char *path, char **split, char **env)
+static int		call_nonbuilin_exec(char *path, char **av, char **env)
 {
-	pid_t		pid;
-
 	if (!access(path, X_OK))
 	{
-		pid = fork();
-		if (!pid)
-			execve(path, split, env);
-		waitpid(pid, NULL, 0);
+		execve(path, av, env);
 	}
 	else
 	{
 		ft_putstr(PROJECT_NAME ": permission denied: ");
 		ft_putendl(path);
+		exit(1);
 	}
-	return (1);
+	return (0);
 }
 
-void			call_exec(char **split, char ***env)
+void			call_exec(char **av, char ***env)
 {
-	char		*tmp;
 	char		*p;
 
-	if (ft_strequ(split[0], "exit"))
-		exit(EXIT_SUCCESS);
-	else if (ft_strequ(split[0], "cd"))
-		ft_cd(split + 1);
-	else if (ft_strequ(split[0], "echo"))
-		ft_echo(split + 1);
-	else if (ft_strequ(split[0], "env"))
-		ft_env(split + 1, *env);
-	else if (ft_strequ(split[0], "setenv"))
-		ft_setenv(split + 1);
-	else if (ft_strequ(split[0], "unsetenv"))
-		ft_unsetenv(split + 1);
-	else if (ft_strequ(split[0], "hash"))
+	if (ft_strequ(*av, "exit"))
+		ft_exit(av + 1);
+	else if (ft_strequ(*av, "cd"))
+		ft_cd(av + 1);
+	else if (ft_strequ(*av, "echo"))
+		ft_echo(av + 1);
+	else if (ft_strequ(*av, "env"))
+		ft_env(av + 1, *env);
+	else if (ft_strequ(*av, "setenv"))
+		ft_setenv(av + 1);
+	else if (ft_strequ(*av, "unsetenv"))
+		ft_unsetenv(av + 1);
+	else if (ft_strequ(*av, "hash"))
 		ft_hash();
-	else if ((p = get_bin(split[0])))
-	{
-		tmp = split[0];
-		split[0] = p;
-		call_nonbuilin_exec(tmp, split, *env);
-	}
-	else if (ft_strchr(split[0], '/'))
-		call_nonbuilin_exec(split[0], split, *env);
+	else if ((p = get_bin(*av)))
+		call_nonbuilin_exec(p, av, *env);
+	else if (ft_strchr(*av, '/'))
+		call_nonbuilin_exec(*av, av, *env);
 	else
-		print_error_command(split[0]);
+		print_error_command(*av);
 }

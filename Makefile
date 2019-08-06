@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/05 21:00:29 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/06 17:59:00 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ AST_DIR=ast
 include $(SRCS_DIR)/$(AST_DIR)/ast.mk
 
 BUILTIN_DIR=builtin
-CMD_HANDLE_DIR=cmd_handle
 
 HASH_DIR=hash_table
 include $(SRCS_DIR)/$(HASH_DIR)/hash_table.mk
@@ -46,14 +45,10 @@ SRCS_WITHOUT_DIR=\
 
 SRCS_BUILTIN=\
 	ft_cd.c			ft_echo.c		ft_env.c		ft_hash.c\
-	ft_setenv.c		ft_type.c		ft_unsetenv.c
-
-SRCS_CMD_HANDLE=\
-	call_exec.c		check_builtin.c
+	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_exit.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
-	$(addprefix $(CMD_HANDLE_DIR)/, $(SRCS_CMD_HANDLE))\
 	$(addprefix $(AST_DIR)/, $(SRCS_AST))\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
@@ -74,23 +69,9 @@ NC=\033[0m
 
 .PHONY: all clean fclean re
 
-CREATE_AST_SUBDIRS=$(addprefix $(OBJS_DIR)/$(AST_DIR)/, $(AST_SUBDIRS))
-CREATE_READLINE_SUBDIRS=$(addprefix $(OBJS_DIR)/$(READLINE_DIR)/, $(READLINE_SUBDIRS))
-CREATE_HASH_SUBDIRS=$(addprefix $(OBJS_DIR)/$(HASH_DIR)/, $(HASH_SUBDIRS))
-
 all: $(NAME)
 
-$(OBJS_DIR):
-	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
-	@mkdir -p $(OBJS_DIR)/$(AST_DIR)
-	@mkdir -p $(CREATE_AST_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(BUILTIN_DIR)
-	@mkdir -p $(OBJS_DIR)/$(CMD_HANDLE_DIR)
-	@mkdir -p $(OBJS_DIR)/$(READLINE_DIR)
-	@mkdir -p $(CREATE_READLINE_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(HASH_DIR)
-	@mkdir -p $(CREATE_HASH_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(DIR_LIB_WTALEA)
+include objects_dirs.mk
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
 	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
