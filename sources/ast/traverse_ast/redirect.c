@@ -16,17 +16,17 @@ int		redirect(t_io_redirect *redir)
 {
 	if (redir->type & LESS)
 		return (redir_less(redir));
-/*	else if (redir->type & DLESS)
-		return (redir_dlees(redir));
-	else if (redir->type & DLESSDASH)
+	else if (redir->type & DLESS)
+		return (redir_dless(redir));
+/*	else if (redir->type & DLESSDASH)
 		return (redir_dless_dash(redir));
 */	else if (redir->type & TLESS)
 		return (redir_tless(redir));
 /*	else if (redir->type & LESSAND)
 		return (redir_lessand(redir));
-	else if (redir->type & LESSGREAT)
+*/	else if (redir->type & LESSGREAT)
 		return (redir_less_great(redir));
-*/	else if (redir->type & GREAT)
+	else if (redir->type & GREAT)
 		return (redir_great(redir, 0));
 	else if (redir->type & DGREAT)
 		return (redir_great(redir, 1));

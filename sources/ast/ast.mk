@@ -38,7 +38,9 @@ SRCS_TRAVERSE_AST=\
 	redir_reset.c\
 	redirect_error.c\
 	redir_less.c\
+	redir_dless.c\
 	redir_tless.c\
+	redir_less_great.c\
 	redir_great.c
 
 SRCS_PRINT_AST=\

@@ -13,14 +13,6 @@
 #include "exec.h"
 #include "defs.h"
 
-int		redirect_error_file(char *file)
-{
-	ft_putstr_fd(PROJECT_NAME ": ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
-	return (-1);
-}
-
 int		redirect_error_fd(int fd)
 {
 	ft_putstr_fd(PROJECT_NAME ": ", 2);
@@ -29,34 +21,10 @@ int		redirect_error_fd(int fd)
 	return (-1);
 }
 
-int		redirect_error_permission(char *file)
-{
-	ft_putstr_fd(PROJECT_NAME ": ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(": Permission denied\n", 2);
-	return (-1);
-}
-
-int		redirect_error_direct(char *file)
-{
-	ft_putstr_fd(PROJECT_NAME ": ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(": Is a directory\n", 2);
-	return (-1);
-}
-
-int		redirect_error_long_name(char *file)
-{
-	ft_putstr_fd(PROJECT_NAME ": ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(": File name too long\n", 2);
-	return (-1);
-}
-
 int		redirect_error_open(char *file)
 {
 	ft_putstr_fd(PROJECT_NAME ": ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(": open error\n", 2);
+	perror(file);
+	printf("%d\n", g_errno);
 	return (-1);
 }

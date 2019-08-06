@@ -39,6 +39,7 @@ int			redirect_error_open(char *file);
 int			redir_less(t_io_redirect *redir);
 int			redir_dless(t_io_redirect *redir);
 int			redir_tless(t_io_redirect *redir);
+int			redir_less_great(t_io_redirect *redir);
 int			redir_great(t_io_redirect *redir, int dgreat);
 
 #endif
