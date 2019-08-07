@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/07 03:29:33 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/07 12:23:51 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,22 +67,48 @@ GREEN=\033[0;32m
 BLUE=\033[1;34m
 NC=\033[0m
 
+CREATE_AST_SUBDIRS=$(addprefix $(OBJS_DIR)/$(AST_DIR)/, $(AST_SUBDIRS))
+CREATE_READLINE_SUBDIRS=\
+	$(addprefix $(OBJS_DIR)/$(READLINE_DIR)/, $(READLINE_SUBDIRS))
+CREATE_HASH_SUBDIRS=$(addprefix $(OBJS_DIR)/$(HASH_DIR)/, $(HASH_SUBDIRS))
+
+OBJS_SUBDIRS=$(OBJS_DIR)\
+	$(OBJS_DIR)/$(AST_DIR)\
+	$(CREATE_AST_SUBDIRS)\
+	$(OBJS_DIR)/$(BUILTIN_DIR)\
+	$(OBJS_DIR)/$(CMD_HANDLE_DIR)\
+	$(OBJS_DIR)/$(READLINE_DIR)\
+	$(CREATE_READLINE_SUBDIRS)\
+	$(OBJS_DIR)/$(HASH_DIR)\
+	$(CREATE_HASH_SUBDIRS)\
+	$(OBJS_DIR)/$(DIR_LIB_WTALEA)
+
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-include objects_dirs.mk
-
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
-	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
+$(NAME): $(LIBFT_A) $(OBJS_SUBDIRS) $(OBJS)
+	@printf "$(BLUE)Compiling executable...$(NC)\n"
+	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
+	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
 
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT_A) $(OBJS_DIR) $(OBJS)
-	@printf "$(BLUE)Compiling executable...$(NC)\n"
-	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
-	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
+	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
+
+$(OBJS_SUBDIRS):
+	@printf "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)\n"
+	@mkdir -p $(OBJS_DIR)/$(AST_DIR)
+	@mkdir -p $(CREATE_AST_SUBDIRS)
+	@mkdir -p $(OBJS_DIR)/$(BUILTIN_DIR)
+	@mkdir -p $(OBJS_DIR)/$(CMD_HANDLE_DIR)
+	@mkdir -p $(OBJS_DIR)/$(READLINE_DIR)
+	@mkdir -p $(CREATE_READLINE_SUBDIRS)
+	@mkdir -p $(OBJS_DIR)/$(HASH_DIR)
+	@mkdir -p $(CREATE_HASH_SUBDIRS)
+	@mkdir -p $(OBJS_DIR)/$(DIR_LIB_WTALEA)
 
 clean:
 ifneq ($(OBJS_CLEAN),)
@@ -107,6 +133,6 @@ test:
 	$(CC) $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
 
 sanitize:
-	$(CC) $(FLAGS) -g -fsanitize=address $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
+	$(CC) $(FLAGS) -g -fsanitize=address $(SRCS) -o $(NAME) $(INCLUDES)	$(LIBFT_A) -lcurses
 
 re: fclean all
