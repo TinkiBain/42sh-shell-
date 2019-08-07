@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 21:22:20 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/07 21:58:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 #include "parser.h"
 #include "lexer.h"
 
+char		*g_tty;
 int			g_res_exec;
-int			g_fd[3];
 
 int			call_exec(char **av, char ***env);
 int			check_builtin(char *cmd);
@@ -34,12 +34,14 @@ void		redir_reset(void);
 void		redir_set(void);
 int			redirect(t_io_redirect *redir);
 int			redirect_error_fd(int fd);
-int			redirect_error_file(char *file);
+int			redirect_error_ambiguous(char *file);
 int			redirect_error_open(char *file);
 int			redir_less(t_io_redirect *redir);
 int			redir_dless(t_io_redirect *redir);
 int			redir_tless(t_io_redirect *redir);
 int			redir_less_great(t_io_redirect *redir);
 int			redir_great(t_io_redirect *redir, int dgreat);
+int			redir_great_and(t_io_redirect *redir);
+int			redir_clobber(t_io_redirect *redir);
 
 #endif

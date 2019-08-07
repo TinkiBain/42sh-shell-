@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:32:45 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 21:15:34 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/07 18:39:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			redir_less(t_io_redirect *redir)
 		left_fd = redir->io_number;
 	if ((right_fd = open(redir->file_name, O_RDONLY)) < 0)
 		return (redirect_error_open(redir->file_name));
-	if (left_fd > 10000)
+	if (left_fd >= 10000)
 	{
 		close(right_fd);
 		return (redirect_error_fd(redir->io_number));

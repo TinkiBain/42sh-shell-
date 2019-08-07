@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/06 20:37:45 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/07 21:57:25 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ SRCS_TRAVERSE_AST=\
 	redir_dless.c\
 	redir_tless.c\
 	redir_less_great.c\
-	redir_great.c
+	redir_great.c\
+	redir_great_and.c\
+	redir_clobber.c
 
 SRCS_PRINT_AST=\
 	print_ast.c

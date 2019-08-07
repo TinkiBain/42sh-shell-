@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 16:51:48 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/06 18:35:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/07 21:08:00 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void			redir_set(void)
 {
-	extern int	g_fd[3];
+	extern	char *g_tty;
 
-	g_fd[0] = dup(0);
-	g_fd[1] = dup(1);
-	g_fd[2] = dup(2);
+	g_tty = ttyname(0);
 }
