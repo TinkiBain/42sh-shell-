@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 22:08:40 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/07 20:52:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <sys/ioctl.h>
+# include <dirent.h>
 
 # include "libft.h"
 # include "ft_string.h"
@@ -39,6 +40,7 @@
 # include "input_loop.h"
 # include "escseqs.h"
 # include "loginfo.h"
+# include "show_completions.h"
 
 # define DEBUG				1
 
