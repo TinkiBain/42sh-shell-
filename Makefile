@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/06 17:59:00 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/07 03:29:33 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ LIBFT_A=$(LIBFT_DIR)/libft.a
 
 RED=\033[0;31m
 GREEN=\033[0;32m
-BLUE=\033[0;34m
+BLUE=\033[1;34m
 NC=\033[0m
 
 .PHONY: all clean fclean re
@@ -80,17 +80,17 @@ $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
 
 $(NAME): $(LIBFT_A) $(OBJS_DIR) $(OBJS)
-	@echo "$(BLUE)Compiling executable...$(NC)"
+	@printf "$(BLUE)Compiling executable...$(NC)\n"
 	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
-	@echo "$(GREEN)Bin $(NAME) is ready to use!$(NC)"
+	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
 
 clean:
 ifneq ($(OBJS_CLEAN),)
 	@make clean -C $(LIBFT_DIR)
 	@rm -rf $(OBJS_DIR)
-	@echo "$(RED)$(NAME_CLEAN) objects files removed.$(NC)"
+	@printf "$(RED)$(NAME_CLEAN) objects files removed.$(NC)\n"
 else
-	@echo "$(RED)$(NAME_CLEAN) objects already cleaned$(NC)"
+	@printf "$(RED)$(NAME_CLEAN) objects already cleaned$(NC)\n"
 endif
 
 fclean: clean
@@ -98,9 +98,9 @@ ifneq ($(NAME_CLEAN),)
 	@make fclean -C $(LIBFT_DIR)
 	@rm -rf $(OBJS_DIR)
 	@rm -rf $(NAME)
-	@echo "$(RED)Bin $(NAME_CLEAN) removed.$(NC)"
+	@printf "$(RED)Bin $(NAME_CLEAN) removed.$(NC)\n"
 else
-	@echo "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)"
+	@printf "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)\n"
 endif
 
 test:

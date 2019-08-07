@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/05 09:42:21 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/07 03:27:52 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ SOURCES=$(SRCS_WITHOUT_DIR)\
 
 RED=\033[0;31m
 GREEN=\033[0;32m
-BLUE=\033[0;34m
+BLUE=\033[1;34m
 NC=\033[0m
 
 SRCS=$(addprefix $(SRCS_DIR), $(SOURCES))
@@ -109,7 +109,7 @@ NAME_CLEAN=$(strip $(NAME))
 all: $(NAME)
 
 $(OBJS_DIR):
-	@echo "$(BLUE)Compiling $(NAME_CLEAN:.a=) objects files...$(NC)"
+	@printf "$(BLUE)Compiling $(NAME_CLEAN:.a=) objects files...$(NC)\n"
 	@mkdir -p $(OBJS_DIR)$(MEM_DIR)
 	@mkdir -p $(OBJS_DIR)$(STR_DIR)
 	@mkdir -p $(OBJS_DIR)$(OUTPUT_DIR)
@@ -125,23 +125,23 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
 $(NAME): $(OBJS_DIR) $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "$(GREEN)Bin $(NAME_CLEAN) is ready to use!$(NC)"
+	@printf "$(GREEN)Bin $(NAME_CLEAN) is ready to use!$(NC)\n"
 
 clean:
 ifneq ($(OBJS_CLEAN),)
 	@rm -rf $(OBJS_DIR)
-	@echo "$(RED)$(NAME_CLEAN:.a=) objects files removed.$(NC)"
+	@printf "$(RED)$(NAME_CLEAN:.a=) objects files removed.$(NC)\n"
 else
-	@echo "$(RED)$(NAME_CLEAN:.a=) objects already cleaned$(NC)"
+	@printf "$(RED)$(NAME_CLEAN:.a=) objects already cleaned$(NC)\n"
 endif
 
 fclean: clean
 ifneq ($(NAME_CLEAN),)
 	@rm -rf $(OBJS_DIR)
 	@rm -rf $(NAME)
-	@echo "$(RED)Bin $(NAME_CLEAN) removed.$(NC)"
+	@printf "$(RED)Bin $(NAME_CLEAN) removed.$(NC)\n"
 else
-	@echo "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)"
+	@printf "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)\n"
 endif
 
 re: fclean all

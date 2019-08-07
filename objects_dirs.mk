@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/06 16:18:15 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/06 16:32:57 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/07 03:30:18 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CREATE_HASH_SUBDIRS=$(addprefix $(OBJS_DIR)/$(HASH_DIR)/, $(HASH_SUBDIRS))
 
 
 $(OBJS_DIR):
-	@echo "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)"
+	@printf "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)\n"
 	@mkdir -p $(OBJS_DIR)/$(AST_DIR)
 	@mkdir -p $(CREATE_AST_SUBDIRS)
 	@mkdir -p $(OBJS_DIR)/$(BUILTIN_DIR)
