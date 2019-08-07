@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 16:37:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/06 17:03:48 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/07 05:01:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	reset_line(t_line *line)
 	if (line->vi_mode)
 		line->vi_mode = VI_INSERT;
 	update_bindings(line->vi_mode, &line->key_bindings);
+	clear_linebuf();
+	init_linebuf(line);
 	ft_putstr("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 16:57:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/07 05:00:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,18 @@ static void		check_hs(t_line *line, t_action action)
 static void		perform_action(t_line *line)
 {
 	t_binding	*b;
+	t_action	action;
 	int			i;
 
 	if (check_arg(line))
 		return ;
 	b = find_binding(&line->key_bindings, line->keybuf);
-	if (b && b->action)
+	if (b && (action = b->action))
 	{		
 		i = -1;
 		while (++i < line->arg)
-			(*b->action)(line);
-		check_hs(line, b->action);
+			action(line);
+		check_hs(line, action);
 		update_line(line);
 		if (line->hs_mode)
 			hs_clear(line);
