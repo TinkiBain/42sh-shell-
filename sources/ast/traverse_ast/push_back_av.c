@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:32:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/05 21:45:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 16:01:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	push_back_av(char ***av, char *elem)
 	while (*(tmp++))
 		++size;
 	p = *av;
-	tmp = (char**)ft_xmalloc(sizeof(char*) * (size + 1));
+	tmp = (char**)ft_xmalloc(sizeof(char*) * (size + 2));
 	i = -1;
 	while (++i < size)
 		*(tmp + i) = *(p + i);

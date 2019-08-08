@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_env_str.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 17:29:04 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/01 17:32:42 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/08 13:55:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,36 @@ int				sh_equal_len(char *str)
 }
 
 void			search_bucks_dop(char *str, char **result, int len,
-		char ***g_env)
+		char ***env)
 {
 	int		i;
 	int		b;
 
 	i = 0;
 	b = 0;
-	while (*(*g_env + b))
+	while (*(*env + b))
 	{
-		if (ft_memcmp(str, *(*g_env + b), len))
+		if (ft_memcmp(str, *(*env + b), len))
 		{
 			++b;
 			continue ;
 		}
-		if (sh_equal_len(*(*g_env + b)) != len &&
-				!ft_memcmp(str, *(*g_env + b), len))
+		if (sh_equal_len(*(*env + b)) != len &&
+				!ft_memcmp(str, *(*env + b), len))
 		{
 			++b;
 			continue ;
 		}
-		while (*(*(*g_env + b) + i) && *(*(*g_env + b) + i) != '=')
+		while (*(*(*env + b) + i) && *(*(*env + b) + i) != '=')
 			++i;
 		++i;
-		if ((*result = ft_strdup((*(*g_env + b) + i))) == NULL)
+		if ((*result = ft_strdup((*(*env + b) + i))) == NULL)
 			exit(-5);
 		return ;
 	}
 }
 
-char			*search_bucks(char *str, char ***g_env)
+char			*search_bucks(char *str, char ***env)
 {
 	char	**cp;
 	char	*result;
@@ -61,7 +61,7 @@ char			*search_bucks(char *str, char ***g_env)
 
 	result = NULL;
 	cpstr = NULL;
-	cp = *g_env;
+	cp = *env;
 	len = (ft_strchr(str, ' ') == NULL) ? 0 : (ft_strchr(str, ' ') - str - 1);
 	if (len)
 	{
@@ -72,7 +72,7 @@ char			*search_bucks(char *str, char ***g_env)
 	}
 	if (str)
 		search_bucks_dop((len ? cpstr : str), &result,
-				(len ? len : ft_strlen(str)), g_env);
+				(len ? len : ft_strlen(str)), env);
 	if (cpstr)
 		free(cpstr);
 	return (result);

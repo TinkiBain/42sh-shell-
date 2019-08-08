@@ -6,34 +6,35 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 15:32:35 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/08 13:28:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include "hash.h"
 
-int		ft_unsetenv(char **av)
+int		ft_unsetenv(const char **av)
 {
+	extern char	**g_env;
 	char		**tmp;
 	size_t		len;
-	extern char	**environ;
 
-	if (!environ)
-		return (0);
+	if (!g_env)
+		return (1);
 	while (*av)
 	{
 		len = ft_strlen(*av);
-		tmp = environ;
-		while (*tmp && !(ft_strnequ(*av, *tmp, len) && (*tmp)[len] == '='))
+		tmp = g_env;
+		while (*tmp && !(ft_strnequ(*av, *tmp, len) && *(*tmp + len) == '='))
 			++tmp;
 		if (*tmp)
 		{
-			// *environ = (char **)ft_vector_remove((void **)*environ, (void *)*tmp);
+			free(*tmp);
 			if (len == 4 && ft_strnequ(*av, "PATH", 4))
-			{
 				del_hash();
-				// free_binary_tree();
-			}
+			len = 0;
+			while (*(tmp + ++len))
+				*(tmp + len - 1) = *(tmp + len);
 		}
 		++av;
 	}

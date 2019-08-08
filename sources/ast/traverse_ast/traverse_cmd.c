@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 18:07:37 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 15:14:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void		traverse_cmd(t_cmd *cmd)
 	t_cmd_suffix	*suff;
 	t_cmd_prefix	*pref;
 	char			**av;
-	extern char		**environ;
+	extern char		**g_env;
 
-	av = (char**)ft_xmalloc(sizeof(char*) * (1));
-	*av = NULL;
+	av = (char **)ft_xmalloc(sizeof(char *) * 2);
+	ft_bzero(av, sizeof(char *) * 2);
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
@@ -52,6 +52,6 @@ void		traverse_cmd(t_cmd *cmd)
 		suff = suff->cmd_suf;
 	}
 	if (*av)
-		call_exec(av, &environ);
+		call_exec((const char **)av, &g_env);
 	free(av);
 }

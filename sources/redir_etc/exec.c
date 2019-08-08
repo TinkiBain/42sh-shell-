@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 19:17:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 19:38:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 13:28:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int		exec_redir(t_attr *attr, int fd)
 
 int		exec_check_attr(t_exec *cmd, int fd)
 {
-	extern char **environ;
+	extern char **g_env;
 
 	(void)cmd;
 	if (cmd->attr && exec_redir(cmd->attr, fd) < 0)
 		return (-1);
 	if (fork() == 0)
 	{
-		execve(*cmd->av, cmd->av, environ);
+		execve(*cmd->av, cmd->av, g_env);
 	}
 	else
 		wait(NULL);

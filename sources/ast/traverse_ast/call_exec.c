@@ -6,20 +6,20 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 20:18:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 14:15:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int		print_error_command(char *s)
+static int	print_error_command(const char *cmd)
 {
 	ft_putstr(PROJECT_NAME ": command not found: ");
-	ft_putendl(s);
+	ft_putendl(cmd);
 	exit(1);
 }
 
-static int		call_nonbuilin_exec(char *path, char **av, char **env)
+static int	call_nonbuilin_exec(const char *path,  char *const *av, char **env)
 {
 	if (!access(path, X_OK))
 	{
@@ -34,7 +34,7 @@ static int		call_nonbuilin_exec(char *path, char **av, char **env)
 	return (0);
 }
 
-int				call_exec(char **av, char ***env)
+int			call_exec(const char **av, char ***env)
 {
 	char		*p;
 
@@ -52,10 +52,12 @@ int				call_exec(char **av, char ***env)
 		return (ft_unsetenv(av + 1));
 	else if (ft_strequ(*av, "hash"))
 		return (ft_hash());
-	else if ((p = get_bin(*av)))
-		return (call_nonbuilin_exec(p, av, *env));
+	else if (ft_strequ(*av, "type"))
+		return (ft_type(av + 1));
+	else if ((p = get_bin((char *)*av)))
+		return (call_nonbuilin_exec((const char *)p, (char *const *)av, *env));
 	else if (ft_strchr(*av, '/'))
-		return (call_nonbuilin_exec(*av, av, *env));
+		return (call_nonbuilin_exec(*av, (char *const *)av, *env));
 	else
 		return (print_error_command(*av));
 }

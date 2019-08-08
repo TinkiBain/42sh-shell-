@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtin.c                                    :+:      :+:    :+:   */
+/*   create_copy_environ.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/03 19:32:27 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/07 14:25:16 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/08 13:31:09 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/08 14:03:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		check_builtin(const char *cmd)
+char	**create_copy_environ(void)
 {
-	if (ft_strequ(cmd, "exit") || ft_strequ(cmd, "cd") ||
-			ft_strequ(cmd, "echo") || ft_strequ(cmd, "env") ||
-			ft_strequ(cmd, "setenv") || ft_strequ(cmd, "unsetenv") ||
-			ft_strequ(cmd, "hash") || ft_strequ(cmd, "type"))
-		return (1);
-	return (0);
+	extern char	**environ;
+	char		**env;
+	char		**tmp;
+	size_t		size;
+
+	tmp = environ;
+	size = 0;
+	while (*(tmp++))
+		++size;
+	env = (char **)ft_xmalloc(sizeof(char *) * (size + 1));
+	tmp = env;
+	while (*environ)
+	{
+		*(tmp++) = *(environ++);
+	}
+	*tmp = NULL;
+	return (env);
 }

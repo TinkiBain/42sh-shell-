@@ -6,16 +6,16 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 20:42:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/07 17:35:02 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "defs.h"
 
-static void	check_arg_count(char **av)
+static void	check_arg_count(const char **av)
 {
-	char	ac;
+	int	ac;
 
 	ac = 0;
 	while (*(av++))
@@ -29,10 +29,10 @@ static void	check_arg_count(char **av)
 	}
 }
 
-int			ft_exit(char **av)
+int			ft_exit(const char **av)
 {
-	char	*tmp;
-	char	res;
+	const char	*tmp;
+	char		res;
 
 	if (av && *av)
 	{

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/04 22:41:15 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 16:10:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ static char	*get_previous_pwd(char **env)
 
 	if (!env || !*env)
 		return (getcwd(NULL, 1024));
-	while (*env && !ft_strnequ(*env, "OLDPWD=", 7))
-		++env;
-	if (*env)
-	{
-		p = ft_strchr(*env, '=');
-		ft_putendl(p + 1);
+	while (*env)
+		if (ft_strnequ(*(env++), "OLDPWD=", 7))
+			break ;
+	if ((p = ft_strchr(*env, '=')))
 		return (ft_strdup(p + 1));
-	}
 	return (getcwd(NULL, 1024));
 }
 
@@ -39,11 +36,11 @@ static void	change_dir(char *path)
 	chdir(path);
 	arr[1] = ft_strjoin_free("PWD=", getcwd(NULL, 1024), 2);
 	arr[2] = NULL;
-	ft_setenv(arr);
+	ft_setenv((const char **)arr);
 	free(arr);
 }
 
-static void	cd_error(char *av, int tilda_error)
+static void	cd_error(const char *av, int tilda_error)
 {
 	if (!(*av == '~' && tilda_error))
 	{
@@ -52,7 +49,7 @@ static void	cd_error(char *av, int tilda_error)
 	}
 }
 
-static void	ft_open_dir(char *av, char ***env)
+static void	ft_open_dir(const char *av, char ***env)
 {
 	DIR		*dp;
 	char	*path;
@@ -60,8 +57,8 @@ static void	ft_open_dir(char *av, char ***env)
 
 	has_replaceable_tilda = 1;
 	if (!av)
-		path = ft_strdup(getenv("HOME"));
-	else if (av[0] == '-')
+		return ;
+	else if (ft_strequ(av, "-"))
 		path = get_previous_pwd(*env);
 	else
 		path = ft_strdup(av);
@@ -75,19 +72,24 @@ static void	ft_open_dir(char *av, char ***env)
 	free(path);
 }
 
-int			ft_cd(char **av)
+int			ft_cd(const char **av)
 {
-	extern char	**environ;
+	extern char	**g_env;
 
 	if (!av)
 		return (0);
 	if (!av[0])
-		ft_open_dir(NULL, &environ);
+	{
+		while (*g_env)
+			if (ft_strnequ(*(g_env++), "HOME=", 5))
+				break ;
+		ft_open_dir((*g_env) ? (ft_strchr(*g_env, '=') + 1) : NULL, &g_env);
+	}
 	else if (av[1] != NULL)
 	{
 		ft_putstr(PROJECT_NAME ": cd: too many arguments");
 	}
 	else
-		ft_open_dir(av[0], &environ);
+		ft_open_dir(av[0], &g_env);
 	return (1);
 }

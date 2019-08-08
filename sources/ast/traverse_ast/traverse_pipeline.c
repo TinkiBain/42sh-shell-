@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 17:40:26 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 13:28:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	handle_last_cmd_in_pipe(int fd, t_cmd *cmd)
 
 static void	ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd)
 {
-	extern char	**environ;
+	extern char	**g_env;
 	pid_t		pid;
 	int			pipefd[2];
 
@@ -81,9 +81,9 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq)
 		{
 			if (check_builtin(cmd_name))
 			{
-				// redir_set();
+				redir_set();
 				traverse_cmd(pipe_seq->cmd);
-				// redir_reset();
+				redir_reset();
 			}
 			else
 			{

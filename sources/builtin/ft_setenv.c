@@ -6,50 +6,67 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 15:30:57 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/08 14:58:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-static void	replace_var(char *av, char **tmp, char ***env)
+static void	add_var(const char *av, char ***env)
 {
-	char	*var;
+	char	**new_env;
+	char	**tmp;
+	size_t	size;
 
-	var = ft_strdup(av);
-	if (tmp && *tmp)
-	{
-		free(*tmp);
-		*tmp = var;
-	}
-	(void)env;
-	// else
-	// 	*env = (char **)ft_vector_add((void **)*env, (void *)var);
+	size = 0;
+	tmp = *env;
+	while (*(tmp + size))
+		++size;
+	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
+	ft_bzero(new_env, size + 1);
+	tmp = new_env;
+	while (size--)
+		*(tmp++) = *((*env)++);
+	*(tmp++) = ft_strdup(av);
+	*tmp = NULL;
+	*env = new_env;
 }
 
-int			ft_setenv(char **av)
+static void	replace_var(const char *name, const char *var, char **env,
+															size_t len)
 {
-	char			*p;
-	char			**tmp;
-	extern	char	**environ;
+	while (*env && !(ft_strnequ(name, *env, len) && *(*env + len) == '='))
+		++env;
+	if (*env)
+	{
+		free(*env);
+		*env = ft_strdup(var);
+	}
+}
 
-	if (!environ)
-		return (0);
+int			ft_setenv(const char **av)
+{
+	extern	char	**g_env;
+	char			*p;
+	char			*name;
+
+	if (!g_env)
+		return (1);
 	while (*av)
 	{
-		tmp = environ;
-		p = ft_strchr(*av, '=');
-		if (!p && ++av)
-			continue ;
-		while (*tmp && !ft_strnequ(*av, *tmp, p - *av + 1))
-			++tmp;
-		replace_var(*av, tmp, &environ);
-		if (ft_strnequ(*av, "PATH=", 5))
+		if ((p = ft_strchr(*av, '=')))
 		{
-			fill_hash_table();
+			name = ft_strndup(*av, p - *av);
+			if (!getenv(*av))
+				add_var(*av, &g_env);
+			else
+				replace_var(name, *av, g_env, p - *av);
+			if (ft_strequ(name, "PATH"))
+				fill_hash_table();
+			free(name);
 		}
 		++av;
 	}
-	return (1);
+	return (0);
 }
