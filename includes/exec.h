@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/07 21:58:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/08 14:26:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int			redir_tless(t_io_redirect *redir);
 int			redir_less_great(t_io_redirect *redir);
 int			redir_great(t_io_redirect *redir, int dgreat);
 int			redir_great_and(t_io_redirect *redir);
+int			redir_and_great(t_io_redirect *redir);
+int			redir_and_dgreat(t_io_redirect *redir);
 int			redir_clobber(t_io_redirect *redir);
 
 #endif
