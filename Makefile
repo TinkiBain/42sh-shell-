@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/08 16:49:46 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/08 22:14:47 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,6 @@ LIBFT_DIR=libft
 AST_DIR=ast
 include $(SRCS_DIR)/$(AST_DIR)/ast.mk
 
-BUILTIN_DIR=builtin
-
 HASH_DIR=hash_table
 include $(SRCS_DIR)/$(HASH_DIR)/hash_table.mk
 
@@ -41,17 +39,25 @@ DIR_LIB_WTALEA=lib_wtalea
 SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
-	main.c			create_copy_environ.c		ft_getenv.c
+	main.c
+
+BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
 	ft_cd.c			ft_echo.c		ft_env.c		ft_hash.c\
 	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_exit.c
+
+ENV_DIR=environment
+
+SRCS_ENV=\
+	add_env.c		create_copy_env.c		ft_getenv.c		remove_env.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
 	$(addprefix $(AST_DIR)/, $(SRCS_AST))\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
+	$(addprefix $(ENV_DIR)/, $(SRCS_ENV))\
 	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
@@ -81,6 +87,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(CREATE_READLINE_SUBDIRS)\
 	$(OBJS_DIR)/$(HASH_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
+	$(OBJS_DIR)/$(ENV_DIR)\
 	$(OBJS_DIR)/$(DIR_LIB_WTALEA)
 
 .PHONY: all clean fclean re
@@ -108,6 +115,7 @@ $(OBJS_SUBDIRS):
 	@mkdir -p $(CREATE_READLINE_SUBDIRS)
 	@mkdir -p $(OBJS_DIR)/$(HASH_DIR)
 	@mkdir -p $(CREATE_HASH_SUBDIRS)
+	@mkdir -p $(OBJS_DIR)/$(ENV_DIR)
 	@mkdir -p $(OBJS_DIR)/$(DIR_LIB_WTALEA)
 
 clean:

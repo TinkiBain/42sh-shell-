@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   create_copy_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 20:26:27 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/08 13:31:09 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/08 22:16:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "libft.h"
 
-int		ft_echo(const char **av)
+char	**create_copy_env(char **env)
 {
-	int		flag;
+	char		**new_env;
+	char		**tmp;
+	size_t		size;
 
-	flag = 1;
-	if (av && *av)
+	tmp = env;
+	size = 0;
+	while (*(tmp++))
+		++size;
+	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 1));
+	tmp = new_env;
+	while (*env)
 	{
-		if (ft_strequ("-n", *av))
-		{
-			flag = 0;
-			++av;
-		}
-		while (*av)
-		{
-			ft_putstr(*av);
-			if (*(++av))
-				write(1, " ", 1);
-		}
+		*(tmp++) = *(env++);
 	}
-	if (flag)
-		write(1, "\n", 1);
-	return (0);
+	*tmp = NULL;
+	return (new_env);
 }

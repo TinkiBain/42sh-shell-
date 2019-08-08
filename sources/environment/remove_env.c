@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   remove_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 20:26:27 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/08 22:01:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include "hash.h"
 
-int		ft_echo(const char **av)
+int		remove_env(const char **av, char ***env)
 {
-	int		flag;
+	char		**tmp;
+	size_t		len;
 
-	flag = 1;
-	if (av && *av)
+	if (!env)
+		return (1);
+	while (*av)
 	{
-		if (ft_strequ("-n", *av))
+		len = ft_strlen(*av);
+		tmp = *env;
+		while (*tmp && !(ft_strnequ(*av, *tmp, len) && *(*tmp + len) == '='))
+			++tmp;
+		if (*tmp)
 		{
-			flag = 0;
-			++av;
+			free(*tmp);
+			if (len == 4 && ft_strnequ(*av, "PATH", 4))
+				del_hash();
+			len = 0;
+			while (*(tmp + ++len))
+				*(tmp + len - 1) = *(tmp + len);
 		}
-		while (*av)
-		{
-			ft_putstr(*av);
-			if (*(++av))
-				write(1, " ", 1);
-		}
+		++av;
 	}
-	if (flag)
-		write(1, "\n", 1);
-	return (0);
+	return (1);
 }

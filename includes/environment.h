@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_copy_environ.c                              :+:      :+:    :+:   */
+/*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/08 13:31:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 14:03:24 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/08 22:16:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef ENVIRONMENT_H
+# define ENVIRONMENT_H
 
-char	**create_copy_environ(void)
-{
-	extern char	**environ;
-	char		**env;
-	char		**tmp;
-	size_t		size;
+int					add_env(const char **av, char ***env);
+char				**create_copy_env(char **env);
+char				*ft_getenv(const char *name, char **env);
+int					remove_env(const char **av, char ***env);
 
-	tmp = environ;
-	size = 0;
-	while (*(tmp++))
-		++size;
-	env = (char **)ft_xmalloc(sizeof(char *) * (size + 1));
-	tmp = env;
-	while (*environ)
-	{
-		*(tmp++) = *(environ++);
-	}
-	*tmp = NULL;
-	return (env);
-}
+#endif

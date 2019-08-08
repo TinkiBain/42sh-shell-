@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 13:47:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 22:17:02 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int			main(int ac, char **av)
 	t_lex		*lex;
 	t_lex		*src;
 	char		*tmp;
+	extern char	**environ;
 
-	g_env = create_copy_environ();
+	g_env = create_copy_env(environ);
 	init_readline();
 	fill_hash_table();
 	if (ac > 1)

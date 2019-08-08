@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 18:12:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 20:26:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,20 @@ static void	ft_open_dir(const char *av, char ***env)
 	free(path);
 }
 
-int			ft_cd(const char **av)
+int			ft_cd(const char **av, char ***env)
 {
-	extern char	**g_env;
-
 	if (!av)
-		return (0);
+		return (1);
 	if (!av[0])
 	{
-		while (*g_env)
-			if (ft_strnequ(*(g_env++), "HOME=", 5))
+		while (**env)
+			if (ft_strnequ(*((*env)++), "HOME=", 5))
 				break ;
-		ft_open_dir((*g_env) ? (ft_strchr(*g_env, '=') + 1) : NULL, &g_env);
+		ft_open_dir((**env) ? (ft_strchr(**env, '=') + 1) : NULL, env);
 	}
 	else if (av[1] != NULL)
-	{
 		ft_putstr(PROJECT_NAME ": cd: too many arguments");
-	}
 	else
-		ft_open_dir(av[0], &g_env);
-	return (1);
+		ft_open_dir(av[0], env);
+	return (0);
 }
