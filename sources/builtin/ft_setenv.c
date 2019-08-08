@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 14:58:14 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 17:56:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	replace_var(const char *name, const char *var, char **env,
 		++env;
 	if (*env)
 	{
-		free(*env);
+		// free(*env);
 		*env = ft_strdup(var);
 	}
 }
@@ -58,7 +58,7 @@ int			ft_setenv(const char **av)
 		if ((p = ft_strchr(*av, '=')))
 		{
 			name = ft_strndup(*av, p - *av);
-			if (!getenv(*av))
+			if (!ft_getenv(name, g_env))
 				add_var(*av, &g_env);
 			else
 				replace_var(name, *av, g_env, p - *av);

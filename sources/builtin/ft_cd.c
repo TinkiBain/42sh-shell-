@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 16:10:14 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 18:12:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ static char	*get_previous_pwd(char **env)
 
 	if (!env || !*env)
 		return (getcwd(NULL, 1024));
-	while (*env)
-		if (ft_strnequ(*(env++), "OLDPWD=", 7))
-			break ;
-	if ((p = ft_strchr(*env, '=')))
-		return (ft_strdup(p + 1));
+	if ((p = ft_getenv("OLDPWD", env)))
+		return (ft_strdup(p));
 	return (getcwd(NULL, 1024));
 }
 
