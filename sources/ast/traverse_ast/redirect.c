@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:15:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/08 14:57:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/09 21:36:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		redirect(t_io_redirect *redir)
 {
+	if (redir->io_number == -2)
+		return (-1); //return error_fd
 	if (redir->type & LESS)
 		return (redir_less(redir));
 	else if (redir->type & DLESS)
@@ -26,10 +28,8 @@ int		redirect(t_io_redirect *redir)
 		return (redir_less_and(redir));
 */	else if (redir->type & LESSGREAT)
 		return (redir_less_great(redir));
-	else if (redir->type & GREAT)
-		return (redir_great(redir, 0));
-	else if (redir->type & DGREAT)
-		return (redir_great(redir, 1));
+	else if (redir->type & GREAT || redir->type & DGREAT)
+		return (redir_great(redir));
 	else if (redir->type & GREATAND)
 		return (redir_great_and(redir));
 	else if (redir->type & ANDGREAT)

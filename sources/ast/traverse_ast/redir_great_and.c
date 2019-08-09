@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 18:23:51 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/07 20:08:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/09 19:53:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,16 @@ int		redir_great_and(t_io_redirect *redir)
 		return (redir_great_and_close(redir));
 	else if (fill_fd(redir, &fd_close, &right_fd) < 0)
 		return (-1);
-	if (right_fd >= 10000)
-		return (redirect_error_fd(right_fd));
+//	if (right_fd >= 10000)
+//		return (redirect_error_fd(right_fd));
 	if (redir->io_number == -1)
 		redir->io_number = 1;
-	if (redir->io_number >= 10000)
-	{
-		close(right_fd);
-		return (redirect_error_fd(redir->io_number));
-	}
 	if (right_fd != -1)
-		dup2(right_fd, redir->io_number);
+		if (dup2(right_fd, redir->io_number) < 0)
+		{
+			close(right_fd);
+			return (redirect_error_dup(redir->io_number));
+		}
 	if (fd_close)
 		close(right_fd);
 	return (1);

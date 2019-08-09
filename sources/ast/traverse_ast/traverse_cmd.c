@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/06 18:07:37 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:58:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		traverse_cmd(t_cmd *cmd)
 
 	av = (char**)ft_xmalloc(sizeof(char*) * (1));
 	*av = NULL;
+	redir_set();
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
@@ -54,4 +55,5 @@ void		traverse_cmd(t_cmd *cmd)
 	if (*av)
 		call_exec(av, &environ);
 	free(av);
+	redir_reset();
 }

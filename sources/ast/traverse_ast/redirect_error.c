@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:22:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/07 22:02:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/09 19:19:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,13 @@ int		redirect_error_open(char *file)
 {
 	ft_putstr_fd(PROJECT_NAME ": ", 2);
 	perror(file);
+	return (-1);
+}
+
+int		redirect_error_dup(int fd)
+{
+	ft_putstr_fd(PROJECT_NAME ": ", 2);
+	ft_putnbr_fd(fd, 2);
+	perror(NULL);
 	return (-1);
 }

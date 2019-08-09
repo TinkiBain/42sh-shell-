@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:08:30 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/07 21:15:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/09 18:44:29 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void			redir_reset(void)
 		dup2(fd, 0);
 		close(fd);
 	}
-	else
-		free(file);
 	i = 0;
 	while (++i <= 2)
 	{
@@ -35,8 +33,5 @@ void			redir_reset(void)
 			dup2(fd, i);
 			close(fd);
 		}
-		else
-			free(file);
 	}
-	free(g_tty);
 }
