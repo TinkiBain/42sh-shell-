@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:52:19 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/09 15:52:25 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/09 15:53:29 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int			main(int ac, char **av)
 	g_env = create_copy_environ();
 	init_readline();
 	fill_hash_table();
-	check_vector(get_vec_prog("l"));
 	if (ac > 1)
 	{
 		if (ft_strequ(*(av + 1), "-p"))
