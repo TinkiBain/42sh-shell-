@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 05:18:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:49:27 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static t_vector	build(DIR *dir, t_string *query, t_string *path)
 		str_delete(&fullpath);
 		if ((st.st_mode & S_IFMT) == S_IFDIR)
 			str_xaddback(&name, "/", 1);
+		else
+			str_xaddback(&name, " ", 1);
 		if (match(name, *query))
 			vec_xaddback(&vec, &name);
 	}
