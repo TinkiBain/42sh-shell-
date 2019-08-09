@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 13:47:01 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/09 15:52:19 by wtalea            #+#    #+#             */
+/*   Updated: 2019/08/09 15:52:25 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int			main(int ac, char **av)
 	g_env = create_copy_environ();
 	init_readline();
 	fill_hash_table();
+	check_vector(get_vec_prog("l"));
 	if (ac > 1)
 	{
 		if (ft_strequ(*(av + 1), "-p"))
