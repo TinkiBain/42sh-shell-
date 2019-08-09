@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/07 03:27:52 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/09 21:27:42 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,15 @@ NAME=libft.a
 CC=clang
 FLAGS=-Wall -Wextra -Werror
 INCLUDES=-I includes
-HEADER=includes/libft.h
+
+H_FILES=\
+	ft_printf.h\
+	ft_string.h\
+	ft_vector.h\
+	get_next_line.h\
+	libft.h
+
+HEADER=$(addprefix includes/, $(H_FILES))
 
 SRCS_DIR=sources/
 OBJS_DIR=objects/

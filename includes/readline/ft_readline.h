@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 15:28:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 22:02:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ struct 			s_options
 {
 	t_uint		 vi_mode;
 }				g_options;
-
-extern char		**g_env;
 
 char			*ft_readline(char *prompt, char *oldline);
 

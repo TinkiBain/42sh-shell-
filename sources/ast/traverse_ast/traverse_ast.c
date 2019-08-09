@@ -22,7 +22,8 @@ static void	and_or_iter_in_order(t_and_or *root)
 			g_res_exec = WEXITSTATUS(g_res_exec);
 		else
 			g_res_exec = 1;
-		if ((root->and_or_if == AND_IF && !g_res_exec) || (root->and_or_if == OR_IF && g_res_exec))
+		if ((root->and_or_if == AND_IF && !g_res_exec) ||
+				(root->and_or_if == OR_IF && g_res_exec))
 			and_or_iter_in_order(root->and_or);
 	}
 }

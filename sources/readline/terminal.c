@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 14:59:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 22:02:08 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		term_init(void)
 	int			needfree;
 
 	needfree = 0;
-	termtype = ft_getenv("TERM", g_env);
+	termtype = getenv("TERM");
 	if (!termtype)
 	{
 		termtype = ft_xmemalloc(ft_strlen(DEFAULT_TERMTYPE) + 1);
@@ -110,9 +110,9 @@ void	term_getpos(int *row, int *col)
 	*col = ft_atoi(buf + ++i) - 1;
 }
 
-/* 
+/*
 ** About normal and application modes:
-** 
+**
 ** https://unix.stackexchange.com/questions/139744/
 ** how-to-enable-control-key-combinations-for-gnu-screen-on-putty
 **

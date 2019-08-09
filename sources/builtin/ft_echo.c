@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/07 18:35:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 20:26:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int		ft_echo(const char **av)
 	int		flag;
 
 	flag = 1;
-	if (av)
+	if (av && *av)
 	{
-		if (*av && ft_strequ("-n", *av))
+		if (ft_strequ("-n", *av))
 		{
 			flag = 0;
 			++av;
@@ -33,5 +33,5 @@ int		ft_echo(const char **av)
 	}
 	if (flag)
 		write(1, "\n", 1);
-	return (1);
+	return (0);
 }

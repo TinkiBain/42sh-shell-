@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   remove_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 14:56:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/08 22:01:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-int		ft_unsetenv(const char **av)
+int		remove_env(const char **av, char ***env)
 {
-	extern char	**environ;
 	char		**tmp;
 	size_t		len;
 
-	if (!environ)
+	if (!env)
 		return (1);
 	while (*av)
 	{
 		len = ft_strlen(*av);
-		tmp = environ;
+		tmp = *env;
 		while (*tmp && !(ft_strnequ(*av, *tmp, len) && *(*tmp + len) == '='))
 			++tmp;
 		if (*tmp)
@@ -35,8 +34,6 @@ int		ft_unsetenv(const char **av)
 			len = 0;
 			while (*(tmp + ++len))
 				*(tmp + len - 1) = *(tmp + len);
-			*(tmp + len - 1) = NULL;
-			*(tmp + len) = NULL;
 		}
 		++av;
 	}

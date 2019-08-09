@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 18:18:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 22:01:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "exec.h"
 // #include "get_env.h"
 // #include "hash.h"
-
-char		**g_env;
 
 int			TYPE_OF_PROGRAM;
 
@@ -42,8 +40,9 @@ int			main(int ac, char **av)
 	t_lex		*lex;
 	t_lex		*src;
 	char		*tmp;
+	extern char	**environ;
 
-	g_env = create_copy_environ();
+	environ = create_copy_env(environ);
 	logopen();
 	init_readline();
 	fill_hash_table();
@@ -98,5 +97,6 @@ int			main(int ac, char **av)
 	del_hash();
 	history_clear(g_history);
 	logclose();
+	ft_free_double_ptr_arr((void ***)&environ);
 	return (g_res_exec);
 }

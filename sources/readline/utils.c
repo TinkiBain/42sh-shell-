@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:16:01 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 15:32:10 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 22:02:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		*convert_tilde(char *str)
 
 	if (!(str[0] == '~' && str[1] == '/'))
 		return (ft_strdup(str));
-	home = ft_getenv("HOME", g_env);
+	home = getenv("HOME");
 	if (!home || !str)
 		return (NULL);
 	res = str_xcopy(home);
