@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/08 22:14:47 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/09 21:28:28 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,16 @@ CC=clang
 FLAGS=-Wall -Wextra -Werror
 FLAGS+=-g
 
-HEADER=includes/sh.h
-
 INCLUDES:=-I includes -I includes/readline -I libft/includes
+
+SH_INCLUDES=\
+	ast.h		cmd.h		defs.h		environment.h		exec.h\
+	get_env.h	hash.h		lexer.h		lib_wtalea.h		parser.h\
+	sh.h
+
+HEADER=\
+	$(addprefix includes/, $(SH_INCLUDES))\
+	$(addprefix includes/readline/, $(READLINE_INCLUDES))
 
 SRCS_DIR=sources
 OBJS_DIR=objects
@@ -44,8 +51,8 @@ SRCS_WITHOUT_DIR=\
 BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
-	ft_cd.c			ft_echo.c		ft_env.c		ft_hash.c\
-	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_exit.c
+	ft_cd.c			ft_echo.c		ft_exit.c		ft_hash.c\
+	ft_setenv.c		ft_type.c		ft_unsetenv.c
 
 ENV_DIR=environment
 

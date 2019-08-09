@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 22:17:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:44:44 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "exec.h"
 // #include "get_env.h"
 // #include "hash.h"
-
-char		**g_env;
 
 int			TYPE_OF_PROGRAM;
 
@@ -44,7 +42,7 @@ int			main(int ac, char **av)
 	char		*tmp;
 	extern char	**environ;
 
-	g_env = create_copy_env(environ);
+	environ = create_copy_env(environ);
 	init_readline();
 	fill_hash_table();
 	if (ac > 1)
@@ -97,5 +95,6 @@ int			main(int ac, char **av)
 	}
 	del_hash();
 	history_clear(g_history);
+	ft_free_double_ptr_arr((void ***)&environ);
 	return (g_res_exec);
 }

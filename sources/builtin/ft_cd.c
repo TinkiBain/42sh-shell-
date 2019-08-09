@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 20:26:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 21:51:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ static void	ft_open_dir(const char *av, char ***env)
 
 int			ft_cd(const char **av, char ***env)
 {
+	struct passwd	*pw;
+
 	if (!av)
 		return (1);
 	if (!av[0])
 	{
-		while (**env)
-			if (ft_strnequ(*((*env)++), "HOME=", 5))
-				break ;
-		ft_open_dir((**env) ? (ft_strchr(**env, '=') + 1) : NULL, env);
+		if ((pw = getpwuid(getuid())))
+			ft_open_dir(pw->pw_dir, env);
 	}
 	else if (av[1] != NULL)
 		ft_putstr(PROJECT_NAME ": cd: too many arguments");

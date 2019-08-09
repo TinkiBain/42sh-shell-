@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:42:57 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 21:14:25 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:13:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	add_var(char *av, char ***env)
 	while (*(tmp + size))
 		++size;
 	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
-	ft_bzero(new_env, size + 1);
+	ft_bzero(new_env, size + 2);
 	tmp = new_env;
 	while (size--)
 		*(tmp++) = *((*env)++);
@@ -49,7 +49,7 @@ void	handle_token_assignment_word(char *word, char ***env)
 			tmp = *env;
 			while (!(ft_strnequ(name, *tmp, len) && *(*tmp + len) == '='))
 				++tmp;
-			// free(*tmp);
+			free(*tmp);
 			*tmp = ft_strdup(word);
 		}
 		else

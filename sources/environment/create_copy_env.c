@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 13:31:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 22:16:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:18:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**create_copy_env(char **env)
 	tmp = new_env;
 	while (*env)
 	{
-		*(tmp++) = *(env++);
+		*(tmp++) = ft_strdup(*(env++));
 	}
 	*tmp = NULL;
 	return (new_env);

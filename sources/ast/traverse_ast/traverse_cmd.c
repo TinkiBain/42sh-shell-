@@ -6,39 +6,46 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 22:26:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 19:10:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void	traverse_cmd_pref(t_cmd_prefix *pref, char ***env)
+static void	traverse_cmd_pref(t_cmd_prefix *pref, char ***env,
+											int *is_copy_env, int in_fork)
 {
 	while (pref)
 	{
 		if (pref->assignment_word)
+		{
+			if (!in_fork && !*is_copy_env)
+				*env = create_copy_env(*env);
+			*is_copy_env = 1;
 			handle_token_assignment_word(pref->assignment_word, env);
+		}
 		else
 			redirect(pref->io_redir);
 		pref = pref->cmd_pref;
 	}
 }
 
-void		traverse_cmd(t_cmd *cmd)
+void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 {
 	t_cmd_suffix	*suff;
 	t_cmd_prefix	*pref;
 	char			**av;
 	char			**new_env;
-	extern char		**g_env;
+	int				is_copy_environ;
 
-	new_env = create_copy_env(g_env);
+	is_copy_environ = 0;
+	new_env = env;
 	av = (char **)ft_xmalloc(sizeof(char *) * 2);
 	ft_bzero(av, sizeof(char *) * 2);
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
-		traverse_cmd_pref(pref, &new_env);
+		traverse_cmd_pref(pref, &new_env, &is_copy_environ, in_fork);
 		if (cmd->cmd_word)
 			push_back_av(&av, cmd->cmd_word);
 	}
@@ -55,6 +62,7 @@ void		traverse_cmd(t_cmd *cmd)
 	}
 	if (*av)
 		call_exec((const char **)av, &new_env);
-	// ft_free_double_ptr_arr((void ***)&new_env);
+	if (is_copy_environ)
+		ft_free_double_ptr_arr((void ***)&new_env);
 	free(av);
 }

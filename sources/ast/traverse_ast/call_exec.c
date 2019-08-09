@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 21:47:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 19:56:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int			call_exec(const char **av, char ***env)
 		return (ft_cd(av + 1, env));
 	else if (ft_strequ(*av, "echo"))
 		return (ft_echo(av + 1));
-	else if (ft_strequ(*av, "env"))
-		return (ft_env(av + 1, *env));
 	else if (ft_strequ(*av, "setenv"))
 		return (ft_setenv(av + 1));
 	else if (ft_strequ(*av, "unsetenv"))

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/08 22:03:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 21:51:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SH_H
 
 # include <sys/wait.h>
+# include <pwd.h>
 # include "defs.h"
 # include "libft.h"
 # include "ast.h"

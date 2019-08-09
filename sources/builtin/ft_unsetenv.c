@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 13:28:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/09 14:56:33 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 int		ft_unsetenv(const char **av)
 {
-	extern char	**g_env;
+	extern char	**environ;
 	char		**tmp;
 	size_t		len;
 
-	if (!g_env)
+	if (!environ)
 		return (1);
 	while (*av)
 	{
 		len = ft_strlen(*av);
-		tmp = g_env;
+		tmp = environ;
 		while (*tmp && !(ft_strnequ(*av, *tmp, len) && *(*tmp + len) == '='))
 			++tmp;
 		if (*tmp)
@@ -35,6 +35,8 @@ int		ft_unsetenv(const char **av)
 			len = 0;
 			while (*(tmp + ++len))
 				*(tmp + len - 1) = *(tmp + len);
+			*(tmp + len - 1) = NULL;
+			*(tmp + len) = NULL;
 		}
 		++av;
 	}
