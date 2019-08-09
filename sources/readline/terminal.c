@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 17:22:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 14:59:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		term_init(void)
 	int			needfree;
 
 	needfree = 0;
-	termtype = getenv("TERM");
+	termtype = ft_getenv("TERM", g_env);
 	if (!termtype)
 	{
 		termtype = ft_xmemalloc(ft_strlen(DEFAULT_TERMTYPE) + 1);

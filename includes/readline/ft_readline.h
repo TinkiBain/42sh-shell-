@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 20:52:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 15:28:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "ft_string.h"
 # include "ft_vector.h"
 
-# include "defs.h"
+# include "sh.h"
 # include "line.h"
 # include "xmalloc.h"
 # include "str_xfuncs.h"
@@ -41,6 +41,7 @@
 # include "escseqs.h"
 # include "loginfo.h"
 # include "show_completions.h"
+# include "utils.h"
 
 # define DEBUG				1
 
@@ -51,15 +52,10 @@ t_history		*g_history;
 
 struct 			s_options
 {
-	int vi_mode;
+	t_uint		 vi_mode;
 }				g_options;
 
-// typedef struct	s_rlargs
-// {
-// 	char		*prompt;
-// 	t_history	**history;
-// 	int			vi_mode;
-// }				t_rlargs;
+extern char		**g_env;
 
 char			*ft_readline(char *prompt, char *oldline);
 

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/09 04:44:20 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/09 15:31:03 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,19 @@ READLINE_COMPLETE_DIR=$(READLINE_ACTIONS_DIR)/complete
 READLINE_BINDINGS_DIR=bindings
 READLINE_DISPLAY_DIR=display
 
+READLINE_INCLUDES=\
+actions.h		bindings.h		display.h		escseqs.h\
+ft_errno.h		ft_readline.h	history.h		history_search.h\
+input_loop.h	keys.h			line.h			loginfo.h\
+show_completions.h				signal_handlers.h\
+str_xfuncs.h	terminal.h		utils.h			vec_xfuncs.h\
+xmalloc.h
+
 SRCS_READLINE_WITHOUT_DIR=\
 	escseqs.c			ft_errno.c		ft_readline.c		history.c\
 	history_search.c	input_loop.c	loginfo.c			signal_handlers.c\
 	str_xfuncs1.c		str_xfuncs2.c	terminal.c			vec_xfuncs.c\
-	vi_input_loop.c		xmalloc.c
+	vi_input_loop.c		xmalloc.c		utils.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/16 21:50:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 15:31:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ enum	e_errno
 	ERROR_TERMCAP,
 	ERROR_UNK_TERMTYPE,
 	ERROR_OPENHIST,
-	ERROR_GNLHIST
+	ERROR_GNLHIST,
+	ERROR_OPEN
 };
 
 extern int	g_errno;
@@ -34,5 +35,6 @@ extern int	g_errno;
 char	g_errinfo[ERRINFOLEN];
 
 void	printerr(void);
+void	fatal(char *msg);
 
 #endif

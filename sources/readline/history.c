@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:18:46 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/20 06:41:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 15:21:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,21 @@ t_history	*history_copy(t_history *history)
 	return (newhist);
 }
 
+int			history_open(t_history *history, char *path)
+{
+	int		fd;
+
+	fd = -1;
+	history->path = convert_tilde(path);
+	if (history->path)
+		fd = open(history->path, O_RDONLY | O_CREAT, S_IRWXU);
+	if (fd < 0)
+		loginfo("Can't open history file");
+	else
+		loginfo("History location: %s", history->path);
+	return (fd);
+}
+
 void		history_load(t_history *history, char *path)
 {
 	int			fd;
@@ -48,10 +63,7 @@ void		history_load(t_history *history, char *path)
 
 	if (!path)
 		return ;
-	history->size = 0;
-	history->path = path;
-	if ((fd = open(path, O_RDONLY | O_CREAT, S_IRWXU)) < 0
-		&& (g_errno = ERROR_OPENHIST))
+	if ((fd = history_open(history, path)) < 0)
 		return ;
 	while ((ret = get_next_line(fd, &str.s)) > 0)
 	{
@@ -60,7 +72,7 @@ void		history_load(t_history *history, char *path)
 		history->size++;
 	}
 	if (ret < 0)
-		g_errno = ERROR_GNLHIST;
+		loginfo("Error in history get_next_line()");
 	while (history->size > HISTORY_MAXSIZE)
 	{
 		ft_dlstdelfront(&history->item, del);
@@ -82,8 +94,7 @@ static void	history_save_rewrite(t_history *history)
 {
 	int fd;
 
-	if ((fd = open(history->path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU)) < 0
-		&& (g_errno = ERROR_OPENHIST))
+	if ((fd = open(history->path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU)) < 0)
 		return ;
 	while (history->item->prev)
 		history->item = history->item->prev;
@@ -104,8 +115,7 @@ static void	history_save_append(t_history *history)
 {
 	int fd;
 
-	if ((fd = open(history->path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU)) < 0
-		&& (g_errno = ERROR_OPENHIST))
+	if ((fd = open(history->path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU)) < 0)
 		return ;
 	while (history->item->next)
 			history->item = history->item->next;

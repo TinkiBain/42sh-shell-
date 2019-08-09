@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:30:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/01 07:05:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 15:15:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 void			die(void)
 {
 	term_restore();
-	ft_fdprintf(STDERR, "Fatal: out of virtual memory.\n");
-	ft_fdprintf(g_logfd, "Fatal: out of virtual memory.\n");
-	exit(1);
+	fatal("Out of virtual memory");
 }
 
 void		*xmalloc(size_t size)

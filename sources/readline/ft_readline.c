@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 15:17:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 18:07:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	*ft_readline(char *prompt, char *oldline)
 	t_line		line;
 	int			exit;
 
-	logopen();
 	sig_init();
 	term_init();
 	if (g_errno)
@@ -85,6 +84,5 @@ char	*ft_readline(char *prompt, char *oldline)
 	clear_linebuf();
 	clear_line(&line, exit, &g_history);
 	term_restore();
-	logclose();
 	return (line.result);
 }

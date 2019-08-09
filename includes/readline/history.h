@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 21:15:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/28 17:34:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 15:22:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "ft_readline.h"
 
-# define HISTORY_MAXSIZE		11			/* 10 history + 1 actual */
-# define DEFAULT_HIST_PATH		"./.42sh.history"
+# define HISTORY_MAXSIZE		(10 + 1)
+# define DEFAULT_HIST_PATH		"~/.42sh.history"
 
 typedef struct	s_history
 {

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/09 15:52:19 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/09 15:53:29 by wtalea           ###   ########.fr       */
+/*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/09 18:18:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			main(int ac, char **av)
 	char		*tmp;
 
 	g_env = create_copy_environ();
+	logopen();
 	init_readline();
 	fill_hash_table();
 	if (ac > 1)
@@ -96,5 +97,6 @@ int			main(int ac, char **av)
 	}
 	del_hash();
 	history_clear(g_history);
+	logclose();
 	return (g_res_exec);
 }
