@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/07 22:13:10 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/09 04:44:20 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCS_READLINE_ACTIONS=\
 
 SRCS_READLINE_COMPLETE=\
 	get_filenames.c			show_completions.c		complete_filename.c\
-	possible_filename_complitions.c
+	possible_filename_complitions.c complete.c
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c

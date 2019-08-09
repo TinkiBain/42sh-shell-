@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:06:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 22:09:21 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 04:43:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void bind_keys2(t_vector *key_bindings)
 	bind(key_bindings, CTRL_R, reverse_search_history);
 	bind(key_bindings, CTRL_G, reset_history_search);
 	bind(key_bindings, META + '/', possible_filename_completions);
-	bind(key_bindings, TAB, complete_filename);
+	bind(key_bindings, TAB, complete);
 }
 
 void		bind_keys(t_vector *key_bindings)

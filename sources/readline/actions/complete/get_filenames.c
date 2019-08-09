@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 22:11:20 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 05:18:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
+#include <sys/stat.h>
 
 static int		match(t_string name, t_string query)
 {
@@ -25,24 +26,36 @@ static int		match(t_string name, t_string query)
 	return (1);
 }
 
-static t_vector	build(DIR *dir, t_string *query)
+static t_vector	build(DIR *dir, t_string *query, t_string *path)
 {
 	struct dirent	*ent;
+	struct stat		st;
+	t_string		fullpath;
 	t_string		name;
 	t_vector		vec;
 
+	str_xaddback(path, "/", 1);
 	vec = vec_xcreate(0, sizeof(t_string));
 	while (dir && (ent = readdir(dir)))
 	{
+		if (ft_strequ(ent->d_name, ".") || ft_strequ(ent->d_name, ".."))
+			continue ;
 		name = str_xcopy(ent->d_name);
+		fullpath = str_xduplicate(*path);
+		str_xaddback(&fullpath, name.s, name.len);
+		stat(fullpath.s, &st);
+		str_delete(&fullpath);
+		if ((st.st_mode & S_IFMT) == S_IFDIR)
+			str_xaddback(&name, "/", 1);
 		if (match(name, *query))
 			vec_xaddback(&vec, &name);
 	}
 	str_delete(query);
+	str_delete(path);
 	return (vec);
 }
 
-static t_vector	build_filenames_vector(t_string str, int *start)
+static t_vector	build_filenames_vector(t_string str)
 {
 	DIR			*dir;
 	t_string	path;
@@ -56,15 +69,12 @@ static t_vector	build_filenames_vector(t_string str, int *start)
 	while ((c = str_get(str, --i)) && c != '/')
 		str_xaddfront(&query, &c, 1);
 	i++;
-	if (start)
-		*start = i;
 	while ((c = str_get(str, --i)))
 		str_xaddfront(&path, &c, 1);
 	if (path.len == 0)
 		str_xaddfront(&path, ".", 1);
 	dir = opendir(path.s);
-	str_delete(&path);
-	return (build(dir, &query));
+	return (build(dir, &query, &path));
 }
 
 t_vector		get_filenames(t_line *line, int *start)
@@ -76,7 +86,10 @@ t_vector		get_filenames(t_line *line, int *start)
 	i = line->cpos - 1;
 	while (str_get(*line->str, i) && !ft_isspace(str_get(*line->str, i)))
 		i--;
-	str = str_xsubstring(*line->str, i + 1, line->cpos);
-	vec = build_filenames_vector(str, start);
+	++i;
+	if (start)
+		*start = i;
+	str = str_xsubstring(*line->str, i, line->cpos - i);
+	vec = build_filenames_vector(str);
 	return (vec);
 }

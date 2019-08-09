@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 22:10:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 04:44:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ t_vector	get_filenames(t_line *line, int *start);
 void		possible_filename_completions(t_line *line);
 void		complete_filename(t_line *line);
 void		show_completions(t_vector vec);
+void		complete(t_line *line);
 
 #endif

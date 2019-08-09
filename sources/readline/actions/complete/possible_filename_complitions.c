@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:33:26 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 22:21:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/09 05:46:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void			possible_filename_completions(t_line *line)
 	t_vector	vec;
 
 	vec = get_filenames(line, NULL);
-	show_completions(vec);
+	if (vec.len != 1)
+	{
+		show_completions(vec);
+		line->complete_fail = 1;
+	}
+	else
+		line->complete_fail = 0;
 	vec_delete(&vec, del);
 }
