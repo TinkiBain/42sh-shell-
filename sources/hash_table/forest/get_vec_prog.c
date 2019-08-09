@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:21:51 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/06 20:52:13 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/09 15:46:46 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static	void	add_vector(char *str, t_vector *vector, t_hash *table)
 	size_t		len;
 
 	len = 0;
+	if (vector)
+		;
 	len = ft_strlen(str);
 	if (table)
 	{
@@ -26,7 +28,7 @@ static	void	add_vector(char *str, t_vector *vector, t_hash *table)
 		{
 			if (len <= ft_strlen(table->name))
 				if (!ft_memcmp(str, table->name, ft_strlen(str)))
-					vec_addback(vector, table->name);
+					vec_addback(vector, &table->name);
 			table = table->next;
 		}
 	}
