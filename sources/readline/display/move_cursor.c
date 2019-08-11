@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:24:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/02 17:39:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/11 04:54:59 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,9 @@ void		move_cur_start(void)
 	ccol = g_buffer.cpos % g_buffer.out_cols;
 	i = -1;
 	while (++i < crow)
-		term_putstr("up");
-	/* i = -1; */
-	/* while (++i < ccol) */
-	/* 	term_putstr("le"); */
-	term_putstr("cr");
+		tputs(g_cap.go_up, 1, ft_putint);
+	tputs(g_cap.car_ret, 1, ft_putint);
 }
-
-/* int			move_first_new(t_buffer *newbuf) */
-/* { */
-/* 	int		pos1; */
-/* 	int		pos2; */
-/* 	int		i; */
-
-/* 	pos1 = -1; */
-/* 	while (++pos1 < newbuf->b.len) */
-/* 		if (str_get(newbuf->b, pos1) != str_get(g_buffer->b, pos1)) */
-/* 			break ; */
-/* 	i = -1; */
-/* 	while (++i < newbuf->escseqs.len) */
-/* 		if (!ft_strequ(((t_escseq *)vec_get(newbuf->escseqs, i))->str.s, */
-/* 					   ((t_escseq *)vec_get(g_buffer->escseqs, i))->str.s)) */
-/* 			break ; */
-/* } */
 
 void		move_cur_right(int oldpos, int width)
 {
@@ -53,11 +33,11 @@ void		move_cur_right(int oldpos, int width)
 	oldccol = oldpos % width;
 	if (oldccol == width - 1)
 	{
-		term_putstr("do");
-		term_putstr("cr");
+		tputs(g_cap.go_down, 1, ft_putint);
+		tputs(g_cap.car_ret, 1, ft_putint);
 	}
 	else
-		term_putstr("nd");
+		tputs(g_cap.go_right, 1, ft_putint);
 }
 
 void		move_cur_left(int oldpos, int width)
@@ -68,11 +48,45 @@ void		move_cur_left(int oldpos, int width)
 	oldccol = oldpos % width;
 	if (oldccol == 0)
 	{
-		term_putstr("up");
+		tputs(g_cap.go_up, 1, ft_putint);
 		i = -1;
 		while (++i < width - 1)
-			term_putstr("nd");
+			tputs(g_cap.go_right, 1, ft_putint);
 	}
 	else
-		term_putstr("le");
+		tputs(g_cap.go_left, 1, ft_putint);
+}
+
+void		move_cur_nl(void)
+{
+	tputs(g_cap.go_down, 1, ft_putint);
+	tputs(g_cap.car_ret, 1, ft_putint);
+}
+
+void		move_cur_to(int oldpos, int newpos, int width)
+{
+	int cur_col;
+	int tar_col;
+	int row_diff;
+	int i;
+
+	cur_col = oldpos % width;
+	tar_col = newpos % width;
+	row_diff = newpos / width - oldpos / width;
+	row_diff = row_diff > 0 ? row_diff : -row_diff;
+	i = -1;
+	while (++i < row_diff)
+		tputs((newpos > oldpos ? g_cap.go_down : g_cap.go_up), 1, ft_putint);
+	if (cur_col > tar_col)
+		while (cur_col != tar_col)
+		{
+			tputs(g_cap.go_left, 1, ft_putint);
+			cur_col--;
+		}
+	else
+		while (cur_col != tar_col)
+		{
+			tputs(g_cap.go_right, 1, ft_putint);
+			cur_col++;
+		}
 }

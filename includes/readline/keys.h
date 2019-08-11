@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:55:20 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 10:38:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/10 20:32:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,5 @@ enum e_key
 # define NL				10
 # define ENTER			10
 # define CR				13
-
-# define CTRL_LEFT_SEQ	"\033[1;5D"
-# define CTRL_RIGHT_SEQ	"\033[1;5C"
-# define CTRL_UP_SEQ	"\033[1;5A"
-# define CTRL_DOWN_SEQ	"\033[1;5B"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 11:28:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/02 17:38:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/11 06:32:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DISPLAY_H
 
 # include "ft_readline.h"
+# include "terminal.h"
 
 # define TERM_MAX_COL		2048
 
@@ -35,12 +36,16 @@ void			init_linebuf(t_line *line);
 void			clear_linebuf(void);
 void			update_line(t_line *line);
 t_string		*build_bufout(t_string str, int width);
-void			redisplay(t_buffer *newbuf, int resize);
-int				get_screenwidth(void);
+void			redisplay(t_buffer *newbuf);
+void			resize(t_buffer *newbuf);
+int				get_screen_width(void);
+int				get_screen_height(void);
 int				get_term_cols(void);
 
 void			move_cur_start(void);
 void			move_cur_left(int oldpos, int width);
 void			move_cur_right(int oldpos, int width);
+void			move_cur_nl(void);
+void			move_cur_to(int oldpos, int newpos, int width);
 
 #endif

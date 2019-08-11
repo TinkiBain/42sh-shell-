@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:16:01 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 22:02:54 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/10 23:25:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,10 @@ void		del_vec_str(void *elem)
 {
 	str_delete(&((t_binding *)elem)->sequence);
 }
+
+int			ft_putint(int c)
+{
+	write(STDOUT, &c, 1);
+	return (0);
+}
+

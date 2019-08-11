@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 19:11:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 21:07:48 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/10 21:20:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		show_completions(t_vector vec)
 	int i;
 
 	term_restore();
-	columns = get_screenwidth() / (max_filename = get_max_filename(vec) + 1);
+	columns = get_screen_width() / (max_filename = get_max_filename(vec) + 1);
 	jump = vec.len / columns;
 	if (vec.len % columns)
 		jump++;

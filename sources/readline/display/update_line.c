@@ -6,15 +6,25 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/02 17:38:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/11 06:35:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
 
-int				get_screenwidth(void)
+int			get_screen_width(void)
 {
 	return (g_buffer.out_cols);
+}
+
+int			get_screen_height(void)
+{
+	struct winsize	ws;
+
+	ioctl(STDOUT, TIOCGWINSZ, &ws);
+	if (!ws.ws_row)
+		return (1);
+	return (ws.ws_row);
 }
 
 int			get_term_cols(void)
@@ -76,6 +86,17 @@ static void	convert_nl(t_buffer *buf, int width)
 	}
 }
 
+t_buffer	prepare_resized_buf(void)
+{
+	t_buffer	newbuf;
+
+	newbuf.b = str_xduplicate(g_buffer.original);
+	newbuf.original = str_xduplicate(g_buffer.original);
+	newbuf.cpos = g_buffer.cpos;
+	return (newbuf);
+}
+
+
 /*
 ** Idea as in the original Readline lib.
 ** Two buffers: 
@@ -91,25 +112,22 @@ void	update_line(t_line *line)
 	int				cols;
 
 	cols = get_term_cols();
-	if (line)
+	if (!line)
+		newbuf = prepare_resized_buf();
+	else
 	{
 		newbuf.original = str_xduplicate(*line->str);
 		str_xaddfront(&newbuf.original, line->prompt.s, line->prompt.len);
 		newbuf.b = str_xduplicate(newbuf.original);
-	}
-	else
-	{
-		newbuf.b = str_xduplicate(g_buffer.original);
-		newbuf.original = str_xduplicate(g_buffer.original);
+		newbuf.cpos = g_buffer.prompt_len + line->cpos;
 	}
 	pull_escseqs(&newbuf.escseqs, &newbuf.b);
 	convert_nl(&newbuf, cols);
-	newbuf.cpos = (line ? g_buffer.prompt_len + line->cpos : g_buffer.cpos);
 	newbuf.prompt_len = g_buffer.prompt_len;
 	newbuf.out_rows = newbuf.b.len / cols + 1;
 	newbuf.out_cols = cols;
 	newbuf.out = build_bufout(newbuf.b, cols);
-	redisplay(&newbuf, line ? 0 : 1);
+	(line ? redisplay(&newbuf) : resize(&newbuf));
 	clear_linebuf();
 	ft_memcpy(&g_buffer, &newbuf, sizeof(t_buffer));
 }
