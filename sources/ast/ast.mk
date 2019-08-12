@@ -36,6 +36,7 @@ SRCS_TRAVERSE_AST=\
 	traverse_pipeline.c\
 	redir_set.c\
 	redir_reset.c\
+	redir_add_table.c\
 	redirect_error.c\
 	redir_less.c\
 	redir_dless.c\

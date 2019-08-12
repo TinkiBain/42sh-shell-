@@ -12,26 +12,33 @@
 
 #include "exec.h"
 
+static void		close_all_fd(void)
+{
+	int			i;
+
+	i = 0;
+	while (++i < *g_open_fd)
+		close(g_open_fd[i]);
+	free(g_open_fd);
+	g_open_fd = NULL;
+}
+
 void			redir_reset(void)
 {
 	char		*file;
 	int			fd;
 	int			i;
 
-	if (!(file = ttyname(0)))
-	{
-		fd = open(g_tty, O_WRONLY);
-		dup2(fd, 0);
-		close(fd);
-	}
+	close_all_fd();
 	i = 0;
-	while (++i <= 2)
+	while (i < 4)
 	{
 		if (!(file = ttyname(i)))
 		{
-			fd = open(g_tty, O_RDONLY);
+			fd = open(g_tty, O_RDWR);
 			dup2(fd, i);
 			close(fd);
 		}
+		++i;
 	}
 }

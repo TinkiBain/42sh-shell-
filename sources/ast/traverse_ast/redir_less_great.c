@@ -26,6 +26,6 @@ int		redir_less_great(t_io_redirect *redir)
 		close(fd);
 		fd = redir->io_number;
 	}
-	// добавить в таблицу файловых дескрипторов
+	redir_add_fd_table(fd);
 	return (1);
 }

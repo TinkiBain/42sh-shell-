@@ -16,8 +16,10 @@
 #include "parser.h"
 #include "lexer.h"
 
+
 char		*g_tty;
-int			g_res_exec;
+int			*g_res_exec;
+int			*g_open_fd;
 
 int			call_exec(char **av, char ***env);
 int			check_builtin(char *cmd);
@@ -32,6 +34,7 @@ int			ft_unsetenv(char **av);
 
 void		redir_reset(void);
 void		redir_set(void);
+void		redir_add_fd_table(int fd);
 int			redirect(t_io_redirect *redir);
 int			redirect_error_fd(int fd);
 int			redirect_error_ambiguous(char *file);
