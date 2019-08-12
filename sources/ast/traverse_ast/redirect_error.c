@@ -6,12 +6,19 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:22:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 19:19:13 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:12:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "defs.h"
+
+int		redirect_error_range_fd(void)
+{
+	ft_putstr_fd(PROJECT_NAME
+			": file descriptor out of range: ambiguous redirect\n", 2);
+	return (-1);
+}
 
 int		redirect_error_ambiguous(char *file)
 {

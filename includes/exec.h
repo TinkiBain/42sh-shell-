@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 21:29:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:24:59 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		redir_set(void);
 void		redir_add_fd_table(int fd);
 int			redirect(t_io_redirect *redir);
 int			redirect_error_fd(int fd);
+int			redirect_error_range_fd(void);
 int			redirect_error_ambiguous(char *file);
 int			redirect_error_open(char *file);
 int			redirect_error_dup(int fd);
@@ -44,6 +45,7 @@ int			redir_less(t_io_redirect *redir);
 int			redir_dless(t_io_redirect *redir);
 int			redir_tless(t_io_redirect *redir);
 int			redir_less_great(t_io_redirect *redir);
+int			redir_less_and(t_io_redirect *redir);
 int			redir_great(t_io_redirect *redir);
 int			redir_great_and(t_io_redirect *redir);
 int			redir_and_great(t_io_redirect *redir);

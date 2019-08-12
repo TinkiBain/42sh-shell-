@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 18:23:51 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 19:53:41 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/12 16:18:57 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static int	redir_great_and_close(t_io_redirect *redir)
 {
 	if (redir->io_number == -1)
 		redir->io_number = 1;
-	if (redir->io_number >= 10000)
-		return (redirect_error_fd(redir->io_number));
 	close(redir->io_number);
 	return (1);
 }
@@ -39,7 +37,7 @@ static int	fill_fd(t_io_redirect *redir, int *close, int *right_fd)
 			break ;
 	if (!(*str))
 		*right_fd = ft_atoi(redir->file_name);
-	else if (redir->io_number > 9)
+	else if (redir->io_number > 2)
 		return (redirect_error_ambiguous(redir->file_name));
 	else if ((*right_fd = open(redir->file_name, O_WRONLY, O_CREAT, O_APPEND,
 					0664)) < 0)
@@ -56,10 +54,10 @@ int		redir_great_and(t_io_redirect *redir)
 	right_fd = -1;
 	if (*(redir->file_name) == '-' && !*(redir->file_name + 1))
 		return (redir_great_and_close(redir));
+	else if (redir->io_number == -2)
+		return (redirect_error_range_fd());
 	else if (fill_fd(redir, &fd_close, &right_fd) < 0)
 		return (-1);
-//	if (right_fd >= 10000)
-//		return (redirect_error_fd(right_fd));
 	if (redir->io_number == -1)
 		redir->io_number = 1;
 	if (right_fd != -1)
