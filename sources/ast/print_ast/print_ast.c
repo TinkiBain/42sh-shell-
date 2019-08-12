@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/29 19:52:03 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/12 19:04:01 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static void	print_token_number(int type)
 		ft_putstr("&>");
 	else if (type & ANDDGREAT)
 		ft_putstr("&>>");
+	else if (type & CLOBBER)
+		ft_putstr(">|");
 }
 
 static void	print_io_redir(t_io_redirect *redir)

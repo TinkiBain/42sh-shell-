@@ -6,18 +6,17 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:55:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 19:48:23 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/12 19:01:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-int		redir_clober(t_io_redirect *redir)
+int		redir_clobber(t_io_redirect *redir)
 {
 	int	left_fd;
 	int	fd;
 
-	printf("%s\n", redir->file_name);
 	if ((fd = open(redir->file_name, O_WRONLY | O_CREAT | O_TRUNC,
 					0644)) < 0)
 		return (redirect_error_open(redir->file_name));

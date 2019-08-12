@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 18:24:59 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:59:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 
 char		*g_tty;
-int			*g_res_exec;
+int			g_res_exec;
 int			*g_open_fd;
 
 int			call_exec(char **av, char ***env);
