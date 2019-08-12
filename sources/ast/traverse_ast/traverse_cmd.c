@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 19:10:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/12 18:02:14 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	char			**av;
 	char			**new_env;
 	int				is_copy_environ;
+	char			*tmp;
 
 	is_copy_environ = 0;
 	new_env = env;
@@ -47,7 +48,11 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	{
 		traverse_cmd_pref(pref, &new_env, &is_copy_environ, in_fork);
 		if (cmd->cmd_word)
+		{
+			if ((tmp = tilda_check(cmd->cmd_word)) != NULL)
+				cmd->cmd_word = tmp;
 			push_back_av(&av, cmd->cmd_word);
+		}
 	}
 	else
 		push_back_av(&av, cmd->cmd_name);
@@ -55,7 +60,17 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	while (suff)
 	{
 		if (suff->word)
+		{
+			if ((tmp = qoutes(suff->word)) == NULL)
+			{
+				suff->word = ft_dollar(suff->word);
+				if ((tmp = tilda_check(suff->word)) != NULL)
+					suff->word = tmp;
+			}
+			else
+				suff->word = tmp;
 			push_back_av(&av, suff->word);
+		}
 		else
 			redirect(suff->io_redir);
 		suff = suff->cmd_suf;
