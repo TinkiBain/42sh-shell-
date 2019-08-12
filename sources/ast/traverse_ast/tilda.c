@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/12 16:51:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/12 19:21:12 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ char				*tilda_check(char *str)
 	{
 		if (!(tmp = tilda(str, NULL)))
 		{
-			write(2, "21sh: no such user or named directory: ", 44);
 			free(tmp);
 			return (NULL);
 		}

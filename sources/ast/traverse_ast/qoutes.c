@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 17:50:20 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/12 18:56:08 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/12 19:06:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char			*qoutes(char *str)
 	}
 	if (i == 0)
 		return (NULL);
-	free(str);
 	str = cleaner(str);
 	return (str);
 }
