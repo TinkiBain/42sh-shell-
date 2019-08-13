@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/13 17:14:24 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/13 20:32:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			TYPE_OF_PROGRAM;
 **	global variable for internal shell environment.
 */
 
-char		**g_shell_env;
+char		**g_var;
 
 void		free_lex(t_lex *lex)
 {
@@ -54,7 +54,7 @@ int			main(int ac, char **av)
 	extern char	**environ;
 
 	environ = create_copy_env(environ);
-	g_shell_env = environ;
+	g_var = environ;
 	logopen();
 	init_readline();
 	fill_hash_table();
@@ -68,10 +68,10 @@ int			main(int ac, char **av)
 	while (1)
 	{
 		buf = ft_readline("\033[0;31m" PROJECT_NAME ">\033[0m ", NULL);
-		if (!buf)
-			break ;
 		if (g_errno)
 			printerr();
+		if (!buf)
+			break ;
 		else
 		{
 			if (*(tmp = ft_strtrim(buf)))
