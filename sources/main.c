@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 22:01:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/13 17:14:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,18 @@
 // #include "get_env.h"
 // #include "hash.h"
 
+/*
+**	variable for launch shell with param
+	(now using for print ast instead for exec cmd).
+*/
+
 int			TYPE_OF_PROGRAM;
+
+/*
+**	global variable for internal shell environment.
+*/
+
+char		**g_shell_env;
 
 void		free_lex(t_lex *lex)
 {
@@ -43,6 +54,7 @@ int			main(int ac, char **av)
 	extern char	**environ;
 
 	environ = create_copy_env(environ);
+	g_shell_env = environ;
 	logopen();
 	init_readline();
 	fill_hash_table();
