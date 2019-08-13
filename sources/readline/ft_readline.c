@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 18:07:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/13 23:27:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int		g_logfd;
 
 static void	sig_init(void)
 {
-	/* signal(SIGINT, sigh_sigint); */
+	signal(SIGINT, sigh_ignore);
+	signal(SIGTSTP, SIG_DFL);
 	signal(SIGSEGV, sigh_sigsegv);
 	signal(SIGABRT, sigh_sigabrt);
 	signal(SIGWINCH, sigh_sigwinch);
 	signal(SIGTERM, sigh_sigterm);
-	/* signal(SIGTSTP, sigh_ignore); */
 }
 
 static void init_line(t_line *line, char *prompt, char *oldline)

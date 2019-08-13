@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:57:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/11 07:01:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/13 23:26:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	sigh_sigwinch(int sig)
 
 void	sigh_ignore(int sig)
 {
-	if (sig)
-		return ;
+	loginfo("Caught signal %d", sig);
+	ft_putchar('\n');
 }
