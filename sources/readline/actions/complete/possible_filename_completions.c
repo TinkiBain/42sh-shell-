@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   possible_filename_completions.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/09 15:02:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 07:45:50 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/13 07:48:28 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/13 07:48:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "actions.h"
 
-# include "ft_readline.h"
+static void		del(void *s)
+{
+	str_delete(s);
+}
 
-void		del_bind_str(void *elem);
-void		del_str(void *s);
-char		*convert_tilde(char *str);
-int			ft_putint(int c);
+void			possible_filename_completions(t_line *line)
+{
+	t_vector	vec;
 
-#endif
+	vec = get_filenames(line);
+	if (vec.len != 1)
+		show_completions(vec);
+	vec_delete(&vec, del);
+}

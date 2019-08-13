@@ -6,12 +6,18 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 18:49:27 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/13 08:34:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include <sys/stat.h>
+
+static int		cmp(const void *a, const void *b)
+{
+	return (ft_strcmp(((t_string *)a)->s,
+					  ((t_string *)b)->s));
+}
 
 static int		match(t_string name, t_string query)
 {
@@ -51,9 +57,12 @@ static t_vector	build(DIR *dir, t_string *query, t_string *path)
 			str_xaddback(&name, " ", 1);
 		if (match(name, *query))
 			vec_xaddback(&vec, &name);
+		else
+			str_delete(&name);
 	}
 	str_delete(query);
 	str_delete(path);
+	closedir(dir);
 	return (vec);
 }
 
@@ -79,7 +88,7 @@ static t_vector	build_filenames_vector(t_string str)
 	return (build(dir, &query, &path));
 }
 
-t_vector		get_filenames(t_line *line, int *start)
+t_vector		get_filenames(t_line *line)
 {
 	t_string	str;
 	t_vector	vec;
@@ -89,9 +98,9 @@ t_vector		get_filenames(t_line *line, int *start)
 	while (str_get(*line->str, i) && !ft_isspace(str_get(*line->str, i)))
 		i--;
 	++i;
-	if (start)
-		*start = i;
 	str = str_xsubstring(*line->str, i, line->cpos - i);
 	vec = build_filenames_vector(str);
+	str_delete(&str);
+	ft_qsort(vec.v, vec.len, vec.size, cmp);
 	return (vec);
 }

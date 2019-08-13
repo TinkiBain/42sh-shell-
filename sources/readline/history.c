@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:18:46 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 15:21:14 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/13 08:37:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void		history_clear(t_history *history)
 	if (history)
 	{
 		ft_dlstdel(&history->item, del);
+		ft_strdel(&history->path);
 		free(history);
 	}
 }

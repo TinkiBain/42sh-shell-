@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/09 21:27:42 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/13 05:48:04 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ H_FILES=\
 	ft_string.h\
 	ft_vector.h\
 	get_next_line.h\
+	ft_qsort.h\
 	libft.h
 
 HEADER=$(addprefix includes/, $(H_FILES))
@@ -37,7 +38,7 @@ FT_VECTOR_DIR=ft_vector/
 LIST_DIR=list/
 DLIST_DIR=dlist/
 
-SRCS_WITHOUT_DIR=get_next_line.c
+SRCS_WITHOUT_DIR=get_next_line.c ft_qsort.c
 
 SRCS_MEM=ft_bzero.c			ft_memalloc.c				ft_memccpy.c\
 		ft_memchr.c			ft_memcmp.c					ft_memcpy.c\

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 04:44:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/13 07:40:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define ACTIONS_H
 
 # include "ft_readline.h"
+# include "ft_qsort.h"
+
+# define	COMPLETION_QUERY_ITEMS		100
 
 void		self_insert(t_line *line);
 void		backward_delete_char(t_line *line);
@@ -61,10 +64,18 @@ void		vi_insert_end(t_line *line);
 void		vi_insert_overwrite(t_line *line);
 void		vi_beginning_of_line_nonblank(t_line *line);
 
-t_vector	get_filenames(t_line *line, int *start);
-void		possible_filename_completions(t_line *line);
-void		complete_filename(t_line *line);
+t_vector	get_filenames(t_line *line);
+t_string	find_common_part(t_vector vec);
+t_string	get_command_query(t_line *line);
 void		show_completions(t_vector vec);
+
 void		complete(t_line *line);
+void		complete_filename(t_line *line);
+void		possible_filename_completions(t_line *line);
+void		complete_command(t_line *line);
+void		possible_command_completions(t_line *line);
+void		complete_variable(t_line *line);
+void		possible_variable_completions(t_line *line);
+
 
 #endif

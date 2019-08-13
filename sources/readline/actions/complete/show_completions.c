@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 19:11:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/10 21:20:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/13 06:52:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	show_one(t_string *str, int max)
 		ft_putchar_fd(' ', STDOUT);
 }
 
-void		show_completions(t_vector vec)
+static void	show(t_vector vec)
 {
 	int max_filename;
 	int columns;
@@ -65,4 +65,29 @@ void		show_completions(t_vector vec)
 		row++;
 	}
 	term_setup();
+}
+
+static int	ask_display_many(int n)
+{
+	char	c;
+
+	if (n < COMPLETION_QUERY_ITEMS)
+		return (1);
+	ft_fdprintf(STDOUT, "\n\rDisplay all %d possibilities? (y or n)", n);
+	c = 0;
+	while (c != CTRL_C && c != 'n' && c != DEL)
+	{
+		read(STDIN, &c, 1);
+		if (c == 'y' || c == ' ')
+			return (1);
+	}
+	return (0);
+}
+
+void		show_completions(t_vector vec)
+{
+	if (ask_display_many(vec.len))
+		show(vec);
+	else
+		ft_putstr_fd("\n\r", STDOUT);
 }

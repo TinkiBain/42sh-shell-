@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   possible_variable_completions.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/09 15:02:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 07:45:50 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/13 07:41:54 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/13 07:42:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "actions.h"
 
-# include "ft_readline.h"
+/* static void		del(void *s) */
+/* { */
+/* 	str_delete(s); */
+/* } */
 
-void		del_bind_str(void *elem);
-void		del_str(void *s);
-char		*convert_tilde(char *str);
-int			ft_putint(int c);
-
-#endif
+void			possible_variable_completions(t_line *line)
+{
+	if (line)
+		return ;
+}

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/09 15:31:03 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/13 07:48:49 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,11 @@ SRCS_READLINE_ACTIONS=\
 	vi_beginning_of_line_nonblank.c					transpose_words_supp.c\
 
 SRCS_READLINE_COMPLETE=\
-	get_filenames.c			show_completions.c		complete_filename.c\
-	possible_filename_complitions.c complete.c
+	get_filenames.c			show_completions.c		complete.c\
+	possible_filename_completions.c					complete_filename.c\
+	possible_command_completions.c					complete_command.c\
+	possible_variable_completions.c					complete_variable.c\
+	find_common_part.c								
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c
