@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/13 10:59:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/13 13:10:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	call_nonbuilin_exec(const char *path,  char *const *av, char **env)
 {
 	if (!access(path, X_OK))
 	{
-		execve(path, av, env);
+		if (execve(path, av, env) == -1)
+			exit (-1);
 	}
 	else
 	{
