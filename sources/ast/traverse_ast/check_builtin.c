@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 19:32:27 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/12 03:34:08 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/13 11:05:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ static int	print_error(const char *cmd, const char *error)
 	ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(error, 2);
 	return (-1);
+}
+
+static int	cmd_is_exist(const char *cmd)
+{
+	if (!get_bin((char *)cmd))
+		return (print_error(cmd, ": command not found"));
+	return (0);
 }
 
 static int	check_cmd(const char *cmd)
@@ -42,7 +49,11 @@ static int	check_cmd(const char *cmd)
 			return (print_error(cmd, ": Is a directory"));
 		else if (!S_ISREG(st.st_mode))
 			return (print_error(cmd, ": No such file or directory"));
+		else if (access(cmd, X_OK))
+			return (print_error(cmd, ": Permission denied"));
 	}
+	else
+		return (cmd_is_exist(cmd));
 	return (0);
 }
 
