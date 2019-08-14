@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/14 17:08:57 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/14 18:52:31 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void		traverse_pipeline(t_pipeline *root);
 void		print_ast(t_pars_list *root);
 
 char		*tilda_check(char *str);
-char		*ft_dollar(char *str);
-char		*qoutes(char *str);
 char		*tdq(char *str);
-char		*dqoutes(char *str);
 void		sokrat(int *i, char **str);
+int			ft_check_stop(char c);
 
 #endif

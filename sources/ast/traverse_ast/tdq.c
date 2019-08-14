@@ -6,11 +6,80 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/14 17:24:06 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/14 20:29:53 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+static int		f(char *str, int i, char cha)
+{
+	while (str[i] && str[i] != cha)
+	{
+		if (str[i] == 92)
+			i++;
+		i++;
+	}
+	return (i);
+}
+
+static int		checker(char *str)
+{
+	int			i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == 92)
+			i++;
+		else if (str[i] == 39)
+		{
+			i = f(str, i + 1, 39); 
+			if (!str[i])
+			{
+				g_errno = 15;
+				return (-1);
+			}
+			continue ;
+		}
+		else if (str[i] == 34)
+		{
+			if (str[i++] == 92)
+				i += 2;
+			i = f(str, i, 34); 
+			if (!str[i])
+			{
+				g_errno = 16;
+				return (-1);
+			}
+		}
+	}
+	return (1);
+}
+
+int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
+{
+	if (str[*i] == 92)
+		(*i) += 1;
+	else if (str[*i] == 39)
+	{
+		while (str[++(*i)] != 39)
+			(*tmp)[(*t_i)++] = str[*i];
+		return (-1);
+	}
+	else if (str[*i] == 34)
+	{
+		while (str[++(*i)] != 34)
+		{
+			if (str[*i] == 92 && (str[(*i) + 1] == '$' || str[(*i) + 1] == 92
+						|| str[(*i) + 1] == 34 || str[(*i) + 1] == '`'))
+				(*i) += 1;
+			(*tmp)[(*t_i)++] = str[*i];
+		}
+		return (-1);
+	}
+	return (1);
+}
 
 static char		*cleaner(char *str)
 {
@@ -23,18 +92,40 @@ static char		*cleaner(char *str)
 	tmp = ft_strnew(ft_strlen(str));
 	while (str[++i])
 	{
-		if (str[i] == 39 || str[i] == 34)
-		{
-			if (!(str[i - 1] && str[i - 1] == 92))
-				i++;
-		}
-		tmp[t_i] = str[i];
-		t_i++;
+		if (cleaner_while(&tmp, &t_i, &i, str) < 0)
+			continue ;
+		tmp[t_i++] = str[i];
 	}
 	free(str);
 	str = ft_strdup(tmp);
 	free(tmp);
 	return (str);
+}
+
+void		tdq_while(int *i, char **str)
+{
+	if ((*str)[*i] == 92)
+		(*i) += 1;
+	else if ((*str)[*i] == 39)
+		while ((*str)[++(*i)])
+		{
+			if((*str)[*i] == 39)
+				break;
+		}
+	else if ((*str)[*i] == 34)
+	{
+		(*i) += 1;
+		while ((*str)[*i] && (*str)[*i] != 34)
+		{
+			if ((*str)[*i] == '$' && (*str)[(*i) + 1]  && ft_check_stop((*str)[(*i) + 1]))
+				sokrat(i, str);
+			else if ((*str)[*i] == 92)
+				(*i) += 1;
+			(*i) += 1;
+		}
+	}
+	else if ((*str)[*i] == '$' && (*str)[(*i) + 1]  && ft_check_stop((*str)[(*i) + 1]))
+		sokrat(i, str);
 }
 
 char		*tdq(char *str)
@@ -43,35 +134,16 @@ char		*tdq(char *str)
 	int		i;
 
 	i = -1;
-	if ((tmp = qoutes(str)) || (tmp = dqoutes(str)))
+	tmp = str;
+	if (checker(str) > 0)
 	{
 		while (str[++i])
-		{
-			if (str[i] == 92)
-				i++;
-			else if (str[i] == 39)
-			{
-				i++;
-				while (str[i] != 39)
-					i++;
-			}
-			else if (str[i] == 34)
-				while (str[i] != 34)
-				{
-					if (str[i] == '$')
-						sokrat(&i, &str);
-					else if (str[i] == 92)
-						i++;
-					i++;
-				}
-			else if (str[i] == '$')
-				sokrat(&i, &str);
-		}
+			tdq_while(&i, &str);
 		if (*str == '~')
 		{
-		str = cleaner(str);
-		if ((tmp = tilda_check(str)) != NULL)
-			str = tmp;
+			str = cleaner(str);
+			if ((tmp = tilda_check(str)) != NULL)
+				str = tmp;
 		}
 		else 
 			str = cleaner(str);

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/14 16:57:18 by jterry           ###   ########.fr        #
+#    Updated: 2019/08/14 18:53:17 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS_TRAVERSE_AST=\
 	dollar.c\
 	qoutes.c\
 	tdq.c\
-	dqoutes.c
 
 SRCS_PRINT_AST=\
 	print_ast.c

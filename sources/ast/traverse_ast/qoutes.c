@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 17:50:20 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/14 17:09:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/14 18:12:05 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static int		q_check(char *str)
 	count = 0;
 	while (str[++i])
 	{
-		if (str[i - 1] && str[i - 1] != 92 && str[i] == 39)
+		if (str[i] == 92)
+			i++;
+		else if (str[i] == 39)
 		{
 			if (count == 0 || count == 2)
 				count = 1;
