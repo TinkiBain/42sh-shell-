@@ -46,7 +46,7 @@ int		redir_less_and(t_io_redirect *redir)
 		redir->io_number = 0;
 	if (redir_fill_fd(redir, &fd_close, &right_fd) < 0)
 		return (-1);
-	if (redir->io_number != 0 && right_fd == -1 && fd_close)
+	if (right_fd == -1 && fd_close)
 	{
 		close(redir->io_number);
 		return (1);

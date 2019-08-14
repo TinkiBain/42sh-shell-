@@ -17,7 +17,7 @@ int			redir_less(t_io_redirect *redir)
 	int		right_fd;
 	
 	if (redir->io_number == -1)
-		redir->io_number = 1;
+		redir->io_number = 0;
 	if ((right_fd = open(redir->file_name, O_RDONLY)) < 0)
 		return (redirect_error_open(redir->file_name));
 	if (dup2(right_fd, redir->io_number) < 0)

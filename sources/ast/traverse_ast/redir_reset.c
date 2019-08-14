@@ -16,6 +16,8 @@ static void		close_all_fd(void)
 {
 	int			i;
 
+	if (!g_open_fd)
+		return ;
 	i = 0;
 	while (++i < *g_open_fd)
 		close(g_open_fd[i]);
@@ -25,19 +27,19 @@ static void		close_all_fd(void)
 
 void			redir_reset(void)
 {
-	char		*file;
 	int			fd;
 	int			i;
 
 	close_all_fd();
 	i = 0;
-	while (i < 4)
+	while (i < 3)
 	{
-		if (!(file = ttyname(i)))
+		if (!ttyname(i))
 		{
 			fd = open(g_tty, O_RDWR);
 			dup2(fd, i);
-			close(fd);
+			if (fd != i)
+				close(fd);
 		}
 		++i;
 	}
