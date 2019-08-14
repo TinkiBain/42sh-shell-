@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:04:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 14:54:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 18:46:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <execinfo.h>
 # include "ft_readline.h"
 
-# define DEFAULT_LOG_PATH	"./42sh.log"
+# define DEF_LOG_PATH		"./.42sh.log"
 # define LOG_PATH			"~/.42sh.log"
 # define BT_BUFSIZE			32
 

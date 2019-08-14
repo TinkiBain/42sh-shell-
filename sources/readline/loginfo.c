@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 17:53:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 18:47:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,21 @@ int			g_logfd;
 
 void		logopen(void)
 {
-	char *abspath;
+	char	*path;
 
 	if (!DEBUG)
 		return ;
-	if (!(abspath = convert_tilde(LOG_PATH)))
-	{
-		g_logfd = open(DEFAULT_LOG_PATH, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
-		if (g_logfd < 0)
-			ft_memcpy(g_errinfo, DEFAULT_LOG_PATH, ft_strlen(DEFAULT_LOG_PATH));
-	}
-	else if (
-		(g_logfd = open(abspath, O_RDWR | O_APPEND | O_CREAT, S_IRWXU)) < 0)
-		ft_memcpy(g_errinfo, abspath, ft_strlen(abspath));
-	ft_strdel(&abspath);
+	path = convert_tilde(LOG_PATH);
+	g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 	if (g_logfd < 0)
-		g_errno = E_OPEN;
-	else
-		loginfo("logopen()");
+	{
+		g_logfd = open(DEF_LOG_PATH, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
+		if (g_logfd < 0)
+			ft_fdprintf(STDERR, "Error while opening logfile: %s\n",
+															DEF_LOG_PATH);
+		loginfo("Error while opening logfile: %s", path);
+	}
+	loginfo("logopen()");
 }
 
 void		logclose(void)

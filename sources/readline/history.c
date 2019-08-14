@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:18:46 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 08:37:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 18:44:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			history_open(t_history *history, char *path)
 	if (history->path)
 		fd = open(history->path, O_RDONLY | O_CREAT, S_IRWXU);
 	if (fd < 0)
-		loginfo("Can't open history file");
+		loginfo("Can't open history file: %s", history->path);
 	else
 		loginfo("History location: %s", history->path);
 	return (fd);
