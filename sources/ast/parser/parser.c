@@ -55,6 +55,7 @@ t_pars_list			*parser(t_lex *lex, t_pars_list *list_down, int type)
 		}
 		lex = lex->next;
 	}
-	list_pars->and_or = parser_and_or(begin);
+	if (!(list_pars->and_or = parser_and_or(begin)))
+		return (parser_free_tree(list_pars));
 	return (list_pars);
 }

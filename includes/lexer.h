@@ -49,6 +49,7 @@ char				*lexer_bang(char *str, t_lex *lex);
 size_t				lexer_check_word(char *str, t_lex **lex);
 size_t				lexer_and_or(char *str, t_lex **lex);
 size_t				lexer_check_redir(char *str, t_lex **lex);
+void				lexer_free_all(t_lex *lex);
 int					ft_isspec(char c);
 
 #endif

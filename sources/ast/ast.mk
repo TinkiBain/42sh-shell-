@@ -17,7 +17,7 @@ PRINT_AST_DIR=print_ast
 
 SRCS_LEXER=\
 	lexer.c					lexer_and_or.c			lexer_check_redir.c\
-	lexer_get_token.c		lexer_bang.c
+	lexer_get_token.c		lexer_bang.c			lexer_free_all.c
 
 SRCS_PARSER=\
 	parser.c				parser_and_or.c			parser_cmd.c\

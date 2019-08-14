@@ -18,14 +18,6 @@
 
 int			TYPE_OF_PROGRAM;
 
-void		free_lex(t_lex *lex)
-{
-	if (!lex)
-		return ;
-	if (lex->lexeme)
-		free(lex->lexeme);
-	free(lex);
-}
 
 void	init_readline(void)
 {
@@ -33,12 +25,39 @@ void	init_readline(void)
 	history_load(g_history, DEFAULT_HIST_PATH);
 }
 
+t_pars_list		*exec_ast(char *buf)
+{
+	t_lex		*lex;
+	t_lex		*src;
+	t_pars_list	*list;
+	char		*tmp; //убрать полсе добавления второго парметра в readline
+
+	tmp = NULL;
+	lex = lexer(buf);
+	src = lex;
+	while (src->next)
+		src = src->next;
+	list = parser(lex, NULL, 0);
+	lexer_free_all(src);
+	if (g_error_pars == 1)
+		return (NULL);
+	if (g_error_pars == 2)
+	{
+		tmp = ft_readline(">", tmp);// buf = ft_readline(">", tmp);
+		buf = ft_strjoin(buf, tmp); // убрать после добавления второго парметра в readline
+		free(tmp); // утечка на строчку выше, пропадет после добавления параметра, удалить эту строку
+		g_error_pars = 0;
+		return (exec_ast(buf));
+	}
+	return (list);
+}
+
 int			main(int ac, char **av)
 {
 	char		*buf;
 	t_pars_list	*list;
-	t_lex		*lex;
-	t_lex		*src;
+//	t_lex		*lex;
+//	t_lex		*src;
 	char		*tmp;
 
 	extern char **environ;
@@ -63,32 +82,30 @@ int			main(int ac, char **av)
 		{
 			if (*(tmp = ft_strtrim(buf)))
 			{
-				lex = lexer(buf);
-				src = lex;
-				while (src->next)
-					src = src->next;
-				list = parser(lex, NULL, 0);
-				if (!g_error_pars)
+//				lex = lexer(buf);
+//				src = lex;
+//				while (src->next)
+//					src = src->next;
+//				list = parser(lex, NULL, 0);
+				list = exec_ast(buf);
+				if (TYPE_OF_PROGRAM)
 				{
-					if (TYPE_OF_PROGRAM)
-					{
-						ft_putendl("print AST:");
-						print_ast(list);
-						ft_putstr("\n");
-					}
-					else
-						traverse_ast(list);
+					ft_putendl("print AST:");
+					print_ast(list);
+					ft_putstr("\n");
 				}
+				else
+					traverse_ast(list);
 				g_error_pars = 0;
 				parser_free_tree(list);
-				while (src->prev)
-				{
-					lex = src;
-					src = src->prev;
-					free_lex(lex);
-				}
-				free_lex(src);
-				free(tmp);
+//				while (src->prev)
+//				{
+//					lex = src;
+//					src = src->prev;
+//					free_lex(lex);
+//				}
+//				free_lex(src);
+//				free(tmp);
 			}
 		}
 		ft_strdel(&buf);
