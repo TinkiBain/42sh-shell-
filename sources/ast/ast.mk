@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/06 20:37:45 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/12 19:01:02 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PRINT_AST_DIR=print_ast
 
 SRCS_LEXER=\
 	lexer.c					lexer_and_or.c			lexer_check_redir.c\
-	lexer_get_token.c		lexer_bang.c
+	lexer_get_token.c		lexer_bang.c			lexer_free_all.c
 
 SRCS_PARSER=\
 	parser.c				parser_and_or.c			parser_cmd.c\
@@ -36,10 +36,18 @@ SRCS_TRAVERSE_AST=\
 	traverse_pipeline.c\
 	redir_set.c\
 	redir_reset.c\
+	redir_add_table.c\
 	redirect_error.c\
 	redir_less.c\
+	redir_dless.c\
 	redir_tless.c\
-	redir_great.c
+	redir_less_great.c\
+	redir_less_and.c\
+	redir_great.c\
+	redir_great_and.c\
+	redir_and_great.c\
+	redir_and_dgreat.c\
+	redir_clobber.c
 
 SRCS_PRINT_AST=\
 	print_ast.c

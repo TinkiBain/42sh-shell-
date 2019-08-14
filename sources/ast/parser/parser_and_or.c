@@ -29,9 +29,8 @@ t_and_or		*parser_and_or(t_lex *lex)
 	t_lex		*tmp;
 	t_lex		*begin;
 
-	if (!(lex && (begin = lex)))
+	if (!(lex && (begin = lex)) && (g_error_pars = 2))
 		return (NULL);
-	// вместе в возравтом должна отработать операция ">"
 	if (lex->type & AND_IF || lex->type & OR_IF)
 		return (parser_print_error("&&"));
 	elem = init_and_or();

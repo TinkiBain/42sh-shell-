@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/02 19:21:45 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/07 22:04:30 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char				*lexer_bang(char *str, t_lex *lex);
 size_t				lexer_check_word(char *str, t_lex **lex);
 size_t				lexer_and_or(char *str, t_lex **lex);
 size_t				lexer_check_redir(char *str, t_lex **lex);
+void				lexer_free_all(t_lex *lex);
 int					ft_isspec(char c);
 
 #endif

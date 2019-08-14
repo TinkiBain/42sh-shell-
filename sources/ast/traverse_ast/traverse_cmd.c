@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/13 15:26:37 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/14 15:19:08 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	new_env = env;
 	av = (char **)ft_xmalloc(sizeof(char *) * 2);
 	ft_bzero(av, sizeof(char *) * 2);
+	redir_set();
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
@@ -68,4 +69,5 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	if (flag & IS_COPY_ENV)
 		ft_free_double_ptr_arr((void ***)&new_env);
 	free(av);
+	redir_reset();
 }

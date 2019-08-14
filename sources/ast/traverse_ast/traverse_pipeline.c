@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/12 00:46:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/14 15:20:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
 
 	if (pipe_seq->pipe_op)
 	{
+		redir_set();
 		ast_handle_pipe(pipe_seq, 0, env, 1);
+		redir_reset();
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/01 21:25:45 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/12 19:04:35 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 int			lexer_redir_and(char **str)
 {
 	(*str)++;
-	if (**str && **str == '|')
-		return (CLOBBER);
 	if (**str && **str == '>' && ++(*str))
 	{
 		if (**str && **str == '>' && ++(*str))
@@ -30,6 +28,8 @@ int			lexer_redir_and(char **str)
 int			lexer_redir_great(char **str)
 {
 	(*str)++;
+	if (**str && **str == '|' && ++(*str))
+		return (CLOBBER);
 	if (**str && **str == '>' && ++(*str))
 		return (DGREAT);
 	if (**str && **str == '&' && ++(*str))
@@ -92,6 +92,13 @@ size_t		lexer_check_redir(char *str, t_lex **lex)
 	begin = str;
 	while (*str >= '0' && *str <= '9')
 	{
+		if (fd > fd * 10 + (*str - '0') && (fd = -2))
+		{
+			fd = -2;
+			while (*str && *str >= '0' && *str <= '9')
+				++str;
+			break ;
+		}
 		fd = fd * 10 + (*str - '0');
 		++str;
 	}

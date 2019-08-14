@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_set.c                                        :+:      :+:    :+:   */
+/*   redir_and_great.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 16:51:48 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 15:52:24 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/08/08 14:06:18 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/08/09 19:45:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-void			redir_set(void)
+int			redir_and_great(t_io_redirect *redir)
 {
-	extern	char *g_tty;
+	int		fd;
 
-	g_tty = ttyname(0);
-	g_open_fd = (int *)ft_xmalloc(sizeof(int) * 1);
-	*g_open_fd = 0;
+	fd = -1;
+	if (redir->io_number == -1)
+		redir->io_number = 1;
+	if (redir->file_name)
+		if (!(fd = open(redir->file_name, O_WRONLY | O_CREAT | O_TRUNC,
+						0644)))
+			return (redirect_error_open(redir->file_name));
+	if (fd >= 0)
+		dup2(fd, 2);
+	if (dup2(2, redir->io_number) < 0)
+	{
+		close(fd);
+		return (redirect_error_dup(redir->io_number));
+	}
+	close(fd);
+	return (1);
 }

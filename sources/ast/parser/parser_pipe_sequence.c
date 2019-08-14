@@ -23,11 +23,16 @@ static t_pipe_sequence	*init_pipe_sequence(void)
 	return (pipe_seq);
 }
 
-void					*parser_pipe_sequence_check_error(int type)
+void					*parser_pipe_sequence_check_error(t_lex *lex)
 {
-	if (type & PIPE_SYMB)
+	if (!lex)
+	{
+		g_error_pars = 2;
+		return (NULL);
+	}
+	if (lex->type & PIPE_SYMB)
 		return (parser_print_error("|"));
-	if (type & BANG)
+	if (lex->type & BANG)
 		return (parser_print_error("!"));
 	return ((void*)1);
 }
@@ -39,7 +44,7 @@ t_pipe_sequence			*parser_pipe_sequence(t_lex *lex)
 	t_lex				*tmp;
 
 	begin = lex;
-	if (!parser_pipe_sequence_check_error(lex->type))
+	if (!parser_pipe_sequence_check_error(lex))
 		return (NULL);
 	pipe_seq = init_pipe_sequence();
 	while (lex->next)

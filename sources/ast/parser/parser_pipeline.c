@@ -24,6 +24,7 @@ static t_pipeline	*init_pipeline(void)
 t_pipeline			*parser_pipeline(t_lex *lex)
 {
 	t_pipeline	*pipeline;
+	extern int	g_error_pars;
 
 	pipeline = init_pipeline();
 	if (lex->type & BANG)

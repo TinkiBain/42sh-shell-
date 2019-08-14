@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_great.c                                      :+:      :+:    :+:   */
+/*   redir_and_dgreat.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/06 20:28:36 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 21:29:21 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/08/08 14:27:02 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/08/09 19:44:10 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
-#include "lexer.h"
 
-int		redir_great(t_io_redirect *redir)
+int			redir_and_dgreat(t_io_redirect *redir)
 {
-	int	fd;
+	int		fd;
 
-	if (redir->type & DGREAT)
-	{
-		if ((fd = open(redir->file_name, O_WRONLY | O_CREAT | O_APPEND,
-						0644)) < 0)
-		return (redirect_error_open(redir->file_name));
-	}
-	else
-	{
-		if ((fd = open(redir->file_name, O_WRONLY | O_CREAT | O_TRUNC,
-						0644)) < 0)
-		return (redirect_error_open(redir->file_name));
-	}
+	fd = -1;
 	if (redir->io_number == -1)
 		redir->io_number = 1;
-	if (dup2(fd, redir->io_number) < 0)
+	if (redir->file_name)
+		if (!(fd = open(redir->file_name, O_WRONLY | O_CREAT | O_APPEND,
+						0644)))
+			return (redirect_error_open(redir->file_name));
+	if (fd >= 0)
+		dup2(fd, 2);
+	if (dup2(2, redir->io_number) < 0)
+	{
+		close(fd);
 		return (redirect_error_dup(redir->io_number));
+	}
 	close(fd);
 	return (1);
 }
