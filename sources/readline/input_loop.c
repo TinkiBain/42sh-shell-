@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/07 05:00:10 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 17:52:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ int				input_loop(t_line *line)
 		ft_bzero(line->keybuf, KEYBUF_SIZE);
 	}
 	if (ret < 0)
-		g_errno = ERROR_READ;
+		g_errno = E_READ;
 	return (0);
 }

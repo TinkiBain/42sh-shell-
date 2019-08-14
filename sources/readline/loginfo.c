@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 17:51:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 17:53:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		logopen(void)
 		ft_memcpy(g_errinfo, abspath, ft_strlen(abspath));
 	ft_strdel(&abspath);
 	if (g_logfd < 0)
-		g_errno = ERROR_OPEN;
+		g_errno = E_OPEN;
 	else
 		loginfo("logopen()");
 }

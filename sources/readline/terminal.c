@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/10 21:43:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 17:53:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void		term_init(void)
 	if (needfree)
 		free(termtype);
 	if (ret < 0)
-		g_errno = ERROR_TERMCAP;
+		g_errno = E_TERMCAP;
 	if (ret == 0)
-		g_errno = ERROR_UNK_TERMTYPE;
+		g_errno = E_UNK_TERMTYPE;
 }
 
 void	term_setup(void)

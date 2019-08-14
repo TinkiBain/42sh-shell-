@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 21:39:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/14 17:53:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int				vi_input_loop(t_line *line)
 		ft_bzero(line->keybuf, KEYBUF_SIZE);
 	}
 	if (ret < 0)
-		g_errno = ERROR_READ;
+		g_errno = E_READ;
 	return (0);
 }
