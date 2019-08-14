@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/12 19:09:30 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/14 17:09:21 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char		*ft_dollar_word(char *str, int k)
 	return (tmp);
 }
 
-static void		sokrat(int *j, char **str)
+void		sokrat(int *j, char **str)
 {
 	char	*tmp;
 	char	*kek;
@@ -76,11 +76,20 @@ static void		sokrat(int *j, char **str)
 char			*ft_dollar(char *str)
 {
 	int		i;
+	int		count;
 
 	i = -1;
+	count = 0;
 	while (str[++i])
 	{
-		if (str[i] == '$' && str[i + 1])
+		if (str[i] == 39)
+		{
+			if (count == 0)
+				count = 1;
+			else if (count == 1)
+				count = 0;
+		}
+		if (str[i] == '$' && str[i + 1] && count == 0)
 			sokrat(&i, &str);
 	}
 	return (str);

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   qoutes.c                                           :+:      :+:    :+:   */
+/*   dqoutes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/12 17:50:20 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/14 17:09:58 by jterry           ###   ########.fr       */
+/*   Created: 2019/08/14 16:35:10 by jterry            #+#    #+#             */
+/*   Updated: 2019/08/14 17:18:11 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int		q_check(char *str)
+static int		dq_check(char *str)
 {
-	int			i;
-	int			count;
+	int		i;
+	char	count;	
 
 	i = -1;
 	count = 0;
 	while (str[++i])
 	{
-		if (str[i - 1] && str[i - 1] != 92 && str[i] == 39)
+		if (str[i - 1] && str[i - 1] != 92 && str[i] == 34)
 		{
 			if (count == 0 || count == 2)
 				count = 1;
@@ -32,14 +32,14 @@ static int		q_check(char *str)
 	return (count);
 }
 
-char			*qoutes(char *str)
+char			*dqoutes(char *str)
 {
-	int			i;
+	int		i;
 
-	i = q_check(str);
+	i = dq_check(str);
 	if (i == 1)
 	{
-		g_errno = 15;
+		g_errno = 16;
 		return (NULL);
 	}
 	return (str);
