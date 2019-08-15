@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 16:37:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/11 05:26:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 08:19:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	reset_line(t_line *line)
 {
+	if (g_line != line)
+		return ;
 	while (line->history->item->next)
 		line->history->item = line->history->item->next;
 	line->str = (t_string *)line->history->item->content;

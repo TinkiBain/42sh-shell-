@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:34:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/04 11:57:48 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 05:59:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ void		clear_bindings(t_vector *key_bindings);
 
 void		bind_keys(t_vector *key_bindings);
 void		vi_bind_keys(int vi_mode, t_vector *key_bindings);
+
+int			is_vi_motion(t_action action);
 
 #endif

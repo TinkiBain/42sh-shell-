@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:12:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/05 21:45:24 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 05:53:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	vi_command_bind_keys(t_vector *key_bindings)
 	bind(key_bindings, 'R', vi_insert_overwrite);
 	bind(key_bindings, 'e', forward_word);
 	bind(key_bindings, 'b', backward_word);
+	bind(key_bindings, 'c', vi_delete_to_motion);
 }
 
 void		vi_bind_keys(int vi_mode, t_vector *key_bindings)

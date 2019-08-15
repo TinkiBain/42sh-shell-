@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 04:40:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 07:05:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_line
 	int				reading_arg;
 	int				complete_fail;
 	char			keybuf[KEYBUF_SIZE];
+	void			(*action)(struct s_line *line);
 	int				overwrite_mode;
 	int				hs_mode;
 	struct			s_hs
@@ -46,5 +47,8 @@ typedef struct		s_line
 	t_history		*history_orig;
 	t_list			*changes;		/* TODO: undo */
 }					t_line;
+
+t_line				*duplicate_line(t_line *line);
+void				free_line(t_line *line);
 
 #endif

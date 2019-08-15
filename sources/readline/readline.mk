@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/15 03:14:52 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/15 07:05:47 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS_READLINE_WITHOUT_DIR=\
 	escseqs.c			ft_errno.c		ft_readline.c		history.c\
 	history_search.c	input_loop.c	loginfo.c			signal_handlers.c\
 	str_xfuncs1.c		str_xfuncs2.c	terminal.c			vec_xfuncs.c\
-	vi_input_loop.c		xmalloc.c		utils.c
+	vi_input_loop.c		xmalloc.c		utils.c				duplicate_line.c\
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\
@@ -41,6 +41,7 @@ SRCS_READLINE_ACTIONS=\
 	vi_command.c			vi_insert_at.c			vi_insert_after.c\
 	vi_insert_beginning.c	vi_insert_end.c			vi_insert_overwrite.c\
 	vi_beginning_of_line_nonblank.c					transpose_words_supp.c\
+	vi_delete_to_motion.c\
 
 SRCS_READLINE_COMPLETE=\
 	get_filenames.c		get_variables.c\
@@ -51,7 +52,7 @@ SRCS_READLINE_COMPLETE=\
 	find_common_part.c								
 
 SRCS_READLINE_BINDINGS=\
-	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c
+	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c	is_vi_motion.c
 
 SRCS_READLINE_DISPLAY=\
 	clear_linebuf.c	init_linebuf.c	move_cursor.c	redisplay.c	update_line.c

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 17:53:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 08:15:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ static int		check_arg(t_line *line)
 {
 	if (line->vi_mode != VI_COMMAND)
 		return (0);
-	if (line->keybuf[0] > '0' && line->keybuf[0] <= '9')
+	if (line->keybuf[0] == '0' && line->reading_arg == 0)
+		return (0);
+	if (ft_isdigit(line->keybuf[0]) && line->reading_arg == 0)
 	{
 		line->reading_arg = 1;
 		line->arg = line->keybuf[0] - '0';
 		return (1);
 	}
-	if (line->keybuf[0] > 0 && line->keybuf[0] <= 9 && line->reading_arg)
+	if (ft_isdigit(line->keybuf[0]) && line->reading_arg)
 	{
 		line->arg = line->arg * 10 + line->keybuf[0] - '0';
 		return (1);
@@ -31,16 +33,48 @@ static int		check_arg(t_line *line)
 	return (0);
 }
 
-static void		perform_action(t_line *line)
+static int		perform_action_one(t_line *line)
 {
 	t_binding	*b;
 
 	if (check_arg(line))
-		return ;
+		return (0);
 	b = find_binding(&line->key_bindings, line->keybuf);
-	if (b && b->action)
+	if (b && (line->action = b->action))
 	{
-		(*b->action)(line);
+		line->action(line);
+		line->arg = 1;
+	}
+	return (1);
+}
+
+int				vi_input_one(t_line *line)
+{
+	int		ret;
+
+	while ((ret = read(STDIN, line->keybuf, KEYBUF_SIZE - 1)) &&
+			*line->keybuf != NL)
+	{
+		if (perform_action_one(line))
+			return (1);
+		loginfo_line(line);
+		ft_bzero(line->keybuf, KEYBUF_SIZE);
+	}
+	if (ret < 0)
+		g_errno = E_READ;
+	return (0);
+}
+
+static int		perform_action(t_line *line)
+{
+	t_binding	*b;
+
+	if (check_arg(line))
+		return (0);
+	b = find_binding(&line->key_bindings, line->keybuf);
+	if (b && (line->action = b->action))
+	{
+		line->action(line);
 		if (line->vi_mode == VI_COMMAND && line->cpos == (int)line->str->len
 			&& line->cpos != 0)
 			line->cpos--;
@@ -48,6 +82,7 @@ static void		perform_action(t_line *line)
 		update_line(line);
 		line->arg = 1;
 	}
+	return (1);
 }
 
 int				vi_input_loop(t_line *line)

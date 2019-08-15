@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 02:49:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 05:56:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void		vi_insert_beginning(t_line *line);
 void		vi_insert_end(t_line *line);
 void		vi_insert_overwrite(t_line *line);
 void		vi_beginning_of_line_nonblank(t_line *line);
+void		vi_delete_to_motion(t_line *line);
 
 t_vector	get_filenames(t_line *line);
 t_vector	get_variables(t_string query);

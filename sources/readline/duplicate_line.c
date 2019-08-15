@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_loop.h                                       :+:      :+:    :+:   */
+/*   duplicate_line.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 16:45:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 05:58:30 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/15 07:04:37 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/15 07:15:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_LOOP_H
-# define INPUT_LOOP_H
+#include "ft_readline.h"
 
-# include "ft_readline.h"
+t_line	*duplicate_line(t_line *line)
+{
+	t_line	*new;
 
-int		input_loop(t_line *line);
-int		vi_input_loop(t_line *line);
-int		vi_input_one(t_line *line);
+	new = xmalloc(sizeof(t_line));
+	ft_memcpy(new, line, sizeof(t_line));
+	new->str = xmalloc(sizeof(t_string));
+	*new->str = str_xduplicate(*line->str);
+	return (new);
+}
 
-extern int	g_logfd;
-
-#endif
+void	free_line(t_line *line)
+{
+	str_delete(line->str);
+	free(line->str);
+	free(line);
+}

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:10:23 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/30 02:54:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 06:32:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 
 void	self_insert(t_line *line)
 {
-	if (line->hs_mode)
+	int i;
+
+	i = -1;
+	while (++i < line->arg)
 	{
-		str_xaddback(&line->hs.query, line->keybuf, 1);
-		hs_find(line);
-	}
-	else
-	{
-		if (line->overwrite_mode && line->cpos < (int)line->str->len)
-			line->str->s[line->cpos] = *line->keybuf;
+		if (line->hs_mode)
+		{
+			str_xaddback(&line->hs.query, line->keybuf, 1);
+			hs_find(line);
+		}
 		else
-			str_xinsert(line->str, line->cpos, line->keybuf, 1);
-		line->cpos++;
+		{
+			if (line->overwrite_mode && line->cpos < (int)line->str->len)
+				line->str->s[line->cpos] = *line->keybuf;
+			else
+				str_xinsert(line->str, line->cpos, line->keybuf, 1);
+			line->cpos++;
+		}
 	}
 }

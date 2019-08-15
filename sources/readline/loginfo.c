@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 18:47:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 08:33:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		logopen(void)
 															DEF_LOG_PATH);
 		loginfo("Error while opening logfile: %s", path);
 	}
+	ft_strdel(&path);
 	loginfo("logopen()");
 }
 
