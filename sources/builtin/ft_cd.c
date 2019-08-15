@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 21:51:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 16:48:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	change_dir(char *path)
 	char	**arr;
 
 	arr = (char **)malloc(sizeof(char *) * 3);
-	arr[0] = ft_strjoin_free("OLDPWD=", getcwd(NULL, 1024), 2);
+	arr[0] = ft_strrejoin("OLDPWD=", getcwd(NULL, 1024), 2);
 	chdir(path);
-	arr[1] = ft_strjoin_free("PWD=", getcwd(NULL, 1024), 2);
+	arr[1] = ft_strrejoin("PWD=", getcwd(NULL, 1024), 2);
 	arr[2] = NULL;
 	ft_setenv((const char **)arr);
 	free(arr);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/14 15:19:08 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 17:52:59 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
 	{
 		if (pref->assignment_word)
 		{
+			pref->assignment_word = tdq(pref->assignment_word);
 			if (!*flag)
 			{
 				*env = create_copy_env(*env);
@@ -51,15 +52,24 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	{
 		traverse_cmd_pref(pref, &new_env, &flag);
 		if (cmd->cmd_word)
+		{
+			cmd->cmd_word = tdq(cmd->cmd_word);
 			push_back_av(&av, cmd->cmd_word);
+		}
 	}
 	else
+	{
+		cmd->cmd_name = tdq(cmd->cmd_name);
 		push_back_av(&av, cmd->cmd_name);
+	}
 	suff = cmd->cmd_suf;
 	while (suff)
 	{
 		if (suff->word)
+		{
+			suff->word = tdq(suff->word);
 			push_back_av(&av, suff->word);
+		}
 		else
 			redirect(suff->io_redir);
 		suff = suff->cmd_suf;

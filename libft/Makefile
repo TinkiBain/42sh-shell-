@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/13 05:48:04 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/15 16:48:39 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,15 +53,15 @@ SRCS_STR=ft_atoi.c			ft_isalnum.c			ft_isalpha.c\
 	ft_strclr.c				ft_strcmp.c				ft_strcpy.c\
 	ft_strdel.c				ft_strdup.c				ft_strndup.c\
 	ft_strequ.c				ft_striter.c\
-	ft_striteri.c			ft_strjoin.c			ft_strjoin_free.c\
+	ft_striteri.c			ft_strjoin.c			ft_strrejoin.c\
 	ft_strlcat.c			ft_strlen.c\
 	ft_strmap.c				ft_strmapi.c\
 	ft_strncat.c			ft_strncmp.c			ft_strncpy.c\
 	ft_strnequ.c			ft_strnew.c				ft_strnstr.c\
 	ft_strrchr.c			ft_strsplit.c\
 	ft_strstr.c				ft_strsub.c				ft_strtrim.c\
-	ft_tolower.c\
-	ft_toupper.c
+	ft_tolower.c			ft_toupper.c\
+	ft_strrejoin.c
 
 SRCS_OUTPUT=ft_putchar.c		ft_putchar_fd.c		ft_putendl.c\
 			ft_putendl_fd.c		ft_putnbr.c			ft_putnbr_fd.c\
