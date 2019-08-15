@@ -6,64 +6,67 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:21:51 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/13 08:04:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 01:49:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_string.h"
-#include "ft_vector.h"
-#include "ft_qsort.h"
 #include "hash.h"
+#include "utils.h"
 
-static int		cmp(const void *a, const void *b)
+static int		match(char *query, int len_query, char *name, int len_name)
 {
-	return (ft_strcmp(((t_string *)a)->s,
-					  ((t_string *)b)->s));
+	int i;
+
+	i = 0;
+	if (len_query > len_name)
+		return (0);
+	while (i < len_query)
+	{
+		if (name[i] != query[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-static	void	add_vector(char *s, t_vector *vector, t_hash *table)
+static void	add_vector(t_string query, t_vector *vector, t_hash *table)
 {
-	size_t		len;
-	t_string	str;
+	t_string	s;
 
-	len = 0;
-	len = ft_strlen(s);
-	if (table)
+	while (table)
 	{
-		while (table)
+		if (match(query.s, query.len, table->name, ft_strlen(table->name)))
 		{
-			if (len <= ft_strlen(table->name))
-				if (!ft_memcmp(s, table->name, ft_strlen(s)))
-				{
-					str.s = table->name;
-					str_fixlen(&str);
-					vec_addback(vector, &str);
-				}
-			table = table->next;
+			s = str_copy(table->name); /* TODO: xcopy, xaddback */
+			str_addback(&s, " ", 1);
+			vec_addback(vector, &s);
 		}
+		table = table->next;
 	}
 }
 
-static	void	fill_vector(char *str, t_vector *vector, t_hash **table)
+static	void	fill_vector(t_string query, t_vector *vector, t_hash **table)
 {
-	int		i;
+	int			i;
+	t_string	s;
 
 	i = 0;
 	while (i < HASH_LEN)
+		add_vector(query, vector, table[i++]);
+	if (match(query.s, query.len, "./", 2))
 	{
-		add_vector(str, vector, *(table + i));
-		++i;
+		s = str_copy("./");		/* xcopy, xaddback */
+		vec_addback(vector, &s); 
 	}
 }
 
-t_vector		get_vec_prog(char *str)
+t_vector		get_vec_prog(t_string query)
 {
 	t_vector		vec;
 	extern	t_hash	**g_table;
 
 	vec = vec_create(0, sizeof(t_string));
-	fill_vector(str, &vec, g_table);
+	fill_vector(query, &vec, g_table);
 	ft_qsort(vec.v, vec.len, vec.size, cmp);
 	return (vec);
 }

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/13 07:48:49 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/15 03:14:52 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ READLINE_INCLUDES=\
 actions.h		bindings.h		display.h		escseqs.h\
 ft_errno.h		ft_readline.h	history.h		history_search.h\
 input_loop.h	keys.h			line.h			loginfo.h\
-show_completions.h				signal_handlers.h\
+signal_handlers.h\
 str_xfuncs.h	terminal.h		utils.h			vec_xfuncs.h\
 xmalloc.h
 
@@ -43,7 +43,8 @@ SRCS_READLINE_ACTIONS=\
 	vi_beginning_of_line_nonblank.c					transpose_words_supp.c\
 
 SRCS_READLINE_COMPLETE=\
-	get_filenames.c			show_completions.c		complete.c\
+	get_filenames.c		get_variables.c\
+	show_completions.c								complete.c\
 	possible_filename_completions.c					complete_filename.c\
 	possible_command_completions.c					complete_command.c\
 	possible_variable_completions.c					complete_variable.c\

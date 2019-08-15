@@ -6,18 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 08:34:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 01:49:59 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 #include <sys/stat.h>
-
-static int		cmp(const void *a, const void *b)
-{
-	return (ft_strcmp(((t_string *)a)->s,
-					  ((t_string *)b)->s));
-}
 
 static int		match(t_string name, t_string query)
 {
@@ -80,7 +74,7 @@ static t_vector	build_filenames_vector(t_string str)
 	while ((c = str_get(str, --i)) && c != '/')
 		str_xaddfront(&query, &c, 1);
 	i++;
-	while ((c = str_get(str, --i)))
+	while ((c = str_get(str, --i)) && !ft_isspace(c))
 		str_xaddfront(&path, &c, 1);
 	if (path.len == 0)
 		str_xaddfront(&path, ".", 1);

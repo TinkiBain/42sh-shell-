@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 22:02:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 02:51:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 # include "input_loop.h"
 # include "escseqs.h"
 # include "loginfo.h"
-# include "show_completions.h"
 # include "utils.h"
 
 # define DEBUG				1

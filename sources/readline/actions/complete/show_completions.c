@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 19:11:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 06:52:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 03:04:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "show_completions.h"
+#include "actions.h"
 
-static int	get_max_filename(t_vector vec)
+static int	get_max_len(t_vector vec, void (*mod_str)(t_string *))
 {
 	int			i;
 	t_string	*str;
@@ -22,6 +22,8 @@ static int	get_max_filename(t_vector vec)
 	i = 0;
 	while ((str = vec_get(vec, i)))
 	{
+		if (mod_str)
+			mod_str(str);
 		if ((int)str->len > max)
 			max = str->len;
 		i++;
@@ -36,19 +38,24 @@ static void	show_one(t_string *str, int max)
 	ft_putstr_fd(str->s, STDOUT);
 	i = str->len;
 	while (i++ < max)
+	{
+		if (i >= get_screen_width())
+			break ;
 		ft_putchar_fd(' ', STDOUT);
+	}
 }
 
-static void	show(t_vector vec)
+static void	show(t_vector vec, void (*mod_str)(t_string *))
 {
-	int max_filename;
+	int max_len;
 	int columns;
 	int jump;
 	int row;
 	int i;
 
-	term_restore();
-	columns = get_screen_width() / (max_filename = get_max_filename(vec) + 1);
+	ft_putstr_fd("\n\r", STDOUT);
+	columns = get_screen_width() / (max_len = get_max_len(vec, mod_str) + 2);
+	columns = (columns == 0 ? 1 : columns);
 	jump = vec.len / columns;
 	if (vec.len % columns)
 		jump++;
@@ -58,13 +65,12 @@ static void	show(t_vector vec)
 		i = row;
 		while (i < (int)vec.len)
 		{
-			show_one(vec_get(vec, i), max_filename);
+			show_one(vec_get(vec, i), max_len);
 			i += jump;
 		}
-		ft_putchar_fd('\n', STDOUT);
+		ft_putstr_fd("\n\r", STDOUT);
 		row++;
 	}
-	term_setup();
 }
 
 static int	ask_display_many(int n)
@@ -84,10 +90,12 @@ static int	ask_display_many(int n)
 	return (0);
 }
 
-void		show_completions(t_vector vec)
+void		show_completions(t_vector vec, void (*mod_str)(t_string *))
 {
+	if (vec.len == 0)
+		return ;
 	if (ask_display_many(vec.len))
-		show(vec);
+		show(vec, mod_str);
 	else
 		ft_putstr_fd("\n\r", STDOUT);
 }

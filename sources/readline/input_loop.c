@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 17:52:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 01:00:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int		is_ansiseq(char buf[KEYBUF_SIZE])
 int				input_loop(t_line *line)
 {
 	int		ret;
-
+	
 	if (line->vi_mode)
 		return (vi_input_loop(line));
 	while ((ret = read(STDIN, line->keybuf, 1) > 0 && *line->keybuf != NL))

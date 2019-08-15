@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:48:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 08:01:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 02:52:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void			possible_command_completions(t_line *line)
 {
 	t_string	query;
+	int			start;
 	t_vector	vec;
 
-	query = get_command_query(line);
-	vec = get_vec_prog(query.s);
+	query = get_command_query(line, &start);
+	vec = get_vec_prog(query);
 	if (vec.len != 1)
-		show_completions(vec);
-	free(vec.v);
+		show_completions(vec, NULL);
+	vec_delete(&vec, del_str);
 	str_delete(&query);
 }

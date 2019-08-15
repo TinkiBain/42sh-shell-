@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:16:01 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 07:45:12 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 01:48:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,10 @@ int			ft_putint(int c)
 void		del_str(void *s)
 {
 	str_delete(s);
+}
+
+int			cmp(const void *a, const void *b)
+{
+	return (ft_strcmp(((t_string *)a)->s,
+					  ((t_string *)b)->s));
 }
