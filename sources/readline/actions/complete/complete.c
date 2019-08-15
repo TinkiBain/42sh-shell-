@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 04:39:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 02:04:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 03:53:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static int	need_complete_command(t_line *line)
 
 	i = line->cpos - 1;
 	while ((c = str_get(*line->str, i)) && !ft_isspace(c) &&
-		   c != ';' && c != '/')
+		   c != ';' && c != '/' && c != '(')
 		i--;
-	if (c == ';')
+	if (c == ';' || (c == '(' && str_get(*line->str, i - 1) == '$'))
 		return (1);
 	if (c == '/')
 		return (0);
 	while ((c = str_get(*line->str, i)) && ft_isspace(c))
 		i--;
-	if (c == ';' || c == 0)
+	if (c == ';' || c == 0 || (c == '(' && str_get(*line->str, i - 1) == '$'))
 		return (1);
 	else
 		return (0);
@@ -39,9 +39,11 @@ static int	need_complete_variable(t_line *line)
 	char	c;
 
 	i = line->cpos - 1;
-	while ((c = str_get(*line->str, i)) && !ft_isspace(c) && c != '$')
+	while ((c =	str_get(*line->str, i)) && !ft_isspace(c)
+		   && c != '$' && c != '{' && c != '(')
 		i--;
-	if (c == '$')
+	if ((c == '{' && str_get(*line->str, i - 1) == '$')
+		|| c == '$')
 		return (1);
 	return (0);
 }

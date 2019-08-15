@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:16:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 02:52:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 03:36:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_string		get_command_query(t_line *line, int *start)
 	char		c;
 
 	i = line->cpos - 1;
-	while ((c = str_get(*line->str, i)) && !ft_isspace(c) && c != ';')
+	while ((c = str_get(*line->str, i)) && !ft_isspace(c)
+		   && c != ';' && c != '(')
 		i--;
 	i++;
 	*start = i;
