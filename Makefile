@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/15 20:04:49 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/15 22:46:18 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,10 @@ SRCS_BUILTIN=\
 VAR_DIR=variables
 
 SRCS_VAR=\
-	add_var.c		create_copy_env.c	ft_getenv.c\
-	remove_var.c	replace_var.c
+	add_var.c				create_copy_env.c\
+	ft_getenv.c				remove_var.c\
+	replace_var.c			check_is_var_readonly.c\
+	print_var_readonly.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\

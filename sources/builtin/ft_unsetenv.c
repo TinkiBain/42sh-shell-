@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 20:01:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 22:44:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ int		ft_unsetenv(const char **av)
 		return (1);
 	while (*av)
 	{
-		remove_var(*av, &environ);
-		len = ft_strlen(*av);
-		if (len == 4 && ft_strnequ(*av, "PATH", 4))
-			del_hash();
+		if (!check_is_var_readonly(*av))
+		{
+			remove_var(*av, &environ);
+			len = ft_strlen(*av);
+			if (len == 4 && ft_strnequ(*av, "PATH", 4))
+				del_hash();
+		}
 		++av;
 	}
 	return (1);

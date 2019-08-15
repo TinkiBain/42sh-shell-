@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variables.h                                        :+:      :+:    :+:   */
+/*   print_var_readonly.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 22:48:58 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/15 22:16:12 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/15 22:22:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VARIABLES_H
-# define VARIABLES_H
+#include "libft.h"
+#include "defs.h"
 
-int		add_var(const char *av, char ***env);
-char	**create_copy_env(char **env);
-char	*ft_getenv(const char *name, char **env);
-int		remove_var(const char *av, char ***env);
-int		replace_var(const char *name, const char *var, char **env, size_t len);
-int		check_is_var_readonly(const char *name);
-int		print_var_readonly(const char *var);
-
-#endif
+int		print_var_readonly(const char *var)
+{
+	ft_putstr_fd(PROJECT_NAME ": ", 2);
+	ft_putstr_fd(var, 2);
+	ft_putendl_fd(": readonly variable", 2);
+	return (1);
+}
