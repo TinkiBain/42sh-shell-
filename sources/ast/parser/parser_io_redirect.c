@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:10:37 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/10 20:28:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/15 17:45:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ t_io_redirect	*parser_io_redirect(t_lex *lex)
 	if (!lex)
 		return (NULL);
 	io_redir = init_io_redirect();
-	if (lex->lexeme)
+	if (!(ft_strequ(lex->lexeme, "")))
 		io_redir->file_name = ft_strdup(lex->lexeme);
+	else
+		parser_print_error("newline");
 	if (lex->fd)
 		io_redir->io_number = lex->fd;
 	io_redir->type = lex->type;
