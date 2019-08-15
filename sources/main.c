@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 17:11:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 18:36:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_pars_list	*exec_ast(char *buf)
 	list = parser(lex, NULL, 0);
 	lexer_free_all(src);
 	if (g_error_pars == 1)
-		return (NULL);
+		return (parser_free_tree(list));
 	if (g_error_pars == 2)
 	{
 		tmp = ft_readline(">", tmp);// buf = ft_readline(">", tmp);
@@ -92,7 +92,7 @@ int			main(int ac, char **av)
 			break ;
 		else
 		{
-			if (*(tmp = ft_strtrim(buf)))
+			if (*(tmp = buf))
 			{
 //				lex = lexer(buf);
 //				src = lex;
@@ -117,7 +117,6 @@ int			main(int ac, char **av)
 //					free_lex(lex);
 //				}
 //				free_lex(src);
-//				free(tmp);
 			}
 		}
 		ft_strdel(&buf);
