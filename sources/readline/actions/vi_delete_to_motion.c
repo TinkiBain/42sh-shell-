@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 05:07:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 08:27:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 08:50:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ static void	delete_left(t_line *line, int count)
 	str_remove(line->str, line->cpos, pos - line->cpos);
 }
 
-static void	clear_line(t_line *line)
-{
-	ft_bzero(line->str->s, line->str->len);
-	line->str->len = 0;
-	line->cpos = 0;
-}
-
 void	vi_delete_to_motion(t_line *line)
 {
 	t_line	*new_line;
@@ -54,7 +47,7 @@ void	vi_delete_to_motion(t_line *line)
 	new_line = duplicate_line(line);
 	vi_input_one(new_line);
 	if (new_line->action == vi_delete_to_motion)
-		clear_line(line);
+		vi_clear_line(line);
 	if (new_line->action == reset_line)
 		reset_line(line);
 	if (is_vi_motion(new_line->action))

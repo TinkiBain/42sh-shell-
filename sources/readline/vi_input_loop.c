@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 08:15:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 10:00:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int				vi_input_loop(t_line *line)
 		else if (line->keybuf[0] == CTRL_D)
 			return (0);
 		perform_action(line);
+		if (line->action == vi_comment || line->action == vi_vi)
+			return (0);
 		loginfo_line(line);
 		ft_bzero(line->keybuf, KEYBUF_SIZE);
 	}

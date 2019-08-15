@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/15 07:05:47 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/15 10:15:01 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRCS_READLINE_ACTIONS=\
 	vi_command.c			vi_insert_at.c			vi_insert_after.c\
 	vi_insert_beginning.c	vi_insert_end.c			vi_insert_overwrite.c\
 	vi_beginning_of_line_nonblank.c					transpose_words_supp.c\
-	vi_delete_to_motion.c\
+	vi_delete_to_motion.c	vi_delete_to_end.c		vi_clear_line.c\
+	vi_comment.c			vi_vi.c					vi_goto_char.c\
 
 SRCS_READLINE_COMPLETE=\
 	get_filenames.c		get_variables.c\
