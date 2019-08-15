@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 18:36:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 21:39:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			main(int ac, char **av)
 			break ;
 		else
 		{
-			if (*(tmp = buf))
+			if (*(tmp = ft_strtrim(buf)))
 			{
 //				lex = lexer(buf);
 //				src = lex;
@@ -117,6 +117,7 @@ int			main(int ac, char **av)
 //					free_lex(lex);
 //				}
 //				free_lex(src);
+				free(tmp);
 			}
 		}
 		ft_strdel(&buf);
