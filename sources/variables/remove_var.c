@@ -1,21 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.h                                      :+:      :+:    :+:   */
+/*   remove_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 22:16:38 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/15 20:50:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENVIRONMENT_H
-# define ENVIRONMENT_H
+#include "sh.h"
+#include "hash.h"
 
-int					add_env(const char **av, char ***env);
-char				**create_copy_env(char **env);
-char				*ft_getenv(const char *name, char **env);
-int					remove_env(const char **av, char ***env);
+int		remove_var(const char *av, char ***env)
+{
+	char		**tmp;
+	size_t		len;
 
-#endif
+	if (!env)
+		return (0);
+	if (av)
+	{
+		len = ft_strlen(av);
+		tmp = *env;
+		while (*tmp && !(ft_strnequ(av, *tmp, len) && *(*tmp + len) == '='))
+			++tmp;
+		if (*tmp)
+		{
+			free(*tmp);
+			while (*tmp)
+			{
+				*tmp = *(tmp + 1);
+				++tmp;
+			}
+		}
+	}
+	return (0);
+}

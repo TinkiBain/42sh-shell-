@@ -6,15 +6,12 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 16:41:59 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/06 20:49:40 by wtalea           ###   ########.fr        #
+#    Updated: 2019/08/15 19:50:48 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HASH_HASH_DIR=hash
 HASH_FOREST_DIR=forest
-
-SRCS_HASH_WITHOUT_DIR=\
-	search_env_str.c
 
 SRCS_HASH_HASH=\
 	create_bin.c\
@@ -33,6 +30,5 @@ HASH_SUBDIRS=\
 	$(HASH_FOREST_DIR)
 
 SRCS_HASH=\
-	$(SRCS_HASH_WITHOUT_DIR)\
 	$(addprefix $(HASH_HASH_DIR)/, $(SRCS_HASH_HASH))\
 	$(addprefix $(HASH_FOREST_DIR)/, $(SRCS_HASH_FOREST))

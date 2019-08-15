@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_bin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 15:19:39 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/06 15:20:58 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/15 20:54:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char			*get_bin(char *name)
 	key = 0;
 	path = NULL;
 	key = generate_hash(name, ft_strlen(name));
+	if (!g_table)
+		return (NULL);
 	if (*(g_table + (key % HASH_LEN)))
 		path = find_path(name, key, *(g_table + (key % HASH_LEN)));
 	return (path);

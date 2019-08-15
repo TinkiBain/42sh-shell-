@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/09 21:28:28 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/15 20:04:49 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,8 @@ FLAGS+=-g
 INCLUDES:=-I includes -I includes/readline -I libft/includes
 
 SH_INCLUDES=\
-	ast.h		cmd.h		defs.h		environment.h		exec.h\
-	get_env.h	hash.h		lexer.h		lib_wtalea.h		parser.h\
-	sh.h
+	ast.h		cmd.h		defs.h			variables.h		exec.h\
+	hash.h		lexer.h		lib_wtalea.h	parser.h		sh.h
 
 HEADER=\
 	$(addprefix includes/, $(SH_INCLUDES))\
@@ -54,17 +53,18 @@ SRCS_BUILTIN=\
 	ft_cd.c			ft_echo.c		ft_exit.c		ft_hash.c\
 	ft_setenv.c		ft_type.c		ft_unsetenv.c
 
-ENV_DIR=environment
+VAR_DIR=variables
 
-SRCS_ENV=\
-	add_env.c		create_copy_env.c		ft_getenv.c		remove_env.c
+SRCS_VAR=\
+	add_var.c		create_copy_env.c	ft_getenv.c\
+	remove_var.c	replace_var.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
 	$(addprefix $(AST_DIR)/, $(SRCS_AST))\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
-	$(addprefix $(ENV_DIR)/, $(SRCS_ENV))\
+	$(addprefix $(VAR_DIR)/, $(SRCS_VAR))\
 	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
@@ -94,7 +94,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(CREATE_READLINE_SUBDIRS)\
 	$(OBJS_DIR)/$(HASH_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
-	$(OBJS_DIR)/$(ENV_DIR)\
+	$(OBJS_DIR)/$(VAR_DIR)\
 	$(OBJS_DIR)/$(DIR_LIB_WTALEA)
 
 .PHONY: all clean fclean re
@@ -122,7 +122,7 @@ $(OBJS_SUBDIRS):
 	@mkdir -p $(CREATE_READLINE_SUBDIRS)
 	@mkdir -p $(OBJS_DIR)/$(HASH_DIR)
 	@mkdir -p $(CREATE_HASH_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(ENV_DIR)
+	@mkdir -p $(OBJS_DIR)/$(VAR_DIR)
 	@mkdir -p $(OBJS_DIR)/$(DIR_LIB_WTALEA)
 
 clean:

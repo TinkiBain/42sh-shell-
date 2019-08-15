@@ -6,31 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:42:57 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 18:13:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 20:03:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-static void	add_var(char *av, char ***env)
-{
-	char	**new_env;
-	char	**tmp;
-	size_t	size;
-
-	size = 0;
-	tmp = *env;
-	while (*(tmp + size))
-		++size;
-	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
-	ft_bzero(new_env, size + 2);
-	tmp = new_env;
-	while (size--)
-		*(tmp++) = *((*env)++);
-	*(tmp++) = ft_strdup(av);
-	*tmp = NULL;
-	*env = new_env;
-}
 
 void	handle_token_assignment_word(char *word, char ***env)
 {
@@ -54,7 +34,7 @@ void	handle_token_assignment_word(char *word, char ***env)
 		}
 		else
 		{
-			add_var(word, env);
+			add_var((const char *)word, env);
 		}
 		free(name);
 	}

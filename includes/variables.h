@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   variables.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 20:01:52 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/15 20:15:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
-#include "hash.h"
+#ifndef VARIABLES_H
+# define VARIABLES_H
 
-int		ft_unsetenv(const char **av)
-{
-	extern char	**environ;
-	size_t		len;
+int		add_var(const char *av, char ***env);
+char	**create_copy_env(char **env);
+char	*ft_getenv(const char *name, char **env);
+int		remove_var(const char *av, char ***env);
+int		replace_var(const char *name, const char *var, char **env, size_t len);
 
-	if (!environ)
-		return (1);
-	while (*av)
-	{
-		remove_var(*av, &environ);
-		len = ft_strlen(*av);
-		if (len == 4 && ft_strnequ(*av, "PATH", 4))
-			del_hash();
-		++av;
-	}
-	return (1);
-}
+#endif
