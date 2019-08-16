@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_dless.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 21:26:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/16 15:51:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			redir_dless(t_io_redirect *redir)
 	while (1)
 	{
 		str = ft_readline("> ", NULL);
-		if (ft_strequ(str, redir->file_name))
+		if (!str || ft_strequ(str, redir->file_name))
 			break ;
 		ft_putstr_fd(str, pipefd[1]);
 		ft_putstr_fd("\n", pipefd[1]);
