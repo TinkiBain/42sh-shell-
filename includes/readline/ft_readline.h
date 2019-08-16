@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 02:51:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/16 14:02:02 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # include "escseqs.h"
 # include "loginfo.h"
 # include "utils.h"
+# include "undo.h"
 
 # define DEBUG				1
 

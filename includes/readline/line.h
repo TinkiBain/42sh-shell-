@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 12:00:43 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/16 14:02:41 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ typedef struct		s_line
 	t_string		kill_buffer;
 	t_history		*history;
 	t_history		*history_orig;
-	t_list			*changes;		/* TODO: undo */
+	t_list			*undo;
 }					t_line;
 
 t_line				*duplicate_line(t_line *line);
 void				free_line(t_line *line);
+
 
 #endif

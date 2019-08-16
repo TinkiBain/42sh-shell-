@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/16 04:25:16 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/16 14:54:05 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ ft_errno.h		ft_readline.h	history.h		history_search.h\
 input_loop.h	keys.h			line.h			loginfo.h\
 signal_handlers.h\
 str_xfuncs.h	terminal.h		utils.h			vec_xfuncs.h\
-xmalloc.h
+xmalloc.h		undo.h
 
 SRCS_READLINE_WITHOUT_DIR=\
 	escseqs.c			ft_errno.c		ft_readline.c		history.c\
 	history_search.c	input_loop.c	loginfo.c			signal_handlers.c\
 	str_xfuncs1.c		str_xfuncs2.c	terminal.c			vec_xfuncs.c\
-	vi_input_loop.c		xmalloc.c		utils.c				duplicate_line.c\
+	vi_input_loop.c		xmalloc.c		utils.c				duplicate_line.c	undo.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\
@@ -49,7 +49,7 @@ SRCS_READLINE_ACTIONS=\
 	vi_find_forward.c		vi_find_backward.c		vi_repeat_find.c\
 	vi_repeat_find_reverse.c						vi_delete_to_motion_save.c\
 	vi_delete_to_end_save.c	vi_paste_after.c		vi_paste_before.c\
-	vi_yank_to_motion.c		vi_yank_to_end.c\
+	vi_yank_to_motion.c		vi_yank_to_end.c		undo.c
 
 SRCS_READLINE_COMPLETE=\
 	get_filenames.c		get_variables.c\

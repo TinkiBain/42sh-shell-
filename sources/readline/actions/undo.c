@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vi_command.c                                       :+:      :+:    :+:   */
+/*   undo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/05 21:02:11 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 14:31:28 by wtalea           ###   ########.fr       */
+/*   Created: 2019/08/16 13:55:09 by wtalea            #+#    #+#             */
+/*   Updated: 2019/08/16 16:23:17 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 
-void		vi_command(t_line *line)
+void	undo(t_line *line)
 {
-	line->vi_mode = VI_COMMAND;
-	line->overwrite_mode = 0;
-	backward_char(line);
-	push_undo_list(line->str, line->cpos, &line->undo, 0);
+	t_undo_item		undo;
+	t_string		*cp;
+
+	cp = line->str;
+	undo = pop_undo_list(&line->undo);
+	ft_bzero(line->str->s, line->str->len);
+	line->str->len = 0;
+	str_xaddback(line->str, undo.string.s, undo.string.len);
+	line->cpos = undo.cpos;
 }

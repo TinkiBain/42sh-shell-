@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 04:24:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/16 14:52:33 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void		complete_command(t_line *line);
 void		possible_command_completions(t_line *line);
 void		complete_variable(t_line *line);
 void		possible_variable_completions(t_line *line);
+void		undo(t_line *line);
 
 
 #endif

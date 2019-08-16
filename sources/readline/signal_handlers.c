@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:57:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 23:26:51 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 18:09:11 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	sigh_sigwinch(int sig)
 {
 	if (sig == SIGWINCH)
 	{
+		sleep(1);
 		loginfo("SIGWINCH caught: [%dx%d]",
 				get_screen_width(), get_screen_height());
 		update_line(NULL);
