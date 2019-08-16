@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 16:55:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/16 22:04:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int			call_exec(const char **av, char ***env)
 		return (ft_setenv(av + 1));
 	else if (ft_strequ(*av, "unsetenv"))
 		return (ft_unsetenv(av + 1));
+	else if (ft_strequ(*av, "set"))
+		return (ft_set(av + 1));
+	else if (ft_strequ(*av, "unset"))
+		return (ft_unset(av + 1));
 	else if (ft_strequ(*av, "hash"))
 		return (ft_hash());
 	else if (ft_strequ(*av, "type"))

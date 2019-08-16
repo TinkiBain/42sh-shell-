@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setenv.c                                        :+:      :+:    :+:   */
+/*   get_var_name.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 20:50:42 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/16 20:02:38 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/16 21:44:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
-#include "hash.h"
+#include "libft.h"
 
-int			ft_setenv(const char **av)
+char	*get_var_name(const char *var, size_t *name_len)
 {
-	extern	char	**environ;
+	char	*p;
+	size_t	size;
 
-	if (!environ)
-		return (1);
-	while (*av)
+	if ((p = ft_strchr(var, '=')))
 	{
-		set_var(*av, &environ, 0);
-		++av;
+		size = p - var;
+		if (name_len)
+			*name_len = size;
+		return (ft_strndup(var, size));
 	}
-	return (0);
+	return (NULL);
 }

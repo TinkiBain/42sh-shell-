@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_var.c                                          :+:      :+:    :+:   */
+/*   set_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 20:04:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/16 20:54:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-int	add_var(const char *av, char ***env)
+int	set_var(const char *var, char ***env, int change_readonly)
 {
-	char	**new_env;
-	char	**tmp;
-	char	**p;
-	size_t	size;
+	char	*name;
+	size_t	len;
 
-	size = 0;
-	p = *env;
-	while (*(p++))
-		++size;
-	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
-	ft_bzero(new_env, sizeof(char *) * (size + 2));
-	tmp = new_env;
-	p = *env;
-	while (*p)
-		*(tmp++) = *(p++);
-	*(tmp++) = ft_strdup(av);
-	*tmp = NULL;
-	free(*env);
-	*env = new_env;
+	if ((name = get_var_name(var, &len)))
+	{
+		if (change_readonly || !is_var_readonly(name))
+		{
+			if (!ft_getenv(name, *env))
+				return (add_new_var(var, env));
+			else
+				return (replace_var(name, var, *env, len));
+			if (len == 4 && ft_strnequ(name, "PATH", 5))
+			{
+				fill_hash_table();
+			}
+		}
+		free(name);
+	}
 	return (0);
 }

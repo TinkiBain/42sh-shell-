@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setenv.c                                        :+:      :+:    :+:   */
+/*   ft_set.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 20:50:42 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/16 23:12:33 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-#include "hash.h"
 
-int			ft_setenv(const char **av)
+int			ft_set(const char **av)
 {
-	extern	char	**environ;
+	extern	char	**g_var;
+	char			**tmp;
 
-	if (!environ)
+	tmp = g_var;
+	if (!g_var)
 		return (1);
-	while (*av)
-	{
-		set_var(*av, &environ, 0);
-		++av;
-	}
+	if (av && !*av)
+		while (*tmp)
+		{
+			ft_putendl(*(tmp++));
+		}
+	// else
+	// 	while (*av)
+	// 	{
+	// 		set_var(*av, &tmp, 0);
+	// 		++av;
+	// 	}
 	return (0);
 }

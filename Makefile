@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/16 16:56:32 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/16 22:11:09 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,16 +50,17 @@ SRCS_WITHOUT_DIR=\
 BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
-	ft_cd.c			ft_echo.c		ft_exit.c		ft_hash.c\
-	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_env.c
+	ft_cd.c			ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
+	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c
 
 VAR_DIR=variables
 
 SRCS_VAR=\
-	add_var.c				create_copy_env.c\
+	add_new_var.c			create_copy_env.c\
 	ft_getenv.c				remove_var.c\
-	replace_var.c			check_is_var_readonly.c\
-	print_var_readonly.c
+	replace_var.c			is_var_readonly.c\
+	print_var_readonly.c	set_var.c\
+	get_var_name.c			init_g_var.c
 
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
