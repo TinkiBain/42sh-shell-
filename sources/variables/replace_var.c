@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.h                                          :+:      :+:    :+:   */
+/*   replace_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 16:01:23 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/09 13:23:44 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/15 14:16:54 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/15 20:13:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_ENV_H
+#include "sh.h"
 
-#include "libft.h"
-
-char			*search_bucks(char *str, char ***environ);
-
-#endif
+int	replace_var(const char *name, const char *var, char **env,
+															size_t len)
+{
+	while (*env && !(ft_strnequ(name, *env, len) && *(*env + len) == '='))
+		++env;
+	if (*env)
+	{
+		free(*env);
+		*env = ft_strdup(var);
+	}
+	return (0);
+}

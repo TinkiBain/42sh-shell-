@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   check_is_var_readonly.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 22:44:15 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/15 22:02:09 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/15 22:52:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
-#include "hash.h"
+#include "libft.h"
+#include "variables.h"
 
-int		ft_unsetenv(const char **av)
+int		check_is_var_readonly(const char *name)
 {
-	extern char	**environ;
-	size_t		len;
-
-	if (!environ)
-		return (1);
-	while (*av)
+	if (ft_strequ(name, "_") || ft_strequ(name, "NOCLOBBER") ||
+		ft_strequ(name, "SHELL_HOME") || ft_strequ(name, "SHELL_ALIASES") ||
+		ft_strequ(name, "SHELLOPTS"))
 	{
-		if (!check_is_var_readonly(*av))
-		{
-			remove_var(*av, &environ);
-			len = ft_strlen(*av);
-			if (len == 4 && ft_strnequ(*av, "PATH", 4))
-				del_hash();
-		}
-		++av;
+		print_var_readonly(name);
+		return (1);
 	}
-	return (1);
+	return (0);
 }

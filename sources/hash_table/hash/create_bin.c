@@ -6,11 +6,10 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 17:40:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/06 15:36:56 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/15 20:03:44 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_env.h"
 #include "hash.h"
 
 t_hash			**g_table;

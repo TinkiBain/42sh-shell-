@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   print_var_readonly.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 22:44:15 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/15 22:16:12 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/15 22:22:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
-#include "hash.h"
+#include "libft.h"
+#include "defs.h"
 
-int		ft_unsetenv(const char **av)
+int		print_var_readonly(const char *var)
 {
-	extern char	**environ;
-	size_t		len;
-
-	if (!environ)
-		return (1);
-	while (*av)
-	{
-		if (!check_is_var_readonly(*av))
-		{
-			remove_var(*av, &environ);
-			len = ft_strlen(*av);
-			if (len == 4 && ft_strnequ(*av, "PATH", 4))
-				del_hash();
-		}
-		++av;
-	}
+	ft_putstr_fd(PROJECT_NAME ": ", 2);
+	ft_putstr_fd(var, 2);
+	ft_putendl_fd(": readonly variable", 2);
 	return (1);
 }

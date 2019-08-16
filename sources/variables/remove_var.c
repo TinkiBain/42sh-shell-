@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   remove_env.c                                       :+:      :+:    :+:   */
+/*   remove_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/08 22:01:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 20:50:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-int		remove_env(const char **av, char ***env)
+int		remove_var(const char *av, char ***env)
 {
 	char		**tmp;
 	size_t		len;
 
 	if (!env)
-		return (1);
-	while (*av)
+		return (0);
+	if (av)
 	{
-		len = ft_strlen(*av);
+		len = ft_strlen(av);
 		tmp = *env;
-		while (*tmp && !(ft_strnequ(*av, *tmp, len) && *(*tmp + len) == '='))
+		while (*tmp && !(ft_strnequ(av, *tmp, len) && *(*tmp + len) == '='))
 			++tmp;
 		if (*tmp)
 		{
 			free(*tmp);
-			if (len == 4 && ft_strnequ(*av, "PATH", 4))
-				del_hash();
-			len = 0;
-			while (*(tmp + ++len))
-				*(tmp + len - 1) = *(tmp + len);
+			while (*tmp)
+			{
+				*tmp = *(tmp + 1);
+				++tmp;
+			}
 		}
-		++av;
 	}
-	return (1);
+	return (0);
 }

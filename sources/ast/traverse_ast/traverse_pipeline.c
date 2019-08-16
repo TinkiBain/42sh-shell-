@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/14 15:20:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/15 17:51:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,16 @@ static char	*get_cmd_name(t_cmd *cmd)
 	if (cmd->cmd_pref)
 	{
 		if (cmd->cmd_word)
+		{
+			cmd->cmd_word = tdq(cmd->cmd_word);
 			return (cmd->cmd_word);
+		}
 	}
 	else
+	{
+		cmd->cmd_name = tdq(cmd->cmd_name);
 		return (cmd->cmd_name);
+	}
 	return (NULL);
 }
 
