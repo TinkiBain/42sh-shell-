@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   undo.h                                             :+:      :+:    :+:   */
+/*   go_history.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/16 13:48:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/16 18:22:50 by wtalea           ###   ########.fr       */
+/*   Created: 2019/08/16 17:22:42 by wtalea            #+#    #+#             */
+/*   Updated: 2019/08/16 17:31:41 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UNDO_H
-# define UNDO_H
+#ifndef GO_HISTORY
+# define GO_HISTORY
 
 # include "ft_readline.h"
 
-typedef	struct		s_undo_item
-{
-	t_string	string;
-	int			cpos;
-	int			lenh;
-}					t_undo_item;
-
-void				push_undo_list(t_string *str, int cpos, t_list **undo, t_line *line);
-t_undo_item			*pop_undo_list(t_list **undo);
+int				next_history_check(t_line *line);
+int				previous_history_check(t_line *line);
+int				len_history(t_line *line);
 
 #endif

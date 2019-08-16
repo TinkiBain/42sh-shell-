@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/16 14:54:05 by wtalea           ###   ########.fr        #
+#    Updated: 2019/08/16 17:40:28 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS_READLINE_WITHOUT_DIR=\
 	escseqs.c			ft_errno.c		ft_readline.c		history.c\
 	history_search.c	input_loop.c	loginfo.c			signal_handlers.c\
 	str_xfuncs1.c		str_xfuncs2.c	terminal.c			vec_xfuncs.c\
-	vi_input_loop.c		xmalloc.c		utils.c				duplicate_line.c	undo.c
+	vi_input_loop.c		xmalloc.c		utils.c				duplicate_line.c\
+	undo.c				go_history.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\

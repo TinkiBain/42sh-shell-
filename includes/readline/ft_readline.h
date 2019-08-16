@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 14:02:02 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/16 18:40:04 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # include "loginfo.h"
 # include "utils.h"
 # include "undo.h"
+# include "go_history.h"
 
 # define DEBUG				1
 
@@ -56,5 +57,6 @@ struct 			s_options
 }				g_options;
 
 char			*ft_readline(char *prompt, char *oldline);
+void			del_undo_one(void *p, size_t i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 17:43:55 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/16 18:49:32 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	sig_init(void)
 	signal(SIGTERM, sigh_sigterm);
 }
 
-static void init_line(t_line *line, char *prompt, char *oldline)
+static void	init_line(t_line *line, char *prompt, char *oldline)
 {
 	t_string temp_str;
 
@@ -37,10 +37,11 @@ static void init_line(t_line *line, char *prompt, char *oldline)
 	line->str = (t_string *)line->history->item->content;
 	g_line = line;
 	line->prompt = str_xcopy(prompt);
-	line->vi_mode = 1;
+	line->vi_mode = g_options.vi_mode;
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
 	init_bindings(line->vi_mode, &line->key_bindings);
+	push_undo_list(line->str, line->cpos, &line->undo, line);
 }
 
 static void	clear_line(t_line *line, int exit, t_history **history)
@@ -59,7 +60,7 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 		ft_putstr_fd("exit", STDOUT);
 		ft_strdel(&line->result);
 	}
-	/* clear undo stack */
+	ft_lstdel(&(line->undo), del_undo_one);
 }
 
 /*
