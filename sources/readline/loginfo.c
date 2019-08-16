@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 08:33:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 13:51:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ void		loginfo_line(t_line *line)
 	if (!DEBUG || g_logfd < 0)
 		return ;
 	c = line->keybuf[0];
+	ft_fdprintf(g_logfd, "-> (%c) ", ft_isprint(c) ? c : ' ');
+	if (!line->vi_mode)
+		ft_fdprintf(g_logfd, "EMA ");
+	else if (line->vi_mode == VI_INSERT)
+		ft_fdprintf(g_logfd, "VII ");
+	else if (line->vi_mode == VI_COMMAND)
+		ft_fdprintf(g_logfd, "VIC ");
 	ft_fdprintf(g_logfd,
-		"-> (%c) [%d %d %d %d %d %d], str: \"%s\"(%d), pos: %d ",
-		ft_isprint(c) ? c : ' ',
+		"[%d %d %d %d %d %d], str: \"%s\"(%d), pos: %d, kill_buf: %s",
 		line->keybuf[0], line->keybuf[1],
 		line->keybuf[2], line->keybuf[3],
 		line->keybuf[4], line->keybuf[5],
-		line->str->s, line->str->len, line->cpos);
-	if (!line->vi_mode)
-		ft_fdprintf(g_logfd, "emacs");
-	else if (line->vi_mode == VI_INSERT)
-		ft_fdprintf(g_logfd, "vi insert");
-	else if (line->vi_mode == VI_COMMAND)
-		ft_fdprintf(g_logfd, "vi command");
+				line->str->s, line->str->len, line->cpos, line->kill_buffer.s);
 	ft_fdprintf(g_logfd, "\n");
 }
 

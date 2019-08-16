@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   duplicate_line.c                                   :+:      :+:    :+:   */
+/*   vi_paste_before.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 07:04:37 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 14:05:49 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/16 03:50:03 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/16 04:09:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
+#include "actions.h"
 
-t_line	*duplicate_line(t_line *line)
+void	vi_paste_before(t_line *line)
 {
-	t_line	*new;
+	int i;
 
-	new = xmalloc(sizeof(t_line));
-	ft_memcpy(new, line, sizeof(t_line));
-	new->str = xmalloc(sizeof(t_string));
-	*new->str = str_xduplicate(*line->str);
-	new->arg = 1;
-	return (new);
-}
-
-void	free_line(t_line *line)
-{
-	str_delete(line->str);
-	free(line->str);
-	free(line);
+	if (line->kill_buffer.len > 0)
+	{
+		i = -1;
+		while (++i < line->arg)
+		{
+			str_xinsert(line->str, line->cpos, line->kill_buffer.s, line->kill_buffer.len);
+			line->cpos += line->kill_buffer.len;
+		}
+		line->cpos--;
+	}
 }

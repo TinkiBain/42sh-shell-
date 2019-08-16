@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   duplicate_line.c                                   :+:      :+:    :+:   */
+/*   vi_ignore.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 07:04:37 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 14:05:49 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/16 03:17:10 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/16 03:17:39 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
+#include "actions.h"
 
-t_line	*duplicate_line(t_line *line)
+void	vi_ignore(t_line *line)
 {
-	t_line	*new;
-
-	new = xmalloc(sizeof(t_line));
-	ft_memcpy(new, line, sizeof(t_line));
-	new->str = xmalloc(sizeof(t_string));
-	*new->str = str_xduplicate(*line->str);
-	new->arg = 1;
-	return (new);
-}
-
-void	free_line(t_line *line)
-{
-	str_delete(line->str);
-	free(line->str);
-	free(line);
+	if (line)
+		return ;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vi_delete_to_motion.c                              :+:      :+:    :+:   */
+/*   vi_yank_to_motion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 05:07:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 03:34:34 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/16 04:12:30 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/16 04:16:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,34 @@ static int	ignore_arg(t_action action)
 	return (0);
 }
 
-static void	delete_right(t_line *line, int count, int ignore)
+static void	yank_right(t_line *line, int count, int ignore)
 {
+	str_delete(&line->kill_buffer);
 	if (!ignore)
 		count *= line->arg;
 	if (count > (int)line->str->len - line->cpos)
 		count = line->str->len - line->cpos;
-	str_remove(line->str, line->cpos, count);
+	line->kill_buffer = str_xsubstring(*line->str, line->cpos, count);
 }
 
-static void	delete_left(t_line *line, int count, int ignore)
+static void	yank_left(t_line *line, int count, int ignore)
 {
+	str_delete(&line->kill_buffer);
 	if (!ignore)
 		count *= line->arg;
 	if (count > line->cpos)
 		count = line->cpos;
-	str_remove(line->str, line->cpos - count, count);
-	line->cpos -= count;
+	line->kill_buffer = str_xsubstring(*line->str, line->cpos - count, count);
 }
 
-void	vi_delete_to_motion(t_line *line)
+
+static void	yank_all(t_line *line)
+{
+	str_delete(&line->kill_buffer);
+	line->kill_buffer = str_xsubstring(*line->str, 0, line->str->len);
+}
+
+void		vi_yank_to_motion(t_line *line)
 {
 	t_line	*new_line;
 	int		ignore;
@@ -49,19 +57,17 @@ void	vi_delete_to_motion(t_line *line)
 		return ;
 	new_line = duplicate_line(line);
 	vi_input_one(new_line);
-	if (new_line->action == vi_delete_to_motion)
-		vi_clear_line(line);
+	if (new_line->action == vi_yank_to_motion)
+		yank_all(line);
 	if (new_line->action == reset_line)
 		reset_line(line);
 	if (is_vi_motion(new_line->action))
 	{
 		ignore = ignore_arg(new_line->action);
 		if (new_line->cpos < line->cpos)
-			delete_left(line, line->cpos - new_line->cpos, ignore);
+			yank_left(line, line->cpos - new_line->cpos, ignore);
 		else if (new_line->cpos > line->cpos)
-			delete_right(line, new_line->cpos - line->cpos, ignore);
+			yank_right(line, new_line->cpos - line->cpos, ignore);
 	}
-	if (new_line->action != vi_ignore)
-		line->vi_mode = VI_INSERT;
 	free_line(new_line);
 }

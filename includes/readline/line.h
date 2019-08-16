@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 07:05:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/15 12:00:43 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "defs.h"
 # include "history.h"
+
+# define VI_FIND_FORWARD	1
+# define VI_FIND_BACKWARD	2
 
 typedef struct		s_line
 {
@@ -41,7 +44,12 @@ typedef struct		s_line
 		t_dlist		*hist_start;
 		t_dlist		*hist_current;
 	}				hs;
-	int				vi_mode;	/* TODO: vi */
+	int				vi_mode;
+	struct			s_vi
+	{
+		int			prev_find;
+		char		prev_find_c;
+	}				vi;
 	t_string		kill_buffer;
 	t_history		*history;
 	t_history		*history_orig;

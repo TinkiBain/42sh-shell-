@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 10:00:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/16 03:31:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ int				vi_input_one(t_line *line)
 			*line->keybuf != NL)
 	{
 		if (perform_action_one(line))
+		{
+			loginfo_line(line);
 			return (1);
+		}
 		loginfo_line(line);
 		ft_bzero(line->keybuf, KEYBUF_SIZE);
 	}

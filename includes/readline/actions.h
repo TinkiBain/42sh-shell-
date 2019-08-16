@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 10:15:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/16 04:24:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,27 @@ void		vi_clear_line(t_line *line);
 void		vi_comment(t_line *line);
 void		vi_vi(t_line *line);
 void		vi_goto_char(t_line *line);
+void		vi_forward_word(t_line *line);
+void		vi_backward_word(t_line *line);
+void		vi_forward_bigword(t_line *line);
+void		vi_backward_bigword(t_line *line);
+void		vi_forward_word_start(t_line *line);
+void		vi_forward_bigword_start(t_line *line);
+void		vi_find_forward_char(t_line *line, char c);
+void		vi_find_backward_char(t_line *line, char c);
+void		vi_find_forward(t_line *line);
+void		vi_find_backward(t_line *line);
+void		vi_repeat_find(t_line *line);
+void		vi_repeat_find_reverse(t_line *line);
+void		vi_replace(t_line *line);
+void		vi_delete_to_motion_save(t_line *line);
+void		vi_ignore(t_line *line);
+void		vi_delete_to_end_save(t_line *line);
+void		vi_paste_after(t_line *line);
+void		vi_paste_before(t_line *line);
+void		vi_yank_to_motion(t_line *line);
+void		vi_yank_to_end(t_line *line);
+
 
 t_vector	get_filenames(t_line *line);
 t_vector	get_variables(t_string query);
