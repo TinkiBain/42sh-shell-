@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 20:54:15 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 15:33:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	set_var(const char *var, char ***env, int change_readonly)
 
 	if ((name = get_var_name(var, &len)))
 	{
-		if (change_readonly || !is_var_readonly(name))
+		if (change_readonly || !check_readonly_var(name))
 		{
 			if (!ft_getenv(name, *env))
 				return (add_new_var(var, env));

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/16 22:11:09 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/17 16:11:26 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ VAR_DIR=variables
 SRCS_VAR=\
 	add_new_var.c			create_copy_env.c\
 	ft_getenv.c				remove_var.c\
-	replace_var.c			is_var_readonly.c\
+	replace_var.c			check_readonly_var.c\
 	print_var_readonly.c	set_var.c\
 	get_var_name.c			init_g_var.c
 

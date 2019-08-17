@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_var_readonly.c                            :+:      :+:    :+:   */
+/*   check_readonly_var.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,11 +13,11 @@
 #include "libft.h"
 #include "variables.h"
 
-int		is_var_readonly(const char *name)
+int		check_readonly_var(const char *name)
 {
 	if (ft_strequ(name, "?") || ft_strequ(name, "_") ||
-		ft_strequ(name, "SHELLOPTS") || ft_strequ(name, "NOCLOBBER") ||
-		ft_strequ(name, "SHELL_HOME") || ft_strequ(name, "SHELL_ALIASES"))
+			ft_strequ(name, "SHELLOPTS") || ft_strequ(name, "NOCLOBBER") ||
+			ft_strequ(name, "SHELL_HOME") || ft_strequ(name, "SHELL_ALIASES"))
 	{
 		print_var_readonly(name);
 		return (1);

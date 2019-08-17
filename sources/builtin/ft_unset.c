@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 22:06:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 15:34:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_unset(const char **av)
 		return (1);
 	while (*av)
 	{
-		if (!is_var_readonly(*av))
+		if (!check_readonly_var(*av))
 		{
 			remove_var(*av, &g_var);
 			len = ft_strlen(*av);
