@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 17:40:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 23:29:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int	add_new_var(const char *av, char ***env)
 	*tmp = NULL;
 	free(*env);
 	*env = new_env;
+	fill_g_var_names();
 	return (0);
 }

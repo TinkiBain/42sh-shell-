@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 16:34:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 23:35:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	print_g_var(char **g_var)
 
 static int	handle_set_arg(const char **av)
 {
-	(void)av;
+	if (ft_strequ(*av, "-p"))
+		print_var_names();
 	return (0);
 }
 
