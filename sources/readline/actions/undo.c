@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:55:09 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 17:40:52 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 19:03:04 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	undo(t_line *line)
 	undo = NULL;
 	i = 0;
 	cp = line->str;
-	if ((undo = pop_undo_list(&line->undo)) != NULL)
+	if ((undo = pop_undo_list(&line->undo)) != NULL && *undo->string.s)
 	{
 		i = undo->lenh;
 		while (next_history_check(line))
