@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:12:44 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/20 07:13:12 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:29:24 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void		transpose_chars(t_line *line)
 	else
 		swap(&line->str->s[pos - 1], &line->str->s[pos]);
 	forward_char(line);
+	push_undo_list(line);
 }

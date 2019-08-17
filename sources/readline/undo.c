@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:03:34 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 06:14:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:23:44 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_undo_item		*pop_undo_list(t_list **undo)
 
 	cp = NULL;
 	temp = NULL;
-	if (*undo)
+	if (*undo && ((*undo)->next))
 	{
 		cp = (*undo)->next;
 		temp = (t_undo_item *)xmalloc(sizeof(t_undo_item));
@@ -28,22 +28,27 @@ t_undo_item		*pop_undo_list(t_list **undo)
 		free(*undo);
 		*undo = cp;
 	}
+	else if (!((*undo)->next))
+		return ((*undo)->content);
 	return (temp);
 }
 
-void			push_undo_list(t_string *str, int cpos, t_list **undo,
-		t_line *line)
+void			push_undo_list(t_line *line)
 {
 	t_undo_item		new_undo;
 	int				len;
 
-	len = 0;
-	new_undo.string = str_xduplicate(*str);
-	new_undo.cpos = cpos;
-	new_undo.lenh = len_history(line);
-	ft_lstadd(undo, (ft_lstnew(&new_undo, sizeof(t_undo_item))));
-	if (!*undo)
-		die();
+	if (!(line->undo) || ((line->undo) && ft_strcmp(line->str->s, ((t_undo_item
+							*)(line->undo)->content)->string.s)))
+	{
+		len = 0;
+		new_undo.string = str_xduplicate(*line->str);
+		new_undo.cpos = line->cpos;
+		new_undo.lenh = len_history(line);
+		ft_lstadd(&line->undo, (ft_lstnew(&new_undo, sizeof(t_undo_item))));
+		if (!*undo)
+			die();
+	}
 }
 
 void			del_undo_one(void *p, size_t i)

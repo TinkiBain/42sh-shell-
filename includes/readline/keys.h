@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:55:20 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/10 20:32:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:35:06 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ enum e_key
 	CTRL_Y,
 	CTRL_Z,
 	ESC,
+	CTRL_US = 31,
 	DEL = 127,
 	ARROW_LEFT = KEY_OFFSET,
 	ARROW_RIGHT,

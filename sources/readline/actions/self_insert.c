@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:10:23 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 06:32:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:28:58 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	self_insert(t_line *line)
 			line->cpos++;
 		}
 	}
+	push_undo_list(line);
 }

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:48:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/16 18:22:50 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 17:21:38 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef	struct		s_undo_item
 	int			lenh;
 }					t_undo_item;
 
-void				push_undo_list(t_string *str, int cpos, t_list **undo, t_line *line);
+void				push_undo_list(t_line *line);
 t_undo_item			*pop_undo_list(t_list **undo);
 
 #endif

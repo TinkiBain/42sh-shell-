@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 08:25:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:24:14 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
 	init_bindings(line->vi_mode, &line->key_bindings);
-	push_undo_list(line->str, line->cpos, &line->undo, line);
+	push_undo_list(line);
 }
 
 static void	clear_line(t_line *line, int exit, t_history **history)

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 14:04:29 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/09 17:51:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:29:54 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ void			transpose_words(t_line *line)
 			tw_chech_space(line->str->s, line->cpos, line);
 		else if (!*(line->str->s + line->cpos))
 			tw_check_null(line->str->s, line->cpos, line);
+		push_undo_list(line);
 	}
 }
