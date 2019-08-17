@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 17:49:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 14:50:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/18 00:19:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void		fill_hash_table(void)
 	if (g_table)
 		del_hash();
 	g_table = (t_hash **)ft_xmalloc(sizeof(t_hash) * HASH_LEN);
-	create_bin(getenv("PATH"));
+	create_bin(get_value_from_all_vars("PATH"));
 }

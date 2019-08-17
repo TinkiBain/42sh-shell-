@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:18:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/18 00:20:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		term_init(void)
 	char		*termtype;
 	static char	term_buffer[TERM_BUFFER];
 
-	termtype = getenv("TERM");
+	termtype = get_value_from_all_vars("TERM");
 	if (tgetent(term_buffer, termtype) <= 0)
 	{
 		loginfo("Failed to open TERM='%s'. Using default.", termtype);

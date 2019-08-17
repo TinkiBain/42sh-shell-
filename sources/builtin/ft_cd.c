@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 06:14:14 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/18 00:18:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_previous_pwd(char **env)
 
 	if (!env || !*env)
 		return (getcwd(NULL, 1024));
-	if ((p = ft_getenv("OLDPWD", env)))
+	if ((p = get_value_from_all_vars("OLDPWD")))
 		return (ft_xstrdup(p));
 	return (getcwd(NULL, 1024));
 }

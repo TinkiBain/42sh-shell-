@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilda.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/18 00:18:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ static char			*user_founder(char *str)
 static char			*tilda(char *str, char *buf)
 {
 	if (str[1] == '+' && !str[2])
-		return (ft_xstrdup(ft_getenv("PWD", environ)));
+		return (ft_xstrdup(get_value_from_all_vars("PWD")));
 	else if (str[1] == '-' && !str[2])
 	{
-		if ((buf = ft_getenv("OLDPWD", environ)) < 0)
+		if ((buf = get_value_from_all_vars("OLDPWD")) < 0)
 			return (ft_xstrdup(buf));
 	}
 	else if (str[1] == '/')
 	{
-		buf = ft_getenv("HOME", environ);
+		buf = get_value_from_all_vars("HOME");
 		buf = ft_strrejoin(buf, &str[1], 0);
 		return (buf);
 	}
 	else if (str[1])
 		return (user_founder(str));
 	else
-		buf = ft_getenv("HOME", environ);
+		buf = get_value_from_all_vars("HOME");
 	return (ft_xstrdup(buf));
 }
 

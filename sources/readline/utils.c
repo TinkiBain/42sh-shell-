@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:16:01 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 08:27:33 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/18 00:20:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		*convert_tilde(char *str)
 
 	if (!(str[0] == '~' && str[1] == '/'))
 		return (ft_xstrdup(str));
-	home = getenv("HOME");
+	home = get_value_from_all_vars("HOME");
 	if (!home || !str)
 		return (NULL);
 	res = str_xcopy(home);
