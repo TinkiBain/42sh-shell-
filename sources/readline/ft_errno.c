@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:11:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 06:59:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:55:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	fatal(char *msg)
 	extern int	g_logfd;
 
 	term_restore();
+	ft_putstr_fd("\n", STDERR);
 	ft_putstr_fd(PROJECT_NAME ": Fatal error: ", STDERR);
 	ft_putstr_fd(msg, STDERR);
 	ft_putstr_fd("\n", STDERR);

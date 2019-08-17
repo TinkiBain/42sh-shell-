@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:13:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:55:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	term_restore(void)
 {
 	tcsetattr(g_rl_options.tty, TCSANOW, &g_init_tios);
 	term_putstr(g_cap.kp_end);
-	ft_putstr_fd("\n", g_rl_options.tty);
 	tputs(g_cap.clear_down, 1, ft_putint); /* TODO column 0 fix later */
 	clear_termcap();
 }

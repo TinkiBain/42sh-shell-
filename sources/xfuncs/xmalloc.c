@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:30:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 07:41:33 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:55:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void			die(void)
 {
-	term_restore();
 	fatal("Out of virtual memory");
 	exit(1);
 }

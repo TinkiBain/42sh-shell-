@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 11:34:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:14:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 10:16:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	vi_find_forward_char(t_line *line, char c)
 
 	if (ft_isprint(c))
 	{
-		line->vi.prev_find = VI_FIND_BACKWARD;
-		line->vi.prev_find_c = c;
 		j = -1;
 		while (++j < line->arg)
 		{
@@ -46,6 +44,10 @@ void	vi_find_forward(t_line *line)
 		loginfo("vi_find_forward(): read error");
 	if (c == CTRL_C)
 		reset_line(line);
-	else
-		vi_find_backward_char(line, c);
+	else if (ft_isprint(c))
+	{
+		line->vi.prev_find = VI_FIND_FORWARD;
+		line->vi.prev_find_c = c;
+		vi_find_forward_char(line, c);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 13:51:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 10:04:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void		logopen(void)
 	}
 	ft_strdel(&path);
 	loginfo("logopen()");
+	loginfo("tty: %s", ttyname(g_rl_options.tty));
 }
 
 void		logclose(void)

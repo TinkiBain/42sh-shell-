@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 08:32:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 10:01:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_pars_list	*exec_ast(char *buf)
 		//buf = ft_xstrjoin(buf, tmp); // убрать после добавления второго парметра в readline
 		tmp = buf;
 		buf = ft_readline("> ", buf);
+		ft_putstr("\n");
 		free(tmp); // утечка на строчку выше, пропадет после добавления параметра, удалить эту строку
 		g_error_pars = 0;
 		return (exec_ast(buf));
@@ -95,6 +96,7 @@ int			main(int ac, char **av)
 			break ;
 		else
 		{
+			ft_putstr("\n");
 			if (*(tmp = ft_strtrim(buf)))
 			{
 //				lex = lexer(buf);
@@ -129,5 +131,6 @@ int			main(int ac, char **av)
 	history_clear(g_history);
 	logclose();
 	ft_free_double_ptr_arr((void ***)&environ);
+	ft_putstr("exit\n");
 	return (g_res_exec);
 }

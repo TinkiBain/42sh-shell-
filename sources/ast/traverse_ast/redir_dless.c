@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/16 15:51:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 10:00:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int			redir_dless(t_io_redirect *redir)
 	while (1)
 	{
 		str = ft_readline("> ", NULL);
+		ft_putstr("\n");
 		if (!str || ft_strequ(str, redir->file_name))
 			break ;
 		ft_putstr_fd(str, pipefd[1]);

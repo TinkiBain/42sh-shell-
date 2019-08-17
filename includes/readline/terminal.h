@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:54:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 08:27:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:47:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "ft_readline.h"
 
-# define DEFAULT_TERMTYPE	"xterm..."
+# define DEFAULT_TERMTYPE	"xterm"
 # define TERM_BUFFER		2048
 # define KEY_BUF			32
 # define ONECAP_BUFFER		32

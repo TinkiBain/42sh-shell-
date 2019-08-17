@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:57:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:12:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:55:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sigh_sigsegv(int sig)
 	if (sig == SIGSEGV)
 	{
 		term_restore();
-		ft_putstr_fd("Segmentation fault\n", STDERR);
+		ft_putstr_fd("\nSegmentation fault\n", STDERR);
 		loginfo("SIGSEGV caught, exit");
 		loginfo_backtrace();
 		logclose();
@@ -30,7 +30,7 @@ void	sigh_sigabrt(int sig)
 	if (sig == SIGABRT)
 	{
 		term_restore();
-		ft_putstr_fd("Aborted.\n", STDERR);
+		ft_putstr_fd("\nAborted.\n", STDERR);
 		loginfo("SIGABRT caught, exit");
 		loginfo_backtrace();
 		logclose();
@@ -64,7 +64,6 @@ void	sigh_sigwinch(int sig)
 {
 	if (sig == SIGWINCH)
 	{
-		sleep(1);
 		loginfo("SIGWINCH caught: [%dx%d]",
 				get_screen_width(), get_screen_height());
 		update_line(NULL);
