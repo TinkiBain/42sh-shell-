@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 04:27:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 14:11:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct		s_line
 	int				arg;
 	int				reading_arg;
 	int				complete_fail;
-	char			keybuf[KEYBUF_SIZE];
+	/* char			keybuf[KEYBUF_SIZE]; */
+	t_string		keybuf;
 	void			(*action)(struct s_line *line);
 	int				overwrite_mode;
 	int				hs_mode;

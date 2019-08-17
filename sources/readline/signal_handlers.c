@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:57:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:55:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,6 @@ void	sigh_sigterm(int sig)
 		reset_line(g_line);
 		update_line(g_line);
 		loginfo("SIGTERM caught, reset line");
-	}
-}
-
-void	sigh_sigint(int sig)
-{
-	
-	if (sig == SIGINT)
-	{
-		ft_putstr_fd("^C", g_rl_options.tty);
-		reset_line(g_line);
-		update_line(g_line);
-		loginfo("SIGINT caught, reset line");
 	}
 }
 

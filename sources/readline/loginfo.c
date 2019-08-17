@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 10:04:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		logopen(void)
 	}
 	ft_strdel(&path);
 	loginfo("logopen()");
-	loginfo("tty: %s", ttyname(g_rl_options.tty));
+	loginfo("tty: %s", ttyname(STDIN));
 }
 
 void		logclose(void)
@@ -61,7 +61,7 @@ void		loginfo_line(t_line *line)
 
 	if (!DEBUG || g_logfd < 0)
 		return ;
-	c = line->keybuf[0];
+	c = line->keybuf.s[0];
 	ft_fdprintf(g_logfd, "-> (%c) ", ft_isprint(c) ? c : ' ');
 	if (!line->vi_mode)
 		ft_fdprintf(g_logfd, "EMA ");
@@ -71,9 +71,9 @@ void		loginfo_line(t_line *line)
 		ft_fdprintf(g_logfd, "VIC ");
 	ft_fdprintf(g_logfd,
 		"[%d %d %d %d %d %d], str: \"%s\"(%d), pos: %d, kill_buf: %s",
-		line->keybuf[0], line->keybuf[1],
-		line->keybuf[2], line->keybuf[3],
-		line->keybuf[4], line->keybuf[5],
+				str_get(line->keybuf, 0), str_get(line->keybuf, 1),
+				str_get(line->keybuf, 2), str_get(line->keybuf, 3),
+				str_get(line->keybuf, 4), str_get(line->keybuf, 5),
 				line->str->s, line->str->len, line->cpos, line->kill_buffer.s);
 	ft_fdprintf(g_logfd, "\n");
 }

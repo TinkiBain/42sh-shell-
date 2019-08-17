@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 10:01:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void		init_readline(void)
 {
 	g_history = ft_xmemalloc(sizeof(*g_history));
 	history_load(g_history, DEFAULT_HIST_PATH);
-	g_rl_options.tty = 0;
 }
 
 t_pars_list	*exec_ast(char *buf)

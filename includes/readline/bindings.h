@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:34:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 05:59:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 14:44:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct	s_binding
 }				t_binding;
 
 void		bind(t_vector *key_bindings, int key,  t_action action);
-t_binding	*find_binding(t_vector *key_bindings, char *buf);
+t_binding	*find_binding(t_vector *key_bindings, t_string buf);
 void		init_bindings(int vi_mode, t_vector *key_bindings);
 void		update_bindings(int vi_mode, t_vector *key_bindings);
 void		clear_bindings(t_vector *key_bindings);

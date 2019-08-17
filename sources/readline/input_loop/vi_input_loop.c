@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:14:05 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 16:57:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,55 +16,20 @@ static int		check_arg(t_line *line)
 {
 	if (line->vi_mode != VI_COMMAND)
 		return (0);
-	if (line->keybuf[0] == '0' && line->reading_arg == 0)
+	if (str_get(line->keybuf, 0) == '0' && line->reading_arg == 0)
 		return (0);
-	if (ft_isdigit(line->keybuf[0]) && line->reading_arg == 0)
+	if (ft_isdigit(str_get(line->keybuf, 0)) && line->reading_arg == 0)
 	{
 		line->reading_arg = 1;
-		line->arg = line->keybuf[0] - '0';
+		line->arg = line->keybuf.s[0] - '0';
 		return (1);
 	}
-	if (ft_isdigit(line->keybuf[0]) && line->reading_arg)
+	if (ft_isdigit(str_get(line->keybuf, 0)) && line->reading_arg)
 	{
-		line->arg = line->arg * 10 + line->keybuf[0] - '0';
+		line->arg = line->arg * 10 + line->keybuf.s[0] - '0';
 		return (1);
 	}
 	line->reading_arg = 0;
-	return (0);
-}
-
-static int		perform_action_one(t_line *line)
-{
-	t_binding	*b;
-
-	if (check_arg(line))
-		return (0);
-	b = find_binding(&line->key_bindings, line->keybuf);
-	if (b && (line->action = b->action))
-	{
-		line->action(line);
-		line->arg = 1;
-	}
-	return (1);
-}
-
-int				vi_input_one(t_line *line)
-{
-	int		ret;
-
-	while ((ret = read(g_rl_options.tty, line->keybuf, KEYBUF_SIZE - 1)) &&
-			*line->keybuf != NL)
-	{
-		if (perform_action_one(line))
-		{
-			loginfo_line(line);
-			return (1);
-		}
-		loginfo_line(line);
-		ft_bzero(line->keybuf, KEYBUF_SIZE);
-	}
-	if (ret < 0)
-		g_errno = E_READ;
 	return (0);
 }
 
@@ -88,24 +53,40 @@ static int		perform_action(t_line *line)
 	return (1);
 }
 
+static void		loop_buffer(t_line *line, char keybuf[KEYBUF_SIZE])
+{
+	int i;
+
+	i = -1;
+	while (++i < KEYBUF_SIZE)
+	{
+		line->keybuf = str_xncopy(keybuf + i, 1);
+		perform_action(line);
+	}
+}
+
 int				vi_input_loop(t_line *line)
 {
+	char	keybuf[KEYBUF_SIZE];
 	int		ret;
 
-	while ((ret = read(g_rl_options.tty, line->keybuf, KEYBUF_SIZE - 1)) > 0 &&
-			*line->keybuf != NL)
+	ft_bzero(keybuf, KEYBUF_SIZE);
+	while ((ret = read(STDIN, keybuf, KEYBUF_SIZE - 1)) > 0)
 	{
-		if (line->keybuf[0] == CTRL_D && line->str->len == 0)
-			return (1);
-		else if (line->keybuf[0] == CTRL_D)
+		if (*keybuf == CTRL_D && line->str->len == 0)
 			return (0);
-		perform_action(line);
-		if (line->action == vi_comment || line->action == vi_vi)
-			return (0);
-		loginfo_line(line);
-		ft_bzero(line->keybuf, KEYBUF_SIZE);
+		if (is_ansiseq(keybuf))
+		{
+			line->keybuf = str_xcopy(keybuf);
+			perform_action(line);
+		}
+		else
+			loop_buffer(line, keybuf);
+		if (line->action == vi_comment || line->action == vi_vi ||
+			*keybuf == CTRL_D || *keybuf == NL)
+			return (ret);
+		str_delete(&line->keybuf);
+		ft_bzero(keybuf, KEYBUF_SIZE);
 	}
-	if (ret < 0)
-		g_errno = E_READ;
-	return (0);
+	return (ret);
 }
