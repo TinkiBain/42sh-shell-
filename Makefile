@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/17 07:41:18 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/17 15:54:46 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,10 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJS_SUBDIRS) $(OBJS)
+rm_lib:
+	@rm -f $(LIBFT_A)
+
+$(NAME): rm_lib $(LIBFT_A) $(OBJS_SUBDIRS) $(OBJS)
 	@printf "$(BLUE)Compiling executable...$(NC)\n"
 	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
 	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
