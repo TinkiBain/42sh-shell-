@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 10:01:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:09:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int			main(int ac, char **av)
 	char		*tmp;
 	extern char	**environ;
 
+	preliminary_check_fd();
 	environ = create_copy_env(environ);
 	g_var = environ;
 	logopen();
