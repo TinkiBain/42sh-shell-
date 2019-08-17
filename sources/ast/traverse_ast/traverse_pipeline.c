@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 17:51:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 15:17:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
 		dup2(fd, 0);
 		close(fd);
 		traverse_cmd(cmd, env, in_fork);
+		exit(g_res_exec);
 	}
 	waitpid(pid2, &g_res_exec, 0);
 }
@@ -42,6 +43,7 @@ static void	ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
 		traverse_cmd(pipe_seq->cmd, environ, in_fork);
+		exit(g_res_exec);
 	}
 	else
 	{
