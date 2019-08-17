@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:21:21 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 18:25:16 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 19:05:26 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int				next_history_check(t_line *line)
 	{
 		line->history->item = line->history->item->next;
 		line->str = (t_string *)line->history->item->content;
-		line->cpos = line->str->len;
 		return (1);
 	}
 	return (0);
@@ -30,7 +29,6 @@ int				previous_history_check(t_line *line)
 	{
 		line->history->item = line->history->item->prev;
 		line->str = (t_string *)line->history->item->content;
-		line->cpos = line->str->len;
 		return (1);
 	}
 	return (0);
