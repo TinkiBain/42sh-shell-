@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 17:09:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/17 18:59:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,24 @@ t_pars_list	*exec_ast(char *buf)
 	t_lex		*lex;
 	t_lex		*src;
 	t_pars_list	*list;
-	char		*tmp; //убрать полсе добавления второго парметра в readline
+	char		*tmp;
 
-	tmp = NULL;
 	lex = lexer(buf);
 	src = lex;
 	while (src->next)
 		src = src->next;
 	list = parser(lex, NULL, 0);
+	check_quotes(buf);
 	lexer_free_all(src);
 	if (g_error_pars == 1)
 		return (parser_free_tree(list));
 	if (g_error_pars == 2)
 	{
-		//tmp = ft_readline(">", tmp);// buf = ft_readline(">", tmp);
-		//buf = ft_xstrjoin(buf, tmp); // убрать после добавления второго парметра в readline
+		buf = ft_strjoin(buf, "\n"); // убрать после добавления второго парметра в readline
 		tmp = buf;
-		buf = ft_readline("> ", buf);
+		buf = ft_readline("> ", tmp);
+		free(tmp);
 		ft_putstr("\n");
-		free(tmp); // утечка на строчку выше, пропадет после добавления параметра, удалить эту строку
 		g_error_pars = 0;
 		return (exec_ast(buf));
 	}
