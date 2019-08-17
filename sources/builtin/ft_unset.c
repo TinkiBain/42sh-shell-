@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_var.c                                          :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 23:38:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-int	add_var(const char *av, char ***env)
+int		ft_unset(const char **av)
 {
-	char	**new_env;
-	char	**tmp;
-	char	**p;
-	size_t	size;
+	extern char	**g_var;
+	extern char	**environ;
+	size_t		len;
 
-	size = 0;
-	p = *env;
-	while (*(p++))
-		++size;
-	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
-	ft_bzero(new_env, sizeof(char *) * (size + 2));
-	tmp = new_env;
-	p = *env;
-	while (*p)
-		*(tmp++) = *(p++);
-	*(tmp++) = ft_xstrdup(av);
-	*tmp = NULL;
-	free(*env);
-	*env = new_env;
-	return (0);
+	if (!g_var)
+		return (1);
+	while (*av)
+	{
+		if (!check_readonly_var(*av))
+		{
+			remove_var(*av, &g_var);
+			if (getenv(*av))
+				remove_var(*av, &environ);
+			len = ft_strlen(*av);
+			if (len == 4 && ft_strnequ(*av, "PATH", 4))
+				del_hash();
+		}
+		++av;
+	}
+	return (1);
 }

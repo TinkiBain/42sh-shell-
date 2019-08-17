@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 23:49:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int			TYPE_OF_PROGRAM;
 */
 
 char		**g_var;
+char		**g_var_names;
 
 void		init_readline(void)
 {
@@ -74,9 +75,10 @@ int			main(int ac, char **av)
 	char		*tmp;
 	extern char	**environ;
 
-	environ = create_copy_env(environ);
-	g_var = environ;
 	logopen();
+	environ = create_copy_env(environ);
+	init_g_var();
+	fill_g_var_names();
 	init_readline();
 	fill_hash_table();
 	if (ac > 1)

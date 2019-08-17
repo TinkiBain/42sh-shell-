@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_token_assignment_word.c                     :+:      :+:    :+:   */
+/*   print_var_names.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/05 21:42:57 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 23:50:34 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/17 23:30:40 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/17 23:34:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "libft.h"
 
-void	handle_token_assignment_word(char *word, char ***env)
+int				print_var_names(void)
 {
-	set_var((const char *)word, env, 0);
+	extern char	**g_var_names;
+	char		**tmp;
+
+	tmp = g_var_names;
+	while (*tmp)
+		ft_putendl(*(tmp++));
+	return (0);
 }

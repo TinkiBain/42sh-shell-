@@ -6,11 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 15:17:56 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 23:49:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern char	**g_var;
 
 static void	handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
 															int in_fork)
@@ -94,9 +96,9 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
 		{
 			if ((flag = check_builtin(cmd_name)) == 1)
 			{
-				redir_set();
+				// redir_set();
 				traverse_cmd(pipe_seq->cmd, env, 0);
-				redir_reset();
+				// redir_reset();
 			}
 			else if (flag == 0)
 			{
@@ -106,6 +108,8 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
 					waitpid(pid, &g_res_exec, 0);
 			}
 		}
+		else
+			traverse_cmd(pipe_seq->cmd, env, 1);
 	}
 }
 

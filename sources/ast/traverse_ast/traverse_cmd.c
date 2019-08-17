@@ -6,11 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 17:52:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/16 23:17:59 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern char	**g_var;
 
 #define IS_COPY_ENV		2
 
@@ -50,16 +52,21 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
-		traverse_cmd_pref(pref, &new_env, &flag);
 		if (cmd->cmd_word)
 		{
-			cmd->cmd_word = tdq(cmd->cmd_word);
+			traverse_cmd_pref(pref, &new_env, &flag);
+			// cmd->cmd_word = tdq(cmd->cmd_word);
 			push_back_av(&av, cmd->cmd_word);
+		}
+		else
+		{
+			// flag = 1;
+			traverse_cmd_pref(pref, &g_var, &flag);
 		}
 	}
 	else
 	{
-		cmd->cmd_name = tdq(cmd->cmd_name);
+		// cmd->cmd_name = tdq(cmd->cmd_name);
 		push_back_av(&av, cmd->cmd_name);
 	}
 	suff = cmd->cmd_suf;

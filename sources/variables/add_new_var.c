@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setenv.c                                        :+:      :+:    :+:   */
+/*   add_new_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/16 20:50:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 23:49:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-int			ft_setenv(const char **av)
+int	add_new_var(const char *av, char ***env)
 {
-	extern	char	**environ;
+	char	**new_env;
+	char	**tmp;
+	char	**p;
+	size_t	size;
 
-	if (!environ)
-		return (1);
-	while (*av)
-	{
-		set_var(*av, &environ, 0);
-		++av;
-	}
+	size = 0;
+	p = *env;
+	while (*(p++))
+		++size;
+	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
+	ft_bzero(new_env, sizeof(char *) * (size + 2));
+	tmp = new_env;
+	p = *env;
+	while (*p)
+		*(tmp++) = *(p++);
+	*(tmp++) = ft_xstrdup(av);
+	*tmp = NULL;
+	free(*env);
+	*env = new_env;
+	fill_g_var_names();
 	return (0);
 }
