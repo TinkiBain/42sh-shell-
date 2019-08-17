@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xmalloc.c                                          :+:      :+:    :+:   */
+/*   ft_xstrjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:30:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/09 15:15:11 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/17 06:16:08 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 06:18:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <execinfo.h>
-#include "xmalloc.h"
+#include "sh.h"
 
-void			die(void)
+char	*ft_xstrjoin(char const *s1, char const *s2)
 {
-	term_restore();
-	fatal("Out of virtual memory");
-}
+	char *p;
 
-void		*xmalloc(size_t size)
-{
-	void *ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
+	p = ft_strjoin(s1, s2);
+	if (!p)
 		die();
-	return (ptr);
-}
-
-void		*ft_xmemalloc(size_t size)
-{
-	void *ptr;
-
-	ptr = ft_memalloc(size);
-	if (!ptr)
-		die();
-	return (ptr);
+	return (p);
 }

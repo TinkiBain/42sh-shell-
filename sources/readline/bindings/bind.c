@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:10:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/10 21:09:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 05:36:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 static t_string get_sequence_2(int key)
 {
 	t_string	str;
-	char		*s;
 
 	str_zero(&str);
 	if (key == HOME)
-		str = str_xcopy((s = g_cap.key_home)	? s : "");
+		str = str_xcopy(g_cap.key_home);
 	else if (key == END)
-		str = str_xcopy((s = g_cap.key_end)		? s : "");
+		str = str_xcopy(g_cap.key_end);
 	else if (key == DELETE)
-		str = str_xcopy((s = g_cap.key_delete)	? s : "");
+		str = str_xcopy(g_cap.key_delete);
 	else if (key == INSERT)
-		str = str_xcopy((s = g_cap.key_insert)	? s : "");
+		str = str_xcopy(g_cap.key_insert);
 	else if (key >= META && key <= META + 127)
 	{
 		str = str_xcreate(2);
@@ -43,17 +42,16 @@ static t_string get_sequence_2(int key)
 static t_string get_sequence(int key)
 {
 	t_string	str;
-	char		*s;
 
 	str_zero(&str);
 	if (key == ARROW_LEFT)
-		str = str_xcopy((s = g_cap.key_left)	? s : "\033[D");
+		str = str_xcopy(g_cap.key_left);
 	else if (key == ARROW_RIGHT)
-		str = str_xcopy((s = g_cap.key_right)	? s : "\033[C");
+		str = str_xcopy(g_cap.key_right);
 	else if (key == ARROW_UP)
-		str = str_xcopy((s = g_cap.key_up)		? s : "\033[A");
+		str = str_xcopy(g_cap.key_up);
 	else if (key == ARROW_DOWN)
-		str = str_xcopy((s = g_cap.key_down)	? s : "\033[B");
+		str = str_xcopy(g_cap.key_down);
 	else if (key == CTRL_LEFT)
 		str = str_xcopy(g_cap.key_ctrl_left);
 	else if (key == CTRL_RIGHT)

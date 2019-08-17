@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:54:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/10 21:10:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 08:27:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "ft_readline.h"
 
-# define DEFAULT_TERMTYPE	"xterm"
+# define DEFAULT_TERMTYPE	"xterm..."
 # define TERM_BUFFER		2048
 # define KEY_BUF			32
 # define ONECAP_BUFFER		32
@@ -36,8 +36,8 @@ typedef struct	s_cap
 	char	*clear_all;
 	char	*clear_down;
 	char	*clear_end;
-	char	*keypad_start;
-	char	*keypad_end;
+	char	*kp_start;
+	char	*kp_end;
 	char	*key_home;
 	char	*key_end;
 	char	*key_delete;
@@ -57,6 +57,9 @@ void	term_putstr(char *str);
 void	term_init(void);
 void	term_setup(void);
 void	term_restore(void);
+void	term_fillcap(void);
+void	clear_termcap(void);
+void	term_putstr(char *str);
 
 void	term_getpos(int *row, int *col);
 

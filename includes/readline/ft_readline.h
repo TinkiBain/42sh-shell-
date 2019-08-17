@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 18:40:04 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 08:25:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 
 # include "sh.h"
 # include "line.h"
-# include "xmalloc.h"
-# include "str_xfuncs.h"
-# include "vec_xfuncs.h"
 # include "ft_errno.h"
 # include "terminal.h"
 # include "keys.h"
@@ -51,10 +48,11 @@
 
 t_history		*g_history;
 
-struct 			s_options
+struct 			s_rl_options
 {
-	t_uint		 vi_mode;
-}				g_options;
+	t_uint		vi_mode;
+	int			tty;
+}				g_rl_options;
 
 char			*ft_readline(char *prompt, char *oldline);
 void			del_undo_one(void *p, size_t i);

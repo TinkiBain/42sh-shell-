@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 19:11:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 03:04:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:14:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static void	show_one(t_string *str, int max)
 {
 	int i;
 
-	ft_putstr_fd(str->s, STDOUT);
+	ft_putstr_fd(str->s, g_rl_options.tty);
 	i = str->len;
 	while (i++ < max)
 	{
 		if (i >= get_screen_width())
 			break ;
-		ft_putchar_fd(' ', STDOUT);
+		ft_putchar_fd(' ', g_rl_options.tty);
 	}
 }
 
@@ -53,7 +53,7 @@ static void	show(t_vector vec, void (*mod_str)(t_string *))
 	int row;
 	int i;
 
-	ft_putstr_fd("\n\r", STDOUT);
+	ft_putstr_fd("\n\r", g_rl_options.tty);
 	columns = get_screen_width() / (max_len = get_max_len(vec, mod_str) + 2);
 	columns = (columns == 0 ? 1 : columns);
 	jump = vec.len / columns;
@@ -68,7 +68,7 @@ static void	show(t_vector vec, void (*mod_str)(t_string *))
 			show_one(vec_get(vec, i), max_len);
 			i += jump;
 		}
-		ft_putstr_fd("\n\r", STDOUT);
+		ft_putstr_fd("\n\r", g_rl_options.tty);
 		row++;
 	}
 }
@@ -79,11 +79,11 @@ static int	ask_display_many(int n)
 
 	if (n < COMPLETION_QUERY_ITEMS)
 		return (1);
-	ft_fdprintf(STDOUT, "\n\rDisplay all %d possibilities? (y or n)", n);
+	ft_fdprintf(g_rl_options.tty, "\n\rDisplay all %d possibilities? (y or n)", n);
 	c = 0;
 	while (c != CTRL_C && c != 'n' && c != DEL)
 	{
-		read(STDIN, &c, 1);
+		read(g_rl_options.tty, &c, 1);
 		if (c == 'y' || c == ' ')
 			return (1);
 	}
@@ -97,5 +97,5 @@ void		show_completions(t_vector vec, void (*mod_str)(t_string *))
 	if (ask_display_many(vec.len))
 		show(vec, mod_str);
 	else
-		ft_putstr_fd("\n\r", STDOUT);
+		ft_putstr_fd("\n\r", g_rl_options.tty);
 }

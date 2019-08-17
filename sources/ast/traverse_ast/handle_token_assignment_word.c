@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:42:57 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 20:03:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	handle_token_assignment_word(char *word, char ***env)
 			while (!(ft_strnequ(name, *tmp, len) && *(*tmp + len) == '='))
 				++tmp;
 			free(*tmp);
-			*tmp = ft_strdup(word);
+			*tmp = ft_xstrdup(word);
 		}
 		else
 		{

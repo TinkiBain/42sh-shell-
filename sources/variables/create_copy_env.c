@@ -6,11 +6,12 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 13:31:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/09 18:18:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 07:00:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "xfuncs.h"
 
 char	**create_copy_env(char **env)
 {
@@ -26,7 +27,7 @@ char	**create_copy_env(char **env)
 	tmp = new_env;
 	while (*env)
 	{
-		*(tmp++) = ft_strdup(*(env++));
+		*(tmp++) = ft_xstrdup(*(env++));
 	}
 	*tmp = NULL;
 	return (new_env);

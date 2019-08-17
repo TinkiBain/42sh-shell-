@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/16 17:40:28 by wtalea           ###   ########.fr        #
+#    Updated: 2019/08/17 07:43:48 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,21 +14,19 @@ READLINE_ACTIONS_DIR=actions
 READLINE_COMPLETE_DIR=$(READLINE_ACTIONS_DIR)/complete
 READLINE_BINDINGS_DIR=bindings
 READLINE_DISPLAY_DIR=display
+READLINE_TERMINAL_DIR=terminal
 
 READLINE_INCLUDES=\
 actions.h		bindings.h		display.h		escseqs.h\
 ft_errno.h		ft_readline.h	history.h		history_search.h\
 input_loop.h	keys.h			line.h			loginfo.h\
-signal_handlers.h\
-str_xfuncs.h	terminal.h		utils.h			vec_xfuncs.h\
-xmalloc.h		undo.h
+signal_handlers.h	terminal.h		utils.h			undo.h\
 
 SRCS_READLINE_WITHOUT_DIR=\
 	escseqs.c			ft_errno.c		ft_readline.c		history.c\
 	history_search.c	input_loop.c	loginfo.c			signal_handlers.c\
-	str_xfuncs1.c		str_xfuncs2.c	terminal.c			vec_xfuncs.c\
-	vi_input_loop.c		xmalloc.c		utils.c				duplicate_line.c\
-	undo.c				go_history.c
+	vi_input_loop.c		utils.c			duplicate_line.c	undo.c\
+	go_history.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\
@@ -58,7 +56,10 @@ SRCS_READLINE_COMPLETE=\
 	possible_filename_completions.c					complete_filename.c\
 	possible_command_completions.c					complete_command.c\
 	possible_variable_completions.c					complete_variable.c\
-	find_common_part.c								
+	find_common_part.c
+
+SRCS_READLINE_TERMINAL=\
+	terminal.c				fill_termcap.c\
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c	is_vi_motion.c
@@ -70,10 +71,13 @@ READLINE_SUBDIRS=\
 	$(READLINE_ACTIONS_DIR)\
 	$(READLINE_BINDINGS_DIR)\
 	$(READLINE_DISPLAY_DIR)\
-	$(READLINE_COMPLETE_DIR)
+	$(READLINE_COMPLETE_DIR)\
+	$(READLINE_TERMINAL_DIR)\
 
 SRCS_READLINE=$(SRCS_READLINE_WITHOUT_DIR)\
 	$(addprefix $(READLINE_ACTIONS_DIR)/, $(SRCS_READLINE_ACTIONS))\
 	$(addprefix $(READLINE_BINDINGS_DIR)/, $(SRCS_READLINE_BINDINGS))\
 	$(addprefix $(READLINE_DISPLAY_DIR)/, $(SRCS_READLINE_DISPLAY))\
-	$(addprefix $(READLINE_COMPLETE_DIR)/, $(SRCS_READLINE_COMPLETE))
+	$(addprefix $(READLINE_COMPLETE_DIR)/, $(SRCS_READLINE_COMPLETE))\
+	$(addprefix $(READLINE_TERMINAL_DIR)/, $(SRCS_READLINE_TERMINAL))\
+

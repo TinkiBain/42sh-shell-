@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 14:02:41 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 04:27:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 typedef struct		s_line
 {
-	t_string		*str;			/* shortcut for history->item->content */
+	t_string		*str;
 	t_string		oldstr;
-	char			*result;		/* what we return */
+	t_string		result;
 	t_string		prompt;
-	int				cpos;			/* relative to `str' */
+	int				cpos;
 	t_vector		key_bindings;
 	int				arg;
 	int				reading_arg;

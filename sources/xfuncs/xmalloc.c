@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   xmalloc.h                                          :+:      :+:    :+:   */
+/*   xmalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:26:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/01 07:06:15 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/07/06 18:30:19 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 07:41:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef XMALLOC_H
-# define XMALLOC_H
+#include "xfuncs.h"
+#include "terminal.h"
 
-# include "ft_readline.h"
+void			die(void)
+{
+	term_restore();
+	fatal("Out of virtual memory");
+	exit(1);
+}
 
-void		die(void);
-void		*xmalloc(size_t size);
-void		*ft_xmemalloc(size_t size);
+void		*xmalloc(size_t size)
+{
+	void *ptr;
 
-extern int	g_logfd;
+	ptr = malloc(size);
+	if (!ptr)
+		die();
+	return (ptr);
+}
 
-#endif
+void		*ft_xmemalloc(size_t size)
+{
+	void *ptr;
+
+	ptr = ft_memalloc(size);
+	if (!ptr)
+		die();
+	return (ptr);
+}

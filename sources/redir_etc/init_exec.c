@@ -7,7 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 18:28:20 by ggwin-go          #+#    #+#             */
 <<<<<<< HEAD
-/*   Updated: 2019/06/13 17:00:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:44 by gmelisan         ###   ########.fr       */
 =======
 /*   Updated: 2019/06/19 11:44:33 by ggwin-go         ###   ########.fr       */
 >>>>>>> 27c6c979f3ea52cc9e0293d43341b7db5e0c38c5
@@ -27,7 +27,7 @@ t_exec	*init_exec(int count, char **av, int ispipe)
 	i = 0;
 	while (*av)
 	{
-		exec->av[i] = ft_strdup(*av);
+		exec->av[i] = ft_xstrdup(*av);
 		++av;
 		i++;
 	}

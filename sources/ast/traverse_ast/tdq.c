@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/15 17:58:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static char		*cleaner(char *str)
 		tmp[t_i++] = str[i];
 	}
 	free(str);
-	str = ft_strdup(tmp);
+	str = ft_xstrdup(tmp);
 	free(tmp);
 	return (str);
 }

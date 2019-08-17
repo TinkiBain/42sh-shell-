@@ -1,53 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_xfuncs1.c                                      :+:      :+:    :+:   */
+/*   vec_xfuncs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:14:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/01 06:45:22 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/07/15 16:51:18 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 06:03:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "str_xfuncs.h"
+#include "xfuncs.h"
 
-t_string		str_xcreate(size_t len)
+t_vector		vec_xcreate(size_t len, size_t size)
 {
-	t_string str;
-	
-	str = str_create(len);
-	if (!str.s)
+	t_vector vec;
+
+	vec = vec_create(len, size);
+	if (!vec.v)
 		die();
-	return (str);
+	return (vec);
 }
 
-t_string		str_xduplicate(t_string str)
+t_vector		vec_xduplicate(t_vector vec, void *(*duplicate)(void *))
 {
-	t_string new;
+	t_vector new;
 
-	new = str_duplicate(str);
-	if (!new.s)
+	new = vec_duplicate(vec, duplicate);
+	if (!new.v)
 		die();
 	return (new);
 }
 
-t_string		str_xcopy(char *s)
+void			vec_xaddback(t_vector *vec, void *new)
 {
-	t_string str;
-
-	str = str_copy(s);
-	if (s && !str.s)
+	if (!vec)
+		return ;
+	if (!(vec_addback(vec, new)))
 		die();
-	return (str);
 }
 
-t_string		str_xsubstring(t_string str, int start, int len)
+void			vec_xaddfront(t_vector *vec, void *new)
 {
-	t_string new;
-
-	new = str_substring(str, start, len);
-	if (!new.s)
+	if (!vec)
+		return ;
+	if (!(vec_addfront(vec, new)))
 		die();
-	return (new);
 }

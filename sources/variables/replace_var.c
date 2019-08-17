@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 14:16:54 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 20:13:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	replace_var(const char *name, const char *var, char **env,
 	if (*env)
 	{
 		free(*env);
-		*env = ft_strdup(var);
+		*env = ft_xstrdup(var);
 	}
 	return (0);
 }

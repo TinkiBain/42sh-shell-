@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:24:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/11 04:54:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 08:31:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void		move_cur_start(void)
 	ccol = g_buffer.cpos % g_buffer.out_cols;
 	i = -1;
 	while (++i < crow)
-		tputs(g_cap.go_up, 1, ft_putint);
-	tputs(g_cap.car_ret, 1, ft_putint);
+		term_putstr(g_cap.go_up);
+	term_putstr(g_cap.car_ret);
 }
 
 void		move_cur_right(int oldpos, int width)
@@ -32,12 +32,9 @@ void		move_cur_right(int oldpos, int width)
 
 	oldccol = oldpos % width;
 	if (oldccol == width - 1)
-	{
-		tputs(g_cap.go_down, 1, ft_putint);
-		tputs(g_cap.car_ret, 1, ft_putint);
-	}
+		move_cur_nl();
 	else
-		tputs(g_cap.go_right, 1, ft_putint);
+		term_putstr(g_cap.go_right);
 }
 
 void		move_cur_left(int oldpos, int width)
@@ -48,19 +45,19 @@ void		move_cur_left(int oldpos, int width)
 	oldccol = oldpos % width;
 	if (oldccol == 0)
 	{
-		tputs(g_cap.go_up, 1, ft_putint);
+		term_putstr(g_cap.go_up);
 		i = -1;
 		while (++i < width - 1)
-			tputs(g_cap.go_right, 1, ft_putint);
+			term_putstr(g_cap.go_right);
 	}
 	else
-		tputs(g_cap.go_left, 1, ft_putint);
+		term_putstr(g_cap.go_left);
 }
 
 void		move_cur_nl(void)
 {
-	tputs(g_cap.go_down, 1, ft_putint);
-	tputs(g_cap.car_ret, 1, ft_putint);
+	term_putstr(g_cap.go_down);
+	term_putstr(g_cap.car_ret);
 }
 
 void		move_cur_to(int oldpos, int newpos, int width)
@@ -76,17 +73,17 @@ void		move_cur_to(int oldpos, int newpos, int width)
 	row_diff = row_diff > 0 ? row_diff : -row_diff;
 	i = -1;
 	while (++i < row_diff)
-		tputs((newpos > oldpos ? g_cap.go_down : g_cap.go_up), 1, ft_putint);
+		term_putstr(newpos > oldpos ? g_cap.go_down : g_cap.go_up);
 	if (cur_col > tar_col)
 		while (cur_col != tar_col)
 		{
-			tputs(g_cap.go_left, 1, ft_putint);
+			term_putstr(g_cap.go_left);
 			cur_col--;
 		}
 	else
 		while (cur_col != tar_col)
 		{
-			tputs(g_cap.go_right, 1, ft_putint);
+			term_putstr(g_cap.go_right);
 			cur_col++;
 		}
 }

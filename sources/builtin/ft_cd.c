@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 16:48:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:14:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*get_previous_pwd(char **env)
 	if (!env || !*env)
 		return (getcwd(NULL, 1024));
 	if ((p = ft_getenv("OLDPWD", env)))
-		return (ft_strdup(p));
+		return (ft_xstrdup(p));
 	return (getcwd(NULL, 1024));
 }
 
@@ -28,7 +28,7 @@ static void	change_dir(char *path)
 {
 	char	**arr;
 
-	arr = (char **)malloc(sizeof(char *) * 3);
+	arr = (char **)xmalloc(sizeof(char *) * 3);
 	arr[0] = ft_strrejoin("OLDPWD=", getcwd(NULL, 1024), 2);
 	chdir(path);
 	arr[1] = ft_strrejoin("PWD=", getcwd(NULL, 1024), 2);
@@ -58,7 +58,7 @@ static void	ft_open_dir(const char *av, char ***env)
 	else if (ft_strequ(av, "-"))
 		path = get_previous_pwd(*env);
 	else
-		path = ft_strdup(av);
+		path = ft_xstrdup(av);
 	if (path && (dp = opendir(path)) != NULL)
 	{
 		change_dir(path);

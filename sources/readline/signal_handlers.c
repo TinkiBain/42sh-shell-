@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:57:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 18:09:11 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 09:12:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	sigh_sigint(int sig)
 	
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("^C", STDOUT);
+		ft_putstr_fd("^C", g_rl_options.tty);
 		reset_line(g_line);
 		update_line(g_line);
 		loginfo("SIGINT caught, reset line");

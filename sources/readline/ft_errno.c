@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:11:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 17:54:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:59:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,6 @@ void	printerr(void)
 		return ;
 	if (g_errno == E_READ)
 		print("Read error");
-	else if (g_errno == E_KEYBUF_OF)
-		print("Key buffer overflow");
-	else if (g_errno == E_TERMCAP)
-		print("Termcap error");
-	else if (g_errno == E_UNK_TERMTYPE)
-		print("Unknown terminal");
-	else if (g_errno == E_OPEN)
-		print("Error while opening file");
 	else
 		print_unk();
 }

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/11 06:59:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:12:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void		print(t_buffer *newbuf, int pos)
 	t_escseq	*es;
 
 	if ((es = find_escseq(newbuf->escseqs, pos)))
-		ft_fdprintf(STDOUT, "%s", es->str.s);
+		ft_fdprintf(g_rl_options.tty, "%s", es->str.s);
 	if (str_get(newbuf->b, pos))
-		ft_fdprintf(STDOUT, "%c", str_get(newbuf->b, pos));
+		ft_fdprintf(g_rl_options.tty, "%c", str_get(newbuf->b, pos));
 	else
-		ft_fdprintf(STDOUT, " ");
+		ft_fdprintf(g_rl_options.tty, " ");
 	if (pos % newbuf->out_cols == newbuf->out_cols - 1)
 		move_cur_nl();
 }
@@ -138,7 +138,7 @@ void			resize(t_buffer *newbuf)
 			pos++;
 		}
 	}
-	tputs(g_cap.clear_down, 1, ft_putint);
+	term_putstr(g_cap.clear_down);
 	/* "ce" for linux. Should be at col 0. TODO fix later */
 	while (pos > newbuf->cpos)
 		move_cur_left(pos--, newbuf->out_cols);

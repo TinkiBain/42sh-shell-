@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 03:31:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:14:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				vi_input_one(t_line *line)
 {
 	int		ret;
 
-	while ((ret = read(STDIN, line->keybuf, KEYBUF_SIZE - 1)) &&
+	while ((ret = read(g_rl_options.tty, line->keybuf, KEYBUF_SIZE - 1)) &&
 			*line->keybuf != NL)
 	{
 		if (perform_action_one(line))
@@ -92,7 +92,7 @@ int				vi_input_loop(t_line *line)
 {
 	int		ret;
 
-	while ((ret = read(STDIN, line->keybuf, KEYBUF_SIZE - 1)) &&
+	while ((ret = read(g_rl_options.tty, line->keybuf, KEYBUF_SIZE - 1)) > 0 &&
 			*line->keybuf != NL)
 	{
 		if (line->keybuf[0] == CTRL_D && line->str->len == 0)

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 18:49:32 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 08:25:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	line->str = (t_string *)line->history->item->content;
 	g_line = line;
 	line->prompt = str_xcopy(prompt);
-	line->vi_mode = g_options.vi_mode;
+	line->vi_mode = g_rl_options.vi_mode;
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
 	init_bindings(line->vi_mode, &line->key_bindings);
@@ -46,7 +46,8 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 
 static void	clear_line(t_line *line, int exit, t_history **history)
 {
-	line->result = ft_strdup(line->str->s);
+	line->result = str_xduplicate(*line->str);
+	str_xaddfront(&line->result, line->oldstr.s, line->oldstr.len);
 	history_save(line->history_orig, line->str);
 	history_clear(line->history);
 	*history = line->history_orig;
@@ -56,16 +57,13 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 	str_delete(&line->oldstr);
 	clear_bindings(&line->key_bindings);
 	if (exit)
-	{
-		ft_putstr_fd("exit", STDOUT);
-		ft_strdel(&line->result);
-	}
+		str_delete(&line->result);
 	ft_lstdel(&(line->undo), del_undo_one);
 }
 
 /*
 ** If EOF, return NULL.
-** If error, return NULL and raise g_errno.
+** If error, return NULL and raise g_errno. Possible errors: E_READ
 */
 
 char	*ft_readline(char *prompt, char *oldline)
@@ -75,8 +73,6 @@ char	*ft_readline(char *prompt, char *oldline)
 
 	sig_init();
 	term_init();
-	if (g_errno)
-		return (NULL);
 	term_setup();
 	init_line(&line, prompt, oldline);
 	init_linebuf(&line);
@@ -85,5 +81,5 @@ char	*ft_readline(char *prompt, char *oldline)
 	clear_linebuf();
 	clear_line(&line, exit, &g_history);
 	term_restore();
-	return (line.result);
+	return (line.result.s);
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 22:18:22 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 17:42:51 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_cmd_suffix	*init_cmd_suffix(t_lex *lex)
 	cmd_suf = (t_cmd_suffix*)ft_xmalloc(sizeof(t_cmd_suffix));
 	if (lex->type & WORD)
 	{
-		cmd_suf->word = ft_strdup(lex->lexeme);
+		cmd_suf->word = ft_xstrdup(lex->lexeme);
 		cmd_suf->io_redir = NULL;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 20:04:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	add_var(const char *av, char ***env)
 	p = *env;
 	while (*p)
 		*(tmp++) = *(p++);
-	*(tmp++) = ft_strdup(av);
+	*(tmp++) = ft_xstrdup(av);
 	*tmp = NULL;
 	free(*env);
 	*env = new_env;

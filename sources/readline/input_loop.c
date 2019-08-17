@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 06:41:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:14:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ int				input_loop(t_line *line)
 	
 	if (line->vi_mode)
 		return (vi_input_loop(line));
-	while ((ret = read(STDIN, line->keybuf, 1) > 0 && *line->keybuf != NL))
+	while ((ret = read(g_rl_options.tty, line->keybuf, 1) > 0 && *line->keybuf != NL))
 	{
 		if (*line->keybuf == ESC)
 		{
-			if ((ret = read(STDIN, line->keybuf + 1, 1)) <= 0)
+			if ((ret = read(g_rl_options.tty, line->keybuf + 1, 1)) <= 0)
 				break ;
 			if (is_ansiseq(line->keybuf))
-				if ((ret = read(STDIN, line->keybuf + 2, KEYBUF_SIZE - 3)) <= 0)
+				if ((ret = read(g_rl_options.tty, line->keybuf + 2, KEYBUF_SIZE - 3)) <= 0)
 					break ;
 		}
 		if (*line->keybuf == CTRL_D && line->str->len == 0)

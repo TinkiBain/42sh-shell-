@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 17:51:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 05:45:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,7 @@
 
 enum	e_errno
 {
-	E_NONE = 0,
-	E_MALLOC = 1042,
-	E_READ,
-	E_KEYBUF_OF,
-	E_TERMCAP,
-	E_UNK_TERMTYPE,
-	E_OPEN
+	E_READ = 1042,
 };
 
 extern int	g_errno;

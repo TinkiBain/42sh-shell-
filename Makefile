@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/16 16:56:32 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/17 07:41:18 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ INCLUDES:=-I includes -I includes/readline -I libft/includes
 
 SH_INCLUDES=\
 	ast.h		cmd.h		defs.h			variables.h		exec.h\
-	hash.h		lexer.h		lib_wtalea.h	parser.h		sh.h
+	hash.h		lexer.h		lib_wtalea.h	parser.h		sh.h\
+	xfuncs.h
 
 HEADER=\
 	$(addprefix includes/, $(SH_INCLUDES))\
@@ -61,13 +62,20 @@ SRCS_VAR=\
 	replace_var.c			check_is_var_readonly.c\
 	print_var_readonly.c
 
+XFUNCS_DIR=xfuncs
+
+SRCS_XFUNCS=\
+	ft_xstrdup.c	 ft_xstrjoin.c		str_xfuncs1.c\
+	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c
+
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
 	$(addprefix $(AST_DIR)/, $(SRCS_AST))\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
 	$(addprefix $(VAR_DIR)/, $(SRCS_VAR))\
-	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))
+	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))\
+	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
@@ -97,7 +105,8 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(HASH_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
 	$(OBJS_DIR)/$(VAR_DIR)\
-	$(OBJS_DIR)/$(DIR_LIB_WTALEA)
+	$(OBJS_DIR)/$(DIR_LIB_WTALEA)\
+	$(OBJS_DIR)/$(XFUNCS_DIR)
 
 .PHONY: all clean fclean re
 
@@ -126,6 +135,7 @@ $(OBJS_SUBDIRS):
 	@mkdir -p $(CREATE_HASH_SUBDIRS)
 	@mkdir -p $(OBJS_DIR)/$(VAR_DIR)
 	@mkdir -p $(OBJS_DIR)/$(DIR_LIB_WTALEA)
+	@mkdir -p $(OBJS_DIR)/$(XFUNCS_DIR)
 
 clean:
 ifneq ($(OBJS_CLEAN),)

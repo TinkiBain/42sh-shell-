@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:03:34 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/16 18:39:50 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 06:14:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_undo_item		*pop_undo_list(t_list **undo)
 	if (*undo)
 	{
 		cp = (*undo)->next;
-		(temp = (t_undo_item *)malloc(sizeof(t_undo_item))) ? 1 : die();
+		temp = (t_undo_item *)xmalloc(sizeof(t_undo_item));
 		*temp = *(t_undo_item *)((*undo)->content);
 		free(*undo);
 		*undo = cp;

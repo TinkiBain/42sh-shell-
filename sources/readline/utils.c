@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:16:01 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 01:48:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 08:27:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char		*convert_tilde(char *str)
 	t_string	res;
 
 	if (!(str[0] == '~' && str[1] == '/'))
-		return (ft_strdup(str));
+		return (ft_xstrdup(str));
 	home = getenv("HOME");
 	if (!home || !str)
 		return (NULL);
@@ -34,12 +34,6 @@ char		*convert_tilde(char *str)
 void		del_bind_str(void *elem)
 {
 	str_delete(&((t_binding *)elem)->sequence);
-}
-
-int			ft_putint(int c)
-{
-	write(STDOUT, &c, 1);
-	return (0);
 }
 
 void		del_str(void *s)

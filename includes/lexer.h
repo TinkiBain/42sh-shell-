@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/15 16:45:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:53:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEXER_H
 
 # include "libft.h"
+# include "xfuncs.h"
 
 # define PIPE_SYMB	1
 # define SEMICOLON	2

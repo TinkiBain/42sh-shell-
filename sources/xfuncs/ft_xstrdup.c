@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_xfuncs.h                                       :+:      :+:    :+:   */
+/*   ft_xstrdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 16:50:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/26 19:02:15 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/17 06:00:29 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 06:02:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC_XFUNCS_H
-# define VEC_XFUNCS_H
+#include "xfuncs.h"
 
-# include "ft_readline.h"
+char	*ft_xstrdup(const char *src)
+{
+	char *p;
 
-t_vector		vec_xcreate(size_t len, size_t size);
-t_vector		vec_xduplicate(t_vector vec, void *(*duplicate)(void *));
-void			vec_xaddback(t_vector *vec, void *new);
-void			vec_xaddfront(t_vector *vec, void *new);
-
-#endif
+	p = ft_strdup(src);
+	if (!p)
+		die();
+	return (p);
+}

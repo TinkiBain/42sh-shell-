@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 19:57:15 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/14 23:10:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:57:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "lib_wtalea.h"
 # include "ft_string.h"
 # include "ft_qsort.h"
+# include "xfuncs.h"
 # include <dirent.h>
 
 # define HASH_LEN 200

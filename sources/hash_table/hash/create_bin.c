@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 17:40:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/15 20:03:44 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:10:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,9 @@ t_hash			*create_hash(char *name, char *path, unsigned int key)
 {
 	t_hash		*temp;
 
-	temp = NULL;
-	if ((temp = (t_hash *)malloc(sizeof(t_hash))) == NULL)
-		die_log("malloc in fill_hash");
-	if ((temp->name = ft_strdup(name)) == NULL)
-		die_log("malloc in fill_hash");
-	if ((temp->path = ft_strdup(path)) == NULL)
-		die_log("malloc in fill_hash");
+	temp = (t_hash *)xmalloc(sizeof(t_hash));
+	temp->name = ft_xstrdup(name);
+	temp->path = ft_xstrdup(path);
 	temp->hash = key;
 	temp->next = NULL;
 	return (temp);

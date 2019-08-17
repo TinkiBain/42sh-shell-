@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/15 19:54:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 05:58:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "ft_readline.h"
 # include "variables.h"
 # include "lib_wtalea.h"
+# include "xfuncs.h"
 
 typedef struct	s_bits
 {

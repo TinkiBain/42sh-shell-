@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 18:34:07 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/06/10 20:21:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_attr		*init_attr(int spec, int right_fd, int left_fd, char *file)
 	attr->spec.value |= spec;
 	attr->right_fd = right_fd;
 	attr->left_fd = left_fd;
-	attr->file = ft_strdup(file);
+	attr->file = ft_xstrdup(file);
 	attr->next = NULL;
 	return (attr);
 }

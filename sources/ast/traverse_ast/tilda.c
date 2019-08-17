@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/12 19:21:12 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char			*user_founder(char *str)
 {
 	char			*tmp;
 
-	tmp = ft_strdup(&str[1]);
+	tmp = ft_xstrdup(&str[1]);
 	if (dirdir(tmp) < 0)
 	{
 		free(tmp);
@@ -49,11 +49,11 @@ static char			*user_founder(char *str)
 static char			*tilda(char *str, char *buf)
 {
 	if (str[1] == '+' && !str[2])
-		return (ft_strdup(ft_getenv("PWD", environ)));
+		return (ft_xstrdup(ft_getenv("PWD", environ)));
 	else if (str[1] == '-' && !str[2])
 	{
 		if ((buf = ft_getenv("OLDPWD", environ)) < 0)
-			return (ft_strdup(buf));
+			return (ft_xstrdup(buf));
 	}
 	else if (str[1] == '/')
 	{
@@ -65,7 +65,7 @@ static char			*tilda(char *str, char *buf)
 		return (user_founder(str));
 	else
 		buf = ft_getenv("HOME", environ);
-	return (ft_strdup(buf));
+	return (ft_xstrdup(buf));
 }
 
 char				*tilda_check(char *str)

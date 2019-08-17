@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 11:34:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 12:26:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 09:14:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	vi_find_forward(t_line *line)
 	int		ret;
 	char	c;
 
-	ret = read(STDIN, &c, 1);
+	ret = read(g_rl_options.tty, &c, 1);
 	if (ret < 0)
 		loginfo("vi_find_forward(): read error");
 	if (c == CTRL_C)

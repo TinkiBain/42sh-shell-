@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/15 21:39:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/17 08:32:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		init_readline(void)
 {
 	g_history = ft_xmemalloc(sizeof(*g_history));
 	history_load(g_history, DEFAULT_HIST_PATH);
+	g_rl_options.tty = 0;
 }
 
 t_pars_list	*exec_ast(char *buf)
@@ -53,8 +54,10 @@ t_pars_list	*exec_ast(char *buf)
 		return (parser_free_tree(list));
 	if (g_error_pars == 2)
 	{
-		tmp = ft_readline(">", tmp);// buf = ft_readline(">", tmp);
-		buf = ft_strjoin(buf, tmp); // убрать после добавления второго парметра в readline
+		//tmp = ft_readline(">", tmp);// buf = ft_readline(">", tmp);
+		//buf = ft_xstrjoin(buf, tmp); // убрать после добавления второго парметра в readline
+		tmp = buf;
+		buf = ft_readline("> ", buf);
 		free(tmp); // утечка на строчку выше, пропадет после добавления параметра, удалить эту строку
 		g_error_pars = 0;
 		return (exec_ast(buf));
@@ -81,7 +84,7 @@ int			main(int ac, char **av)
 		if (ft_strequ(*(av + 1), "-p"))
 			TYPE_OF_PROGRAM = 1;
 		else if (ft_strequ(*(av + 1), "-v"))
-			g_options.vi_mode = 1;
+			g_rl_options.vi_mode = 1;
 	}
 	while (1)
 	{
