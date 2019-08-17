@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   duplicate_line.c                                   :+:      :+:    :+:   */
+/*   input_loop.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 07:04:37 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 16:27:49 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 16:18:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
+#include "input_loop.h"
 
-t_line	*duplicate_line(t_line *line)
+/*
+** 1 - exit, 0 - continue
+*/
+
+int				input_loop(t_line *line)
 {
-	t_line	*new;
+	int		ret;
 
-	new = xmalloc(sizeof(t_line));
-	ft_memcpy(new, line, sizeof(t_line));
-	new->str = xmalloc(sizeof(t_string));
-	*new->str = str_xduplicate(*line->str);
-	new->arg = 1;
-	return (new);
-}
-
-void	free_line(t_line *line)
-{
-	str_delete(line->str);
-	str_delete(&line->keybuf);
-	free(line->str);
-	free(line);
+	if (line->vi_mode)
+		ret = vi_input_loop(line);
+	else
+		ret = em_input_loop(line);
+	if (ret < 0)
+		g_errno = E_READ;
+	if (ret <= 0)
+		return (1);
+	return (0);
 }

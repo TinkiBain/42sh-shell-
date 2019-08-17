@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:55:27 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:18:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_cap			g_cap;
 
 static int		ft_putint(int c)
 {
-	write(g_rl_options.tty, &c, 1);
+	write(STDOUT, &c, 1);
 	return (0);
 }
 
@@ -51,7 +51,7 @@ void	term_putstr(char *str)
 		return ;
 	ret = tputs(str, 1, ft_putint);
 	if (ret < 0)
-		ft_putstr_fd(str, g_rl_options.tty);
+		ft_putstr_fd(str, STDOUT);
 }
 
 void	term_setup(void)
@@ -66,21 +66,21 @@ void	term_setup(void)
 	UP = g_cap.go_up;
 	term_putstr(g_cap.kp_start);
 	;
-	tcgetattr(g_rl_options.tty, &g_init_tios);
+	tcgetattr(STDIN, &g_init_tios);
 	work_tios = g_init_tios;
 	work_tios.c_oflag &= ~OPOST;
 	work_tios.c_lflag &= ~(ICANON | ECHO | ISIG);
 	work_tios.c_cc[VMIN] = 1;
 	work_tios.c_cc[VTIME] = 0;
-	tcsetattr(g_rl_options.tty, TCSANOW, &work_tios);
+	tcsetattr(STDIN, TCSANOW, &work_tios);
 	ospeed = work_tios.c_ospeed;
 }
 
 void	term_restore(void)
 {
-	tcsetattr(g_rl_options.tty, TCSANOW, &g_init_tios);
+	tcsetattr(STDIN, TCSANOW, &g_init_tios);
 	term_putstr(g_cap.kp_end);
-	tputs(g_cap.clear_down, 1, ft_putint); /* TODO column 0 fix later */
+	//tputs(g_cap.clear_down, 1, ft_putint); /* TODO column 0 fix later */
 	clear_termcap();
 }
 

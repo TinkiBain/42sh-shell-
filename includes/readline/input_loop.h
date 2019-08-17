@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:45:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 05:58:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 15:24:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include "ft_readline.h"
 
+# define KEYBUF_SIZE			32
+
 int		input_loop(t_line *line);
+int		em_input_loop(t_line *line);
 int		vi_input_loop(t_line *line);
 int		vi_input_one(t_line *line);
-
-extern int	g_logfd;
+int		is_ansiseq(char buf[KEYBUF_SIZE]);
 
 #endif

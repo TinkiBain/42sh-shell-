@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_loop.c                                       :+:      :+:    :+:   */
+/*   em_input_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:14:06 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static int		check_arg(t_line *line) 
 {
-	if (line->keybuf[0] == ESC && ft_isdigit(line->keybuf[1]))
+	if (str_get(line->keybuf, 0) == ESC &&
+		ft_isdigit(str_get(line->keybuf, 1)))
 	{
 		line->reading_arg = 1;
-		line->arg = line->keybuf[1] - '0';
+		line->arg = line->keybuf.s[1] - '0';
 		return (1);
 	}
-	if (ft_isdigit(line->keybuf[0]) && line->reading_arg)
+	if (ft_isdigit(str_get(line->keybuf, 0)) && line->reading_arg)
 	{
-		line->arg = line->arg * 10 + line->keybuf[0] - '0';
+		line->arg = line->arg * 10 + line->keybuf.s[0] - '0';
 		return (1);
 	}
 	line->reading_arg = 0;
@@ -59,36 +60,29 @@ static void		perform_action(t_line *line)
 	}
 }
 
-static int		is_ansiseq(char buf[KEYBUF_SIZE])
+int				em_input_loop(t_line *line)
 {
-	if (buf[0] == ESC && (buf[1] == '[' || buf[1] == 'O'))
-		return (1);
-	return (0);
-}
-
-int				input_loop(t_line *line)
-{
+	char	keybuf[KEYBUF_SIZE];
 	int		ret;
-	
-	if (line->vi_mode)
-		return (vi_input_loop(line));
-	while ((ret = read(g_rl_options.tty, line->keybuf, 1) > 0 && *line->keybuf != NL))
+
+	ft_bzero(keybuf, KEYBUF_SIZE);
+	while ((ret = read(STDIN, keybuf, 1)) > 0 && *keybuf != NL)
 	{
-		if (*line->keybuf == ESC)
+		if (*keybuf == CTRL_D && line->str->len == 0)
+			return (0);
+		if (*keybuf == ESC)
 		{
-			if ((ret = read(g_rl_options.tty, line->keybuf + 1, 1)) <= 0)
-				break ;
-			if (is_ansiseq(line->keybuf))
-				if ((ret = read(g_rl_options.tty, line->keybuf + 2, KEYBUF_SIZE - 3)) <= 0)
-					break ;
+			if ((ret = read(STDIN, keybuf + 1, 1)) < 0)
+				return (ret);
+			if (is_ansiseq(keybuf))
+				if ((ret = read(STDIN, keybuf + 2, KEYBUF_SIZE - 3)) < 0)
+					return (ret);
 		}
-		if (*line->keybuf == CTRL_D && line->str->len == 0)
-			return (1);
+		line->keybuf = str_xcopy(keybuf);
 		perform_action(line);
 		loginfo_line(line);
-		ft_bzero(line->keybuf, KEYBUF_SIZE);
+		str_delete(&line->keybuf);
+		ft_bzero(keybuf, KEYBUF_SIZE);
 	}
-	if (ret < 0)
-		g_errno = E_READ;
-	return (0);
+	return (ret);
 }

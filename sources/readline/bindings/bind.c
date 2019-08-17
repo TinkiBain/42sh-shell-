@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:10:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 05:36:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 14:47:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	bind(t_vector *key_bindings, int key, t_action action)
 	vec_xaddback(key_bindings, &new);
 }
 
-t_binding	*find_binding(t_vector *key_bindings, char *buf)
+t_binding	*find_binding(t_vector *key_bindings, t_string buf)
 {
 	int			i;
 	t_binding	*b;
@@ -84,7 +84,7 @@ t_binding	*find_binding(t_vector *key_bindings, char *buf)
 	while (i < (int)key_bindings->len)
 	{
 		b = (t_binding *)vec_get(*key_bindings, i);
-		if (ft_strequ(b->sequence.s, buf))
+		if (ft_strequ(b->sequence.s, buf.s))
 			return (b);
 		i++;
 	}

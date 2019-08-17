@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:25:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:14:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		vi_replace(t_line *line)
 	int		ret;
 	char	c;
 
-	ret = read(g_rl_options.tty, &c, 1);
+	ret = read(STDIN, &c, 1);
 	if (ret < 0)
 		loginfo("vi_replace(): read error");
 	if (c == CTRL_C)

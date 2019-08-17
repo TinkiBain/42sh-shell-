@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/15 16:48:39 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/17 14:20:30 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ SRCS_FT_STRING=str_addback.c	str_addfront.c			str_compare.c\
 	str_copy.c					str_create.c			str_delarr.c\
 	str_delete.c				str_duplicate.c			str_fixlen.c\
 	str_get.c					str_insert.c			str_remove.c\
-	str_split.c					str_substring.c			str_zero.c
+	str_split.c					str_substring.c			str_zero.c\
+	str_ncopy.c
 
 SRCS_FT_VECTOR=vec_addback.c	vec_addfront.c			vec_create.c\
 	vec_delete.c				vec_duplicate.c			vec_get.c\

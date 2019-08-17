@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 08:25:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:16:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_history		*g_history;
 struct 			s_rl_options
 {
 	t_uint		vi_mode;
-	int			tty;
 }				g_rl_options;
 
 char			*ft_readline(char *prompt, char *oldline);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:24:14 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/17 19:07:54 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 	str_delete(&line->kill_buffer);
 	str_delete(&line->hs.query);
 	str_delete(&line->oldstr);
+	str_delete(&line->keybuf);
 	clear_bindings(&line->key_bindings);
 	if (exit)
 		str_delete(&line->result);

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 21:23:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/06/28 08:20:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 14:17:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_string
 t_string		str_create(size_t len);
 t_string		str_duplicate(t_string str);
 t_string		str_copy(char *s);
+t_string		str_ncopy(char *s, int n);
 
 t_string		str_substring(t_string str, int start, int len);
 

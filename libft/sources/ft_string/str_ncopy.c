@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_screen.c                                     :+:      :+:    :+:   */
+/*   str_ncopy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/20 07:19:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/17 14:17:56 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/17 14:20:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
+#include "ft_string.h"
 
-static int		ft_putint(int c)
+t_string	str_ncopy(char *s, int n)
 {
-	write(STDOUT, &c, 1);
-	return (0);
-}
+	t_string	str;
 
-void	clear_screen(t_line *line)
-{
-	if (line)
-	{
-		tputs(g_cap.clear_all, get_screen_height(), ft_putint);
-		update_line(NULL);
-	}
+	str.s = NULL;
+	str.len = 0;
+	str.alloc = 0;
+	if (!s)
+		return (str);
+	str = str_create(n);
+	if (!str.s)
+		return (str);
+	ft_memcpy(str.s, s, str.len);
+	return (str);
 }

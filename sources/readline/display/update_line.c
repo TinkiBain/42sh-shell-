@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:12:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			get_screen_height(void)
 {
 	struct winsize	ws;
 
-	ioctl(g_rl_options.tty, TIOCGWINSZ, &ws);
+	ioctl(STDIN, TIOCGWINSZ, &ws);
 	if (!ws.ws_row)
 		return (1);
 	return (ws.ws_row);
@@ -31,7 +31,7 @@ int			get_term_cols(void)
 {
 	struct winsize	ws;
 
-	ioctl(g_rl_options.tty, TIOCGWINSZ, &ws);
+	ioctl(STDIN, TIOCGWINSZ, &ws);
 	if (!ws.ws_col || ws.ws_col > TERM_MAX_COL)
 		return (TERM_MAX_COL);
 	return (ws.ws_col);
