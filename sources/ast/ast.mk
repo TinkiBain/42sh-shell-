@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/15 17:22:33 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/18 23:00:48 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,9 @@ SRCS_TRAVERSE_AST=\
 	tdq.c
 
 SRCS_PRINT_AST=\
-	print_ast.c
+	print_ast.c				print_ast_cmd.c\
+	print_ast_io_redir.c	print_ast_token_number.c\
+	print_ast_token_word.c	print_ast_token_assignment_word.c
 
 AST_SUBDIRS=\
 	$(LEXER_DIR)\
