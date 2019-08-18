@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:56:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 23:28:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/18 16:22:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,31 @@ static int		copy_var_names(char **var_names, char **vars, size_t *i)
 	return (0);
 }
 
+static void		remove_duplicates(char ***vars)
+{
+	char		**tmp;
+	char		**p;
+
+	if (vars)
+	{
+		tmp = *vars;
+		while (*tmp)
+		{
+			while (*(tmp + 1) && ft_strequ(*tmp, *(tmp + 1)))
+			{
+				p = tmp;
+				free(*p);
+				while (*p)
+				{
+					*p = *(p + 1);
+					++p;
+				}
+			}
+			++tmp;
+		}
+	}
+}
+
 int				fill_g_var_names(void)
 {
 	extern char	**environ;
@@ -57,5 +82,6 @@ int				fill_g_var_names(void)
 	copy_var_names(g_var_names, environ, &size);
 	copy_var_names(g_var_names, g_var, &size);
 	g_var_names = ft_sort_str_array(g_var_names, 1);
+	remove_duplicates(&g_var_names);
 	return (0);
 }
