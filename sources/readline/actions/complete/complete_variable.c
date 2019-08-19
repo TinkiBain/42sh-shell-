@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:32:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 17:17:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 19:09:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,27 @@ static void	add_space(t_string *str, int one, int add_brace)
 
 void		complete_variable(t_line *line)
 {
-	t_string	query;
-	t_string	found;
-	int			start;
-	int			unmatch_start;
-	char		**vars;
-	int			n;
+	t_string		query;
+	t_string		found;
+	int				start;
+	int				unmatch_start;
+	struct s_var	vars;
 
 	query = get_variable_query(line, &start);
-	get_variables(query, &vars, &n);
-	found = find_common_part(vars, n);
+	get_variables(query, &vars.arr, &vars.n);
+	found = find_common_part(vars.arr, vars.n);
 	unmatch_start = line->cpos - start;
-	if (found.len > 0 && (int)found.len > unmatch_start)
+	if ((found.len > 0 && (int)found.len > unmatch_start) || vars.n == 1)
 	{
-		add_space(&found, n == 1, str_get(*line->str, start - 1) == '{');
+		add_space(&found, vars.n == 1, str_get(*line->str, start - 1) == '{');
 		str_xinsert(line->str, line->cpos,
 					found.s + unmatch_start, found.len - unmatch_start);
 		line->cpos += found.len - unmatch_start;
 	}
 	else if (str_get(*line->str, start - 1) == '{')
-		show_completions(vars, n);
+		show_completions(vars.arr, vars.n);
 	else
-		show_completions(vars, n);
+		show_completions(vars.arr, vars.n);
 	str_delete(&found);
 	str_delete(&query);
 }

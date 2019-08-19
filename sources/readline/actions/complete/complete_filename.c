@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:41:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 09:03:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 18:58:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			complete_filename(t_line *line)
 	found = find_common_part(vec.v, vec.len);
 	start = get_start(line);
 	unmatch_start = line->cpos - start;
-	if (found.len > 0 && (int)found.len > unmatch_start)
+	if ((found.len > 0 && (int)found.len > unmatch_start) || vec.len == 1)
 	{
 		str_xinsert(line->str, line->cpos,
 					found.s + unmatch_start, found.len - unmatch_start);
