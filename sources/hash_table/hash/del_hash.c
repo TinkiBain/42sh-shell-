@@ -6,24 +6,26 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 15:00:19 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 14:50:47 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 16:42:36 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 #include <stdio.h>
 
+extern	t_hash	**g_table;
+extern	char	**g_prog_names;
+
 void	del_hash(void)
 {
 	int				i;
 	t_hash			*cp;
-	extern	t_hash	**g_table;
 
 	i = 0;
 	cp = NULL;
 	while (i < HASH_LEN)
 	{
-		if (*((g_table) + i))
+		if (g_table && *((g_table) + i))
 			while (*((g_table) + i))
 			{
 				cp = (*((g_table) + i))->next;
@@ -38,5 +40,7 @@ void	del_hash(void)
 		++i;
 	}
 	free(g_table);
+	free(g_prog_names);
 	g_table = NULL;
+	g_prog_names = NULL;
 }

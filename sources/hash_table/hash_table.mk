@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 16:41:59 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/15 19:50:48 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/19 15:52:45 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRCS_HASH_HASH=\
 	fill_hash_table.c\
 	get_bin.c\
 	null_hash.c\
-	paste_path.c
+	paste_path.c\
+	add_force.c\
+	create_arr_names.c
 
 SRCS_HASH_FOREST=\
 	get_vec_prog.c

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/18 17:19:06 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/19 16:06:09 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ FT_VECTOR_DIR=ft_vector/
 LIST_DIR=list/
 DLIST_DIR=dlist/
 
-SRCS_WITHOUT_DIR=get_next_line.c ft_qsort.c
+SRCS_WITHOUT_DIR=get_next_line.c ft_qsort.c ft_arr_str_qsort.c
 
 SRCS_MEM=ft_bzero.c			ft_memalloc.c				ft_memccpy.c\
 		ft_memchr.c			ft_memcmp.c					ft_memcpy.c\

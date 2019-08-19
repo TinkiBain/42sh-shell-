@@ -6,11 +6,10 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 00:24:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/13 05:55:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:59:03 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_qsort.h"
 
 static void		swap(void *a, void *b, size_t size)
