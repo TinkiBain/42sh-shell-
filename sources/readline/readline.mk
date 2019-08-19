@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/17 16:34:18 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/19 17:17:04 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRCS_READLINE_ACTIONS=\
 	vi_yank_to_motion.c		vi_yank_to_end.c		undo.c
 
 SRCS_READLINE_COMPLETE=\
-	get_filenames.c		get_variables.c\
+	get_filenames.c			get_variables.c			get_commands.c\
 	show_completions.c								complete.c\
 	possible_filename_completions.c					complete_filename.c\
 	possible_command_completions.c					complete_command.c\
