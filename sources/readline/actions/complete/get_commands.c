@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_variables.c                                    :+:      :+:    :+:   */
+/*   get_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 03:07:14 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 17:17:06 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/19 17:04:53 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/19 17:05:59 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 
-void			get_variables(t_string query, char ***start, int *n)
+void			get_commands(t_string query, char ***start, int *n)
 {
-	extern char	**g_var_names;
+	extern char	**g_cmd_names;
 	int i;
 
 	if (!start || !n)
@@ -22,12 +22,12 @@ void			get_variables(t_string query, char ***start, int *n)
 	*start = NULL;
 	*n = 0;
 	i = -1;
-	while (g_var_names[++i])
+	while (g_cmd_names[++i])
 	{
-		if (ft_strnequ(query.s, g_var_names[i], query.len))
+		if (ft_strnequ(query.s, g_cmd_names[i], query.len))
 		{
-			*start = &g_var_names[i];
-			while (g_var_names[i] && ft_strnequ(query.s, g_var_names[i], query.len))
+			*start = &g_cmd_names[i];
+			while (g_cmd_names[i] && ft_strnequ(query.s, g_cmd_names[i], query.len))
 			{
 				*n += 1;
 				i++;
