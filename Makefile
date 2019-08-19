@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/18 17:35:59 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/19 22:53:05 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,7 +162,7 @@ else
 	@printf "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)\n"
 endif
 
-test:
+test: rm_lib $(LIBFT_A)
 	$(CC) $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
 
 sanitize:
