@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 19:07:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:23:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	history_push(line->history, temp_str);
 	line->str = (t_string *)line->history->item->content;
 	g_line = line;
-	line->prompt = str_xcopy(prompt);
+	line->prompt = str_xcopy(prompt ? prompt : "");
 	line->vi_mode = g_rl_options.vi_mode;
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 16:11:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		logopen(void)
 
 	if (!DEBUG)
 		return ;
-	path = convert_tilde(LOG_PATH);
+	path = tdq(ft_xstrdup(get_value_from_all_vars("LOGPATH")));
 	g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 	if (g_logfd < 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 07:51:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:32:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define	COMPLETION_QUERY_ITEMS		100
 # define	TMP_PATH					"/tmp/42sh_tmp"
+# define	DEFAULT_TEXTEDITOR			"/usr/bin/vim"
 
 void		self_insert(t_line *line);
 void		backward_delete_char(t_line *line);

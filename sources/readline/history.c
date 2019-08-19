@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 21:18:46 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/14 18:44:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 16:38:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_history	*history_copy(t_history *history)
 	t_string	str;
 
 	newhist = ft_xmemalloc(sizeof(*newhist));
+	newhist->path = ft_xstrdup(history->path);
+	newhist->max_size = history->max_size;
 	if (history->size == 0)
 		return (newhist);
 	while (history->item->prev)
@@ -40,12 +42,16 @@ t_history	*history_copy(t_history *history)
 	return (newhist);
 }
 
-int			history_open(t_history *history, char *path)
+int			history_open(t_history *history)
 {
 	int		fd;
+	char	*s_max;
 
 	fd = -1;
-	history->path = convert_tilde(path);
+	history->path = tdq(ft_xstrdup(get_value_from_all_vars("HISTPATH")));
+	s_max = ft_xstrdup(get_value_from_all_vars("HISTSIZE"));
+	history->max_size = s_max ? ft_atoi(s_max) : 0;
+	ft_strdel(&s_max);
 	if (history->path)
 		fd = open(history->path, O_RDONLY | O_CREAT, S_IRWXU);
 	if (fd < 0)
@@ -55,15 +61,13 @@ int			history_open(t_history *history, char *path)
 	return (fd);
 }
 
-void		history_load(t_history *history, char *path)
+void		history_load(t_history *history)
 {
 	int			fd;
 	t_string	str;
 	int			ret;
 
-	if (!path)
-		return ;
-	if ((fd = history_open(history, path)) < 0)
+	if ((fd = history_open(history)) < 0)
 		return ;
 	while ((ret = get_next_line(fd, &str.s)) > 0)
 	{
@@ -73,7 +77,7 @@ void		history_load(t_history *history, char *path)
 	}
 	if (ret < 0)
 		loginfo("Error in history get_next_line()");
-	while (history->size > HISTORY_MAXSIZE)
+	while (history->size > history->max_size)
 	{
 		ft_dlstdelfront(&history->item, del);
 		history->size--;
@@ -134,7 +138,7 @@ void	history_save(t_history *history, t_string *str)
 	history_push(history, newstr);
 	if (!history->path)
 		return ;
-	if (history->size >= HISTORY_MAXSIZE)
+	if (history->size >= history->max_size)
 		history_save_rewrite(history);
 	else
 		history_save_append(history);
@@ -144,7 +148,7 @@ void		history_push(t_history *history, t_string str)
 {
 	t_dlist *new;
 
-	if (history->size >= HISTORY_MAXSIZE)
+	if (history->size >= history->max_size)
 	{
 		ft_dlstdelfront(&history->item, del);
 		history->size--;

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 23:49:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/19 16:43:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ int			TYPE_OF_PROGRAM;
 char		**g_var;
 char		**g_var_names;
 
-void		init_readline(void)
-{
-	g_history = ft_xmemalloc(sizeof(*g_history));
-	history_load(g_history, DEFAULT_HIST_PATH);
-}
-
 t_pars_list	*exec_ast(char *buf)
 {
 	t_lex		*lex;
@@ -57,7 +51,7 @@ t_pars_list	*exec_ast(char *buf)
 		//tmp = ft_readline(">", tmp);// buf = ft_readline(">", tmp);
 		//buf = ft_xstrjoin(buf, tmp); // убрать после добавления второго парметра в readline
 		tmp = buf;
-		buf = ft_readline("> ", buf);
+		buf = ft_readline(get_value_from_all_vars("PS2"), buf);
 		ft_putstr("\n");
 		free(tmp); // утечка на строчку выше, пропадет после добавления параметра, удалить эту строку
 		g_error_pars = 0;
@@ -75,12 +69,13 @@ int			main(int ac, char **av)
 	char		*tmp;
 	extern char	**environ;
 
-	logopen();
 	environ = create_copy_env(environ);
 	init_g_var();
 	fill_g_var_names();
-	init_readline();
 	fill_hash_table();
+	logopen();
+	g_history = ft_xmemalloc(sizeof(t_history));
+	history_load(g_history);
 	if (ac > 1)
 	{
 		if (ft_strequ(*(av + 1), "-p"))
@@ -90,7 +85,7 @@ int			main(int ac, char **av)
 	}
 	while (1)
 	{
-		buf = ft_readline("\033[0;31m" PROJECT_NAME ">\033[0m ", NULL);
+		buf = ft_readline(get_value_from_all_vars("PS1"), NULL);
 		if (g_errno)
 			printerr();
 		if (!buf)
@@ -98,7 +93,7 @@ int			main(int ac, char **av)
 		else
 		{
 			ft_putstr("\n");
-			if (*(tmp = ft_strtrim(buf)))
+			if (*(tmp = ft_strtrim(buf)))				 /* LEAK HERE */
 			{
 //				lex = lexer(buf);
 //				src = lex;
