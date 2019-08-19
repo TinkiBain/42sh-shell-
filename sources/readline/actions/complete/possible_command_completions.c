@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:48:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 02:52:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 07:30:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			possible_command_completions(t_line *line)
 	query = get_command_query(line, &start);
 	vec = get_vec_prog(query);
 	if (vec.len != 1)
-		show_completions(vec, NULL);
+		show_completions_old(vec, NULL);
 	vec_delete(&vec, del_str);
 	str_delete(&query);
 }

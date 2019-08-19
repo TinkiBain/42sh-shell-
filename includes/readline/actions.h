@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 17:17:35 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 07:51:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,14 @@ void		vi_yank_to_end(t_line *line);
 
 
 t_vector	get_filenames(t_line *line);
-t_vector	get_variables(t_string query);
-t_string	find_common_part(t_vector vec);
+t_vector	get_variables_old(t_string query);
+void		get_variables(t_string query, char ***arr, int *n);
+t_string	find_common_part_old(t_vector vec);
+t_string	find_common_part(char **arr, int n);
 t_string	get_command_query(t_line *line, int *start);
 t_string	get_variable_query(t_line *line, int *start);
-void		show_completions(t_vector vec, void (*mod_str)(t_string *));
+void		show_completions_old(t_vector vec, void (*mod_str)(t_string *));
+void		show_completions(char **arr, int n);
 
 void		complete(t_line *line);
 void		complete_filename(t_line *line);

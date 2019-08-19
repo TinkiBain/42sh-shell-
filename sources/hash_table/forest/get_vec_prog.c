@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:21:51 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/15 01:49:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 08:56:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ t_vector		get_vec_prog(t_string query)
 
 	vec = vec_create(0, sizeof(t_string));
 	fill_vector(query, &vec, g_table);
-	ft_qsort(vec.v, vec.len, vec.size, cmp);
+	ft_qsort(vec.v, vec.len, vec.size, cmp_pstring);
 	return (vec);
 }

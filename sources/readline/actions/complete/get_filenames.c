@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 01:49:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 08:56:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,37 @@ static int		match(t_string name, t_string query)
 	return (1);
 }
 
+static void		add_one(t_vector *vec, t_string *query,
+						t_string *path, char *name)
+{
+	struct stat		st;
+	t_string		fullpath;
+	t_string		str_name;
+
+	if (ft_strequ(name, ".") || ft_strequ(name, ".."))
+		return ;
+	fullpath = str_xduplicate(*path);
+	str_name = str_xcopy(name);
+	str_xaddback(&fullpath, str_name.s, str_name.len);
+	stat(fullpath.s, &st);
+	str_delete(&fullpath);
+	if ((st.st_mode & S_IFMT) == S_IFDIR)
+		str_xaddback(&str_name, "/", 1);
+	else
+		str_xaddback(&str_name, " ", 1);
+	if (match(str_name, *query))
+		vec_xaddback(vec, &str_name.s);
+}
+
 static t_vector	build(DIR *dir, t_string *query, t_string *path)
 {
 	struct dirent	*ent;
-	struct stat		st;
-	t_string		fullpath;
-	t_string		name;
 	t_vector		vec;
 
 	str_xaddback(path, "/", 1);
-	vec = vec_xcreate(0, sizeof(t_string));
+	vec = vec_xcreate(0, sizeof(char *));
 	while (dir && (ent = readdir(dir)))
-	{
-		if (ft_strequ(ent->d_name, ".") || ft_strequ(ent->d_name, ".."))
-			continue ;
-		name = str_xcopy(ent->d_name);
-		fullpath = str_xduplicate(*path);
-		str_xaddback(&fullpath, name.s, name.len);
-		stat(fullpath.s, &st);
-		str_delete(&fullpath);
-		if ((st.st_mode & S_IFMT) == S_IFDIR)
-			str_xaddback(&name, "/", 1);
-		else
-			str_xaddback(&name, " ", 1);
-		if (match(name, *query))
-			vec_xaddback(&vec, &name);
-		else
-			str_delete(&name);
-	}
+		add_one(&vec, query, path, ent->d_name);
 	str_delete(query);
 	str_delete(path);
 	closedir(dir);
@@ -95,6 +98,6 @@ t_vector		get_filenames(t_line *line)
 	str = str_xsubstring(*line->str, i, line->cpos - i);
 	vec = build_filenames_vector(str);
 	str_delete(&str);
-	ft_qsort(vec.v, vec.len, vec.size, cmp);
+	ft_qsort(vec.v, vec.len, vec.size, cmp_pstring);
 	return (vec);
 }

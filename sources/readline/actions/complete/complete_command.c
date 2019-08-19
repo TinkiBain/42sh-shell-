@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:16:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 03:36:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 07:49:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			complete_command(t_line *line)
 
 	query = get_command_query(line, &start);
 	vec = get_vec_prog(query);
-	found = find_common_part(vec);
+	found = find_common_part_old(vec);
 	unmatch_start = line->cpos - start;
 	if (found.len > 0 && (int)found.len > unmatch_start)
 	{
@@ -47,7 +47,7 @@ void			complete_command(t_line *line)
 		line->cpos += found.len - unmatch_start;
 	}
 	else
-		show_completions(vec, NULL);
+		show_completions_old(vec, NULL);
 	vec_delete(&vec, del_str);
 	str_delete(&found);
 	str_delete(&query);

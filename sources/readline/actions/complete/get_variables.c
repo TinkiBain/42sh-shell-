@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 03:07:14 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 03:16:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 08:57:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,38 @@ static void		get_env_vars(t_vector *vec, t_string query)
 /* 	}	 */
 /* } */
 
-t_vector		get_variables(t_string query)
+t_vector		get_variables_old(t_string query)
 {
 	t_vector vec;
 
 	vec = vec_xcreate(0, sizeof(t_string));
 	get_env_vars(&vec, query);
 	/* get_shell_vars(&vec, query); */
-	ft_qsort(vec.v, vec.len, vec.size, cmp);
+	ft_qsort(vec.v, vec.len, vec.size, cmp_pstring);
 	return (vec);
+}
+
+void			get_variables(t_string query, char ***start, int *n)
+{
+	extern char	**g_var_names;
+	int i;
+
+	if (!start || !n)
+		return ;
+	*start = NULL;
+	*n = 0;
+	i = -1;
+	while (g_var_names[++i])
+	{
+		if (ft_strnequ(query.s, g_var_names[i], query.len))
+		{
+			*start = &g_var_names[i];
+			while (g_var_names[i] && ft_strnequ(query.s, g_var_names[i], query.len))
+			{
+				*n += 1;
+				i++;
+			}
+			return ;
+		}
+	}
 }
