@@ -6,11 +6,26 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:34:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 16:51:17 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 17:54:57 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
+#include <stdio.h>
+
+/*static void	check_god(char **str)
+{
+	int		i;
+
+	i = 0;
+	while (*str)
+	{
+//		printf("%s\n", *str);
+		++i;
+		++(str);
+	}
+	printf("%d\n", i);
+}*/
 
 char			**g_cmd_names;
 
@@ -38,10 +53,11 @@ void			create_arr_names(void)
 
 	i = 0;
 	j = 0;
+//	printf("%d\n", g_prog_names_count);
 	if (g_prog_names_count)
 	{
-		if ((g_cmd_names = (char **)ft_memalloc(sizeof(char *) *
-						(g_prog_names_count + 1))) == NULL)
+		if ((g_cmd_names = (char **)ft_memalloc((sizeof(char *) *
+						(g_prog_names_count + 1)))) == NULL)
 			die();
 		while (i < HASH_LEN)
 		{
@@ -49,6 +65,8 @@ void			create_arr_names(void)
 				add_names(*(g_table + i), g_cmd_names, &j);
 			++i;
 		}
+//		check_god(g_cmd_names);
 		sort_arr_names(g_prog_names_count);
+//		check_god(g_cmd_names);
 	}
 }
