@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:16:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 16:22:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@
 
 # define VI_INSERT			1
 # define VI_COMMAND			2
-
-t_history		*g_history;
 
 struct 			s_rl_options
 {

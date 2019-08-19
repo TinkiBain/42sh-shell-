@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 06:46:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:32:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ static char	**build_argv(char *str)
 	char	**argv;
 
 	argv = ft_xmemalloc(sizeof(char *) * 3);
-	argv[0] = ft_xstrdup("/usr/bin/vim"); /* TODO: take from enviroment? */
+	argv[0] = ft_xstrdup(get_value_from_all_vars("TEXTEDITOR"));
+	if (!argv[0])
+		argv[0] = ft_xstrdup(DEFAULT_TEXTEDITOR);
 	argv[1] = ft_xstrdup(str);
 	return (argv);
 }
 
 static void	free_argv(char **argv)
 {
-	free(argv[0]);
-	free(argv[1]);
+	ft_strdel(&argv[0]);
+	ft_strdel(&argv[1]);
 	free(argv);
 }
 
