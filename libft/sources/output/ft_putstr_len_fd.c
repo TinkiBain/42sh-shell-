@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   ft_putstr_len_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 23:58:03 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/26 15:16:39 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/08/19 23:55:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
-#include "hash.h"
+#include "libft.h"
 
-int		ft_unsetenv(const char **av)
+void	ft_putstr_len_fd(char const *s, size_t len, int fd)
 {
-	extern char	**environ;
-	size_t		len;
-
-	if (!environ)
-		return (1);
-	while (*av)
-	{
-		len = ft_strlen(*av);
-		if (!check_readonly_var(*av, len))
-		{
-			remove_var(*av, &environ);
-			if (len == 4 && ft_strnequ(*av, "PATH", 4))
-				del_hash();
-		}
-		++av;
-	}
-	return (1);
+	if (s == NULL)
+		return ;
+	while (len-- && *s != '\0')
+		ft_putchar_fd(*s++, fd);
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:56:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 16:22:55 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/19 23:34:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				fill_g_var_names(void)
 	size = 0;
 	copy_var_names(g_var_names, environ, &size);
 	copy_var_names(g_var_names, g_var, &size);
-	g_var_names = ft_sort_str_array(g_var_names, 1);
+	ft_arr_str_qsort(g_var_names, size);
 	remove_duplicates(&g_var_names);
 	return (0);
 }

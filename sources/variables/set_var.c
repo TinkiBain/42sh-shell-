@@ -6,14 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 23:09:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/19 23:51:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-static void	synchronize_var(char *name, const char *var, char **env, size_t len)
+static void	synchronize_var(const char *var, char **env, size_t name_len)
 {
 	extern char		**environ;
 	extern char		**g_var;
@@ -24,42 +24,43 @@ static void	synchronize_var(char *name, const char *var, char **env, size_t len)
 		tmp = g_var;
 	else if (env == g_var)
 		tmp = environ;
-	if (ft_getenv(name, tmp))
-		replace_var(name, var, tmp, len);
+	if (ft_getenv(var, tmp, name_len))
+		replace_var(var, tmp, name_len);
 }
 
-static void	check_main_vars(char *name, const char *var, size_t len)
+static void	check_main_vars(const char *var, size_t name_len)
 {
 	extern t_history *g_history;
 
-	if (len == 4 && ft_strnequ(name, "PATH", len))
+	if (name_len == 4 && ft_strnequ(var, "PATH", name_len))
 		fill_hash_table();
-	else if (g_history && len == 8 && ft_strnequ(var, "HISTPATH", len))
+	else if (g_history && name_len == 8 && ft_strnequ(var, "HISTPATH", name_len))
 	{
-			free(g_history->path);
-			g_history->path = ft_xstrdup(var + len + 1);
+		free(g_history->path);
+		g_history->path = ft_xstrdup(var + name_len + 1);
 	}
-	else if (g_history && len == 8 && ft_strnequ(var, "HISTSIZE", len))
-		g_history->size = ft_atoi(var + len + 1);
+	else if (g_history && name_len == 8 && ft_strnequ(var, "HISTSIZE", name_len))
+		g_history->size = ft_atoi(var + name_len + 1);
 }
 
 int			set_var(const char *var, char ***env, int change_readonly)
 {
-	char	*name;
-	size_t	len;
+	char	*p;
+	size_t	name_len;
 
-	if (env && (name = get_var_name(var, &len)))
+	p = ft_strchr(var, '=');
+	if (env && p && p > var)
 	{
-		if (change_readonly || !check_readonly_var(name))
+		name_len = p - var;
+		if (change_readonly || !check_readonly_var(var, name_len))
 		{
-			synchronize_var(name, var, *env, len);
-			check_main_vars(name, var, len);
-			if (!ft_getenv(name, *env))
+			synchronize_var(var, *env, name_len);
+			check_main_vars(var, name_len);
+			if (!ft_getenv(var, *env, name_len))
 				return (add_new_var(var, env));
 			else
-				return (replace_var(name, var, *env, len));
+				return (replace_var(var, *env, name_len));
 		}
-		free(name);
 	}
 	return (0);
 }

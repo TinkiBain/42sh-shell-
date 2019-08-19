@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 00:18:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/19 23:58:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int		ft_unset(const char **av)
 		return (1);
 	while (*av)
 	{
-		if (!check_readonly_var(*av))
+		len = ft_strlen(*av);
+		if (!check_readonly_var(*av, len))
 		{
 			remove_var(*av, &g_var);
 			remove_var(*av, &environ);
-			len = ft_strlen(*av);
 			if (len == 4 && ft_strnequ(*av, "PATH", 4))
 				del_hash();
 		}
