@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 19:57:15 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 06:57:28 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
+/*   Updated: 2019/08/19 15:18:28 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void				create_bin(char *str);
 void				del_hash(void);
 char				*get_bin(char *name);
 void				fill_hash_table(void);
+t_hash				*create_hash(char *name, char *path, unsigned int key);
 
 t_vector			get_vec_prog(t_string query);
 

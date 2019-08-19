@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 15:00:19 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/06 15:23:21 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 14:50:47 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	del_hash(void)
 			while (*((g_table) + i))
 			{
 				cp = (*((g_table) + i))->next;
-				free((*((g_table) + i))->path);
+				if ((*((g_table) + i))->path)
+					free((*((g_table) + i))->path);
 				(*((g_table) + i))->path = NULL;
 				free((*((g_table) + i))->name);
 				(*((g_table) + i))->name = NULL;

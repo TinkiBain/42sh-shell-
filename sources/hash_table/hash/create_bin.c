@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   create_bin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/01 17:40:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 06:10:14 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/19 15:18:14 by wtalea            #+#    #+#             */
+/*   Updated: 2019/08/19 15:18:17 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 
 t_hash			**g_table;
+char			**g_prog_names;
 
 t_hash			*create_hash(char *name, char *path, unsigned int key)
 {
@@ -20,7 +21,7 @@ t_hash			*create_hash(char *name, char *path, unsigned int key)
 
 	temp = (t_hash *)xmalloc(sizeof(t_hash));
 	temp->name = ft_xstrdup(name);
-	temp->path = ft_xstrdup(path);
+	temp->path = path ? ft_xstrdup(path) : NULL;
 	temp->hash = key;
 	temp->next = NULL;
 	return (temp);
