@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 20:59:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:05:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			set_var(const char *var, char ***env, int change_readonly)
 				return (add_new_var(var, env));
 			else
 				return (replace_var(name, var, *env, len));
-			if (len == 4 && ft_strnequ(name, "PATH", 5))
+			if (len == 4 && ft_strnequ(name, "PATH", 4))
 			{
 				fill_hash_table();
 			}
