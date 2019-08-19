@@ -6,14 +6,13 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 16:21:23 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 16:50:47 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 
 t_hash			**g_table;
-char			**g_prog_names;
 int				g_prog_names_count;
 
 t_hash			*create_hash(char *name, char *path, unsigned int key)

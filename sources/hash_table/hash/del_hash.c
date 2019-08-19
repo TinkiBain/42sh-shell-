@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 15:00:19 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 16:42:36 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 16:51:58 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 extern	t_hash	**g_table;
-extern	char	**g_prog_names;
+extern	char	**g_cmd_names;
 
 void	del_hash(void)
 {
@@ -40,7 +40,7 @@ void	del_hash(void)
 		++i;
 	}
 	free(g_table);
-	free(g_prog_names);
+	free(g_cmd_names);
 	g_table = NULL;
-	g_prog_names = NULL;
+	g_cmd_names = NULL;
 }
