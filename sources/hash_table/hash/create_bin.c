@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 15:18:17 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 16:21:23 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_hash			**g_table;
 char			**g_prog_names;
+int				g_prog_names_count;
 
 t_hash			*create_hash(char *name, char *path, unsigned int key)
 {
@@ -24,6 +25,7 @@ t_hash			*create_hash(char *name, char *path, unsigned int key)
 	temp->path = path ? ft_xstrdup(path) : NULL;
 	temp->hash = key;
 	temp->next = NULL;
+	++g_prog_names_count;
 	return (temp);
 }
 

@@ -6,11 +6,13 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 14:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 15:18:57 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 16:22:36 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
+
+extern	int	g_prog_names_count;
 
 static	void	add_force_hash(char *name, t_hash *table, char *path,
 		unsigned int key)
@@ -21,6 +23,8 @@ static	void	add_force_hash(char *name, t_hash *table, char *path,
 		{
 			table->path ? free(table->path) : 1;
 			table->path = path ? ft_xstrdup(path) : NULL;
+			++g_prog_names_count;
+			return ;
 		}
 		table = table->next;
 	}
@@ -28,8 +32,11 @@ static	void	add_force_hash(char *name, t_hash *table, char *path,
 	{
 		table->path ? free(table->path) : 1;
 		table->path = path ? ft_xstrdup(path) : NULL;
+		++g_prog_names_count;
+		return ;
 	}
 	table->next = create_hash(name, path, key);
+	++g_prog_names_count;
 }
 
 static	void			add_force_build(char *name, char *path)
@@ -44,7 +51,10 @@ static	void			add_force_build(char *name, char *path)
 		if (!*((g_table) + key % HASH_LEN))
 			*((g_table) + key % HASH_LEN) = create_hash(name, path, key);
 		else
+		{
 			add_force_hash(name, *((g_table) + key % HASH_LEN), path, key);
+			++g_prog_names_count;
+		}
 	}
 }
 
