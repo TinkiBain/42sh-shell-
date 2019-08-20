@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/20 11:42:40 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/20 17:50:57 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ DIR_LIB_WTALEA=lib_wtalea
 SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
-	main.c
+	main.c\
+	check_fd.c\
+	check_quotes.c
 
 BUILTIN_DIR=builtin
 
