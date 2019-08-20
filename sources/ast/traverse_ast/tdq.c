@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/20 17:13:06 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,15 @@ char		*tdq(char *str)
 	char	*tmp;
 	int		i;
 
-	i = -1;
+	i = 0;
 	tmp = str;
 	if (checker(str) > 0)
 	{
-		while (str[++i])
+		while (str[i])
+		{
 			tdq_while(&i, &str);
+			i++;
+		}
 		if (*str == '~')
 		{
 			str = cleaner(str);

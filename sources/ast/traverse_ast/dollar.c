@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/18 00:17:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/20 17:24:44 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,15 @@ void		dollar(int *j, char **str)
 		tmp = ft_xstrdup(&(*str)[*j + 1]);
 		(*str)[l] = '\0';
 		(*str) = ft_strrejoin((*str), tmp, 3);
+		(*j) = l - 1;
 		return ;
 	}
 	if ((*str)[(*j) + 1] == '$')
-		(*j) += 2;
+		(*j) += 1;
 	else
-		while ((*str)[*j] && check_spec_symbol((*str)[*j + 1]))
+		while ((*str)[*j + 1] && check_spec_symbol((*str)[*j + 1]))
 			(*j) += 1;
-	kek = ft_xstrdup(&(*str)[*j]);
+	kek = ft_xstrdup(&(*str)[*j + 1]);	
 	(*str)[l] = '\0';
 	if (tmp)
 		(*str) = ft_strrejoin((*str), tmp, 3);
