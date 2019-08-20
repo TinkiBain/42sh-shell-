@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 23:56:24 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/20 16:57:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *str);
-void				ft_putstr_len(char const *s, size_t len);
-void				ft_putstr_len_fd(char const *s, size_t len, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 
 typedef struct		s_list

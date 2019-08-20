@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 17:28:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 17:38:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/20 16:55:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	is_duplicate(char *name, size_t name_len, char **vars)
 
 static void	print_one_var(char *name, char *value)
 {
-	ft_putstr_len(name, value - name - 1);
+	write(1, name, value - name - 1);
 	ft_putstr("='");
 	ft_putstr(value);
 	ft_putendl("'");
