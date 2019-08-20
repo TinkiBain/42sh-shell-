@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:41:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 18:58:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/20 12:05:22 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void			complete_filename(t_line *line)
 	}
 	else
 		show_completions(vec.v, vec.len);
-	vec_delete(&vec, del_str);
+	vec_delete(&vec, del_pchar);
 	str_delete(&found);
 }

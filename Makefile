@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/19 22:53:05 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/20 11:42:40 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,5 +167,8 @@ test: rm_lib $(LIBFT_A)
 
 sanitize:
 	$(CC) $(FLAGS) -g -fsanitize=address $(SRCS) -o $(NAME) $(INCLUDES)	$(LIBFT_A) -lcurses
+
+vg:
+	valgrind --leak-check=full ./$(NAME)
 
 re: fclean all

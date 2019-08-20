@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 08:56:40 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/20 12:05:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void		add_one(t_vector *vec, t_string *query,
 		str_xaddback(&str_name, " ", 1);
 	if (match(str_name, *query))
 		vec_xaddback(vec, &str_name.s);
+	else
+		str_delete(&str_name);
 }
 
 static t_vector	build(DIR *dir, t_string *query, t_string *path)
@@ -53,8 +55,10 @@ static t_vector	build(DIR *dir, t_string *query, t_string *path)
 	struct dirent	*ent;
 	t_vector		vec;
 
-	str_xaddback(path, "/", 1);
 	vec = vec_xcreate(0, sizeof(char *));
+	if (!dir)
+		return (vec);
+	str_xaddback(path, "/", 1);
 	while (dir && (ent = readdir(dir)))
 		add_one(&vec, query, path, ent->d_name);
 	str_delete(query);
@@ -79,6 +83,8 @@ static t_vector	build_filenames_vector(t_string str)
 	i++;
 	while ((c = str_get(str, --i)) && !ft_isspace(c))
 		str_xaddfront(&path, &c, 1);
+	path.s = tdq(path.s);
+	str_fixlen(&path);
 	if (path.len == 0)
 		str_xaddfront(&path, ".", 1);
 	dir = opendir(path.s);
