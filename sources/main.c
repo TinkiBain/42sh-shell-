@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 18:59:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/20 17:45:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 // #include "hash.h"
 
 /*
-**	variable for launch shell with param
-	(now using for print ast instead for exec cmd).
-*/
+ **	variable for launch shell with param
+ (now using for print ast instead for exec cmd).
+ */
 
 int			TYPE_OF_PROGRAM;
 
 /*
-**	global variable for internal shell variables.
-*/
+ **	global variable for internal shell variables.
+ */
 
 char		**g_var;
 
@@ -36,12 +36,24 @@ void		init_readline(void)
 	g_rl_options.tty = 0;
 }
 
+t_pars_list	*ast_treatment_error(char *buf)
+{
+	char	*tmp;
+
+	buf = ft_strrejoin(buf, "\n", 1);
+	tmp = buf;
+	buf = ft_readline("> ", tmp);
+	free(tmp);
+	ft_putstr("\n");
+	g_error_pars = 0;
+	return (exec_ast(buf));
+}
+
 t_pars_list	*exec_ast(char *buf)
 {
 	t_lex		*lex;
 	t_lex		*src;
 	t_pars_list	*list;
-	char		*tmp;
 
 	lex = lexer(buf);
 	src = lex;
@@ -54,14 +66,10 @@ t_pars_list	*exec_ast(char *buf)
 		return (parser_free_tree(list));
 	if (g_error_pars == 2)
 	{
-		buf = ft_strjoin(buf, "\n"); // убрать после добавления второго парметра в readline
-		tmp = buf;
-		buf = ft_readline("> ", tmp);
-		free(tmp);
-		ft_putstr("\n");
-		g_error_pars = 0;
-		return (exec_ast(buf));
+		parser_free_tree(list);
+		return (ast_treatment_error(buf));
 	}
+	free(buf);
 	return (list);
 }
 
@@ -69,8 +77,8 @@ int			main(int ac, char **av)
 {
 	char		*buf;
 	t_pars_list	*list;
-//	t_lex		*lex;
-//	t_lex		*src;
+	//	t_lex		*lex;
+	//	t_lex		*src;
 	char		*tmp;
 	extern char	**environ;
 
@@ -99,11 +107,11 @@ int			main(int ac, char **av)
 			ft_putstr("\n");
 			if (*(tmp = ft_strtrim(buf)))
 			{
-//				lex = lexer(buf);
-//				src = lex;
-//				while (src->next)
-//					src = src->next;
-//				list = parser(lex, NULL, 0);
+				//				lex = lexer(buf);
+				//				src = lex;
+				//				while (src->next)
+				//					src = src->next;
+				//				list = parser(lex, NULL, 0);
 				list = exec_ast(buf);
 				if (TYPE_OF_PROGRAM)
 				{
@@ -115,17 +123,16 @@ int			main(int ac, char **av)
 					traverse_ast(list);
 				g_error_pars = 0;
 				parser_free_tree(list);
-//				while (src->prev)
-//				{
-//					lex = src;
-//					src = src->prev;
-//					free_lex(lex);
-//				}
-//				free_lex(src);
+				//				while (src->prev)
+				//				{
+				//					lex = src;
+				//					src = src->prev;
+				//					free_lex(lex);
+				//				}
+				//				free_lex(src);
 				free(tmp);
 			}
 		}
-		ft_strdel(&buf);
 	}
 	del_hash();
 	history_clear(g_history);
