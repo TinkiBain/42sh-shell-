@@ -6,11 +6,33 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/20 17:13:06 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/20 18:18:55 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+static void		spec_char_hendler(int *i, char *str, int *i_t, char **tmp)
+{
+	(*i) += 1;
+	if (str[*i] == 'n')
+		(*tmp)[*i_t] = '\n';
+	else if (str[*i] == 't')
+		(*tmp)[*i_t] = '\t';
+	else if (str[*i] == 'v')
+		(*tmp)[*i_t] = '\v';
+	else if (str[*i] == 'f')
+		(*tmp)[*i_t] = '\f';
+	else if (str[*i] == 'b')
+		(*tmp)[*i_t] = '\b';
+	else if (str[*i] == 'a')
+		(*tmp)[*i_t] = '\a';
+	else if (str[*i] == 'r')
+		(*tmp)[*i_t] = '\r';
+	else
+		(*tmp)[*i_t] = str[*i];
+	*i_t += 1;
+}
 
 static int		f(char *str, int i, char cha)
 {
@@ -64,17 +86,22 @@ int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 	else if (str[*i] == 39)
 	{
 		while (str[++(*i)] != 39)
-			(*tmp)[(*t_i)++] = str[*i];
+		{
+			if (str[*i] == 92)
+				spec_char_hendler(i, str, t_i, tmp);
+			else
+				(*tmp)[(*t_i)++] = str[*i];
+		}
 		return (-1);
 	}
 	else if (str[*i] == 34)
 	{
 		while (str[++(*i)] != 34)
 		{
-			if (str[*i] == 92 && (str[(*i) + 1] == '$' || str[(*i) + 1] == 92
-						|| str[(*i) + 1] == 34 || str[(*i) + 1] == '`'))
-				(*i) += 1;
-			(*tmp)[(*t_i)++] = str[*i];
+			if (str[*i] == 92)
+				spec_char_hendler(i, str, t_i, tmp);
+			else 
+				(*tmp)[(*t_i)++] = str[*i];
 		}
 		return (-1);
 	}
@@ -101,6 +128,8 @@ static char		*cleaner(char *str)
 	free(tmp);
 	return (str);
 }
+
+
 
 void		tdq_while(int *i, char **str)
 {
