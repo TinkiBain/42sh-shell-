@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/20 03:56:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ void	update_line(t_line *line)
 		newbuf.cpos = g_buffer.prompt_len + line->cpos;
 	}
 	pull_escseqs(&newbuf.escseqs, &newbuf.b);
+	if (!g_rl_options.enable_color)
+		vec_delete(&newbuf.escseqs, del_str);
 	convert_nl(&newbuf, cols);
 	newbuf.prompt_len = g_buffer.prompt_len;
 	newbuf.out_rows = newbuf.b.len / cols + 1;

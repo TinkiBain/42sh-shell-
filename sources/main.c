@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 16:43:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/20 04:14:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int			main(int ac, char **av)
 	logopen();
 	g_history = ft_xmemalloc(sizeof(t_history));
 	history_load(g_history);
+	g_rl_options.enable_color = 1;
 	if (ac > 1)
 	{
 		if (ft_strequ(*(av + 1), "-p"))
@@ -85,7 +86,7 @@ int			main(int ac, char **av)
 	}
 	while (1)
 	{
-		buf = ft_readline(get_value_from_all_vars("PS1"), NULL);
+		buf = ft_readline("\033[0;31m" PROJECT_NAME ">\033[0m ", NULL);
 		if (g_errno)
 			printerr();
 		if (!buf)

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 16:51:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/30 20:16:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/20 04:11:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	hs_prev(t_line *line)
 	t_dlist *i;
 
 	i = line->hs.hist_current;
-	while (i->prev)
+	while (i)
 	{
 		line->hs.query_pos = hs_strrstr(*(t_string *)i->content,
 			line->hs.query, (i == line->hs.hist_current ?
@@ -73,7 +73,7 @@ void	hs_find(t_line *line)
 		return ;
 	}
 	i = line->hs.hist_current;
-	while (i->prev)
+	while (i)
 	{
 		line->hs.query_pos = hs_strrstr(*(t_string *)i->content,
 			line->hs.query, (i == line->hs.hist_current ?
