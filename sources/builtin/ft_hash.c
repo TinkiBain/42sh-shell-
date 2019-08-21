@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 22:32:39 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/03 14:02:56 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/21 17:32:01 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-// static void	print_commands(t_list *head, const char *k)
+/*// static void	print_commands(t_list *head, const char *k)
 // {
 // 	while (head)
 // 	{
@@ -42,4 +42,18 @@ int			ft_hash(void)
 	// 	}
 	// }
 	return (1);
+}*/
+
+#define FLAG_R 0x1
+#define FLAG_D 0x2
+#define FLAG_L 0x4
+#define FLAG_P 0x8
+#define FLAG_T 0x10
+
+int		ft_hash(char **argv)
+{
+	int		flags;
+
+	flags = 0;
+
 }

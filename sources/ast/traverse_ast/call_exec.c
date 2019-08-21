@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 21:07:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/21 17:32:07 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	print_error_command(const char *cmd)
 **	need to call our shel for execute script.
 */
 
-static int	call_nonbuilin_exec(const char *path,  char *const *av, char **env)
+static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 {
 	if (!access(path, X_OK))
 	{
@@ -33,7 +33,7 @@ static int	call_nonbuilin_exec(const char *path,  char *const *av, char **env)
 			ft_putstr_fd(PROJECT_NAME ": ", 1);
 			ft_putstr_fd(av[0], 2);
 			ft_putendl_fd(": execve return (-1) from call_exec()", 2);
-			exit (-1);
+			exit(-1);
 		}
 	}
 	else
