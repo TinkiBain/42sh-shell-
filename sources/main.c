@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/21 17:46:54 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/21 18:23:03 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int			main(int ac, char **av)
 				g_error_pars = 0;
 				parser_free_tree(list);
 			}
+			else
+				free(buf);
 			free(tmp);
 		}
 	}
