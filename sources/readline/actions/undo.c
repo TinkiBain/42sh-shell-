@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:55:09 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 17:16:38 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/19 18:51:25 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	undo(t_line *line)
 		line->cpos = undo->cpos;
 		if (undo)
 			free(undo);
-/*		temp = line->undo->next;
 		if (line->undo)
 		{
+			temp = line->undo->next;
 			del_undo_one(line->undo, 1);
 			line->undo = temp;
-		}*/
+		}
 	}
 }
