@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/20 17:50:57 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/21 03:19:31 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ FLAGS+=-g
 INCLUDES:=-I includes -I includes/readline -I libft/includes
 
 SH_INCLUDES=\
-	ast.h		cmd.h		defs.h			variables.h		exec.h\
-	hash.h		lexer.h		lib_wtalea.h	parser.h		sh.h\
-	xfuncs.h
+	ast.h		defs.h			variables.h		exec.h\
+	hash.h		lexer.h			parser.h		sh.h\
+	xfuncs.h	lib_wtalea.h
 
 HEADER=\
 	$(addprefix includes/, $(SH_INCLUDES))\
