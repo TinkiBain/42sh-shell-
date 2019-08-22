@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 13:58:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/22 21:15:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_history
 	int				size;
 	int				max_size;
 	char			*path;
+	int				start_index;
 }					t_history;
 
 typedef struct		s_line

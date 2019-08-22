@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/21 18:47:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/22 21:29:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	history_open(t_history *history)
 	fd = -1;
 	history->path = tdq(ft_xstrdup(get_value_from_all_vars("HISTPATH")));
 	s_max = ft_xstrdup(get_value_from_all_vars("HISTSIZE"));
-	history->max_size = s_max ? ft_atoi(s_max) : 0;
+	history->max_size = s_max ? ft_atoi(s_max) + 1 : 0;
 	ft_strdel(&s_max);
 	if (history->path)
 		fd = open(history->path, O_RDONLY | O_CREAT, S_IRWXU);

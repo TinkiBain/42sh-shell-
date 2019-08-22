@@ -6,7 +6,7 @@
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:54:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 15:38:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/22 21:21:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static t_string	*get_hist_n(t_history *history, int n, int *len)
 	p = history->item;
 	while (n > 0 ? p->prev : p->next)
 		p = (n > 0 ? p->prev : p->next);
-	i = 0;
+	i = history->start_index;
+	if (n <= i)
+		return (NULL);
 	while (++i < (n > 0 ? n : -n) && p)
 		p = (n > 0 ? p->next : p->prev);
 	if (p)
