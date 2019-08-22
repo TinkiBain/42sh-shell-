@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/19 17:17:04 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/21 18:52:35 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,18 @@ READLINE_BINDINGS_DIR=bindings
 READLINE_DISPLAY_DIR=display
 READLINE_TERMINAL_DIR=terminal
 READLINE_INPUTLOOP_DIR=input_loop
+READLINE_HISTORY_DIR=history
 
 READLINE_INCLUDES=\
-actions.h		bindings.h		display.h		escseqs.h\
-ft_errno.h		ft_readline.h	history.h		history_search.h\
-input_loop.h	keys.h			line.h			loginfo.h\
+actions.h			bindings.h		display.h		escseqs.h\
+ft_errno.h			ft_readline.h	history.h		history_search.h\
+input_loop.h		keys.h			line.h			loginfo.h\
 signal_handlers.h	terminal.h		utils.h			undo.h\
 
 SRCS_READLINE_WITHOUT_DIR=\
-	escseqs.c			ft_errno.c			ft_readline.c		history.c\
-	history_search.c	loginfo.c			signal_handlers.c	utils.c\
-	duplicate_line.c	undo.c				go_history.c
+	escseqs.c			ft_errno.c			ft_readline.c\
+	loginfo.c			signal_handlers.c	utils.c\
+	duplicate_line.c	undo.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\
@@ -71,6 +72,9 @@ SRCS_READLINE_INPUTLOOP=\
 	em_input_loop.c		input_loop.c	is_ansiseq.c	vi_input_loop.c\
 	vi_input_one.c
 
+SRCS_READLINE_HISTORY=\
+	go_history.c	history_clear.c		history_copy.c		history_load.c\
+	history_push.c	history_save.c		history_search.c
 
 READLINE_SUBDIRS=\
 	$(READLINE_ACTIONS_DIR)\
@@ -79,6 +83,7 @@ READLINE_SUBDIRS=\
 	$(READLINE_COMPLETE_DIR)\
 	$(READLINE_TERMINAL_DIR)\
 	$(READLINE_INPUTLOOP_DIR)\
+	$(READLINE_HISTORY_DIR)\
 
 SRCS_READLINE=$(SRCS_READLINE_WITHOUT_DIR)\
 	$(addprefix $(READLINE_ACTIONS_DIR)/, $(SRCS_READLINE_ACTIONS))\
@@ -87,3 +92,4 @@ SRCS_READLINE=$(SRCS_READLINE_WITHOUT_DIR)\
 	$(addprefix $(READLINE_COMPLETE_DIR)/, $(SRCS_READLINE_COMPLETE))\
 	$(addprefix $(READLINE_TERMINAL_DIR)/, $(SRCS_READLINE_TERMINAL))\
 	$(addprefix $(READLINE_INPUTLOOP_DIR)/, $(SRCS_READLINE_INPUTLOOP))\
+	$(addprefix $(READLINE_HISTORY_DIR)/, $(SRCS_READLINE_HISTORY))\

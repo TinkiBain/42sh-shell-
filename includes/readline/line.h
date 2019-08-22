@@ -6,18 +6,23 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 14:11:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/21 18:45:39 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINE_H
 # define LINE_H
 
-# include "defs.h"
-# include "history.h"
-
 # define VI_FIND_FORWARD	1
 # define VI_FIND_BACKWARD	2
+
+typedef struct	s_history
+{
+	t_dlist		*item;
+	int			size;
+	int			max_size;
+	char		*path;
+}				t_history;
 
 typedef struct		s_line
 {
