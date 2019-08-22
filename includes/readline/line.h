@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/21 18:45:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/22 13:58:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # define VI_FIND_FORWARD	1
 # define VI_FIND_BACKWARD	2
 
-typedef struct	s_history
+typedef struct		s_history
 {
-	t_dlist		*item;
-	int			size;
-	int			max_size;
-	char		*path;
-}				t_history;
+	t_dlist			*item;
+	int				size;
+	int				max_size;
+	char			*path;
+}					t_history;
 
 typedef struct		s_line
 {
@@ -35,7 +35,6 @@ typedef struct		s_line
 	int				arg;
 	int				reading_arg;
 	int				complete_fail;
-	/* char			keybuf[KEYBUF_SIZE]; */
 	t_string		keybuf;
 	void			(*action)(struct s_line *line);
 	int				overwrite_mode;
