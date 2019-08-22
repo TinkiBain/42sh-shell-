@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 15:30:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/22 17:26:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/22 19:08:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int				change_dir_variable(const char *dir, char ***env)
 	}
 	return_value = change_dir_with_flag(dir);
 	if (!return_value)
-	{
-		printf("Dsad\n");
-		ft_putstr(get_value_from_all_vars("PWD"));
-	}
+		ft_putendl(get_value_from_all_vars("PWD"));
 	return (return_value);
 }
 
@@ -93,8 +90,8 @@ int				ft_cd(const char **av, char ***env)
 		return (1);
 	if (!dir || ft_strequ(dir, "-"))
 		return (change_dir_variable(dir, env));
-//	else if (flag)
+	else if (flag)
 		return (change_dir_with_flag(dir));
-//	else
-//		return (change_dir_without_flag(dir));
+	else
+		return (change_dir_without_flag(dir));
 }
