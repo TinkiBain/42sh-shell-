@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/19 17:17:04 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/23 17:00:11 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ input_loop.h	keys.h			line.h			loginfo.h\
 signal_handlers.h	terminal.h		utils.h			undo.h\
 
 SRCS_READLINE_WITHOUT_DIR=\
-	escseqs.c			ft_errno.c			ft_readline.c		history.c\
-	history_search.c	loginfo.c			signal_handlers.c	utils.c\
-	duplicate_line.c	undo.c				go_history.c
+	escseqs.c			ft_errno.c		ft_readline.c		history.c\
+	history_search.c	loginfo.c		signal_handlers.c	utils.c\
+	duplicate_line.c	undo.c			go_history.c		convert_escapes.c\
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c			backward_delete_char.c	backward_line.c\
