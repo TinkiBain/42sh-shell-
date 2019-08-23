@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_fd.c                                           :+:      :+:    :+:   */
+/*   set_var_in_g_var.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 19:28:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/04 19:40:15 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/22 17:33:28 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/22 17:33:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
-void		return_fd(int fd[3])
+int			set_var_in_g_var(const char **av)
 {
-	dup2(fd[0], 0);
-	close(fd[0]);
-	dup2(fd[1], 1);
-	close(fd[1]);
-	dup2(fd[2], 2);
-	close(fd[2]);
-	free(fd);
-}
+	extern	char	**g_var;
 
-int			*set_fd(void)
-{
-	int		*fd;
-
-	fd = (int*)ft_xmalloc(sizeof(int));
-	fd[0] = dup(0);
-	fd[1] = dup(1);
-	fd[2] = dup(2);
-	return (fd);
+	if (!g_var)
+		return (1);
+	while (*av)
+	{
+		set_var(*av, &g_var, 0);
+		++av;
+	}
+	return (0);
 }

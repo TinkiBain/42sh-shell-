@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/18 00:17:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/22 16:39:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char		*ft_dollar_word(char *str, int k)
 		return (ft_itoa(getpid()));
 	while (str[i] && check_spec_symbol(str[i]))
 		i++;
-	tmp = xmalloc(i + 1);
+	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
 	while (++k < i)
 		tmp[k] = str[k];
 	tmp[k] = '\0';
@@ -51,14 +51,15 @@ void		dollar(int *j, char **str)
 		tmp = ft_xstrdup(&(*str)[*j + 1]);
 		(*str)[l] = '\0';
 		(*str) = ft_strrejoin((*str), tmp, 3);
+		(*j) = l - 1;
 		return ;
 	}
 	if ((*str)[(*j) + 1] == '$')
-		(*j) += 2;
+		(*j) += 1;
 	else
-		while ((*str)[*j] && check_spec_symbol((*str)[*j + 1]))
+		while ((*str)[*j + 1] && check_spec_symbol((*str)[*j + 1]))
 			(*j) += 1;
-	kek = ft_xstrdup(&(*str)[*j]);
+	kek = ft_xstrdup(&(*str)[*j + 1]);	
 	(*str)[l] = '\0';
 	if (tmp)
 		(*str) = ft_strrejoin((*str), tmp, 3);

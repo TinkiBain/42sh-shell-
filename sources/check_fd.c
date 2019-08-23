@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_len_fd.c                                 :+:      :+:    :+:   */
+/*   check_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:16:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/19 23:55:57 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/17 16:21:00 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/08/20 17:16:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <fcntl.h>
+#include <stdlib.h>
+#include "exec.h"
 
-void	ft_putstr_len_fd(char const *s, size_t len, int fd)
+void			preliminary_check_fd(void)
 {
-	if (s == NULL)
-		return ;
-	while (len-- && *s != '\0')
-		ft_putchar_fd(*s++, fd);
+	if (fcntl(0, F_GETFL) < -1)
+		exit(0);
+	if (!isatty(0))
+	{	
+		exit(g_res_exec);
+	}
 }

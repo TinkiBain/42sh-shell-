@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/20 11:42:40 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/22 17:34:55 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ FLAGS+=-g
 INCLUDES:=-I includes -I includes/readline -I libft/includes
 
 SH_INCLUDES=\
-	ast.h		cmd.h		defs.h			variables.h		exec.h\
-	hash.h		lexer.h		lib_wtalea.h	parser.h		sh.h\
-	xfuncs.h
+	ast.h		defs.h			variables.h		exec.h\
+	hash.h		lexer.h			parser.h		sh.h\
+	xfuncs.h	lib_wtalea.h
 
 HEADER=\
 	$(addprefix includes/, $(SH_INCLUDES))\
@@ -46,7 +46,9 @@ DIR_LIB_WTALEA=lib_wtalea
 SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
-	main.c
+	main.c\
+	check_fd.c\
+	check_quotes.c
 
 BUILTIN_DIR=builtin
 
@@ -63,7 +65,8 @@ SRCS_VAR=\
 	print_var_readonly.c		set_var.c\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
-	get_value_from_all_vars.c	print_all_vars.c
+	get_value_from_all_vars.c	print_all_vars.c\
+	set_var_in_g_var.c
 
 XFUNCS_DIR=xfuncs
 

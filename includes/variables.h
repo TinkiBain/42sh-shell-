@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 23:57:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/22 17:34:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int		init_g_var(void);
 int		set_var(const char *var, char ***env, int change_readonly);
+int		set_var_in_g_var(const char **av);
 int		add_new_var(const char *av, char ***env);
 char	**create_copy_env(char **env);
 int		fill_g_var_names(void);

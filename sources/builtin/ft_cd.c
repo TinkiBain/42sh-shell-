@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 00:30:09 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 00:18:23 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/21 17:40:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	change_dir(char *path)
 	arr[1] = ft_strrejoin("PWD=", getcwd(NULL, 1024), 2);
 	arr[2] = NULL;
 	ft_setenv((const char **)arr);
-	free(arr);
+	ft_free_double_ptr_arr((void ***)&arr);
 }
 
 static void	cd_error(const char *av, int tilda_error)

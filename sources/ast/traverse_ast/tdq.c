@@ -6,17 +6,39 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/22 19:59:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+static void		spec_char_hendler(int *i, char *str, int *i_t, char **tmp)
+{
+	(*i) += 1;
+	if (str[*i] == 'n')
+		(*tmp)[*i_t] = '\n';
+	else if (str[*i] == 't')
+		(*tmp)[*i_t] = '\t';
+	else if (str[*i] == 'v')
+		(*tmp)[*i_t] = '\v';
+	else if (str[*i] == 'f')
+		(*tmp)[*i_t] = '\f';
+	else if (str[*i] == 'b')
+		(*tmp)[*i_t] = '\b';
+	else if (str[*i] == 'a')
+		(*tmp)[*i_t] = '\a';
+	else if (str[*i] == 'r')
+		(*tmp)[*i_t] = '\r';
+	else
+		(*tmp)[*i_t] = str[*i];
+	*i_t += 1;
+}
+
 static int		f(char *str, int i, char cha)
 {
 	while (str[i] && str[i] != cha)
 	{
-		if (str[i] == 92)
+		if (str[i] == '\\')
 			i++;
 		i++;
 	}
@@ -30,11 +52,11 @@ static int		checker(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] == 92)
+		if (str[i] == '\\')
 			i++;
-		else if (str[i] == 39)
+		else if (str[i] == '\'')
 		{
-			i = f(str, i + 1, 39);
+			i = f(str, i + 1, '\'');
 			if (!str[i])
 			{
 				g_errno = 15;
@@ -42,11 +64,11 @@ static int		checker(char *str)
 			}
 			continue ;
 		}
-		else if (str[i] == 34)
+		else if (str[i] == '\"')
 		{
-			if (str[i++] == 92)
+			if (str[i++] == '\\')
 				i += 2;
-			i = f(str, i, 34);
+			i = f(str, i, '\"');
 			if (!str[i])
 			{
 				g_errno = 16;
@@ -59,22 +81,27 @@ static int		checker(char *str)
 
 int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 {
-	if (str[*i] == 92)
+	if (str[*i] == '\\')
 		(*i) += 1;
-	else if (str[*i] == 39)
+	else if (str[*i] == '\'')
 	{
-		while (str[++(*i)] != 39)
-			(*tmp)[(*t_i)++] = str[*i];
+		while (str[++(*i)] != '\'')
+		{
+			if (str[*i] == '\\')
+				spec_char_hendler(i, str, t_i, tmp);
+			else
+				(*tmp)[(*t_i)++] = str[*i];
+		}
 		return (-1);
 	}
-	else if (str[*i] == 34)
+	else if (str[*i] == '\"')
 	{
-		while (str[++(*i)] != 34)
+		while (str[++(*i)] != '\"')
 		{
-			if (str[*i] == 92 && (str[(*i) + 1] == '$' || str[(*i) + 1] == 92
-						|| str[(*i) + 1] == 34 || str[(*i) + 1] == '`'))
-				(*i) += 1;
-			(*tmp)[(*t_i)++] = str[*i];
+			if (str[*i] == '\\')
+				spec_char_hendler(i, str, t_i, tmp);
+			else 
+				(*tmp)[(*t_i)++] = str[*i];
 		}
 		return (-1);
 	}
@@ -104,22 +131,22 @@ static char		*cleaner(char *str)
 
 void		tdq_while(int *i, char **str)
 {
-	if ((*str)[*i] == 92)
+	if ((*str)[*i] == '\\')
 		(*i) += 1;
-	else if ((*str)[*i] == 39)
+	else if ((*str)[*i] == '\'')
 		while ((*str)[++(*i)])
 		{
-			if((*str)[*i] == 39)
+			if((*str)[*i] == '\'')
 				break;
 		}
-	else if ((*str)[*i] == 34)
+	else if ((*str)[*i] == '\"')
 	{
 		(*i) += 1;
-		while ((*str)[*i] && (*str)[*i] != 34)
+		while ((*str)[*i] && (*str)[*i] != '\"')
 		{
 			if ((*str)[*i] == '$' && (*str)[(*i) + 1])
 				dollar(i, str);
-			else if ((*str)[*i] == 92)
+			else if ((*str)[*i] == '\\')
 				(*i) += 1;
 			(*i) += 1;
 		}
@@ -133,12 +160,15 @@ char		*tdq(char *str)
 	char	*tmp;
 	int		i;
 
-	i = -1;
+	i = 0;
 	tmp = str;
 	if (checker(str) > 0)
 	{
-		while (str[++i])
+		while (str[i])
+		{
 			tdq_while(&i, &str);
+			i++;
+		}
 		if (*str == '~')
 		{
 			str = cleaner(str);
