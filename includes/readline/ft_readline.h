@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/20 03:53:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/23 16:59:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ struct 			s_rl_options
 }				g_rl_options;
 
 char			*ft_readline(char *prompt, char *oldline);
-void			del_undo_one(void *p, size_t i);
+void			convert_escapes(t_string *str);
 
 #endif
