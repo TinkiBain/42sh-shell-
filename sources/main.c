@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/20 17:50:48 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/21 18:23:03 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,8 @@ int			main(int ac, char **av)
 		else
 		{
 			ft_putstr("\n");
-			if (*(tmp = ft_strtrim(buf)))				 /* LEAK HERE */
+			if (*(tmp = ft_strtrim(buf)))
 			{
-				//				lex = lexer(buf);
-				//				src = lex;
-				//				while (src->next)
-				//					src = src->next;
-				//				list = parser(lex, NULL, 0);
 				list = exec_ast(buf);
 				if (TYPE_OF_PROGRAM)
 				{
@@ -120,15 +115,10 @@ int			main(int ac, char **av)
 					traverse_ast(list);
 				g_error_pars = 0;
 				parser_free_tree(list);
-				//				while (src->prev)
-				//				{
-				//					lex = src;
-				//					src = src->prev;
-				//					free_lex(lex);
-				//				}
-				//				free_lex(src);
-				free(tmp);
 			}
+			else
+				free(buf);
+			free(tmp);
 		}
 	}
 	del_hash();

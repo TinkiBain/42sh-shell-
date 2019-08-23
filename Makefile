@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/21 03:19:31 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/22 17:34:55 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ SRCS_VAR=\
 	print_var_readonly.c		set_var.c\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
-	get_value_from_all_vars.c	print_all_vars.c
+	get_value_from_all_vars.c	print_all_vars.c\
+	set_var_in_g_var.c
 
 XFUNCS_DIR=xfuncs
 
