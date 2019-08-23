@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:12:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 14:52:09 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/23 20:17:42 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	vi_command_bind_keys2(t_vector *key_bindings)
 	bind(key_bindings, 'y', vi_yank_to_motion);
 	bind(key_bindings, 'Y', vi_yank_to_end);
 	bind(key_bindings, 'u', undo);
+	bind(key_bindings, 'U', undo_all);
 }
 
 void		vi_bind_keys(int vi_mode, t_vector *key_bindings)

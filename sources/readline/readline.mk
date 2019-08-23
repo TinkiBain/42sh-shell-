@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/23 17:00:11 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/23 20:19:34 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRCS_READLINE_ACTIONS=\
 	vi_find_forward.c		vi_find_backward.c		vi_repeat_find.c\
 	vi_repeat_find_reverse.c						vi_delete_to_motion_save.c\
 	vi_delete_to_end_save.c	vi_paste_after.c		vi_paste_before.c\
-	vi_yank_to_motion.c		vi_yank_to_end.c		undo.c
+	vi_yank_to_motion.c		vi_yank_to_end.c		undo.c\
+	undo_all.c
 
 SRCS_READLINE_COMPLETE=\
 	get_filenames.c			get_variables.c			get_commands.c\

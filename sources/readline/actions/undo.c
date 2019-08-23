@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 13:55:09 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/23 19:42:39 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/23 20:10:44 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ void		undo(t_line *line)
 			str_delete(&undo->string);
 			undo ? free(undo) : 1;
 			if ((undo = pop_undo_list(&line->undo)) == NULL)
+			{
+				ft_bzero(line->str->s, line->str->len);
+				line->str->len = 0;
+				str_xaddback(line->str, "", 0);
+				line->cpos = 0;
 				return ;
+			}
 			i = undo->lenh;
 			while (next_history_check(line))
 				;
