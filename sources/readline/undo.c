@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:03:34 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 17:23:44 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/23 19:53:35 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_undo_item		*pop_undo_list(t_list **undo)
 		*undo = cp;
 	}
 	else if (!((*undo)->next))
-		return ((*undo)->content);
+		return (NULL);
 	return (temp);
 }
 
