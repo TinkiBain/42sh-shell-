@@ -6,13 +6,13 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 16:28:23 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/23 17:34:00 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/23 17:36:49 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	check_strlen(const char *str, unsigned long longs[5],
+static	void	check_strlen(unsigned long longs[5],
 		const char *char_ptr, const unsigned long **longword_ptr)
 {
 	*longword_ptr = (unsigned long int *)char_ptr;
@@ -31,7 +31,6 @@ static	void	check_strlen(const char *str, unsigned long longs[5],
 
 size_t			ft_strlen(const char *str)
 {
-	const	char						*char_ptr;
 	const	char						*chars[2];
 	const	unsigned	long			*longword_ptr;
 	unsigned	long					longs[5];
@@ -40,7 +39,7 @@ size_t			ft_strlen(const char *str)
 	while (((unsigned long int)(chars[0]++) & (sizeof(*longs) - 1)) != 0)
 		if (*chars[0] == '\0')
 			return (chars[0] - str);
-	check_strlen(str, longs, chars[0], &longword_ptr);
+	check_strlen(longs, chars[0], &longword_ptr);
 	while (1)
 	{
 		longs[4] = 0;
