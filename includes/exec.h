@@ -6,16 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/24 15:33:01 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 21:20:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
-#include "parser.h"
-#include "lexer.h"
-
+# include "parser.h"
+# include "lexer.h"
 
 char		*g_tty;
 int			g_res_exec;

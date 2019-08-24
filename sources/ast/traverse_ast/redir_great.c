@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_great.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:28:36 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 21:29:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 21:48:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int		redir_great(t_io_redirect *redir)
 	{
 		if ((fd = open(redir->file_name, O_WRONLY | O_CREAT | O_APPEND,
 						0644)) < 0)
-		return (redirect_error_open(redir->file_name));
+			return (redirect_error_open(redir->file_name));
 	}
 	else
 	{
 		if ((fd = open(redir->file_name, O_WRONLY | O_CREAT | O_TRUNC,
 						0644)) < 0)
-		return (redirect_error_open(redir->file_name));
+			return (redirect_error_open(redir->file_name));
 	}
 	if (redir->io_number == -1)
 		redir->io_number = 1;

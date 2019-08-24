@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 17:30:53 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/27 21:04:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 21:47:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char		*lexer_get_token(char *str, t_lex **lex)
 {
 	size_t	i;
 
-	if ((*str == '&'|| *str == '|') && (i = lexer_and_or(str, lex)))
+	if ((*str == '&' || *str == '|') && (i = lexer_and_or(str, lex)))
 		return (str + i);
 	else if ((i = lexer_check_redir(str, lex)))
 		return (str + i);

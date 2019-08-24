@@ -6,13 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/18 00:18:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/24 20:56:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-extern char **environ;
 
 static int			dirdir(char *str)
 {

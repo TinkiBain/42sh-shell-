@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/24 16:37:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/24 17:58:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int			init_g_var(void)
 	set_var_if_not_exist("HISTPATH=~/.42sh.history", &g_var, 1);
 	set_var_if_not_exist("HISTSIZE=20", &g_var, 1);
 	set_var_if_not_exist("LOGPATH=~/.42sh.log", &g_var, 1);
-	set_var_if_not_exist("PS1=" "\\033[0;31m" PROJECT_NAME ">\\033[0m ", &g_var, 1);
+	set_var_if_not_exist("PS1=" "\\033[0;31m" PROJECT_NAME ">\\033[0m ",
+															&g_var, 1);
 	set_var_if_not_exist("PS2=> ", &g_var, 1);
 	tmp = ft_strrejoin("SHELLHOME=", getcwd(NULL, 1024), 2);
 	set_var(tmp, &g_var, 1);

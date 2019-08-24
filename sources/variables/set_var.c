@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 23:51:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/24 17:59:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ static void	check_main_vars(const char *var, size_t name_len)
 
 	if (name_len == 4 && ft_strnequ(var, "PATH", name_len))
 		fill_hash_table();
-	else if (g_history && name_len == 8 && ft_strnequ(var, "HISTPATH", name_len))
+	else if (g_history && name_len == 8 &&
+									ft_strnequ(var, "HISTPATH", name_len))
 	{
 		free(g_history->path);
 		g_history->path = ft_xstrdup(var + name_len + 1);
 	}
-	else if (g_history && name_len == 8 && ft_strnequ(var, "HISTSIZE", name_len))
+	else if (g_history && name_len == 8 &&
+									ft_strnequ(var, "HISTSIZE", name_len))
 		g_history->size = ft_atoi(var + name_len + 1);
 }
 
