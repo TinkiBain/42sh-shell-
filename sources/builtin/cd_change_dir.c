@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:27:06 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/22 20:37:20 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 16:57:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int		change_dir_with_flag(const char *dir)
 	arr[0] = ft_strrejoin("OLDPWD=", getcwd(NULL, 1024), 2);
 	if (chdir(dir) < 0)
 	{
-		//proverka na PATHCD
-		cd_error(dir);
 		free(arr[0]);
 		free(arr);
 		return (1);
@@ -45,11 +43,11 @@ int		change_dir_without_flag(const char *dir)
 {
 	int			fd;
 	char		**arr;
-	char 		buf[1024];
+	char		buf[1024];
 	struct stat	st;
 
 	if (lstat(dir, &st) < 0)
-		return (cd_error(dir));
+		return (1);
 	if (st.st_mode & S_IFCHR)
 	{
 		fd = open(dir, O_SYMLINK);
