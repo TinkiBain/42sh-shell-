@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/02 19:22:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 21:16:52 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,47 @@ static int	lexer_check_separator(char *str)
 	return (0);
 }
 
+void		print_error_pars(t_lex *lex)
+{
+	ft_putstr_fd(PROJECT_NAME ": syntax error near unexpected token `", 2);
+	if (lex->type & SEMICOLON && lex->prev && lex->prev->type & SEMICOLON)
+		ft_putstr_fd(";;", 2);
+	else if (lex->type & SEMICOLON)
+		ft_putstr_fd(";", 2);
+	else if (lex->type & OR_IF)
+		ft_putstr_fd("||", 2);
+	else if (lex->type & AND_IF)
+		ft_putstr_fd("&&", 2);
+	else if (lex->type & PIPE_SYMB)
+		ft_putstr_fd("|", 2);
+	ft_putendl_fd("'", 2);
+}
+
+int			lex_type_spec(int type)
+{
+	if (type & SEMICOLON || type & PIPE_SYMB || type & AND_IF ||
+			type & OR_IF)
+		return (1);
+	return (0);
+}
+
+t_lex		*get_first_lex(t_lex *lex)
+{
+	while (lex->prev)
+	{
+		if (lex_type_spec(lex->type) && lex_type_spec(lex->prev->type))
+		{
+			print_error_pars(lex);
+			while (lex->next)
+				lex = lex->next;
+			lexer_free_all(lex);
+			return (NULL);
+		}
+		lex = lex->prev;
+	}
+	return (lex);
+}
+
 t_lex		*lexer(char *buf)
 {
 	t_lex	*lex;
@@ -59,7 +100,6 @@ t_lex		*lexer(char *buf)
 	lex = lex->prev;
 	free(lex->next);
 	lex->next = NULL;
-	while (lex->prev)
-		lex = lex->prev;
+	lex = get_first_lex(lex);
 	return (lex);
 }
