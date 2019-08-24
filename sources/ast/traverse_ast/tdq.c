@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/22 19:59:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/23 18:11:53 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		spec_char_hendler(int *i, char *str, int *i_t, char **tmp)
 	*i_t += 1;
 }
 
-static int		f(char *str, int i, char cha)
+static int		back_slesh_hendler(char *str, int i, char cha)
 {
 	while (str[i] && str[i] != cha)
 	{
@@ -56,7 +56,7 @@ static int		checker(char *str)
 			i++;
 		else if (str[i] == '\'')
 		{
-			i = f(str, i + 1, '\'');
+			i = back_slesh_hendler(str, i + 1, '\'');
 			if (!str[i])
 			{
 				g_errno = 15;
@@ -68,7 +68,7 @@ static int		checker(char *str)
 		{
 			if (str[i++] == '\\')
 				i += 2;
-			i = f(str, i, '\"');
+			i = back_slesh_hendler(str, i, '\"');
 			if (!str[i])
 			{
 				g_errno = 16;
@@ -86,12 +86,7 @@ int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 	else if (str[*i] == '\'')
 	{
 		while (str[++(*i)] != '\'')
-		{
-			if (str[*i] == '\\')
-				spec_char_hendler(i, str, t_i, tmp);
-			else
 				(*tmp)[(*t_i)++] = str[*i];
-		}
 		return (-1);
 	}
 	else if (str[*i] == '\"')
@@ -129,6 +124,8 @@ static char		*cleaner(char *str)
 	return (str);
 }
 
+
+
 void		tdq_while(int *i, char **str)
 {
 	if ((*str)[*i] == '\\')
@@ -144,14 +141,14 @@ void		tdq_while(int *i, char **str)
 		(*i) += 1;
 		while ((*str)[*i] && (*str)[*i] != '\"')
 		{
-			if ((*str)[*i] == '$' && (*str)[(*i) + 1])
+			if ((*str)[*i] == '$' && (*str)[(*i) + 1] && check_spec_symbol((*str)[(*i) + 1]))
 				dollar(i, str);
 			else if ((*str)[*i] == '\\')
 				(*i) += 1;
 			(*i) += 1;
 		}
 	}
-	else if ((*str)[*i] == '$' && (*str)[(*i) + 1])
+	else if ((*str)[*i] == '$' && (*str)[(*i) + 1] && check_spec_symbol((*str)[(*i) + 1]))
 		dollar(i, str);
 }
 
@@ -164,7 +161,7 @@ char		*tdq(char *str)
 	tmp = str;
 	if (checker(str) > 0)
 	{
-		while (str[i])
+		while (str[i] != '\0')
 		{
 			tdq_while(&i, &str);
 			i++;
