@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/23 16:59:28 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 13:53:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define VI_INSERT			1
 # define VI_COMMAND			2
 
-struct 			s_rl_options
+struct			s_rl_options
 {
 	t_uint		vi_mode;
 	t_uint		enable_color;

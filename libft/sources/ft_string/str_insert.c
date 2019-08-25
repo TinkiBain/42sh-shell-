@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_insert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:20:57 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/20 09:04:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 13:46:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_string	*create(t_string *str, char *s, size_t size)
 	return (str);
 }
 
-t_string	*str_insert(t_string *str, int to, char *s, size_t size)
+t_string		*str_insert(t_string *str, int to, char *s, size_t size)
 {
 	size_t	newalloc;
 	size_t	copy;
@@ -41,7 +41,6 @@ t_string	*str_insert(t_string *str, int to, char *s, size_t size)
 			return (NULL);
 		str->alloc = newalloc;
 	}
-	/* copy = (size + to > str->len ? str->len - to : size); */
 	copy = size;
 	ft_memmove(str->s + to + copy, str->s + to, str->len - to);
 	ft_memcpy(str->s + to, s, size);

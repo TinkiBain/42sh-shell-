@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lib_wtalea.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/27 16:04:20 by wtalea            #+#    #+#             */
-/*   Updated: 2019/07/27 17:11:04 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 13:51:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIB_WTALEA_H
 
-#include "libft.h"
+# define LIB_WTALEA_H
+
+# include "libft.h"
 
 void	die_log(char *str);
 

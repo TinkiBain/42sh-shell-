@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   add_force.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 14:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 17:48:59 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 14:05:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 
-extern	int	g_prog_names_count;
+extern int		g_prog_names_count;
 
-static	void	add_force_hash(char *name, t_hash *table, char *path,
+static void		add_force_hash(char *name, t_hash *table, char *path,
 		unsigned int key)
 {
 	while (table->next)
@@ -36,10 +36,10 @@ static	void	add_force_hash(char *name, t_hash *table, char *path,
 	table->next = create_hash(name, path, key);
 }
 
-static	void			add_force_build(char *name, char *path)
+static void		add_force_build(char *name, char *path)
 {
-	extern		t_hash		**g_table;
-	unsigned	int			key;
+	extern t_hash		**g_table;
+	unsigned int		key;
 
 	key = 0;
 	if (name)
@@ -54,7 +54,7 @@ static	void			add_force_build(char *name, char *path)
 	}
 }
 
-void					add_force_builds(void)
+void			add_force_builds(void)
 {
 	add_force_build("alias", NULL);
 	add_force_build("bg", NULL);

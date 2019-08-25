@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/20 16:57:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 13:48:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ int					get_lines(int fd, char ***lines, int n);
 t_dlist				*ft_dlstnew(void const *content, size_t content_size);
 void				ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
-void				ft_dlstdelfront(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstdelfront(t_dlist **alst, void (*del)(void *,
+																size_t));
 void				ft_dlstdelend(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstadd(t_dlist **alst, t_dlist *new);
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));

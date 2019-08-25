@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_vec_prog.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:21:51 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/19 08:56:21 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 14:04:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		match(char *query, int len_query, char *name, int len_name)
 	return (1);
 }
 
-static void	add_vector(t_string query, t_vector *vector, t_hash *table)
+static void		add_vector(t_string query, t_vector *vector, t_hash *table)
 {
 	t_string	s;
 
@@ -37,7 +37,7 @@ static void	add_vector(t_string query, t_vector *vector, t_hash *table)
 	{
 		if (match(query.s, query.len, table->name, ft_strlen(table->name)))
 		{
-			s = str_copy(table->name); /* TODO: xcopy, xaddback */
+			s = str_copy(table->name);
 			str_addback(&s, " ", 1);
 			vec_addback(vector, &s);
 		}
@@ -55,8 +55,8 @@ static	void	fill_vector(t_string query, t_vector *vector, t_hash **table)
 		add_vector(query, vector, table[i++]);
 	if (match(query.s, query.len, "./", 2))
 	{
-		s = str_copy("./");		/* xcopy, xaddback */
-		vec_addback(vector, &s); 
+		s = str_copy("./");
+		vec_addback(vector, &s);
 	}
 }
 

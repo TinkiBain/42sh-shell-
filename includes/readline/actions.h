@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/23 20:18:54 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 13:58:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include "ft_readline.h"
 # include "ft_qsort.h"
 
-# define	COMPLETION_QUERY_ITEMS		100
-# define	TMP_PATH					"/tmp/42sh_tmp"
-# define	DEFAULT_TEXTEDITOR			"/usr/bin/vim"
+# define COMPLETION_QUERY_ITEMS		100
+# define TMP_PATH					"/tmp/42sh_tmp"
+# define DEFAULT_TEXTEDITOR			"/usr/bin/vim"
 
 void		self_insert(t_line *line);
 void		backward_delete_char(t_line *line);
@@ -115,6 +115,5 @@ void		complete_variable(t_line *line);
 void		possible_variable_completions(t_line *line);
 void		undo(t_line *line);
 void		undo_all(t_line *line);
-
 
 #endif
