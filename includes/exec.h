@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/24 15:33:01 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/25 20:32:15 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			ft_unsetenv(const char **av);
 int			change_dir_with_flag(const char *dir);
 int			change_dir_without_flag(const char *dir);
 int			cd_error(const char *dir);
+void		*cd_error_invalid_flag(char c);
 void		redir_reset(void);
 void		redir_set(void);
 void		redir_add_fd_table(int fd);

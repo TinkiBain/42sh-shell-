@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 14:57:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 18:38:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/25 19:27:59 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	redir_fill_fd(t_io_redirect *redir, int *fd_close, int *right_fd)
 {
-	char *str;
+	char	*str;
 
 	str = redir->file_name;
 	while (*str)
@@ -35,10 +35,10 @@ static int	redir_fill_fd(t_io_redirect *redir, int *fd_close, int *right_fd)
 	return (1);
 }
 
-int		redir_less_and(t_io_redirect *redir)
+int			redir_less_and(t_io_redirect *redir)
 {
-	int	fd_close;
-	int right_fd;
+	int		fd_close;
+	int		right_fd;
 
 	right_fd = -1;
 	fd_close = 0;

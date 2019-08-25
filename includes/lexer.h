@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/17 06:53:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:19:03 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ size_t				lexer_check_word(char *str, t_lex **lex);
 size_t				lexer_and_or(char *str, t_lex **lex);
 size_t				lexer_check_redir(char *str, t_lex **lex);
 void				lexer_free_all(t_lex *lex);
+char				*get_left_fd(char *str, int *fd);
+int					lexer_redir_less(char **str);
+int					lexer_redir_great(char **str);
+int					lexer_redir_and(char **str);
+int					lexer_return_type(char **str, int *type);
 int					ft_isspec(char c);
 
 #endif

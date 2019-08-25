@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 18:39:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 19:04:35 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/25 19:16:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,27 +90,11 @@ size_t		lexer_check_redir(char *str, t_lex **lex)
 
 	fd = 0;
 	begin = str;
-	while (*str >= '0' && *str <= '9')
-	{
-		if (fd > fd * 10 + (*str - '0') && (fd = -2))
-		{
-			fd = -2;
-			while (*str && *str >= '0' && *str <= '9')
-				++str;
-			break ;
-		}
-		fd = fd * 10 + (*str - '0');
-		++str;
-	}
+	str = get_left_fd(str, &fd);
 	if (begin == str)
 		fd = -1;
-	if (*str == '<')
-		type = lexer_redir_less(&str);
-	else if (*str == '>')
-		type = lexer_redir_great(&str);
-	else if (*str == '&')
-		type = lexer_redir_and(&str);
-	else
+	type = 0;
+	if (!lexer_return_type(&str, &type))
 		return (0);
 	if (type == 0)
 		return (0);

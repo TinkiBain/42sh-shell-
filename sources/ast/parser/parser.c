@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/07/26 21:04:58 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/25 17:28:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_pars_list			*parser(t_lex *lex, t_pars_list *list_down, int type)
 	if (lex->type & SEMICOLON)
 		return (parser_print_error(";;"));
 	list_pars = init_pars_list(type);
-	if (list_down)
-		list_pars->list = list_down;
+	list_pars->list = (list_down) ? list_down : NULL;
 	while (lex->next)
 	{
 		if (lex->next->type & SEMICOLON)
