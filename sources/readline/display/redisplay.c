@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 21:30:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 23:40:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int		skip_row_if_equal(t_buffer *newbuf, int *pos)
 			return (0);
 		vpos++;
 	}
-	if (test_escseq_unmatch(g_buffer.escseqs, newbuf->escseqs, *pos, vpos - 1))
+	if (escseq_test_unmatch(g_buffer.escseqs, newbuf->escseqs, *pos, vpos - 1))
 		return (0);
 	i = -1;
 	*pos = vpos;

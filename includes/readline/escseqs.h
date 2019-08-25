@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 23:43:11 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:55:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 23:39:22 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			pull_escseqs(t_vector *vec, t_string *str);
 t_escseq		*find_escseq(t_vector es, int n);
 int				count_escseq(t_vector es, int from, int until);
 void			shift_escseq(t_vector *es, int from, int count);
-int				test_escseq_unmatch(t_vector v_old, t_vector v_new,
+int				escseq_test_unmatch(t_vector v_old, t_vector v_new,
 									int start, int end);
 
 #endif
