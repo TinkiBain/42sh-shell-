@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/20 16:57:25 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/25 18:34:41 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRCS_STR=ft_atoi.c			ft_isalnum.c			ft_isalpha.c\
 	ft_strrchr.c			ft_strsplit.c\
 	ft_strstr.c				ft_strsub.c				ft_strtrim.c\
 	ft_tolower.c			ft_toupper.c\
-	ft_strrejoin.c
+	ft_strrejoin.c			ft_atoi_octal.c
 
 SRCS_OUTPUT=ft_putchar.c		ft_putchar_fd.c		ft_putendl.c\
 			ft_putendl_fd.c		ft_putnbr.c			ft_putnbr_fd.c\

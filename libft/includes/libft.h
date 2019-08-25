@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 13:48:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 17:38:53 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void				*ft_realloc(void **ptr, size_t oldsize, size_t newsize);
 void				ft_swap(void *a, void *b);
 void				*ft_xmalloc(size_t size);
 
+t_uchar				ft_atoi_octal(char *str, int *count);
 int					ft_atoi(const char *str);
 int					ft_gnl(const int fd, char **line);
 void				ft_free_double_ptr_arr(void ***arr);
