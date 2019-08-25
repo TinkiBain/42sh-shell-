@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unix_line_discard.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:27:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/07/20 09:17:23 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:45:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	unix_line_discard(t_line *line)
 		str_delete(&line->kill_buffer);
 		line->kill_buffer = str_xsubstring(*line->str, 0, line->cpos);
 		ft_memmove(line->str->s, line->str->s + line->cpos,
-				   line->str->len - line->cpos);
+					line->str->len - line->cpos);
 		ft_bzero(line->str->s + line->str->len - line->cpos, line->cpos);
 		line->str->len -= line->cpos;
 		line->cpos = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_forward_word_start.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 11:08:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 11:22:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:25:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_delim(char c)
 	return (1);
 }
 
-void	vi_forward_word_start(t_line *line)
+void		vi_forward_word_start(t_line *line)
 {
 	int i;
 	int j;

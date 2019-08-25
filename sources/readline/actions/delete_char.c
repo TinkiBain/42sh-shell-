@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   delete_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:11:34 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/17 17:26:21 by wtalea           ###   ########.fr       */

@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_screen.c                                     :+:      :+:    :+:   */
+/*   history_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/20 07:19:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:09:00 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/21 18:35:21 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/22 21:17:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
+#include "history.h"
 
-static int	ft_putint(int c)
+void		history_push(t_history *history, t_string str)
 {
-	write(STDOUT, &c, 1);
-	return (0);
-}
+	t_dlist *new;
 
-void		clear_screen(t_line *line)
-{
-	if (line)
+	if (history->size >= history->max_size)
 	{
-		tputs(g_cap.clear_all, get_screen_height(), ft_putint);
-		update_line(NULL);
+		ft_dlstdelfront(&history->item, del_hist);
+		history->size--;
+		history->start_index++;
 	}
+	new = ft_dlstnew(&str, sizeof(str));
+	ft_dlstaddback(&history->item, new);
+	history->size++;
 }

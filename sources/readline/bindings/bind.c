@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:10:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 14:47:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:08:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bindings.h"
 
-static t_string get_sequence_2(int key)
+static t_string	get_sequence_2(int key)
 {
 	t_string	str;
 
@@ -39,7 +39,7 @@ static t_string get_sequence_2(int key)
 	return (str);
 }
 
-static t_string get_sequence(int key)
+static t_string	get_sequence(int key)
 {
 	t_string	str;
 
@@ -65,7 +65,7 @@ static t_string get_sequence(int key)
 	return (str);
 }
 
-void	bind(t_vector *key_bindings, int key, t_action action)
+void			bind(t_vector *key_bindings, int key, t_action action)
 {
 	t_binding new;
 
@@ -75,7 +75,7 @@ void	bind(t_vector *key_bindings, int key, t_action action)
 	vec_xaddback(key_bindings, &new);
 }
 
-t_binding	*find_binding(t_vector *key_bindings, t_string buf)
+t_binding		*find_binding(t_vector *key_bindings, t_string buf)
 {
 	int			i;
 	t_binding	*b;

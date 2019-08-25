@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   vi_ignore.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 03:17:10 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/16 03:17:39 by gmelisan         ###   ########.fr       */

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/23 17:11:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:53:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 ** If error, return NULL and raise g_errno. Possible errors: E_READ
 */
 
-char	*ft_readline(char *prompt, char *oldline)
+char		*ft_readline(char *prompt, char *oldline)
 {
 	t_line		line;
 	int			exit;

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   transpose_chars.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:12:44 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/17 17:29:24 by wtalea           ###   ########.fr       */

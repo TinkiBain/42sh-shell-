@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_screen.c                                     :+:      :+:    :+:   */
+/*   history_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/20 07:19:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:09:00 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/21 18:35:48 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/25 17:25:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
+#include "history.h"
 
-static int	ft_putint(int c)
+void		del_hist(void *content, size_t size)
 {
-	write(STDOUT, &c, 1);
-	return (0);
+	if (size || !size)
+		str_delete((t_string *)content);
+	free(content);
 }
 
-void		clear_screen(t_line *line)
+void		history_clear(t_history *history)
 {
-	if (line)
+	if (history)
 	{
-		tputs(g_cap.clear_all, get_screen_height(), ft_putint);
-		update_line(NULL);
+		ft_dlstdel(&history->item, del_hist);
+		ft_strdel(&history->path);
+		free(history);
 	}
 }

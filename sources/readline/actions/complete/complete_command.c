@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:16:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 19:08:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:09:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_string		get_command_query(t_line *line, int *start)
 
 	i = line->cpos - 1;
 	while ((c = str_get(*line->str, i)) && !ft_isspace(c)
-		   && c != ';' && c != '(')
+			&& c != ';' && c != '(')
 		i--;
 	i++;
 	*start = i;

@@ -6,13 +6,13 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:21:21 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 19:05:26 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 20:10:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "go_history.h"
+#include "history.h"
 
-int				next_history_check(t_line *line)
+int		next_history_check(t_line *line)
 {
 	if (line->history->item->next)
 	{
@@ -23,7 +23,7 @@ int				next_history_check(t_line *line)
 	return (0);
 }
 
-int				previous_history_check(t_line *line)
+int		previous_history_check(t_line *line)
 {
 	if (line->history->item->prev)
 	{
@@ -34,7 +34,7 @@ int				previous_history_check(t_line *line)
 	return (0);
 }
 
-int				len_history(t_line *line)
+int		len_history(t_line *line)
 {
 	int		i;
 	int		j;
@@ -48,4 +48,3 @@ int				len_history(t_line *line)
 		previous_history_check(line);
 	return (i);
 }
-

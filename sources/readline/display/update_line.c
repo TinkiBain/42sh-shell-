@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   update_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/20 03:56:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:38:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
-
-int			get_screen_width(void)
-{
-	return (g_buffer.out_cols);
-}
-
-int			get_screen_height(void)
-{
-	struct winsize	ws;
-
-	ioctl(STDIN, TIOCGWINSZ, &ws);
-	if (!ws.ws_row)
-		return (1);
-	return (ws.ws_row);
-}
 
 int			get_term_cols(void)
 {
@@ -58,8 +43,6 @@ t_string	*build_bufout(t_string str, int width)
 	return (res);
 }
 
-
-
 static void	convert_nl(t_buffer *buf, int width)
 {
 	int	i;
@@ -74,7 +57,6 @@ static void	convert_nl(t_buffer *buf, int width)
 	{
 		if (str_get(buf->b, i) == '\n')
 		{
-			/* add = count_escseq(buf->escseqs, from, i); */
 			add = (width - (i % width)) - 1;
 			from = i + 1;
 			shift_escseq(&buf->escseqs, from, add);
@@ -96,17 +78,16 @@ t_buffer	prepare_resized_buf(void)
 	return (newbuf);
 }
 
-
 /*
 ** Idea as in the original Readline lib.
-** Two buffers: 
+** Two buffers:
 ** - `g_buffer' is what on the screen now.
 ** - `newbuf' builded from `line', what we want our screen to be.
 ** We update screen using `newbuf' and in the end put its contents
 ** to `g_buffer'.
 */
 
-void	update_line(t_line *line)
+void		update_line(t_line *line)
 {
 	t_buffer		newbuf;
 	int				cols;

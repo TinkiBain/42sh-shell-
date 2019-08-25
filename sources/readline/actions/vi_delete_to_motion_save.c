@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_delete_to_motion_save.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:49:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 03:34:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:25:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	delete_left_save(t_line *line, int count, int ignore)
 	str_remove(line->str, line->cpos - count, count);
 	line->cpos -= count;
 }
-
 
 static void	delete_all_save(t_line *line)
 {

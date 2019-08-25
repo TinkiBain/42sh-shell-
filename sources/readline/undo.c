@@ -6,12 +6,11 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:03:34 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/23 21:51:47 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 17:28:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "undo.h"
-#include "go_history.h"
 
 t_undo_item		*pop_undo_list(t_list **undo)
 {

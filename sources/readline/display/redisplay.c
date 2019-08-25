@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redisplay.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 21:30:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
-
-static int		max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
 
 /*
 ** From the comment of original readline library rewriting character is
@@ -58,7 +51,7 @@ static int		cols(t_buffer *newbuf, int i)
 	new = (i < g_buffer.out_rows && i >= 0 ? &g_buffer.out[i] : NULL);
 	oldlen = old ? old->len : 0;
 	newlen = new ? new->len : 0;
-	return (max(oldlen, newlen));
+	return (max_int(oldlen, newlen));
 }
 
 static int		skip_row_if_equal(t_buffer *newbuf, int *pos)
@@ -77,17 +70,15 @@ static int		skip_row_if_equal(t_buffer *newbuf, int *pos)
 	if (test_escseq_unmatch(g_buffer.escseqs, newbuf->escseqs, *pos, vpos - 1))
 		return (0);
 	i = -1;
-	
-	/* move_cur_nl(); */
 	*pos = vpos;
-	return (1);	
+	return (1);
 }
 
 /*
 ** Main redisplay loop.
 ** if (resize == 1) it redraws all non-unique rows in buffer + last row.
 ** else just redraws all buffer.
-** 
+**
 ** TODO: now it always redisplays last row, it's not good. Idk how to fix it and
 ** don't break everything else.
 */
@@ -102,7 +93,7 @@ void			redisplay(t_buffer *newbuf)
 
 	oldpos = g_buffer.cpos;
 	pos = 0;
-	m = max(newbuf->out_rows, g_buffer.out_rows);
+	m = max_int(newbuf->out_rows, g_buffer.out_rows);
 	i = -1;
 	while (++i < m)
 	{
@@ -129,7 +120,7 @@ void			resize(t_buffer *newbuf)
 	move_cur_start();
 	pos = 0;
 	i = -1;
-	while (++i < max(newbuf->out_rows, g_buffer.out_rows))
+	while (++i < max_int(newbuf->out_rows, g_buffer.out_rows))
 	{
 		j = -1;
 		while (++j < cols(newbuf, i))
@@ -139,7 +130,6 @@ void			resize(t_buffer *newbuf)
 		}
 	}
 	term_putstr(g_cap.clear_down);
-	/* "ce" for linux. Should be at col 0. TODO fix later */
 	while (pos > newbuf->cpos)
 		move_cur_left(pos--, newbuf->out_cols);
 }

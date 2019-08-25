@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_errno.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:11:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:55:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:46:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	print_unk(void)
 	loginfo("Unknown error, code %d", g_errno);
 }
 
-void	fatal(char *msg)
+void		fatal(char *msg)
 {
 	extern int	g_logfd;
 
@@ -48,7 +48,7 @@ void	fatal(char *msg)
 	exit(-1);
 }
 
-void	printerr(void)
+void		printerr(void)
 {
 	if (!g_errno)
 		return ;

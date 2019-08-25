@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   forward_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:15:31 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/16 03:34:24 by gmelisan         ###   ########.fr       */

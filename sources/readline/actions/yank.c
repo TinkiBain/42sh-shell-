@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   yank.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 08:05:32 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/07/20 08:30:59 by gmelisan         ###   ########.fr       */

@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 17:34:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:34:13 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/25 22:03:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-void		convert_escapes(t_string *str)
+void			convert_escapes(t_string *str)
 {
 	int		i;
 	char	c;
@@ -32,4 +32,3 @@ void		convert_escapes(t_string *str)
 		n = 0;
 	}
 }
-

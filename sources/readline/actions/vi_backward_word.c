@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_backward_word.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 10:48:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 10:53:40 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		vi_backward_word(t_line *line)
 	int i;
 	int j;
 
-	j= -1;
+	j = -1;
 	while (++j < line->arg)
 	{
 		i = line->cpos;
