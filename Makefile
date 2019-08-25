@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/22 17:34:55 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/22 18:40:52 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,9 @@ SRCS_WITHOUT_DIR=\
 BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
-	ft_cd.c			ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
-	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c
+	cd.c			ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
+	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c\
+	cd_change_dir.c
 
 VAR_DIR=variables
 

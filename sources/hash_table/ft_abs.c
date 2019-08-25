@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xstrdup.c                                       :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wtalea <wtalea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/24 18:26:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/24 18:26:04 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/12/05 17:56:30 by wtalea            #+#    #+#             */
+/*   Updated: 2018/12/05 17:57:16 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xfuncs.h"
+#include "libft.h"
 
-char	*ft_xstrdup(const char *src)
+int		ft_abs(int n)
 {
-	char *p;
-
-	p = NULL;
-	if (!src)
-		return (NULL);
-	p = ft_strdup(src);
-	if (!p)
-		die();
-	return (p);
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }

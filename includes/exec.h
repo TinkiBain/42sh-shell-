@@ -6,16 +6,19 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/24 16:01:31 by wtalea           ###   ########.fr       */
+=======
+/*   Updated: 2019/08/24 21:20:29 by ggwin-go         ###   ########.fr       */
+>>>>>>> dev
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
-#include "parser.h"
-#include "lexer.h"
-
+# include "parser.h"
+# include "lexer.h"
 
 char		*g_tty;
 int			g_res_exec;
@@ -33,7 +36,9 @@ int			ft_setenv(const char **av);
 int			ft_type(const char **av);
 int			ft_unset(const char **av);
 int			ft_unsetenv(const char **av);
-
+int			change_dir_with_flag(const char *dir);
+int			change_dir_without_flag(const char *dir);
+int			cd_error(const char *dir);
 void		redir_reset(void);
 void		redir_set(void);
 void		redir_add_fd_table(int fd);

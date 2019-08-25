@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_great_and.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 18:23:51 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 16:18:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 20:58:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	fill_fd(t_io_redirect *redir, int *close, int *right_fd)
 	return (1);
 }
 
-int		redir_great_and(t_io_redirect *redir)
+int			redir_great_and(t_io_redirect *redir)
 {
 	int	right_fd;
 	int	fd_close;

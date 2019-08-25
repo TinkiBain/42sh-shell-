@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   go_history.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:22:42 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/16 17:31:41 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 13:55:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GO_HISTORY
-# define GO_HISTORY
+#ifndef GO_HISTORY_H
+# define GO_HISTORY_H
 
 # include "ft_readline.h"
 

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 17:20:13 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 19:44:32 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 
 unsigned int				generate_hash(char *str, unsigned int len);
 int							ft_intlen(int num);
+int							ft_abs(int n);
+void						ft_itoa_nm(int n, char *nb);
 
 typedef struct				s_hash
 {
@@ -37,12 +39,6 @@ typedef struct				s_hash
 	unsigned int			hash;
 	struct s_hash			*next;
 }							t_hash;
-
-typedef struct				s_count_hash
-{
-	t_hash					*hash;
-	struct	s_count_hash	*next;
-}							t_count_hash;
 
 void						null_hash(t_hash *table[HASH_LEN]);
 char						*paste_path(char *str1, char *str2);
@@ -61,6 +57,7 @@ t_hash						*get_hash_struct(char *name);
 void						hash_usage(void);
 void						hash_invalid_option(char c);
 void						hash_empty(void);
+void						print_number(int count, char num[13], char *str);
 
 /*
 **start_hash

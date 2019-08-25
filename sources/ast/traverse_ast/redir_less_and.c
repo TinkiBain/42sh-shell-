@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_less_and.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 14:57:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 18:38:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/24 20:58:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	redir_fill_fd(t_io_redirect *redir, int *fd_close, int *right_fd)
 	return (1);
 }
 
-int		redir_less_and(t_io_redirect *redir)
+int			redir_less_and(t_io_redirect *redir)
 {
 	int	fd_close;
 	int right_fd;

@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   escseqs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 23:43:11 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/11 03:01:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 13:55:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef ESCSEQS_H
+
 # define ESCSEQS_H
 
 # include "ft_readline.h"
@@ -20,7 +22,10 @@ typedef struct	s_escseq
 	int			pos;
 }				t_escseq;
 
-/* t_string		get_escseq(t_string str, int *i); */
+/*
+**t_string		get_escseq(t_string str, int *i);
+*/
+
 void			pull_escseqs(t_vector *vec, t_string *str);
 t_escseq		*find_escseq(t_vector es, int n);
 int				count_escseq(t_vector es, int from, int until);

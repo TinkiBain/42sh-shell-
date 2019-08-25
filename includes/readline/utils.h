@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:02:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/23 16:59:20 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 14:00:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define UTILS_H
 
 # include "ft_readline.h"
-
 
 void		del_bind_str(void *elem);
 void		del_str(void *s);

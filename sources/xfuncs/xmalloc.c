@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   xmalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 18:30:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:55:05 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/24 18:31:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xfuncs.h"
 #include "terminal.h"
 
-void			die(void)
+void		die(void)
 {
 	fatal("Out of virtual memory");
 	exit(1);

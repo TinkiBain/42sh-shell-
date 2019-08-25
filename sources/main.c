@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/23 17:26:12 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/24 21:15:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ t_pars_list	*exec_ast(char *buf)
 	t_pars_list	*list;
 
 	lex = lexer(buf);
+	if (!lex)
+	{
+		free(buf);
+		return (NULL);
+	}
 	src = lex;
 	while (src->next)
 		src = src->next;

@@ -6,13 +6,18 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 22:32:39 by ggwin-go          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/24 16:45:03 by wtalea           ###   ########.fr       */
+=======
+/*   Updated: 2019/08/24 21:53:23 by ggwin-go         ###   ########.fr       */
+>>>>>>> dev
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
+<<<<<<< HEAD
 /*// static void	print_commands(t_list *head, const char *k)
 // {
 // 	while (head)
@@ -29,19 +34,11 @@
 // 	}
 // }
 
+=======
+>>>>>>> dev
 int			ft_hash(void)
 {
-	// char	**tmp;
-
-	// if (*g_table)
-	// {
-	// 	tmp = g_table;
-	// 	while (*tmp)
-	// 	{
-	// 		print_commands(*tmp);
-	// 		++tmp;
-	// 	}
-	// }
+	//
 	return (1);
 }*/
 

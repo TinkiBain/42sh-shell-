@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/20 16:57:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 17:38:53 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void				*ft_realloc(void **ptr, size_t oldsize, size_t newsize);
 void				ft_swap(void *a, void *b);
 void				*ft_xmalloc(size_t size);
 
+t_uchar				ft_atoi_octal(char *str, int *count);
 int					ft_atoi(const char *str);
 int					ft_gnl(const int fd, char **line);
 void				ft_free_double_ptr_arr(void ***arr);
@@ -126,7 +127,8 @@ int					get_lines(int fd, char ***lines, int n);
 t_dlist				*ft_dlstnew(void const *content, size_t content_size);
 void				ft_dlstdelone(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstdel(t_dlist **alst, void (*del)(void *, size_t));
-void				ft_dlstdelfront(t_dlist **alst, void (*del)(void *, size_t));
+void				ft_dlstdelfront(t_dlist **alst, void (*del)(void *,
+																size_t));
 void				ft_dlstdelend(t_dlist **alst, void (*del)(void *, size_t));
 void				ft_dlstadd(t_dlist **alst, t_dlist *new);
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));

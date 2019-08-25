@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_xfuncs1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:14:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 14:52:02 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/24 18:51:14 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/24 18:51:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_string		str_xcreate(size_t len)
 {
 	t_string str;
-	
+
 	str = str_create(len);
 	if (!str.s)
 		die();

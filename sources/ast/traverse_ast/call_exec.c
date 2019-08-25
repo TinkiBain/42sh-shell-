@@ -6,7 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/08/21 17:32:07 by wtalea           ###   ########.fr       */
+=======
+/*   Updated: 2019/08/24 21:01:03 by ggwin-go         ###   ########.fr       */
+>>>>>>> dev
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +51,7 @@ static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 
 int			call_exec(const char **av, char ***env)
 {
-	char		*p;
+	char	*p;
 
 	if (ft_strequ(*av, "exit"))
 		return (ft_exit(av + 1));
