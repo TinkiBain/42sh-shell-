@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 20:44:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:56:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ int			call_exec(const char **av, char ***env)
 	if (res == 0)
 	{
 		if ((p = get_bin((char *)*av)))
-		{
-			hash_add_count((char *)*av);
 			return (call_nonbuilin_exec((const char *)p, (char *const *)av, *env));
-		}
 		else if (ft_strchr(*av, '/'))
 			return (call_nonbuilin_exec(*av, (char *const *)av, *env));
 	}

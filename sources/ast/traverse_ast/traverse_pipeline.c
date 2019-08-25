@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 19:39:15 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:57:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
 				traverse_cmd(pipe_seq->cmd, env, 0);
 			else if (flag == 0)
 			{
+				hash_add_count(cmd_name);
 				if ((pid = fork()) == 0)
 					traverse_cmd(pipe_seq->cmd, env, 1);
 				else
