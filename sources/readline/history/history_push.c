@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_loop.c                                       :+:      :+:    :+:   */
+/*   history_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 14:33:19 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/21 18:35:21 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/22 21:17:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input_loop.h"
+#include "history.h"
 
-/*
-** 1 - exit, 0 - continue
-*/
-
-int				input_loop(t_line *line)
+void		history_push(t_history *history, t_string str)
 {
-	int		ret;
+	t_dlist *new;
 
-	if (line->vi_mode)
-		ret = vi_input_loop(line);
-	else
-		ret = em_input_loop(line);
-	if (ret < 0)
-		g_errno = E_READ;
-	history_expand(line);
-	if (ret <= 0)
-		return (1);
-	return (0);
+	if (history->size >= history->max_size)
+	{
+		ft_dlstdelfront(&history->item, del_hist);
+		history->size--;
+		history->start_index++;
+	}
+	new = ft_dlstnew(&str, sizeof(str));
+	ft_dlstaddback(&history->item, new);
+	history->size++;
 }

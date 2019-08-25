@@ -6,22 +6,25 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:58:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 17:24:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINE_H
 # define LINE_H
 
-# include "defs.h"
-# include "history.h"
-
 # define VI_FIND_FORWARD	1
 # define VI_FIND_BACKWARD	2
 
-/*
-**char			keybuf[KEYBUF_SIZE];
-*/
+typedef struct		s_history
+{
+	t_dlist			*item;
+	int				size;
+	int				max_size;
+	char			*path;
+	int				start_index;
+}					t_history;
+
 
 typedef struct		s_line
 {

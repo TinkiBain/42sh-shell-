@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:53:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 17:23:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 # include "loginfo.h"
 # include "utils.h"
 # include "undo.h"
-# include "go_history.h"
 
 # define DEBUG				1
 

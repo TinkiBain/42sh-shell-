@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_loop.c                                       :+:      :+:    :+:   */
+/*   history_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 14:33:19 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/21 18:35:48 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/25 17:25:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "input_loop.h"
+#include "history.h"
 
-/*
-** 1 - exit, 0 - continue
-*/
-
-int				input_loop(t_line *line)
+void		del_hist(void *content, size_t size)
 {
-	int		ret;
+	if (size || !size)
+		str_delete((t_string *)content);
+	free(content);
+}
 
-	if (line->vi_mode)
-		ret = vi_input_loop(line);
-	else
-		ret = em_input_loop(line);
-	if (ret < 0)
-		g_errno = E_READ;
-	history_expand(line);
-	if (ret <= 0)
-		return (1);
-	return (0);
+void		history_clear(t_history *history)
+{
+	if (history)
+	{
+		ft_dlstdel(&history->item, del_hist);
+		ft_strdel(&history->path);
+		free(history);
+	}
 }
