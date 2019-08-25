@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 17:13:49 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 19:51:06 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 21:04:23 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static	void	print_hits_command(int count)
 	write(1, "hist", 4);
 	write(1, "    ", 4);
 	count -= 7;
+	count = (count < 0) ? 0 : count;
 	while (count--)
 		write(1, " ", 1);
 	write(1, "command\n", 8);

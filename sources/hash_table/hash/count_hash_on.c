@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 16:34:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 16:41:20 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 21:02:29 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int				count_hash_on(void)
 		count_table(*(g_table + i), &count);
 		++i;
 	}
-	return (0);
+	return (count);
 }
