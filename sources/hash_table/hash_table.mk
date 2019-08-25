@@ -6,14 +6,16 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 16:41:59 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/25 17:20:35 by wtalea           ###   ########.fr        #
+#    Updated: 2019/08/25 20:27:14 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HASH_HASH_DIR=hash
 
 SRCS_HASH_HASH=\
-	../ft_intlen.c
+	../ft_abs.c\
+	../ft_itoa_nm.c\
+	../ft_intlen.c\
 	create_bin.c\
 	create_hash.c\
 	del_hash.c\
@@ -22,7 +24,13 @@ SRCS_HASH_HASH=\
 	null_hash.c\
 	paste_path.c\
 	add_force.c\
-	create_arr_names.c
+	create_arr_names.c\
+	count_hash_on.c\
+	hash_print.c\
+	hash_print_use.c\
+	print_lib.c\
+	print_usage.c\
+	start_built_hash.c
 
 HASH_SUBDIRS=\
 	$(HASH_HASH_DIR)\

@@ -6,14 +6,33 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:47:06 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/24 16:54:15 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 20:28:37 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 
+void		hash_add_count(char *name)
+{
+	t_hash		*table;
+
+	table = NULL;
+	if ((table = get_hash_struct(name)))
+	{
+		table->hash_on = 1;
+		++table->hash_count;
+	}
+}
+
+void		hash_erase(char **argv)
+{
+	if (argv)
+		;
+}
+
 static void	hash_work_flags(int flags, char **argv)
 {
+	if (flags && argv)
 	return ;
 }
 
@@ -25,4 +44,5 @@ int		hash_start_work(int flags, char **argv)
 		hash_erase(argv);
 	else
 		hash_print();
+	return (0);
 }

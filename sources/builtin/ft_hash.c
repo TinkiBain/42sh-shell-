@@ -6,41 +6,12 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 22:32:39 by ggwin-go          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/08/24 16:45:03 by wtalea           ###   ########.fr       */
-=======
-/*   Updated: 2019/08/24 21:53:23 by ggwin-go         ###   ########.fr       */
->>>>>>> dev
+/*   Updated: 2019/08/25 20:30:38 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
-
-<<<<<<< HEAD
-/*// static void	print_commands(t_list *head, const char *k)
-// {
-// 	while (head)
-// 	{
-// 		if (ft_strequ(head->name, k))
-// 			break ;
-// 		head = head->next;
-// 	}
-// 	if (head)
-// 	{
-// 		ft_putstr(head->name);
-// 		write(1, "=", 1);
-// 		ft_putendl(head->path);
-// 	}
-// }
-
-=======
->>>>>>> dev
-int			ft_hash(void)
-{
-	//
-	return (1);
-}*/
 
 #define FLAG_R 0x1
 #define FLAG_D 0x2
@@ -94,5 +65,5 @@ int				ft_hash(char **argv)
 	flags = 0;
 	i = 0;
 	flags = hash_flags_check(argv, &i);
-		return (hash_start_work(flags, (argv + i)));
+	return (hash_start_work(flags, (argv + 1 + i)));
 }

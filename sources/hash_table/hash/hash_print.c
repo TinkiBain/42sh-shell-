@@ -6,13 +6,13 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:54:25 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 18:52:16 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 20:14:54 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 
-static	int		max_len_count(int count, t_hash *table_count[count])
+static	int			max_len_count(int count, t_hash *table_count[count])
 {
 	int		i;
 	int		count_len;
@@ -28,7 +28,7 @@ static	int		max_len_count(int count, t_hash *table_count[count])
 	return (count_len);
 }
 
-static	void	find_in_one_basket(t_hash *table, int count,
+static	void		find_in_one_basket(t_hash *table, int count,
 		t_hash *table_count[count])
 {
 	int			i;
@@ -42,7 +42,7 @@ static	void	find_in_one_basket(t_hash *table, int count,
 	}
 }
 
-static	void	find_hash_use(int count)
+static	void		find_hash_use(int count)
 {
 	extern	t_hash	**g_table;
 	int				i;
@@ -55,7 +55,7 @@ static	void	find_hash_use(int count)
 	hash_print_new(count, table_count, i);
 }
 
-void		hash_print(void)
+void				hash_print(void)
 {
 	int				count;
 

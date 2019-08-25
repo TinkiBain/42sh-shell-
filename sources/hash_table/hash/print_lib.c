@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 19:21:39 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 19:51:04 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 20:27:55 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_number(int count, char num[13], char *str)
 		while (i--)
 			write(1, " ", 1);
 	}
-	write(1, str, ft_strlen(str));
+	write(1, num, ft_strlen(num));
 	if (count < 8)
 	{
 		i = count;
@@ -33,4 +33,3 @@ void	print_number(int count, char num[13], char *str)
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
 }
-
