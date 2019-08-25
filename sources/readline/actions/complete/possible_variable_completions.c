@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   possible_variable_completions.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:41:54 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/19 08:14:54 by gmelisan         ###   ########.fr       */

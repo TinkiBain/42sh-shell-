@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   reset_history_search.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 03:29:20 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/07/30 19:16:04 by gmelisan         ###   ########.fr       */

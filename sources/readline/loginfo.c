@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   loginfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/19 16:11:17 by gmelisan         ###   ########.fr       */

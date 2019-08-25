@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:54:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 21:21:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:00:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			history_expand(t_line *line)
 {
 	int			i;
 	char		c;
-	t_string	*found;
+	t_string	*f;
 	int			len;
 
 	i = 0;
@@ -74,18 +74,18 @@ void			history_expand(t_line *line)
 	if (str_get(*line->str, i) == '!')
 	{
 		if (ft_isdigit((c = str_get(*line->str, i + 1))) || c == '-')
-			found = get_hist_n(line->history, ft_atoi(line->str->s + i + 1), &len);
+			f = get_hist_n(line->history, ft_atoi(line->str->s + i + 1), &len);
 		else if (c == '!')
 		{
-			found = get_hist_n(line->history, -1, &len);
+			f = get_hist_n(line->history, -1, &len);
 			len--;
 		}
 		else
-			found = get_hist_str(line->history, line->str->s + i + 1, &len);
-		if (found)
+			f = get_hist_str(line->history, line->str->s + i + 1, &len);
+		if (f)
 		{
 			str_remove(line->str, i, len + 1);
-			str_xinsert(line->str, i, found->s, found->len);
+			str_xinsert(line->str, i, f->s, f->len);
 		}
 	}
 }

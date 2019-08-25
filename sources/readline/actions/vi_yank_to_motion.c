@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_yank_to_motion.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 04:12:30 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 04:16:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:28:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	yank_left(t_line *line, int count, int ignore)
 		count = line->cpos;
 	line->kill_buffer = str_xsubstring(*line->str, line->cpos - count, count);
 }
-
 
 static void	yank_all(t_line *line)
 {

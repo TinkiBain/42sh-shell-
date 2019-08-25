@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_save.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/21 18:37:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:58:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ static void	history_save_append(t_history *history)
 	if ((fd = open(history->path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU)) < 0)
 		return ;
 	while (history->item->next)
-			history->item = history->item->next;
+		history->item = history->item->next;
 	ft_fdprintf(fd, "%s\n", ((t_string *)history->item->content)->s);
 	close(fd);
 }
 
-void	history_save(t_history *history, t_string *str)
+void		history_save(t_history *history, t_string *str)
 {
 	t_string	newstr;
 

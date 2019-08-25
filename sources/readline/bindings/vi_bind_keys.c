@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:12:55 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/23 20:17:42 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 19:46:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bindings.h"
 
-static void vi_insert_bind_keys(t_vector *key_bindings)
+static void	vi_insert_bind_keys(t_vector *key_bindings)
 {
 	int i;
 

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   vi_comment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 08:53:40 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/15 10:10:03 by gmelisan         ###   ########.fr       */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 21:29:23 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:53:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	history_open(t_history *history)
 		loginfo("History location: %s", history->path);
 	return (fd);
 }
-
 
 void		history_load(t_history *history)
 {

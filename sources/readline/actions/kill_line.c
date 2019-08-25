@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   kill_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:26:37 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/17 17:27:28 by wtalea           ###   ########.fr       */

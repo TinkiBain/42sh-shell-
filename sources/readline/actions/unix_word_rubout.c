@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   unix_word_rubout.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:27:39 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/07/26 17:10:01 by gmelisan         ###   ########.fr       */

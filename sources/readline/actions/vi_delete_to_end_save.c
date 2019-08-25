@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_delete_to_end_save.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 03:36:11 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 03:43:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:00:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	vi_delete_to_end_save(t_line *line)
 	{
 		str_delete(&line->kill_buffer);
 		line->kill_buffer = str_xsubstring(*line->str, line->cpos,
-										   line->str->len - line->cpos);
+											line->str->len - line->cpos);
 		str_remove(line->str, line->cpos, line->str->len - line->cpos);
 	}
 }

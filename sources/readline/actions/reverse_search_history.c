@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_search_history.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/26 21:37:14 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 06:39:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:15:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	reverse_search_history(t_line *line)
 		line->hs.hist_start = line->history->item;
 		line->hs.hist_current = line->hs.hist_start;
 		line->hs.original_cpos = line->cpos;
-		/* line->hs.query_pos = line->cpos; */
 		line->hs.query_pos = -1;
 		line->hs.success = 1;
 	}

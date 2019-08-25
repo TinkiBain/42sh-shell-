@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   backward_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:16:18 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/15 06:25:36 by gmelisan         ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   vi_repeat_find_reverse.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:08:58 by gmelisan          #+#    #+#             */
 /*   Updated: 2019/08/15 12:22:16 by gmelisan         ###   ########.fr       */

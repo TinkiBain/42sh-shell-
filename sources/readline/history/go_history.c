@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:21:21 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/21 18:42:27 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:10:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,3 @@ int		len_history(t_line *line)
 		previous_history_check(line);
 	return (i);
 }
-

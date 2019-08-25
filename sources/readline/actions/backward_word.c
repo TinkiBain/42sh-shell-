@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backward_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:17:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 06:29:05 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:09:22 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		backward_word(t_line *line)
 	int i;
 	int j;
 
-	j= -1;
+	j = -1;
 	while (++j < line->arg)
 	{
 		i = line->cpos;

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 16:51:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/20 04:11:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 21:21:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	hs_strrstr(t_string haystack, t_string needle, int from)
 	return (-1);
 }
 
-void	hs_prev(t_line *line)
+void		hs_prev(t_line *line)
 {
 	t_dlist *i;
 
@@ -45,7 +45,7 @@ void	hs_prev(t_line *line)
 	{
 		line->hs.query_pos = hs_strrstr(*(t_string *)i->content,
 			line->hs.query, (i == line->hs.hist_current ?
-								line->cpos - 1 : ((t_string *)i->content)->len));
+							line->cpos - 1 : ((t_string *)i->content)->len));
 		if (line->hs.query_pos >= 0)
 		{
 			line->hs.success = 1;
@@ -59,8 +59,7 @@ void	hs_prev(t_line *line)
 	line->hs.success = 0;
 }
 
-
-void	hs_find(t_line *line)
+void		hs_find(t_line *line)
 {
 	t_dlist	*i;
 
@@ -75,9 +74,8 @@ void	hs_find(t_line *line)
 	i = line->hs.hist_current;
 	while (i)
 	{
-		line->hs.query_pos = hs_strrstr(*(t_string *)i->content,
-			line->hs.query, (i == line->hs.hist_current ?
-								line->cpos : ((t_string *)i->content)->len));
+		line->hs.query_pos = hs_strrstr(*(t_string *)i->content, line->hs.query,
+	(i == line->hs.hist_current ? line->cpos : ((t_string *)i->content)->len));
 		if (line->hs.query_pos >= 0)
 		{
 			line->hs.success = 1;
@@ -105,14 +103,15 @@ static void	hs_decorate(t_line *line)
 			str_xinsert(line->str, i, UNDERLINE_SEQ, ft_strlen(UNDERLINE_SEQ));
 			i += ft_strlen(UNDERLINE_SEQ);
 			while (str_get(line->hs.query, ++j) ==
-				   str_get(*line->str, ++i) && str_get(*line->str, i));
+					str_get(*line->str, ++i) && str_get(*line->str, i))
+				;
 			str_xinsert(line->str, i, RESET_SEQ, ft_strlen(RESET_SEQ));
 			break ;
 		}
 	}
 }
 
-void	hs_prepare_line(t_line *line)
+void		hs_prepare_line(t_line *line)
 {
 	t_string	out_hs_string;
 
@@ -126,21 +125,4 @@ void	hs_prepare_line(t_line *line)
 	str_xaddback(&out_hs_string, "_", 1);
 	str_xaddback(line->str, out_hs_string.s, ft_strlen(out_hs_string.s));
 	str_delete(&out_hs_string);
-}
-
-void	hs_clear(t_line *line)
-{
-	/* int	nl; */
-
-	/* nl = -1; */
-	/* while (str_get(*line->str, ++nl)) */
-	/* 	if (str_get(*line->str, nl) == '\n') */
-	/* 		break; */
-	/* if (str_get(*line->str, nl)) */
-	/* { */
-	/* 	ft_bzero(line->str->s + nl, line->str->len - nl); */
-	/* 	line->str->len = nl; */
-	/* } */
-	str_delete(line->str);
-	*line->str = line->hs.original_str;
 }

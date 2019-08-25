@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 20:15:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input_loop.h"
 
-static int		check_arg(t_line *line) 
+static int		check_arg(t_line *line)
 {
 	if (str_get(line->keybuf, 0) == ESC &&
 		ft_isdigit(str_get(line->keybuf, 1)))
@@ -32,9 +32,9 @@ static int		check_arg(t_line *line)
 
 static void		check_hs(t_line *line, t_action action)
 {
-	if (action != &self_insert &&
-		action != &backward_delete_char	&&
-		action != &reverse_search_history)
+	if (action != &self_insert
+		&& action != &backward_delete_char
+		&& action != &reverse_search_history)
 		line->hs_mode = 0;
 	if (line->hs_mode)
 		hs_prepare_line(line);

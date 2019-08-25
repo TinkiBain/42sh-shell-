@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_delete_to_motion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 05:07:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 03:34:34 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:24:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	delete_left(t_line *line, int count, int ignore)
 	line->cpos -= count;
 }
 
-void	vi_delete_to_motion(t_line *line)
+void		vi_delete_to_motion(t_line *line)
 {
 	t_line	*new_line;
 	int		ignore;

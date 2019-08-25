@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 10:06:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:35:10 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 19:51:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	bind_keys1(t_vector *key_bindings)
 	bind(key_bindings, META + 't', transpose_words);
 }
 
-static void bind_keys2(t_vector *key_bindings)
+static void	bind_keys2(t_vector *key_bindings)
 {
 	bind(key_bindings, CTRL_C, reset_line);
 	bind(key_bindings, CTRL_K, kill_line);

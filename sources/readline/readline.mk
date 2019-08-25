@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/25 17:27:49 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/25 21:38:15 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ input_loop.h		keys.h			line.h			loginfo.h\
 signal_handlers.h	terminal.h		utils.h			undo.h\
 
 SRCS_READLINE_WITHOUT_DIR=\
-	escseqs.c			ft_errno.c			ft_readline.c\
+	ft_errno.c			ft_readline.c\
 	loginfo.c			signal_handlers.c	utils.c\
 	duplicate_line.c	undo.c				convert_escapes.c
 
@@ -61,13 +61,15 @@ SRCS_READLINE_COMPLETE=\
 	find_common_part.c
 
 SRCS_READLINE_TERMINAL=\
-	terminal.c				fill_termcap.c\
+	terminal.c				term_fillcap.c\
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c	is_vi_motion.c
 
 SRCS_READLINE_DISPLAY=\
-	clear_linebuf.c	init_linebuf.c	move_cursor.c	redisplay.c	update_line.c
+	clear_linebuf.c			init_linebuf.c		move_cursor.c\
+	redisplay.c				update_line.c		escseqs.c\
+	test_escseq_unmatch.c	get_screen_sizes.c
 
 SRCS_READLINE_INPUTLOOP=\
 	em_input_loop.c		input_loop.c	is_ansiseq.c	vi_input_loop.c\
@@ -75,7 +77,8 @@ SRCS_READLINE_INPUTLOOP=\
 
 SRCS_READLINE_HISTORY=\
 	go_history.c	history_clear.c		history_copy.c		history_load.c\
-	history_push.c	history_save.c		history_search.c	history_expand.c\
+	history_push.c	history_save.c		history_expand.c\
+	history_search.c					history_search_clear.c
 
 READLINE_SUBDIRS=\
 	$(READLINE_ACTIONS_DIR)\

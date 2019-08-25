@@ -6,30 +6,11 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 19:11:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 07:51:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:31:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
-
-static int	get_max_len_old(t_vector vec, void (*mod_str)(t_string *))
-{
-	int			i;
-	t_string	*str;
-	int			max;
-
-	max = 0;
-	i = 0;
-	while ((str = vec_get(vec, i)))
-	{
-		if (mod_str)
-			mod_str(str);
-		if ((int)str->len > max)
-			max = str->len;
-		i++;
-	}
-	return (max);
-}
 
 static int	get_max_len(char **arr, int n)
 {
@@ -48,20 +29,6 @@ static int	get_max_len(char **arr, int n)
 	return (max);
 }
 
-static void	show_one_old(t_string *str, int max)
-{
-	int i;
-
-	ft_putstr_fd(str->s, STDOUT);
-	i = str->len;
-	while (i++ < max)
-	{
-		if (i >= get_screen_width())
-			break ;
-		ft_putchar_fd(' ', STDOUT);
-	}
-}
-
 static void	show_one(char *str, int max)
 {
 	int i;
@@ -76,34 +43,6 @@ static void	show_one(char *str, int max)
 	}
 }
 
-static void	show_old(t_vector vec, void (*mod_str)(t_string *))
-{
-	int max_len;
-	int columns;
-	int jump;
-	int row;
-	int i;
-
-	ft_putstr_fd("\n\r", STDOUT);
-	columns = get_screen_width() / (max_len = get_max_len_old(vec, mod_str) + 2);
-	columns = (columns == 0 ? 1 : columns);
-	jump = vec.len / columns;
-	if (vec.len % columns)
-		jump++;
-	row = 0;
-	while (row < jump)
-	{
-		i = row;
-		while (i < (int)vec.len)
-		{
-			show_one_old(vec_get(vec, i), max_len);
-			i += jump;
-		}
-		ft_putstr_fd("\n\r", STDOUT);
-		row++;
-	}
-}
-
 static void	show(char **arr, int n)
 {
 	int max_len;
@@ -113,7 +52,8 @@ static void	show(char **arr, int n)
 	int i;
 
 	ft_putstr_fd("\n\r", STDOUT);
-	columns = get_screen_width() / (max_len = get_max_len(arr, n) + 2);
+	max_len = get_max_len(arr, n) + 2;
+	columns = get_screen_width() / max_len;
 	columns = (columns == 0 ? 1 : columns);
 	jump = n / columns;
 	if (n % columns)
@@ -147,16 +87,6 @@ static int	ask_display_many(int n)
 			return (1);
 	}
 	return (0);
-}
-
-void		show_completions_old(t_vector vec, void (*mod_str)(t_string *))
-{
-	if (vec.len == 0)
-		return ;
-	if (ask_display_many(vec.len))
-		show_old(vec, mod_str);
-	else
-		ft_putstr_fd("\n\r", STDOUT);
 }
 
 void		show_completions(char **arr, int n)

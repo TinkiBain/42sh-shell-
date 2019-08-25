@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/18 00:20:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 21:12:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		ft_putint(int c)
 	return (0);
 }
 
-void		term_init(void)
+void			term_init(void)
 {
 	char		*termtype;
 	static char	term_buffer[TERM_BUFFER];
@@ -34,7 +34,7 @@ void		term_init(void)
 		{
 			loginfo("Failed to open default terminal (%s).", DEFAULT_TERMTYPE);
 			ft_putstr_fd("Error while fetching terminal info. "
-						 "Correct operation is not guaranteed.\n", STDERR);
+							"Correct operation is not guaranteed.\n", STDERR);
 		}
 		else
 			loginfo("Terminal type: %s", DEFAULT_TERMTYPE);
@@ -43,7 +43,7 @@ void		term_init(void)
 		loginfo("Terminal type: %s", termtype);
 }
 
-void	term_putstr(char *str)
+void			term_putstr(char *str)
 {
 	int ret;
 
@@ -54,10 +54,10 @@ void	term_putstr(char *str)
 		ft_putstr_fd(str, STDOUT);
 }
 
-void	term_setup(void)
+void			term_setup(void)
 {
-	char *temp;
-	struct termios work_tios;
+	char			*temp;
+	struct termios	work_tios;
 
 	term_fillcap();
 	temp = g_cap.pad_char;
@@ -76,11 +76,10 @@ void	term_setup(void)
 	ospeed = work_tios.c_ospeed;
 }
 
-void	term_restore(void)
+void			term_restore(void)
 {
 	tcsetattr(STDIN, TCSANOW, &g_init_tios);
 	term_putstr(g_cap.kp_end);
-	//tputs(g_cap.clear_down, 1, ft_putint); /* TODO column 0 fix later */
 	clear_termcap();
 }
 
@@ -91,5 +90,4 @@ void	term_restore(void)
 ** how-to-enable-control-key-combinations-for-gnu-screen-on-putty
 **
 ** https://invisible-island.net/xterm/manpage/xterm.html#h3-Special-Keys
-**
 */

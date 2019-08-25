@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 04:39:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/15 03:53:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:11:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	need_complete_command(t_line *line)
 
 	i = line->cpos - 1;
 	while ((c = str_get(*line->str, i)) && !ft_isspace(c) &&
-		   c != ';' && c != '/' && c != '(')
+			c != ';' && c != '/' && c != '(')
 		i--;
 	if (c == ';' || (c == '(' && str_get(*line->str, i - 1) == '$'))
 		return (1);
@@ -39,8 +39,8 @@ static int	need_complete_variable(t_line *line)
 	char	c;
 
 	i = line->cpos - 1;
-	while ((c =	str_get(*line->str, i)) && !ft_isspace(c)
-		   && c != '$' && c != '{' && c != '(')
+	while ((c = str_get(*line->str, i)) && !ft_isspace(c)
+			&& c != '$' && c != '{' && c != '(')
 		i--;
 	if ((c == '{' && str_get(*line->str, i - 1) == '$')
 		|| c == '$')

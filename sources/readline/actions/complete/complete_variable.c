@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_variable.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:32:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 19:09:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:14:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_string		get_variable_query(t_line *line, int *start)
 	return (res);
 }
 
-static void	add_space(t_string *str, int one, int add_brace)
+static void		add_space(t_string *str, int one, int add_brace)
 {
 	if (one && add_brace)
 		str_xaddback(str, "} ", 2);
@@ -35,7 +35,7 @@ static void	add_space(t_string *str, int one, int add_brace)
 		str_xaddback(str, " ", 1);
 }
 
-void		complete_variable(t_line *line)
+void			complete_variable(t_line *line)
 {
 	t_string		query;
 	t_string		found;

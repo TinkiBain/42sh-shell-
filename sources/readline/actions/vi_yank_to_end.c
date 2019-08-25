@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_yank_to_end.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 04:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/16 04:22:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:28:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	vi_yank_to_end(t_line *line)
 	{
 		str_delete(&line->kill_buffer);
 		line->kill_buffer = str_xsubstring(*line->str, line->cpos,
-										   line->str->len - line->cpos);
+											line->str->len - line->cpos);
 	}
 }

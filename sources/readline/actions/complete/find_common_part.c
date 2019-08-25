@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_common_part.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan </var/spool/mail/vladimir>        +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:27:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 08:10:24 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/25 18:14:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		get_min_len_old(t_vector vec)
 	return ((int)min);
 }
 
-t_string	find_common_part_old(t_vector vec)
+t_string		find_common_part_old(t_vector vec)
 {
 	t_string	res;
 	int			i;
@@ -71,7 +71,7 @@ static t_uint	get_min_len(char **arr, int n)
 	return (min);
 }
 
-t_string	find_common_part(char **arr, int n)
+t_string		find_common_part(char **arr, int n)
 {
 	t_string	res;
 	int			i;
