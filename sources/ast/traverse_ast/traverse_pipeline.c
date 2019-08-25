@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 14:17:07 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 19:39:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,13 @@ static void	ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		traverse_cmd(pipe_seq->cmd, environ, in_fork);
 		exit(g_res_exec);
 	}
+	close(pipefd[1]);
+	pipe_seq = pipe_seq->next;
+	if (pipe_seq->pipe_op)
+		ast_handle_pipe(pipe_seq, pipefd[0], environ, in_fork);
 	else
-	{
-		close(pipefd[1]);
-		pipe_seq = pipe_seq->next;
-		if (pipe_seq->pipe_op)
-			ast_handle_pipe(pipe_seq, pipefd[0], environ, in_fork);
-		else
-			handle_last_cmd_in_pipe(pipefd[0], pipe_seq->cmd, env, in_fork);
-		close(pipefd[0]);
-	}
+		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->cmd, env, in_fork);
+	close(pipefd[0]);
 	waitpid(pid, NULL, 0);
 }
 

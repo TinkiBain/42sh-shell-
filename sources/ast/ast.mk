@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/18 23:00:48 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/25 19:08:41 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,12 @@ SRCS_PARSER=\
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
 	check_builtin.c\
+	check_cmd.c\
 	handle_token_assignment_word.c\
 	push_back_av.c\
 	traverse_ast.c\
 	traverse_cmd.c\
+	print_error.c\
 	redirect.c\
 	traverse_pipeline.c\
 	redir_set.c\

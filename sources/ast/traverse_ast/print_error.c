@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtin.c                                    :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/03 19:32:27 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 19:10:51 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/25 18:53:05 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/08/25 18:58:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			check_builtin(const char *cmd)
+void	print_error(const char *cmd, const char *error)
 {
-	if (ft_strequ(cmd, "exit") || ft_strequ(cmd, "cd") ||
-			ft_strequ(cmd, "echo") || ft_strequ(cmd, "type") ||
-			ft_strequ(cmd, "setenv") || ft_strequ(cmd, "unsetenv") ||
-			ft_strequ(cmd, "hash") || ft_strequ(cmd, "env") ||
-			ft_strequ(cmd, "set") || ft_strequ(cmd, "unset"))
-		return (1);
-	return (0);
+	ft_putstr_fd(PROJECT_NAME ": ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putendl_fd(error, 2);
 }
