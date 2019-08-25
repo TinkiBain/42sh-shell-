@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/16 22:07:15 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/24 16:01:31 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			ft_cd(const char **av, char ***env);
 int			ft_echo(const char **av);
 int			ft_env(const char **av, char **env);
 int			ft_exit(const char **av);
-int			ft_hash(void);
+int			ft_hash(char **argv);
 int			ft_set(const char **av);
 int			ft_setenv(const char **av);
 int			ft_type(const char **av);

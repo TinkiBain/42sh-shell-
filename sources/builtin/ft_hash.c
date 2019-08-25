@@ -6,11 +6,12 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 22:32:39 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/21 17:32:01 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/24 16:45:03 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include "hash.h"
 
 /*// static void	print_commands(t_list *head, const char *k)
 // {
@@ -49,11 +50,52 @@ int			ft_hash(void)
 #define FLAG_L 0x4
 #define FLAG_P 0x8
 #define FLAG_T 0x10
+#define FLAGS "r"
 
-int		ft_hash(char **argv)
+static	void	hash_find_flags(int *flags, char c)
 {
+	if (c == 'r')
+		*flags |= FLAG_R;
+	else
+	{
+		hash_invalid_option(c);
+		hash_usage();
+	}
+}
+
+static	int		hash_flags_check(char **argv, int *i)
+{
+	int		j;
 	int		flags;
 
 	flags = 0;
+	j = 0;
+	while (*argv && **argv == '-')
+	{
+		if (*(*argv + 1) == '-')
+		{
+			++i;
+			return (flags);
+		}
+		j = 0;
+		while (*((*argv) + j))
+		{
+			hash_find_flags(&flags, *((*argv) + j));
+			++j;
+		}
+		++i;
+		++argv;
+	}
+	return (flags);
+}
 
+int				ft_hash(char **argv)
+{
+	int		flags;
+	int		i;
+
+	flags = 0;
+	i = 0;
+	flags = hash_flags_check(argv, &i);
+		return (hash_start_work(flags, (argv + i)));
 }
