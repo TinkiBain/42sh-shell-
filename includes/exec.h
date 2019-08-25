@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/25 20:01:48 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 21:19:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			g_res_exec;
 int			*g_open_fd;
 
 int			call_exec(const char **av, char ***env);
-int			check_builtin(const char *cmd);
+int			is_builtin(const char *cmd);
 int			ft_cd(const char **av, char ***env);
 int			ft_echo(const char **av);
 int			ft_env(const char **av, char **env);

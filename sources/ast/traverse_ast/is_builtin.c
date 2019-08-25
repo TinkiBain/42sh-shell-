@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_builtin.c                                    :+:      :+:    :+:   */
+/*   is_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "sh.h"
 
-int			check_builtin(const char *cmd)
+int			is_builtin(const char *cmd)
 {
 	if (ft_strequ(cmd, "exit") || ft_strequ(cmd, "cd") ||
 			ft_strequ(cmd, "echo") || ft_strequ(cmd, "type") ||

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 14:22:58 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/07 14:20:17 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/25 21:19:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			ft_type(const char **av)
 	if (av)
 		while (*av)
 		{
-			if (check_builtin((char *)*av))
+			if (is_builtin((char *)*av))
 			{
 				ft_putstr(*av);
 				ft_putendl(" is a shell builtin");
