@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/23 18:11:53 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/25 16:08:29 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,51 +34,6 @@ static void		spec_char_hendler(int *i, char *str, int *i_t, char **tmp)
 	*i_t += 1;
 }
 
-static int		back_slesh_hendler(char *str, int i, char cha)
-{
-	while (str[i] && str[i] != cha)
-	{
-		if (str[i] == '\\')
-			i++;
-		i++;
-	}
-	return (i);
-}
-
-static int		checker(char *str)
-{
-	int			i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '\\')
-			i++;
-		else if (str[i] == '\'')
-		{
-			i = back_slesh_hendler(str, i + 1, '\'');
-			if (!str[i])
-			{
-				g_errno = 15;
-				return (-1);
-			}
-			continue ;
-		}
-		else if (str[i] == '\"')
-		{
-			if (str[i++] == '\\')
-				i += 2;
-			i = back_slesh_hendler(str, i, '\"');
-			if (!str[i])
-			{
-				g_errno = 16;
-				return (-1);
-			}
-		}
-	}
-	return (1);
-}
-
 int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 {
 	if (str[*i] == '\\')
@@ -86,7 +41,7 @@ int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 	else if (str[*i] == '\'')
 	{
 		while (str[++(*i)] != '\'')
-				(*tmp)[(*t_i)++] = str[*i];
+			(*tmp)[(*t_i)++] = str[*i];
 		return (-1);
 	}
 	else if (str[*i] == '\"')
@@ -95,7 +50,7 @@ int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 		{
 			if (str[*i] == '\\')
 				spec_char_hendler(i, str, t_i, tmp);
-			else 
+			else
 				(*tmp)[(*t_i)++] = str[*i];
 		}
 		return (-1);
@@ -124,58 +79,53 @@ static char		*cleaner(char *str)
 	return (str);
 }
 
-
-
-void		tdq_while(int *i, char **str)
+void			tdq_while(int *i, char **str)
 {
 	if ((*str)[*i] == '\\')
 		(*i) += 1;
 	else if ((*str)[*i] == '\'')
 		while ((*str)[++(*i)])
 		{
-			if((*str)[*i] == '\'')
-				break;
+			if ((*str)[*i] == '\'')
+				break ;
 		}
 	else if ((*str)[*i] == '\"')
 	{
 		(*i) += 1;
 		while ((*str)[*i] && (*str)[*i] != '\"')
 		{
-			if ((*str)[*i] == '$' && (*str)[(*i) + 1] && check_spec_symbol((*str)[(*i) + 1]))
+			if ((*str)[*i] == '$' && (*str)[(*i) + 1]
+					&& check_spec_symbol((*str)[(*i) + 1]))
 				dollar(i, str);
 			else if ((*str)[*i] == '\\')
 				(*i) += 1;
 			(*i) += 1;
 		}
 	}
-	else if ((*str)[*i] == '$' && (*str)[(*i) + 1] && check_spec_symbol((*str)[(*i) + 1]))
+	else if ((*str)[*i] == '$' && (*str)[(*i) + 1]
+			&& check_spec_symbol((*str)[(*i) + 1]))
 		dollar(i, str);
 }
 
-char		*tdq(char *str)
+char			*tdq(char *str)
 {
 	char	*tmp;
 	int		i;
 
 	i = 0;
 	tmp = str;
-	if (checker(str) > 0)
+	while (str[i] != '\0')
 	{
-		while (str[i] != '\0')
-		{
-			tdq_while(&i, &str);
-			i++;
-		}
-		if (*str == '~')
-		{
-			str = cleaner(str);
-			if ((tmp = tilda_check(str)) != NULL)
-				str = tmp;
-		}
-		else
-			str = cleaner(str);
+		tdq_while(&i, &str);
+		i++;
+	}
+	if (*str == '~')
+	{
+		str = cleaner(str);
+		if ((tmp = tilda_check(str)) != NULL)
+			str = tmp;
 	}
 	else
-		str = tmp;
+		str = cleaner(str);
 	return (str);
 }
