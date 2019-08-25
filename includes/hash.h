@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/24 16:59:40 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 16:45:10 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct				s_hash
 	struct s_hash			*next;
 }							t_hash;
 
+typedef struct				s_count_hash
+{
+	t_hash					*hash;
+	struct	s_count_hash	*next;
+}							t_count_hash;
+
 void						null_hash(t_hash *table[HASH_LEN]);
 char						*paste_path(char *str1, char *str2);
 void						create_bin(char *str);
@@ -53,10 +59,12 @@ t_hash						*get_hash_struct(char *name);
 */
 void						hash_usage(void);
 void						hash_invalid_option(char c);
+void						hash_empty(void);
 
 /*
 **start_hash
 */
-int		hash_start_work(int flags, char **argv);
+int							hash_start_work(int flags, char **argv);
+int							count_hash_on(void)
 
 #endif

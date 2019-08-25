@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:25:05 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/24 16:40:01 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 16:44:58 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void	hash_invalid_option(char c)
 	write(STDERR, ": -", 3);
 	write(STDERR, &c, 1);
 	write(STDERR, ": invalid option\n", 17);
+}
+
+void	hash_empty(void)
+{
+	write(1, HASH_NAME, ft_strlen(HASH_NAME));
+	write(1, ": hash table empty\n", 19);
 }
