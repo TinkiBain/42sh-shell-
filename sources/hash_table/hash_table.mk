@@ -6,13 +6,14 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 16:41:59 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/24 16:23:55 by wtalea           ###   ########.fr        #
+#    Updated: 2019/08/25 17:20:35 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HASH_HASH_DIR=hash
 
 SRCS_HASH_HASH=\
+	../ft_intlen.c
 	create_bin.c\
 	create_hash.c\
 	del_hash.c\

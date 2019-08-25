@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 16:45:10 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/25 17:20:13 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define HASH_NAME "hash"
 
 unsigned int				generate_hash(char *str, unsigned int len);
+int							ft_intlen(int num);
 
 typedef struct				s_hash
 {
