@@ -6,7 +6,7 @@
 /*   By: wtalea <wtalea@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 17:24:43 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/26 18:23:37 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/26 20:34:59 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ static	void	ft_ftitoa(int len, int i, int n, char *nb)
 	}
 }
 
+static	void	fill_null(char *nb)
+{
+	*nb = '0';
+	*(nb + 1) = '\0';
+}
+
 void			ft_itoa_nm(int n, char *nb)
 {
 	int		i;
@@ -29,10 +35,7 @@ void			ft_itoa_nm(int n, char *nb)
 	int		ncp;
 
 	if (n == 0)
-	{
-		*nb = '0';
-		*(nb + 1) = '\0';
-	}
+		fill_null(nb);
 	else
 	{
 		i = 0;
