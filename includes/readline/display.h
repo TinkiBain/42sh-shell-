@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 11:28:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 18:43:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 00:26:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_buffer
 	t_vector	escseqs;
 	int			cpos;
 	int			prompt_len;
+	int			prompt_full_len;
 	t_string	*out;
 	int			out_rows;
 	int			out_cols;
@@ -48,6 +49,6 @@ void			move_cur_right(int oldpos, int width);
 void			move_cur_nl(void);
 void			move_cur_to(int oldpos, int newpos, int width);
 
-void			colorize(t_string *str);
+void			colorize(t_string *str, int start);
 
 #endif

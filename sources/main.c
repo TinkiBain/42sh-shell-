@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 17:50:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:36:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 char		**g_var;
 char		**g_var_names;
-t_options	g_options;
+t_opt		g_opt;
 
 t_pars_list	*ast_treatment_error(char *buf)
 {
@@ -77,7 +77,7 @@ int			main(int ac, char **av)
 	init();
 	if (ac > 1)
 		if (ft_strequ(*(av + 1), "-v"))
-			g_options.vi_mode = 1;
+			g_opt.vi_mode = 1;
 	while (1)
 	{
 		buf = ft_readline(get_value_from_all_vars("PS1"), NULL);

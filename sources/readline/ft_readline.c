@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 17:54:55 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:36:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	sig_init(void)
 
 static void	init_line(t_line *line, char *prompt, char *oldline)
 {
-	t_string			temp_str;
-	extern t_options	g_options;
+	t_string		temp_str;
+	extern t_opt	g_opt;
 
 	ft_bzero(line, sizeof(t_line));
 	line->history_orig = g_history;
@@ -39,7 +39,7 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	g_line = line;
 	line->prompt = str_xcopy(prompt ? prompt : "");
 	convert_escapes(&line->prompt);
-	line->vi_mode = g_options.vi_mode;
+	line->vi_mode = g_opt.vi_mode;
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
 	init_bindings(line->vi_mode, &line->key_bindings);

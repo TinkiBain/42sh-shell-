@@ -6,13 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 19:18:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 00:27:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
 
-int			get_term_cols(void)
+extern t_opt	g_opt;
+
+int				get_term_cols(void)
 {
 	struct winsize	ws;
 
@@ -22,7 +24,7 @@ int			get_term_cols(void)
 	return (ws.ws_col);
 }
 
-t_string	*build_bufout(t_string str, int width)
+t_string		*build_bufout(t_string str, int width)
 {
 	int			rows;
 	t_string	*res;
@@ -43,7 +45,7 @@ t_string	*build_bufout(t_string str, int width)
 	return (res);
 }
 
-static void	convert_nl(t_buffer *buf, int width)
+static void		convert_nl(t_buffer *buf, int width)
 {
 	int	i;
 	int j;
@@ -68,14 +70,31 @@ static void	convert_nl(t_buffer *buf, int width)
 	}
 }
 
-t_buffer	prepare_resized_buf(void)
+static void		build_newbuf(t_buffer *newbuf, t_line *line, int cols)
 {
-	t_buffer	newbuf;
-
-	newbuf.b = str_xduplicate(g_buffer.original);
-	newbuf.original = str_xduplicate(g_buffer.original);
-	newbuf.cpos = g_buffer.cpos;
-	return (newbuf);
+	if (!line)
+	{
+		newbuf->b = str_xduplicate(g_buffer.original);
+		newbuf->original = str_xduplicate(g_buffer.original);
+		newbuf->cpos = g_buffer.cpos;
+	}
+	else
+	{
+		newbuf->original = str_xduplicate(*line->str);
+		str_xaddfront(&newbuf->original, line->prompt.s, line->prompt.len);
+		newbuf->b = str_xduplicate(newbuf->original);
+		newbuf->cpos = g_buffer.prompt_len + line->cpos;
+	}
+	colorize(&newbuf->b, g_buffer.prompt_full_len);
+	pull_escseqs(&newbuf->escseqs, &newbuf->b);
+	if (!g_opt.enable_color)
+		vec_delete(&newbuf->escseqs, del_str);
+	convert_nl(newbuf, cols);
+	newbuf->prompt_len = g_buffer.prompt_len;
+	newbuf->prompt_full_len = g_buffer.prompt_full_len;
+	newbuf->out_rows = newbuf->b.len / cols + 1;
+	newbuf->out_cols = cols;
+	newbuf->out = build_bufout(newbuf->b, cols);
 }
 
 /*
@@ -87,32 +106,17 @@ t_buffer	prepare_resized_buf(void)
 ** to `g_buffer'.
 */
 
-void		update_line(t_line *line)
+void			update_line(t_line *line)
 {
 	t_buffer			newbuf;
 	int					cols;
-	extern t_options	g_options;
 
 	cols = get_term_cols();
-	if (!line)
-		newbuf = prepare_resized_buf();
+	build_newbuf(&newbuf, line, cols);
+	if (line)
+		redisplay(&newbuf);
 	else
-	{
-		newbuf.original = str_xduplicate(*line->str);
-		str_xaddfront(&newbuf.original, line->prompt.s, line->prompt.len);
-		newbuf.b = str_xduplicate(newbuf.original);
-		newbuf.cpos = g_buffer.prompt_len + line->cpos;
-	}
-	colorize(&newbuf.b);
-	pull_escseqs(&newbuf.escseqs, &newbuf.b);
-	if (!g_options.enable_color)
-		vec_delete(&newbuf.escseqs, del_str);
-	convert_nl(&newbuf, cols);
-	newbuf.prompt_len = g_buffer.prompt_len;
-	newbuf.out_rows = newbuf.b.len / cols + 1;
-	newbuf.out_cols = cols;
-	newbuf.out = build_bufout(newbuf.b, cols);
-	(line ? redisplay(&newbuf) : resize(&newbuf));
+		resize(&newbuf);
 	clear_linebuf();
 	ft_memcpy(&g_buffer, &newbuf, sizeof(t_buffer));
 }
