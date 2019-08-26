@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 20:13:11 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/26 15:17:36 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void						create_bin(char *str);
 void						del_hash(void);
 char						*get_bin(char *name);
 void						fill_hash_table(void);
-t_hash						*create_hash(char *name, char *path, unsigned int key);
+t_hash						*create_hash(char *name, char *path,
+		unsigned int key);
 void						add_force_builds(void);
 void						create_arr_names(void);
 t_hash						*get_hash_struct(char *name);
@@ -66,6 +67,7 @@ void						hash_add_count(char *name);
 void						hash_print(void);
 int							hash_start_work(int flags, char **argv);
 int							count_hash_on(void);
-void						hash_print_new(int count, t_hash *table[count], int count_len);
+void						hash_print_new(int count, t_hash *table[count],
+		int count_len);
 
 #endif

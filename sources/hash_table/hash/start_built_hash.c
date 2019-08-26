@@ -6,13 +6,13 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:47:06 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 21:00:10 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/26 15:16:44 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 
-void		hash_add_count(char *name)
+void			hash_add_count(char *name)
 {
 	t_hash		*table;
 
@@ -24,19 +24,19 @@ void		hash_add_count(char *name)
 	}
 }
 
-void		hash_erase(char **argv)
+void			hash_erase(char **argv)
 {
 	if (argv)
 		;
 }
 
-static void	hash_work_flags(int flags, char **argv)
+static void		hash_work_flags(int flags, char **argv)
 {
 	if (flags && argv)
-	return ;
+		return ;
 }
 
-int		hash_start_work(int flags, char **argv)
+int				hash_start_work(int flags, char **argv)
 {
 	if (flags)
 		hash_work_flags(flags, argv);
