@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 20:38:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:42:12 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void		update_line(t_line *line)
 		newbuf.b = str_xduplicate(newbuf.original);
 		newbuf.cpos = g_buffer.prompt_len + line->cpos;
 	}
+	colorize(&newbuf.b);
 	pull_escseqs(&newbuf.escseqs, &newbuf.b);
 	if (!g_rl_options.enable_color)
 		vec_delete(&newbuf.escseqs, del_str);

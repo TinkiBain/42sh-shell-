@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/25 23:39:57 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/26 18:44:09 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ actions.h			bindings.h		display.h		escseqs.h\
 ft_errno.h			ft_readline.h	history.h		history_search.h\
 input_loop.h		keys.h			line.h			loginfo.h\
 signal_handlers.h	terminal.h		utils.h			undo.h\
+colors.h
 
 SRCS_READLINE_WITHOUT_DIR=\
 	ft_errno.c			ft_readline.c\
@@ -69,7 +70,7 @@ SRCS_READLINE_BINDINGS=\
 SRCS_READLINE_DISPLAY=\
 	clear_linebuf.c			init_linebuf.c		move_cursor.c\
 	redisplay.c				update_line.c		escseqs.c\
-	escseq_test_unmatch.c	get_screen_sizes.c
+	escseq_test_unmatch.c	get_screen_sizes.c	colorize.c\
 
 SRCS_READLINE_INPUTLOOP=\
 	em_input_loop.c		input_loop.c	is_ansiseq.c	vi_input_loop.c\
