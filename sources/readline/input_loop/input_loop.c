@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/22 14:33:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 15:33:39 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				input_loop(t_line *line)
 	if (ret < 0)
 		g_errno = E_READ;
 	history_expand(line);
-	if (ret <= 0)
+	if (ret <= 0 && line->oldstr.len == 0)
 		return (1);
 	return (0);
 }
