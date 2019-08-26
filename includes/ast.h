@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 19:07:26 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 16:18:42 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char		*tdq(char *str);
 void		print_error(const char *cmd, const char *error);
 
 int			check_spec_symbol(char c);
+int			check_spec_symboli_dq(char c);
 
 #endif

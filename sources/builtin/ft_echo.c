@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 20:09:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 16:41:50 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int			echo_hendler(const char *command, int *j)
 		zero_hendler(command, j);
 	else if (command[*j] == '\\')
 		write(1, "\\", 1);
+	else
+		write(1, &command[*j - 1], 2);
 	return (1);
 }
 
@@ -84,12 +86,14 @@ static int	ft_writer_contr(const char **command, int i)
 	{
 		if (command[i][j] == '\\')
 		{
-			if (echo_hendler(command[i], &j) == 0)
+			if (command[i][j + 1] && echo_hendler(command[i], &j) == 0)
 			{
 				write(1, "\033[7;1m%\033[0m", 12);
 				write(1, "\n", 1);
 				return (-1);
 			}
+			else if (command[i][j] == '\\' && !command[i][j + 1])
+				write(1, "\\", 1);
 		}
 		else
 			write(1, &command[i][j], 1);
