@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:41:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/20 12:05:22 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			complete_filename(t_line *line)
 	int			start;
 	int			unmatch_start;
 
-	vec = get_filenames(line);
+	vec = filter_filenames(line);
 	found = find_common_part(vec.v, vec.len);
 	start = get_start(line);
 	unmatch_start = line->cpos - start;

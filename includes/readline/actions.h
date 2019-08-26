@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:58:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ struct		s_var
 	int		n;
 };
 
-t_vector	get_filenames(t_line *line);
-void		get_variables(t_string query, char ***arr, int *n);
-void		get_commands(t_string query, char ***arr, int *n);
+t_vector	filter_filenames(t_line *line);
+void		filter_variables(t_string query, char ***arr, int *n);
+void		filter_commands(t_string query, char ***arr, int *n);
 
 t_string	find_common_part(char **arr, int n);
 t_string	get_command_query(t_line *line, int *start);

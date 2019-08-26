@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:48:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 17:17:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			possible_command_completions(t_line *line)
 	int			start;
 
 	query = get_command_query(line, &start);
-	get_commands(query, &cmds, &n);
+	filter_commands(query, &cmds, &n);
 	if (n != 1)
 		show_completions(cmds, n);
 	str_delete(&query);

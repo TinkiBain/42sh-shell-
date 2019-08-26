@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/26 18:44:09 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/27 01:01:58 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRCS_READLINE_ACTIONS=\
 	undo_all.c
 
 SRCS_READLINE_COMPLETE=\
-	get_filenames.c			get_variables.c			get_commands.c\
+	filter_filenames.c		filter_variables.c		filter_commands.c\
 	show_completions.c								complete.c\
 	possible_filename_completions.c					complete_filename.c\
 	possible_command_completions.c					complete_command.c\

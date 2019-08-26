@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_filenames.c                                    :+:      :+:    :+:   */
+/*   filter_filenames.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/20 12:05:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:05:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static t_vector	build_filenames_vector(t_string str)
 	return (build(dir, &query, &path));
 }
 
-t_vector		get_filenames(t_line *line)
+t_vector		filter_filenames(t_line *line)
 {
 	t_string	str;
 	t_vector	vec;
