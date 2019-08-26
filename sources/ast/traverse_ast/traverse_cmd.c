@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 23:05:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 20:23:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ extern char	**g_var;
 
 #define IS_COPY_ENV		2
 
-static void	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
+static int	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
 {
+	int		res;
+
+	res = 0;
 	while (pref)
 	{
 		if (pref->assignment_word)
@@ -30,16 +33,19 @@ static void	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
 			}
 			handle_token_assignment_word(pref->assignment_word, env);
 		}
-		else
-			redirect(pref->io_redir);
+		else if ((res = redirect(pref->io_redir)) == -1)
+				break ;
 		pref = pref->cmd_pref;
 	}
+	return (res);
 }
 
 static int	traverse_cmd_suf(t_cmd *cmd, char ***av)
 {
 	t_cmd_suffix	*suff;
+	int				res;
 
+	res = 0;
 	suff = cmd->cmd_suf;
 	while (suff)
 	{
@@ -48,31 +54,33 @@ static int	traverse_cmd_suf(t_cmd *cmd, char ***av)
 			suff->word = tdq(suff->word);
 			push_back_av(av, suff->word);
 		}
-		else
-			redirect(suff->io_redir);
+		else if ((res = redirect(suff->io_redir)) == -1)
+			break ;
 		suff = suff->cmd_suf;
 	}
-	return (0);
+	return (res);
 }
 
 static int	handle_pref(t_cmd *cmd, char ***av, char ***new_env, int *flag)
 {
 	t_cmd_prefix	*pref;
+	int				res;
 
+	res = 0;
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
 		if (cmd->cmd_word)
 		{
-			traverse_cmd_pref(pref, new_env, flag);
+			res = traverse_cmd_pref(pref, new_env, flag);
 			push_back_av(av, cmd->cmd_word);
 		}
 		else
-			traverse_cmd_pref(pref, &g_var, flag);
+			res = traverse_cmd_pref(pref, &g_var, flag);
 	}
 	else
 		push_back_av(av, cmd->cmd_name);
-	return (0);
+	return (res);
 }
 
 void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
@@ -86,9 +94,8 @@ void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
 	av = (char **)ft_xmalloc(sizeof(char *) * 2);
 	ft_bzero(av, sizeof(char *) * 2);
 	redir_set();
-	handle_pref(cmd, &av, &new_env, &flag);
-	traverse_cmd_suf(cmd, &av);
-	if (*av)
+	if ((handle_pref(cmd, &av, &new_env, &flag) != -1) &&
+			(traverse_cmd_suf(cmd, &av) != -1) && (*av))
 		call_exec((const char **)av, &new_env);
 	if (flag & IS_COPY_ENV)
 		ft_free_double_ptr_arr((void ***)&new_env);
