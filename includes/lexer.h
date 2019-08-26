@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/25 19:19:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/26 14:20:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int					lexer_redir_less(char **str);
 int					lexer_redir_great(char **str);
 int					lexer_redir_and(char **str);
 int					lexer_return_type(char **str, int *type);
+t_lex				*init_lex(t_lex *prev);
 int					ft_isspec(char c);
 
 #endif

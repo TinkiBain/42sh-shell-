@@ -6,7 +6,7 @@
 #    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/26 14:05:57 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/26 14:20:07 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ PRINT_AST_DIR=print_ast
 SRCS_LEXER=\
 	lexer.c					lexer_and_or.c			lexer_check_redir.c\
 	lexer_get_token.c		lexer_bang.c			lexer_free_all.c\
-	lexer_utils.c
+	lexer_utils.c			lexer_init.c
 
 SRCS_PARSER=\
 	parser.c				parser_and_or.c			parser_cmd.c\

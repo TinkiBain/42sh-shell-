@@ -6,24 +6,11 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:04:28 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/26 14:24:01 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-t_lex		*init_lex(t_lex *prev)
-{
-	t_lex	*lex;
-
-	lex = (t_lex*)ft_xmalloc(sizeof(t_lex));
-	lex->lexeme = NULL;
-	lex->type = 0;
-	lex->next = NULL;
-	lex->prev = prev;
-	lex->fd = 0;
-	return (lex);
-}
 
 static int	lexer_check_separator(char *str)
 {
