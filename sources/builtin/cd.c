@@ -6,20 +6,12 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 15:30:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/24 18:28:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/25 20:31:19 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "sh.h"
-
-void			*cd_error_invalid_flag(char c)
-{
-	ft_putstr_fd(PROJECT_NAME ": cd: -", 2);
-	write(2, &c, 1);
-	ft_putstr_fd(": invalid option\ncd: usage: cd [-L|-P] [dir]\n", 2);
-	return (NULL);
-}
 
 const char		*check_flag(const char **av, int *flag)
 {

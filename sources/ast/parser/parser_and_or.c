@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_and_or.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/24 20:08:58 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/26 14:09:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,20 @@ t_and_or		*parser_error_and_or(int type)
 		return (parser_print_error("&&"));
 }
 
+t_and_or		*parser_and_or_error(void)
+{
+	g_error_pars = 2;
+	return (NULL);
+}
+
 t_and_or		*parser_and_or(t_lex *lex)
 {
 	t_and_or	*elem;
 	t_lex		*tmp;
 	t_lex		*begin;
 
-	if (!(lex && (begin = lex)) && (g_error_pars = 2))
-		return (NULL);
+	if (!(lex && (begin = lex)))
+		return (parser_and_or_error());
 	if (lex->type & AND_IF || lex->type & OR_IF)
 		return (parser_error_and_or(lex->type));
 	elem = init_and_or();

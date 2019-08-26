@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipeline.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 21:19:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 14:05:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	**g_var;
 
-static void	handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
+static void		handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
 															int in_fork)
 {
 	pid_t		pid2;
@@ -29,7 +29,7 @@ static void	handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
 	waitpid(pid2, &g_res_exec, 0);
 }
 
-static void	ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
+static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 															int in_fork)
 {
 	extern char	**environ;
@@ -57,7 +57,7 @@ static void	ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	waitpid(pid, NULL, 0);
 }
 
-static char	*get_cmd_name(t_cmd *cmd)
+static char		*get_cmd_name(t_cmd *cmd)
 {
 	if (cmd->cmd_pref)
 	{
@@ -75,7 +75,7 @@ static char	*get_cmd_name(t_cmd *cmd)
 	return (NULL);
 }
 
-static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
+static void		pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
 {
 	pid_t		pid;
 	char		*cmd_name;
@@ -103,9 +103,9 @@ static void	pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
 	}
 }
 
-void		traverse_pipeline(t_pipeline *root)
+void			traverse_pipeline(t_pipeline *root)
 {
-	extern char		**environ;
+	extern char	**environ;
 
 	if (root->pipe_sequence)
 	{
