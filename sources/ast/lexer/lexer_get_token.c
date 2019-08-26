@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/29 17:30:53 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:04:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/26 20:51:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ char		*lexer_find_simbol(char *str, char c)
 			else
 				return (str);
 		}
-		if (*str == c)
+		else if (*str == c)
 			return (str + 1);
-		++str;
+		else
+			++str;
 	}
 	return (str);
 }
