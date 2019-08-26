@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/25 21:23:33 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 23:37:02 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/27 01:50:29 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include "parser.h"
 #include "exec.h"
 
-void		lllestb_string(char *buf)
+void		preliminary_check_fd(void)
 {
-	t_pars_list	*list;
-
-	list = exec_ast(buf);
-	traverse_ast(list);
-	g_error_pars = 0;
-	parser_free_tree(list);
+	if (fcntl(0, F_GETFL) < -1)
+		exit(0);
+	if (!isatty(0))
+		exit(g_res_exec);
 }
 
-void		init(void)
+void		shell_init(int argc, char *argv[])
 {
 	extern char		**environ;
 	extern t_opt	g_opt;
 
+	if (argc > 1 && ft_strequ(argv[1], "-v"))
+		g_opt.vi_mode = 1;
 	preliminary_check_fd();
 	environ = create_copy_env(environ);
 	init_g_var();
@@ -41,13 +41,3 @@ void		init(void)
 	g_opt.noclobber = 1;
 }
 
-void		end_work(void)
-{
-	extern char	**environ;
-
-	del_hash();
-	history_clear(g_history);
-	logclose();
-	ft_free_double_ptr_arr((void ***)&environ);
-	ft_putstr("exit\n");
-}
