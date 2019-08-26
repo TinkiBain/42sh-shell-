@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/26 15:17:36 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/26 17:52:21 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ t_hash						*get_hash_struct(char *name);
 void						hash_usage(void);
 void						hash_invalid_option(char c);
 void						hash_empty(void);
-void						print_number(int count, char num[13], char *str);
+void						print_number(int count, char num[13],
+		char *str, int len);
+void						hash_not_found(char *name);
 
 /*
 **start_hash
@@ -69,5 +71,11 @@ int							hash_start_work(int flags, char **argv);
 int							count_hash_on(void);
 void						hash_print_new(int count, t_hash *table[count],
 		int count_len);
+void						find_and_del_hash(char *name);
+
+/*
+**Flags
+*/
+void						del_all_hash(void);
 
 #endif

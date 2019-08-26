@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 16:41:59 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/25 20:27:14 by wtalea           ###   ########.fr        #
+#    Updated: 2019/08/26 17:54:24 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRCS_HASH_HASH=\
 	hash_print_use.c\
 	print_lib.c\
 	print_usage.c\
-	start_built_hash.c
+	start_built_hash.c\
+	find_and_del.c\
+	hash_flag_r.c
 
 HASH_SUBDIRS=\
 	$(HASH_HASH_DIR)\

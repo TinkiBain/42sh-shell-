@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 22:32:39 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 20:30:38 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/26 18:04:01 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ static	int		hash_flags_check(char **argv, int *i)
 			++i;
 			return (flags);
 		}
-		j = 0;
+		j = 1;
 		while (*((*argv) + j))
 		{
 			hash_find_flags(&flags, *((*argv) + j));
 			++j;
 		}
-		++i;
+		++(*i);
 		++argv;
 	}
 	return (flags);
@@ -64,6 +64,6 @@ int				ft_hash(char **argv)
 
 	flags = 0;
 	i = 0;
-	flags = hash_flags_check(argv, &i);
+	flags = hash_flags_check(argv + 1, &i);
 	return (hash_start_work(flags, (argv + 1 + i)));
 }
