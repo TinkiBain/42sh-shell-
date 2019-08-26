@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/25 17:20:47 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/26 13:25:38 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,6 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(AST_DIR)\
 	$(CREATE_AST_SUBDIRS)\
 	$(OBJS_DIR)/$(BUILTIN_DIR)\
-	$(OBJS_DIR)/$(CMD_HANDLE_DIR)\
 	$(OBJS_DIR)/$(READLINE_DIR)\
 	$(CREATE_READLINE_SUBDIRS)\
 	$(OBJS_DIR)/$(HASH_DIR)\
@@ -119,11 +118,8 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 
 all: $(NAME)
 
-rm_lib:
-	@rm -f $(LIBFT_A)
-
-$(NAME): rm_lib $(LIBFT_A) $(OBJS_SUBDIRS) $(OBJS)
-	@printf "$(BLUE)Compiling executable...$(NC)\n"
+$(NAME): $(LIBFT_A) $(OBJS_SUBDIRS) $(OBJS)
+	@printf "$(BLUE)Compiling $(NAME_CLEAN)...$(NC)\n"
 	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
 	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
 
@@ -134,18 +130,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
 	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
 
 $(OBJS_SUBDIRS):
-	@printf "$(BLUE)Compiling $(NAME_CLEAN) objects files...$(NC)\n"
-	@mkdir -p $(OBJS_DIR)/$(AST_DIR)
-	@mkdir -p $(CREATE_AST_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(BUILTIN_DIR)
-	@mkdir -p $(OBJS_DIR)/$(CMD_HANDLE_DIR)
-	@mkdir -p $(OBJS_DIR)/$(READLINE_DIR)
-	@mkdir -p $(CREATE_READLINE_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(HASH_DIR)
-	@mkdir -p $(CREATE_HASH_SUBDIRS)
-	@mkdir -p $(OBJS_DIR)/$(VAR_DIR)
-	@mkdir -p $(OBJS_DIR)/$(DIR_LIB_WTALEA)
-	@mkdir -p $(OBJS_DIR)/$(XFUNCS_DIR)
+	@mkdir -p $@
 
 clean:
 ifneq ($(OBJS_CLEAN),)
@@ -166,7 +151,7 @@ else
 	@printf "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)\n"
 endif
 
-test: rm_lib $(LIBFT_A)
+test: $(LIBFT_A)
 	$(CC) $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
 
 sanitize:
