@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 23:39:07 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 23:39:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 15:11:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int			escseq_test_unmatch(t_vector v_old, t_vector v_new,
 			(es_old->pos != es_new->pos ||
 			!ft_strequ(es_new->str.s, es_old->str.s)))
 			return (1);
-	}	
+	}
 	return (0);
 }
