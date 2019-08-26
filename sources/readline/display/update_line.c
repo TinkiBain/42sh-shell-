@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 20:38:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 17:55:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ t_buffer	prepare_resized_buf(void)
 
 void		update_line(t_line *line)
 {
-	t_buffer		newbuf;
-	int				cols;
+	t_buffer			newbuf;
+	int					cols;
+	extern t_options	g_options;
 
 	cols = get_term_cols();
 	if (!line)
@@ -103,7 +104,7 @@ void		update_line(t_line *line)
 		newbuf.cpos = g_buffer.prompt_len + line->cpos;
 	}
 	pull_escseqs(&newbuf.escseqs, &newbuf.b);
-	if (!g_rl_options.enable_color)
+	if (!g_options.enable_color)
 		vec_delete(&newbuf.escseqs, del_str);
 	convert_nl(&newbuf, cols);
 	newbuf.prompt_len = g_buffer.prompt_len;
