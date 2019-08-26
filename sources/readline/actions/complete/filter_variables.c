@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_variables.c                                    :+:      :+:    :+:   */
+/*   filter_variables.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 03:07:14 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:14:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:05:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 
-void			get_variables(t_string query, char ***start, int *n)
+void			filter_variables(t_string query, char ***start, int *n)
 {
 	extern char	**g_var_names;
 	int			i;

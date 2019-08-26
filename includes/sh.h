@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 18:24:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:45:22 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void			lllestb_string(char *buf);
 void			init(void);
 void			end_work(void);
 
-typedef struct	s_options
+typedef struct	s_opt
 {
 	t_uint		vi_mode;
 	t_uint		enable_color;
 	t_uint		noclobber;
-}				t_options;
+}				t_opt;
 
 #endif

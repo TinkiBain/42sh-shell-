@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 21:23:33 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 18:02:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:37:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		lllestb_string(char *buf)
 
 void		init(void)
 {
-	extern char			**environ;
-	extern t_options	g_options;
+	extern char		**environ;
+	extern t_opt	g_opt;
 
 	preliminary_check_fd();
 	environ = create_copy_env(environ);
@@ -37,8 +37,8 @@ void		init(void)
 	logopen();
 	g_history = ft_xmemalloc(sizeof(t_history));
 	history_load(g_history);
-	g_options.enable_color = 1;
-	g_options.noclobber = 1;
+	g_opt.enable_color = 1;
+	g_opt.noclobber = 1;
 }
 
 void		end_work(void)

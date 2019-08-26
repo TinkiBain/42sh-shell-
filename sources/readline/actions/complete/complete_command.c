@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:16:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:09:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			complete_command(t_line *line)
 	struct s_var	cmds;
 
 	query = get_command_query(line, &start);
-	get_commands(query, &cmds.arr, &cmds.n);
+	filter_commands(query, &cmds.arr, &cmds.n);
 	found = find_common_part(cmds.arr, cmds.n);
 	unmatch_start = line->cpos - start;
 	if ((found.len > 0 && (int)found.len > unmatch_start) || cmds.n == 1)

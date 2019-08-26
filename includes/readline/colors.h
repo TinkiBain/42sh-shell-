@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:06:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 18:32:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:55:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define COLOR_BLUE		"\033[0;34m"
 # define COLOR_PURPLE	"\033[0;35m"
 # define COLOR_CYAN		"\033[0;36m"
+# define COLOR_WHITE	"\033[1;37m"
 # define COLOR_GREY		"\033[2;37m"
 # define COLOR_EOC		"\033[0m"
 

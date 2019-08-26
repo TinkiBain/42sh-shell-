@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 23:45:47 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 21:28:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 00:30:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,11 @@ t_escseq		*find_escseq(t_vector es, int n)
 {
 	int i;
 
-	i = 0;
-	while (i < (int)es.len)
+	i = es.len;
+	while (--i >= 0)
 	{
 		if (((t_escseq *)vec_get(es, i))->pos == n)
 			return (vec_get(es, i));
-		i++;
 	}
 	return (NULL);
 }

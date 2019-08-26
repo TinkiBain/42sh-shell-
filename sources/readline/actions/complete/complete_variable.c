@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:32:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:14:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			complete_variable(t_line *line)
 	struct s_var	vars;
 
 	query = get_variable_query(line, &start);
-	get_variables(query, &vars.arr, &vars.n);
+	filter_variables(query, &vars.arr, &vars.n);
 	found = find_common_part(vars.arr, vars.n);
 	unmatch_start = line->cpos - start;
 	if ((found.len > 0 && (int)found.len > unmatch_start) || vars.n == 1)

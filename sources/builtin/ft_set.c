@@ -6,15 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 18:04:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:37:30 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-extern t_options			g_options;
+extern t_opt	g_opt;
 
-static void					print_plus_options(void)
+static void		print_plus_options(void)
 {
 	char	*name;
 	char	*val;
@@ -22,17 +22,17 @@ static void					print_plus_options(void)
 
 	format = "set %so %s\n";
 	name = "vi";
-	val = (g_options.vi_mode) ? "+" : "-";
+	val = (g_opt.vi_mode) ? "+" : "-";
 	ft_printf(format, val, name);
 	name = "color";
-	val = (g_options.enable_color) ? "+" : "-";
+	val = (g_opt.enable_color) ? "+" : "-";
 	ft_printf(format, val, name);
 	name = "noclobber";
-	val = (g_options.noclobber) ? "+" : "-";
+	val = (g_opt.noclobber) ? "+" : "-";
 	ft_printf(format, val, name);
 }
 
-static void					print_minus_options(void)
+static void		print_minus_options(void)
 {
 	char	*name;
 	char	*val;
@@ -40,27 +40,27 @@ static void					print_minus_options(void)
 
 	format = "%-15s\t%s\n";
 	name = "vi";
-	val = (g_options.vi_mode) ? "on" : "off";
+	val = (g_opt.vi_mode) ? "on" : "off";
 	ft_printf(format, name, val);
 	name = "color";
-	val = (g_options.enable_color) ? "on" : "off";
+	val = (g_opt.enable_color) ? "on" : "off";
 	ft_printf(format, name, val);
 	name = "noclobber";
-	val = (g_options.noclobber) ? "on" : "off";
+	val = (g_opt.noclobber) ? "on" : "off";
 	ft_printf(format, name, val);
 }
 
-static void					unset_option(const char **av)
+static void		unset_option(const char **av)
 {
 	if (ft_strequ(*(av), "vi"))
-		g_options.vi_mode = 0;
+		g_opt.vi_mode = 0;
 	else if (ft_strequ(*(av), "color"))
-		g_options.enable_color = 0;
+		g_opt.enable_color = 0;
 	else if (ft_strequ(*(av), "noclobber"))
-		g_options.noclobber = 0;
+		g_opt.noclobber = 0;
 }
 
-static void					handle_set_arg(const char **av)
+static void		handle_set_arg(const char **av)
 {
 	if (ft_strequ(*av, "-p"))
 		print_var_names();
@@ -71,11 +71,11 @@ static void					handle_set_arg(const char **av)
 		else
 		{
 			if (ft_strequ(*(av), "vi"))
-				g_options.vi_mode = 1;
+				g_opt.vi_mode = 1;
 			else if (ft_strequ(*(av), "color"))
-				g_options.enable_color = 1;
+				g_opt.enable_color = 1;
 			else if (ft_strequ(*(av), "noclobber"))
-				g_options.noclobber = 1;
+				g_opt.noclobber = 1;
 		}
 	}
 	else if (ft_strequ(*(av), "+o"))
@@ -87,7 +87,7 @@ static void					handle_set_arg(const char **av)
 	}
 }
 
-int							ft_set(const char **av)
+int				ft_set(const char **av)
 {
 	extern	char	**g_var;
 

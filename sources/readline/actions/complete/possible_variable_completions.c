@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:41:54 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 08:14:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			possible_variable_completions(t_line *line)
 	int			start;
 
 	query = get_variable_query(line, &start);
-	get_variables(query, &vars, &n);
+	filter_variables(query, &vars, &n);
 	if (n != 1)
 		show_completions(vars, n);
 	str_delete(&query);

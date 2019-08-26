@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 19:11:14 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 23:28:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void			resize(t_buffer *newbuf)
 	while (++i < max_int(newbuf->out_rows, g_buffer.out_rows))
 	{
 		j = -1;
-		while (++j < cols(newbuf, i))
+		while (++j < cols(newbuf, i) + 1)
 		{
 			print(newbuf, pos);
 			pos++;

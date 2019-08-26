@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_commands.c                                     :+:      :+:    :+:   */
+/*   filter_commands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 17:04:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:12:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:04:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 
-void			get_commands(t_string query, char ***start, int *n)
+void			filter_commands(t_string query, char ***start, int *n)
 {
 	extern char	**g_cmd_names;
 	int			i;
