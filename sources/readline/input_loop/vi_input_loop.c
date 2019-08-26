@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 16:57:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 16:29:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void		loop_buffer(t_line *line, char keybuf[KEYBUF_SIZE])
 	{
 		line->keybuf = str_xncopy(keybuf + i, 1);
 		perform_action(line);
+		str_delete(&line->keybuf);
 	}
 }
 
