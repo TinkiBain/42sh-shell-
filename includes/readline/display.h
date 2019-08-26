@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 11:28:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:55:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 18:43:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void			move_cur_left(int oldpos, int width);
 void			move_cur_right(int oldpos, int width);
 void			move_cur_nl(void);
 void			move_cur_to(int oldpos, int newpos, int width);
+
+void			colorize(t_string *str);
 
 #endif

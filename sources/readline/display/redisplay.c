@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 23:40:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/26 19:11:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			redisplay(t_buffer *newbuf)
 			continue ;
 		move_cur_to(oldpos, pos, newbuf->out_cols);
 		j = -1;
-		while (++j < cols(newbuf, i))
+		while (++j < cols(newbuf, i) + 1)
 		{
 			print(newbuf, pos);
 			pos++;

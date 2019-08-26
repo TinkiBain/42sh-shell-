@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 17:55:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/26 19:18:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void		update_line(t_line *line)
 		newbuf.b = str_xduplicate(newbuf.original);
 		newbuf.cpos = g_buffer.prompt_len + line->cpos;
 	}
+	colorize(&newbuf.b);
 	pull_escseqs(&newbuf.escseqs, &newbuf.b);
 	if (!g_options.enable_color)
 		vec_delete(&newbuf.escseqs, del_str);
