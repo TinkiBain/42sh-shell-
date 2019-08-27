@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 00:35:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 22:16:54 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		colorize(t_string *str, int start)
 		else if (c == '"' || c == '\'')
 			i = skip_to_char(str, i, c);
 		else if (c == '-' && ft_isspace(str_get(*str, i - 1)))
-			colorize_arg(str, &i, COLOR_GREY);
+			colorize_arg(str, &i, COLOR_CYAN);
 		else if (c == '&' || c == '|' || c == ';')
 			colorize_cmd_sep(str, &i, COLOR_GREEN);
 		else if (c == '>' || c == '<')
