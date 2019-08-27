@@ -1,0 +1,6 @@
+-L  -- list in the form of calls to hash
+-d  -- use named directory hash table
+-f  -- rebuild hash table
+-m  -- treat arguments as patterns
+-r  -- empty hash table
+-v  -- list entries as they are added
