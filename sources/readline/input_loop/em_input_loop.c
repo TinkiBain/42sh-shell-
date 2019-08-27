@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   em_input_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 20:15:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:22:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void		perform_action(t_line *line)
 
 	if (check_arg(line))
 		return ;
+	if (line->arg > 1024)
+		line->arg = 1024;
 	b = find_binding(&line->key_bindings, line->keybuf);
 	if (b && (line->action = b->action))
 	{

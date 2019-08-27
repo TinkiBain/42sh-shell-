@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_input_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 16:29:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:22:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static int		perform_action(t_line *line)
 
 	if (check_arg(line))
 		return (0);
+	if (line->arg > 1024)
+		line->arg = 1024;
 	b = find_binding(&line->key_bindings, line->keybuf);
 	if (b && (line->action = b->action))
 	{
