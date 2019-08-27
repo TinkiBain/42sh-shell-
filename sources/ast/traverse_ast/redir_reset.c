@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:08:30 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 18:50:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/27 17:18:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void		close_all_fd(void)
 	if (!g_open_fd)
 		return ;
 	i = 0;
-	while (++i < *g_open_fd)
+	while (++i <= *g_open_fd)
 	{
-		if (*g_open_fd > -1)
+		if (g_open_fd[i] > -1)
 			close(g_open_fd[i]);
 	}
 	free(g_open_fd);

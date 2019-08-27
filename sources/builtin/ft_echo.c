@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/27 17:01:03 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/27 17:21:19 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ int			ft_echo(const char **command)
 		if (ft_writer_contr(command, i++, -12, 0) < 0)
 			return (0);
 	if (flag != 1)
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 	return (1);
 }
