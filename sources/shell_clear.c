@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_fd.c                                         :+:      :+:    :+:   */
+/*   shell_clear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/17 16:21:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:06:08 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/08/27 01:25:17 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/08/27 01:50:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include "exec.h"
+#include "sh.h"
 
-void			preliminary_check_fd(void)
+void		shell_clear(void)
 {
-	if (fcntl(0, F_GETFL) < -1)
-		exit(0);
-	if (!isatty(0))
-		exit(g_res_exec);
+	extern char	**environ;
+
+	del_hash();
+	history_clear(g_history);
+	logclose();
+	ft_free_double_ptr_arr((void ***)&environ);
+	ft_putstr("exit\n");
 }

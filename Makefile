@@ -6,7 +6,7 @@
 #    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/26 14:06:18 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/08/27 01:49:54 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,9 @@ SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
 	main.c\
-	check_fd.c\
-	check_quotes.c\
-	init.c
+	shell_init.c\
+	shell_clear.c\
+	exec_ast.c
 
 BUILTIN_DIR=builtin
 

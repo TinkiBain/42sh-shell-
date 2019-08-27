@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:11:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 19:46:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:32:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void		printerr(void)
 {
 	if (!g_errno)
 		return ;
+	ft_putstr("\n");
 	if (g_errno == E_READ)
 		print("Read error");
 	else

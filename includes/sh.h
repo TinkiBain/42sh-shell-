@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 23:45:22 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 01:50:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,9 @@
 # include "lib_wtalea.h"
 # include "xfuncs.h"
 
-t_lex			*lexer(char *str);
-void			preliminary_check_fd(void);
-void			check_quotes(char *str);
 t_pars_list		*exec_ast(char *buf);
-void			lllestb_string(char *buf);
-void			init(void);
-void			end_work(void);
+void			shell_init(int argc, char *argv[]);
+void			shell_clear(void);
 
 typedef struct	s_opt
 {
