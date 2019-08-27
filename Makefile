@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/27 15:49:50 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/27 19:35:32 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=21sh
 
 CC=clang
 FLAGS=-Wall -Wextra -Werror
-FLAGS+=-g
+# FLAGS+=-g
 
 INCLUDES:=-I includes -I includes/readline -I libft/includes
 
