@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 17:28:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 19:59:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int			init_g_var(void)
 		g_var = (char **)ft_xmalloc(sizeof(char *));
 		ft_bzero(g_var, sizeof(char *));
 	}
-	set_var_if_not_exist("HISTPATH=~/.42sh.history", &g_var, 1);
+	set_var_if_not_exist("HISTPATH=~/." PROJECT_NAME ".history", &g_var, 1);
 	set_var_if_not_exist("HISTSIZE=20", &g_var, 1);
-	set_var_if_not_exist("LOGPATH=~/.42sh.log", &g_var, 1);
+	set_var_if_not_exist("LOGPATH=~/." PROJECT_NAME ".log", &g_var, 1);
 	set_var_if_not_exist("PS1=" "\\033[0;31m" PROJECT_NAME ">\\033[0m ",
 															&g_var, 1);
 	set_var_if_not_exist("PS2=> ", &g_var, 1);
