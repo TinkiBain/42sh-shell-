@@ -6,11 +6,19 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 20:28:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 21:37:04 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 17:22:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "terminal.h"
+
+static void	term_fillcap_3(void)
+{
+	g_cap.key_ctrl_left = ft_xstrdup("\033[1;5D");
+	g_cap.key_ctrl_right = ft_xstrdup("\033[1;5C");
+	g_cap.key_ctrl_up = ft_xstrdup("\033[1;5A");
+	g_cap.key_ctrl_down = ft_xstrdup("\033[1;5B");
+}
 
 static void	term_fillcap_2(char **p)
 {
@@ -36,9 +44,9 @@ static void	term_fillcap_2(char **p)
 	g_cap.key_up = ft_xstrdup(t ? t : "\033OA");
 	t = tgetstr("kd", p);
 	g_cap.key_down = ft_xstrdup(t ? t : "\033OB");
-	g_cap.key_ctrl_left = ft_xstrdup("\033[1;5D");
-	g_cap.key_ctrl_right = ft_xstrdup("\033[1;5C");
-	g_cap.key_ctrl_up = ft_xstrdup("\033[1;5A");
+	t = tgetstr("u7", p);
+	g_cap.get_pos = t ? ft_xstrdup(t) : t;
+	term_fillcap_3();
 }
 
 void		term_fillcap(void)
@@ -66,7 +74,6 @@ void		term_fillcap(void)
 	g_cap.clear_down = ft_xstrdup(t ? t : "\033[J");
 	t = tgetstr("ce", &p);
 	g_cap.clear_end = ft_xstrdup(t ? t : "\033[K");
-	g_cap.key_ctrl_down = ft_xstrdup("\033[1;5B");
 	term_fillcap_2(&p);
 }
 
@@ -76,6 +83,7 @@ static void	clear_termcap_2(void)
 	ft_strdel(&g_cap.key_ctrl_right);
 	ft_strdel(&g_cap.key_ctrl_up);
 	ft_strdel(&g_cap.key_ctrl_down);
+	ft_strdel(&g_cap.get_pos);
 }
 
 void		clear_termcap(void)

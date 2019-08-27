@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/27 01:01:58 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/08/27 17:21:00 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ SRCS_READLINE_COMPLETE=\
 	find_common_part.c
 
 SRCS_READLINE_TERMINAL=\
-	terminal.c				term_fillcap.c\
+	terminal.c				term_fillcap.c			term_getpos.c\
 
 SRCS_READLINE_BINDINGS=\
 	bind.c		bind_keys.c		bindings.c		vi_bind_keys.c	is_vi_motion.c

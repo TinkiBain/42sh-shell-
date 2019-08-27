@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 00:27:10 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 17:27:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ static void		build_newbuf(t_buffer *newbuf, t_line *line, int cols)
 
 void			update_line(t_line *line)
 {
-	t_buffer			newbuf;
-	int					cols;
+	t_buffer	newbuf;
+	int			cols;
 
 	cols = get_term_cols();
 	build_newbuf(&newbuf, line, cols);

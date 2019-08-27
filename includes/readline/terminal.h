@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:54:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 14:00:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/27 17:15:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct			s_cap
 	char	*key_ctrl_right;
 	char	*key_ctrl_up;
 	char	*key_ctrl_down;
+	char	*get_pos;
 }						t_cap;
 
 char					*term_getstr(char *str);
@@ -61,7 +62,7 @@ void					term_fillcap(void);
 void					clear_termcap(void);
 void					term_putstr(char *str);
 
-void					term_getpos(int *row, int *col);
+int						term_getpos(int *row, int *col);
 
 extern struct termios	g_init_tios;
 extern int				g_logfd;

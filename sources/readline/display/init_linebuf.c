@@ -6,18 +6,30 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:19:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 00:14:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 17:28:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
+#include "colors.h"
 
 t_buffer		g_buffer;
+
+void	check_newline(void)
+{
+	int		row;
+	int		col;
+
+	term_getpos(&row, &col);
+	if (col != 0)
+		ft_printf("%s%%%s\n\r", COLOR_REVVID, COLOR_EOC);
+}
 
 void	init_linebuf(t_line *line)
 {
 	int cols;
 
+	check_newline();
 	cols = get_term_cols();
 	g_buffer.b = str_xduplicate(line->prompt);
 	g_buffer.original = str_xduplicate(g_buffer.b);
