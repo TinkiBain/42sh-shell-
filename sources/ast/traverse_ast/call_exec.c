@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 12:41:17 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/27 15:21:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ int			call_exec(const char **av, char ***env)
 	int		res;
 
 	if ((res = is_builtin(*av)) == 1)
-		return (call_if_builtin(av, env));
+	{
+		g_res_exec = call_if_builtin(av, env);
+		set_result();
+		return (g_res_exec);
+	}
 	else
 		res = check_cmd(*av);
 	if (res == 0)
@@ -82,5 +86,5 @@ int			call_exec(const char **av, char ***env)
 		else if (ft_strchr(*av, '/'))
 			return (call_nonbuilin_exec(*av, (char *const *)av, *env));
 	}
-	return (-1);
+	return (127);
 }

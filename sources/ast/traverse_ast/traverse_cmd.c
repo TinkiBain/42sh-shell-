@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 20:23:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/27 15:23:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
 			handle_token_assignment_word(pref->assignment_word, env);
 		}
 		else if ((res = redirect(pref->io_redir)) == -1)
-				break ;
+			break ;
 		pref = pref->cmd_pref;
 	}
 	return (res);

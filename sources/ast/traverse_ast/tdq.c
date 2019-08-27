@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/26 20:45:34 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/27 15:23:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		spec_char_hendler(int *i, char *str, int *i_t, char **tmp)
 		(*tmp)[*i_t] = '\a';
 	else if (str[*i] == 'r')
 		(*tmp)[*i_t] = '\r';
-	else if(!check_spec_symboli_dq(str[*i]))
+	else if (!check_spec_symboli_dq(str[*i]))
 		(*tmp)[*i_t] = str[*i];
 	else
 	{

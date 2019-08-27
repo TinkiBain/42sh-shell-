@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 21:30:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/27 15:24:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	ft_writer_contr(const char **command, int i, int l, int j)
 				write(1, "\n", 1);
 				return (-1);
 			}
-			else if ((command[i][j] && command[i][j] == '\\' 
+			else if ((command[i][j] && command[i][j] == '\\'
 					&& !command[i][j + 1]) || l == -1)
 				write(1, "\\", 1);
 		}
