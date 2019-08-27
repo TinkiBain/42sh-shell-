@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:19:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 17:28:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 19:22:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	init_linebuf(t_line *line)
 {
 	int cols;
 
-	check_newline();
+	if (g_check_nl)
+		check_newline();
+	g_check_nl = 0;
 	cols = get_term_cols();
 	g_buffer.b = str_xduplicate(line->prompt);
 	g_buffer.original = str_xduplicate(g_buffer.b);

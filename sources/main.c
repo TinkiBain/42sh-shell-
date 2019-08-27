@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/27 01:46:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 19:21:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		main_loop(void)
 
 	while (21)
 	{
+		g_check_nl = 1;
 		if (!(buf = ft_readline(get_value_from_all_vars("PS1"), NULL)))
 			break ;
 		ft_putstr("\n");
