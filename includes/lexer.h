@@ -44,6 +44,7 @@ typedef struct		s_lex
 	struct s_lex	*prev;
 }					t_lex;
 
+t_lex				*lexer(char *str);
 char				*lexer_get_token(char *str, t_lex **lex);
 char				*lexer_find_simbol(char *str, char c);
 char				*lexer_bang(char *str, t_lex *lex);

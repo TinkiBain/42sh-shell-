@@ -40,4 +40,3 @@ void		shell_init(int argc, char *argv[])
 	g_opt.enable_color = 1;
 	g_opt.noclobber = 1;
 }
-

@@ -24,7 +24,6 @@
 # include "lib_wtalea.h"
 # include "xfuncs.h"
 
-t_lex			*lexer(char *str);
 t_pars_list		*exec_ast(char *buf);
 void			shell_init(int argc, char *argv[]);
 void			shell_clear(void);
