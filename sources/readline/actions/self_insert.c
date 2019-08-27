@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:10:23 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/19 17:10:49 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/27 17:53:08 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	self_insert(t_line *line)
 	int i;
 
 	i = -1;
+	if (line->arg > 1024)
+		line->arg = 1024;
 	while (++i < line->arg)
 	{
 		if (line->hs_mode)
