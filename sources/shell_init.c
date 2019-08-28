@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 01:50:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/28 16:10:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void		shell_init(int argc, char *argv[])
 
 	if (argc > 1 && ft_strequ(argv[1], "-v"))
 		g_opt.vi_mode = 1;
+	g_opt.enable_color = 1;
+	g_opt.noclobber = 1;
 	preliminary_check_fd();
 	environ = create_copy_env(environ);
 	init_g_var();
@@ -37,6 +39,4 @@ void		shell_init(int argc, char *argv[])
 	logopen();
 	g_history = ft_xmemalloc(sizeof(t_history));
 	history_load(g_history);
-	g_opt.enable_color = 1;
-	g_opt.noclobber = 1;
 }

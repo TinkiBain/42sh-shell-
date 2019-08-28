@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/27 19:59:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/28 16:05:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			init_g_var(void)
 	tmp = ft_strrejoin("SHELLHOME=", getcwd(NULL, 1024), 2);
 	set_var(tmp, &g_var, 1);
 	ft_memdel((void **)&tmp);
-	set_var("SHELLOPTS=", &g_var, 1);
+	set_var_shellopts();
 	set_var_if_not_exist("TEXTEDITOR=/usr/bin/vim", &g_var, 1);
 	return (0);
 }
