@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 18:58:55 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:52:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct	s_opt
 	t_uint		noclobber;
 }				t_opt;
 
+int				check_file_errors(const char *file_name, int flag);
+int				return_error(const char *file_name, const char *error);
 t_pars_list		*exec_ast(char *buf);
 void			main_gnl_loop(int fd, char *filename);
 void			main_readline_loop(void);

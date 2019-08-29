@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/29 18:02:28 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/29 20:42:04 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
 	main.c\
+	check_file_errors.c\
 	shell_init.c\
 	shell_clear.c\
 	exec_ast.c
@@ -160,6 +161,6 @@ sanitize:
 	$(CC) $(FLAGS) -g -fsanitize=address $(SRCS) -o $(NAME) $(INCLUDES)	$(LIBFT_A) -lcurses
 
 vg:
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full ./$(NAME) $(ARG)
 
 re: fclean all

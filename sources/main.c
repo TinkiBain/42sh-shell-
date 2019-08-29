@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/29 18:55:37 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:52:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		main_readline_loop(void)
 	}
 }
 
-void		main_gnl_loop(int fd, char *filename)
+void		main_gnl_loop(int fd, char *prompt)
 {
 	t_pars_list	*list;
 	char		*buf;
@@ -55,7 +55,7 @@ void		main_gnl_loop(int fd, char *filename)
 	while (get_next_line(fd, &buf) > 0)
 	{
 		ft_memdel((void **)&g_project_name);
-		g_project_name = ft_strrejoin(filename, ft_itoa(++num_line), 2);
+		g_project_name = ft_strrejoin(prompt, ft_itoa(++num_line), 2);
 		if (*(tmp = ft_strtrim(buf)))
 		{
 			list = exec_ast(buf);
@@ -73,15 +73,18 @@ void		main_gnl_loop(int fd, char *filename)
 int			main(int ac, char **av)
 {
 	int		fd;
-	char	*filename;
+	char	*prompt;
 
 	shell_init();
-	if (ac > 1 && (fd = open(*(++av), O_RDONLY)) >= 0)
+	if (ac > 1)
 	{
-		filename = ft_strjoin(*av, ": line ");
-		main_gnl_loop(fd, filename);
-		ft_memdel((void **)&filename);
-		close(fd);
+		if (!check_file_errors(*(++av), F_OK) && (fd = open(*av, O_RDONLY)) >= 0)
+		{
+			prompt = ft_strjoin(*av, ": line ");
+			main_gnl_loop(fd, prompt);
+			ft_memdel((void **)&prompt);
+			close(fd);
+		}
 	}
 	else
 	{

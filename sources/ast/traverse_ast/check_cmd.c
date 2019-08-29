@@ -6,41 +6,16 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 18:47:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/27 14:49:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:52:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int	return_error(const char *cmd, const char *error)
-{
-	extern char	**g_var;
-
-	print_error(cmd, error);
-	g_res_exec = 127;
-	set_var("?=127", &g_var, 1);
-	return (127);
-}
-
 static int	cmd_is_exist(const char *cmd)
 {
 	if (!get_bin((char *)cmd))
 		return (return_error(cmd, ": command not found"));
-	return (0);
-}
-
-static int	check_cmd_errors(const char *cmd)
-{
-	struct stat		st;
-
-	if (stat(cmd, &st) == -1)
-		return (return_error(cmd, ": No such file or directory"));
-	if (S_ISDIR(st.st_mode))
-		return (return_error(cmd, ": Is a directory"));
-	else if (!S_ISREG(st.st_mode))
-		return (return_error(cmd, ": No such file or directory"));
-	else if (access(cmd, X_OK))
-		return (return_error(cmd, ": Permission denied"));
 	return (0);
 }
 
@@ -58,7 +33,7 @@ int			check_cmd(const char *cmd)
 		++p;
 	}
 	if (*p == '/')
-		return (check_cmd_errors(cmd));
+		return (check_file_errors(cmd, X_OK));
 	else
 		return (cmd_is_exist(cmd));
 }
