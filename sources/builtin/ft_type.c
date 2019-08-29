@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 14:22:58 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 21:19:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:29:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	res_for_cmd_not_found(const char *cmd)
 {
-	ft_putstr(PROJECT_NAME ": type: ");
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr(": type: ");
 	ft_putstr(cmd);
 	ft_putendl(": not found");
 	return (1);

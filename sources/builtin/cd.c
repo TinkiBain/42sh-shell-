@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 15:30:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/25 20:31:19 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:28:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int				change_dir_variable(const char *dir, char ***env)
 			dir = get_value_from_all_vars("HOME");
 		if (!dir)
 		{
-			ft_putstr_fd(PROJECT_NAME ": cd: HOME not set\n", 2);
+			ft_putstr_fd(g_project_name, 2);
+			ft_putstr_fd(": cd: HOME not set\n", 2);
 			return (1);
 		}
 	}
@@ -61,7 +62,8 @@ int				change_dir_variable(const char *dir, char ***env)
 			dir = get_value_from_all_vars("OLDPWD");
 		if (!dir)
 		{
-			ft_putstr_fd(PROJECT_NAME ": cd: OLDPWD not set\n", 2);
+			ft_putstr_fd(g_project_name, 2);
+			ft_putstr_fd(": cd: OLDPWD not set\n", 2);
 			return (1);
 		}
 	}

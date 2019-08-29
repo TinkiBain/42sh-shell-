@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/18 16:25:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:21:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	check_arg_count(const char **av)
 		++ac;
 		if (ac > 1)
 		{
-			ft_putendl_fd(PROJECT_NAME ": exit: too many arguments", 2);
+			ft_putstr_fd(g_project_name, 2);
+			ft_putendl_fd(": exit: too many arguments", 2);
 			exit(1);
 		}
 	}
@@ -37,7 +38,8 @@ static void	check_arg_format(const char *av)
 	{
 		if (!ft_isdigit(*(tmp++)))
 		{
-			ft_putstr_fd(PROJECT_NAME ": exit: ", 2);
+			ft_putstr_fd(g_project_name, 2);
+			ft_putstr_fd(": exit: ", 2);
 			ft_putstr_fd(av, 2);
 			ft_putendl_fd(": numeric argument required", 2);
 			exit(255);

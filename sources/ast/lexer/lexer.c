@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:24:01 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:21:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	lexer_check_separator(char *str)
 
 void		print_error_pars(t_lex *lex)
 {
-	ft_putstr_fd(PROJECT_NAME ": syntax error near unexpected token `", 2);
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": syntax error near unexpected token `", 2);
 	if (lex->type & SEMICOLON && lex->prev && lex->prev->type & SEMICOLON)
 		ft_putstr_fd(";;", 2);
 	else if (lex->type & SEMICOLON)

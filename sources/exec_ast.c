@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 01:47:34 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:08:25 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-/*
-** variable for launch shell with param
-** (now using for print ast instead for exec cmd).
-*/
-
-/*
-** global variable for internal shell variables.
-*/
-
-char				**g_var;
-char				**g_var_names;
-t_opt				g_opt;
 
 static char			*fill_dquote(char *str)
 {

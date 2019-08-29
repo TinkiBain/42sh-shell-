@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:25:05 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/26 17:35:20 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/29 17:30:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	hash_usage(void)
 {
-	write(STDERR, PROJECT_NAME, ft_strlen(PROJECT_NAME));
+	write(STDERR, g_project_name, ft_strlen(g_project_name));
 	write(STDERR, ": ", 2);
 	write(STDERR, HASH_USAGE, ft_strlen(HASH_USAGE));
 	write(STDERR, "\n", 1);
@@ -23,7 +23,7 @@ void	hash_usage(void)
 
 void	hash_invalid_option(char c)
 {
-	write(STDERR, PROJECT_NAME, ft_strlen(PROJECT_NAME));
+	write(STDERR, g_project_name, ft_strlen(g_project_name));
 	write(STDERR, ": ", 2);
 	write(STDERR, HASH_NAME, ft_strlen(HASH_NAME));
 	write(STDERR, ": -", 3);
@@ -39,7 +39,7 @@ void	hash_empty(void)
 
 void	hash_not_found(char *name)
 {
-	write(STDERR, PROJECT_NAME, ft_strlen(PROJECT_NAME));
+	write(STDERR, g_project_name, ft_strlen(g_project_name));
 	write(STDERR, ": ", 2);
 	write(STDERR, HASH_NAME, ft_strlen(HASH_NAME));
 	write(STDERR, ": ", 2);

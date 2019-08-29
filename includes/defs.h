@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 15:24:22 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:44:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 # define STDIN					0
 # define STDOUT					1
 # define STDERR					2
+
+extern char						*g_project_name;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/28 16:10:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 18:42:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,20 @@ void		preliminary_check_fd(void)
 		exit(g_res_exec);
 }
 
-void		shell_init(int argc, char *argv[])
+void		shell_init_readline(void)
 {
-	extern char		**environ;
-	extern t_opt	g_opt;
+	logopen();
+	g_history = ft_xmemalloc(sizeof(t_history));
+	history_load(g_history);
+}
 
-	if (argc > 1 && ft_strequ(argv[1], "-v"))
-		g_opt.vi_mode = 1;
+void		shell_init(void)
+{
+	extern t_opt	g_opt;
+	extern char		**environ;
+	extern char		*g_project_name;
+
+	g_project_name = ft_xstrdup(PROJECT_NAME);
 	g_opt.enable_color = 1;
 	g_opt.noclobber = 1;
 	preliminary_check_fd();
@@ -36,7 +43,4 @@ void		shell_init(int argc, char *argv[])
 	init_g_var();
 	fill_g_var_names();
 	fill_hash_table();
-	logopen();
-	g_history = ft_xmemalloc(sizeof(t_history));
-	history_load(g_history);
 }

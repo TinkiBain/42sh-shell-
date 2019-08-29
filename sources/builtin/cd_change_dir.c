@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_change_dir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:27:06 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/25 20:32:37 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:28:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 int			cd_error(const char *dir)
 {
-	ft_putstr_fd(PROJECT_NAME ": cd: ", 2);
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": cd: ", 2);
 	perror(dir);
 	return (1);
 }
 
 void		*cd_error_invalid_flag(char c)
 {
-	ft_putstr_fd(PROJECT_NAME ": cd: -", 2);
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": cd: -", 2);
 	write(2, &c, 1);
 	ft_putstr_fd(": invalid option\ncd: usage: cd [-L|-P] [dir]\n", 2);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/27 15:21:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 17:25:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 	{
 		if (execve(path, av, env) == -1)
 		{
-			ft_putstr_fd(PROJECT_NAME ": ", 1);
+			ft_putstr_fd(g_project_name, 2);
+			ft_putstr_fd(": ", 1);
 			ft_putstr_fd(av[0], 2);
 			ft_putendl_fd(": execve return (-1) from call_exec()", 2);
 			exit(-1);
@@ -31,7 +32,8 @@ static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 	}
 	else
 	{
-		ft_putstr_fd(PROJECT_NAME ": permission denied: ", 2);
+		ft_putstr_fd(g_project_name, 2);
+		ft_putstr_fd(": permission denied: ", 2);
 		ft_putendl_fd(path, 2);
 		exit(1);
 	}
