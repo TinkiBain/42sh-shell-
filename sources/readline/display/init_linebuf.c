@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_linebuf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:19:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 19:22:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 20:13:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_newline(void)
 
 	term_getpos(&row, &col);
 	if (col != 0)
-		ft_printf("%s%%%s\n\r", COLOR_REVVID, COLOR_EOC);
+		ft_printf("%s%%%s \n\r", COLOR_REVVID, COLOR_EOC);
 }
 
 void	init_linebuf(t_line *line)

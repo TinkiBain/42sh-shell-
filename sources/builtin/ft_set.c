@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 23:37:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/28 15:57:43 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void		unset_option(const char **av)
 		g_opt.enable_color = 0;
 	else if (ft_strequ(*(av), "noclobber"))
 		g_opt.noclobber = 0;
+	set_var_shellopts();
 }
 
 static void		handle_set_arg(const char **av)
@@ -76,6 +77,7 @@ static void		handle_set_arg(const char **av)
 				g_opt.enable_color = 1;
 			else if (ft_strequ(*(av), "noclobber"))
 				g_opt.noclobber = 1;
+			set_var_shellopts();
 		}
 	}
 	else if (ft_strequ(*(av), "+o"))
@@ -89,7 +91,7 @@ static void		handle_set_arg(const char **av)
 
 int				ft_set(const char **av)
 {
-	extern	char	**g_var;
+	extern char	**g_var;
 
 	if (!g_var)
 		return (1);
@@ -99,10 +101,7 @@ int				ft_set(const char **av)
 			print_all_vars();
 		else
 			while (*av)
-			{
-				handle_set_arg(av);
-				++av;
-			}
+				handle_set_arg(av++);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 01:04:04 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/27 20:00:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "ft_qsort.h"
 
 # define COMPLETION_QUERY_ITEMS		100
-# define TMP_PATH					"/tmp/42sh_tmp"
+# define TMP_PATH					"/tmp/" PROJECT_NAME "_tmp"
 # define DEFAULT_TEXTEDITOR			"/usr/bin/vim"
 
 void		self_insert(t_line *line);
