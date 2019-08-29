@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/24 16:43:39 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/29 16:09:10 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_hash			*create_hash(char *name, char *path, unsigned int key)
 	temp->hash_on = 0;
 	temp->hash_count = 0;
 	temp->next = NULL;
+	temp->flags_args = NULL;
 	++g_prog_names_count;
 	return (temp);
 }

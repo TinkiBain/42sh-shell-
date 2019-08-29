@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 17:49:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 17:44:13 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/29 17:06:44 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void		fill_hash_table(void)
 	create_bin(get_value_from_all_vars("PATH"));
 	add_force_builds();
 	create_arr_names();
+	add_flags_args();
 }

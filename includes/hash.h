@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/26 17:52:21 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/29 17:07:35 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct				s_hash
 	size_t					hash_count;
 	unsigned int			hash;
 	struct s_hash			*next;
+	char					**flags_args;
 }							t_hash;
 
 void						null_hash(t_hash *table[HASH_LEN]);
@@ -77,5 +78,10 @@ void						find_and_del_hash(char *name);
 **Flags
 */
 void						del_all_hash(void);
+
+/*
+**fill_flags
+*/
+void						add_flags_args(void);
 
 #endif
