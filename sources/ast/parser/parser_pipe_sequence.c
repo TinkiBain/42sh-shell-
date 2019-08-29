@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 20:31:43 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 19:49:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/29 20:30:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void					*parser_pipe_sequence_check_error(t_lex *lex)
 		g_error_pars = 2;
 		return (NULL);
 	}
-	if (lex->type & PIPE_SYMB)
+	if (lex->type & PIPE)
 		return (parser_print_error("|"));
 	if (lex->type & BANG)
 		return (parser_print_error("!"));
@@ -49,7 +49,7 @@ t_pipe_sequence			*parser_pipe_sequence(t_lex *lex)
 	pipe_seq = init_pipe_sequence();
 	while (lex->next)
 	{
-		if (lex->next->type & PIPE_SYMB)
+		if (lex->next->type & PIPE)
 		{
 			tmp = lex->next->next;
 			lex->next = NULL;

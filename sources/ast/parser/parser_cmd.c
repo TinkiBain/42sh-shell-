@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 20:47:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:03:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ t_cmd			*parser_cmd(t_lex *lex)
 	if (!tmp)
 		return (cmd);
 	if (lex == tmp)
-		cmd->cmd_name = ft_xstrdup(tmp->lexeme);
+		cmd->cmd_name = ft_xstrdup(tmp->lexem);
 	else
-		cmd->cmd_word = ft_xstrdup(tmp->lexeme);
+		cmd->cmd_word = ft_xstrdup(tmp->lexem);
 	tmp = tmp->next;
 	parser_cmd_suffix(tmp, &cmd->cmd_suf);
 	return (cmd);

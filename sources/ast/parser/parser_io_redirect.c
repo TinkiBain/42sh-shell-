@@ -6,11 +6,12 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:10:37 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:29:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "sh.h"
 
 t_io_redirect	*init_io_redirect(void)
 {
@@ -30,12 +31,12 @@ t_io_redirect	*parser_io_redirect(t_lex *lex)
 	if (!lex)
 		return (NULL);
 	io_redir = init_io_redirect();
-	if (!(ft_strequ(lex->lexeme, "")))
-		io_redir->file_name = ft_xstrdup(lex->lexeme);
+	if (!(ft_strequ(lex->lexem, "")))
+		io_redir->file_name = ft_xstrdup(lex->lexem);
 	else
 		parser_print_error("newline");
-	if (lex->fd)
-		io_redir->io_number = lex->fd;
+//	if (lex->fd)
+//		io_redir->io_number = lex->fd;
 	io_redir->type = lex->type;
 	return (io_redir);
 }

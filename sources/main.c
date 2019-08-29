@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/27 19:21:04 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:49:38 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void		main_loop(void)
 		ft_putstr("\n");
 		if (*(tmp = ft_strtrim(buf)))
 		{
-			list = exec_ast(buf);
+//			list = exec_ast(buf);
+			list = NULL;
 			traverse_ast(list);
 			g_error_pars = 0;
 			parser_free_tree(list);
@@ -41,6 +42,17 @@ void		main_loop(void)
 
 int			main(int argc, char *argv[])
 {
+	char 	buf[1024];
+	t_lex	*lex;
+	
+	while (1)
+	{
+		buf[read(0, buf, 1023) - 1] = '\0';
+		if (ft_strequ(buf, "exit"))
+			exit (0);
+		lex = lexer(buf);
+		print_lexem(lex);
+	}
 	shell_init(argc, argv);
 	main_loop();
 	shell_clear();
