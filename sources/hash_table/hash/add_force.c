@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 14:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 14:05:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/29 18:52:40 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,12 @@ void			add_force_builds(void)
 	add_force_build("fg", NULL);
 	add_force_build("hash", NULL);
 	add_force_build("jobs", NULL);
+	add_force_build("export", NULL);
 	add_force_build("set", NULL);
-	add_force_build("setenv", NULL);
+//	add_force_build("setenv", NULL);
 	add_force_build("time", NULL);
 	add_force_build("type", NULL);
 	add_force_build("unalias", NULL);
 	add_force_build("unset", NULL);
-	add_force_build("unsetenv", NULL);
+//	add_force_build("unsetenv", NULL);
 }
