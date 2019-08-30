@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:07:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/30 22:39:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ int			ft_cd(const char **av, char ***env);
 int			ft_echo(const char **av);
 int			ft_env(const char **av, char **env);
 int			ft_exit(const char **av);
+int			ft_export(const char **av);
 int			ft_hash(char **argv);
 int			ft_set(const char **av);
-int			ft_setenv(const char **av);
+// int			ft_setenv(const char **av);
 int			ft_type(const char **av);
 int			ft_unset(const char **av);
-int			ft_unsetenv(const char **av);
+// int			ft_unsetenv(const char **av);
 int			change_dir_with_flag(const char *dir);
 int			change_dir_without_flag(const char *dir);
 int			cd_error(const char *dir);
