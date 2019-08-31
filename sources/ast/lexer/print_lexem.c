@@ -67,8 +67,15 @@ void	print_lexem(t_lex *lex)
 	{
 		if (lex->type == WORD)
 		{
+			ft_putstr("WORD (");
 			ft_putstr((char*)lex->lexem);
-			ft_putstr(" ");
+			ft_putstr(") ");
+		}
+		else if (lex->type == IO_NUMBER)
+		{
+			ft_putstr("IO_NUMBER (");
+			ft_putstr(lex->lexem);
+			ft_putstr(") ");
 		}
 		else
 			print_spec(lex->type);

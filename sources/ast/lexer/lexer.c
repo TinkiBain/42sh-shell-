@@ -49,15 +49,13 @@ t_lex		*lexer(char *str)
 			continue ;
 		if (*str == '\n')
 			init_lex(NEWLINE, NULL, &lex);
-		else if (*str == '!')
-			init_lex(BANG, NULL, &lex);
 		else if (*str == '>' || *str == '<' || *str == '|' || *str == '&'
 				|| *str == ';')
 			str = lexer_check_token(str, &lex);
-//		else if (*str >= '0' && *str <= '9')
-//			str = lexer_check_io_number(str, &lex);
+		else if (*str >= '0' && *str <= '9')
+			str = lexer_check_io_number(str, &lex);
 		else
-			str = lexer_check_reserved_word(str, &lex);
+			str = lexer_find_word(str, &lex);
 		++str;
 	}
 	return (lex);

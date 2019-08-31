@@ -52,6 +52,7 @@ int			main(int argc, char *argv[])
 			exit (0);
 		lex = lexer(buf);
 		print_lexem(lex);
+		lexer_free_all(lex);
 	}
 	shell_init(argc, argv);
 	main_loop();

@@ -16,7 +16,8 @@ TRAVERSE_AST_DIR=traverse_ast
 
 SRCS_LEXER=\
 	lexer.c					lexer_check_token.c		lexer_check_reserved_word.c\
-	print_lexem.c
+	print_lexem.c			lexer_check_io_number.c	lexer_free_all.c\
+	lexer_find_word.c
 
 SRCS_PARSER=\
 	parser.c				parser_and_or.c			parser_cmd.c\
