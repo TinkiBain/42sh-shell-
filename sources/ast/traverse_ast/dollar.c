@@ -17,22 +17,30 @@ static char		*ft_dollar_word(char *str, int k)
 	char	*tmp;
 	int		i;
 	char	*buf;
+	int		flag;
 
 	i = 0;
+	flag = 0;
 	if (str[i] && str[i] == '$')
 		return (ft_itoa(getpid()));
-	while (str[i] && check_spec_symbol(str[i]) && str[i] != '$')
-		i++;
+	if (str[i] == '{')
+	{
+		flag = 1;
+		while (str[i + 1] && str[i + 1] != '}')
+			i++;
+	}
+	else
+		while (str[i] && check_spec_symbol(str[i]) && str[i] != '$')
+			i++;
 	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
 	while (++k < i)
-		tmp[k] = str[k];
+		tmp[k] = str[k + flag];
+		write(1, "tmp[k]", )
 	tmp[k] = '\0';
-	if ((buf = get_value_from_all_vars(tmp)) == NULL)
-	{
-		free(tmp);
-		return (0);
-	}
+	buf = get_value_from_all_vars(tmp);
 	free(tmp);
+	if ((buf) == NULL)
+		return (0);
 	return (buf);
 }
 
