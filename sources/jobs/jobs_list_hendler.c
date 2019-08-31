@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cjobs_list.c                                       :+:      :+:    :+:   */
+/*   jobs_list_hendler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/26 16:06:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/31 14:15:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "sh.h"
 
 static void		freedjob(t_jobs **new)
 {
@@ -49,7 +49,6 @@ void			deletejob(t_jobs **alst, int num)
 		new->next = prew->next;
 		freedjob(&prew);
 	}
-
 }
 
 static char		*only_name(char *path)
@@ -93,7 +92,7 @@ t_jobs			*ft_addjob(char *path)
 	new->name = only_name(path);
 	new->status = ft_strdup("[Running]");
 	new->next = NULL;
-	new->num = ft_num_job(joba);
+	new->num = ft_num_job(g_jobs);
 	new->str_num = ft_itoa(new->num);
 	return (new);
 }

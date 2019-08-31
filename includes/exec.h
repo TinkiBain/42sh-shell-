@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:07:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/31 14:05:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXEC_H
 # define EXEC_H
 
+# include "jobs.h"
 # include "parser.h"
 # include "lexer.h"
 
@@ -22,11 +23,14 @@ int			*g_open_fd;
 
 int			call_exec(const char **av, char ***env);
 int			is_builtin(const char *cmd);
+void		bg(t_jobs *local_job, char *name);
+void		fg(t_jobs *local_job, char *name);
 int			ft_cd(const char **av, char ***env);
 int			ft_echo(const char **av);
 int			ft_env(const char **av, char **env);
 int			ft_exit(const char **av);
 int			ft_hash(char **argv);
+void		ft_kill(char **cmd, t_jobs *local_job, int sig);
 int			ft_set(const char **av);
 int			ft_setenv(const char **av);
 int			ft_type(const char **av);

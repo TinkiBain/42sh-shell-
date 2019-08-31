@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_kill.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/10 12:55:06 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/31 14:20:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "sh.h"
 
 static int		ft_isstrnum(char *c)
 {
@@ -39,12 +39,12 @@ static void		kill_hendler_proc(char **cmd, t_jobs *local_job, int sig)
 			local_job = local_job->next;
 	if (!local_job && num)
 	{
-		printf("kill: %%%d: no such job\n", num); //!!
+		ft_printf("kill: %%%d: no such job\n", num);
 		cmd++;
 		return ;
 	}
 	if (local_job)
-		kill(local_job->PID, sig);
+		kill(local_job->pid, sig);
 }
 
 static void		kill_hendler(char **cmd, t_jobs *local_job,
@@ -63,10 +63,10 @@ static void		kill_hendler(char **cmd, t_jobs *local_job,
 		{
 			kek = ft_atoi((*cmd));
 			if (kill(kek, sig) < 0)
-				printf("kill: %d: no such process\n", kek); //!!
+				ft_printf("kill: %d: no such process\n", kek);
 		}
 		else
-			printf("kill: illegal pid: %s\n", (*cmd)); //!1
+			ft_printf("kill: illegal pid: %s\n", (*cmd));
 	}
 }
 

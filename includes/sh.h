@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 20:52:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 13:48:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "variables.h"
 # include "lib_wtalea.h"
 # include "xfuncs.h"
+# include "jobs.h"
 
 typedef struct	s_opt
 {

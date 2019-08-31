@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_sig_hendler.c                                    :+:      :+:    :+:   */
+/*   jobs_sig_hendler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/26 15:19:26 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/31 14:20:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-static void			print(t_jobs *job, char *str)
-{
-	ft_putendl_nb("[", 1);
-	ft_putendl_nb(job->str_num, 1);
-	ft_putendl_nb("]\t", 1);
-	ft_putendl_nb(str, 1);
-	ft_putendl_nb(job->name, 1);
-	ft_putendl_nb("\n", 1);
-}
+#include "sh.h"
 
 static void			def_kill_or_done(t_jobs *first, int sig)
 {
 	if (first)
 	{
 		if (sig == 9 || sig == 15)
-			print(first, "\t\t[Killed]\t");
+			ft_printf("[%s]\t\t[Killed]\t%s\n", first->str_num, first->name);
 		else
-			print(first, "\t\t[Done]\t\t");
+			ft_printf("[%s]\t\t[Done]\t%s\n", first->str_num, first->name);
 	}
-	deletejob(&joba, first->num);
+	deletejob(&g_jobs, first->num);
 }
 
 void				jobs_sig(void)
@@ -41,9 +31,9 @@ void				jobs_sig(void)
 	int				sig;
 
 	done_pid = 0;
-	first = joba;
+	first = g_jobs;
 	done_pid = waitpid(-1, &sig, WUNTRACED);
-	while (first && first->PID != done_pid)
+	while (first && first->pid != done_pid)
 		first = first->next;
 	if (first == NULL)
 		return ;

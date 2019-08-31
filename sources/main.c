@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/29 20:52:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 14:05:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_opt		g_opt;
 char		**g_var;
 char		**g_var_names;
 char		*g_project_name;
+t_jobs		*g_jobs;
 
 void		main_readline_loop(void)
 {

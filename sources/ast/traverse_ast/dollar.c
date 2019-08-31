@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/25 16:03:34 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/31 14:19:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,15 @@ static char		*ft_dollar_word(char *str, int k)
 	flag = 0;
 	if (str[i] && str[i] == '$')
 		return (ft_itoa(getpid()));
-	if (str[i] == '{')
-	{
-		flag = 1;
+	if (str[i] == '{' && (flag = 1))
 		while (str[i + 1] && str[i + 1] != '}')
 			i++;
-	}
 	else
 		while (str[i] && check_spec_symbol(str[i]) && str[i] != '$')
 			i++;
 	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
 	while (++k < i)
 		tmp[k] = str[k + flag];
-		write(1, "tmp[k]", )
 	tmp[k] = '\0';
 	buf = get_value_from_all_vars(tmp);
 	free(tmp);

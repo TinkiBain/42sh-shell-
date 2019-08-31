@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/29 20:42:04 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/08/31 14:14:51 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,12 +52,21 @@ SRCS_WITHOUT_DIR=\
 	shell_clear.c\
 	exec_ast.c
 
+JOBS_DIR=jobs
+
+SRCS_JOBS=\
+	jobs.c\
+	jobs_list_hendler.c\
+	jobs_sig_hendler.c\
+	jobs_last_elem.c\
+	jobs_list_counter.c
+
 BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
 	cd.c			ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
 	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c\
-	cd_change_dir.c	ft_fc.c
+	cd_change_dir.c	ft_fc.c			ft_kill.c		bg.c		fg.c
 
 VAR_DIR=variables
 
@@ -81,6 +90,7 @@ SRCS_XFUNCS=\
 SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(BUILTIN_DIR)/, $(SRCS_BUILTIN))\
 	$(addprefix $(AST_DIR)/, $(SRCS_AST))\
+	$(addprefix $(JOBS_DIR)/, $(SRCS_JOBS))\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
 	$(addprefix $(VAR_DIR)/, $(SRCS_VAR))\
@@ -114,6 +124,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(HASH_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
 	$(OBJS_DIR)/$(VAR_DIR)\
+	$(OBJS_DIR)/$(JOBS_DIR)\
 	$(OBJS_DIR)/$(DIR_LIB_WTALEA)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)
 
