@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/24 17:59:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 23:30:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,26 @@ static void	check_main_vars(const char *var, size_t name_len)
 
 int			set_var(const char *var, char ***env, int change_readonly)
 {
-	char	*p;
-	size_t	name_len;
+	const char	*tmp_var;
+	char		*p;
+	size_t		name_len;
 
 	p = ft_strchr(var, '=');
-	if (env && p && p > var)
+	tmp_var = (p) ? var : (const char *)ft_strjoin(var, "=");
+	if (env)
 	{
-		name_len = p - var;
-		if (change_readonly || !check_readonly_var(var, name_len))
+		name_len = (p) ? (p - var) : ft_strlen(var);
+		if (change_readonly || !check_readonly_var(tmp_var, name_len))
 		{
-			synchronize_var(var, *env, name_len);
-			check_main_vars(var, name_len);
-			if (!ft_getenv(var, *env, name_len))
-				return (add_new_var(var, env));
+			synchronize_var(tmp_var, *env, name_len);
+			check_main_vars(tmp_var, name_len);
+			if (!ft_getenv(tmp_var, *env, name_len))
+				return (add_new_var(tmp_var, env));
 			else
-				return (replace_var(var, *env, name_len));
+				return (replace_var(tmp_var, *env, name_len));
 		}
 	}
+	if (!p)
+		ft_memdel((void **)tmp_var);
 	return (0);
 }

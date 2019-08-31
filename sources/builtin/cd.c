@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 15:30:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 17:28:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				change_dir_variable(const char *dir, char ***env)
 	if (!dir)
 	{
 		if (!(dir = ft_getenv("HOME", *env, 4)))
-			dir = get_value_from_all_vars("HOME");
+			dir = get_var_value("HOME");
 		if (!dir)
 		{
 			ft_putstr_fd(g_project_name, 2);
@@ -59,7 +59,7 @@ int				change_dir_variable(const char *dir, char ***env)
 	else
 	{
 		if (!(dir = ft_getenv("OLDPWD", *env, 6)))
-			dir = get_value_from_all_vars("OLDPWD");
+			dir = get_var_value("OLDPWD");
 		if (!dir)
 		{
 			ft_putstr_fd(g_project_name, 2);
@@ -68,7 +68,7 @@ int				change_dir_variable(const char *dir, char ***env)
 		}
 	}
 	if (!(return_value = change_dir_with_flag(dir)))
-		ft_putendl_fd(get_value_from_all_vars("PWD"), 2);
+		ft_putendl_fd(get_var_value("PWD"), 2);
 	return (return_value);
 }
 
@@ -78,7 +78,7 @@ char			**cd_fill_path(const char *dir)
 	char		**new_arr;
 	int			i;
 
-	arr = ft_strsplit(get_value_from_all_vars("CDPATH"), ':');
+	arr = ft_strsplit(get_var_value("CDPATH"), ':');
 	i = 0;
 	while (arr && arr[i])
 	{

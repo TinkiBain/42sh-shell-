@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_vi.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 19:29:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	**build_argv(char *str)
 	char	**argv;
 
 	argv = ft_xmemalloc(sizeof(char *) * 3);
-	argv[0] = ft_xstrdup(get_value_from_all_vars("TEXTEDITOR"));
+	argv[0] = ft_xstrdup(get_var_value("TEXTEDITOR"));
 	if (!argv[0])
 		argv[0] = ft_xstrdup(DEFAULT_TEXTEDITOR);
 	argv[1] = ft_xstrdup(str);

@@ -13,6 +13,7 @@ valgrind-out.txt
 
 # Output file
 21sh
+42sh
 a.out
 
 # Temporary files

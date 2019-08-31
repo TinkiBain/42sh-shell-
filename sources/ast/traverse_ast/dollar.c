@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/25 16:03:34 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char		*ft_dollar_word(char *str, int k)
 	while (++k < i)
 		tmp[k] = str[k];
 	tmp[k] = '\0';
-	if ((buf = get_value_from_all_vars(tmp)) == NULL)
+	if ((buf = get_var_value(tmp)) == NULL)
 	{
 		free(tmp);
 		return (0);

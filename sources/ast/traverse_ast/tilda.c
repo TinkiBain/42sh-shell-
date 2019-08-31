@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/25 16:11:25 by jterry           ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ static char			*user_founder(char *str)
 static char			*tilda(char *str, char *buf)
 {
 	if (str[1] == '+' && !str[2])
-		return (ft_xstrdup(get_value_from_all_vars("PWD")));
+		return (ft_xstrdup(get_var_value("PWD")));
 	else if (str[1] == '-' && !str[2])
 	{
-		if ((buf = get_value_from_all_vars("OLDPWD")) < 0)
+		if ((buf = get_var_value("OLDPWD")) < 0)
 			return (ft_xstrdup(buf));
 	}
 	else if (str[1] == '/')
 	{
-		buf = get_value_from_all_vars("HOME");
+		buf = get_var_value("HOME");
 		buf = ft_strrejoin(buf, &str[1], 0);
 		return (buf);
 	}
 	else if (str[1])
 		return (user_founder(str));
 	else
-		buf = get_value_from_all_vars("HOME");
+		buf = get_var_value("HOME");
 	return (ft_xstrdup(buf));
 }
 

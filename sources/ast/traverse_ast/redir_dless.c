@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/19 15:24:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			redir_dless(t_io_redirect *redir)
 	save_fd(save);
 	while (1)
 	{
-		str = ft_readline(get_value_from_all_vars("PS2"), NULL);
+		str = ft_readline(get_var_value("PS2"), NULL);
 		ft_putstr("\n");
 		if (!str || ft_strequ(str, redir->file_name))
 			break ;
