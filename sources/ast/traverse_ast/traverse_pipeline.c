@@ -3,16 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipeline.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 14:05:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/08/31 15:40:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 extern char	**g_var;
+
+static char		*get_cmd_name(t_cmd *cmd)
+{
+	if (cmd->cmd_pref)
+	{
+		if (cmd->cmd_word)
+		{
+			cmd->cmd_word = tdq(cmd->cmd_word);
+			return (cmd->cmd_word);
+		}
+	}
+	else
+	{
+		cmd->cmd_name = tdq(cmd->cmd_name);
+		return (cmd->cmd_name);
+	}
+	return (NULL);
+}
 
 static void		handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
 															int in_fork)
@@ -23,6 +41,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
 	{
 		dup2(fd, 0);
 		close(fd);
+		get_cmd_name(cmd);
 		traverse_cmd(cmd, env, in_fork);
 		exit(g_res_exec);
 	}
@@ -44,6 +63,7 @@ static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(fd, 0);
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
+		get_cmd_name(pipe_seq->cmd);
 		traverse_cmd(pipe_seq->cmd, environ, in_fork);
 		exit(g_res_exec);
 	}
@@ -55,24 +75,6 @@ static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->cmd, env, in_fork);
 	close(pipefd[0]);
 	waitpid(pid, NULL, 0);
-}
-
-static char		*get_cmd_name(t_cmd *cmd)
-{
-	if (cmd->cmd_pref)
-	{
-		if (cmd->cmd_word)
-		{
-			cmd->cmd_word = tdq(cmd->cmd_word);
-			return (cmd->cmd_word);
-		}
-	}
-	else
-	{
-		cmd->cmd_name = tdq(cmd->cmd_name);
-		return (cmd->cmd_name);
-	}
-	return (NULL);
 }
 
 static void		pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
