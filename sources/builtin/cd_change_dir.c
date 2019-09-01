@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:27:06 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 17:28:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		*cd_get_old_path_with_flag(void)
 {
 	char	*str;
 
-	str = ft_strjoin("OLDPWD=", get_value_from_all_vars("PWD="));
+	str = ft_strjoin("OLDPWD=", get_var_value("PWD="));
 	if (!str)
 		str = ft_strdup("OLDPWD=");
 	return (str);

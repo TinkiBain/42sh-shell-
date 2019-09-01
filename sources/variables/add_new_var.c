@@ -6,14 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 23:49:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 14:11:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-int	add_new_var(const char *av, char ***env)
+int	add_new_var(const char *av, char ***env, int flag)
 {
 	char	**new_env;
 	char	**tmp;
@@ -35,5 +35,7 @@ int	add_new_var(const char *av, char ***env)
 	free(*env);
 	*env = new_env;
 	fill_g_var_names();
+	if (flag)
+		ft_memdel((void **)&av);
 	return (0);
 }

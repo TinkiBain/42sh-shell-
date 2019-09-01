@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/31 13:48:17 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 13:39:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int				return_error(const char *file_name, const char *error);
 t_pars_list		*exec_ast(char *buf);
 void			main_gnl_loop(int fd, char *filename);
 void			main_readline_loop(void);
-void			shell_init(void);
+void			shell_init(char *project_name);
 void			shell_init_readline(void);
 void			shell_clear(void);
 

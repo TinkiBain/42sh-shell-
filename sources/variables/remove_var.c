@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 23:29:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 20:38:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 int		remove_var(const char *av, char ***env)
 {
 	char		**tmp;
+	char		*p;
 	size_t		len;
 
 	if (!env)
 		return (0);
 	if (av)
 	{
-		len = ft_strlen(av);
+		p = ft_strchr(av, '=');
+		len = (p) ? (p - av) : ft_strlen(av);
 		tmp = *env;
 		while (*tmp && !(ft_strnequ(av, *tmp, len) && *(*tmp + len) == '='))
 			++tmp;

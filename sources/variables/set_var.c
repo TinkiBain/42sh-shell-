@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/24 17:59:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 14:25:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	synchronize_var(const char *var, char **env, size_t name_len)
 	else if (env == g_var)
 		tmp = environ;
 	if (ft_getenv(var, tmp, name_len))
-		replace_var(var, tmp, name_len);
+		replace_var(var, tmp, name_len, 0);
 }
 
 static void	check_main_vars(const char *var, size_t name_len)
@@ -47,22 +47,35 @@ static void	check_main_vars(const char *var, size_t name_len)
 
 int			set_var(const char *var, char ***env, int change_readonly)
 {
-	char	*p;
-	size_t	name_len;
+	const char	*tmp_var;
+	char		*p;
+	size_t		name_len;
+	int			flag;
 
-	p = ft_strchr(var, '=');
-	if (env && p && p > var)
+	flag = 0;
+	if (env && (tmp_var = var))
 	{
-		name_len = p - var;
-		if (change_readonly || !check_readonly_var(var, name_len))
+		p = ft_strchr(var, '=');
+		name_len = (p) ? (p - var) : ft_strlen(var);
+		if (!p && (p = get_var_value((char *)var)))
 		{
-			synchronize_var(var, *env, name_len);
-			check_main_vars(var, name_len);
-			if (!ft_getenv(var, *env, name_len))
-				return (add_new_var(var, env));
+			flag = 1;
+			tmp_var = (const char *)ft_strjoin(var, "=");
+			tmp_var = (const char *)ft_strrejoin(tmp_var, p, 1);
+		}
+		else if (!p && (flag = 1))
+			tmp_var = (const char *)ft_strjoin(var, "=");
+		if (change_readonly || !check_readonly_var(tmp_var, name_len))
+		{
+			synchronize_var(tmp_var, *env, name_len);
+			check_main_vars(tmp_var, name_len);
+			if (!ft_getenv(tmp_var, *env, name_len))
+				return (add_new_var(tmp_var, env, flag));
 			else
-				return (replace_var(var, *env, name_len));
+				return (replace_var(tmp_var, *env, name_len, flag));
 		}
 	}
+	if (flag)
+		ft_memdel((void **)tmp_var);
 	return (0);
 }

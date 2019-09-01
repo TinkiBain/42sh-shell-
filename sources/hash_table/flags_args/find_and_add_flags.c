@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_and_add_flags.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:01:23 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/29 17:36:34 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			add_flags_args(void)
 
 	resources = NULL;
 	fd = 0;
-	if ((resources = get_value_from_all_vars("SHELLHOME")))
+	if ((resources = get_var_value("SHELLHOME")))
 	{
 		resources = ft_xstrjoin(resources, "/resources/flags_args");
 		if ((fd = openat(fd, resources, O_RDONLY)))

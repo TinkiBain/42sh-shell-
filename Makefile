@@ -6,11 +6,11 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/08/31 14:14:51 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/01 13:40:14 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=21sh
+NAME=42sh
 
 CC=clang
 FLAGS=-Wall -Wextra -Werror
@@ -64,9 +64,10 @@ SRCS_JOBS=\
 BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
-	cd.c			ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
-	ft_setenv.c		ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c\
-	cd_change_dir.c	ft_fc.c			ft_kill.c		bg.c		fg.c
+	cd.c				ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
+	ft_setenv.c			ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c\
+	cd_change_dir.c		ft_fc.c			ft_kill.c		bg.c		fg.c\
+	ft_export.c
 
 VAR_DIR=variables
 
@@ -77,7 +78,7 @@ SRCS_VAR=\
 	print_var_readonly.c		set_var.c\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
-	get_value_from_all_vars.c	print_all_vars.c\
+	get_var_value.c	print_all_vars.c\
 	set_var_in_g_var.c			set_result.c\
 	set_var_shellopts.c
 
@@ -160,6 +161,10 @@ ifneq ($(NAME_CLEAN),)
 	@make fclean -C $(LIBFT_DIR)
 	@rm -rf $(OBJS_DIR)
 	@rm -rf $(NAME)
+	@rm -rf ~/.21sh.history
+	@rm -rf ~/.21sh.log
+	@rm -rf ~/.42sh.history
+	@rm -rf ~/.42sh.log
 	@printf "$(RED)Bin $(NAME_CLEAN) removed.$(NC)\n"
 else
 	@printf "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)\n"

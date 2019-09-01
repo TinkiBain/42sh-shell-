@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/31 14:05:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 13:39:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ int			ft_cd(const char **av, char ***env);
 int			ft_echo(const char **av);
 int			ft_env(const char **av, char **env);
 int			ft_exit(const char **av);
+int			ft_export(const char **av);
 int			ft_hash(char **argv);
 void		ft_kill(char **cmd, t_jobs *local_job, int sig);
 int			ft_set(const char **av);
-int			ft_setenv(const char **av);
 int			ft_type(const char **av);
 int			ft_unset(const char **av);
-int			ft_unsetenv(const char **av);
 int			change_dir_with_flag(const char *dir);
 int			change_dir_without_flag(const char *dir);
 int			cd_error(const char *dir);

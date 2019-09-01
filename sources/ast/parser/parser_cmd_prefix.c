@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 20:34:31 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 06:52:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/31 23:41:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int			parser_prefix_check(char *lexeme)
 	++lexeme;
 	while (*lexeme)
 	{
-		if (*lexeme == '=' && *(lexeme + 1))
+		if (*lexeme == '=')
 			return (0);
 		++lexeme;
 	}

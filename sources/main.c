@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 14:05:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 13:38:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		main_readline_loop(void)
 	while (21)
 	{
 		g_check_nl = 1;
-		if (!(buf = ft_readline(get_value_from_all_vars("PS1"), NULL)))
+		if (!(buf = ft_readline(get_var_value("PS1"), NULL)))
 			break ;
 		ft_putstr("\n");
 		if (*(tmp = ft_strtrim(buf)))
@@ -76,8 +76,8 @@ int			main(int ac, char **av)
 	int		fd;
 	char	*prompt;
 
-	shell_init();
-	if (ac > 1)
+	shell_init(av[0]);
+	if (ac > 1 && (fd = open(*(++av), O_RDONLY)) >= 0)
 	{
 		if (!check_file_errors(*(++av), F_OK) && (fd = open(*av, O_RDONLY)) >= 0)
 		{

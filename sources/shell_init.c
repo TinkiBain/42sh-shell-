@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/29 18:42:14 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/08/31 20:52:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ void		shell_init_readline(void)
 	history_load(g_history);
 }
 
-void		shell_init(void)
+void		shell_init(char *project_name)
 {
 	extern t_opt	g_opt;
 	extern char		**environ;
 	extern char		*g_project_name;
+	char			*p;
 
-	g_project_name = ft_xstrdup(PROJECT_NAME);
+	p = (project_name) ? ft_strrchr(project_name, '/') : NULL;
+	g_project_name = ft_xstrdup((p) ? (p + 1) : project_name);
 	g_opt.enable_color = 1;
 	g_opt.noclobber = 1;
 	preliminary_check_fd();

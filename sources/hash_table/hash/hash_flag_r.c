@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash_flag_r.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 17:40:27 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/26 17:51:43 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	del_all_hash(void)
 		del_hash();
 	g_prog_names_count = 0;
 	g_table = (t_hash **)ft_xmalloc(sizeof(t_hash) * HASH_LEN);
-	create_bin(get_value_from_all_vars("PATH"));
+	create_bin(get_var_value("PATH"));
 	add_force_builds();
 	create_arr_names();
 }
