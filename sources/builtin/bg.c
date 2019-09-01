@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   bg.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:00:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 14:20:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:56:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void			bg(t_jobs *local_job, char *name)
+void			bg(t_pjobs *local_job, char *name)
 {
-	if (name && name[1])
-		while (local_job)
-		{
-			if (!ft_strcmp(local_job->name, name)
-					|| !ft_strcmp(local_job->str_num, &name[1]))
-				break ;
-			local_job = local_job->next;
-		}
-	else
-		local_job = jobs_last_elem(local_job);
-	if (local_job == NULL)
+	t_pjobs		*local;
+	local = name_proc_hendl(local_job, name);
+	if (local == NULL)
 	{
 		ft_putstr("Not such job");
 		return ;
 	}
-	setpgid(local_job->pid, 0);
-	kill(local_job->pid, SIGCONT);
-	free(local_job->status);
-	local_job->status = ft_strdup("[Running]");
-	ft_printf("[%d]\t[Continued]\t%s\n", local_job->num, local_job->name);
+	setpgid(local->workgpid, 0);
+	free(local->status);
+	local->status = ft_strdup("\t[Running]\t");
+	while (local->job)
+	{
+		free(local->job->status);
+		local->job->status = ft_strdup("[Running]");
+		local->job = local->job->next;
+	}
+	/*
+	** отправлять всем саб джобам сигналы о продолжение или только одному
+	*/
+	kill(local->job->pid, SIGCONT);
+	ft_printf("[%d]\t[Continued]\t%s\n", local->num, local->name);
 }

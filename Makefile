@@ -6,7 +6,11 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
+<<<<<<< Updated upstream
 #    Updated: 2019/09/01 20:27:01 by ggwin-go         ###   ########.fr        #
+=======
+#    Updated: 2019/09/01 19:48:42 by jterry           ###   ########.fr        #
+>>>>>>> Stashed changes
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,9 +60,9 @@ SRCS_WITHOUT_DIR=\
 JOBS_DIR=jobs
 
 SRCS_JOBS=\
-	jobs.c\
-	jobs_list_hendler.c\
-	jobs_sig_hendler.c\
+	jobs.c				jobs_helper.c\
+	jobs_list_hendler.c	jobs_list_sub.c\
+	jobs_sig_hendler.c	fgbg_helper.c\
 	jobs_last_elem.c\
 	jobs_list_counter.c\
 	jobs_start_file.c

@@ -6,15 +6,15 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 17:23:02 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/01 15:38:20 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/01 19:50:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_jobs			*subjob_changer(char *str, t_jobs **gjobs, int flag)
+t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag)
 {
-	t_jobs		*local;
+	t_pjobs		*local;
 
 	local = NULL;
 	if (!(*gjobs))
@@ -33,7 +33,7 @@ t_jobs			*subjob_changer(char *str, t_jobs **gjobs, int flag)
 	return (local);
 }
 
-t_jobs			*jobs_startet(char *str, char **argv)
+t_pjobs			*jobs_startet(char *str, char **argv)
 {
 	int i;
 	int flag;
@@ -50,7 +50,7 @@ t_jobs			*jobs_startet(char *str, char **argv)
 		i++;
 	}
 	if (flag)
-		return (subjob_changer(str, &g_jobs, flag));
+		return (subjob_changer(str, &g_pjobs, flag));
 	else
 		return (subjob_changer(str, &g_subjob, flag));
 }

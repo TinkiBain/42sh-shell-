@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs_list_counter.c                                :+:      :+:    :+:   */
+/*   jobs_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/31 14:15:35 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 17:04:01 by jterry           ###   ########.fr       */
+/*   Created: 2019/09/01 19:22:32 by jterry            #+#    #+#             */
+/*   Updated: 2019/09/01 19:47:25 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int				jobs_list_counter(t_pjobs *local_job)
+t_job		*job_finder(int pid, t_pjobs *local)
 {
-	int			iter;
-
-	iter = 0;
-	while (local_job)
+	while (local)
 	{
-		local_job = local_job->next;
-		iter++;
+		while (local->job)
+		{
+			if (local->job->pid == pid)
+				return (local->job);
+			local->job = local->job->next;
+		}
+		local = local->next;
 	}
-	return (iter);
+	return (NULL);
 }

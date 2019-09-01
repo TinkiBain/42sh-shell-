@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   jobs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:04:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/31 14:10:17 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 19:18:20 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int		*order_creat(t_jobs *local, int len)
+static int		*order_creat(t_pjobs *local, int len)
 {
 	int			*ord;
 	int			i;
@@ -45,27 +45,35 @@ static int		*order_creat(t_jobs *local, int len)
 ** iter always = -1
 */
 
-void			jobs(t_jobs *local_job, int iter, char *cmd)
+void			option_print(t_pjobs *local)
+{
+	t_job *job;
+	ft_printf("[%d]\t", local->num);
+	job = local->job;
+	while (job)
+	{
+		ft_printf("%d %s\t%s\n", job->pid, job->status, job->name);
+		job = job->next;
+	}
+}
+
+void			jobs(t_pjobs *local_job, int iter, char *cmd)
 {
 	int			*order;
-	t_jobs		*first;
+	t_pjobs		*first;
 
 	first = local_job;
-	order = order_creat(g_jobs, jobs_list_counter(g_jobs));
-	local_job = first;
+	order = order_creat(g_pjobs, jobs_list_counter(g_pjobs));
 	while (order[++iter] != 0)
 	{
 		while (local_job)
 		{
 			if (local_job->num == order[iter])
 			{
-				if (cmd && !ft_strcmp(cmd, "-l") &&
-						!ft_strcmp(local_job->status, "[Running]"))
-					ft_printf("[%s]\t%s\t%s\n", local_job->str_num,
-							local_job->status, local_job->name);
+				if (cmd && !ft_strcmp(cmd, "-l"))
+					option_print(local_job);
 				else if (!cmd || (cmd && ft_strcmp(cmd, "-l")))
-					ft_printf("[%s]\t%s\t%s\n", local_job->str_num,
-							local_job->status, local_job->name);
+					ft_printf("[%d]\t%s\t%s\n", local_job->num, local_job->status, local_job->name);
 				local_job = first;
 				break ;
 			}

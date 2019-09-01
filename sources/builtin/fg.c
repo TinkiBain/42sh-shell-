@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   fg.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 14:20:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:56:52 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void			fg(t_jobs *local_job, char *name)
+void			fg(t_pjobs *local_job, char *name)
 {
 	int			st;
 
-	if (name && name[1])
-		while (local_job)
-		{
-			if (!ft_strcmp(local_job->name, name)
-					|| !ft_strcmp(local_job->str_num, &name[1]))
-				break ;
-			local_job = local_job->next;
-		}
-	else
-		local_job = jobs_last_elem(local_job);
+	t_pjobs		*local;
+	local = name_proc_hendl(local_job, name);
 	if (local_job == NULL)
 	{
 		ft_putstr("Not such job");
 		return ;
 	}
-	tcsetpgrp(0, local_job->pid);
-	kill(local_job->pid, SIGCONT);
-	free(local_job->status);
-	local_job->status = ft_strdup("[Running]");
-	waitpid(local_job->pid, &st, 0);
+	free(local->status);
+	local->status = ft_strdup("\t[Running]\t");
+	tcsetpgrp(0, local->workgpid);
+	while (local->job)
+	{
+		free(local_job->job->status);
+		local->job->status = ft_strdup("[Running]");
+		local->job = local->job->next;
+	}
+	/*
+	** отправлять всем саб джобам сигналы о продолжение или только одному
+	*/
+	kill(local->job->pid, SIGCONT);
+	waitpid(local->job->pid, &st, 0);
 }

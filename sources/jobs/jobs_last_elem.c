@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   jobs_last_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:15:44 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 14:15:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:04:01 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_jobs			*jobs_last_elem(t_jobs *job)
+t_pjobs			*jobs_last_elem(t_pjobs *job)
 {
 	int			i;
 	int			len;

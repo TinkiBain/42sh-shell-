@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs_list_counter.c                                :+:      :+:    :+:   */
+/*   jobs_list_sub.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/31 14:15:35 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 17:04:01 by jterry           ###   ########.fr       */
+/*   Created: 2019/09/01 18:37:06 by jterry            #+#    #+#             */
+/*   Updated: 2019/09/01 19:48:01 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int				jobs_list_counter(t_pjobs *local_job)
+t_job			*ft_addsubjob(char *path, int num)
 {
-	int			iter;
+	t_job		*new;
 
-	iter = 0;
-	while (local_job)
-	{
-		local_job = local_job->next;
-		iter++;
-	}
-	return (iter);
+	new = (t_job*)malloc(sizeof(t_job));
+	new->name = ft_strdup(path);
+	new->status = ft_strdup("\t[Running]\t");
+	new->next = NULL;
+	new->num = num;
+	return (new);
 }

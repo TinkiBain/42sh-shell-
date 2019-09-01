@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 16:14:03 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/01 19:50:22 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_opt		g_opt;
 char		**g_var;
 char		**g_var_names;
 char		*g_project_name;
-t_jobs		*g_jobs;
-t_jobs		*g_subjob;
+t_pjobs		*g_pjobs;
+t_pjobs		*g_subjob;
 
 void		main_readline_loop(void)
 {

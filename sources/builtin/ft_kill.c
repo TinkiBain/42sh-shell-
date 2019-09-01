@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_kill.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/31 14:20:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:14:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		ft_isstrnum(char *c)
 	return (1);
 }
 
-static void		kill_hendler_proc(char **cmd, t_jobs *local_job, int sig)
+static void		kill_hendler_proc(char **cmd, t_pjobs *local_job, int sig)
 {
 	int			num;
 
@@ -44,11 +44,11 @@ static void		kill_hendler_proc(char **cmd, t_jobs *local_job, int sig)
 		return ;
 	}
 	if (local_job)
-		kill(local_job->pid, sig);
+		kill(local_job->job->pid, sig);
 }
 
-static void		kill_hendler(char **cmd, t_jobs *local_job,
-		int sig, t_jobs *fir)
+static void		kill_hendler(char **cmd, t_pjobs *local_job,
+		int sig, t_pjobs *fir)
 {
 	int			kek;
 
@@ -89,9 +89,9 @@ int				ft_sighendler(char *str)
 ** sig always = 15
 */
 
-void			ft_kill(char **cmd, t_jobs *local_job, int sig)
+void			ft_kill(char **cmd, t_pjobs *local_job, int sig)
 {
-	t_jobs		*fir;
+	t_pjobs		*fir;
 
 	cmd++;
 	fir = local_job;
