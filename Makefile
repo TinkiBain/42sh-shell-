@@ -6,11 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-<<<<<<< Updated upstream
-#    Updated: 2019/09/01 20:27:01 by ggwin-go         ###   ########.fr        #
-=======
-#    Updated: 2019/09/01 19:48:42 by jterry           ###   ########.fr        #
->>>>>>> Stashed changes
+#    Updated: 2019/09/01 21:30:21 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

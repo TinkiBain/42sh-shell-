@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_ast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2019/09/01 20:23:56 by ggwin-go         ###   ########.fr       */
-=======
-/*   Updated: 2019/09/01 18:13:27 by jterry           ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2019/09/01 21:31:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
