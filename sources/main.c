@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 16:06:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/01 16:14:03 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char		**g_var;
 char		**g_var_names;
 char		*g_project_name;
 t_jobs		*g_jobs;
+t_jobs		*g_subjob;
 
 void		main_readline_loop(void)
 {
@@ -76,6 +77,7 @@ int			main(int ac, char **av)
 	int		fd;
 	char	*prompt;
 
+	signal_monitor();
 	shell_init(av[0]);
 	if (ac > 1 && (fd = open(*(++av), O_RDONLY)) >= 0)
 	{

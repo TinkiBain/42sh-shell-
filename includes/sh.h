@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/01 13:39:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:11:06 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_opt
 	t_uint		noclobber;
 }				t_opt;
 
+void			signal_monitor();
 int				check_file_errors(const char *file_name, int flag);
 int				return_error(const char *file_name, const char *error);
 t_pars_list		*exec_ast(char *buf);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs_list_hendler.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/31 14:15:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 15:33:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,12 @@ static int		ft_num_job(t_jobs *localjob)
 	return (min);
 }
 
-t_jobs			*ft_addjob(char *path)
+t_jobs			*ft_addjob(char *path, int flag)
 {
 	t_jobs		*new;
 
 	new = (t_jobs*)malloc(sizeof(t_jobs));
+	new->flag = flag;
 	new->name = only_name(path);
 	new->status = ft_strdup("[Running]");
 	new->next = NULL;

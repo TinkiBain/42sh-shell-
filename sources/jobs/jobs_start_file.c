@@ -6,25 +6,25 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 17:23:02 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/31 20:55:05 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/01 15:38:20 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "sh.h"
 
-t_jobs			*subjob_changer(char *str, t_jobs **joba, int flag)
+t_jobs			*subjob_changer(char *str, t_jobs **gjobs, int flag)
 {
 	t_jobs		*local;
 
 	local = NULL;
-	if (!(*joba))
+	if (!(*gjobs))
 	{
-		(*joba) = ft_addjob(str, flag ? 1 : 0);
-		local = (*joba);
+		(*gjobs) = ft_addjob(str, flag ? 1 : 0);
+		local = (*gjobs);
 	}
 	else
 	{
-		local = (*joba);
+		local = (*gjobs);
 		while (local->next)
 			local = local->next;
 		local->next = ft_addjob(str, flag ? 1 : 0);
@@ -50,7 +50,7 @@ t_jobs			*jobs_startet(char *str, char **argv)
 		i++;
 	}
 	if (flag)
-		return (subjob_changer(str, &joba, flag));
+		return (subjob_changer(str, &g_jobs, flag));
 	else
-		return (subjob_changer(str, &subjob, flag));
+		return (subjob_changer(str, &g_subjob, flag));
 }

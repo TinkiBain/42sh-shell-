@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/09/01 13:40:14 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/01 16:13:44 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCS_WITHOUT_DIR=\
 	check_file_errors.c\
 	shell_init.c\
 	shell_clear.c\
-	exec_ast.c
+	exec_ast.c\
+	signals_hendler.c
 
 JOBS_DIR=jobs
 
@@ -59,7 +60,8 @@ SRCS_JOBS=\
 	jobs_list_hendler.c\
 	jobs_sig_hendler.c\
 	jobs_last_elem.c\
-	jobs_list_counter.c
+	jobs_list_counter.c\
+	jobs_start_file.c
 
 BUILTIN_DIR=builtin
 
