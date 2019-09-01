@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 17:21:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:07:12 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	lexer_check_separator(char *str)
 {
 	if (*str == ';')
-		return (1);
+		return (SEMICOLON);
 	if (*str == '&')
-		if (*(str + 1) && (*(str + 1) != '&' && *(str + 1) != '>'))
-			return (1);
+		if ((*(str + 1) && (*(str + 1) != '&' && *(str + 1) != '>')) || !*(str + 1))
+			return (JOBS);
 	return (0);
 }
 
@@ -76,8 +76,8 @@ t_lex		*lexer(char *buf)
 		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|')
 							|| !*(buf + 1)) && ++buf)
 			lex->type = PIPE_SYMB;
-		else if (lexer_check_separator(buf) && ++buf)
-			lex->type = SEMICOLON;
+		else if (lexer_check_separator(buf) && buf++)
+			lex->type = lexer_check_separator(buf - 1);
 		else if (*buf == '!' && ft_isspace(*(buf + 1)))
 			buf = lexer_bang(buf, lex);
 		else

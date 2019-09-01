@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:21:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:20:33 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/01 16:07:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define ANDGREAT	32768
 # define ANDDGREAT	65536
 # define CLOBBER	131072
+# define JOBS		262144
 
 typedef struct		s_lex
 {
