@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/08/25 18:34:41 by jterry           ###   ########.fr        #
+#    Updated: 2019/09/01 16:53:40 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME=libft.a
 
 CC=clang
 FLAGS=-Wall -Wextra -Werror
+FLAGS+=-g
 INCLUDES=-I includes
 
 H_FILES=\

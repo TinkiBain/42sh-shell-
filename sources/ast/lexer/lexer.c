@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/01 16:07:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/01 20:35:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	lexer_check_separator(char *str)
 	if (*str == ';')
 		return (SEMICOLON);
 	if (*str == '&')
-		if ((*(str + 1) && (*(str + 1) != '&' && *(str + 1) != '>')) || !*(str + 1))
+		if ((*(str + 1) && (*(str + 1) != '&' && *(str + 1) != '>'))
+														|| !*(str + 1))
 			return (JOBS);
 	return (0);
 }

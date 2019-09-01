@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/09/01 16:13:44 by jterry           ###   ########.fr        #
+#    Updated: 2019/09/01 20:27:01 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,10 +66,9 @@ SRCS_JOBS=\
 BUILTIN_DIR=builtin
 
 SRCS_BUILTIN=\
-	cd.c				ft_echo.c		ft_exit.c		ft_hash.c	ft_set.c\
-	ft_setenv.c			ft_type.c		ft_unsetenv.c	ft_unset.c	ft_env.c\
-	cd_change_dir.c		ft_fc.c			ft_kill.c		bg.c		fg.c\
-	ft_export.c
+	cd.c				ft_echo.c		ft_exit.c	ft_hash.c	ft_set.c\
+	ft_type.c			ft_unset.c		ft_env.c	ft_export.c	ft_kill.c\
+	cd_change_dir.c		ft_fc.c			bg.c		fg.c
 
 VAR_DIR=variables
 
@@ -163,6 +162,7 @@ ifneq ($(NAME_CLEAN),)
 	@make fclean -C $(LIBFT_DIR)
 	@rm -rf $(OBJS_DIR)
 	@rm -rf $(NAME)
+	@rm -rf ~/21sh
 	@rm -rf ~/.21sh.history
 	@rm -rf ~/.21sh.log
 	@rm -rf ~/.42sh.history

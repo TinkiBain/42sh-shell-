@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/28 15:57:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 20:34:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ static void		print_plus_options(void)
 	format = "set %so %s\n";
 	name = "vi";
 	val = (g_opt.vi_mode) ? "+" : "-";
+	ft_printf(format, val, name);
+	name = "emacs";
+	val = (g_opt.emacs_mode) ? "+" : "-";
 	ft_printf(format, val, name);
 	name = "color";
 	val = (g_opt.enable_color) ? "+" : "-";
@@ -42,6 +45,9 @@ static void		print_minus_options(void)
 	name = "vi";
 	val = (g_opt.vi_mode) ? "on" : "off";
 	ft_printf(format, name, val);
+	name = "emacs";
+	val = (g_opt.emacs_mode) ? "on" : "off";
+	ft_printf(format, name, val);
 	name = "color";
 	val = (g_opt.enable_color) ? "on" : "off";
 	ft_printf(format, name, val);
@@ -50,15 +56,28 @@ static void		print_minus_options(void)
 	ft_printf(format, name, val);
 }
 
-static void		unset_option(const char **av)
+static void		handle_set_minus_o(const char **av)
 {
-	if (ft_strequ(*(av), "vi"))
-		g_opt.vi_mode = 0;
-	else if (ft_strequ(*(av), "color"))
-		g_opt.enable_color = 0;
-	else if (ft_strequ(*(av), "noclobber"))
-		g_opt.noclobber = 0;
-	set_var_shellopts();
+	if (!*(++av))
+		print_minus_options();
+	else
+	{
+		if (ft_strequ(*(av), "vi"))
+		{
+			g_opt.vi_mode = 1;
+			g_opt.emacs_mode = 0;
+		}
+		else if (ft_strequ(*(av), "emacs"))
+		{
+			g_opt.emacs_mode = 1;
+			g_opt.vi_mode = 0;
+		}
+		else if (ft_strequ(*(av), "color"))
+			g_opt.enable_color = 1;
+		else if (ft_strequ(*(av), "noclobber"))
+			g_opt.noclobber = 1;
+		set_var_shellopts();
+	}
 }
 
 static void		handle_set_arg(const char **av)
@@ -66,26 +85,23 @@ static void		handle_set_arg(const char **av)
 	if (ft_strequ(*av, "-p"))
 		print_var_names();
 	else if (ft_strequ(*(av), "-o"))
-	{
-		if (!*(++av))
-			print_minus_options();
-		else
-		{
-			if (ft_strequ(*(av), "vi"))
-				g_opt.vi_mode = 1;
-			else if (ft_strequ(*(av), "color"))
-				g_opt.enable_color = 1;
-			else if (ft_strequ(*(av), "noclobber"))
-				g_opt.noclobber = 1;
-			set_var_shellopts();
-		}
-	}
+		handle_set_minus_o(av);
 	else if (ft_strequ(*(av), "+o"))
 	{
 		if (!*(++av))
 			print_plus_options();
 		else
-			unset_option(av);
+		{
+			if (ft_strequ(*(av), "vi"))
+				g_opt.vi_mode = 0;
+			else if (ft_strequ(*(av), "emacs"))
+				g_opt.emacs_mode = 0;
+			else if (ft_strequ(*(av), "color"))
+				g_opt.enable_color = 0;
+			else if (ft_strequ(*(av), "noclobber"))
+				g_opt.noclobber = 0;
+			set_var_shellopts();
+		}
 	}
 }
 

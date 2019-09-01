@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 16:07:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/01 20:23:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		traverse_ast(t_pars_list *root)
 {
 	if (!root)
 		return ;
-	printf("%d\n", root->sep);
 	if (root->list)
 	{
 		traverse_ast(root->list);
