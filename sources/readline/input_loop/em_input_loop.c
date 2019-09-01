@@ -6,11 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 18:22:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:44:22 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input_loop.h"
+
+extern t_opt	g_opt;
 
 static int		check_arg(t_line *line)
 {
@@ -68,16 +70,16 @@ int				em_input_loop(t_line *line)
 	int		ret;
 
 	ft_bzero(keybuf, KEYBUF_SIZE);
-	while ((ret = read(STDIN, keybuf, 1)) > 0 && *keybuf != NL)
+	while ((ret = read(g_opt.rl_in, keybuf, 1)) > 0 && *keybuf != NL)
 	{
 		if (*keybuf == CTRL_D && line->str->len == 0)
 			return (0);
 		if (*keybuf == ESC)
 		{
-			if ((ret = read(STDIN, keybuf + 1, 1)) < 0)
+			if ((ret = read(g_opt.rl_in, keybuf + 1, 1)) < 0)
 				return (ret);
 			if (is_ansiseq(keybuf))
-				if ((ret = read(STDIN, keybuf + 2, KEYBUF_SIZE - 3)) < 0)
+				if ((ret = read(g_opt.rl_in, keybuf + 2, KEYBUF_SIZE - 3)) < 0)
 					return (ret);
 		}
 		line->keybuf = str_xcopy(keybuf);

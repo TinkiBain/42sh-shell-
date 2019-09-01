@@ -6,11 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 18:22:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:44:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+
+extern t_opt	g_opt;
 
 static int		check_arg(t_line *line)
 {
@@ -74,7 +76,7 @@ int				vi_input_loop(t_line *line)
 	int		ret;
 
 	ft_bzero(keybuf, KEYBUF_SIZE);
-	while ((ret = read(STDIN, keybuf, KEYBUF_SIZE - 1)) > 0)
+	while ((ret = read(g_opt.rl_in, keybuf, KEYBUF_SIZE - 1)) > 0)
 	{
 		if (*keybuf == CTRL_D && line->str->len == 0)
 			return (0);

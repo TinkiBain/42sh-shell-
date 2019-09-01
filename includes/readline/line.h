@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 16:10:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 15:17:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/01 17:55:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ typedef struct		s_line
 		t_dlist		*hist_start;
 		t_dlist		*hist_current;
 	}				hs;
-	int				vi_mode;
+	t_uint			emacs_mode;
+	t_uint			vi_mode;
 	struct			s_vi
 	{
 		int			prev_find;

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/31 20:52:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/01 20:55:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void		shell_init(char *project_name)
 	g_project_name = ft_xstrdup((p) ? (p + 1) : project_name);
 	g_opt.enable_color = 1;
 	g_opt.noclobber = 1;
+	g_opt.vi_mode = 0;
+	g_opt.emacs_mode = 1;
+	g_opt.rl_in = STDIN;
+	g_opt.rl_out = STDERR;
 	preliminary_check_fd();
 	environ = create_copy_env(environ);
 	init_g_var();

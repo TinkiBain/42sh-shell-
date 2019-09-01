@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 17:27:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:33:47 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				get_term_cols(void)
 {
 	struct winsize	ws;
 
-	ioctl(STDIN, TIOCGWINSZ, &ws);
+	ioctl(g_opt.rl_in, TIOCGWINSZ, &ws);
 	if (!ws.ws_col || ws.ws_col > TERM_MAX_COL)
 		return (TERM_MAX_COL);
 	return (ws.ws_col);

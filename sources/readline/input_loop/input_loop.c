@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 16:54:23 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/01 18:51:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int				input_loop(t_line *line)
 		g_errno = E_READ;
 	history_expand(line);
 	line->cpos = line->str->len;
-	update_line(line);
+	if (line->vi_mode || line->emacs_mode)
+		update_line(line);
 	if (ret <= 0 && line->oldstr.len == 0)
 		return (1);
 	return (0);

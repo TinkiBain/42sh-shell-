@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/20 07:19:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:09:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:41:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static int	ft_putint(int c)
 {
-	write(STDOUT, &c, 1);
+	extern t_opt	g_opt;
+
+	write(g_opt.rl_out, &c, 1);
 	return (0);
 }
 
