@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/29 20:49:38 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/02 17:38:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			main(int argc, char *argv[])
 	
 	while (1)
 	{
+		ft_bzero(buf, 1023);
 		buf[read(0, buf, 1023) - 1] = '\0';
 		if (ft_strequ(buf, "exit"))
 			exit (0);

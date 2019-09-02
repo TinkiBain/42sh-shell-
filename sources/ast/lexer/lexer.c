@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 21:33:48 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/02 20:00:44 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,15 @@ void		init_lex(int type, void *lexem, t_lex **lex)
 
 int			lexer_check_spec_symbol(char c)
 {
-	if (c == ';' || c == '|' || c == '<' || c == '>' || c == '&')
+	if (c == ';' || c == '|' || c == '<' || c == '>' || c == '&' || c == '(' ||
+			c == ')')
+		return (1);
+	return (0);
+}
+
+int			lexer_isspace(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\r' || c == '\f' || c == '\v')
 		return (1);
 	return (0);
 }
@@ -45,10 +53,14 @@ t_lex		*lexer(char *str)
 	lex = NULL;
 	while (*str)
 	{
-		if (ft_isspace(*str) && ++str)
+		if (lexer_isspace(*str) && ++str)
 			continue ;
 		if (*str == '\n')
 			init_lex(NEWLINE, NULL, &lex);
+		if (*str == '(')
+			init_lex(WORD, ft_strdup("("), &lex);
+		else if (*str == ')')
+			init_lex(WORD, ft_strdup(")"), &lex);
 		else if (*str == '>' || *str == '<' || *str == '|' || *str == '&'
 				|| *str == ';')
 			str = lexer_check_token(str, &lex);

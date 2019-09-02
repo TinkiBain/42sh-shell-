@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 20:48:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/02 18:42:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ char		*lexer_check_token(char *str, t_lex **lex);
 int			lexer_check_spec_symbol(char c);
 void		print_lexem(t_lex *lex);
 char		*lexer_check_io_number(char *str, t_lex **lex);
+char		*lexer_find_char(char *str, char c);
 char		*lexer_find_word(char *str, t_lex **lex);
+char		*lexer_find_bracket(char *str);
+char		*lexer_find_rbrace(char *str);
 
 #endif
