@@ -6,23 +6,28 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/30 22:27:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/03 23:17:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
-#define FLAG_P	1
-#define FLAG_N	2
-#define FLAG_F	4
+#define FLAG_P					1
+#define FLAG_N					2
+#define FLAG_F					4
 
-static int		print_usage(void)
+#define NOT_A_VALID_IDENTIFIER	1
+#define INVALID_OPTION			2
+
+static void		print_usage(char c)
 {
-	extern char	**environ;
-
-	(void)environ;
-	return (1);
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": export: -", 2);
+	ft_putchar_fd(c, 2);
+	ft_putendl_fd(": invalid option", 2);
+	ft_putendl_fd("export: usage: export [-nf] [name[=value] ...]"
+														" or export -p", 2);
 }
 
 static int		add_flags(const char *str, int *opt)
@@ -35,7 +40,10 @@ static int		add_flags(const char *str, int *opt)
 		else if (*str == 'f')
 			*opt |= FLAG_F;
 		else
-			return (print_usage());
+		{
+			print_usage(*str);
+			return (INVALID_OPTION);
+		}
 	return (0);
 }
 
@@ -55,33 +63,30 @@ static int		export_var(const char *str, int opt)
 	return (0);
 }
 
-static void		print_exported_vars(void)
-{
-	(void)g_project_name;
-}
-
 int				ft_export(const char **av)
 {
 	const char	*str;
 	int			flag;
 	int			opt;
+	int			res;
 
 	flag = 0;
 	opt = 0;
+	res = 0;
 	if (*av)
 		while ((str = *av))
 		{
 			if (!flag && *str == '-')
-				add_flags(str, &opt);
-			else
 			{
-				flag = 1;
-				if (export_var(str, opt) == 1)
-					return (1);
+				if (add_flags(str, &opt) == INVALID_OPTION)
+					return (2);
 			}
+			else if ((flag = 1) &&
+							(export_var(str, opt) == NOT_A_VALID_IDENTIFIER))
+				res = NOT_A_VALID_IDENTIFIER;
 			++av;
 		}
-	else if (opt & FLAG_P)
-		print_exported_vars();
-	return (0);
+	if (!flag)
+		print_all_vars(0);
+	return (res);
 }

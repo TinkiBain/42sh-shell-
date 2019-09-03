@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/09/03 21:30:38 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/03 23:05:15 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME=42sh
 
 CC=clang
 FLAGS=-Wall -Wextra -Werror
+FLAGS+=-g
 
 INCLUDES:=-I includes -I includes/readline -I libft/includes
 
