@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/25 17:38:53 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/03 20:39:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <stdio.h>
+
+# ifdef __linux__
+#  define uintmax_t      __uintmax_t
+#  define intmax_t       __intmax_t
+#  define O_SYMLINK		0
+#  define F_GETPATH		0
+# endif
 
 typedef unsigned char			t_uchar;
 typedef unsigned int			t_uint;
