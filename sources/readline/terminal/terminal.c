@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 18:52:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/03 21:16:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 struct termios	g_init_tios;
 t_cap			g_cap;
+int				g_term_broken;
 extern t_opt	g_opt;
 
 static int		ft_putint(int c)
@@ -72,13 +73,18 @@ void			term_setup(void)
 	work_tios.c_cc[VTIME] = 0;
 	tcsetattr(g_opt.rl_in, TCSANOW, &work_tios);
 	ospeed = work_tios.c_ospeed;
+	g_term_broken = 1;
 }
 
 void			term_restore(void)
 {
-	term_putstr(g_cap.kp_end);
-	tcsetattr(g_opt.rl_in, TCSANOW, &g_init_tios);
-	clear_termcap();
+	if (g_term_broken)
+	{
+		term_putstr(g_cap.kp_end);
+		tcsetattr(g_opt.rl_in, TCSANOW, &g_init_tios);
+		clear_termcap();
+		g_term_broken = 0;
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:38:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/03 22:43:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 # include "sh.h"
 # include "line.h"
-# include "ft_errno.h"
 # include "terminal.h"
 # include "keys.h"
 # include "bindings.h"

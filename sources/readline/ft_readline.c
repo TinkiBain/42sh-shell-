@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 19:02:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/03 22:48:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,5 @@ char		*ft_readline(char *prompt, char *oldline)
 	clear_linebuf();
 	clear_line(&line, exit, &g_history);
 	term_restore();
-	printerr();
 	return (line.result.s);
 }

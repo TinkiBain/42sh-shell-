@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 17:42:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/03 23:02:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "loginfo.h"
 
-int			g_logfd;
+int			g_logfd = -1;
 
 void		logopen(void)
 {

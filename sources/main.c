@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 19:50:22 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/04 00:07:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,83 +20,48 @@ char		**g_var_names;
 char		*g_project_name;
 t_pjobs		*g_pjobs;
 t_pjobs		*g_subjob;
+int			g_line_num;
 
-void		main_readline_loop(void)
+void		execute_line(char *buf)
 {
 	t_pars_list	*list;
-	char		*buf;
 	char		*tmp;
 
-	while (21)
+	tmp = NULL;
+	if (*(tmp = ft_strtrim(buf)))
 	{
-		g_check_nl = 1;
-		if (!(buf = ft_readline(get_var_value("PS1"), NULL)))
-			break ;
-		ft_putstr("\n");
-		if (*(tmp = ft_strtrim(buf)))
-		{
-			list = exec_ast(buf);
-			traverse_ast(list);
-			g_error_pars = 0;
-			parser_free_tree(list);
-		}
-		else
-			free(buf);
-		free(tmp);
+		list = exec_ast(buf);
+		traverse_ast(list);
+		g_error_pars = 0;
+		parser_free_tree(list);
 	}
+	else
+		ft_strdel(&buf);
+	ft_strdel(&tmp);
 }
 
-void		main_gnl_loop(int fd, char *prompt)
+void		main_loop(void)
 {
-	t_pars_list	*list;
-	char		*buf;
-	char		*tmp;
-	int			num_line;
+	char		*line;
 
-	num_line = 0;
-	while (get_next_line(fd, &buf) > 0)
+	g_line_num = 1;
+	while (42)
 	{
-		ft_memdel((void **)&g_project_name);
-		g_project_name = ft_strrejoin(prompt, ft_itoa(++num_line), 2);
-		if (*(tmp = ft_strtrim(buf)))
-		{
-			list = exec_ast(buf);
-			traverse_ast(list);
-			g_error_pars = 0;
-			parser_free_tree(list);
-		}
-		else
-			ft_memdel((void **)&buf);
-		ft_memdel((void **)&tmp);
+		g_check_nl = 1;
+		if (!(line = ft_readline((g_opt.rl_in == 0 ?
+							get_var_value("PS1") : ""), NULL)))
+			break ;
+		ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
+		execute_line(line);
+		g_line_num++;
 	}
-	ft_memdel((void **)&buf);
 }
 
 int			main(int ac, char **av)
 {
-	int		fd;
-	char	*prompt;
-
 	signal_monitor();
-	shell_init(av[0]);
-	if (ac > 1 && (fd = open(*(++av), O_RDONLY)) >= 0)
-	{
-		if (!check_file_errors(*(++av), F_OK) && (fd = open(*av, O_RDONLY)) >= 0)
-		{
-			prompt = ft_strjoin(*av, ": line ");
-			main_gnl_loop(fd, prompt);
-			ft_memdel((void **)&prompt);
-			close(fd);
-		}
-	}
-	else
-	{
-		shell_init_readline();
-		main_readline_loop();
-		history_clear(g_history);
-		logclose();
-		ft_putstr("exit\n");
-	}
+	shell_init(ac, av);
+	main_loop();
 	shell_clear();
 	return (g_res_exec);
 }
