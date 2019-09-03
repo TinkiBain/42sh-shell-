@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/09/01 21:30:21 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/02 16:47:38 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS_DIR=sources
 OBJS_DIR=objects
 
 LIBFT_DIR=libft
+
+# include $(LIBFT_DIR)/libft_dependences.mk
 
 AST_DIR=ast
 include $(SRCS_DIR)/$(AST_DIR)/ast.mk
