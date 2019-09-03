@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/09/01 21:30:21 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/03 21:30:38 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME=42sh
 
 CC=clang
 FLAGS=-Wall -Wextra -Werror
-FLAGS+=-g
 
 INCLUDES:=-I includes -I includes/readline -I libft/includes
 
@@ -31,6 +30,8 @@ SRCS_DIR=sources
 OBJS_DIR=objects
 
 LIBFT_DIR=libft
+
+include $(LIBFT_DIR)/libft_dependences.mk
 
 AST_DIR=ast
 include $(SRCS_DIR)/$(AST_DIR)/ast.mk
@@ -132,14 +133,19 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 
 .PHONY: all clean fclean re
 
+LIBFT_OBJS_DEPENDS=$(addprefix $(LIBFT_DIR)/, $(LIBFT_OBJS))
+
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJS_SUBDIRS) $(OBJS)
+$(NAME): $(LIBFT_A) $(LIBFT_OBJS_DEPENDS) $(OBJS_SUBDIRS) $(OBJS)
 	@printf "$(BLUE)Compiling $(NAME_CLEAN)...$(NC)\n"
 	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
 	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
 
 $(LIBFT_A):
+	@make -C $(LIBFT_DIR)
+
+$(LIBFT_DIR)/$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_DIR)/$(LIBFT_SRCS_DIR)/%.c
 	@make -C $(LIBFT_DIR)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
