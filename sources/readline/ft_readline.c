@@ -6,14 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 01:35:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/03 22:48:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
 
-t_line *g_line;
-int		g_logfd;
+t_line			*g_line;
+extern t_opt	g_opt;
 
 static void	sig_init(void)
 {
@@ -36,10 +36,10 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	temp_str = str_xcreate(0);
 	history_push(line->history, temp_str);
 	line->str = (t_string *)line->history->item->content;
-	g_line = line;
 	line->prompt = str_xcopy(prompt ? prompt : "");
 	convert_escapes(&line->prompt);
 	line->vi_mode = g_opt.vi_mode;
+	line->emacs_mode = g_opt.emacs_mode;
 	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
 	init_bindings(line->vi_mode, &line->key_bindings);
@@ -72,10 +72,13 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 
 char		*ft_readline(char *prompt, char *oldline)
 {
-	t_line		line;
-	int			exit;
+	t_line			line;
+	int				exit;
 
 	sig_init();
+	g_line = &line;
+	if (!g_opt.emacs_mode && !g_opt.vi_mode)
+		return (gnl(prompt, oldline));
 	term_init();
 	term_setup();
 	init_line(&line, prompt, oldline);
@@ -85,6 +88,5 @@ char		*ft_readline(char *prompt, char *oldline)
 	clear_linebuf();
 	clear_line(&line, exit, &g_history);
 	term_restore();
-	printerr();
 	return (line.result.s);
 }

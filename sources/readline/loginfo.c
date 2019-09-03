@@ -6,17 +6,18 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/03 23:02:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "loginfo.h"
 
-int			g_logfd;
+int			g_logfd = -1;
 
 void		logopen(void)
 {
-	char	*path;
+	char			*path;
+	extern t_opt	g_opt;
 
 	if (!DEBUG)
 		return ;
@@ -32,7 +33,7 @@ void		logopen(void)
 	}
 	ft_strdel(&path);
 	loginfo("logopen()");
-	loginfo("tty: %s", ttyname(STDIN));
+	loginfo("tty: %s", ttyname(g_opt.rl_in));
 }
 
 void		logclose(void)
@@ -69,6 +70,8 @@ void		loginfo_line(t_line *line)
 		ft_fdprintf(g_logfd, "VII ");
 	else if (line->vi_mode == VI_COMMAND)
 		ft_fdprintf(g_logfd, "VIC ");
+	else if (!line->vi_mode && !line->emacs_mode)
+		ft_fdprintf(g_logfd, "RAW ");
 	ft_fdprintf(g_logfd,
 		"[%d %d %d %d %d %d], str: \"%s\"(%d), pos: %d, kill_buf: %s",
 				str_get(line->keybuf, 0), str_get(line->keybuf, 1),

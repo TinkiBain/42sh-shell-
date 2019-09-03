@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_screen.c                                     :+:      :+:    :+:   */
+/*   fatal.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/20 07:19:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:41:00 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/03 22:37:13 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/03 22:51:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
+#include "error.h"
 
-static int	ft_putint(int c)
+void		fatal(const char *msg)
 {
-	extern t_opt	g_opt;
+	extern int	g_logfd;
 
-	write(g_opt.rl_out, &c, 1);
-	return (0);
-}
-
-void		clear_screen(t_line *line)
-{
-	if (line)
+	term_restore();
+	ft_putstr_fd("\n", STDERR);
+	ft_putstr_fd(g_project_name, STDERR);
+	ft_putstr_fd(": Fatal error: ", STDERR);
+	ft_putstr_fd(msg, STDERR);
+	ft_putstr_fd("\n", STDERR);
+	if (DEBUG && g_logfd >= 0)
 	{
-		tputs(g_cap.clear_all, get_screen_height(), ft_putint);
-		update_line(NULL);
+		ft_putstr_fd("! Fatal error: ", g_logfd);
+		ft_putstr_fd(msg, g_logfd);
+		ft_putstr_fd("\n", g_logfd);
 	}
+	logclose();
+	exit(-1);
 }

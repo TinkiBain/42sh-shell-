@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 16:18:42 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/03 22:32:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		dollar(int *j, char **str);
 char		*tilda_check(char *str);
 char		*tdq(char *str);
 
-void		print_error(const char *cmd, const char *error);
+void		print_error_old(const char *cmd, const char *error);
 
 int			check_spec_symbol(char c);
 int			check_spec_symboli_dq(char c);

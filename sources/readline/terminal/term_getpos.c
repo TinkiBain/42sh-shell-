@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 17:22:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 17:22:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:44:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int		term_getpos(int *row, int *col)
 {
-	char	buf[ONECAP_BUFFER];
-	int		i;
+	extern t_opt	g_opt;
+	char			buf[ONECAP_BUFFER];
+	int				i;
 
 	*row = 0;
 	*col = 0;
@@ -23,7 +24,7 @@ int		term_getpos(int *row, int *col)
 		return (1);
 	bzero(buf, ONECAP_BUFFER);
 	term_putstr(g_cap.get_pos);
-	read(STDIN, buf, ONECAP_BUFFER - 1);
+	read(g_opt.rl_in, buf, ONECAP_BUFFER - 1);
 	*row = ft_atoi(buf + 2) - 1;
 	i = 0;
 	while (i < ONECAP_BUFFER && buf[i] != ';')

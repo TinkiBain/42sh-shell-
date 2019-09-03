@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 22:16:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/08/28 19:46:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,16 @@ static void	colorize_arg(t_string *str, int *i, char *color)
 
 static void	colorize_cmd_sep(t_string *str, int *i, char *color)
 {
-	str_xinsert(str, *i, color, ft_strlen(color));
-	*i += ft_strlen(color);
-	*i += 1;
-	str_xinsert(str, *i, COLOR_EOC, ft_strlen(COLOR_EOC));
-	*i += ft_strlen(COLOR_EOC) - 1;
+	if (!ft_isalpha(str_get(*str, *i)))
+	{
+		str_xinsert(str, *i, color, ft_strlen(color));
+		*i += ft_strlen(color);
+		*i += 1;
+		str_xinsert(str, *i, COLOR_EOC, ft_strlen(COLOR_EOC));
+		*i += ft_strlen(COLOR_EOC) - 1;
+	}
+	else
+		colorize_alpha(str, i);
 }
 
 void		colorize(t_string *str, int start)
@@ -75,7 +80,7 @@ void		colorize(t_string *str, int start)
 			colorize_arg(str, &i, COLOR_CYAN);
 		else if (c == '&' || c == '|' || c == ';')
 			colorize_cmd_sep(str, &i, COLOR_GREEN);
-		else if (c == '>' || c == '<')
+		else if (c == '>' || c == '<' || c == 0153)
 			colorize_cmd_sep(str, &i, COLOR_WHITE);
 		else if (c == '\\')
 			++i;

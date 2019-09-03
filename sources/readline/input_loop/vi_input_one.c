@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/17 16:22:40 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 17:15:38 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/17 16:22:40 by jterry            #+#    #+#             */
+/*   Updated: 2019/09/03 22:48:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input_loop.h"
+
+extern t_opt	g_opt;
 
 static int		check_arg(t_line *line)
 {
@@ -53,7 +55,7 @@ int				vi_input_one(t_line *line)
 	int		ret;
 
 	line->keybuf = str_create(KEYBUF_SIZE);
-	while ((ret = read(STDIN, line->keybuf.s, KEYBUF_SIZE - 1)) &&
+	while ((ret = read(g_opt.rl_in, line->keybuf.s, KEYBUF_SIZE - 1)) &&
 			*line->keybuf.s != NL)
 	{
 		if (perform_action_one(line))
@@ -65,6 +67,6 @@ int				vi_input_one(t_line *line)
 		ft_bzero(line->keybuf.s, KEYBUF_SIZE);
 	}
 	if (ret < 0)
-		g_errno = E_READ;
+		print_error("Read error", NULL);
 	return (0);
 }
