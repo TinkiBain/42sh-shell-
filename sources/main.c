@@ -32,7 +32,7 @@ void		main_loop(void)
 			list = NULL;
 			traverse_ast(list);
 			g_error_pars = 0;
-			parser_free_tree(list);
+			parser_free_list(list);
 		}
 		else
 			free(buf);

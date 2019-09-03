@@ -16,6 +16,8 @@
 # include "lexer.h"
 
 int						g_error_pars;
+t_lex					*g_lex;
+t_lex					*g_error_lex;
 
 typedef struct			s_io_redirect
 {
@@ -50,7 +52,6 @@ typedef struct			s_pipe_sequence
 {
 	t_cmd					*cmd;
 	struct s_pipe_sequence	*next;
-	int						pipe_op;
 }						t_pipe_sequence;
 
 typedef struct			s_pipeline
@@ -73,21 +74,16 @@ typedef struct			s_pars_list
 	int					sep;
 }						t_pars_list;
 
-void					*parser_print_error(char *error);
-t_io_redirect			*init_io_redirect(void);
-t_pars_list				*parser(t_lex *lex, t_pars_list *list_down, int type);
-t_and_or				*parser_and_or(t_lex *lex);
-t_cmd					*parser_cmd(t_lex *lex);
-t_lex					*parser_cmd_prefix(t_lex *lex, t_cmd_prefix **pref);
-void					parser_cmd_suffix(t_lex *lex,
-												t_cmd_suffix **cmd_suffix);
-t_io_redirect			*parser_io_redirect(t_lex *lex);
-t_pipe_sequence			*parser_pipe_sequence(t_lex *lex);
-t_pipeline				*parser_pipeline(t_lex *lex);
-void					*parser_free_tree(t_pars_list *list);
-void					*parser_free_cmd(t_cmd *cmd);
-void					*parser_free_and_or(t_and_or *list);
-void					*parser_free_pipeline(t_pipeline *list);
-void					*parser_free_pipe_sequence(t_pipe_sequence *list);
+t_pars_list				*parser(t_pars_list *list_down);
+t_pars_list				*parser_free_list(t_pars_list *list);
+t_and_or				*parser_and_or(t_and_or *list_down);
+t_and_or				*parser_free_and_or(t_and_or *list);
+t_pipeline				*parser_pipeline(void);
+t_pipeline				*parser_free_pipeline(t_pipeline *list);
+t_pipe_sequence			*parser_pipe_sequence(t_pipe_sequence *list_down);
+t_pipe_sequence			*parser_free_pipe_sequence(t_pipe_sequence *list);
+
+void					parser_linebreak(void);
+void					parser_new_line_list(void);
 
 #endif

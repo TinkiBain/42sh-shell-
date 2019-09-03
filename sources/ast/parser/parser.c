@@ -1,60 +1,50 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 20:03:08 by dwisoky          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "parser.h"
 
-t_pars_list			*init_pars_list(int type)
-{
-	t_pars_list		*list_pars;
+/*
+ ** Grammar rule
+ ** list    : list separator_op and_or
+ **         |                   and_or
+ **         ;
+*/
 
-	list_pars = (t_pars_list*)ft_xmalloc(sizeof(t_pars_list));
-	list_pars->list = NULL;
-	list_pars->and_or = NULL;
-	list_pars->sep = type;
-	return (list_pars);
+t_pars_list			*parser_free_list(t_pars_list *list)
+{
+	if (!list)
+		return (NULL);
+	parser_free_and_or(list->and_or);
+	parser_free_list(list->list);
+	free(list);
+	return (NULL);
 }
 
-static t_pars_list	*parser_check_list(t_pars_list *value, t_pars_list *list)
+static t_pars_list	*parser_init_list(t_pars_list *list_down)
 {
-	if (!value)
-		return (parser_free_tree(list));
-	return (value);
+	t_pars_list		*list;
+
+	list = (t_pars_list*)ft_xmalloc(sizeof(t_pars_list));
+	list->list = list_down;
+	list->sep = 0;
+	list->and_or = NULL;
+	return (list);
 }
 
-t_pars_list			*parser(t_lex *lex, t_pars_list *list_down, int type)
+t_pars_list			*parser(t_pars_list *list_down)
 {
-	t_pars_list		*list_pars;
-	t_lex			*begin;
-	t_lex			*tmp;
+	t_pars_list	*list;
 
-	if (!lex)
-		return (list_down);
-	begin = lex;
-	if (lex->type & SEMI)
-		return (parser_print_error(";;"));
-	list_pars = init_pars_list(type);
-	list_pars->list = (list_down) ? list_down : NULL;
-	while (lex->next)
+	list = parser_init_list(list_down);
+	list->and_or = parser_and_or(NULL);
+	if (g_error_lex)
+		return (parser_free_list(list));
+	if (!g_lex)
+		return (list);
+	if (g_lex->type == JOB || g_lex->type == SEMI)
 	{
-		if (lex->next->type & SEMI)
-		{
-			tmp = lex->next->next;
-			lex->next = NULL;
-			list_pars->and_or = parser_and_or(begin);
-			return (parser_check_list(parser(tmp, list_pars, 1), list_pars));
-		}
-		lex = lex->next;
+		list->sep = g_lex->type;
+		g_lex = g_lex->next;
+		return (parser(list));
 	}
-	if (!(list_pars->and_or = parser_and_or(begin)))
-		return (parser_free_tree(list_pars));
-	return (list_pars);
+	else
+		g_error_lex = g_lex;
+	return (parser_free_list(list));
 }

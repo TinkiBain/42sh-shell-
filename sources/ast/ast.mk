@@ -20,10 +20,8 @@ SRCS_LEXER=\
 	lexer_find_word.c		lexer_find_dollar.c
 
 SRCS_PARSER=\
-	parser.c				parser_and_or.c			parser_cmd.c\
-	parser_cmd_prefix.c		parser_cmd_suffix.c		parser_io_redirect.c\
-	parser_pipe_sequence.c	parser_pipeline.c		parser_print_error.c\
-	parser_free_tree.c		parser_free_cmd.c
+	parser.c				parser_and_or.c			parser_linebreak.c\
+	parser_new_line_list.c	parser_pipeline.c		parser_pipe_sequence.c
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
