@@ -6,19 +6,9 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/02 14:28:49 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/02 16:50:54 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/03 21:20:37 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-LIBFT_NAME=libft.a
-
-CC=clang
-FLAGS=-Wall -Wextra -Werror -g
-
-RED=\033[0;31m
-GREEN=\033[0;32m
-BLUE=\033[1;34m
-NC=\033[0m
 
 LIBFT_INCLUDES=-I includes
 
@@ -101,7 +91,7 @@ LIBFT_SRCS_DLIST=ft_dlstadd.c	ft_dlstaddback.c		ft_dlstdel.c\
 	ft_dlstdelend.c				ft_dlstdelfront.c		ft_dlstdelone.c\
 	ft_dlstiter.c				ft_dlstnew.c			ft_dlstsize.c
 
-SOURCES=$(LIBFT_SRCS_WITHOUT_DIR)\
+LIBFT_SOURCES=$(LIBFT_SRCS_WITHOUT_DIR)\
 	$(addprefix $(LIBFT_MEM_DIR)/, $(LIBFT_SRCS_MEM))\
 	$(addprefix $(LIBFT_STR_DIR)/, $(LIBFT_SRCS_STR))\
 	$(addprefix $(LIBFT_OUTPUT_DIR)/, $(LIBFT_SRCS_OUTPUT))\
@@ -111,8 +101,7 @@ SOURCES=$(LIBFT_SRCS_WITHOUT_DIR)\
 	$(addprefix $(LIBFT_LIST_DIR)/, $(LIBFT_SRCS_LIST))\
 	$(addprefix $(LIBFT_DLIST_DIR)/, $(LIBFT_SRCS_DLIST))
 
-SRCS=$(addprefix $(LIBFT_SRCS_DIR)/, $(SOURCES))
-LIBFT_OBJS=$(addprefix $(LIBFT_OBJS_DIR)/, $(SOURCES:%.c=%.o))
+LIBFT_SRCS=$(addprefix $(LIBFT_SRCS_DIR)/, $(LIBFT_SOURCES))
+LIBFT_OBJS=$(addprefix $(LIBFT_OBJS_DIR)/, $(LIBFT_SOURCES:%.c=%.o))
 
-OBJS_CLEAN=$(strip $(foreach f,$(LIBFT_OBJS),$(wildcard $(f))))
-NAME_CLEAN=$(strip $(LIBFT_NAME))
+LIBFT_OBJS_CLEAN=$(strip $(foreach f,$(LIBFT_OBJS),$(wildcard $(f))))
