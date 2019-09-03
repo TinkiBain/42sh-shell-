@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/01 16:41:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/03 20:50:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct	s_opt
 	t_uint		emacs_mode;
 	t_uint		enable_color;
 	t_uint		noclobber;
+	t_uint		rl_in;
+	t_uint		rl_out;
 }				t_opt;
 
 void			signal_monitor();

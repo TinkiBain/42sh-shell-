@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 23:28:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/01 16:41:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 
 static void		print(t_buffer *newbuf, int pos)
 {
-	t_escseq	*es;
+	t_escseq		*es;
+	extern t_opt	g_opt;
 
 	if ((es = find_escseq(newbuf->escseqs, pos)))
-		ft_fdprintf(STDOUT, "%s", es->str.s);
+		ft_fdprintf(g_opt.rl_out, "%s", es->str.s);
 	if (str_get(newbuf->b, pos))
-		ft_fdprintf(STDOUT, "%c", str_get(newbuf->b, pos));
+		ft_fdprintf(g_opt.rl_out, "%c", str_get(newbuf->b, pos));
 	else
-		ft_fdprintf(STDOUT, " ");
+		ft_fdprintf(g_opt.rl_out, " ");
 	if (pos % newbuf->out_cols == newbuf->out_cols - 1)
 		move_cur_nl();
 }
