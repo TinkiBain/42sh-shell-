@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 04:39:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 18:11:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/04 18:35:47 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,26 @@ static int	need_complete_variable(t_line *line)
 	return (0);
 }
 
+static int	need_complete_command_argument(t_line *line)
+{
+	int		i;
+	char	c;
+	i = line->cpos - 1;
+	while ((c = str_get(*line->str, i)) && !ft_isspace(c))
+		i--;
+	if (!c)
+		return (0);
+	if (str_get(*line->str, i + 1) == '-')
+		return (1);
+	return (0);
+}
+
 void		complete(t_line *line)
 {
 	if (need_complete_variable(line))
 		complete_variable(line);
+	else if (need_complete_command_argument(line))
+		complete_command_argument(line);
 	else if (need_complete_command(line))
 		complete_command(line);
 	else

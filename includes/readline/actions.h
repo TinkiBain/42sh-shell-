@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 20:00:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/04 19:16:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,15 @@ t_string	get_command_query(t_line *line, int *start);
 t_string	get_variable_query(t_line *line, int *start);
 
 void		show_completions(char **arr, int n);
+void		show_one_column(char **arr, int n);
 
 void		complete(t_line *line);
 void		complete_filename(t_line *line);
 void		possible_filename_completions(t_line *line);
 void		complete_command(t_line *line);
 void		possible_command_completions(t_line *line);
+void		complete_command_argument(t_line *line);
+void		possible_command_argument_completions(t_line *line);
 void		complete_variable(t_line *line);
 void		possible_variable_completions(t_line *line);
 void		undo(t_line *line);
