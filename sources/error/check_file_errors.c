@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:26:54 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/03 23:19:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:41:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		return_error(const char *file_name, const char *error)
 	else
 		print_error(error, file_name);
 	g_res_exec = 127;
-	set_var("?=127", &g_var, 1);
 	return (127);
 }
 
@@ -49,12 +48,12 @@ int		check_file_errors(const char *file_name, int flag)
 	struct stat		st;
 
 	if (stat(file_name, &st) == -1)
-		return (return_error(file_name, ": No such file or directory"));
+		return (return_error(file_name, "No such file or directory"));
 	if (S_ISDIR(st.st_mode))
-		return (return_error(file_name, ": Is a directory"));
+		return (return_error(file_name, "Is a directory"));
 	else if (!S_ISREG(st.st_mode))
-		return (return_error(file_name, ": No such file or directory"));
+		return (return_error(file_name, "No such file or directory"));
 	else if (access(file_name, flag))
-		return (return_error(file_name, ": Permission denied"));
+		return (return_error(file_name, "Permission denied"));
 	return (0);
 }

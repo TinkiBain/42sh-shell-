@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/29 17:08:25 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:08:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,15 @@ static void			check_quotes(char *str)
 
 static t_pars_list	*ast_treatment_error(char *buf)
 {
-	char	*tmp;
+	char			*tmp;
+	extern t_opt	g_opt;
 
 	buf = ft_strrejoin(buf, "\n", 1);
 	tmp = buf;
-	buf = ft_readline("> ", tmp);
+	buf = ft_readline(g_opt.rl_in == 0 ?
+							get_var_value("PS2") : "", tmp);
 	free(tmp);
-	ft_putstr("\n");
+	ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
 	g_error_pars = 0;
 	return (exec_ast(buf));
 }

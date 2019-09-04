@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/04 15:09:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,23 @@ static void	save_fd(int fd[2])
 
 int			redir_dless(t_io_redirect *redir)
 {
-	int		pipefd[2];
-	char	*str;
-	int		save[2];
+	int				pipefd[2];
+	char			*str;
+	int				save[2];
+	extern t_opt	g_opt;
 
 	if (pipe(pipefd) < 0)
 		exit(-1);
 	save_fd(save);
 	while (1)
 	{
-		str = ft_readline(get_var_value("PS2"), NULL);
+		str = ft_readline(g_opt.rl_in == 0 ?
+							get_var_value("PS2") : "", NULL);
 		ft_putstr("\n");
 		if (!str || ft_strequ(str, redir->file_name))
 			break ;
 		ft_putstr_fd(str, pipefd[1]);
-		ft_putstr_fd("\n", pipefd[1]);
+		ft_putstr_fd(g_opt.rl_in == 0 ? "\n" : "", pipefd[1]);
 		free(str);
 	}
 	free(str);
