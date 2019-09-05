@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/04 19:20:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/05 23:05:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void						del_all_hash(void);
 */
 void						add_flags_args(void);
 
-char						**hash_get_flags(char *name);
+char						**get_command_options(char *name);
 
 #endif

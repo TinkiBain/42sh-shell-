@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/04 19:18:22 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/06 00:08:04 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +55,10 @@ SRCS_READLINE_ACTIONS=\
 
 SRCS_READLINE_COMPLETE=\
 	filter_filenames.c		filter_variables.c	filter_commands.c\
-	show_completions.c		show_one_column.c	complete.c\
+	show_completions.c		complete.c			filter_command_options.c\
 	possible_filename_completions.c				complete_filename.c\
 	possible_command_completions.c				complete_command.c\
-												complete_command_argument.c\
+												complete_command_option.c\
 	possible_variable_completions.c				complete_variable.c\
 	find_common_part.c
 

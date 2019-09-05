@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 04:39:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/04 18:35:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/05 23:08:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		complete(t_line *line)
 	if (need_complete_variable(line))
 		complete_variable(line);
 	else if (need_complete_command_argument(line))
-		complete_command_argument(line);
+		complete_command_option(line);
 	else if (need_complete_command(line))
 		complete_command(line);
 	else

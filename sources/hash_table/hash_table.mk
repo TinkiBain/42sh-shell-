@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 16:41:59 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/01 20:17:33 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/05 23:07:02 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS_HASH_HASH=\
 
 SRCS_FLAGS_ARGS_HASH=\
 	find_and_add_flags.c\
-	hash_get_flags.c
+	get_command_options.c
 
 HASH_SUBDIRS=\
 	$(HASH_HASH_DIR)\

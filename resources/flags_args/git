@@ -1,0 +1,23 @@
+--version -- Prints the Git suite version that the git program came from.
+--help	-- Print help.
+-C <path> -- Run as if git was started in <path> instead of the current working directory.
+-c <name>=<value> -- Pass a configuration parameter to the command.
+--exec-path[=<path>] -- Path to wherever your core Git programs are installed.
+--html-path -- Print the path, without trailing slash, where Git’s HTML documentation is installed and exit.
+--man-path -- Print the manpath (see man(1)) for the man pages for this version of Git and exit.
+--info-path -- Print the path where the Info files documenting this version of Git are installed and exit.
+-p
+--paginate (-p) -- Pipe all output into less (or if set, $PAGER) if standard output is a terminal.
+-P
+--no-pager (-P) -- Do not pipe Git output into a pager.
+--git-dir=<path> -- Set the path to the repository.
+--work-tree=<path> -- Set the path to the working tree.
+--namespace=<path> -- Set the Git namespace. 
+--bare -- Treat the repository as a bare repository.
+--no-replace-objects -- Do not use replacement refs to replace Git objects.
+--literal-pathspecs -- Treat pathspecs literally (i.e. no globbing, no pathspec magic).
+--glob-pathspecs -- Add "glob" magic to all pathspec.
+--noglob-pathspecs -- Add "literal" magic to all pathspec.
+--icase-pathspecs -- Add "icase" magic to all pathspec.
+--no-optional-locks -- Do not perform optional operations that require locks.
+--list-cmds=group[,group...] -- List commands by group.
