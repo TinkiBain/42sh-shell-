@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 18:47:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/04 16:00:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/06 01:12:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ int			check_cmd(const char *cmd)
 			++p;
 		++p;
 	}
-	if (*p == '/' && (check_file_errors(cmd, X_OK)))
+	if (*p == '/')
 	{
-		// set_var("?=127", &g_var, 1);
-		return (g_res_exec);
+		if (check_file_errors(cmd, X_OK))
+			return (g_res_exec);
+		return (0);
 	}
 	else
 		return (cmd_is_exist(cmd));
