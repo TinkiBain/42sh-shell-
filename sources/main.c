@@ -52,7 +52,14 @@ int			main(int argc, char *argv[])
 		if (ft_strequ(buf, "exit"))
 			exit (0);
 		lex = lexer(buf);
-		print_lexem(lex);
+		while (lex->back)
+			lex = lex->back;
+//		print_lexem(lex);
+		g_lex = lex;
+		g_error_lex = NULL;
+		parser(NULL);
+		if (g_error_lex)
+			printf("%d\n", g_error_lex->type);
 		lexer_free_all(lex);
 	}
 	shell_init(argc, argv);

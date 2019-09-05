@@ -40,19 +40,25 @@ typedef struct			s_cmd_prefix
 	char				*assignment_word;
 }						t_cmd_prefix;
 
-typedef struct			s_cmd
+typedef struct			s_simple_cmd
 {
 	t_cmd_prefix		*cmd_pref;
 	t_cmd_suffix		*cmd_suf;
 	char				*cmd_word;
 	char				*cmd_name;
-}						t_cmd;
+}						t_simple_cmd;
 
-typedef struct			s_pipe_sequence
+typedef struct				s_command
 {
-	t_cmd					*cmd;
+	struct s_simple_cmd		*simple_command;
+	struct s_compaund_cmd	*compaund_command;
+}							t_command;
+
+typedef struct				s_pipe_sequence
+{
+	t_command				*command;
 	struct s_pipe_sequence	*next;
-}						t_pipe_sequence;
+}							t_pipe_sequence;
 
 typedef struct			s_pipeline
 {
@@ -82,7 +88,17 @@ t_pipeline				*parser_pipeline(void);
 t_pipeline				*parser_free_pipeline(t_pipeline *list);
 t_pipe_sequence			*parser_pipe_sequence(t_pipe_sequence *list_down);
 t_pipe_sequence			*parser_free_pipe_sequence(t_pipe_sequence *list);
-
+t_command				*parser_command(void);
+t_command				*parser_free_command(t_command *list);
+t_simple_cmd			*parser_simple_command(void);
+t_simple_cmd			*parser_free_simple_command(t_simple_cmd *list);
+t_io_redirect			*parser_io_redirect(void);
+t_io_redirect			*parser_free_io_redirect(t_io_redirect *list);
+t_cmd_prefix			*parser_cmd_prefix(void);
+t_cmd_prefix			*parser_free_cmd_prefix(t_cmd_prefix *list);
+t_cmd_suffix			*parser_cmd_suffix(void);
+t_cmd_suffix			*parser_free_cmd_suffix(t_cmd_suffix *list);
+int						parser_io_number(void);
 void					parser_linebreak(void);
 void					parser_new_line_list(void);
 

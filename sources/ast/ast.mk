@@ -21,7 +21,9 @@ SRCS_LEXER=\
 
 SRCS_PARSER=\
 	parser.c				parser_and_or.c			parser_linebreak.c\
-	parser_new_line_list.c	parser_pipeline.c		parser_pipe_sequence.c
+	parser_new_line_list.c	parser_pipeline.c		parser_pipe_sequence.c\
+	parser_command.c		parser_simple_command.c	parser_command_prefix.c\
+	parser_io_redirect.c	parser_cmd_suffix.c		parser_io_number.c	
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\

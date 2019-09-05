@@ -32,6 +32,8 @@ t_pars_list			*parser(t_pars_list *list_down)
 {
 	t_pars_list	*list;
 
+	if (!g_lex)
+		return (NULL);
 	list = parser_init_list(list_down);
 	list->and_or = parser_and_or(NULL);
 	if (g_error_lex)

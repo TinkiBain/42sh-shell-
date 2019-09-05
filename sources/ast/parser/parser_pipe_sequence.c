@@ -23,7 +23,7 @@ t_pipe_sequence		*parser_init_pipe_sequence(t_pipe_sequence *list_down)
 
 	list = (t_pipe_sequence*)ft_xmalloc(sizeof(t_pipe_sequence));
 	list->next = list_down;
-	list->cmd = NULL;
+	list->command = NULL;
 	return (list);
 }
 
@@ -35,13 +35,13 @@ t_pipe_sequence		*parser_pipe_sequence(t_pipe_sequence *list_down)
 	list->command = parser_command();
 	if (!g_lex)
 		return (list);
+	if (g_error_lex)
+		return (parser_free_pipe_sequence(list));
 	if (g_lex->type == PIPE)
 	{
 		g_error_lex = NULL;
 		g_lex = g_lex->next;
 		return (parser_pipe_sequence(list));
 	}
-	else
-		g_error_lex = g_lex;
-	return (parser_free_pipe_sequence(list));
+	return (list);
 }

@@ -16,10 +16,7 @@ char		*lexer_find_char(char *str, char c)
 {
 	++str;
 	if (c == '\\' && *str)
-	{
-		++str;
 		return (str);
-	}
 	while (*str && *str != c)
 	{
 		if (*str == '\\' && c != '\'')

@@ -6,7 +6,7 @@
  **                  ;
 */
 
-void		parser_linebreack(void)
+void		parser_linebreak(void)
 {
 	parser_new_line_list();
 //	if (!g_lex)

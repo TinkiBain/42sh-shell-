@@ -38,6 +38,9 @@ t_pipeline		*parser_pipeline(void)
 	}
 	list->pipe_sequence = parser_pipe_sequence(NULL);
 	if (g_error_pars)
+	{
+		printf("DA\n");
 		return (parser_free_pipeline(list));
+	}
 	return (NULL);
 }

@@ -7,7 +7,7 @@ char		*lexer_check_io_number(char *str, t_lex **lex)
 	begin = str;
 	while (*str && *str >= '0' && *str <= '9')
 		++str;
-	if (*str && (*str == '>' || *str == '<' || *str == '&'))
+	if (*str == '>' || *str == '<' || (*str == '&' && *(str + 1) != '&'))
 	{
 		init_lex(IO_NUMBER, ft_strndup(begin, str - begin), lex);
 		--str;

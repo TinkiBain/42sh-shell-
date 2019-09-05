@@ -42,10 +42,7 @@ t_and_or		*parser_and_or(t_and_or *list_down)
 	if (g_lex->type == AND_IF || g_lex->type == OR_IF)
 		list_and_or->and_or_if = g_lex->type;
 	else
-	{
-		g_error_lex = g_lex;
-		return (parser_free_and_or(list_and_or));
-	}
+		return (list_and_or);
 	g_lex = g_lex->next;
 	parser_linebreak();
 	return (parser_and_or(list_and_or));
