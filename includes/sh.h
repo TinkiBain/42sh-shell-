@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/03 22:47:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/06 18:55:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_opt
 void			signal_monitor();
 int				check_file_errors(const char *file_name, int flag);
 int				return_error(const char *file_name, const char *error);
-t_pars_list		*exec_ast(char *buf);
+t_complete_cmd	*exec_ast(char *buf);
 void			main_gnl_loop(int fd, char *filename);
 void			main_readline_loop(void);
 void			shell_init(int ac, char **av);

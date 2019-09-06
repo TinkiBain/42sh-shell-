@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/06 18:48:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/06 18:56:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int			g_line_num;
 
 void		execute_line(char *buf)
 {
-	t_pars_list	*list;
-	char		*tmp;
+	t_complete_cmd	*list;
+	char			*tmp;
 
 	tmp = NULL;
 	if (*(tmp = ft_strtrim(buf)))
@@ -33,7 +33,7 @@ void		execute_line(char *buf)
 		list = exec_ast(buf);
 		traverse_ast(list);
 		// g_error_pars = 0;
-		parser_free_list(list);
+		parser_free(list);
 	}
 	else
 		ft_strdel(&buf);
