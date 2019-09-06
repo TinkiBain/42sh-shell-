@@ -21,7 +21,7 @@ void		handle_token_assignment_word(char *word, char ***env);
 void		push_back_av(char ***av, char *elem);
 
 void		traverse_ast(t_pars_list *root);
-void		traverse_cmd(t_cmd *cmd, char **env, int in_fork);
+void		traverse_cmd(t_simple_cmd *cmd, char **env, int in_fork);
 void		traverse_pipeline(t_pipeline *root);
 int			check_cmd(const char *cmd);
 

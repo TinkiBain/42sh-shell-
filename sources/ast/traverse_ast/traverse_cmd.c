@@ -40,7 +40,7 @@ static int	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
 	return (res);
 }
 
-static int	traverse_cmd_suf(t_cmd *cmd, char ***av)
+static int	traverse_cmd_suf(t_simple_cmd *cmd, char ***av)
 {
 	t_cmd_suffix	*suff;
 	int				res;
@@ -61,7 +61,7 @@ static int	traverse_cmd_suf(t_cmd *cmd, char ***av)
 	return (res);
 }
 
-static int	handle_pref(t_cmd *cmd, char ***av, char ***new_env, int *flag)
+static int	handle_pref(t_simple_cmd *cmd, char ***av, char ***new_env, int *flag)
 {
 	t_cmd_prefix	*pref;
 	int				res;
@@ -83,7 +83,7 @@ static int	handle_pref(t_cmd *cmd, char ***av, char ***new_env, int *flag)
 	return (res);
 }
 
-void		traverse_cmd(t_cmd *cmd, char **env, int in_fork)
+void		traverse_cmd(t_simple_cmd *cmd, char **env, int in_fork)
 {
 	char			**av;
 	char			**new_env;

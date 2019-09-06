@@ -5,90 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 17:25:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/01 20:35:24 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/06 18:44:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lexer.h"
 #include "sh.h"
 
-static int	lexer_check_separator(char *str)
+void		init_lex(int type, void *lexem, t_lex **lex)
 {
-	if (*str == ';')
-		return (SEMICOLON);
-	if (*str == '&')
-		if ((*(str + 1) && (*(str + 1) != '&' && *(str + 1) != '>'))
-														|| !*(str + 1))
-			return (JOBS);
-	return (0);
+	t_lex	*tmp;
+
+	if (*lex)
+		tmp = (*lex)->next;
+	else
+		tmp = *lex;
+	tmp = (t_lex*)xmalloc(sizeof(t_lex));
+	if (*lex)
+		(*lex)->next = tmp;
+	tmp->type = type;
+	tmp->lexem = lexem;
+	tmp->back = *lex;
+	tmp->next = NULL;
+	*lex = tmp;
 }
 
-void		print_error_pars(t_lex *lex)
+int			lexer_check_spec_symbol(char c)
 {
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": syntax error near unexpected token `", 2);
-	if (lex->type & SEMICOLON && lex->prev && lex->prev->type & SEMICOLON)
-		ft_putstr_fd(";;", 2);
-	else if (lex->type & SEMICOLON)
-		ft_putstr_fd(";", 2);
-	else if (lex->type & OR_IF)
-		ft_putstr_fd("||", 2);
-	else if (lex->type & AND_IF)
-		ft_putstr_fd("&&", 2);
-	else if (lex->type & PIPE_SYMB)
-		ft_putstr_fd("|", 2);
-	ft_putendl_fd("'", 2);
-}
-
-int			lex_type_spec(int type)
-{
-	if (type & SEMICOLON || type & PIPE_SYMB || type & AND_IF ||
-			type & OR_IF)
+	if (c == ';' || c == '|' || c == '<' || c == '>' || c == '&' || c == '(' ||
+			c == ')')
 		return (1);
 	return (0);
 }
 
-t_lex		*get_first_lex(t_lex *lex)
+int			lexer_isspace(char c)
 {
-	while (lex->prev)
-	{
-		if (lex_type_spec(lex->type) && lex_type_spec(lex->prev->type))
-		{
-			print_error_pars(lex);
-			while (lex->next)
-				lex = lex->next;
-			lexer_free_all(lex);
-			return (NULL);
-		}
-		lex = lex->prev;
-	}
-	return (lex);
+	if (c == ' ' || c == '\t' || c == '\r' || c == '\f' || c == '\v')
+		return (1);
+	return (0);
 }
 
-t_lex		*lexer(char *buf)
+t_lex		*lexer(char *str)
 {
 	t_lex	*lex;
 
-	lex = init_lex(NULL);
-	while (*buf)
+	lex = NULL;
+	while (*str)
 	{
-		if (ft_isspace(*buf) && ++buf)
+		if (lexer_isspace(*str) && ++str)
 			continue ;
-		if (*buf == '|' && ((*(buf + 1) && *(buf + 1) != '|')
-							|| !*(buf + 1)) && ++buf)
-			lex->type = PIPE_SYMB;
-		else if (lexer_check_separator(buf) && buf++)
-			lex->type = lexer_check_separator(buf - 1);
-		else if (*buf == '!' && ft_isspace(*(buf + 1)))
-			buf = lexer_bang(buf, lex);
+		if (*str == '\n')
+			init_lex(NEWLINE, NULL, &lex);
+		if (*str == '(')
+			init_lex(WORD, ft_strdup("("), &lex);
+		else if (*str == ')')
+			init_lex(WORD, ft_strdup(")"), &lex);
+		else if (*str == '>' || *str == '<' || *str == '|' || *str == '&'
+				|| *str == ';')
+			str = lexer_check_token(str, &lex);
+		else if (*str >= '0' && *str <= '9')
+			str = lexer_check_io_number(str, &lex);
 		else
-			buf = lexer_get_token(buf, &lex);
-		lex->next = init_lex(lex);
-		lex = lex->next;
+			str = lexer_find_word(str, &lex);
+		++str;
 	}
-	lex = lex->prev;
-	free(lex->next);
-	lex->next = NULL;
-	lex = get_first_lex(lex);
+	init_lex(NEWLINE, NULL, &lex);
 	return (lex);
 }

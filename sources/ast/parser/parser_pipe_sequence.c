@@ -1,67 +1,47 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser_pipe_sequence.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/04 20:31:43 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/02 19:49:18 by dwisoky          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "parser.h"
 
-static t_pipe_sequence	*init_pipe_sequence(void)
-{
-	t_pipe_sequence		*pipe_seq;
+/*
+ ** Grammar rule
+ ** pipe_sequence    :                             command
+ **                  | pipe_sequence '|' linebreak command
+ **                  ;
+*/
 
-	pipe_seq = (t_pipe_sequence*)ft_xmalloc(sizeof(t_pipe_sequence));
-	pipe_seq->cmd = NULL;
-	pipe_seq->next = NULL;
-	pipe_seq->pipe_op = 0;
-	return (pipe_seq);
+t_pipe_sequence		*parser_free_pipe_sequence(t_pipe_sequence *list)
+{
+	if (!list)
+		return (NULL);
+	parser_free_command(list->command);
+	parser_free_pipe_sequence(list->next);
+	free(list);
+	return (NULL);
 }
 
-void					*parser_pipe_sequence_check_error(t_lex *lex)
+t_pipe_sequence		*parser_init_pipe_sequence(t_pipe_sequence *list_down)
 {
-	if (!lex)
-	{
-		g_error_pars = 2;
-		return (NULL);
-	}
-	if (lex->type & PIPE_SYMB)
-		return (parser_print_error("|"));
-	if (lex->type & BANG)
-		return (parser_print_error("!"));
-	return ((void*)1);
+	t_pipe_sequence	*list;
+
+	list = (t_pipe_sequence*)ft_xmalloc(sizeof(t_pipe_sequence));
+	list->next = list_down;
+	list->command = NULL;
+	return (list);
 }
 
-t_pipe_sequence			*parser_pipe_sequence(t_lex *lex)
+t_pipe_sequence		*parser_pipe_sequence(t_pipe_sequence *list_down)
 {
-	t_pipe_sequence		*pipe_seq;
-	t_lex				*begin;
-	t_lex				*tmp;
+	t_pipe_sequence	*list;
 
-	begin = lex;
-	if (!parser_pipe_sequence_check_error(lex))
-		return (NULL);
-	pipe_seq = init_pipe_sequence();
-	while (lex->next)
+	list = parser_init_pipe_sequence(list_down);
+	list->command = parser_command();
+	if (!g_lex)
+		return (list);
+	if (g_error_lex)
+		return (parser_free_pipe_sequence(list));
+	if (g_lex->type == PIPE)
 	{
-		if (lex->next->type & PIPE_SYMB)
-		{
-			tmp = lex->next->next;
-			lex->next = NULL;
-			pipe_seq->pipe_op = 1;
-			pipe_seq->next = parser_pipe_sequence(tmp);
-			if (!pipe_seq->next)
-				return (parser_free_pipe_sequence(pipe_seq));
-			break ;
-		}
-		lex = lex->next;
+		g_error_lex = NULL;
+		g_lex = g_lex->next;
+		return (parser_pipe_sequence(list));
 	}
-	if (!(pipe_seq->cmd = parser_cmd(begin)))
-		return (parser_free_pipe_sequence(pipe_seq));
-	return (pipe_seq);
+	return (list);
 }

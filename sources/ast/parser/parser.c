@@ -5,60 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/30 19:52:13 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/01 16:03:04 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/09/06 16:56:29 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/06 18:46:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+/*
+ **complete_command : list separator
+ **                 | list
+ **				 ;
+*/
 
-t_pars_list			*init_pars_list(int type)
+t_complete_cmd		*parser_free(t_complete_cmd *list)
 {
-	t_pars_list		*list_pars;
-
-	list_pars = (t_pars_list*)ft_xmalloc(sizeof(t_pars_list));
-	list_pars->list = NULL;
-	list_pars->and_or = NULL;
-	list_pars->sep = type;
-	return (list_pars);
+	if (!list)
+		return (NULL);
+	parser_free_list(list->list);
+	free(list);
+	return (NULL);
 }
 
-static t_pars_list	*parser_check_list(t_pars_list *value, t_pars_list *list)
+t_complete_cmd		*parser(void)
 {
-	if (!value)
-		return (parser_free_tree(list));
-	return (value);
-}
+	t_complete_cmd	*complete_cmd;
 
-t_pars_list			*parser(t_lex *lex, t_pars_list *list_down, int type)
-{
-	t_pars_list		*list_pars;
-	t_lex			*begin;
-	t_lex			*tmp;
-
-	if (!lex)
+	complete_cmd = (t_complete_cmd*)ft_xmalloc(sizeof(t_complete_cmd));
+	complete_cmd->sep = 0;
+	complete_cmd->list = parser_list(NULL);
+	if (g_error_lex)
+		return (parser_free(complete_cmd));
+	if (!g_lex)
+		return (complete_cmd);
+	if (g_lex->type == SEMI || g_lex->type == JOB)
 	{
-		list_down->sep = type;
-		return (list_down);
+		complete_cmd->sep = g_lex->type;
+		g_lex = g_lex->next;
+		parser_linebreak();
 	}
-	begin = lex;
-	if (lex->type & SEMICOLON)
-		return (parser_print_error(";;"));
-	list_pars = init_pars_list(type);
-	list_pars->list = (list_down) ? list_down : NULL;
-	while (lex->next)
-	{
-		if (lex->next->type & SEMICOLON || lex->next->type & JOBS)
-		{
-			type = lex->next->type;
-			tmp = lex->next->next;
-			lex->next = NULL;
-			list_pars->and_or = parser_and_or(begin);
-			return (parser_check_list(parser(tmp, list_pars, type), list_pars));
-		}
-		lex = lex->next;
-	}
-	if (!(list_pars->and_or = parser_and_or(begin)))
-		return (parser_free_tree(list_pars));
-	return (list_pars);
+	else
+		parser_new_line_list();
+	if (g_lex)
+		g_error_lex = g_lex;
+	return (complete_cmd);
 }
