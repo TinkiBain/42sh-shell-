@@ -1,52 +1,51 @@
-#include "parser.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/06 16:56:29 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/06 18:02:27 by dwisoky          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "parser.h"
 /*
- ** Grammar rule
- ** list    : list separator_op and_or
- **         |                   and_or
- **         ;
+ **complete_command : list separator
+ **                 | list
+ **				 ;
 */
 
-t_pars_list			*parser_free_list(t_pars_list *list)
+t_complete_cmd		*parser_free(t_complete_cmd *list)
 {
 	if (!list)
 		return (NULL);
-	parser_free_and_or(list->and_or);
 	parser_free_list(list->list);
 	free(list);
 	return (NULL);
 }
 
-static t_pars_list	*parser_init_list(t_pars_list *list_down)
+t_complete_cmd		*parser(void)
 {
-	t_pars_list		*list;
+	t_complete_cmd	*complete_cmd;
 
-	list = (t_pars_list*)ft_xmalloc(sizeof(t_pars_list));
-	list->list = list_down;
-	list->sep = 0;
-	list->and_or = NULL;
-	return (list);
-}
-
-t_pars_list			*parser(t_pars_list *list_down)
-{
-	t_pars_list	*list;
-
-	if (!g_lex)
-		return (NULL);
-	list = parser_init_list(list_down);
-	list->and_or = parser_and_or(NULL);
+	complete_cmd = (t_complete_cmd*)ft_xmalloc(sizeof(t_complete_cmd));
+	complete_cmd->sep = 0;
+	complete_cmd->list = parser_list(NULL);
 	if (g_error_lex)
-		return (parser_free_list(list));
+		return (parser_free(complete_cmd));
 	if (!g_lex)
-		return (list);
-	if (g_lex->type == JOB || g_lex->type == SEMI)
+		return (complete_cmd);
+	if (g_lex->type == SEMI || g_lex->type == JOB)
 	{
-		list->sep = g_lex->type;
+		complete_cmd->sep = g_lex->type;
 		g_lex = g_lex->next;
-		return (parser(list));
+		parser_linebreak();
 	}
 	else
+		parser_new_line_list();
+	if (g_lex)
 		g_error_lex = g_lex;
-	return (parser_free_list(list));
+	return (complete_cmd);
 }

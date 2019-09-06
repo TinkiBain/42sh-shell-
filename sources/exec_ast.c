@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/29 19:15:00 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/06 16:54:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_pars_list			*exec_ast(char *buf)
 	src = lex;
 	while (src->next)
 		src = src->next;
-	list = parser(NULL);
+	list = parser_list(NULL);
 	check_quotes(buf);
 	lexer_free_all(src);
 	if (g_error_pars == 1)

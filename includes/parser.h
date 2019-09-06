@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/24 20:33:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/06 17:11:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,15 @@ typedef struct			s_pars_list
 	int					sep;
 }						t_pars_list;
 
-t_pars_list				*parser(t_pars_list *list_down);
+typedef struct			s_complete_cmd
+{
+	t_pars_list			*list;
+	int					sep;
+}						t_complete_cmd;
+
+t_complete_cmd			*parser(void);
+t_complete_cmd			*parser_free(t_complete_cmd *list);
+t_pars_list				*parser_list(t_pars_list *list_down);
 t_pars_list				*parser_free_list(t_pars_list *list);
 t_and_or				*parser_and_or(t_and_or *list_down);
 t_and_or				*parser_free_and_or(t_and_or *list);

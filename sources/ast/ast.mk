@@ -6,7 +6,7 @@
 #    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/02 17:35:37 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/06 16:56:04 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ SRCS_LEXER=\
 	lexer_find_word.c		lexer_find_dollar.c
 
 SRCS_PARSER=\
-	parser.c				parser_and_or.c			parser_linebreak.c\
+	parser_list.c			parser_and_or.c			parser_linebreak.c\
 	parser_new_line_list.c	parser_pipeline.c		parser_pipe_sequence.c\
 	parser_command.c		parser_simple_command.c	parser_command_prefix.c\
-	parser_io_redirect.c	parser_cmd_suffix.c		parser_io_number.c	
+	parser_io_redirect.c	parser_cmd_suffix.c		parser_io_number.c\
+	parser.c
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\

@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:54:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 20:59:13 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/06 18:07:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int			lexer_check_reserved_word(char *str, t_lex **lex)
 		init_lex(IF, str, lex);
 	else if (ft_strequ(str, "for"))
 		init_lex(FOR, str, lex);
-	else if (ft_strequ(str, "!"))
+	else if (ft_strequ(str, "!") && (!(*lex) || (*lex)->type == SEMI ||
+			(*lex)->type == JOB || (*lex)->type == AND_IF || (*lex)->type == OR_IF))
 		init_lex(BANG, str, lex);
 	else if (ft_strequ(str, "case"))
 		init_lex(CASE, str, lex);

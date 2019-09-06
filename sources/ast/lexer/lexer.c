@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/02 20:00:44 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/06 17:14:51 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ t_lex		*lexer(char *str)
 			str = lexer_find_word(str, &lex);
 		++str;
 	}
+	init_lex(NEWLINE, NULL, &lex);
 	return (lex);
 }

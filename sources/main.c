@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/02 17:38:36 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/06 17:09:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int			main(int argc, char *argv[])
 //		print_lexem(lex);
 		g_lex = lex;
 		g_error_lex = NULL;
-		parser(NULL);
+		parser();
 		if (g_error_lex)
 			printf("%d\n", g_error_lex->type);
 		lexer_free_all(lex);
