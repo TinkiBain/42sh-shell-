@@ -6,15 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/06 19:11:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/06 21:13:47 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_complete_cmd			*exec_ast(char *buf)
+t_complete_cmd		*exec_ast(char *buf)
 {
-	t_lex		*lex;
+	t_lex			*lex;
 	t_complete_cmd	*list;
 
 	lex = lexer(buf);
@@ -31,8 +31,9 @@ t_complete_cmd			*exec_ast(char *buf)
 	if (g_error_lex)
 	{
 		printf("%d\n", g_error_lex->type);
-		return (parser_free(list));
+		parser_free(list);
 	}
 	lexer_free_all(lex);
+	free(buf);
 	return (list);
 }
