@@ -10,7 +10,7 @@ static char				*parser_simple_command_take_name(void)
 	{
 		tmp = g_lex->lexem;
 		g_lex = g_lex->next;
-		return (tmp);
+		return (ft_strdup(tmp));
 	}
 	return (NULL);
 }
