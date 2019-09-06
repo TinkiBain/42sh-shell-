@@ -12,7 +12,7 @@ t_pars_list			*parser_free_list(t_pars_list *list)
 	if (!list)
 		return (NULL);
 	parser_free_and_or(list->and_or);
-	parser_free_list(list->list);
+	parser_free_list(list->next);
 	free(list);
 	return (NULL);
 }
@@ -22,7 +22,7 @@ static t_pars_list	*parser_init_list(t_pars_list *list_down)
 	t_pars_list		*list;
 
 	list = (t_pars_list*)ft_xmalloc(sizeof(t_pars_list));
-	list->list = list_down;
+	list->next = list_down;
 	list->sep = 0;
 	list->and_or = NULL;
 	return (list);
@@ -47,5 +47,5 @@ t_pars_list			*parser_list(t_pars_list *list_down)
 		g_lex = g_lex->next;
 		return (parser_list(list));
 	}
-	return (parser_free_list(list));
+	return (list);
 }

@@ -13,7 +13,7 @@ t_and_or		*parser_free_and_or(t_and_or *list)
 	if (!list)
 		return (NULL);
 	parser_free_pipeline(list->pipeline);
-	parser_free_and_or(list->and_or);
+	parser_free_and_or(list->next);
 	free(list);
 	return (NULL);
 }
@@ -23,7 +23,7 @@ static t_and_or	*parser_init_and_or(t_and_or *list_down)
 	t_and_or	*list;
 
 	list = (t_and_or*)ft_xmalloc(sizeof(t_and_or));
-	list->and_or = list_down;
+	list->next = list_down;
 	list->and_or_if = 0;
 	list->pipeline = NULL;
 	return (list);

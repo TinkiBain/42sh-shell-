@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/06 18:43:24 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/06 20:51:57 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,11 @@ SRCS_PARSER=\
 	parser.c
 
 SRCS_TRAVERSE_AST=\
-	call_exec.c\
-	is_builtin.c\
-	check_cmd.c\
-	handle_token_assignment_word.c\
-	push_back_av.c\
 	traverse_ast.c\
-	traverse_cmd.c\
+	traverse_pipe_sequence.c\
+	is_builtin.c\
+	push_back_av.c\
 	redirect.c\
-	traverse_pipeline.c\
 	redir_set.c\
 	redir_reset.c\
 	redir_add_table.c\
@@ -54,6 +50,14 @@ SRCS_TRAVERSE_AST=\
 	dollar.c\
 	check_spec_symbol.c\
 	tdq.c
+
+old_ast=\
+	check_cmd.c\
+	call_exec.c\
+	handle_token_assignment_word.c\
+	traverse_ast.c\
+	traverse_cmd.c\
+	traverse_pipeline.c
 
 AST_SUBDIRS=\
 	$(LEXER_DIR)\
