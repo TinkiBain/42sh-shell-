@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/01 20:23:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/06 02:59:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,39 @@
 **	need to call our shel for execute script.
 */
 
+/*
+** Need to remove check access later
+*/
+
 static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 {
-	if (!access(path, X_OK))
-	{
+	char	*argv[3];
+	char	*shell_path;
+
+	// if (!access(path, X_OK))
+	// {
 		if (execve(path, av, env) == -1)
 		{
-			ft_putstr_fd(g_project_name, 2);
-			ft_putstr_fd(": ", 1);
-			ft_putstr_fd(av[0], 2);
-			ft_putendl_fd(": execve return (-1) from call_exec()", 2);
-			exit(-1);
+			shell_path = ft_strjoin(get_var_value("SHELLHOME"), "/");
+			shell_path = ft_strrejoin(shell_path, g_project_name, 1);
+			argv[0] = g_project_name;
+			argv[1] = av[0];
+			argv[2] = NULL;
+			execve(shell_path, (char *const *)argv, env);
+			// ft_putstr_fd(g_project_name, 2);
+			// ft_putstr_fd(": ", 1);
+			// ft_putstr_fd(av[0], 2);
+			// ft_putendl_fd(": execve return (-1) from call_exec()", 2);
+			// exit(-1);
 		}
-	}
-	else
-	{
-		ft_putstr_fd(g_project_name, 2);
-		ft_putstr_fd(": permission denied: ", 2);
-		ft_putendl_fd(path, 2);
-		exit(1);
-	}
+	// }
+	// else
+	// {
+	// 	ft_putstr_fd(g_project_name, 2);
+	// 	ft_putstr_fd(": permission denied: ", 2);
+	// 	ft_putendl_fd(path, 2);
+	// 	exit(1);
+	// }
 	return (0);
 }
 

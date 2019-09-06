@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:26:54 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/04 15:41:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/06 01:58:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,22 @@ char	*get_str_line_num(void)
 	return (res);
 }
 
-/* may be rework somehow later
- * Why it always return 127? */
-
-int		return_error(const char *file_name, const char *error)
-{
-	extern char		**g_var;
-	extern t_opt	g_opt;
-
-	if (g_opt.rl_in != 0)
-		print_error_ext(error, get_str_line_num(), file_name);
-	else
-		print_error(error, file_name);
-	g_res_exec = 127;
-	return (127);
-}
-
 int		check_file_errors(const char *file_name, int flag)
 {
 	struct stat		st;
+	extern t_opt	g_opt;
+	char			*error;
 
-	if (stat(file_name, &st) == -1)
-		return (return_error(file_name, "No such file or directory"));
-	if (S_ISDIR(st.st_mode))
-		return (return_error(file_name, "Is a directory"));
-	else if (!S_ISREG(st.st_mode))
-		return (return_error(file_name, "No such file or directory"));
-	else if (access(file_name, flag))
-		return (return_error(file_name, "Permission denied"));
+	if ((stat(file_name, &st) == -1 && (error = "No such file or directory"))
+			|| (S_ISDIR(st.st_mode) && (error = "Is a directory"))
+			|| (!S_ISREG(st.st_mode) && (error = "No such file or directory"))
+			|| (access(file_name, flag) && (error = "Permission denied")))
+	{
+		if (g_opt.rl_in != 0)
+			print_error_ext(error, get_str_line_num(), file_name);
+		else
+			print_error(error, file_name);
+		return ((g_res_exec = 127));
+	}
 	return (0);
 }
