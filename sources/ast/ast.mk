@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/06 20:51:57 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/07 17:04:17 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,16 +48,12 @@ SRCS_TRAVERSE_AST=\
 	redir_clobber.c\
 	tilda.c\
 	dollar.c\
-	check_spec_symbol.c\
-	tdq.c
-
-old_ast=\
-	check_cmd.c\
 	call_exec.c\
+	check_spec_symbol.c\
+	check_cmd.c\
 	handle_token_assignment_word.c\
-	traverse_ast.c\
 	traverse_cmd.c\
-	traverse_pipeline.c
+	tdq.c
 
 AST_SUBDIRS=\
 	$(LEXER_DIR)\
