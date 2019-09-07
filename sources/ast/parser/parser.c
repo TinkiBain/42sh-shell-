@@ -6,15 +6,16 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:56:29 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/06 18:46:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:39:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
 /*
- **complete_command : list separator
- **                 | list
- **				 ;
+** complete_command : list separator
+**                  | list
+**				 	;
 */
 
 t_complete_cmd		*parser_free(t_complete_cmd *list)

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/06 18:56:20 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/07 15:11:00 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void		execute_line(char *buf)
 	if (*(tmp = ft_strtrim(buf)))
 	{
 		list = exec_ast(buf);
-		traverse_ast(list);
-		// g_error_pars = 0;
+		if (list)
+			traverse_ast(list);
 		parser_free(list);
 	}
 	else
@@ -61,26 +61,6 @@ int			main(int ac, char **av)
 {
 	signal_monitor();
 	shell_init(ac, av);
-// 	char 	buf[1024];
-// 	t_lex	*lex;
-
-// 	while (1)
-// 	{
-// 		ft_bzero(buf, 1023);
-// 		buf[read(0, buf, 1023) - 1] = '\0';
-// 		if (ft_strequ(buf, "exit"))
-// 			exit (0);
-// 		lex = lexer(buf);
-// 		while (lex->back)
-// 			lex = lex->back;
-// //		print_lexem(lex);
-// 		g_lex = lex;
-// 		g_error_lex = NULL;
-// 		parser_free(parser());
-// 		if (g_error_lex)
-// 			printf("%d\n", g_error_lex->type);
-// 		lexer_free_all(lex);
-// 	}
 	main_loop();
 	shell_clear();
 	return (g_res_exec);

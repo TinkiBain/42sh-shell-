@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/06 20:51:57 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/07 20:03:35 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,18 @@ PARSER_DIR=parser
 TRAVERSE_AST_DIR=traverse_ast
 
 SRCS_LEXER=\
-	lexer.c					lexer_check_token.c		lexer_check_reserved_word.c\
-	print_lexem.c			lexer_check_io_number.c	lexer_free_all.c\
+	lexer.c					lexer_check_token.c			lexer_check_reserved_word.c\
+	print_lexem.c			lexer_check_io_number.c		lexer_free_all.c\
 	lexer_find_word.c		lexer_find_dollar.c
 
 SRCS_PARSER=\
-	parser_list.c			parser_and_or.c			parser_linebreak.c\
-	parser_new_line_list.c	parser_pipeline.c		parser_pipe_sequence.c\
-	parser_command.c		parser_simple_command.c	parser_command_prefix.c\
-	parser_io_redirect.c	parser_cmd_suffix.c		parser_io_number.c\
-	parser.c
+	parser_list.c			parser_and_or.c				parser_linebreak.c\
+	parser_new_line_list.c	parser_pipeline.c			parser_pipe_sequence.c\
+	parser_command.c		parser_simple_command.c		parser_command_prefix.c\
+	parser_io_redirect.c	parser_cmd_suffix.c			parser_io_number.c\
+	parser.c				parser_compound_command.c	parser_subshell.c\
+	parser_brace_group.c	parser_compound_list.c		parser_term.c\
+	parser_separator.c		parser_redirect_list.c
 
 SRCS_TRAVERSE_AST=\
 	traverse_ast.c\

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/06 21:02:33 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/07 20:02:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,37 @@ typedef struct				s_simple_cmd
 	char					*cmd_name;
 }							t_simple_cmd;
 
+typedef struct				s_term
+{
+	struct s_term			*next;
+	int						separator;
+	struct s_and_or			*and_or;
+}							t_term;
+
+typedef struct				s_compound_list
+{
+	t_term					*term;
+	int						separator;
+	struct s_and_or			*and_or;
+}							t_compound_list;
+
+typedef struct				s_compound_cmd
+{
+	t_compound_list			*compound_list;
+}							t_compound_cmd;
+
 typedef struct				s_command
 {
 	struct s_simple_cmd		*simple_command;
-	struct s_compaund_cmd	*compaund_command;
+	struct s_compound_cmd	*compound_command;
+	struct s_redirect_list	*redirect_list;
 }							t_command;
+
+typedef struct				s_redirect_list
+{
+	struct s_redirect_list	*next;
+	t_io_redirect			*io_redirect;
+}							t_redirect_list;
 
 typedef struct				s_pipe_sequence
 {
@@ -99,6 +125,16 @@ t_pipe_sequence				*parser_pipe_sequence(void);
 t_pipe_sequence				*parser_free_pipe_sequence(t_pipe_sequence *list);
 t_command					*parser_command(void);
 t_command					*parser_free_command(t_command *list);
+t_compound_cmd				*parser_compound_command(void);
+t_compound_cmd				*parser_free_compound_command(t_compound_cmd *list);
+t_redirect_list				*parser_redirect_list(t_redirect_list *list_down);
+t_redirect_list				*parser_free_redirect_list(t_redirect_list *list);
+t_compound_list				*parser_subshell(void);
+t_compound_list				*parser_brace_group(void);
+t_compound_list				*parser_compound_list(void);
+t_compound_list				*parser_free_compound_list(t_compound_list *list);
+t_term						*parser_term(t_term *list_down);
+t_term						*parser_free_term(t_term *list);
 t_simple_cmd				*parser_simple_command(void);
 t_simple_cmd				*parser_free_simple_command(t_simple_cmd *list);
 t_io_redirect				*parser_io_redirect(void);
@@ -108,6 +144,7 @@ t_cmd_prefix				*parser_free_cmd_prefix(t_cmd_prefix *list);
 t_cmd_suffix				*parser_cmd_suffix(void);
 t_cmd_suffix				*parser_free_cmd_suffix(t_cmd_suffix *list);
 int							parser_io_number(void);
+int							parser_separator();
 void						parser_linebreak(void);
 void						parser_new_line_list(void);
 
