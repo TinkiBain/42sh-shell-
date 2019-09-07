@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/07 17:40:54 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/07 20:16:02 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INCLUDES:=-I includes -I includes/readline -I libft/includes
 SH_INCLUDES=\
 	ast.h		defs.h			variables.h		exec.h\
 	hash.h		lexer.h			parser.h		sh.h\
-	xfuncs.h	lib_wtalea.h	error.h
+	xfuncs.h	lib_wtalea.h	error.h			builtin_test.h
 
 HEADER=\
 	$(addprefix includes/, $(SH_INCLUDES))\
@@ -68,7 +68,21 @@ BUILTIN_DIR=builtin
 SRCS_BUILTIN=\
 	cd.c				ft_echo.c		ft_exit.c	ft_hash.c	ft_set.c\
 	ft_type.c			ft_unset.c		ft_env.c	ft_export.c	ft_kill.c\
-	cd_change_dir.c		ft_fc.c			bg.c		fg.c
+	cd_change_dir.c		ft_fc.c			bg.c		fg.c		ft_test.c
+
+BUILTIN_TEST_DIR=builtin_test
+
+SRCS_BUILTIN_TEST=\
+	ft_find_num.c\
+	ft_test_error.c\
+	ft_test_exists.c\
+	ft_test_exists_and_null.c\
+	ft_test_find_flag.c\
+	ft_test_type.c\
+	ft_test_compare.c\
+	ft_test_compare_int_eq_ne.c\
+	ft_test_compare_str.c\
+	ft_test_int_compare_more_less.c
 
 VAR_DIR=variables
 
@@ -103,7 +117,8 @@ SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(VAR_DIR)/, $(SRCS_VAR))\
 	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))\
 	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))\
-	$(addprefix $(ERROR_DIR)/, $(SRCS_ERROR))
+	$(addprefix $(ERROR_DIR)/, $(SRCS_ERROR))\
+	$(addprefix $(BUILTIN_DIR)/$(BUILTIN_TEST_DIR)/, $(SRCS_BUILTIN_TEST))
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
@@ -136,6 +151,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(DIR_LIB_WTALEA)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)\
 	$(OBJS_DIR)/$(ERROR_DIR)\
+	$(OBJS_DIR)/$(BUILTIN_TEST_DIR)
 
 .PHONY: all clean fclean re
 
