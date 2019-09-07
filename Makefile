@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/12/10 17:38:22 by dmorgil           #+#    #+#              #
-#    Updated: 2019/09/04 01:02:07 by gmelisan         ###   ########.fr        #
+#    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
+#    Updated: 2019/09/07 17:40:54 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,10 @@ SRCS_WITHOUT_DIR=\
 JOBS_DIR=jobs
 
 SRCS_JOBS=\
-	jobs.c				jobs_helper.c\
-	jobs_list_hendler.c	jobs_list_sub.c\
-	jobs_sig_hendler.c	fgbg_helper.c\
-	jobs_last_elem.c\
-	jobs_list_counter.c\
+	jobs.c					jobs_helper.c\
+	jobs_list_hendler.c		jobs_list_sub.c\
+	jobs_sig_hendler.c		fgbg_helper.c\
+	jobs_last_elem.c		jobs_list_counter.c\
 	jobs_start_file.c
 
 BUILTIN_DIR=builtin
@@ -80,7 +79,7 @@ SRCS_VAR=\
 	print_var_readonly.c		set_var.c\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
-	get_var_value.c	print_all_vars.c\
+	get_var_value.c				print_all_vars.c\
 	set_var_in_g_var.c			set_result.c\
 	set_var_shellopts.c
 
