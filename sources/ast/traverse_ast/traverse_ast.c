@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/07 16:38:25 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/07 21:30:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ static void		traverse_pipeline(t_pipeline *elem)
 		g_res_exec = (!g_res_exec) ? 1 : 0;
 }
 
-static void		traverse_and_or(t_and_or *elem)
+static void		traverse_and_or(t_and_or *elem, int flag1)
 {
 	static int	flag;
 
+	flag = flag1;
 	if (elem->next)
-		traverse_and_or(elem->next);
-	if (!flag || (flag == AND_IF && g_res_exec)
-				|| (flag == OR_IF && !g_res_exec))
+		traverse_and_or(elem->next, flag);
+	if (WIFEXITED(g_res_exec))
+		g_res_exec = WEXITSTATUS(g_res_exec);
+	set_result();
+	if (!flag || (flag == AND_IF && !g_res_exec)
+				|| (flag == OR_IF && g_res_exec))
 		traverse_pipeline(elem->pipeline);
 	else
 		return ;
@@ -39,7 +43,8 @@ static void		traverse_list(t_pars_list *list)
 {
 	if (list->next)
 		traverse_list(list->next);
-	traverse_and_or(list->and_or);
+	g_res_exec = 0;
+	traverse_and_or(list->and_or, 0);
 }
 
 void			traverse_ast(t_complete_cmd *root)
@@ -48,5 +53,4 @@ void			traverse_ast(t_complete_cmd *root)
 		return ;
 	root->list->sep = root->sep;
 	traverse_list(root->list);
-	// printf("%d\n", root->sep);
 }
