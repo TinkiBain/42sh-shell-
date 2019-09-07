@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:26:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 20:38:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/07 21:34:06 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ char	*lexer_check_token(char *str, t_lex **lex)
 	else if (*str == '&')
 		str = lexer_get_and(str, lex);
 	else if (*str == ';' && *(str + 1) != ';')
-	{
-		++str;
 		init_lex(SEMI, NULL, lex);
-	}
 	else if (*str == ';')
+	{
 		init_lex(DSEMI, NULL, lex);
+		++str;
+	}
 	else if (*str == '|' && *(str + 1) != '|')
 		init_lex(PIPE, NULL, lex);
 	else if (*str == '|')
