@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/03 23:17:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/07 18:25:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int		add_flags(const char *str, int *opt)
 static int		export_var(const char *str, int opt)
 {
 	extern char	**environ;
+	char		*p;
+	const char	*tmp_var;
 
 	if (*str == '-')
 	{
@@ -59,7 +61,22 @@ static int		export_var(const char *str, int opt)
 		ft_putendl_fd("': not a valid identifier", 2);
 		return (1);
 	}
-	(opt & FLAG_N) ? remove_var(str, &environ) : set_var(str, &environ, 0);
+	if ((p = ft_strchr(str, '=')))
+		set_var(str, &environ, 0);
+	if (opt & FLAG_N)
+		remove_var(str, &environ);
+	else if (!p)
+	{
+		if ((p = get_var_value((char *)str)))
+		{
+			tmp_var = (const char *)ft_strjoin(str, "=");
+			tmp_var = (const char *)ft_strrejoin(tmp_var, p, 1);
+		}
+		else
+			tmp_var = (const char *)ft_strjoin(str, "=");
+		set_var(tmp_var, &environ, 0);
+		ft_strdel((char **)&tmp_var);
+	}
 	return (0);
 }
 
