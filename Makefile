@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/07 20:16:02 by wtalea           ###   ########.fr        #
+#    Updated: 2019/09/07 20:23:34 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,7 +151,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(DIR_LIB_WTALEA)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)\
 	$(OBJS_DIR)/$(ERROR_DIR)\
-	$(OBJS_DIR)/$(BUILTIN_TEST_DIR)
+	$(OBJS_DIR)/$(BUILTIN_DIR)/$(BUILTIN_TEST_DIR)
 
 .PHONY: all clean fclean re
 
