@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/07 21:36:05 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/08 19:27:55 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ SRCS_TRAVERSE_AST=\
 	call_exec.c\
 	check_spec_symbol.c\
 	check_cmd.c\
-	handle_token_assignment_word.c\
 	traverse_cmd.c\
 	tdq.c
 

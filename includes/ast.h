@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 16:41:06 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 19:27:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "exec.h"
 
 int			check_cmd(const char *cmd);
-void		handle_token_assignment_word(char *word, char ***env);
 void		traverse_pipe_sequence(t_pipe_sequence *elem, char **env, t_pjobs *local);
 void		traverse_ast(t_complete_cmd *root);
 void		traverse_cmd(t_simple_cmd *cmd, char **env, int in_fork);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_command_prefix.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:12:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 15:15:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/08 20:15:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static char			*parser_check_assignment_word()
 				tmp = lexer_find_char(tmp, *tmp);
 			else if (*tmp == '=')
 			{
+				tmp = g_lex->lexem;
 				g_lex = g_lex->next;
-				return (ft_strdup(g_lex->lexem));
+				return (ft_strdup(tmp));
 			}
 			else
 				++tmp;
