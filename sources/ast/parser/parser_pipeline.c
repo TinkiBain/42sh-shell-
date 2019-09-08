@@ -37,7 +37,7 @@ t_pipeline		*parser_pipeline(void)
 		g_lex = g_lex->next;
 	}
 	list->pipe_sequence = parser_pipe_sequence();
-	if (g_error_pars)
+	if (g_error_lex)
 		return (parser_free_pipeline(list));
 	return (list);
 }
