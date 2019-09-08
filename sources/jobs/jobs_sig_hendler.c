@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/08 21:19:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 21:42:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void				jobs_sig(void)
 	done_pid = 0;
 	sig = 0;
 	done_pid = waitpid(-1, &sig, WUNTRACED);
+	g_res_exec = sig;
+	if (WIFEXITED(g_res_exec))
+		g_res_exec = WEXITSTATUS(g_res_exec);
+	set_result();
 	if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
 		g_wait_flags = done_pid;

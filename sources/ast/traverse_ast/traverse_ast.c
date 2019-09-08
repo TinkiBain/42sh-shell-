@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_ast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 19:33:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 21:43:31 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 	flag = flag1;
 	if (elem->next)
 		traverse_and_or(elem->next, flag, local);
-	if (WIFEXITED(g_res_exec))
-		g_res_exec = WEXITSTATUS(g_res_exec);
-	set_result();
 	if (!flag || (flag == AND_IF && !g_res_exec)
 				|| (flag == OR_IF && g_res_exec))
 		traverse_pipeline(elem->pipeline, local);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:37:06 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/07 16:06:55 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 21:58:25 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ t_job			*lsubjob_changer(char *str, t_pjobs *gjobs, int num, int pid)
 		while (local->next)
 			local = local->next;
 		local = local->next = ft_addsubjob(str, num);
-		local = local->next;
 	}
 	local->pid = pid;
+	local = local->next;
 	gjobs = first;
 	return (local);
 }
