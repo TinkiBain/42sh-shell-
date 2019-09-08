@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/04 00:07:34 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 09:06:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char		*g_project_name;
 t_pjobs		*g_pjobs;
 t_pjobs		*g_subjob;
 int			g_line_num;
+int			g_exit;
 
 void		execute_line(char *buf)
 {
@@ -45,12 +46,12 @@ void		main_loop(void)
 	char		*line;
 
 	g_line_num = 1;
-	while (42)
+	while (!g_exit)
 	{
 		g_check_nl = 1;
 		if (!(line = ft_readline((g_opt.rl_in == 0 ?
 							get_var_value("PS1") : ""), NULL)))
-			break ;
+			continue ;
 		ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
 		execute_line(line);
 		g_line_num++;

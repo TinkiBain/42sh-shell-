@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/06 02:59:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 06:48:47 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	call_if_builtin(const char **av, char ***env)
 	else if (ft_strequ(*av, "type"))
 		return (ft_type(av + 1));
 	else if (ft_strequ(*av, "fc"))
-		return (ft_type(av + 1));
+		return (ft_fc(av + 1));
 	else if (ft_strequ(*av, "export"))
 		return (ft_export(av + 1));
 	return (0);

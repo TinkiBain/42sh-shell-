@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/04 15:43:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 07:36:24 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void		shell_init(int ac, char **av)
 	fill_hash_table();
 	logopen();
 	g_history = ft_xmemalloc(sizeof(t_history));
+	g_history->start_index = 1;
 	history_load(g_history);
 }

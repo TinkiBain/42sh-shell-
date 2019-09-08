@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/31 21:32:26 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 12:03:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 # define STDERR					2
 
 extern char						*g_project_name;
+
+# define DEFAULT_HISTSIZE		"20"
 
 #endif

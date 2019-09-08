@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/03 22:48:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 09:34:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	push_undo_list(line);
 }
 
-static void	clear_line(t_line *line, int exit, t_history **history)
+static void	clear_line(t_line *line, int clear_flag, t_history **history)
 {
 	line->result = str_xduplicate(*line->str);
 	str_xaddfront(&line->result, line->oldstr.s, line->oldstr.len);
@@ -59,7 +59,7 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 	str_delete(&line->oldstr);
 	str_delete(&line->keybuf);
 	clear_bindings(&line->key_bindings);
-	if (exit)
+	if (clear_flag)
 		str_delete(&line->result);
 	ft_lstdel(&(line->undo), del_undo_one);
 }
@@ -73,7 +73,7 @@ static void	clear_line(t_line *line, int exit, t_history **history)
 char		*ft_readline(char *prompt, char *oldline)
 {
 	t_line			line;
-	int				exit;
+	int				ret;
 
 	sig_init();
 	g_line = &line;
@@ -84,9 +84,10 @@ char		*ft_readline(char *prompt, char *oldline)
 	init_line(&line, prompt, oldline);
 	init_linebuf(&line);
 	update_line(NULL);
-	exit = input_loop(&line);
+	ret = input_loop(&line);
 	clear_linebuf();
-	clear_line(&line, exit, &g_history);
+	clear_line(&line, ret, &g_history);
 	term_restore();
+	loginfo("Readline returned \"%s\"", line.result.s);
 	return (line.result.s);
 }

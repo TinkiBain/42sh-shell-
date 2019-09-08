@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/03 23:02:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 09:52:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		logopen(void)
 		loginfo("Error while opening logfile: %s", path);
 	}
 	ft_strdel(&path);
-	loginfo("logopen()");
+	loginfo("=== START ===");
 	loginfo("tty: %s", ttyname(g_opt.rl_in));
 }
 
@@ -40,7 +40,7 @@ void		logclose(void)
 {
 	if (!DEBUG || g_logfd < 0)
 		return ;
-	loginfo("logclose()");
+	loginfo("=== EXIT ===");
 	close(g_logfd);
 }
 

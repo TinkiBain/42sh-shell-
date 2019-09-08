@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 15:10:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 06:55:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	list(int first, int last)
 	while (p->next)
 	{
 		if (i >= first && i <= last)
-			ft_printf("%d\t%s\n", i + 1, ((t_string *)p->content)->s);
+			ft_printf("%d\t%s\n", i, ((t_string *)p->content)->s);
 		i++;
 		p = p->next;
 	}

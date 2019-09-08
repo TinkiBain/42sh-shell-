@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 09:39:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static int	history_open(t_history *history)
 		fd = open(history->path, O_RDONLY | O_CREAT, S_IRWXU);
 	if (fd < 0)
 		loginfo("Can't open history file: %s", history->path);
-	else
-		loginfo("History location: %s", history->path);
 	return (fd);
 }
 
@@ -39,6 +37,7 @@ void		history_load(t_history *history)
 
 	if ((fd = history_open(history)) < 0)
 		return ;
+	loginfo("Loading history from file %s", history->path);
 	while ((ret = get_next_line(fd, &str.s)) > 0)
 	{
 		str_fixlen(&str);
@@ -46,11 +45,12 @@ void		history_load(t_history *history)
 		history->size++;
 	}
 	if (ret < 0)
-		loginfo("Error in history get_next_line()");
+		loginfo("! Error in history get_next_line()");
 	while (history->size > history->max_size)
 	{
 		ft_dlstdelfront(&history->item, del_hist);
 		history->size--;
 	}
+	loginfo("History size = %d", history->size);
 	close(fd);
 }

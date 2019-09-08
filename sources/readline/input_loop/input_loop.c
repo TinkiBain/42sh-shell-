@@ -6,31 +6,39 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/03 22:48:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 09:32:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "input_loop.h"
 
 /*
-** 1 - exit, 0 - continue
+** 1 - ft_readline() returns NULL
+** 0 - ft_readline() returns string
 */
 
 int				input_loop(t_line *line)
 {
-	int		ret;
+	extern int	g_exit;
+	int			ret;
 
+	loginfo("Start reading loop");
 	if (line->vi_mode)
 		ret = vi_input_loop(line);
 	else
 		ret = em_input_loop(line);
+	loginfo("End reading loop");
 	if (ret < 0)
 		print_error("Read error", NULL);
-	history_expand(line);
+	if (!history_expand(line))
+		return (1);
 	line->cpos = line->str->len;
 	if (line->vi_mode || line->emacs_mode)
 		update_line(line);
 	if (ret <= 0 && line->oldstr.len == 0)
+	{
+		g_exit = 1;
 		return (1);
+	}
 	return (0);
 }

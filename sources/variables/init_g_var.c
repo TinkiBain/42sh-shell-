@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 21:48:37 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 08:05:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	set_default_vars(void)
 	char			*tmp;
 
 	set_var_if_not_exist("HISTPATH=~/." PROJECT_NAME ".history", &g_var, 1);
-	set_var_if_not_exist("HISTSIZE=20", &g_var, 1);
+	set_var_if_not_exist("HISTSIZE=" DEFAULT_HISTSIZE, &g_var, 1);
 	set_var_if_not_exist("LOGPATH=~/." PROJECT_NAME ".log", &g_var, 1);
 	tmp = ft_strrejoin("PS1=" "\\033[0;31m", g_project_name, 0);
 	tmp = ft_strrejoin(tmp, ">\\033[0m ", 1);

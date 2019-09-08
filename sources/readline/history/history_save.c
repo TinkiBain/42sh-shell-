@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 19:58:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 09:38:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void		history_save(t_history *history, t_string *str)
 		history_save_rewrite(history);
 	else
 		history_save_append(history);
+	loginfo("Line \"%s\" has been pushed to history", str->s);
 }
