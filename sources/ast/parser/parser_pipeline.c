@@ -1,39 +1,43 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser_pipeline.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/01 16:14:49 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/07/26 20:23:01 by dwisoky          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "parser.h"
 
-static t_pipeline	*init_pipeline(void)
-{
-	t_pipeline	*pipeline;
+/*
+ ** Grammar rule
+ ** pipeline         :      pipe_sequence
+ **                  | Bang pipe_sequence
+ **                  ;
+*/
 
-	pipeline = (t_pipeline*)ft_xmalloc(sizeof(t_pipeline));
-	pipeline->bang = 0;
-	return (pipeline);
+t_pipeline			*parser_free_pipeline(t_pipeline *list)
+{
+	if (!list)
+		return (NULL);
+	parser_free_pipe_sequence(list->pipe_sequence);
+	free(list);
+	return (NULL);
 }
 
-t_pipeline			*parser_pipeline(t_lex *lex)
+static t_pipeline	*parser_init_pipeline(void)
 {
-	t_pipeline	*pipeline;
-	extern int	g_error_pars;
+	t_pipeline		*list;
 
-	pipeline = init_pipeline();
-	if (lex->type & BANG)
+	list = (t_pipeline*)ft_xmalloc(sizeof(t_pipeline));
+	list->bang = 0;
+	list->pipe_sequence = NULL;
+	return (list);
+}
+
+t_pipeline		*parser_pipeline(void)
+{
+	t_pipeline	*list;
+
+	list = parser_init_pipeline();
+	if (g_lex && g_lex->type == BANG)
 	{
-		pipeline->bang = 1;
-		lex = lex->next;
+		list->bang = 1;
+		g_lex = g_lex->next;
 	}
-	pipeline->pipe_sequence = parser_pipe_sequence(lex);
-	if (!pipeline->pipe_sequence)
-		return (parser_free_pipeline(pipeline));
-	return (pipeline);
+	list->pipe_sequence = parser_pipe_sequence();
+	if (g_error_pars)
+		return (parser_free_pipeline(list));
+	return (list);
 }

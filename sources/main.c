@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 09:06:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 14:59:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int			g_exit;
 
 void		execute_line(char *buf)
 {
-	t_pars_list	*list;
-	char		*tmp;
+	t_complete_cmd	*list;
+	char			*tmp;
 
 	tmp = NULL;
 	if (*(tmp = ft_strtrim(buf)))
 	{
 		list = exec_ast(buf);
-		traverse_ast(list);
-		g_error_pars = 0;
-		parser_free_tree(list);
+		if (list)
+			traverse_ast(list);
+		parser_free(list);
 	}
 	else
 		ft_strdel(&buf);

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_free_all.c                                   :+:      :+:    :+:   */
+/*   parser_brace_group.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 18:22:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/06 18:22:02 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/09/07 17:58:28 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/07 18:26:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+/*
+** Grammar rule
+** brace_group      : Lbrace compound_list Rbrace
+**                  ;
+*/
 
-void		lexer_free_all(t_lex *lex)
+#include "parser.h"
+
+t_compound_list		*parser_brace_group(void)
 {
-	t_lex	*tmp;
+	t_compound_list	*tmp;
 
-	while (lex)
-	{
-		tmp = lex->next;
-		if (lex->lexem)
-			free(lex->lexem);
-		free(lex);
-		lex = tmp;
-	}
+	g_lex = g_lex->next;
+	tmp = parser_compound_list();
+	if (g_lex->type == RBRACE)
+		g_lex = g_lex->next;
+	else
+		g_error_lex = g_lex;
+	return (tmp);
 }

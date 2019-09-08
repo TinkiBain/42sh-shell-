@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_bang.c                                       :+:      :+:    :+:   */
+/*   parser_separator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/02 19:13:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/17 06:53:05 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/07 19:17:26 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/07 19:29:45 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "parser.h"
 
-char	*lexer_bang(char *str, t_lex *lex)
+/*
+** Grammar rule
+** separator        : separator_op linebreak
+**                  | newline_list
+**                  ;
+*/
+
+int		parser_separator(void)
 {
-	if (!lex->prev || (lex->prev->type == AND_IF || lex->prev->type == OR_IF
-				|| lex->prev->type == PIPE_SYMB))
-		lex->type = BANG;
-	else
+	int	separator;
+
+	separator = 0;
+	if (!g_lex)
+		return (0);
+	if (g_lex->type == JOB || g_lex->type == SEMI)
 	{
-		lex->lexeme = ft_xstrdup("!");
-		lex->type = WORD;
+		separator = g_lex->type;
+		g_lex = g_lex->next;
+		parser_linebreak();
 	}
-	return (str + 1);
+	else
+		parser_new_line_list();
+	return (separator);
 }

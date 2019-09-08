@@ -1,67 +1,49 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser_and_or.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/01 09:48:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:09:50 by dwisoky          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "parser.h"
 
-static t_and_or	*init_and_or(void)
-{
-	t_and_or	*elem;
+/*
+ ** Grammar rule
+ ** and_or           :                         pipeline
+ **		             | and_or AND_IF linebreak pipeline
+ **                  | and_or OR_IF  linebreak pipeline
+ **                  ;
+*/
 
-	elem = (t_and_or*)ft_xmalloc(sizeof(t_and_or));
-	elem->and_or = NULL;
-	elem->pipeline = NULL;
-	elem->and_or_if = 0;
-	return (elem);
-}
-
-t_and_or		*parser_error_and_or(int type)
+t_and_or		*parser_free_and_or(t_and_or *list)
 {
-	if (type & OR_IF)
-		return (parser_print_error("||"));
-	else
-		return (parser_print_error("&&"));
-}
-
-t_and_or		*parser_and_or_error(void)
-{
-	g_error_pars = 2;
+	if (!list)
+		return (NULL);
+	parser_free_pipeline(list->pipeline);
+	parser_free_and_or(list->next);
+	free(list);
 	return (NULL);
 }
 
-t_and_or		*parser_and_or(t_lex *lex)
+static t_and_or	*parser_init_and_or(t_and_or *list_down)
 {
-	t_and_or	*elem;
-	t_lex		*tmp;
-	t_lex		*begin;
+	t_and_or	*list;
 
-	if (!(lex && (begin = lex)))
-		return (parser_and_or_error());
-	if (lex->type & AND_IF || lex->type & OR_IF)
-		return (parser_error_and_or(lex->type));
-	elem = init_and_or();
-	while (lex->next)
-	{
-		if (lex->next->type & AND_IF || lex->next->type & OR_IF)
-		{
-			tmp = lex->next->next;
-			elem->and_or_if = lex->next->type;
-			lex->next = NULL;
-			if (!(elem->and_or = parser_and_or(tmp)))
-				return (parser_free_and_or(elem));
-			break ;
-		}
-		lex = lex->next;
-	}
-	if (!(elem->pipeline = parser_pipeline(begin)))
-		return (parser_free_and_or(elem));
-	return (elem);
+	list = (t_and_or*)ft_xmalloc(sizeof(t_and_or));
+	list->next = list_down;
+	list->and_or_if = 0;
+	list->pipeline = NULL;
+	return (list);
+}
+
+t_and_or		*parser_and_or(t_and_or *list_down)
+{
+	t_and_or	*list_and_or;
+
+	list_and_or = parser_init_and_or(list_down);
+	list_and_or->pipeline = parser_pipeline();
+	if (g_error_lex)
+		return (parser_free_and_or(list_and_or));
+	if (!g_lex)
+		return (list_and_or);
+	if (g_lex->type == AND_IF || g_lex->type == OR_IF)
+		list_and_or->and_or_if = g_lex->type;
+	else
+		return (list_and_or);
+	g_lex = g_lex->next;
+	parser_linebreak();
+	return (parser_and_or(list_and_or));
 }

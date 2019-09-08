@@ -1,45 +1,47 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parser_cmd_suffix.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/05 22:18:22 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/17 06:08:45 by gmelisan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "parser.h"
 
-static t_cmd_suffix	*init_cmd_suffix(t_lex *lex)
+t_cmd_suffix		*parser_free_cmd_suffix(t_cmd_suffix *list)
 {
-	t_cmd_suffix	*cmd_suf;
+	if (!list)
+		return (NULL);
+	parser_free_io_redirect(list->io_redir);
+	parser_free_cmd_suffix(list->cmd_suf);
+	if (list->word)
+		free(list->word);
+	free(list);
+	return (NULL);
+}
 
-	cmd_suf = (t_cmd_suffix*)ft_xmalloc(sizeof(t_cmd_suffix));
-	if (lex->type & WORD)
+static t_cmd_suffix	*parser_init_cmd_suffix(void)
+{
+	t_cmd_suffix	*list;
+
+	list = (t_cmd_suffix*)ft_xmalloc(sizeof(t_cmd_suffix));
+	list->cmd_suf = NULL;
+	list->io_redir = NULL;
+	list->word = NULL;
+	return (list);
+}
+
+t_cmd_suffix	*parser_cmd_suffix(void)
+{
+	t_cmd_suffix	*list;
+
+	if (!g_lex)
+		return (NULL);
+	list = parser_init_cmd_suffix();
+	if (g_lex->type != WORD)
 	{
-		cmd_suf->word = ft_xstrdup(lex->lexeme);
-		cmd_suf->io_redir = NULL;
+		if (!(list->io_redir = parser_io_redirect())) //изменить на io_redirect
+				return (parser_free_cmd_suffix(list));
 	}
 	else
 	{
-		cmd_suf->word = NULL;
-		cmd_suf->io_redir = parser_io_redirect(lex);
+		list->word = ft_strdup(g_lex->lexem);
+		g_lex = g_lex->next;
 	}
-	cmd_suf->cmd_suf = NULL;
-	return (cmd_suf);
-}
-
-void				parser_cmd_suffix(t_lex *lex, t_cmd_suffix **cmd_suffix)
-{
-	t_lex			*tmp;
-
-	while (lex)
-	{
-		tmp = lex;
-		*cmd_suffix = init_cmd_suffix(lex);
-		cmd_suffix = &(*cmd_suffix)->cmd_suf;
-		lex = lex->next;
-	}
+	if (g_error_lex)
+		return (parser_free_cmd_suffix(list));
+	list->cmd_suf = parser_cmd_suffix();
+	return (list);
 }

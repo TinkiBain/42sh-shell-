@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_pipeline.c                                :+:      :+:    :+:   */
+/*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/05 21:16:42 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 15:40:10 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/09/07 16:28:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	**g_var;
 
-static char		*get_cmd_name(t_cmd *cmd)
+static char		*get_cmd_name(t_simple_cmd *cmd)
 {
 	if (cmd->cmd_pref)
 	{
@@ -32,7 +32,7 @@ static char		*get_cmd_name(t_cmd *cmd)
 	return (NULL);
 }
 
-static void		handle_last_cmd_in_pipe(int fd, t_cmd *cmd, char **env,
+static void		handle_last_cmd_in_pipe(int fd, t_simple_cmd *cmd, char **env,
 															int in_fork)
 {
 	pid_t		pid2;
@@ -63,56 +63,45 @@ static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(fd, 0);
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
-		get_cmd_name(pipe_seq->cmd);
-		traverse_cmd(pipe_seq->cmd, environ, in_fork);
+		get_cmd_name(pipe_seq->command->simple_command);
+		traverse_cmd(pipe_seq->command->simple_command, environ, in_fork);
 		exit(g_res_exec);
 	}
 	close(pipefd[1]);
 	pipe_seq = pipe_seq->next;
-	if (pipe_seq->pipe_op)
+	if (pipe_seq->next)
 		ast_handle_pipe(pipe_seq, pipefd[0], environ, in_fork);
 	else
-		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->cmd, env, in_fork);
+		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command->simple_command,
+															env, in_fork);
 	close(pipefd[0]);
 	waitpid(pid, NULL, 0);
 }
 
-static void		pipe_sequence_iter(t_pipe_sequence *pipe_seq, char **env)
+void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env)
 {
 	pid_t		pid;
 	char		*cmd_name;
 	int			flag;
 
-	if (pipe_seq->pipe_op)
+	if (pipe_seq->next)
 		ast_handle_pipe(pipe_seq, 0, env, 1);
 	else
 	{
-		if ((cmd_name = get_cmd_name(pipe_seq->cmd)))
+		if ((cmd_name = get_cmd_name(pipe_seq->command->simple_command)))
 		{
 			if (is_builtin(cmd_name))
-				traverse_cmd(pipe_seq->cmd, env, 0);
+				traverse_cmd(pipe_seq->command->simple_command, env, 0);
 			else if ((flag = check_cmd(cmd_name)) == 0)
 			{
 				hash_add_count(cmd_name);
 				if ((pid = fork()) == 0)
-					traverse_cmd(pipe_seq->cmd, env, 1);
+					traverse_cmd(pipe_seq->command->simple_command, env, 1);
 				else
 					waitpid(pid, &g_res_exec, 0);
 			}
 		}
 		else
-			traverse_cmd(pipe_seq->cmd, env, 1);
-	}
-}
-
-void			traverse_pipeline(t_pipeline *root)
-{
-	extern char	**environ;
-
-	if (root->pipe_sequence)
-	{
-		pipe_sequence_iter(root->pipe_sequence, environ);
-		if (root->bang)
-			g_res_exec = (!g_res_exec) ? 1 : 0;
+			traverse_cmd(pipe_seq->command->simple_command, env, 1);
 	}
 }
