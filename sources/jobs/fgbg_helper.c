@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:50:01 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/08 17:06:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 18:18:50 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,8 @@ t_pjobs			*name_proc_hendl(t_pjobs *local_job, char *name)
 	if (name && name[0] != '%')
 		while (ft_strncmp(local_job->name, name, spec_strlen(name)))
 		{
-			printf ("%s %s %d %d\n", local_job->name, name, i , high);
 			if (i > high)
-			{
-				printf ("aa\n");
 				return (NULL);
-			}
 			local_job = jobs_find_num(local, high - i);
 			i++;
 		}

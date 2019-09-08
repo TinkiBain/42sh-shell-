@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 16:58:55 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 18:24:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@ int			fg(t_pjobs *local_job, const char *name)
 	int			st;
 	t_pjobs		*local;
 	t_job		*job;
-	local = name_proc_hendl(local_job, (char*)name);
-	if (local_job == NULL)
+	if (local_job)
+		local = name_proc_hendl(local_job, (char*)name);
+	else
+		local = NULL;
+	if (local == NULL)
 	{
 		ft_putstr_fd(g_project_name, 2);
-		ft_putendl_fd(": fg: Not such job", 2);
+		if (name)
+		{
+			ft_putstr_fd(": fg: job not found ", 2);
+			ft_putendl_fd(name, 2);
+		}
+		else
+			ft_putstr_fd(": fg: no current job\n", 2);
 		return (1);
 	}
 	free(local->status);
