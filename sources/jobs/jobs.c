@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:04:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/07 16:24:30 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 20:50:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,17 @@ void			option_print(t_pjobs *local)
 
 	job = local->job;
 	ft_printf("[%d]\t", local->num);
-	while (job)
+	if (job->next)
+		while (job)
+		{
+			ft_printf("%d %s %s\n", job->pid, job->status, job->name);
+			job = job->next;
+		}
+	else
 	{
-		ft_printf("%d %s\t%s\n", job->pid, job->status, job->name);
-		job = job->next;
+		ft_printf("%d %s %s\n", job->pid, local->status, local->name);
 	}
+
 }
 
 int				jobs(t_pjobs *local_job, int iter, const char *cmd)
