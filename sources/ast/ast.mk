@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/07 21:36:05 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/08 16:47:24 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS_PARSER=\
 	parser_io_redirect.c	parser_cmd_suffix.c			parser_io_number.c\
 	parser.c				parser_compound_command.c	parser_subshell.c\
 	parser_brace_group.c	parser_compound_list.c		parser_term.c\
-	parser_separator.c		parser_redirect_list.c
+	parser_separator.c		parser_redirect_list.c		parser_function_definition.c\
+	parser_function_body.c
 
 SRCS_TRAVERSE_AST=\
 	traverse_ast.c\

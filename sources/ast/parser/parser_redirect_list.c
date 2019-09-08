@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 19:47:51 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 20:04:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/08 16:57:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_redirect_list			*parser_redirect_list(t_redirect_list *list_down)
 		return (NULL);
 	list = parser_init_redirect_list(list_down);
 	list->io_redirect = parser_io_redirect();
-	if (!list)
+	if (!list->io_redirect)
 		return (parser_free_redirect_list(list));
 	return (parser_redirect_list(list));
 }

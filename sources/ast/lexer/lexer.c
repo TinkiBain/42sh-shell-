@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/06 18:44:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 15:02:05 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ t_lex		*lexer(char *str)
 		if (*str == '\n')
 			init_lex(NEWLINE, NULL, &lex);
 		if (*str == '(')
-			init_lex(WORD, ft_strdup("("), &lex);
+			init_lex(LBRACKET, NULL, &lex);
 		else if (*str == ')')
-			init_lex(WORD, ft_strdup(")"), &lex);
+			init_lex(RBRACKET, NULL, &lex);
 		else if (*str == '>' || *str == '<' || *str == '|' || *str == '&'
 				|| *str == ';')
 			str = lexer_check_token(str, &lex);

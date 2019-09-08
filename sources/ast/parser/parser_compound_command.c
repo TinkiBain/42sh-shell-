@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:11:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 18:11:17 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/08 17:38:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_compound_cmd			*parser_compound_command(void)
 	list = parser_init_compound_command();
 	if (g_lex->type == LBRACE)
 		list->compound_list = parser_brace_group();
-	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "("))
+	else if (g_lex->type == LBRACKET)
 		list->compound_list = parser_subshell();
 	else
 		return (parser_free_compound_command(list));
