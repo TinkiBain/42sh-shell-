@@ -6,13 +6,14 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:16:22 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/07 20:12:14 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/09/08 05:59:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_TEST_H
 # define BUILTIN_TEST_H
 
+# include <errno.h>
 # include "exec.h"
 
 long		ft_strtol(const char *nptr, char **endptr, register int base);

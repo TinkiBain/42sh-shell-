@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 17:04:56 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/07 20:02:27 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/09/08 05:58:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		test_compare_int_less(char *str, char *str2)
 {
 	long		num[2];
-	extern	int	errno;
 
 	errno = 0;
 	num[0] = 0;
@@ -40,7 +39,6 @@ int		test_compare_int_less(char *str, char *str2)
 int		test_compare_int_more(char *str, char *str2)
 {
 	long		num[2];
-	extern	int	errno;
 
 	errno = 0;
 	num[0] = 0;
@@ -65,7 +63,6 @@ int		test_compare_int_more(char *str, char *str2)
 int		test_compare_int_less_or_equal(char *str, char *str2)
 {
 	long		num[2];
-	extern	int	errno;
 
 	errno = 0;
 	num[0] = 0;
@@ -90,7 +87,6 @@ int		test_compare_int_less_or_equal(char *str, char *str2)
 int		test_compare_int_more_or_equal(char *str, char *str2)
 {
 	long		num[2];
-	extern	int	errno;
 
 	errno = 0;
 	num[0] = 0;
