@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 17:23:02 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/01 19:50:18 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 16:28:49 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,13 @@ t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag)
 	return (local);
 }
 
-t_pjobs			*jobs_startet(char *str, char **argv)
+t_pjobs			*jobs_startet(char *str, int sep)
 {
-	int i;
 	int flag;
 
 	flag = 0;
-	i = 0;
-	while (argv[i])
-	{
-		if (argv[i][0] == '&')
-		{
-			flag = 1;
-			argv[i] = NULL;
-		}
-		i++;
-	}
+	if (sep == JOB)
+		flag = 1;
 	if (flag)
 		return (subjob_changer(str, &g_pjobs, flag));
 	else

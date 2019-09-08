@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:37:06 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/01 19:48:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/07 16:06:55 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,45 @@ t_job			*ft_addsubjob(char *path, int num)
 {
 	t_job		*new;
 
-	new = (t_job*)malloc(sizeof(t_job));
+	new = (t_job*)malloc(sizeof(*new));
 	new->name = ft_strdup(path);
 	new->status = ft_strdup("\t[Running]\t");
 	new->next = NULL;
 	new->num = num;
 	return (new);
+}
+
+t_job			*lsubjob_changer(char *str, t_pjobs *gjobs, int num, int pid)
+{
+	t_job		*local;
+	t_pjobs		*first;
+
+	first = gjobs;
+	local = NULL;
+	while (gjobs->num != num)
+		gjobs = gjobs->next;
+	if (!gjobs->job)
+	{
+		gjobs->job = ft_addsubjob(str, num);
+		local = gjobs->job;
+	}
+	else
+	{
+		local = gjobs->job;
+		while (local->next)
+			local = local->next;
+		local = local->next = ft_addsubjob(str, num);
+		local = local->next;
+	}
+	local->pid = pid;
+	gjobs = first;
+	return (local);
+}
+
+t_job			*ljobs_startet(char *str, int flag, int num, int pid)
+{
+	if (flag)
+		return (lsubjob_changer(str, g_pjobs, num, pid));
+	else
+		return (lsubjob_changer(str, g_subjob, num, pid));
 }

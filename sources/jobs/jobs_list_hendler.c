@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/01 19:18:41 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/07 16:17:35 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,10 @@ t_pjobs			*ft_addjob(char *path, int flag)
 	new->next = NULL;
 	new->num = ft_num_job(g_pjobs);
 	new->workgpid = 0;
+	//new->job = (t_job*)malloc(sizeof(t_job));
+	//new->job->status = ft_strdup("1");
+	//
+	new->job = NULL;
+	//new->job->name = ft_strdup("1");
 	return (new);
 }

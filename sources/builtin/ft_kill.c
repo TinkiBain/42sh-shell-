@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/01 17:14:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/07 20:20:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int		ft_isstrnum(char *c)
+static int		ft_isstrnum(const char *c)
 {
 	int			i;
 
@@ -26,7 +26,7 @@ static int		ft_isstrnum(char *c)
 	return (1);
 }
 
-static void		kill_hendler_proc(char **cmd, t_pjobs *local_job, int sig)
+static void		kill_hendler_proc(const char **cmd, t_pjobs *local_job, int sig)
 {
 	int			num;
 
@@ -47,7 +47,7 @@ static void		kill_hendler_proc(char **cmd, t_pjobs *local_job, int sig)
 		kill(local_job->job->pid, sig);
 }
 
-static void		kill_hendler(char **cmd, t_pjobs *local_job,
+static void		kill_hendler(const char **cmd, t_pjobs *local_job,
 		int sig, t_pjobs *fir)
 {
 	int			kek;
@@ -70,7 +70,7 @@ static void		kill_hendler(char **cmd, t_pjobs *local_job,
 	}
 }
 
-int				ft_sighendler(char *str)
+static int	ft_sighendler(const char *str)
 {
 	if (!ft_strcmp(str, "SIGCONT"))
 		return (SIGCONT);
@@ -89,11 +89,10 @@ int				ft_sighendler(char *str)
 ** sig always = 15
 */
 
-void			ft_kill(char **cmd, t_pjobs *local_job, int sig)
+int			ft_kill(const char **cmd, t_pjobs *local_job, int sig)
 {
 	t_pjobs		*fir;
 
-	cmd++;
 	fir = local_job;
 	if (*cmd && (*cmd)[0] == '-' && (*cmd)[1] != '-' && (*cmd)[1] != 's')
 		sig = ft_atoi(*cmd++) * -1;
@@ -108,11 +107,12 @@ void			ft_kill(char **cmd, t_pjobs *local_job, int sig)
 	if (!(*cmd))
 	{
 		ft_putstr("kill: not enough arguments");
-		return ;
+		return (1);
 	}
 	while (*cmd)
 	{
 		kill_hendler(cmd, local_job, sig, fir);
 		cmd++;
 	}
+	return (0);
 }

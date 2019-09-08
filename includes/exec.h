@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/01 17:04:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 16:28:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int			*g_open_fd;
 
 int			call_exec(const char **av, char ***env);
 int			is_builtin(const char *cmd);
-void		bg(t_pjobs *local_job, char *name);
-void		fg(t_pjobs *local_job, char *name);
+int			bg(t_pjobs *local_job, const char *name);
+int			fg(t_pjobs *local_job, const char *name);
 int			ft_cd(const char **av, char ***env);
 int			ft_echo(const char **av);
 int			ft_env(const char **av, char **env);
 int			ft_exit(const char **av);
 int			ft_export(const char **av);
 int			ft_hash(char **argv);
-void		ft_kill(char **cmd, t_pjobs *local_job, int sig);
+int			ft_kill(const char **cmd, t_pjobs *local_job, int sig);
 int			ft_set(const char **av);
 int			ft_type(const char **av);
 int			ft_unset(const char **av);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/07 16:28:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 16:46:25 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	waitpid(pid, NULL, 0);
 }
 
-void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env)
+void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env, t_pjobs *local)
 {
 	pid_t		pid;
 	char		*cmd_name;
@@ -91,14 +91,36 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env)
 		if ((cmd_name = get_cmd_name(pipe_seq->command->simple_command)))
 		{
 			if (is_builtin(cmd_name))
+			{
+				if (local->flag == 0)
+					deletejob(&g_subjob, g_subjob->num);
 				traverse_cmd(pipe_seq->command->simple_command, env, 0);
+			}
 			else if ((flag = check_cmd(cmd_name)) == 0)
 			{
 				hash_add_count(cmd_name);
 				if ((pid = fork()) == 0)
+				{
+					if (local->flag == 1)
+						setpgrp();
 					traverse_cmd(pipe_seq->command->simple_command, env, 1);
+				}
 				else
-					waitpid(pid, &g_res_exec, 0);
+				{
+					ljobs_startet("name", local->flag, local->num, pid);
+					if (local->flag == 0)
+						ft_waitpid(pid);
+					else
+						ft_printf("[%d] [%d]\n", local->num, pid);
+				}
+			}
+			else
+			{
+				printf ("");
+				if (local->flag == 0)
+					deletejob(&g_subjob, g_subjob->num);
+				else
+					deletejob(&g_pjobs, local->num);
 			}
 		}
 		else

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/08 14:59:35 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/08 16:32:45 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRCS_JOBS=\
 	jobs_list_hendler.c		jobs_list_sub.c\
 	jobs_sig_hendler.c		fgbg_helper.c\
 	jobs_last_elem.c		jobs_list_counter.c\
-	jobs_start_file.c
+	jobs_start_file.c		ft_waitpid.c
 
 BUILTIN_DIR=builtin
 

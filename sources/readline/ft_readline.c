@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 09:34:26 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 16:34:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ extern t_opt	g_opt;
 static void	sig_init(void)
 {
 	signal(SIGINT, sigh_ignore);
-	signal(SIGTSTP, SIG_DFL);
+//	signal(SIGTSTP, SIG_DFL);
 	signal(SIGSEGV, sigh_sigsegv);
 	signal(SIGABRT, sigh_sigabrt);
 	signal(SIGWINCH, sigh_sigwinch);

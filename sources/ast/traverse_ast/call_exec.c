@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 06:48:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/08 16:42:44 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ static int	call_if_builtin(const char **av, char ***env)
 		return (ft_fc(av + 1));
 	else if (ft_strequ(*av, "export"))
 		return (ft_export(av + 1));
+	else if (ft_strequ(*av, "jobs"))
+		return (jobs(g_pjobs, -1, *(av + 1)));
+	else if (ft_strequ(*av, "fg"))
+		return (fg(g_pjobs, *(av + 1)));
+	else if (ft_strequ(*av, "bg"))
+		return (bg(g_pjobs, *(av + 1)));
+	else if (ft_strequ(*av, "kill"))
+		return (ft_kill(av + 1, g_pjobs, 15));
 	return (0);
 }
 

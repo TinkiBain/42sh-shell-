@@ -3,55 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   tilda.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 18:06:04 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int			dirdir(char *str)
-{
-	struct dirent	*entry;
-	DIR				*dirent;
-
-	dirent = opendir("/Users");
-	while ((entry = readdir(dirent)))
-	{
-		if (ft_strcmp(str, entry->d_name) == 0)
-		{
-			closedir(dirent);
-			return (1);
-		}
-	}
-	closedir(dirent);
-	return (-1);
-}
-
 static char			*user_founder(char *str)
 {
 	char			*tmp;
+	struct passwd	*pas;
+
 
 	tmp = ft_xstrdup(&str[1]);
-	if (dirdir(tmp) < 0)
+	pas = getpwnam(tmp);
+	if (!pas)
 	{
 		free(tmp);
 		return (NULL);
 	}
-	tmp = ft_strrejoin("/Users/", tmp, 2);
+	free (tmp);
+	tmp = ft_xstrdup(pas->pw_dir);
 	return (tmp);
 }
 
 static char			*tilda(char *str, char *buf)
 {
-	if (str[1] == '+' && !str[2])
-		return (ft_xstrdup(get_var_value("PWD")));
-	else if (str[1] == '-' && !str[2])
+	if (str[1] == '+' && (str[2] == '/' || !str[2]))
+	{
+		if ((buf = get_var_value("PWD")) < 0)
+			return (str);
+		buf = ft_strrejoin(buf, &str[2], 0);
+	}
+	else if (str[1] == '-' && (str[2] == '/' || !str[2]))
 	{
 		if ((buf = get_var_value("OLDPWD")) < 0)
-			return (ft_xstrdup(buf));
+			return (str);
+		buf = ft_strrejoin(buf, &str[2], 0);
 	}
 	else if (str[1] == '/')
 	{

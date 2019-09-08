@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 14:59:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/08 16:29:34 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_pjobs		*g_pjobs;
 t_pjobs		*g_subjob;
 int			g_line_num;
 int			g_exit;
+int			g_wait_flags;
 
 void		execute_line(char *buf)
 {

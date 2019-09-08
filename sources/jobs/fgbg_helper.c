@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:50:01 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/01 19:48:13 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/08 17:06:43 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int				find_highnum(t_pjobs *local)
+int				find_highnum(t_pjobs *local)
 {
 	int highnum;
 
@@ -24,19 +24,6 @@ static int				find_highnum(t_pjobs *local)
 			local = local->next;
 		}
 	return (highnum);
-}
-
-static t_pjobs			*find_job(t_pjobs *local, int flag)
-{
-	int			high;
-
-	if (flag == 0)
-		high = find_highnum(local);
-	else
-		high = flag;
-	while (local && local->num != high)
-		local = local->next;
-	return (local);
 }
 
 static int				spec_strlen(char *str)
@@ -58,15 +45,21 @@ t_pjobs			*name_proc_hendl(t_pjobs *local_job, char *name)
 	i = 0;
 	local = local_job;
 	high = find_highnum(local_job);
-	local_job = find_job(local_job, 0);
+	local_job = jobs_find_num(local_job, 0);
 	if (name && name[0] != '%')
-		while (!ft_strncmp(local_job->name, name, spec_strlen(name)))
+		while (ft_strncmp(local_job->name, name, spec_strlen(name)))
 		{
-			local_job = find_job(local, high - i);
+			printf ("%s %s %d %d\n", local_job->name, name, i , high);
+			if (i > high)
+			{
+				printf ("aa\n");
+				return (NULL);
+			}
+			local_job = jobs_find_num(local, high - i);
 			i++;
 		}
 	else if (name && name[0] == '%' && name[1])
-		local_job = find_job(local, ft_atoi(&name[1]));
+		local_job = jobs_find_num(local, ft_atoi(&name[1]));
 	else
 		local_job = jobs_last_elem(local_job);
 	return (local_job);
