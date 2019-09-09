@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/08 16:47:24 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/09 18:40:10 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ PARSER_DIR=parser
 TRAVERSE_AST_DIR=traverse_ast
 
 SRCS_LEXER=\
-	lexer.c					lexer_check_token.c			lexer_check_reserved_word.c\
+	lexer.c					lexer_check_token.c			lexer_find_dollar.c\
 	print_lexem.c			lexer_check_io_number.c		lexer_free_all.c\
-	lexer_find_word.c		lexer_find_dollar.c
+	lexer_find_word.c
 
 SRCS_PARSER=\
 	parser_list.c			parser_and_or.c				parser_linebreak.c\
