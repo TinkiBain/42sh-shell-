@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 20:33:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 21:07:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct				s_func_definition
 
 typedef struct				s_function_body
 {
-	t_compound_list			*compound_list;
+	t_compound_cmd			*compound_command;
 	struct s_redirect_list	*redirect_list;
 }							t_function_body;
 

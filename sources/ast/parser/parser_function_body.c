@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 16:39:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 16:48:36 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 21:16:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ t_function_body				*parser_free_function_body(t_function_body *list)
 {
 	if (!list)
 		return (NULL);
-	parser_free_compound_list(list->compound_list);
+	parser_free_compound_command(list->compound_command);
 	parser_free_redirect_list(list->redirect_list);
 	free(list);
-	return (list);
+	return (NULL);
 }
 
 static t_function_body		*parser_init_function_body(void)
@@ -34,7 +34,7 @@ static t_function_body		*parser_init_function_body(void)
 	t_function_body			*list;
 
 	list = (t_function_body*)ft_xmalloc(sizeof(t_function_body));
-	list->compound_list = NULL;
+	list->compound_command = NULL;
 	list->redirect_list = NULL;
 	return (list);
 }
@@ -44,7 +44,9 @@ t_function_body				*parser_function_body(void)
 	t_function_body	*list;
 
 	list = parser_init_function_body();
-	list->compound_list = parser_compound_list();
+	list->compound_command = parser_compound_command();
+	if (!list->compound_command && !g_error_lex)
+		g_error_lex = g_lex;
 	if (g_error_lex)
 		return (parser_free_function_body(list));
 	list->redirect_list = parser_redirect_list(NULL);
