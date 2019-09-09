@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_expand.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:54:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 12:43:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/09 15:19:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ static int		change_line(t_line *line, t_string *f, int i, int len)
 	}
 	else
 	{
-		str_remove(line->str, 0, line->str->len);
 		print_error("event not found", line->str->s);
+		str_remove(line->str, 0, line->str->len);
 		return (0);
 	}
 }

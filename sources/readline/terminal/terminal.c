@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/03 21:16:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/09 14:48:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void			term_setup(void)
 	tcgetattr(g_opt.rl_in, &g_init_tios);
 	term_putstr(g_cap.kp_start);
 	work_tios = g_init_tios;
-	work_tios.c_oflag &= ~OPOST;
+	work_tios.c_oflag = 0;
+	work_tios.c_oflag |= OPOST | ONLCR;
 	work_tios.c_lflag &= ~(ICANON | ECHO | ISIG);
 	work_tios.c_cc[VMIN] = 1;
 	work_tios.c_cc[VTIME] = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 21:55:57 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/09 14:08:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		traverse_cmd(pipe_seq->command->simple_command, environ, in_fork);
 		exit(g_res_exec);
 	}
+	close(pipefd[1]);
 	if (local->flag == 1)
 		ft_printf(" %d", pid);
-	close(pipefd[1]);
+	ljobs_startet("name", local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
 		ast_handle_pipe(pipe_seq, pipefd[0], environ, in_fork, local);
@@ -85,7 +86,6 @@ static void		ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command->simple_command,
 															env, in_fork, local);
 	close(pipefd[0]);
-	ljobs_startet("name", local->flag, local->num, pid);
 	if (local->flag == 0)
 		ft_waitpid(pid);
 }
