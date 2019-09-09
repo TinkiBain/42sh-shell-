@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 21:07:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 21:21:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,6 @@ int							parser_io_number(void);
 int							parser_separator();
 void						parser_linebreak(void);
 void						parser_new_line_list(void);
+void						parser_print_error(void);
 
 #endif

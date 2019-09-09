@@ -31,11 +31,11 @@ t_pipeline		*parser_pipeline(void)
 	t_pipeline	*list;
 
 	list = parser_init_pipeline();
-	if (g_lex && g_lex->type == BANG)
-	{
-		list->bang = 1;
-		g_lex = g_lex->next;
-	}
+//	if (g_lex && g_lex->type == BANG)
+//	{
+//		list->bang = 1;
+//		g_lex = g_lex->next;
+//	}
 	list->pipe_sequence = parser_pipe_sequence();
 	if (g_error_lex)
 		return (parser_free_pipeline(list));

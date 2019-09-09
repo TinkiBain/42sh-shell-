@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 18:57:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 21:55:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		s_lex
 # define DLESSDASH	20
 # define LESSAND	21
 # define LESSGREAT	22
-# define BANG		23
+# define DLESSAND	23
 # define LBRACKET	24
 # define RBRACKET	25
 
