@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:56:29 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 15:39:32 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/08 20:32:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_complete_cmd		*parser(void)
 {
 	t_complete_cmd	*complete_cmd;
 
+	g_end_parsing = 0;
 	complete_cmd = (t_complete_cmd*)ft_xmalloc(sizeof(t_complete_cmd));
 	complete_cmd->sep = 0;
 	complete_cmd->list = parser_list(NULL);
@@ -38,6 +39,7 @@ t_complete_cmd		*parser(void)
 		return (parser_free(complete_cmd));
 	if (!g_lex)
 		return (complete_cmd);
+	g_end_parsing = 1;
 	if (g_lex->type == SEMI || g_lex->type == JOB)
 	{
 		complete_cmd->sep = g_lex->type;

@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:26:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 21:34:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 21:50:24 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*lexer_get_great(char *str, t_lex **lex)
 	++str;
 	if (*str == '>')
 		init_lex(DGREAT, NULL, lex);
+	else if (*str == '|')
+		init_lex(CLOBBER, NULL, lex);
 	else if (*str == '&')
 		init_lex(GREATAND, NULL, lex);
 	else
@@ -32,11 +34,12 @@ char	*lexer_get_less(char *str, t_lex **lex)
 	++str;
 	if (*str == '<')
 	{
-		if (*(str + 1) == '<')
-		{
-			++str;
+		if (*(str + 1) == '<' && ++str)
 			init_lex(TLESS, NULL, lex);
-		}
+		else if (*(str + 1) == '&' && ++str)
+			init_lex(DLESSAND, NULL, lex);
+		else if (*(str + 1) == '-' && ++str)
+			init_lex(DLESSDASH, NULL, lex);
 		else
 			init_lex(DLESS, NULL, lex);
 	}
@@ -59,13 +62,13 @@ char	*lexer_get_and(char *str, t_lex **lex)
 		init_lex(AND_IF, NULL, lex);
 	else if (*str == '<')
 		init_lex(ANDLESS, NULL, lex);
-	else if (*str == '>')
-		init_lex(ANDGREAT, NULL, lex);
-	else if (*str == '>' && *(str + 1) == '&')
+	else if (*str == '>' && *(str + 1) == '>')
 	{
 		++str;
 		init_lex(ANDDGREAT, NULL, lex);
 	}
+	else if (*str == '>')
+		init_lex(ANDGREAT, NULL, lex);
 	else
 	{
 		--str;

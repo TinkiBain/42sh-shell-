@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 20:02:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 21:21:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "lexer.h"
 
-int							g_error_pars;
+int							g_end_parsing;
 t_lex						*g_lex;
 t_lex						*g_error_lex;
 
@@ -69,10 +69,23 @@ typedef struct				s_compound_cmd
 
 typedef struct				s_command
 {
-	struct s_simple_cmd		*simple_command;
-	struct s_compound_cmd	*compound_command;
-	struct s_redirect_list	*redirect_list;
+	struct s_simple_cmd				*simple_command;
+	struct s_compound_cmd			*compound_command;
+	struct s_redirect_list			*redirect_list;
+	struct s_func_definition		*function_definition;
 }							t_command;
+
+typedef struct				s_func_definition
+{
+	char					*function_name;
+	struct s_function_body	*function_body;
+}							t_func_definition;
+
+typedef struct				s_function_body
+{
+	t_compound_cmd			*compound_command;
+	struct s_redirect_list	*redirect_list;
+}							t_function_body;
 
 typedef struct				s_redirect_list
 {
@@ -136,6 +149,11 @@ t_compound_list				*parser_free_compound_list(t_compound_list *list);
 t_term						*parser_term(t_term *list_down);
 t_term						*parser_free_term(t_term *list);
 t_simple_cmd				*parser_simple_command(void);
+t_func_definition			*parser_function_definition(void);
+t_func_definition			*parser_free_function_definition(t_func_definition
+		*list);
+t_function_body				*parser_function_body(void);
+t_function_body				*parser_free_function_body(t_function_body *list);
 t_simple_cmd				*parser_free_simple_command(t_simple_cmd *list);
 t_io_redirect				*parser_io_redirect(void);
 t_io_redirect				*parser_free_io_redirect(t_io_redirect *list);
@@ -147,5 +165,6 @@ int							parser_io_number(void);
 int							parser_separator();
 void						parser_linebreak(void);
 void						parser_new_line_list(void);
+void						parser_print_error(void);
 
 #endif

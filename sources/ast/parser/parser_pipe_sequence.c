@@ -42,6 +42,7 @@ t_pipe_sequence		*parser_pipe_sequence(void)
 	{
 		list->pipe_op = 1;
 		g_lex = g_lex->next;
+		parser_linebreak();
 		list->next = parser_pipe_sequence();
 	}
 	return (list);

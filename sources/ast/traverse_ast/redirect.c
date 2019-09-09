@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:15:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/15 17:21:11 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 22:29:33 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@
 int		redirect(t_io_redirect *redir)
 {
 	redir->file_name = tdq(redir->file_name);
-	if (redir->io_number == -2 && !(redir->type & GREATAND))
+	if (redir->io_number == -2 && !(redir->type == GREATAND))
 		return (redirect_error_range_fd());
-	if (redir->type & LESS)
+	if (redir->type == LESS)
 		return (redir_less(redir));
-	else if (redir->type & DLESS)
+	else if (redir->type == DLESS)
 		return (redir_dless(redir));
-	else if (redir->type & DLESSDASH)
+	else if (redir->type == DLESSDASH)
 		return (redir_dless(redir));
-	else if (redir->type & TLESS)
+	else if (redir->type == TLESS)
 		return (redir_tless(redir));
-	else if (redir->type & LESSAND)
+	else if (redir->type == LESSAND)
 		return (redir_less_and(redir));
-	else if (redir->type & LESSGREAT)
+	else if (redir->type == LESSGREAT)
 		return (redir_less_great(redir));
-	else if (redir->type & GREAT || redir->type & DGREAT)
+	else if (redir->type == GREAT || redir->type & DGREAT)
 		return (redir_great(redir));
-	else if (redir->type & GREATAND)
+	else if (redir->type == GREATAND)
 		return (redir_great_and(redir));
-	else if (redir->type & ANDGREAT)
+	else if (redir->type == ANDGREAT)
 		return (redir_and_great(redir));
-	else if (redir->type & ANDDGREAT)
+	else if (redir->type == ANDDGREAT)
 		return (redir_and_dgreat(redir));
 	else
 		return (redir_clobber(redir));

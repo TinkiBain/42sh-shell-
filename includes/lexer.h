@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 20:00:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 21:55:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,13 @@ typedef struct		s_lex
 # define DLESSDASH	20
 # define LESSAND	21
 # define LESSGREAT	22
-# define BANG		23
-# define FOR		24
-# define CASE		25
-# define ESAC		26
-# define WHILE		27
-# define UNTIL		28
-# define IF			29
-# define THEN		30
-# define ELSE		31
-# define ELIF		32
-# define FI			33
-# define DO			34
-# define DONE		35
-# define LBRACE		36
-# define RBRACE		37
-# define IN			38
-# define LBRACKET	39
-# define RBRACKET	40
+# define DLESSAND	23
+# define LBRACKET	24
+# define RBRACKET	25
 
 t_lex		*lexer(char *str);
 void		lexer_free_all(t_lex *lex);
 void		init_lex(int type, void *lexem, t_lex **lex);
-int			lexer_check_reserved_word(char *str, t_lex **lex);
 char		*lexer_check_token(char *str, t_lex **lex);
 int			lexer_check_spec_symbol(char c);
 void		print_lexem(t_lex *lex);

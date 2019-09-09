@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/06 18:44:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 18:51:18 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		init_lex(int type, void *lexem, t_lex **lex)
 int			lexer_check_spec_symbol(char c)
 {
 	if (c == ';' || c == '|' || c == '<' || c == '>' || c == '&' || c == '(' ||
-			c == ')')
+			c == ')' || c == '#')
 		return (1);
 	return (0);
 }
@@ -55,12 +55,12 @@ t_lex		*lexer(char *str)
 	{
 		if (lexer_isspace(*str) && ++str)
 			continue ;
-		if (*str == '\n')
-			init_lex(NEWLINE, NULL, &lex);
+		if (*str == '#')
+			break ;
 		if (*str == '(')
-			init_lex(WORD, ft_strdup("("), &lex);
+			init_lex(LBRACKET, NULL, &lex);
 		else if (*str == ')')
-			init_lex(WORD, ft_strdup(")"), &lex);
+			init_lex(RBRACKET, NULL, &lex);
 		else if (*str == '>' || *str == '<' || *str == '|' || *str == '&'
 				|| *str == ';')
 			str = lexer_check_token(str, &lex);

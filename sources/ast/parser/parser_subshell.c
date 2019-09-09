@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 17:52:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 19:39:15 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/08 17:38:22 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_compound_list		*parser_subshell(void)
 	tmp = parser_compound_list();
 	if (!g_lex)
 		return (tmp); // убрать после вызова readline
-	if (g_lex->type == WORD && ft_strequ(g_lex->lexem, ")"))
+	if (g_lex->type == RBRACKET)
 		g_lex = g_lex->next;
 	else
 		g_error_lex = g_lex;

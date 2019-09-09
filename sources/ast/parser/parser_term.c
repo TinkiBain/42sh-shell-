@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/07 19:38:31 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/09 18:53:35 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ t_term		*parser_term(t_term *list_down)
 		return (parser_free_term(list));
 	if (!g_lex)
 		return (list);
-	if ((g_lex->type == JOB || g_lex->type == SEMI)
-			&& g_lex->next && g_lex->next->type != NEWLINE)
-		list->separator = parser_separator();
-	else
+	if (!(list->separator = parser_separator()))
+		return (list);
+	if ((g_lex->type == WORD && ft_strequ(g_lex->lexem, "}"))
+			|| g_lex->type == RBRACKET)
 		return (list);
 	return (parser_term(list));
 }
