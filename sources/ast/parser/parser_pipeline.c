@@ -31,7 +31,7 @@ t_pipeline		*parser_pipeline(void)
 	t_pipeline	*list;
 
 	list = parser_init_pipeline();
-	if (g_lex && g_lex->type == BANG)
+	if (g_lex && g_lex->type == WORD && ft_strequ(g_lex->lexem, "!"))
 	{
 		list->bang = 1;
 		g_lex = g_lex->next;
