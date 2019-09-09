@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 15:30:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 21:15:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				change_dir_variable(const char *dir, char ***env)
 		}
 	}
 	if (!(return_value = change_dir_with_flag(dir)))
-		ft_putendl_fd(get_var_value("PWD"), 2);
+		ft_putendl_fd(get_var_value("PWD"), 1);
 	return (return_value);
 }
 

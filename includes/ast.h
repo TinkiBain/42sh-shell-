@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 19:07:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 21:04:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "parser.h"
 # include "exec.h"
 
-void		traverse_ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
+void		traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 												int in_fork, t_pjobs *local);
 int			check_cmd(const char *cmd);
 char		*get_cmd_name(t_simple_cmd *cmd);

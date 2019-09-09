@@ -6,26 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 17:41:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 21:03:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		traverse_pipeline(t_pipeline *elem, t_pjobs *local)
-{
-	extern char	**environ;
-
-	traverse_pipe_sequence(elem->pipe_sequence, environ, local);
-	if (elem->bang)
-	{
-		g_res_exec = (!g_res_exec) ? 1 : 0;
-		set_result();
-	}
-}
-
 static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 {
+	extern char	**environ;
 	static int	flag;
 
 	flag = flag1;
@@ -33,7 +22,14 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 		traverse_and_or(elem->next, flag, local);
 	if (!flag || (flag == AND_IF && !g_res_exec)
 				|| (flag == OR_IF && g_res_exec))
-		traverse_pipeline(elem->pipeline, local);
+	{
+		traverse_pipe_sequence(elem->pipeline->pipe_sequence, environ, local);
+		if (elem->pipeline->bang)
+		{
+			g_res_exec = (!g_res_exec) ? 1 : 0;
+			set_result();
+		}
+	}
 	else
 		return ;
 	flag = elem->and_or_if;

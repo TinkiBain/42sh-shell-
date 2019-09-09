@@ -6,23 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 19:14:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 22:00:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 extern char	**g_var;
-
-static void	pipe_seq_pipeline(t_pipe_sequence *pipe_seq, char **env,
-															t_pjobs *local)
-{
-	if (local->flag == 1)
-		ft_printf("[%d]", local->num);
-	traverse_ast_handle_pipe(pipe_seq, 0, env, 1, local);
-	if (local->flag == 1)
-		ft_printf("\n");
-}
 
 static void	pipe_seq_simple_builtin(t_pipe_sequence *pipe_seq,
 											char **env, t_pjobs *local)
@@ -79,7 +69,13 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
 	int		flag;
 
 	if (pipe_seq->next)
-		pipe_seq_pipeline(pipe_seq, env, local);
+	{
+		if (local->flag == 1)
+			ft_printf("[%d]", local->num);
+		traverse_pipe(pipe_seq, 0, env, 1, local);
+		if (local->flag == 1)
+			ft_printf("\n");
+	}
 	else
 	{
 		if ((cmd_name = get_cmd_name(pipe_seq->command->simple_command)))
