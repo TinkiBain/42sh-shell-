@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 08:05:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/09 19:23:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	set_default_vars(void)
 	tmp = ft_strrejoin(tmp, ">\\033[0m ", 1);
 	set_var_if_not_exist(tmp, &g_var, 1);
 	ft_memdel((void **)&tmp);
-	set_var_if_not_exist("PS2=" "\\033[0;31m" "heredoc>" "\\033[0m ",
-															&g_var, 1);
+	set_var_if_not_exist("PS2=heredoc> ", &g_var, 1);
+	set_var_if_not_exist("PS3=> ", &g_var, 1);
 	tmp = ft_strrejoin("SHELLHOME=", getcwd(NULL, 1024), 2);
 	set_var(tmp, &g_var, 1);
 	ft_memdel((void **)&tmp);

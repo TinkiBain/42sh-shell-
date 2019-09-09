@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_handle_pipe.c                                  :+:      :+:    :+:   */
+/*   traverse_ast_handle_pipe.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 17:26:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/09 19:10:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void		handle_last_cmd_in_pipe(int fd, t_simple_cmd *cmd, char **env,
 		waitpid(pid, NULL, 0);
 }
 
-void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
-													int in_fork, t_pjobs *local)
+void			traverse_ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd,
+										char **env, int in_fork, t_pjobs *local)
 {
 	extern char	**environ;
 	pid_t		pid;
@@ -61,7 +61,7 @@ void			ast_handle_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	ljobs_startet("name", local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
-		ast_handle_pipe(pipe_seq, pipefd[0], environ, in_fork, local);
+		traverse_ast_handle_pipe(pipe_seq, pipefd[0], environ, in_fork, local);
 	else
 		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command->simple_command,
 														env, in_fork, local);

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/09 17:27:34 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/09 19:07:49 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS_PARSER=\
 	parser_separator.c		parser_redirect_list.c
 
 SRCS_TRAVERSE_AST=\
-	ast_handle_pipe.c\
+	traverse_ast_handle_pipe.c\
 	get_cmd_name.c\
 	traverse_ast.c\
 	traverse_pipe_sequence.c\
