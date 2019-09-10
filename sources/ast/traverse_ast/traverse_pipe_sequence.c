@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 22:00:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/10 18:19:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	pipe_seq_simple_builtin(t_pipe_sequence *pipe_seq,
 	if (local->flag == 0)
 	{
 		deletejob(&g_subjob, g_subjob->num);
-		traverse_cmd(pipe_seq->command->simple_command, env, 0);
+		traverse_command(pipe_seq->command, env, 0);
 	}
 	else if (local->flag == 1)
 	{
 		if ((pid = fork()) == 0)
 		{
 			setpgrp();
-			traverse_cmd(pipe_seq->command->simple_command, env, 0);
+			traverse_command(pipe_seq->command, env, 0);
 			exit(g_res_exec);
 		}
 		else
@@ -50,7 +50,7 @@ static void	pipe_seq_simple_non_builtin(t_pipe_sequence *pipe_seq,
 	{
 		if (local->flag == 1)
 			setpgrp();
-		traverse_cmd(pipe_seq->command->simple_command, env, 1);
+		traverse_command(pipe_seq->command, env, 1);
 	}
 	else
 	{
@@ -93,6 +93,6 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
 			}
 		}
 		else
-			traverse_cmd(pipe_seq->command->simple_command, env, 1);
+			traverse_command(pipe_seq->command, env, 1);
 	}
 }

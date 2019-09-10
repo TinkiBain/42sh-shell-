@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_reset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:08:30 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/27 17:18:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:38:43 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
 static void		close_all_fd(void)
 {

@@ -6,13 +6,15 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/10 20:19:38 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/10 20:45:45 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LEXER_DIR=lexer
 PARSER_DIR=parser
 TRAVERSE_AST_DIR=traverse_ast
+AST_REDIRECT_DIR=redirect
+AST_EXPANSION_DIR=expansion
 
 SRCS_LEXER=\
 	lexer.c					lexer_check_token.c			lexer_find_dollar.c\
@@ -32,42 +34,54 @@ SRCS_PARSER=\
 	parser_while_clause.c	parser_do_group.c
 
 SRCS_TRAVERSE_AST=\
-	traverse_pipe.c\
+	call_exec.c\
+	check_cmd.c\
 	get_cmd_name.c\
-	traverse_ast.c\
-	traverse_pipe_sequence.c\
 	is_builtin.c\
 	push_back_av.c\
-	redirect.c\
-	redir_set.c\
-	redir_reset.c\
+	traverse_ast.c\
+	traverse_pipe.c\
+	traverse_pipe_sequence.c\
+	traverse_command.c\
+	traverse_simple_command.c\
+	traverse_redirect_list.c\
+	traverse_compound_command.c
+
+SRCS_AST_REDIRECT=\
 	redir_add_table.c\
-	redirect_error.c\
-	redir_less.c\
+	redir_and_dgreat.c\
+	redir_and_great.c\
+	redir_clobber.c\
 	redir_dless.c\
-	redir_tless.c\
-	redir_less_great.c\
-	redir_less_and.c\
 	redir_great.c\
 	redir_great_and.c\
-	redir_and_great.c\
-	redir_and_dgreat.c\
-	redir_clobber.c\
-	tilda.c\
-	dollar.c\
-	call_exec.c\
+	redir_less.c\
+	redir_less_and.c\
+	redir_less_great.c\
+	redir_reset.c\
+	redir_set.c\
+	redir_tless.c\
+	redirect.c\
+	redirect_error.c
+
+SRCS_AST_EXPANSION=\
 	check_spec_symbol.c\
-	check_cmd.c\
-	traverse_cmd.c\
+	dollar.c\
+	tilda.c\
 	tdq.c
 
 AST_SUBDIRS=\
+	$(AST_REDIRECT_DIR)\
+	$(AST_EXPANSION_DIR)\
 	$(LEXER_DIR)\
 	$(PARSER_DIR)\
-	$(TRAVERSE_AST_DIR)\
-	$(PRINT_AST_DIR)
+	$(PRINT_AST_DIR)\
+	$(TRAVERSE_AST_DIR)
 
 SRCS_AST=\
 	$(addprefix $(LEXER_DIR)/, $(SRCS_LEXER))\
 	$(addprefix $(PARSER_DIR)/, $(SRCS_PARSER))\
 	$(addprefix $(TRAVERSE_AST_DIR)/, $(SRCS_TRAVERSE_AST))\
+	$(addprefix $(AST_REDIRECT_DIR)/, $(SRCS_AST_REDIRECT))\
+	$(addprefix $(AST_EXPANSION_DIR)/, $(SRCS_AST_EXPANSION))
+

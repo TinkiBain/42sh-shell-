@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_add_table.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:51:58 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 15:52:01 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:35:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
 void	redir_add_fd_table(int fd)
 {

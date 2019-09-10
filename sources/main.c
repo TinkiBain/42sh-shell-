@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/10 20:41:56 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 20:45:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_pjobs		*g_subjob;
 int			g_line_num;
 int			g_exit;
 int			g_wait_flags;
+char		*g_tty;
+int			g_res_exec;
+int			*g_open_fd;
 
 void		execute_line(char *buf)
 {

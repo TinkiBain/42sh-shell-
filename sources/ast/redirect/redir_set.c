@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   redir_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/10 19:33:19 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/08/06 16:51:48 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/10 19:38:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# define DEFS_H
+#include "sh.h"
 
-# define PROJECT_NAME			"42sh"
+void			redir_set(void)
+{
+	extern	char *g_tty;
 
-# define STDIN					0
-# define STDOUT					1
-# define STDERR					2
-
-# define DEFAULT_HISTSIZE		"20"
-
-extern char						*g_project_name;
-extern int						g_res_exec;
-extern char						*g_tty;
-extern int						*g_open_fd;
-
-#endif
+	g_tty = ttyname(0);
+	g_open_fd = (int *)ft_xmalloc(sizeof(int) * 1);
+	*g_open_fd = 0;
+}

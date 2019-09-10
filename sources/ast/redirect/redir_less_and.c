@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_less_and.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 14:57:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:05:10 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:38:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
 static int	redir_fill_fd(t_io_redirect *redir, int *fd_close, int *right_fd)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_and_great.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 14:06:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/09 19:45:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:36:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
 int			redir_and_great(t_io_redirect *redir)
 {

@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   redir_great.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 20:28:36 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:05:04 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:47:23 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
-#include "lexer.h"
+#include "sh.h"
 
 int			redir_great(t_io_redirect *redir)
 {
 	int		fd;
 
-	if (redir->type & DGREAT)
+	if (redir->type == DGREAT)
 	{
 		if ((fd = open(redir->file_name, O_WRONLY | O_CREAT | O_APPEND,
 						0644)) < 0)
