@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 22:11:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:53:44 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ int			g_wait_flags;
 void		execute_line(char *buf)
 {
 	t_complete_cmd	*list;
+	t_lex			*lex;
 	char			*tmp;
 
 	tmp = NULL;
+	lex = NULL;
 	if (*(tmp = ft_strtrim(buf)))
 	{
-		list = exec_ast(buf);
+		list = exec_ast(buf, &lex);
 		if (list)
 			traverse_ast(list);
 		parser_free(list);
+		lexer_free_all(lex);
 	}
 	else
 		ft_strdel(&buf);

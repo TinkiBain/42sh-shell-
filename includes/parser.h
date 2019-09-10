@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 21:21:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 16:42:01 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct				s_compound_list
 	t_term					*term;
 	int						separator;
 	struct s_and_or			*and_or;
+	t_lex					*lex_begin;
+	t_lex					*lex_end;
 }							t_compound_list;
 
 typedef struct				s_compound_cmd
