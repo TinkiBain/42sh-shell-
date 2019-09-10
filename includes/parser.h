@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 20:35:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 21:18:16 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct				s_compound_cmd
 	t_compound_list			*compound_list;
 	t_if_clause				*if_clause;
 	t_while_clause			*while_clause;
+	t_while_clause			*until_clause;
 }							t_compound_cmd;
 
 typedef struct				s_command

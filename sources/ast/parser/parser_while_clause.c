@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:00:35 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 20:36:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 21:20:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 /*
 ** Grammar rule
 ** while_clause     : While compound_list do_group
+**                  ;
+** OR
+** until_clause     : Until compound_list do_group
 **                  ;
 */
 
