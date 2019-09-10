@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/10 18:19:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/10 21:48:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
 	}
 	else
 	{
-		if ((cmd_name = get_cmd_name(pipe_seq->command->simple_command)))
+		if ((cmd_name = get_cmd_name(pipe_seq->command)))
 		{
 			if (is_builtin(cmd_name))
 				pipe_seq_simple_builtin(pipe_seq, env, local);
