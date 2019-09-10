@@ -1,4 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_simple_command.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/10 18:39:39 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/10 18:40:57 by dwisoky          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
+
+/*
+** Grammar rule
+** simple_command   : cmd_prefix cmd_word cmd_suffix
+**                  | cmd_prefix cmd_word
+**	                | cmd_prefix
+**                  | cmd_name cmd_suffix
+**                  | cmd_name
+**	                ;
+*/
 
 static char				*parser_simple_command_take_name(void)
 {
@@ -45,6 +67,8 @@ t_simple_cmd			*parser_simple_command(void)
 {
 	t_simple_cmd		*list;
 
+	if (parser_check_reserved_words())
+		return (NULL);
 	list = parser_init_simple_command();
 	list->cmd_pref = parser_cmd_prefix();
 	if (list->cmd_pref)

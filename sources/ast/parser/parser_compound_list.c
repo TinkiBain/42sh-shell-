@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:11:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 16:52:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 18:18:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ t_compound_list				*parser_compound_list(void)
 
 	list = parser_init_compound_list();
 	parser_new_line_list();
+	list->lex_begin = g_lex;
 	list->term = parser_term(NULL);
 	if (g_error_lex)
 		return (parser_free_compound_list(list));
+	list->lex_end = g_lex;
 	list->separator = parser_separator();
 	return (list);
 }
