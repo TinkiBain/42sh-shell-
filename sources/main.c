@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 22:11:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:46:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,20 @@ void		execute_line(char *buf)
 void		main_loop(void)
 {
 	char		*line;
+	char		*project_name;
+	int			i;
 
+	i = 0;
 	g_line_num = 1;
+	project_name = ft_xstrdup(g_project_name);
 	while (!g_exit)
 	{
+		if (g_opt.rl_in != 0)
+		{
+			free(g_project_name);
+			g_project_name = ft_strrejoin(project_name, ": ", 0);
+			g_project_name = ft_strrejoin(g_project_name, ft_itoa(++i), 3);
+		}
 		g_check_nl = 1;
 		if (!(line = ft_readline((g_opt.rl_in == 0 ?
 							get_var_value("PS1") : ""), NULL)))
@@ -57,6 +67,7 @@ void		main_loop(void)
 		execute_line(line);
 		g_line_num++;
 	}
+	ft_strdel(&project_name);
 }
 
 int			main(int ac, char **av)
