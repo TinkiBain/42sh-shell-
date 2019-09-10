@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 16:42:01 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:28:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,24 @@ typedef struct				s_compound_list
 	t_lex					*lex_end;
 }							t_compound_list;
 
+typedef struct				s_else_part
+{
+	t_compound_list			*compound_list;
+	struct s_else_part		*next_else_part;
+	int						elif;
+}							t_else_part;	
+
+typedef struct				s_if_clause
+{
+	t_compound_list			*if_head;
+	t_compound_list			*if_body;
+	t_else_part				*else_part;
+}							t_if_clause;
+
 typedef struct				s_compound_cmd
 {
 	t_compound_list			*compound_list;
+	t_if_clause				*if_clause;
 }							t_compound_cmd;
 
 typedef struct				s_command
@@ -150,12 +165,16 @@ t_compound_list				*parser_compound_list(void);
 t_compound_list				*parser_free_compound_list(t_compound_list *list);
 t_term						*parser_term(t_term *list_down);
 t_term						*parser_free_term(t_term *list);
-t_simple_cmd				*parser_simple_command(void);
 t_func_definition			*parser_function_definition(void);
 t_func_definition			*parser_free_function_definition(t_func_definition
 		*list);
 t_function_body				*parser_function_body(void);
 t_function_body				*parser_free_function_body(t_function_body *list);
+t_if_clause					*parser_if_clause(void);
+t_if_clause					*parser_free_if_clause(t_if_clause *list);
+t_else_part					*parser_else_part(void);
+t_else_part					*parser_free_else_part(t_else_part *list);
+t_simple_cmd				*parser_simple_command(void);
 t_simple_cmd				*parser_free_simple_command(t_simple_cmd *list);
 t_io_redirect				*parser_io_redirect(void);
 t_io_redirect				*parser_free_io_redirect(t_io_redirect *list);
@@ -164,7 +183,8 @@ t_cmd_prefix				*parser_free_cmd_prefix(t_cmd_prefix *list);
 t_cmd_suffix				*parser_cmd_suffix(void);
 t_cmd_suffix				*parser_free_cmd_suffix(t_cmd_suffix *list);
 int							parser_io_number(void);
-int							parser_separator();
+int							parser_separator(void);
+int							parser_check_reserved_words(void);
 void						parser_linebreak(void);
 void						parser_new_line_list(void);
 void						parser_print_error(void);

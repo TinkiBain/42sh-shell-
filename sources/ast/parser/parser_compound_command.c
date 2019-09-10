@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:11:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 18:45:31 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:28:01 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_compound_cmd			*parser_free_compound_command(t_compound_cmd *list)
 	if (!list)
 		return (NULL);
 	parser_free_compound_list(list->compound_list);
+	parser_free_if_clause(list->if_clause);
 	free(list);
 	return (NULL);
 }
@@ -39,6 +40,7 @@ static t_compound_cmd	*parser_init_compound_command(void)
 
 	list = (t_compound_cmd*)ft_xmalloc(sizeof(t_compound_cmd));
 	list->compound_list = NULL;
+	list->if_clause = NULL;
 	return (list);
 }
 
@@ -51,6 +53,8 @@ t_compound_cmd			*parser_compound_command(void)
 	list = parser_init_compound_command();
 	if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "{"))
 		list->compound_list = parser_brace_group();
+	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "if"))
+		list->if_clause = parser_if_clause();
 	else if (g_lex->type == LBRACKET)
 		list->compound_list = parser_subshell();
 	else
