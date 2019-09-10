@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 19:28:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 20:35:09 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,17 @@ typedef struct				s_if_clause
 	t_else_part				*else_part;
 }							t_if_clause;
 
+typedef struct				s_while_clause
+{
+	t_compound_list			*compound_list;
+	t_compound_list			*do_group;
+}							t_while_clause;
+
 typedef struct				s_compound_cmd
 {
 	t_compound_list			*compound_list;
 	t_if_clause				*if_clause;
+	t_while_clause			*while_clause;
 }							t_compound_cmd;
 
 typedef struct				s_command
@@ -174,6 +181,9 @@ t_if_clause					*parser_if_clause(void);
 t_if_clause					*parser_free_if_clause(t_if_clause *list);
 t_else_part					*parser_else_part(void);
 t_else_part					*parser_free_else_part(t_else_part *list);
+t_while_clause				*parser_while_clause(void);
+t_while_clause				*parser_free_while_clause(t_while_clause *list);
+t_compound_list				*parser_do_group(void);
 t_simple_cmd				*parser_simple_command(void);
 t_simple_cmd				*parser_free_simple_command(t_simple_cmd *list);
 t_io_redirect				*parser_io_redirect(void);
