@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_cmd.c                                     :+:      :+:    :+:   */
+/*   traverse_simple_command.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 19:27:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/10 18:19:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int	handle_pref(t_simple_cmd *cmd, char ***av, char ***new_env, int *flag
 	return (res);
 }
 
-void		traverse_cmd(t_simple_cmd *cmd, char **env, int in_fork)
+void		traverse_simple_command(t_simple_cmd *cmd, char **env, int in_fork)
 {
 	char			**av;
 	char			**new_env;

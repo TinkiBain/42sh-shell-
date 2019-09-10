@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_less.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:32:45 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/26 14:05:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:38:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
 int			redir_less(t_io_redirect *redir)
 {

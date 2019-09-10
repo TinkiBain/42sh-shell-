@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   redir_clobber.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:55:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/12 19:01:36 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/10 19:36:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "sh.h"
 
 int		redir_clobber(t_io_redirect *redir)
 {

@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   traverse_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/10 19:33:19 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/09/10 18:14:01 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/09/10 19:27:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# define DEFS_H
+#include "sh.h"
 
-# define PROJECT_NAME			"42sh"
-
-# define STDIN					0
-# define STDOUT					1
-# define STDERR					2
-
-# define DEFAULT_HISTSIZE		"20"
-
-extern char						*g_project_name;
-extern int						g_res_exec;
-extern char						*g_tty;
-extern int						*g_open_fd;
-
-#endif
+void		traverse_command(t_command *cmd, char **env, int in_fork)
+{
+	if (cmd->simple_command)
+	{
+		traverse_redirect_list(cmd->redirect_list);
+		traverse_simple_command(cmd->simple_command, env, in_fork);
+	}
+	else if (cmd->redirect_list)
+		traverse_redirect_list(cmd->redirect_list);
+	else if (cmd->compound_command)
+		traverse_compound_command(cmd->compound_command, env, in_fork);
+}
