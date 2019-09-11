@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:11:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 16:34:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 21:02:30 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_compound_cmd			*parser_compound_command(void)
 		list->until_clause = parser_while_clause();
 	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "for"))
 		list->for_clause = parser_for_clause();
+	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "case"))
+		list->case_clause = parser_case_clause();
 	else if (g_lex->type == LBRACKET)
 		list->compound_list = parser_subshell();
 	else

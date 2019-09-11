@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:47:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 19:30:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 22:03:31 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_else_part			*parser_else_part(void)
 {
 	t_else_part		*list;
 
-	if (g_error_lex)
+	if (g_error_lex || (g_lex->type == WORD && ft_strequ(g_lex->lexem, "fi")))
 		return (NULL);
 	list = parser_init_else_part();
 	if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "else"))
