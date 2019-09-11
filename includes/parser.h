@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 21:18:16 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 16:30:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,24 @@ typedef struct				s_while_clause
 	t_compound_list			*do_group;
 }							t_while_clause;
 
+typedef struct				s_wordlist
+{
+	struct s_wordlist		*next;
+	char					*word;
+}							t_wordlist;
+
+typedef struct				s_for_clause
+{
+	char					*name;
+	t_wordlist				*wordlist;
+	t_compound_list			*do_group;
+}							t_for_clause;
+
 typedef struct				s_compound_cmd
 {
 	t_compound_list			*compound_list;
 	t_if_clause				*if_clause;
+	t_for_clause			*for_clause;
 	t_while_clause			*while_clause;
 	t_while_clause			*until_clause;
 }							t_compound_cmd;
@@ -180,11 +194,15 @@ t_function_body				*parser_function_body(void);
 t_function_body				*parser_free_function_body(t_function_body *list);
 t_if_clause					*parser_if_clause(void);
 t_if_clause					*parser_free_if_clause(t_if_clause *list);
+t_for_clause				*parser_for_clause(void);
+t_for_clause				*parser_free_for_clause(t_for_clause *list);
 t_else_part					*parser_else_part(void);
 t_else_part					*parser_free_else_part(t_else_part *list);
 t_while_clause				*parser_while_clause(void);
 t_while_clause				*parser_free_while_clause(t_while_clause *list);
 t_compound_list				*parser_do_group(void);
+t_wordlist					*parser_wordlist(void);
+t_wordlist					*parser_free_wordlist(t_wordlist *list);
 t_simple_cmd				*parser_simple_command(void);
 t_simple_cmd				*parser_free_simple_command(t_simple_cmd *list);
 t_io_redirect				*parser_io_redirect(void);
@@ -193,6 +211,7 @@ t_cmd_prefix				*parser_cmd_prefix(void);
 t_cmd_prefix				*parser_free_cmd_prefix(t_cmd_prefix *list);
 t_cmd_suffix				*parser_cmd_suffix(void);
 t_cmd_suffix				*parser_free_cmd_suffix(t_cmd_suffix *list);
+int							parser_sequential_sep(void);
 int							parser_io_number(void);
 int							parser_separator(void);
 int							parser_check_reserved_words(void);
