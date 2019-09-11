@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 20:24:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/11 18:50:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 			argv[0] = g_project_name;
 			argv[1] = av[0];
 			argv[2] = NULL;
+			// add shell_path before av[0] and send all av to execve
 			execve(shell_path, (char *const *)argv, env);
 			// ft_putstr_fd(g_project_name, 2);
 			// ft_putstr_fd(": ", 1);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/10 19:33:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/11 16:38:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ extern char						*g_project_name;
 extern int						g_res_exec;
 extern char						*g_tty;
 extern int						*g_open_fd;
+extern char						*g_shell_path;
 
 #endif

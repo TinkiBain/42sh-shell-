@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_separator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 19:17:26 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 17:27:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 16:59:33 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		parser_separator(void)
 {
 	int	separator;
 
-	separator = 0;
+	separator = SEMI;
 	if (!g_lex)
 		return (0);
 	if (g_lex->type == NEWLINE)
