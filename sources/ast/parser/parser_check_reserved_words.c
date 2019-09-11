@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:23:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 18:41:48 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 22:11:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		parser_check_reserved_words(void)
 		return (1);
 	else if (ft_strequ(g_lex->lexem, "else"))
 		return (1);
-	else if (ft_strequ(g_lex->lexem, "ecas"))
+	else if (ft_strequ(g_lex->lexem, "esac"))
 		return (1);
 	else if (ft_strequ(g_lex->lexem, "fi"))
 		return (1);

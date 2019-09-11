@@ -1,4 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_cmd_suffix.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/11 17:16:59 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/11 17:22:31 by dwisoky          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
+
+/*
+** Grammar rule
+** cmd_suffix       :            io_redirect
+**                  | cmd_suffix io_redirect
+**                  |            WORD
+**                  | cmd_suffix WORD
+**                  ;
+*/
 
 t_cmd_suffix		*parser_free_cmd_suffix(t_cmd_suffix *list)
 {
@@ -23,7 +44,7 @@ static t_cmd_suffix	*parser_init_cmd_suffix(void)
 	return (list);
 }
 
-t_cmd_suffix	*parser_cmd_suffix(void)
+t_cmd_suffix		*parser_cmd_suffix(void)
 {
 	t_cmd_suffix	*list;
 
@@ -32,8 +53,8 @@ t_cmd_suffix	*parser_cmd_suffix(void)
 	list = parser_init_cmd_suffix();
 	if (g_lex->type != WORD)
 	{
-		if (!(list->io_redir = parser_io_redirect())) //изменить на io_redirect
-				return (parser_free_cmd_suffix(list));
+		if (!(list->io_redir = parser_io_redirect()))
+			return (parser_free_cmd_suffix(list));
 	}
 	else
 	{

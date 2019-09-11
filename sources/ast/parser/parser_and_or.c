@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_and_or.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/11 17:16:40 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/11 20:47:53 by dwisoky          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 /*
- ** Grammar rule
- ** and_or           :                         pipeline
- **		             | and_or AND_IF linebreak pipeline
- **                  | and_or OR_IF  linebreak pipeline
- **                  ;
+** Grammar rule
+** and_or           :                         pipeline
+**		            | and_or AND_IF linebreak pipeline
+**                  | and_or OR_IF  linebreak pipeline
+**                  ;
 */
 
 t_and_or		*parser_free_and_or(t_and_or *list)

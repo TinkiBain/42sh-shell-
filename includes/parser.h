@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 16:30:08 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 20:27:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "lexer.h"
 
 int							g_end_parsing;
+int							g_parser_case_list_end;
 t_lex						*g_lex;
 t_lex						*g_error_lex;
 
@@ -51,17 +52,17 @@ typedef struct				s_simple_cmd
 typedef struct				s_term
 {
 	struct s_term			*next;
-	int						separator;
 	struct s_and_or			*and_or;
+	int						separator;
 }							t_term;
 
 typedef struct				s_compound_list
 {
 	t_term					*term;
-	int						separator;
 	struct s_and_or			*and_or;
 	t_lex					*lex_begin;
 	t_lex					*lex_end;
+	int						separator;
 }							t_compound_list;
 
 typedef struct				s_else_part
@@ -92,10 +93,34 @@ typedef struct				s_wordlist
 
 typedef struct				s_for_clause
 {
-	char					*name;
-	t_wordlist				*wordlist;
 	t_compound_list			*do_group;
+	t_wordlist				*wordlist;
+	char					*name;
 }							t_for_clause;
+
+typedef struct				s_pattern
+{
+	struct s_pattern		*next_pattern;
+	char					*word;
+}							t_pattern;
+
+typedef struct				s_case_item
+{
+	t_compound_list			*compound_list;
+	t_pattern				*pattern;
+}							t_case_item;
+
+typedef struct				s_case_list
+{
+	struct s_case_list		*next;
+	t_case_item				*case_item;
+}							t_case_list;
+
+typedef struct				s_case_clause
+{
+	t_case_list				*case_list;
+	char					*word;
+}							t_case_clause;
 
 typedef struct				s_compound_cmd
 {
@@ -104,6 +129,7 @@ typedef struct				s_compound_cmd
 	t_for_clause			*for_clause;
 	t_while_clause			*while_clause;
 	t_while_clause			*until_clause;
+	t_case_clause			*case_clause;
 }							t_compound_cmd;
 
 typedef struct				s_command
@@ -116,8 +142,8 @@ typedef struct				s_command
 
 typedef struct				s_func_definition
 {
-	char					*function_name;
 	struct s_function_body	*function_body;
+	char					*function_name;
 }							t_func_definition;
 
 typedef struct				s_function_body
@@ -135,8 +161,8 @@ typedef struct				s_redirect_list
 typedef struct				s_pipe_sequence
 {
 	t_command				*command;
-	int						pipe_op;
 	struct s_pipe_sequence	*next;
+	int						pipe_op;
 }							t_pipe_sequence;
 
 typedef struct				s_pipeline
@@ -199,6 +225,14 @@ t_for_clause				*parser_free_for_clause(t_for_clause *list);
 t_else_part					*parser_else_part(void);
 t_else_part					*parser_free_else_part(t_else_part *list);
 t_while_clause				*parser_while_clause(void);
+t_case_clause				*parser_case_clause(void);
+t_case_clause				*parser_free_case_clause(t_case_clause *list);
+t_case_list					*parser_case_list(void);
+t_case_list					*parser_free_case_list(t_case_list *list);
+t_case_item					*parser_case_item(void);
+t_case_item					*parser_free_case_item(t_case_item *list);
+t_pattern					*parser_pattern(void);
+t_pattern					*parser_free_pattern(t_pattern *list);
 t_while_clause				*parser_free_while_clause(t_while_clause *list);
 t_compound_list				*parser_do_group(void);
 t_wordlist					*parser_wordlist(void);

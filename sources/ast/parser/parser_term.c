@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 18:53:35 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 21:43:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_term		*parser_term(t_term *list_down)
 		return (list);
 	if (!(list->separator = parser_separator()))
 		return (list);
-	if ((g_lex->type == WORD && ft_strequ(g_lex->lexem, "}"))
+	if ((g_lex->type == WORD && parser_check_reserved_words())
 			|| g_lex->type == RBRACKET)
 		return (list);
 	return (parser_term(list));
