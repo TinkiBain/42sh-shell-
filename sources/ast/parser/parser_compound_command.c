@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:11:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 20:39:49 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 16:34:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_compound_cmd			*parser_free_compound_command(t_compound_cmd *list)
 	parser_free_compound_list(list->compound_list);
 	parser_free_if_clause(list->if_clause);
 	parser_free_while_clause(list->while_clause);
+	parser_free_while_clause(list->until_clause);
+	parser_free_for_clause(list->for_clause);
 	free(list);
 	return (NULL);
 }
@@ -43,6 +45,8 @@ static t_compound_cmd	*parser_init_compound_command(void)
 	list->compound_list = NULL;
 	list->if_clause = NULL;
 	list->while_clause = NULL;
+	list->until_clause = NULL;
+	list->for_clause = NULL;
 	return (list);
 }
 
@@ -59,6 +63,10 @@ t_compound_cmd			*parser_compound_command(void)
 		list->if_clause = parser_if_clause();
 	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "while"))
 		list->while_clause = parser_while_clause();
+	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "until"))
+		list->until_clause = parser_while_clause();
+	else if (g_lex->type == WORD && ft_strequ(g_lex->lexem, "for"))
+		list->for_clause = parser_for_clause();
 	else if (g_lex->type == LBRACKET)
 		list->compound_list = parser_subshell();
 	else

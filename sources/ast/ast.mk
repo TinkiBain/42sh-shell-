@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/10 20:48:33 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/11 16:39:50 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS_PARSER=\
 	parser_separator.c		parser_redirect_list.c		parser_function_definition.c\
 	parser_function_body.c	parser_print_error.c		parser_if_clause.c\
 	parser_check_reserved_words.c						parser_else_part.c\
-	parser_while_clause.c	parser_do_group.c
+	parser_while_clause.c	parser_do_group.c			parser_for_clause.c\
+	parser_wordlist.c		parser_sequential_sep.c
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
