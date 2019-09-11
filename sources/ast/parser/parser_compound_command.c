@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:11:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 21:02:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/11 22:30:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_compound_cmd			*parser_free_compound_command(t_compound_cmd *list)
 	parser_free_while_clause(list->while_clause);
 	parser_free_while_clause(list->until_clause);
 	parser_free_for_clause(list->for_clause);
+	parser_free_case_clause(list->case_clause);
 	free(list);
 	return (NULL);
 }
@@ -47,6 +48,7 @@ static t_compound_cmd	*parser_init_compound_command(void)
 	list->while_clause = NULL;
 	list->until_clause = NULL;
 	list->for_clause = NULL;
+	list->case_clause = NULL;
 	return (list);
 }
 
