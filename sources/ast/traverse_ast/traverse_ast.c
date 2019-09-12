@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_ast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 21:03:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 17:58:23 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+static void		pid_fredy()
+{
+	int i;
+
+	i = 0;
+	while (g_pipe_pid[i])
+		i++;
+	while (i != 0)
+		g_pipe_pid[i--] = NULL;
+}
 
 static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 {
@@ -24,6 +35,7 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 				|| (flag == OR_IF && g_res_exec))
 	{
 		traverse_pipe_sequence(elem->pipeline->pipe_sequence, environ, local);
+		pid_fredy();
 		if (elem->pipeline->bang)
 		{
 			g_res_exec = (!g_res_exec) ? 1 : 0;

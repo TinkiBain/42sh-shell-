@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_compound_list.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:57:35 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/11 22:21:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 17:38:45 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void		traverse_compound_list(t_compound_list *list, char **env)
 		if (execve(g_shell_path, av, env) == -1)
 			exit(-1);
 	}
-	waitpid(pid, &g_res_exec, 0);
+	ft_waitpid(pid);
 	ft_strdel(&str);
 }

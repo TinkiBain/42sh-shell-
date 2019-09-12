@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/08 21:42:30 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/12 17:32:42 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,6 @@ static t_job			*pid_checl(int pid, t_job *job)
 	return (NULL);
 }
 
-static t_pjobs	*cpyjob(t_pjobs *sub, t_pjobs **job)
-{
-	t_pjobs		*local;
-
-	local = (*job);
-	while (local->next)
-		local = local->next;
-	local->next = ft_addjob(sub->name, 1);
-	local->next->job = sub->job;
-	sub->job = NULL;
-	return (local->next);
-}
-
 void				jobs_sig(void)
 {
 	t_pjobs			*first;
@@ -66,7 +53,9 @@ void				jobs_sig(void)
 		{
 			setpgid(g_subjob->job->pid, 0);
 			ft_printf ("\n42sh: suspended %s\n", g_subjob->name);
-			first = cpyjob(g_subjob, &g_pjobs);
+			first = subjob_changer(g_subjob->name, &g_pjobs, 1);
+			first->job = g_subjob->job;
+			g_subjob->job = NULL;
 			free(first->status);
 			first->status = ft_strdup("\tsuspended\t\t");
 		}

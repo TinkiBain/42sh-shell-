@@ -30,8 +30,9 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 	if (local->flag == 1)
 	ft_printf(" %d", pid);
 	ljobs_startet("name", local->flag, local->num, pid);
+	pipe_av(local->job);
 	if (local->flag == 0)
-		waitpid(pid, NULL, 0);
+		ft_waitpid(pid);
 }
 
 void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
@@ -67,5 +68,5 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 														env, in_fork, local);
 	close(pipefd[0]);
 	if (local->flag == 0)
-		waitpid(pid, NULL, 0);
+		ft_waitpid(pid);
 }

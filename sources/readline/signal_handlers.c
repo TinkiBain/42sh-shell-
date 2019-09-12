@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handlers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 21:57:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 18:55:14 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/12 16:26:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ void	sigh_ignore(int sig)
 {
 	loginfo("Caught signal %d", sig);
 	ft_putchar('\n');
+	exit(0);
 }

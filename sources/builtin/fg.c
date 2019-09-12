@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 18:24:08 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/12 17:43:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int			fg(t_pjobs *local_job, const char *name)
 {
-	int			st;
 	t_pjobs		*local;
 	t_job		*job;
+	
 	if (local_job)
 		local = name_proc_hendl(local_job, (char*)name);
 	else
@@ -45,6 +45,6 @@ int			fg(t_pjobs *local_job, const char *name)
 		local->job = local->job->next;
 	}
 	local->job = job;
-	waitpid(local->job->pid, &st, 0);
+	ft_waitpid(local->job->pid);
 	return (1);
 }

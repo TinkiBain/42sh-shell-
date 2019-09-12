@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/07 20:20:59 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/12 17:35:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void		kill_hendler_proc(const char **cmd, t_pjobs *local_job, int sig)
 	int			num;
 
 	num = ft_atoi(&(*cmd)[1]);
+	printf ("%d\n", num);
 	if (num == 0)
 		while (local_job && local_job->next)
 			local_job = local_job->next;
