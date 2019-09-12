@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:39:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 18:40:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/12 19:51:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ static char				*parser_simple_command_take_name(void)
 		return (NULL);
 	if (g_lex->type == WORD)
 	{
-		tmp = g_lex->lexem;
-		g_lex = g_lex->next;
+		tmp = parser_check_alias(g_lex->lexem);
+		if (tmp)
+			g_lex = g_lex->next;
+		else
+			return (NULL);
 		return (ft_strdup(tmp));
 	}
 	return (NULL);
