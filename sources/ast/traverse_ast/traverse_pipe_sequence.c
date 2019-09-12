@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 18:05:03 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/12 19:13:50 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ static void	pipe_seq_simple_builtin(t_pipe_sequence *pipe_seq,
 		}
 		else
 		{
-			ft_waitpid(pid);
+			ljobs_startet("name", local->flag, local->num, pid);
 			ft_printf("[%d] [%d]\n", local->num, pid);
+			ft_waitpid(pid);
 		}
 	}
 }
