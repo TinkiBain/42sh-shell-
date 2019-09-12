@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:29:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/12 19:56:19 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/12 22:07:55 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char		*parser_get_alias(char *str)
 	tmp = g_alias;
 	while (tmp)
 	{
+		if (!tmp->head)
+			return ("\0");
 		if (ft_strequ(tmp->head, str))
 			break ;
 		tmp = tmp->next;
@@ -37,7 +39,11 @@ char		*parser_check_alias(char *str)
 
 	if (!(tmp = parser_get_alias(str)))
 		return (str);
-	printf("%s\n", tmp);
+	if (!*tmp)
+	{
+		g_lex = g_lex->next;
+		return (g_lex->lexem);
+	}
 	lex = lexer(tmp);
 	lex = lex->back;
 	free(lex->next);

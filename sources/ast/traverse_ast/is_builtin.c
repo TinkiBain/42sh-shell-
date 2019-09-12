@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 21:37:10 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 20:23:23 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:55:25 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int			is_builtin(const char *cmd)
 			ft_strequ(cmd, "set") || ft_strequ(cmd, "unset") ||
 			ft_strequ(cmd, "fc") || ft_strequ(cmd, "export") ||
 			ft_strequ(cmd, "jobs") || ft_strequ(cmd, "fg") ||
-			ft_strequ(cmd, "bg") || ft_strequ(cmd, "kill"))
+			ft_strequ(cmd, "bg") || ft_strequ(cmd, "kill") ||
+			ft_strequ(cmd, "alias"))
 		return (1);
 	return (0);
 }

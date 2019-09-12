@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/11 16:39:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:49:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ static int	get_fd(int ac, char **av)
 
 void		shell_init(int ac, char **av)
 {
-	extern char	**environ;
-	int			fd;
+	extern char		**environ;
+	extern t_alias	*g_alias;
+	int				fd;
 
 	fd = get_fd(ac, av);
+	g_alias = NULL;
 	fill_options(fd);
 	preliminary_check_fd();
 	environ = create_copy_env(environ);

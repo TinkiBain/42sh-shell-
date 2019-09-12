@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 20:11:37 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/12 20:44:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,9 @@ void		main_loop(void)
 
 int			main(int ac, char **av)
 {
-	g_alias = (t_alias*)ft_xmalloc(sizeof(t_alias));
-	g_alias->head = ft_strdup("ls");
-	g_alias->body_alias = ft_strdup("ls -l ");
-	g_alias->next = NULL;
 	signal_monitor();
 	shell_init(ac, av);
 	main_loop();
 	shell_clear();
-	free(g_alias->head);
-	free(g_alias->body_alias);
-	free(g_alias);
 	return (g_res_exec);
 }
