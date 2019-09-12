@@ -6,33 +6,24 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 19:24:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/11 21:57:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:32:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static int	if_subhell(t_if_clause *list, char **env)
-{
-	traverse_compound_list(list->if_head, env);
-	if (!g_res_exec)
-	{
-		printf("res = 0\n");
-		traverse_compound_list(list->if_body, env);
-	}
-	// else if (1)
-	// {
 
-	// }
-	return (0);
-}
 
-void		traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork)
+void		traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork, t_pjobs *local)
 {
 	if (cmd->if_clause)
-		if_subhell(cmd->if_clause, env);
+		traverse_if_clause(cmd->if_clause, env, local);
+	// else if (cmd->for_clause)
+	// 	traverse_for_clause(cmd->for_clause);
+	// else if (cmd->while_clause)
+	// 	traverse_while_clause()
 	else
-		traverse_compound_list(cmd->compound_list, env);
+		traverse_compound_list(cmd->compound_list, env, local);
 		// cmd->if_clause
 	(void)in_fork;
 }

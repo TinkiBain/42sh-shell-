@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_compound_list.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:57:35 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 18:01:24 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/12 19:39:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*get_input_str(t_lex *lex, t_lex *lex_end, int separator)
 	return (str);
 }
 
-void		traverse_compound_list(t_compound_list *list, char **env)
+void		traverse_compound_list(t_compound_list *list, char **env, t_pjobs *local)
 {
 	char	*str;
 	char	*av[3];
@@ -46,9 +46,17 @@ void		traverse_compound_list(t_compound_list *list, char **env)
 	write(fd, str, ft_strlen(str));
 	if ((pid = fork()) == 0)
 	{
+		if (local->flag == 1)
+			setpgrp();
 		if (execve(g_shell_path, av, env) == -1)
 			exit(-1);
 	}
-	ft_waitpid(pid);
+	else
+	{
+		ljobs_startet("name", local->flag, local->num, pid);
+		ft_printf("[%d] [%d]\n", local->num, pid);
+		ft_waitpid(pid);
+	}
+	set_result();
 	ft_strdel(&str);
 }

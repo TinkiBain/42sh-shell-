@@ -24,7 +24,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 		dup2(fd, 0);
 		close(fd);
 		// get_cmd_name(cmd);
-		traverse_command(cmd, env, in_fork);
+		traverse_command(cmd, env, in_fork, local);
 		exit(g_res_exec);
 	}
 	if (local->flag == 1)
@@ -53,7 +53,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
 		// get_cmd_name(pipe_seq->command->simple_command);
-		traverse_command(pipe_seq->command, environ, in_fork);
+		traverse_command(pipe_seq->command, environ, in_fork, local);
 		exit(g_res_exec);
 	}
 	close(pipefd[1]);

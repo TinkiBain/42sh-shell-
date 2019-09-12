@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/11 21:58:47 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:35:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ int		check_cmd(const char *cmd);
 char	*get_cmd_name(t_command *cmd);
 void	traverse_ast(t_complete_cmd *root);
 void	traverse_pipe_sequence(t_pipe_sequence *elem, char **env, t_pjobs *local);
-void	traverse_command(t_command *cmd, char **env, int in_fork);
+void	traverse_command(t_command *cmd, char **env, int in_fork, t_pjobs *local);
 void	traverse_simple_command(t_simple_cmd *cmd, char **env, int in_fork);
 void	traverse_redirect_list(t_redirect_list *list);
-void	traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork);
-void	traverse_compound_list(t_compound_list *list, char **env);
+void	traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork, t_pjobs *local);
+void	traverse_compound_list(t_compound_list *list, char **env, t_pjobs *local);
 void	traverse_function_definition(t_func_definition *func, char **env,
 																int in_fork);
+void	traverse_if_clause(t_if_clause *list, char **env, t_pjobs *local);
 void	push_back_av(char ***av, char *elem);
 
 // void	print_ast(t_pars_list *root);
