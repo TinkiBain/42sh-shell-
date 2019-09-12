@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:35:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:27:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "parser.h"
 # include "exec.h"
 # include "redirect.h"
+
+char	*get_lexem_value(int type);
 
 void	traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 												int in_fork, t_pjobs *local);

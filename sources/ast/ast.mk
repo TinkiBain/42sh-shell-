@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/12 15:17:32 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/12 20:28:39 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,9 @@ SRCS_AST_EXPANSION=\
 	tilda.c\
 	tdq.c
 
+SRCS_AST_WITHOUT_DIR=\
+	get_lexem_value.c
+
 AST_SUBDIRS=\
 	$(AST_REDIRECT_DIR)\
 	$(AST_EXPANSION_DIR)\
@@ -83,7 +86,7 @@ AST_SUBDIRS=\
 	$(PRINT_AST_DIR)\
 	$(TRAVERSE_AST_DIR)
 
-SRCS_AST=\
+SRCS_AST=$(SRCS_AST_WITHOUT_DIR)\
 	$(addprefix $(LEXER_DIR)/, $(SRCS_LEXER))\
 	$(addprefix $(PARSER_DIR)/, $(SRCS_PARSER))\
 	$(addprefix $(TRAVERSE_AST_DIR)/, $(SRCS_TRAVERSE_AST))\

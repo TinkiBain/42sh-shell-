@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:57:35 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:39:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:36:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static char	*get_input_str(t_lex *lex, t_lex *lex_end, int separator)
 	char	*str;
 	char	*tmp;
 
-	str = (lex->lexem) ? ft_xstrdup(lex->lexem) : ft_itoa(lex->type);
+	str = ft_xstrdup((lex->lexem) ? lex->lexem : get_lexem_value(lex->type));
 	while ((lex = lex->next) && lex < lex_end)
 	{
-		tmp = ft_strjoin(" ", (lex->lexem) ? lex->lexem : ft_itoa(lex->type));
+		tmp = ft_strjoin(" ", (lex->lexem) ? lex->lexem : get_lexem_value(lex->type));
 		str = ft_strrejoin(str, tmp, 3);
 	}
 	if (separator == JOB)
 	{
-		tmp = ft_strjoin(" ", ft_itoa(separator));
+		tmp = ft_strjoin(" ", get_lexem_value(separator));
 		str = ft_strrejoin(str, tmp, 3);
 	}
 	return (str);
@@ -53,10 +53,12 @@ void		traverse_compound_list(t_compound_list *list, char **env, t_pjobs *local)
 	}
 	else
 	{
-		ljobs_startet("name", local->flag, local->num, pid);
-		ft_printf("[%d] [%d]\n", local->num, pid);
-		ft_waitpid(pid);
+		ljobs_startet(str, local->flag, local->num, pid);
+		if (local->flag == 0)
+			ft_waitpid(pid);
+		else
+			ft_printf("[%d] [%d]\n", local->num, pid);
+		set_result();
+		ft_strdel(&str);
 	}
-	set_result();
-	ft_strdel(&str);
 }
