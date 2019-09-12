@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:30:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 22:20:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	pipe_seq_simple_builtin(t_pipe_sequence *pipe_seq,
 		}
 		else
 		{
-			ljobs_startet("name", local->flag, local->num, pid);
+			ljobs_startet("builtin_name", local->flag, local->num, pid);
 			ft_printf("[%d] [%d]\n", local->num, pid);
 			ft_waitpid(pid);
 		}
@@ -55,7 +55,7 @@ static void	pipe_seq_simple_non_builtin(t_pipe_sequence *pipe_seq,
 	}
 	else
 	{
-		ljobs_startet("name", local->flag, local->num, pid);
+		ljobs_startet("cmd_name", local->flag, local->num, pid);
 		if (local->flag == 0)
 			ft_waitpid(pid);
 		else
