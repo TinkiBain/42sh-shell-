@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 18:51:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/12 20:21:57 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ t_lex		*lexer(char *str)
 			str = lexer_check_io_number(str, &lex);
 		else
 			str = lexer_find_word(str, &lex);
-		++str;
+		if (*str)
+			++str;
 	}
 	init_lex(NEWLINE, NULL, &lex);
 	return (lex);

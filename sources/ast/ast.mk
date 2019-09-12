@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/12 20:28:39 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/12 22:25:45 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRCS_PARSER=\
 	parser_check_reserved_words.c						parser_else_part.c\
 	parser_while_clause.c	parser_do_group.c			parser_for_clause.c\
 	parser_wordlist.c		parser_sequential_sep.c		parser_case_clause.c\
-	parser_case_list.c		parser_case_item.c			parser_pattern.c
+	parser_case_list.c		parser_case_item.c			parser_pattern.c\
+	parser_check_alias.c
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
