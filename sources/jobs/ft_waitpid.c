@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/12 18:46:38 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 14:56:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int		ft_waitpid(pid_t pid)
 			}
 		}
 		if (g_wait_flags == pid)
+		{
+			g_wait_flags = 0;
 			return (1);
+		}
 	}
 }
