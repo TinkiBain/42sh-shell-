@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 20:40:22 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/12 20:50:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 18:58:25 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int			change_dir_without_flag(const char *dir);
 int			cd_error(const char *dir);
 int			ft_fc(const char **av);
 int			alias(const char **av);
-void		alias_free_all();
+int			unalias(const char **av);
+int			alias_free_all();
 void		*cd_error_invalid_flag(char c);
 
 #endif

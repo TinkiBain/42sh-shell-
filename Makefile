@@ -6,7 +6,7 @@
 #    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/12 20:50:49 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/13 18:57:59 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ SRCS_BUILTIN=\
 	cd.c				ft_echo.c		ft_exit.c	ft_hash.c	ft_set.c\
 	ft_type.c			ft_unset.c		ft_env.c	ft_export.c	ft_kill.c\
 	cd_change_dir.c		ft_fc.c			bg.c		fg.c		ft_test.c\
-	alias.c
+	alias.c				unalias.c
 
 BUILTIN_TEST_DIR=builtin_test
 

@@ -6,13 +6,13 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 15:58:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 18:43:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void			alias_free_all(void)
+int			alias_free_all(void)
 {
 	t_alias			*tmp;
 	extern t_alias	*g_alias;
@@ -27,6 +27,8 @@ void			alias_free_all(void)
 		free(g_alias);
 		g_alias = tmp;
 	}
+	g_alias = NULL;
+	return (0);
 }
 
 static t_alias	*alias_init(char *head, char *body)
