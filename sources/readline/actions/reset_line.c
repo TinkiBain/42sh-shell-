@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 16:37:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 09:50:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/13 12:32:24 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	reset_line(t_line *line)
 	if (g_line != line)
 		return ;
 	line->cpos = line->str->len;
-	update_line(line);
+	update_line(line, 0);
 	move_cur_nl();
 	while (line->history->item->next)
 		line->history->item = line->history->item->next;

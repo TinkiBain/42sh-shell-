@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 16:34:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 12:55:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char		*ft_readline(char *prompt, char *oldline)
 	term_setup();
 	init_line(&line, prompt, oldline);
 	init_linebuf(&line);
-	update_line(NULL);
+	update_line(NULL, 1);
 	ret = input_loop(&line);
 	clear_linebuf();
 	clear_line(&line, ret, &g_history);

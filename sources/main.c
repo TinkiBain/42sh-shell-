@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 22:25:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 12:43:48 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			g_res_exec;
 int			*g_open_fd;
 char		*g_shell_path;
 char		**g_pipe_pid;
-t_alias		*g_alias;
+t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
 
 void		execute_line(char *buf)
 {
@@ -68,7 +68,6 @@ void		main_loop(void)
 			g_project_name = ft_strrejoin(project_name, ": ", 0);
 			g_project_name = ft_strrejoin(g_project_name, ft_itoa(++i), 3);
 		}
-		g_check_nl = 1;
 		if (!(line = ft_readline((g_opt.rl_in == 0 ?
 							get_var_value("PS1") : ""), NULL)))
 			continue ;

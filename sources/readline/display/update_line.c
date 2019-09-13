@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:33:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/13 12:30:47 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void		build_newbuf(t_buffer *newbuf, t_line *line, int cols)
 ** to `g_buffer'.
 */
 
-void			update_line(t_line *line)
+void			update_line(t_line *line, int first)
 {
 	t_buffer	newbuf;
 	int			cols;
@@ -116,7 +116,7 @@ void			update_line(t_line *line)
 	if (line)
 		redisplay(&newbuf);
 	else
-		resize(&newbuf);
+		resize(&newbuf, first);
 	clear_linebuf();
 	ft_memcpy(&g_buffer, &newbuf, sizeof(t_buffer));
 }
