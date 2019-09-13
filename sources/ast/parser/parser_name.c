@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 21:17:02 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 21:24:00 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 22:22:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*parser_name(void)
 	char *str;
 
 	str = g_lex->lexem;
-	if (*str >= '0' || *str <= '9')
+	if (*str >= '0' && *str <= '9')
 	{
 		g_error_lex = g_lex;
 		return (NULL);
