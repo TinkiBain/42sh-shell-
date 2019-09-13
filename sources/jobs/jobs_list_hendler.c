@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/07 16:17:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 20:08:09 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,6 @@ void			deletejob(t_pjobs **alst, int num)
 	}
 }
 
-/*static char		*only_name(char *path)
-{
-	char		*tmp;
-	int			i;
-
-	i = 0;
-	i = ft_strlen(path);
-	while (path[i] != '/')
-		i--;
-	tmp = ft_strdup(&path[i + 1]);
-	return (tmp);
-} */
-
 static int		ft_num_job(t_pjobs *localjob)
 {
 	int			min;
@@ -106,15 +93,11 @@ t_pjobs			*ft_addjob(char *path, int flag)
 
 	new = (t_pjobs*)malloc(sizeof(t_pjobs));
 	new->flag = flag;
-	new->name = ft_strdup(path);
+	new->name = path;
 	new->status = ft_strdup("\t[Running]\t");
 	new->next = NULL;
 	new->num = ft_num_job(g_pjobs);
 	new->workgpid = 0;
-	//new->job = (t_job*)malloc(sizeof(t_job));
-	//new->job->status = ft_strdup("1");
-	//
 	new->job = NULL;
-	//new->job->name = ft_strdup("1");
 	return (new);
 }

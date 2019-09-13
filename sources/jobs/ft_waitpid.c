@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/13 14:56:18 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 21:03:56 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		pipe_av(t_job *job)
 {
 	int i;
+
 	g_pipe_pid = (char**)ft_xmalloc(sizeof(char*) * 100);
 	i = 0;
 	while (job)
@@ -39,7 +40,8 @@ int		ft_waitpid(pid_t pid)
 			i = 0;
 			while (g_pipe_pid[i])
 			{
-				if (ft_atoi(g_pipe_pid[i]) && ((ft_atoi(g_pipe_pid[i]) == g_wait_flags)))
+				if (ft_atoi(g_pipe_pid[i]) &&
+					((ft_atoi(g_pipe_pid[i]) == g_wait_flags)))
 					return (1);
 				i++;
 			}

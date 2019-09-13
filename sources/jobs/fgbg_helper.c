@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:50:01 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/08 18:18:50 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 20:56:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int				find_highnum(t_pjobs *local)
 
 	highnum = 0;
 	while (local)
-		{
-			if (local->num > highnum)
-				highnum = local->num;
-			local = local->next;
-		}
+	{
+		if (local->num > highnum)
+			highnum = local->num;
+		local = local->next;
+	}
 	return (highnum);
 }
 
-static int				spec_strlen(char *str)
+static int		spec_strlen(char *str)
 {
 	int			i;
 

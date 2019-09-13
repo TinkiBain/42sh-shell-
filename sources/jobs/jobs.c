@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:04:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/12 17:33:47 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 21:04:22 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int				jobs(t_pjobs *local_job, int iter, const char *cmd)
 		first = local_job;
 		order = order_creat(g_pjobs, jobs_list_counter(g_pjobs));
 		while (order[++iter] != 0)
-		{
 			while (local_job)
 			{
 				if (local_job->num == order[iter])
@@ -81,14 +80,14 @@ int				jobs(t_pjobs *local_job, int iter, const char *cmd)
 					if (cmd && !ft_strcmp(cmd, "-l"))
 						option_print(local_job);
 					else if (!cmd || (cmd && ft_strcmp(cmd, "-l")))
-						ft_printf("[%d]\t%s\t%s\n", local_job->num, local_job->status, local_job->name);
+						ft_printf("[%d]\t%s\t%s\n", local_job->num,
+								local_job->status, local_job->name);
 					local_job = first;
 					break ;
 				}
 				local_job = local_job->next;
 			}
-		}
-		free (order);
+		free(order);
 	}
 	return (0);
 }
