@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/02 14:28:49 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/03 21:20:37 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/13 19:00:23 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ LIBFT_H_FILES=\
 	ft_vector.h\
 	get_next_line.h\
 	ft_qsort.h\
+	ft_getopt.h\
 	libft.h
 
 LIBFT_HEADERS=$(addprefix includes/, $(LIBFT_H_FILES))
@@ -34,7 +35,9 @@ FT_VECTOR_DIR=ft_vector
 LIBFT_LIST_DIR=list
 LIBFT_DLIST_DIR=dlist
 
-LIBFT_SRCS_WITHOUT_DIR=get_next_line.c ft_qsort.c ft_arr_str_qsort.c
+LIBFT_SRCS_WITHOUT_DIR=\
+	get_next_line.c		ft_qsort.c		ft_arr_str_qsort.c\
+	ft_getopt.c
 
 LIBFT_SRCS_MEM=ft_bzero.c	ft_memalloc.c				ft_memccpy.c\
 		ft_memchr.c			ft_memcmp.c					ft_memcpy.c\
