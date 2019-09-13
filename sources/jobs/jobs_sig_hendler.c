@@ -6,19 +6,28 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/12 19:14:48 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 19:05:49 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void			def_kill_or_done(t_pjobs *first, int sig)
+static void			def_kill_or_done(t_job *first, int sig)
 {
-	if (sig == SIGKILL || sig == SIGTERM)
-		ft_printf("[%d]\t\t[Killed]\t\t%s\n", first->num, first->name);
+	if (!first->next)
+	{
+		if (sig == SIGKILL || sig == SIGTERM)
+			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
+		else
+			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
+		deletejob(&g_pjobs, first->num);
+	}
 	else
-		ft_printf("[%d]\t\t[Done]\t\t%s\n", first->num, first->name);
-	deletejob(&g_pjobs, first->num);
+	{
+		free(first->status);
+		first->status = ft_strdup("Done\t\t");
+	}
+	
 }
 
 static t_job			*pid_checl(int pid, t_job *job)
@@ -47,27 +56,54 @@ void				jobs_sig(void)
 	if (WIFEXITED(g_res_exec))
 		g_res_exec = WEXITSTATUS(g_res_exec);
 	set_result();
-	if (g_subjob && pid_checl(done_pid, g_subjob->job))
+	if (sig == SUSPCHLD)
 	{
-		if (sig == SUSPCHLD)
+		first = g_pjobs;
+		while (first)
 		{
-			setpgid(g_subjob->job->pid, 0);
-			ft_printf ("\n42sh: suspended %s\n", g_subjob->name);
-			first = subjob_changer(g_subjob->name, &g_pjobs, 1);
-			first->job = g_subjob->job;
-			g_subjob->job = NULL;
-			free(first->status);
-			first->status = ft_strdup("\tsuspended\t\t");
+			if ((job = pid_checl(done_pid, first->job)))
+				break;
+			first = first->next;
 		}
-		deletejob(&g_subjob, g_subjob->num);
-		return ;
+		if (job)
+		{
+			while (job)
+			{
+				free(job->status);
+				job->status = ft_strdup(" suspended\t");
+				job = job->next;
+			}
+			return ;
+		}
+		else if (g_subjob && pid_checl(done_pid, g_subjob->job))
+		{
+			if (sig == SUSPCHLD)
+			{
+				setpgid(g_subjob->job->pid, 0);
+				ft_printf ("\n42sh: suspended %s\n", g_subjob->name);
+				first = subjob_changer(g_subjob->name, &g_pjobs, 1);
+				first->job = g_subjob->job;
+				g_subjob->job = NULL;
+				free(first->status);
+				first->status = ft_strdup(" suspended\t");
+				job = first->job;
+				while (job)
+				{
+					free(job->status);
+					job->status = ft_strdup(" suspended\t");
+					job = job->next;
+				}
+			}
+			deletejob(&g_subjob, g_subjob->num);
+			return ;
+		}
 	}
 	job = job_finder(done_pid, g_pjobs);
 	if (job == NULL)
 		return ;
 	first = jobs_find_num(g_pjobs, job->num);
 	if (done_pid != 0 && sig != SUSPINT && sig != SUSPOUT)
-		def_kill_or_done(first, sig);
+		def_kill_or_done(first->job, sig);
 	if (sig == SUSPINT || sig == SUSPOUT)
 	{
 		free(first->status);

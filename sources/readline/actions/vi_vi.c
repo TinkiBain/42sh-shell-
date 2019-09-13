@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_vi.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/13 18:53:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static void	start_vi(char **argv)
 	pid_t		pid;
 	int			status;
 	extern char	**environ;
+	t_pjobs		*local;
 
 	pid = fork();
+	local = jobs_startet(ft_xstrdup("vi mode"), 0);
+	ljobs_startet("vi mode", local->flag, local->num, pid);
 	if (pid == 0)
 	{
 		if (execve(argv[0], argv, environ) < 0)
@@ -47,7 +50,7 @@ static void	start_vi(char **argv)
 	{
 		while (1)
 		{
-			if (waitpid(pid, &status, WUNTRACED) == -1)
+			if (ft_waitpid(pid))
 			{
 				loginfo("vi_vi(): waitpid error");
 				return ;
