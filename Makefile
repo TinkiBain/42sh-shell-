@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/13 18:57:59 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/13 19:41:38 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -208,6 +208,6 @@ sanitize:
 	$(CC) $(FLAGS) -g -fsanitize=address $(SRCS) -o $(NAME) $(INCLUDES)	$(LIBFT_A) -lcurses
 
 vg:
-	valgrind --leak-check=full ./$(NAME) $(ARG)
+	valgrind --leak-check=full --sigill-diagnostics=yes ./$(NAME) $(ARG)
 
 re: fclean all
