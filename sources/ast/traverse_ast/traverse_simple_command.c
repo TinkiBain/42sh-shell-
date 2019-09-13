@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:34:25 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/13 22:19:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ static int	handle_pref(t_simple_cmd *cmd, char ***av, char ***new_env, int *flag
 	pref = cmd->cmd_pref;
 	if (pref)
 	{
-		if (cmd->cmd_word)
+		if (cmd->cmd_name)
 		{
 			res = traverse_cmd_pref(pref, new_env, flag);
-			push_back_av(av, cmd->cmd_word);
+			push_back_av(av, cmd->cmd_name);
 		}
 		else
 			res = traverse_cmd_pref(pref, &g_var, flag);
