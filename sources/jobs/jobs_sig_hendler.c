@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/13 19:05:49 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 19:46:24 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				jobs_sig(void)
 	int				sig;
 	t_job			*job;
 
+	job = NULL;
 	done_pid = 0;
 	sig = 0;
 	done_pid = waitpid(-1, &sig, WUNTRACED);
