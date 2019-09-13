@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/12 20:21:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 16:53:26 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void		init_lex(int type, void *lexem, t_lex **lex)
 {
-	t_lex	*tmp;
+	t_lex		*tmp;
+	extern int	g_if_alias;
 
 	if (*lex)
 		tmp = (*lex)->next;
@@ -28,6 +29,7 @@ void		init_lex(int type, void *lexem, t_lex **lex)
 	tmp->lexem = lexem;
 	tmp->back = *lex;
 	tmp->next = NULL;
+	tmp->if_alias = g_if_alias;
 	*lex = tmp;
 }
 

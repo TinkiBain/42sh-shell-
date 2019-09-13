@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 21:55:32 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 16:58:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ typedef struct		s_lex
 	struct s_lex	*back;
 	char			*lexem;
 	int				type;
+	int				if_alias;
 }					t_lex;
+
+int					g_if_alias;
 
 # define NEWLINE	1
 # define SEMI		2

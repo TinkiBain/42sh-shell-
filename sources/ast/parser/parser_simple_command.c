@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:39:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/12 19:51:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 16:59:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ static char				*parser_simple_command_take_name(void)
 		return (NULL);
 	if (g_lex->type == WORD)
 	{
-		tmp = parser_check_alias(g_lex->lexem);
+		if (!g_lex->if_alias)
+			tmp = parser_check_alias(g_lex->lexem);
+		else
+			tmp = g_lex->lexem;
+		g_if_alias = 0;
 		if (tmp)
 			g_lex = g_lex->next;
 		else
