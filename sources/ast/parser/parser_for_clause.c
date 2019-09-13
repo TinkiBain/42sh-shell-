@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 21:35:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 16:31:41 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 21:25:30 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ t_for_clause		*parser_for_clause(void)
 		return (NULL);
 	}
 	list = parser_init_for_clause();
-	list->name = ft_strdup(g_lex->lexem);
+	list->name = parser_name();
+	if (g_error_lex)
+		return (parser_free_for_clause(list));
 	g_lex = g_lex->next;
 	parser_linebreak();
 	list->wordlist = parser_wordlist();

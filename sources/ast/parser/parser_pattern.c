@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 20:19:57 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 20:26:45 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 21:12:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ t_pattern			*parser_pattern(void)
 {
 	t_pattern		*list;
 
+	if (ft_strequ(g_lex->lexem, "esac"))
+	{
+		g_error_lex = g_lex->next;
+		return (NULL);
+	}
 	list = parser_init_pattern();
 	list->word = ft_strdup(g_lex->lexem);
 	g_lex = g_lex->next;
