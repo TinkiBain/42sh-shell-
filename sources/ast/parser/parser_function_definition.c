@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 16:19:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 21:08:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 22:02:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ t_func_definition	*parser_function_definition(void)
 	t_func_definition	*list;
 
 	list = parser_init_function_definition();
-	list->function_name = ft_strdup(g_lex->lexem);
+	list->function_name = parser_fname();
+	if (g_error_lex)
+		return (parser_free_function_definition(list));
 	g_lex = g_lex->next->next;
 	if (g_lex->type != RBRACKET)
 	{

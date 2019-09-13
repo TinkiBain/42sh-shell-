@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 19:36:48 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 22:20:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 21:13:45 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_case_item			*parser_case_item(void)
 	if (g_lex->type == LBRACKET)
 		g_lex = g_lex->next;
 	list->pattern = parser_pattern();
+	if (g_error_lex)
+		return (parser_free_case_item(list));
 	if (g_lex->type != RBRACKET)
 	{
 		g_error_lex = g_lex;

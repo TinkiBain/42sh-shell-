@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 18:36:56 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 22:16:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct				s_simple_cmd
 	t_cmd_suffix			*cmd_suf;
 	t_lex					*lex_begin;
 	t_lex					*lex_end;
-	char					*cmd_word;
 	char					*cmd_name;
 }							t_simple_cmd;
 
@@ -236,7 +235,6 @@ t_case_list					*parser_free_case_list(t_case_list *list);
 t_case_item					*parser_case_item(void);
 t_case_item					*parser_free_case_item(t_case_item *list);
 t_pattern					*parser_pattern(void);
-
 t_pattern					*parser_free_pattern(t_pattern *list);
 t_while_clause				*parser_free_while_clause(t_while_clause *list);
 t_compound_list				*parser_do_group(void);
@@ -251,10 +249,13 @@ t_cmd_prefix				*parser_free_cmd_prefix(t_cmd_prefix *list);
 t_cmd_suffix				*parser_cmd_suffix(void);
 t_cmd_suffix				*parser_free_cmd_suffix(t_cmd_suffix *list);
 char						*parser_check_alias(char *str);
+char						*parser_name(void);
+char						*parser_fname(void);
 int							parser_sequential_sep(void);
 int							parser_io_number(void);
 int							parser_separator(void);
 int							parser_check_reserved_words(void);
+int							parser_find_eq(void);
 void						parser_linebreak(void);
 void						parser_new_line_list(void);
 void						parser_print_error(void);

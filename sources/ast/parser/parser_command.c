@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:18:15 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 16:58:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 22:07:46 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_command			*parser_command(void)
 		list->redirect_list = parser_redirect_list(NULL);
 		return (list);
 	}
-	else if (g_lex->next && g_lex->next->type == LBRACKET)
+	else if (g_lex->next && g_lex->next->type == LBRACKET &&
+			!parser_find_eq())
 		list->function_definition = parser_function_definition();
 	else
 		list->simple_command = parser_simple_command();
