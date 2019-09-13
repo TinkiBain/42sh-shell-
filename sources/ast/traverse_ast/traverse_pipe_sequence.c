@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/10 21:48:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/13 16:54:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,21 @@ static void	pipe_seq_simple_builtin(t_pipe_sequence *pipe_seq,
 	if (local->flag == 0)
 	{
 		deletejob(&g_subjob, g_subjob->num);
-		traverse_command(pipe_seq->command, env, 0);
+		traverse_command(pipe_seq->command, env, 0, local);
 	}
 	else if (local->flag == 1)
 	{
 		if ((pid = fork()) == 0)
 		{
 			setpgrp();
-			traverse_command(pipe_seq->command, env, 0);
+			traverse_command(pipe_seq->command, env, 0, local);
 			exit(g_res_exec);
 		}
 		else
 		{
-			waitpid(pid, NULL, 0);
+			ljobs_startet(get_subjob_name(pipe_seq->command), local->flag, local->num, pid);
 			ft_printf("[%d] [%d]\n", local->num, pid);
+			ft_waitpid(pid);
 		}
 	}
 }
@@ -50,13 +51,13 @@ static void	pipe_seq_simple_non_builtin(t_pipe_sequence *pipe_seq,
 	{
 		if (local->flag == 1)
 			setpgrp();
-		traverse_command(pipe_seq->command, env, 1);
+		traverse_command(pipe_seq->command, env, 1, local);
 	}
 	else
 	{
-		ljobs_startet("name", local->flag, local->num, pid);
+		ljobs_startet(get_subjob_name(pipe_seq->command), local->flag, local->num, pid);
 		if (local->flag == 0)
-			waitpid(pid, NULL, 0);
+			ft_waitpid(pid);
 		else
 			ft_printf("[%d] [%d]\n", local->num, pid);
 	}
@@ -93,6 +94,6 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
 			}
 		}
 		else
-			traverse_command(pipe_seq->command, env, 1);
+			traverse_command(pipe_seq->command, env, 1, local);
 	}
 }

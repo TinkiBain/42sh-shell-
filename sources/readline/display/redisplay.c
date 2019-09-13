@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:41:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/13 12:28:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,14 @@ void			redisplay(t_buffer *newbuf)
 	move_cur_to(pos, newbuf->cpos, newbuf->out_cols);
 }
 
-void			resize(t_buffer *newbuf)
+void			resize(t_buffer *newbuf, int first)
 {
 	int i;
 	int j;
 	int pos;
 
-	move_cur_start();
+	if (!first)
+		move_cur_start();
 	pos = 0;
 	i = -1;
 	while (++i < max_int(newbuf->out_rows, g_buffer.out_rows))

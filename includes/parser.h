@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 16:57:24 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 18:36:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct				s_simple_cmd
 {
 	t_cmd_prefix			*cmd_pref;
 	t_cmd_suffix			*cmd_suf;
+	t_lex					*lex_begin;
+	t_lex					*lex_end;
 	char					*cmd_word;
 	char					*cmd_name;
 }							t_simple_cmd;
@@ -182,6 +184,8 @@ typedef struct				s_pars_list
 {
 	struct s_pars_list		*next;
 	t_and_or				*and_or;
+	t_lex					*lex_begin;
+	t_lex					*lex_end;
 	int						sep;
 }							t_pars_list;
 
@@ -232,6 +236,7 @@ t_case_list					*parser_free_case_list(t_case_list *list);
 t_case_item					*parser_case_item(void);
 t_case_item					*parser_free_case_item(t_case_item *list);
 t_pattern					*parser_pattern(void);
+
 t_pattern					*parser_free_pattern(t_pattern *list);
 t_while_clause				*parser_free_while_clause(t_while_clause *list);
 t_compound_list				*parser_do_group(void);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:19:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 20:13:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/13 12:55:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,10 @@
 
 t_buffer		g_buffer;
 
-void	check_newline(void)
-{
-	int		row;
-	int		col;
-
-	term_getpos(&row, &col);
-	if (col != 0)
-		ft_printf("%s%%%s \n\r", COLOR_REVVID, COLOR_EOC);
-}
-
 void	init_linebuf(t_line *line)
 {
-	int cols;
+	int			cols;
 
-	if (g_check_nl)
-		check_newline();
-	g_check_nl = 0;
 	cols = get_term_cols();
 	g_buffer.b = str_xduplicate(line->prompt);
 	g_buffer.original = str_xduplicate(g_buffer.b);

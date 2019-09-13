@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/12 22:23:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 15:58:22 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_alias	*alias_init(char *head, char *body)
 	return (list);
 }
 
-static int		alias_set_str(const char *str, t_alias *tmp, t_alias **begin)
+static int		alias_set_str(const char *str, t_alias **alias)
 {
 	char			*head;
 	char			*body;
@@ -48,23 +48,18 @@ static int		alias_set_str(const char *str, t_alias *tmp, t_alias **begin)
 		return (0);
 	head = ft_strndup(str, body - str);
 	body = ft_xstrdup(body + 1);
-	while (tmp)
+	while (*alias)
 	{
-		if (ft_strequ(head, tmp->head))
+		if (ft_strequ(head, (*alias)->head))
 		{
 			free(head);
-			free(tmp->body_alias);
-			tmp->body_alias = body;
+			free((*alias)->body_alias);
+			(*alias)->body_alias = body;
 			return (1);
 		}
-		if (!tmp->next)
-			break ;
-		tmp = tmp->next;
+		alias = &(*alias)->next;
 	}
-	if (tmp)
-		tmp->next = alias_init(head, body);
-	else
-		*begin = alias_init(head, body);
+	*alias = alias_init(head, body);
 	return (1);
 }
 
@@ -113,7 +108,7 @@ int				alias(const char **av)
 		}
 	while (*av)
 	{
-		if (!(tmp = alias_set_str(*av, tmp_alias, &g_alias)))
+		if (!(tmp = alias_set_str(*av, &g_alias)))
 			tmp = alias_print_str(*av);
 		if (!return_value)
 			return_value = tmp;

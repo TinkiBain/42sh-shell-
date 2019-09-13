@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:04:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/09 17:01:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/12 17:33:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void			option_print(t_pjobs *local)
 	job = local->job;
 	if (!job)
 		return ;
-	ft_printf("[%d]\t", local->num);
+	ft_printf("[%d]", local->num);
 	if (job->next)
 		while (job)
 		{
-			ft_printf("%d %s %s\n", job->pid, job->status, job->name);
+			ft_printf("\t%d %s %s\n", job->pid, job->status, job->name);
 			job = job->next;
 		}
 	else

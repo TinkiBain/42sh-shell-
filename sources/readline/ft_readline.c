@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 16:34:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/13 15:34:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 {
 	line->result = str_xduplicate(*line->str);
 	str_xaddfront(&line->result, line->oldstr.s, line->oldstr.len);
+	if (line->oldstr.s)
+		str_delete(line->str);
 	history_save(line->history_orig, line->str);
 	history_clear(line->history);
 	*history = line->history_orig;
@@ -72,9 +74,11 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 
 char		*ft_readline(char *prompt, char *oldline)
 {
+	extern int		g_line_num;
 	t_line			line;
 	int				ret;
 
+	g_line_num++;
 	sig_init();
 	g_line = &line;
 	if (!g_opt.emacs_mode && !g_opt.vi_mode)
@@ -83,7 +87,7 @@ char		*ft_readline(char *prompt, char *oldline)
 	term_setup();
 	init_line(&line, prompt, oldline);
 	init_linebuf(&line);
-	update_line(NULL);
+	update_line(NULL, 1);
 	ret = input_loop(&line);
 	clear_linebuf();
 	clear_line(&line, ret, &g_history);

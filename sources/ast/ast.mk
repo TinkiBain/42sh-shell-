@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/12 18:47:17 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/13 16:56:50 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS_TRAVERSE_AST=\
 	call_exec.c\
 	check_cmd.c\
 	get_cmd_name.c\
+	get_job_name.c\
 	is_builtin.c\
 	push_back_av.c\
 	traverse_ast.c\
@@ -49,7 +50,9 @@ SRCS_TRAVERSE_AST=\
 	traverse_simple_command.c\
 	traverse_redirect_list.c\
 	traverse_compound_command.c\
-	traverse_function_definition.c
+	traverse_compound_list.c\
+	traverse_function_definition.c\
+	traverse_if_clause.c
 
 SRCS_AST_REDIRECT=\
 	redir_add_table.c\
@@ -74,6 +77,9 @@ SRCS_AST_EXPANSION=\
 	tilda.c\
 	tdq.c
 
+SRCS_AST_WITHOUT_DIR=\
+	get_lexem_value.c
+
 AST_SUBDIRS=\
 	$(AST_REDIRECT_DIR)\
 	$(AST_EXPANSION_DIR)\
@@ -82,7 +88,7 @@ AST_SUBDIRS=\
 	$(PRINT_AST_DIR)\
 	$(TRAVERSE_AST_DIR)
 
-SRCS_AST=\
+SRCS_AST=$(SRCS_AST_WITHOUT_DIR)\
 	$(addprefix $(LEXER_DIR)/, $(SRCS_LEXER))\
 	$(addprefix $(PARSER_DIR)/, $(SRCS_PARSER))\
 	$(addprefix $(TRAVERSE_AST_DIR)/, $(SRCS_TRAVERSE_AST))\

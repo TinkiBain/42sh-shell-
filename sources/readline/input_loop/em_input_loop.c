@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:44:22 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/13 12:34:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		perform_action(t_line *line)
 	{
 		line->action(line);
 		check_hs(line, line->action);
-		update_line(line);
+		update_line(line, 0);
 		if (line->hs_mode)
 			hs_clear(line);
 		line->arg = 1;

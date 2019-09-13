@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 20:44:28 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/13 14:25:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ char		**g_var_names;
 char		*g_project_name;
 t_pjobs		*g_pjobs;
 t_pjobs		*g_subjob;
-int			g_line_num;
+int			g_line_num = 0;
 int			g_exit;
 int			g_wait_flags;
 char		*g_tty;
 int			g_res_exec;
 int			*g_open_fd;
 char		*g_shell_path;
-t_alias		*g_alias;
+char		**g_pipe_pid;
+t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
 
 void		execute_line(char *buf)
 {
@@ -57,23 +58,14 @@ void		main_loop(void)
 	int			i;
 
 	i = 0;
-	g_line_num = 1;
 	project_name = ft_xstrdup(g_project_name);
 	while (!g_exit)
 	{
-		if (g_opt.rl_in != 0)
-		{
-			free(g_project_name);
-			g_project_name = ft_strrejoin(project_name, ": ", 0);
-			g_project_name = ft_strrejoin(g_project_name, ft_itoa(++i), 3);
-		}
-		g_check_nl = 1;
 		if (!(line = ft_readline((g_opt.rl_in == 0 ?
 							get_var_value("PS1") : ""), NULL)))
 			continue ;
 		ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
 		execute_line(line);
-		g_line_num++;
 	}
 	ft_strdel(&project_name);
 }

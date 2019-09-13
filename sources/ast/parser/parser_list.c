@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_list.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/13 16:01:55 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/13 16:14:46 by dwisoky          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 /*
@@ -25,6 +37,8 @@ static t_pars_list	*parser_init_list(t_pars_list *list_down)
 	list->next = list_down;
 	list->sep = 0;
 	list->and_or = NULL;
+	list->lex_begin = g_lex;
+	list->lex_end = NULL;
 	return (list);
 }
 
@@ -45,7 +59,9 @@ t_pars_list			*parser_list(t_pars_list *list_down)
 	{
 		list->sep = g_lex->type;
 		g_lex = g_lex->next;
+		list->lex_end = g_lex;
 		return (parser_list(list));
 	}
+	list->lex_end = g_lex;
 	return (list);
 }

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_compound_command.c                        :+:      :+:    :+:   */
+/*   get_lexem_value.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 19:24:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:32:30 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/09/12 20:23:38 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/09/12 20:26:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-
-
-void		traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork, t_pjobs *local)
+char	*get_lexem_value(int type)
 {
-	if (cmd->if_clause)
-		traverse_if_clause(cmd->if_clause, env, local);
-	// else if (cmd->for_clause)
-	// 	traverse_for_clause(cmd->for_clause);
-	// else if (cmd->while_clause)
-	// 	traverse_while_clause()
+	if (type == NEWLINE)
+		return ("newline");
+	else if (type == SEMI)
+		return (";");
+	else if (type == DSEMI)
+		return (";;");
+	else if (type == AND_IF)
+		return ("&&");
+	else if (type == OR_IF)
+		return ("||");
+	else if (type == PIPE)
+		return ("|");
+	else if (type == JOB)
+		return ("&");
+	else if (type == LBRACKET)
+		return ("(");
 	else
-		traverse_compound_list(cmd->compound_list, env, local);
-		// cmd->if_clause
-	(void)in_fork;
+		return (")");
 }
