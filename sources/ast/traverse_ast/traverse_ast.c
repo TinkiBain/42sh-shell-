@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 22:15:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/13 16:56:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,16 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 	flag = elem->and_or_if;
 }
 
-char			*get_pjob_name(t_and_or *and_or)
-{
-	char		*pjobs_name;
-
-	pjobs_name = NULL;
-	(void)and_or;
-	// pjobs_name = and_or->pipeline;
-	return (pjobs_name);
-}
-
 static void		traverse_list(t_pars_list *list, int sep)
 {
 	t_pjobs		*local;
-	// char		*pjobs_name;
+	char		*pjobs_name;
 
 	if (list->next)
 		traverse_list(list->next, list->next->sep);
 	g_res_exec = 0;
-	// pjobs_name = get_pjobs_name(list->lex_begin, list->lex_end, list->separator);
-	local = jobs_startet("pjobs_name", sep);
+	pjobs_name = get_job_name(list->lex_begin, list->lex_end, 0);
+	local = jobs_startet(pjobs_name, sep);
 	traverse_and_or(list->and_or, 0, local);
 }
 
