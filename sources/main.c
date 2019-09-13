@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/13 14:25:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/13 19:31:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int			g_res_exec;
 int			*g_open_fd;
 char		*g_shell_path;
 char		**g_pipe_pid;
+char		*g_buf;
 t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
 
 void		execute_line(char *buf)
 {
 	t_complete_cmd	*list;
 	t_lex			*lex;
+	extern char		*g_buf;
 	char			*tmp;
 
 	tmp = NULL;
