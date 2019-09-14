@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 14:57:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/14 15:36:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int			redir_dless(t_io_redirect *redir)
 			break ;
 		ft_putstr_fd(str, pipefd[1]);
 		ft_putstr_fd("\n", pipefd[1]);
+		ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
 		free(str);
 	}
 	free(str);
