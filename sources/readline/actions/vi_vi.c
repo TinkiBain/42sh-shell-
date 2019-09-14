@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 18:53:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/14 15:58:43 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,17 @@ static void	free_argv(char **argv)
 static void	start_vi(char **argv)
 {
 	pid_t		pid;
-	int			status;
 	extern char	**environ;
 	t_pjobs		*local;
 
 	pid = fork();
 	local = jobs_startet(ft_xstrdup("vi mode"), 0);
 	ljobs_startet("vi mode", local->flag, local->num, pid);
-	if (pid == 0)
-	{
-		if (execve(argv[0], argv, environ) < 0)
-			loginfo("vi_vi(): execve error");
-	}
+	if (pid == 0
+		&& execve(argv[0], argv, environ) < 0)
+		loginfo("vi_vi(): execve error");
 	else if (pid > 0)
-	{
-		while (1)
-		{
-			if (ft_waitpid(pid))
-			{
-				loginfo("vi_vi(): waitpid error");
-				return ;
-			}
-			if (WIFEXITED(status) || WIFSIGNALED(status))
-				break ;
-		}
-	}
+		ft_waitpid(pid);
 	else
 		loginfo("vi_vi(): fork error");
 }
@@ -100,4 +86,5 @@ void		vi_vi(t_line *line)
 	fd = open(TMP_PATH, O_RDWR, S_IRWXU);
 	read_file(fd, line);
 	close(fd);
+	unlink(TMP_PATH);
 }
