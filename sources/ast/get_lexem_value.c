@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:23:38 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/14 14:18:47 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/14 14:55:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,4 @@ char	*get_lexem_value(int type)
 	// 	return ("<<&");
 	else
 		return ("NOT_VALID_ID");
-	// printf("type: %d\n",type);
-	// 	return ("*");
 }

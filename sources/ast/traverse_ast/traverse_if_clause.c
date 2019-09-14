@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 15:16:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:36:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/14 14:55:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		traverse_if_clause(t_if_clause *list, char **env, t_pjobs *local)
 	traverse_compound_list(list->if_head, env, local);
 	if (!g_res_exec)
 	{
-		printf("res = 0\n");
 		traverse_compound_list(list->if_body, env, local);
 	}
 	else if (list->else_part)

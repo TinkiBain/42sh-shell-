@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs_sig_hendler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/14 13:45:57 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/14 14:54:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void			def_kill_or_done(t_job *first, int sig)
 	if (!first->next)
 	{
 		if (sig == SIGKILL || sig == SIGTERM)
-			printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
+			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
 		else
-			printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
+			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
 		deletejob(&g_pjobs, first->num);
 	}
 	else
@@ -110,7 +110,6 @@ void				jobs_sig(void)
 	job = NULL;
 	sig = 0;
 	done_pid = waitpid(-1, &sig, WUNTRACED);
-	printf ("%d\n", done_pid);
 	g_res_exec = sig;
 	g_wait_flags = done_pid;
 	if (WIFEXITED(g_res_exec))
