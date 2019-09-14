@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/08 16:34:39 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/14 12:58:58 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	signals(int signo)
 		tcsetpgrp(9, getpid());
 	if (signo == SIGTSTP)
 		write(1, "\n", 0);
+	if (signo == SIGPIPE)
+		ft_printf ("Phiv\n");
 }
 
 void		signal_monitor(void)
@@ -27,4 +29,5 @@ void		signal_monitor(void)
 	signal(SIGCHLD, signals);
 	signal(SIGTSTP, signals);
 	signal(SIGTTOU, signals);
+	signal(SIGPIPE, signals);
 }

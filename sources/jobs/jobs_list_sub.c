@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:37:06 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/13 21:05:26 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/14 13:25:16 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ t_job			*ft_addsubjob(char *path, int num)
 t_job			*lsubjob_changer(char *str, t_pjobs *gjobs, int num, int pid)
 {
 	t_job		*local;
-	t_pjobs		*first;
 
-	first = gjobs;
 	local = NULL;
 	while (gjobs->num != num)
 		gjobs = gjobs->next;
@@ -43,12 +41,11 @@ t_job			*lsubjob_changer(char *str, t_pjobs *gjobs, int num, int pid)
 		local = gjobs->job;
 		while (local->next)
 			local = local->next;
+		local->next = ft_addsubjob(str, num);
 		local = local->next;
-		local = ft_addsubjob(str, num);
 	}
 	local->pid = pid;
 	local = local->next;
-	gjobs = first;
 	return (local);
 }
 
