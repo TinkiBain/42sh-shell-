@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/08/27 15:23:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/14 18:08:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ char			*tdq(char *str)
 	char	*tmp;
 	int		i;
 
+	if (!str)
+		return (NULL);
 	i = 0;
 	tmp = str;
 	while (str[i] != '\0')
