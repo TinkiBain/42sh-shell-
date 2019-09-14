@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/14 13:00:29 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/14 13:32:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void			def_kill_or_done(t_job *first, int sig)
 	if (!first->next)
 	{
 		if (sig == SIGKILL || sig == SIGTERM)
-			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
+			printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
 		else
-			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
+			printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
 		deletejob(&g_pjobs, first->num);
 	}
 	else
