@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:16:22 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/08 05:59:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/14 19:15:51 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 long		ft_strtol(const char *nptr, char **endptr, register int base);
 int			ft_find_num(char *str);
+int			ft_isupper(int c);
 
 /*
 **test (return 0 if true, 1 if false, 2 if error)

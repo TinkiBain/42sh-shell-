@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/13 19:41:38 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/14 19:16:42 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,9 @@ SRCS_BUILTIN_TEST=\
 	ft_test_compare.c\
 	ft_test_compare_int_eq_ne.c\
 	ft_test_compare_str.c\
-	ft_test_int_compare_more_less.c
+	ft_test_int_compare_more_less.c\
+	ft_strtol.c\
+	ft_isupper.c
 
 VAR_DIR=variables
 
