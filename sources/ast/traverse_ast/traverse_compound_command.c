@@ -6,13 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 19:24:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 19:32:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/14 16:51:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-
 
 void		traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork, t_pjobs *local)
 {

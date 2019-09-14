@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/13 22:14:10 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/14 17:25:08 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRCS_PARSER=\
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
 	check_cmd.c\
-	get_cmd_name.c\
 	get_job_name.c\
 	is_builtin.c\
 	push_back_av.c\
@@ -50,6 +49,7 @@ SRCS_TRAVERSE_AST=\
 	traverse_command.c\
 	traverse_simple_command.c\
 	traverse_redirect_list.c\
+	traverse_redirections.c\
 	traverse_compound_command.c\
 	traverse_compound_list.c\
 	traverse_function_definition.c\
