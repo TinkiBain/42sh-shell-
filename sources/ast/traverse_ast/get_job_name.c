@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 22:01:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/13 16:57:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/14 14:22:07 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ char	*get_job_name(t_lex *lex, t_lex *lex_end, int separator)
 	{
 		tmp = ft_strjoin(" ", (lex->lexem) ? lex->lexem
 											: get_lexem_value(lex->type));
+		str = ft_strrejoin(str, tmp, 3);
+	}
+	if (lex_end->type == PIPE)
+	{
+		tmp = ft_strjoin(" ", get_lexem_value(lex_end->type));
 		str = ft_strrejoin(str, tmp, 3);
 	}
 	if (separator == JOB)

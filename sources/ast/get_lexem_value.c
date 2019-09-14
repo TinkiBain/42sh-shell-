@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:23:38 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/12 20:26:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/14 14:18:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,38 @@ char	*get_lexem_value(int type)
 		return ("&");
 	else if (type == LBRACKET)
 		return ("(");
-	else
+	else if (type == RBRACKET)
 		return (")");
+	else if (type == ANDGREAT)
+		return ("&>");
+	else if (type == ANDDGREAT)
+		return ("&>>");
+	else if (type == ANDLESS)
+		return ("&<");
+	else if (type == CLOBBER)
+		return (">|");
+	else if (type == GREAT)
+		return (">");
+	else if (type == DGREAT)
+		return (">>");
+	else if (type == GREATAND)
+		return (">&");
+	else if (type == LESS)
+		return ("<");
+	else if (type == DLESS)
+		return ("<<");
+	else if (type == TLESS)
+		return ("<<<");
+	else if (type == DLESSDASH)
+		return ("<<-");
+	else if (type == LESSAND)
+		return ("<&");
+	else if (type == LESSGREAT)
+		return ("<>");
+	// else if (type == DLESSAND)
+	// 	return ("<<&");
+	else
+		return ("NOT_VALID_ID");
+	// printf("type: %d\n",type);
+	// 	return ("*");
 }
