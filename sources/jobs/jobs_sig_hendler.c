@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/14 13:32:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/14 13:45:57 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void			sig_per_stop(int done_pid)
 		sigstop();
 		deletejob(&g_subjob, g_subjob->num);
 	}
-	return ;
 }
 
 static void			pjobs_sig(int sig, int done_pid)
@@ -111,13 +110,17 @@ void				jobs_sig(void)
 	job = NULL;
 	sig = 0;
 	done_pid = waitpid(-1, &sig, WUNTRACED);
+	printf ("%d\n", done_pid);
 	g_res_exec = sig;
 	g_wait_flags = done_pid;
 	if (WIFEXITED(g_res_exec))
 		g_res_exec = WEXITSTATUS(g_res_exec);
 	set_result();
 	if (sig == SUSPCHLD)
+	{
 		sig_per_stop(done_pid);
+		return ;
+	}
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
 		deletejob(&g_subjob, g_subjob->num);
