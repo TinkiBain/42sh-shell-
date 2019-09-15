@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:30:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 21:06:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/15 15:24:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char				*parser_call_back_readline()
 	int				len;
 
 	tmp = ft_readline((g_opt.rl_in == 0 ?
-				get_var_value("PS3") : ""), g_buf);
+				get_var_value("PS3") : ""), RL_APPEND);
 	ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
 	len = ft_strlen(g_buf);
 	free(g_buf);

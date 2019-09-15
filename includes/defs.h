@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/12 16:47:52 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/15 15:24:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,12 @@ extern int						g_res_exec;
 extern char						*g_tty;
 extern int						*g_open_fd;
 extern char						*g_shell_path;
+
+enum	e_rl_mode
+{
+	RL_DEFAULT,
+	RL_APPEND,
+	RL_HEREDOC
+};
 
 #endif
