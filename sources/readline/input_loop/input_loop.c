@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/15 15:39:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:04:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int				input_loop(t_line *line)
 {
-	extern int	g_exit;
+	extern int	g_eof;
 	int			ret;
 
 	loginfo("Start reading loop");
@@ -35,9 +35,9 @@ int				input_loop(t_line *line)
 	line->cpos = line->str->len;
 	if (line->vi_mode || line->emacs_mode)
 		update_line(line, 0);
-	if (ret <= 0 && line->mode == RL_DEFAULT)
+	if (ret <= 0)
 	{
-		g_exit = 1;
+		g_eof = 1;
 		return (1);
 	}
 	return (0);

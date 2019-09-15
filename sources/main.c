@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/15 15:25:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:04:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char		*g_project_name;
 t_pjobs		*g_pjobs;
 t_pjobs		*g_subjob;
 int			g_line_num = 0;
-int			g_exit;
+int			g_eof;
 int			g_wait_flags;
 char		*g_tty;
 int			g_res_exec;
@@ -61,7 +61,7 @@ void		main_loop(void)
 
 	i = 0;
 	project_name = ft_xstrdup(g_project_name);
-	while (!g_exit)
+	while (!g_eof)
 	{
 		if (!(line = ft_readline((g_opt.rl_in == 0 ?
 							get_var_value("PS1") : ""), RL_DEFAULT)))

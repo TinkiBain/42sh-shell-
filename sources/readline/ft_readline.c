@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/15 16:06:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:05:59 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,18 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 }
 
 /*
-** If EOF, return NULL.
+** If EOF, return NULL and set g_eof to 1.
 ** If error, write message and return NULL.
 */
 
 char		*ft_readline(char *prompt, enum e_rl_mode mode)
 {
+	extern int		g_eof;
 	extern int		g_line_num;
 	t_line			line;
 	int				ret;
 
+	g_eof = 0;
 	g_line_num++;
 	sig_init();
 	g_line = &line;

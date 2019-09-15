@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:30:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/15 15:24:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:04:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 char				*parser_call_back_readline()
 {
-	extern int		g_exit;
+	extern int		g_eof;
 	extern t_opt 	g_opt;
 	char			*tmp;
 	extern char		*g_buf;
@@ -33,10 +33,10 @@ char				*parser_call_back_readline()
 	len = ft_strlen(g_buf);
 	free(g_buf);
 	g_buf = tmp;
-	if (g_exit)
+	if (g_eof)
 	{
 		init_lex(EOF, NULL, &g_lex);
-		g_exit = 0;
+		g_eof = 0;
 		return (NULL);
 	}
 	return (tmp + len);
