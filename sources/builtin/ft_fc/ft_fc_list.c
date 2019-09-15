@@ -6,11 +6,11 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:39:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/14 18:47:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 06:15:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "builtins.h"
 
 static void	list(int first, int last, t_cmd_opt opt)
 {
@@ -26,7 +26,7 @@ static void	list(int first, int last, t_cmd_opt opt)
 		if (i >= first && i <= last)
 		{
 			if (opt.n)
-				ft_printf("\t%s\n", ((t_string *)p->content)->s);;
+				ft_printf("\t%s\n", ((t_string *)p->content)->s);
 			else
 				ft_printf("%d\t%s\n", i, ((t_string *)p->content)->s);
 		}

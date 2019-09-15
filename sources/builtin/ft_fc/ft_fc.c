@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/14 18:55:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 06:28:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,8 @@ static int	show_usage(void)
 
 static void	run_fc(t_cmd_opt opt)
 {
-	int	first;
-	int	last;
-
 	if (opt.l)
-	{
-		get_first_last(&first, &last);
-		list(first, last);
-	}
+		ft_fc_list(opt);
 }
 
 int			ft_fc(const char **argv)
@@ -71,8 +65,8 @@ int			ft_fc(const char **argv)
 	ft_bzero(&opt, sizeof(opt));
 	argc = count_len(argv);
 	ft_getopt_init("fc");
-	while (!ft_isdigit(argv[g_optind][1] &&
-			(o = ft_getopt(argc, (char *const *)argv, "lnrse:")) != -1)
+	while (argv[g_optind] && !ft_isdigit(argv[g_optind][1]) &&
+				(o = ft_getopt(argc, (char *const *)argv, "lnrse:")) != -1)
 		if (o == 'l')
 			opt.l = 1;
 		else if (o == 'n')

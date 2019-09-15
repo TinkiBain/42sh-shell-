@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/14 19:29:41 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/15 06:11:44 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ SRCS_BUILTIN=\
 	cd_change_dir.c		bg.c			fg.c		ft_test.c\
 	alias.c				unalias.c
 
-SRCS_BUILTIN_FC_DIR=ft_fc
+BUILTIN_FC_DIR=ft_fc
 
 SRCS_BUILTIN_FC=\
 	ft_fc.c		ft_fc_list.c
