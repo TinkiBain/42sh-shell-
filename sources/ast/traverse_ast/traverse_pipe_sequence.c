@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/14 20:53:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/15 21:05:02 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	pipe_seq_simple_builtin(t_command *cmd, char **env, t_pjobs *local)
 {
 	pid_t	pid;
 
-	traverse_redirections(cmd);
 	if (local->flag == 0)
 	{
 		deletejob(&g_subjob, g_subjob->num);
