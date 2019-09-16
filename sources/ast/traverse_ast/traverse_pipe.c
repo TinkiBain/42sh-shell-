@@ -17,6 +17,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 {
 	pid_t		pid;
 
+	traverse_redirections(cmd);
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)
@@ -41,6 +42,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	pid_t		pid;
 	int			pipefd[2];
 
+	traverse_redirections(pipe_seq->command);
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid = fork()) == 0)

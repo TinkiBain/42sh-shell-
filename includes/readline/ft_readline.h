@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/03 22:43:51 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 15:31:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define VI_INSERT			1
 # define VI_COMMAND			2
 
-char			*gnl(char *prompt, char *oldline);
-char			*ft_readline(char *prompt, char *oldline);
+char			*gnl(char *prompt);
+char			*ft_readline(char *prompt, enum e_rl_mode mode);
 void			convert_escapes(t_string *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 22:16:08 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/15 15:32:46 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ typedef struct				s_compound_list
 
 typedef struct				s_else_part
 {
+	t_compound_list			*head_compound;
 	t_compound_list			*compound_list;
 	struct s_else_part		*next_else_part;
-	int						elif;
 }							t_else_part;	
 
 typedef struct				s_if_clause

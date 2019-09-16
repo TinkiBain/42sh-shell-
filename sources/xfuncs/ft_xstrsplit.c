@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_redirect_list.c                           :+:      :+:    :+:   */
+/*   ft_xstrsplit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 19:18:54 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/13 22:15:01 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/09/16 12:47:12 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/16 12:51:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "xfuncs.h"
 
-int		traverse_redirect_list(t_redirect_list *list)
+char	**ft_xstrsplit(char const *s, char c)
 {
-	int	res;
+	char	**p;
 
-	while (list)
-	{
-		if ((res = redirect(list->io_redirect)) == -1)
-			return (res);
-		list = list->next;
-	}
-	return (res);
+	if (!s)
+		return (NULL);
+	p = ft_strsplit(s, c);
+	if (!p)
+		die();
+	return (p);
 }

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/15 06:11:44 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/16 13:04:02 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,6 @@ include $(SRCS_DIR)/$(HASH_DIR)/hash_table.mk
 
 READLINE_DIR=readline
 include $(SRCS_DIR)/$(READLINE_DIR)/readline.mk
-
-# lib_wtalea need to remove
-DIR_LIB_WTALEA=lib_wtalea
-SRCS_LIB_WTALEA=die_log.c
 
 SRCS_WITHOUT_DIR=\
 	main.c\
@@ -89,7 +85,9 @@ SRCS_BUILTIN_TEST=\
 	ft_test_compare.c\
 	ft_test_compare_int_eq_ne.c\
 	ft_test_compare_str.c\
-	ft_test_int_compare_more_less.c
+	ft_test_int_compare_more_less.c\
+	ft_strtol.c\
+	ft_isupper.c
 
 VAR_DIR=variables
 
@@ -107,7 +105,7 @@ SRCS_VAR=\
 XFUNCS_DIR=xfuncs
 
 SRCS_XFUNCS=\
-	ft_xstrdup.c	 ft_xstrjoin.c		str_xfuncs1.c\
+	ft_xstrdup.c	 ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
 	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c
 
 ERROR_DIR=error
@@ -122,7 +120,6 @@ SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
 	$(addprefix $(VAR_DIR)/, $(SRCS_VAR))\
-	$(addprefix $(DIR_LIB_WTALEA)/, $(SRCS_LIB_WTALEA))\
 	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))\
 	$(addprefix $(ERROR_DIR)/, $(SRCS_ERROR))\
 	$(addprefix $(BUILTIN_DIR)/$(BUILTIN_TEST_DIR)/, $(SRCS_BUILTIN_TEST))\
@@ -156,7 +153,6 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
 	$(OBJS_DIR)/$(VAR_DIR)\
 	$(OBJS_DIR)/$(JOBS_DIR)\
-	$(OBJS_DIR)/$(DIR_LIB_WTALEA)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)\
 	$(OBJS_DIR)/$(ERROR_DIR)\
 	$(OBJS_DIR)/$(BUILTIN_DIR)/$(BUILTIN_TEST_DIR)\

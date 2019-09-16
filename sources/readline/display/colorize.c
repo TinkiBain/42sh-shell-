@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/28 19:46:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/14 19:41:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static void	colorize_arg(t_string *str, int *i, char *color)
 
 	str_xinsert(str, *i, color, ft_strlen(color));
 	*i += ft_strlen(color);
-	while ((c = str_get(*str, *i)) && !ft_isspace(c))
+	while ((c = str_get(*str, *i)) &&
+			!ft_isspace(c) &&
+			ft_strchr(")]}", c) == NULL)
 		*i += 1;
 	str_xinsert(str, *i, COLOR_EOC, ft_strlen(COLOR_EOC));
 	*i += ft_strlen(COLOR_EOC) - 1;
