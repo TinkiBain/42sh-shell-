@@ -6,11 +6,12 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/29 16:09:10 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/09/16 12:53:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
+#include "xfuncs.h"
 
 t_hash			**g_table;
 int				g_prog_names_count;
@@ -90,8 +91,7 @@ void			create_bin(char *str)
 		return ;
 	cp = NULL;
 	i = 0;
-	if ((cp = ft_strsplit(str, ':')) == NULL)
-		die_log("malloc in get_bin");
+	cp = ft_xstrsplit(str, ':');
 	while (*(cp + i))
 		split_hash(*(cp + i++), &g_table);
 	ft_free_double_ptr_arr((void ***)&cp);

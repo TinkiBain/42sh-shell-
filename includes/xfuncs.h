@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 05:55:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 14:00:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 12:54:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		*xmalloc(size_t size);
 void		*ft_xmemalloc(size_t size);
 char		*ft_xstrdup(const char *src);
 char		*ft_xstrjoin(char const *s1, char const *s2);
+char		**ft_xstrsplit(char const *s, char c);
 
 t_string	str_xcreate(size_t len);
 t_string	str_xduplicate(t_string str);

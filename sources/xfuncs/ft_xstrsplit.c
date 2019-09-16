@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die_log.c                                          :+:      :+:    :+:   */
+/*   ft_xstrsplit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 16:05:11 by wtalea            #+#    #+#             */
-/*   Updated: 2019/07/27 17:10:53 by wtalea           ###   ########.fr       */
+/*   Created: 2019/09/16 12:47:12 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/16 12:51:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_wtalea.h"
+#include "xfuncs.h"
 
-void	die_log(char *str)
+char	**ft_xstrsplit(char const *s, char c)
 {
-	write(2, str, ft_strlen(str));
-	exit(-5);
+	char	**p;
+
+	if (!s)
+		return (NULL);
+	p = ft_strsplit(s, c);
+	if (!p)
+		die();
+	return (p);
 }
