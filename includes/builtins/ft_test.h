@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_test.h                                     :+:      :+:    :+:   */
+/*   ft_test.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:16:22 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/14 19:15:51 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/09/16 14:14:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_TEST_H
-# define BUILTIN_TEST_H
+#ifndef FT_TEST_H
+# define FT_TEST_H
 
 # include <errno.h>
 # include "exec.h"
@@ -23,11 +23,11 @@ int			ft_isupper(int c);
 /*
 **test (return 0 if true, 1 if false, 2 if error)
 */
-int		test_unary(char *src);
-int		test_too_many(void);
-int		test_find_flag(char **argv);
-int		test_check_compare(char **argv);
-int		test_integer_expression(char *src);
+int			test_unary(char *src);
+int			test_too_many(void);
+int			test_find_flag(char **argv);
+int			test_check_compare(char **argv);
+int			test_integer_expression(char *src);
 
 /*
 **test_flags

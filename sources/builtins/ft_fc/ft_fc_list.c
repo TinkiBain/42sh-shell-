@@ -6,11 +6,11 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:39:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/15 06:15:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:42:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "ft_fc.h"
 
 static void	list(int first, int last, t_cmd_opt opt)
 {

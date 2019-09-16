@@ -6,11 +6,11 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/15 06:28:27 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:40:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "ft_fc.h"
 
 static int	count_len(const char **arr)
 {

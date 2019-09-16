@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/15 06:13:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:14:30 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,6 @@
 
 # include "sh.h"
 # include "ft_getopt.h"
-
-typedef struct	s_cmd_opt
-{
-	t_uint e : 1;
-	t_uint l : 1;
-	t_uint n : 1;
-	t_uint r : 1;
-	t_uint s : 1;
-}				t_cmd_opt;
 
 int		is_builtin(const char *cmd);
 
@@ -40,6 +31,5 @@ int		ft_set(const char **av);
 int		ft_type(const char **av);
 int		ft_unset(const char **av);
 int		ft_fc(const char **av);
-void	ft_fc_list(t_cmd_opt opt);
 
 #endif
