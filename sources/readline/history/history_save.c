@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 16:07:21 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:35:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	history_join_last(t_history *history, t_string *str)
 	while (history->item->next)
 		history->item = history->item->next;
 	loginfo("Line \"%s\" has been joined to previous history line (\"%s\") "
-			"and saved.", str, ((t_string *)history->item->content)->s);
+			"and saved.", str->s, ((t_string *)history->item->content)->s);
 	str_xaddback((t_string *)history->item->content, "\n", 1);
 	str_xaddback((t_string *)history->item->content, str->s, str->len);
 	history_save_rewrite(history);
