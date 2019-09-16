@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/12 22:25:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/16 14:40:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,22 @@
 
 void		preliminary_check_fd(void)
 {
+	extern t_opt	g_opt;
+
 	if (fcntl(0, F_GETFL) < -1)
 		exit(0);
 	if (!isatty(0))
-		exit(g_res_exec);
+	{
+		if (g_opt.vi_mode || g_opt.emacs_mode)
+		{
+			g_opt.vi_mode = 0;
+			g_opt.emacs_mode = 0;
+			g_opt.rl_gnl = 1;
+		}
+	}
 }
 
-void		fill_options(int rl_in)
+static void	fill_options(int rl_in)
 {
 	extern t_opt	g_opt;
 
@@ -37,24 +46,27 @@ void		fill_options(int rl_in)
 static int	get_fd(int ac, char **av)
 {
 	extern char		*g_project_name;
+	extern t_opt	g_opt;
 	char	*p;
 	int		fd;
 
 	p = (av[0]) ? ft_strrchr(av[0], '/') : NULL;
 	g_project_name = ft_xstrdup((p) ? (p + 1) : av[0]);
-	fd = 0;
+	fd = -1;
 	if (ac > 1)
 	{
 		if (check_file_errors(av[1], F_OK) ||
 							(fd = open(av[1], O_RDONLY)) < 0)
 			exit(g_res_exec);
 	}
-	if (fd > 0)
+	if (fd > -1)
 	{
 		ft_strdel(&g_project_name);
 		g_project_name = ft_xstrdup(av[1]);
+		g_opt.rl_gnl = 1;
+		return (fd);
 	}
-	return (fd);
+	return (0);
 }
 
 void		shell_init(int ac, char **av)

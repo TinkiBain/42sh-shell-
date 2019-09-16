@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/14 19:02:55 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:53:59 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_opt
 	t_uint		noclobber;
 	t_uint		rl_in;
 	t_uint		rl_out;
+	t_uint		rl_gnl;
 }				t_opt;
 
 typedef struct	s_alias

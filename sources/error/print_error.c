@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 14:23:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 14:45:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		print_error(const char *msg, const char *info)
 	extern int		g_line_num;
 
 	ft_fdprintf(STDERR, "%s: ", g_project_name);
-	if (g_opt.rl_in != 0)
+	if (g_opt.rl_gnl != 0)
 		ft_fdprintf(STDERR, "line %d: ", g_line_num);
 	if (info)
 		ft_fdprintf(STDERR, "%s: ", info);
