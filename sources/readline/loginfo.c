@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 09:52:51 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 12:22:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,21 @@ void		logopen(void)
 {
 	char			*path;
 	extern t_opt	g_opt;
+	struct stat		st;
 
 	if (!DEBUG)
 		return ;
 	path = tdq(ft_xstrdup(get_var_value("LOGPATH")));
-	g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
+	if (stat(path, &st) == 0 && st.st_size >= LOGSIZE)
+		g_logfd = open(path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU);
+	else
+		g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 	if (g_logfd < 0)
 	{
-		g_logfd = open(DEF_LOG_PATH, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
+		g_logfd = open(DEF_LOGPATH, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		if (g_logfd < 0)
 			ft_fdprintf(STDERR, "Error while opening logfile: %s\n",
-															DEF_LOG_PATH);
+															DEF_LOGPATH);
 		loginfo("Error while opening logfile: %s", path);
 	}
 	ft_strdel(&path);
