@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 18:35:22 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 19:07:50 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			ft_fg(t_pjobs *local_job, const char *name)
 	else
 		local = NULL;
 	if (local == NULL)
-		return(fg_null_error(name));
+		return (fg_null_error(name));
 	free(local->status);
 	local->status = ft_strdup("\t[Running]\t");
 	tcsetpgrp(0, local->workgpid);
@@ -48,6 +48,8 @@ int			ft_fg(t_pjobs *local_job, const char *name)
 		local->job = local->job->next;
 	}
 	local->job = job;
+	if (local->job->next)
+		pipe_av(local->job);
 	ft_waitpid(local->job->pid);
-	return (1);
+	return (pid_fredy());
 }

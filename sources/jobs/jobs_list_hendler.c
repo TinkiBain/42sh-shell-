@@ -6,17 +6,17 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/16 17:57:59 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 19:25:56 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void		freedsubjob(t_job **new)
+void			freedsubjob(t_job **new)
 {
 	free((*new)->status);
-	(*new)->status = NULL;
 	free((*new)->name);
+	(*new)->status = NULL;
 	(*new)->name = NULL;
 	free((*new));
 	(*new) = NULL;
@@ -25,10 +25,10 @@ void		freedsubjob(t_job **new)
 static void		freedjob(t_pjobs **new)
 {
 	t_job		*subnew;
-
+	
 	free((*new)->status);
-	(*new)->status = NULL;
 	free((*new)->name);
+	(*new)->status = NULL;
 	(*new)->name = NULL;
 	while ((*new)->job)
 	{

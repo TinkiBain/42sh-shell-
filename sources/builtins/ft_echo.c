@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 17:48:08 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 18:45:05 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ int			ft_echo(const char **command)
 	j = 0;
 	flag = 0;
 	if (command[i] == NULL)
-	{
-		write(1, "\n", 1);
-		return (1);
-	}
+		return (write(1, "\n", 1) > 0 ? 1 : 0);
 	if (write(1, command[i], 0))
 	{
 		print_error("echo: ", "write error: Bad file descriptor");

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/14 13:27:42 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 19:06:15 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int		ft_waitpid(pid_t pid)
 			{
 				if (ft_atoi(g_pipe_pid[i]) &&
 					((ft_atoi(g_pipe_pid[i]) == g_wait_flags)))
+				{
+					g_wait_flags = 0;
 					return (1);
+				}
 				i++;
 			}
 		}

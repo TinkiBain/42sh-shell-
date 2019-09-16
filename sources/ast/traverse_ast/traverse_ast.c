@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 18:06:14 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 19:08:32 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		pid_fredy()
+int			pid_fredy()
 {
 	int i;
 
@@ -29,6 +29,7 @@ static void		pid_fredy()
 	}
 	free(g_pipe_pid);
 	g_pipe_pid = NULL;
+	return (1);
 }
 
 static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)

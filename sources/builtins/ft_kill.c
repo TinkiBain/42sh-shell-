@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/12 18:01:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 18:45:29 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void		kill_hendler(const char **cmd, t_pjobs *local_job,
 	}
 }
 
-static int	ft_sighendler(const char *str)
+static int		ft_sighendler(const char *str)
 {
 	if (!ft_strcmp(str, "SIGCONT"))
 		return (SIGCONT);
@@ -89,7 +89,7 @@ static int	ft_sighendler(const char *str)
 ** sig always = 15
 */
 
-int			ft_kill(const char **cmd, t_pjobs *local_job, int sig)
+int				ft_kill(const char **cmd, t_pjobs *local_job, int sig)
 {
 	t_pjobs		*fir;
 
@@ -106,7 +106,7 @@ int			ft_kill(const char **cmd, t_pjobs *local_job, int sig)
 	}
 	if (!(*cmd))
 	{
-		ft_putstr("kill: not enough arguments");
+		ft_putstr("kill: not enough arguments\n");
 		return (1);
 	}
 	while (*cmd)
