@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bg.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:00:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 15:37:47 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:35:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+int			bg_null_error(const char *name)
+{
+	ft_putstr_fd(g_project_name, 2);
+	if (name)
+	{
+		ft_putstr_fd(": bg: job not found ", 2);
+		ft_putendl_fd(name, 2);
+	}
+	else
+		ft_putstr_fd(": bg: no current job\n", 2);
+	return (1);
+}
 
 int			ft_bg(t_pjobs *local_job, const char *name)
 {
@@ -22,17 +35,7 @@ int			ft_bg(t_pjobs *local_job, const char *name)
 	else
 		local = NULL;
 	if (local == NULL)
-	{
-		ft_putstr_fd(g_project_name, 2);
-		if (name)
-		{
-			ft_putstr_fd(": bg: job not found ", 2);
-			ft_putendl_fd(name, 2);
-		}
-		else
-			ft_putstr_fd(": bg: no current job\n", 2);
-		return (1);
-	}
+		return (bg_null_error(name));
 	setpgid(local->workgpid, 0);
 	free(local->status);
 	local->status = ft_strdup("\t[Running]\t");

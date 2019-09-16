@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/16 18:08:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 18:37:24 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ static void			sig_per_stop(int done_pid)
 	while (first)
 	{
 		if ((job = pid_checl(done_pid, first->job)))
+		{
+			ft_printf("\n42sh: suspended %s\n", jobs_find_num(first, job->num)->name);
 			break ;
+		}
 		first = first->next;
 	}
 	if (job)
