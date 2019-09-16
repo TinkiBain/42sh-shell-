@@ -1,26 +1,27 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    builtins.mk                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 13:08:26 by gmelisan          #+#    #+#              #
-#    Updated: 2019/09/16 15:39:04 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/16 16:04:40 by ggwin-go         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 BUILTINS_TEST_DIR=ft_test
 BUILTINS_FC_DIR=ft_fc
+BUILTINS_CD_DIR=ft_cd
 
 BUILTINS_INCLUDES=\
 	builtins.h		ft_test.h	ft_fc.h
 
 SRCS_BUILTINS_WITHOUT_DIR=\
-	ft_getopt_init.c	ft_getopt_clear.c\
-	cd.c				ft_echo.c	ft_exit.c	ft_hash.c		ft_set.c\
-	ft_type.c			ft_unset.c	ft_env.c	ft_export.c		ft_kill.c\
-	cd_change_dir.c		bg.c		fg.c		alias.c			unalias.c\
+	ft_alias.c		ft_bg.c			ft_echo.c			ft_env.c\
+	ft_exit.c		ft_export.c		ft_getopt_init.c	ft_getopt_clear.c\
+	ft_fg.c			ft_hash.c		ft_kill.c			ft_set.c\
+	ft_type.c		ft_unalias.c	ft_unset.c
 
 SRCS_BUILTIN_TEST=\
 	ft_test.c\
@@ -40,11 +41,16 @@ SRCS_BUILTIN_TEST=\
 SRCS_BUILTIN_FC=\
 	ft_fc.c		ft_fc_list.c
 
+SRCS_BUILTIN_CD=\
+	ft_cd.c		ft_cd_change_dir.c
+
 BUILTINS_SUBDIRS=\
 	$(BUILTINS_TEST_DIR)\
 	$(BUILTINS_FC_DIR)\
+	$(BUILTINS_CD_DIR)\
 
 SRCS_BUILTINS=\
 	$(SRCS_BUILTINS_WITHOUT_DIR)\
 	$(addprefix $(BUILTINS_TEST_DIR)/, $(SRCS_BUILTIN_TEST))\
-	$(addprefix $(BUILTINS_FC_DIR)/, $(SRCS_BUILTIN_FC))
+	$(addprefix $(BUILTINS_FC_DIR)/, $(SRCS_BUILTIN_FC))\
+	$(addprefix $(BUILTINS_CD_DIR)/, $(SRCS_BUILTIN_CD))

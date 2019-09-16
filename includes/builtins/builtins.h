@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 15:39:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 16:05:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int		is_builtin(const char *cmd);
 void	ft_getopt_init(char *cmd_name);
 void	ft_getopt_clear(void);
 
-int		bg(t_pjobs *local_job, const char *name);
-int		fg(t_pjobs *local_job, const char *name);
+int		ft_bg(t_pjobs *local_job, const char *name);
+int		ft_fg(t_pjobs *local_job, const char *name);
 int		ft_cd(const char **av, char ***env);
 int		ft_echo(const char **av);
 int		ft_env(const char **av, char **env);

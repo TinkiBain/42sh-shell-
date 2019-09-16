@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fg.c                                               :+:      :+:    :+:   */
+/*   ft_fg.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/13 15:33:45 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 15:39:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			fg(t_pjobs *local_job, const char *name)
+int			ft_fg(t_pjobs *local_job, const char *name)
 {
 	t_pjobs		*local;
 	t_job		*job;
-	
+
 	if (local_job)
 		local = name_proc_hendl(local_job, (char*)name);
 	else
