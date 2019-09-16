@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 13:08:26 by gmelisan          #+#    #+#              #
-#    Updated: 2019/09/16 14:36:53 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/16 15:39:04 by gmelisan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,6 +17,7 @@ BUILTINS_INCLUDES=\
 	builtins.h		ft_test.h	ft_fc.h
 
 SRCS_BUILTINS_WITHOUT_DIR=\
+	ft_getopt_init.c	ft_getopt_clear.c\
 	cd.c				ft_echo.c	ft_exit.c	ft_hash.c		ft_set.c\
 	ft_type.c			ft_unset.c	ft_env.c	ft_export.c		ft_kill.c\
 	cd_change_dir.c		bg.c		fg.c		alias.c			unalias.c\

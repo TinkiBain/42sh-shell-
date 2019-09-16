@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 14:40:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:38:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ static int	count_len(const char **arr)
 	while (arr[i])
 		i++;
 	return (i);
-}
-
-static void	ft_getopt_init(char *cmd_name)
-{
-	t_string	str;
-
-	str = str_xcopy(g_project_name);
-	str_xaddback(&str, ": ", 2);
-	str_xaddback(&str, cmd_name, ft_strlen(cmd_name));
-	str_xaddback(&str, ": ", 2);
-	g_opterrpref = str.s;
-}
-
-static void	ft_getopt_clear(void)
-{
-	g_optarg = NULL;
-	g_optind = 1;
-	g_optpos = 1;
-	ft_strdel(&g_opterrpref);
 }
 
 static int	show_usage(void)

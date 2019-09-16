@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 14:14:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:39:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "ft_getopt.h"
 
 int		is_builtin(const char *cmd);
+
+void	ft_getopt_init(char *cmd_name);
+void	ft_getopt_clear(void);
 
 int		bg(t_pjobs *local_job, const char *name);
 int		fg(t_pjobs *local_job, const char *name);
