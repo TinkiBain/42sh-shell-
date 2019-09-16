@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/13 19:31:13 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/16 14:32:24 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void		main_loop(void)
 	project_name = ft_xstrdup(g_project_name);
 	while (!g_exit)
 	{
-		if (!(line = ft_readline((g_opt.rl_in == 0 ?
+		if (!(line = ft_readline((g_opt.rl_gnl == 0 ?
 							get_var_value("PS1") : ""), NULL)))
 			continue ;
-		ft_putstr(g_opt.rl_in == 0 ? "\n" : "");
+		ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
 		execute_line(line);
 	}
 	ft_strdel(&project_name);
