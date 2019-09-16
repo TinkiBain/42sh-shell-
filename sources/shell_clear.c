@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:25:17 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 14:43:55 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/16 21:38:25 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ void		shell_clear(void)
 	ft_free_double_ptr_arr((void ***)&g_var);
 	ft_free_double_ptr_arr((void ***)&g_var_names);
 	ft_memdel((void **)&g_project_name);
+	ft_memdel((void **)&g_shell_path);
 	alias_free_all();
 	if (g_opt.rl_gnl != 0)
 		close(g_opt.rl_in);
 	else
-		ft_putstr("exit\n");
+		ft_putstr_fd("exit\n", 2);
 	logclose();
 }
