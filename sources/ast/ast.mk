@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/14 17:25:08 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/16 20:00:27 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS_PARSER=\
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
+	call_subshell.c\
 	check_cmd.c\
 	get_job_name.c\
 	is_builtin.c\

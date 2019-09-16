@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/14 17:24:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 20:00:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	*get_subjob_name(t_command *command);
 
 void	traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 												int in_fork, t_pjobs *local);
+void	call_subshell(char *str, int sep, char **env, t_pjobs *local);
 int		check_cmd(const char *cmd);
 void	traverse_ast(t_complete_cmd *root);
 void	traverse_pipe_sequence(t_pipe_sequence *elem, char **env, t_pjobs *local);
