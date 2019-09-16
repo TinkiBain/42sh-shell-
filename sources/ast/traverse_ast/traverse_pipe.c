@@ -17,6 +17,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 {
 	pid_t		pid;
 
+	redir_set();
 	traverse_redirections(cmd);
 	if ((pid = fork()) == 0)
 	{
@@ -33,6 +34,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 	pipe_av(local->job);
 	if (local->flag == 0)
 		ft_waitpid(pid);
+	redir_reset();
 }
 
 void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
@@ -42,6 +44,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	pid_t		pid;
 	int			pipefd[2];
 
+	redir_set();
 	traverse_redirections(pipe_seq->command);
 	if (pipe(pipefd) == -1)
 		exit(-1);
@@ -71,4 +74,5 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command,
 														env, in_fork, local);
 	close(pipefd[0]);
+	redir_reset();
 }

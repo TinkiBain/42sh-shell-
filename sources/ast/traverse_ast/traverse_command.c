@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:14:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/14 20:52:15 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:34:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		traverse_command(t_command *cmd, char **env, int in_fork, t_pjobs *local)
 {
-	redir_set();
 	if (cmd->simple_command)
 	{
 		traverse_simple_command(cmd->simple_command, env, in_fork);
@@ -27,5 +26,4 @@ void		traverse_command(t_command *cmd, char **env, int in_fork, t_pjobs *local)
 	}
 	else if (cmd->function_definition)
 		traverse_function_definition(cmd->function_definition, env, in_fork);
-	redir_reset();
 }

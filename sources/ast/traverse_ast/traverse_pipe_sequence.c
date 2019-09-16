@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 17:08:18 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 17:34:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
 {
 	char	*cmd_name;
 
+	redir_set();
 	traverse_redirections(cmd);
 	if (cmd->simple_command)
 	{
@@ -90,6 +91,7 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
 	}
 	else
 		traverse_command(cmd, env, 0, local);
+	redir_reset();
 }
 
 void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
