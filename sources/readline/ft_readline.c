@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/15 18:05:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:59:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)
 
 static void	clear_line(t_line *line, int clear_flag, t_history **history)
 {
+	history_save(line->history_orig, line->str, line->mode);
 	line->result = str_xduplicate(*line->str);
-	if (line->mode == RL_HEREDOC)
-		str_delete(line->str);
-	history_save(line->history_orig, line->str);
 	history_clear(line->history);
 	*history = line->history_orig;
 	str_delete(&line->prompt);
