@@ -57,16 +57,18 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		exit(g_res_exec);
 	}
 	close(pipefd[1]);
-	if (local->flag == 1)
+	if (local && local->flag == 1)
 		ft_printf(" %d", pid);
 	ljobs_startet(get_subjob_name(pipe_seq->command), local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
+	{
 		traverse_pipe(pipe_seq, pipefd[0], environ, in_fork, local);
+		if (local->flag == 0)
+			ft_waitpid(pid);
+	}
 	else
 		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command,
 														env, in_fork, local);
 	close(pipefd[0]);
-	if (local->flag == 0)
-		ft_waitpid(pid);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/15 21:05:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:08:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
 		if (local->flag == 1)
 			ft_printf("[%d]", local->num);
 		traverse_pipe(pipe_seq, 0, env, 1, local);
-		if (local->flag == 1)
-			ft_printf("\n");
 	}
 	else
 		traverse_pipe_seq_without_pipe(pipe_seq->command, env, local);
