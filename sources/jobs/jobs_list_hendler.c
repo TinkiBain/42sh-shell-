@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/16 17:14:42 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 17:57:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		freedsubjob(t_job **new)
+void		freedsubjob(t_job **new)
 {
 	free((*new)->status);
 	(*new)->status = NULL;

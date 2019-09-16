@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 17:34:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:14:17 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,7 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
 			else if (check_cmd(cmd_name) == 0)
 				pipe_seq_simple_non_builtin(cmd, env, local, cmd_name);
 			else
-			{
-				if (local->flag == 0)
-					deletejob(&g_subjob, g_subjob->num);
-				else
-					deletejob(&g_pjobs, local->num);
-			}
+				freedsubjob(&local->job);
 		}
 		else
 			traverse_command(cmd, env, 0, local);

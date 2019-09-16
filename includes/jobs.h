@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/13 21:00:51 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 17:52:03 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_pjobs				*jobs_startet(char *str, int sep);
 t_pjobs				*ft_addjob(char *name, int flag);
 t_pjobs				*jobs_last_elem(t_pjobs *job);
 void				jobs_sig();
+void				freedsubjob(t_job **new);
 void				deletejob(t_pjobs **alst, int num);
 int					jobs(t_pjobs *local_job, int iter, const char *cmd);
 int					jobs_list_counter(t_pjobs *local_job);

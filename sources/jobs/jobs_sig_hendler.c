@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs_sig_hendler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/14 14:54:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 18:08:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void			def_kill_or_done(t_job *first, int sig)
 			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
+	
+	if (g_pjobs->workgpid == 0)	
 		deletejob(&g_pjobs, first->num);
 	}
 	else
@@ -74,7 +76,8 @@ static void			sig_per_stop(int done_pid)
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
 		sigstop();
-		deletejob(&g_subjob, g_subjob->num);
+		if (g_subjob->workgpid == 0)
+			deletejob(&g_subjob, g_subjob->num);
 	}
 }
 
@@ -122,7 +125,8 @@ void				jobs_sig(void)
 	}
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
-		deletejob(&g_subjob, g_subjob->num);
+		if (g_subjob->workgpid == 0)
+			deletejob(&g_subjob, g_subjob->num);
 		return ;
 	}
 	pjobs_sig(sig, done_pid);
