@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 18:14:17 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 18:24:44 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
 				pipe_seq_simple_builtin(cmd, env, local);
 			else if (check_cmd(cmd_name) == 0)
 				pipe_seq_simple_non_builtin(cmd, env, local, cmd_name);
-			else
+			else if (local->job)
 				freedsubjob(&local->job);
 		}
 		else
