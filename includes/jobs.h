@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/16 19:08:14 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/18 17:02:36 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_pjobs
 extern t_pjobs		*g_pjobs;
 extern t_pjobs		*g_subjob;
 extern int			g_wait_flags;
-extern char			**g_pipe_pid;
+extern int			*g_pipe_pid;
 
 t_job				*ljobs_startet(char *str, int flag, int num, int pid);
 t_job				*pid_checl(int pid, t_job *job);

@@ -30,7 +30,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 	}
 	redir_reset();
 	if (local->flag == 1)
-	ft_printf(" %d", pid);
+	ft_printf(" %d\n", pid);
 	ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
 	pipe_av(local->job);
 	if (local->flag == 0)

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 17:52:28 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 17:03:03 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*g_tty;
 int			g_res_exec;
 int			*g_open_fd;
 char		*g_shell_path;
-char		**g_pipe_pid;
+int			*g_pipe_pid;
 char		*g_buf;
 t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
 
