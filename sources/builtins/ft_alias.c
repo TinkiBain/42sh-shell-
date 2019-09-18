@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alias.c                                            :+:      :+:    :+:   */
+/*   ft_alias.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 18:43:33 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/16 15:46:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			alias_free_all(void)
+int				alias_free_all(void)
 {
 	t_alias			*tmp;
 	extern t_alias	*g_alias;
@@ -92,7 +92,7 @@ static int		alias_print_str(const char *str)
 	return (1);
 }
 
-int				alias(const char **av)
+int				ft_alias(const char **av)
 {
 	extern t_alias	*g_alias;
 	t_alias			*tmp_alias;

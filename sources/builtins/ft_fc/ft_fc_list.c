@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fc.c                                            :+:      :+:    :+:   */
+/*   ft_fc_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 06:55:31 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/14 18:39:53 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/16 14:42:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include "ft_fc.h"
 
-static void	list(int first, int last)
+static void	list(int first, int last, t_cmd_opt opt)
 {
 	t_dlist	*p;
 	int		i;
@@ -24,29 +24,28 @@ static void	list(int first, int last)
 	while (p->next)
 	{
 		if (i >= first && i <= last)
-			ft_printf("%d\t%s\n", i, ((t_string *)p->content)->s);
+		{
+			if (opt.n)
+				ft_printf("\t%s\n", ((t_string *)p->content)->s);
+			else
+				ft_printf("%d\t%s\n", i, ((t_string *)p->content)->s);
+		}
 		i++;
 		p = p->next;
 	}
 }
 
-void		get_first_last(const char **av, int *first, int *last)
+void		get_first_last(int *first, int *last)
 {
-	if (!av)
-		return ;
 	*first = g_history->start_index + g_history->size - 17;
 	*last = g_history->start_index + g_history->size - 1;
 }
 
-int			ft_fc(const char **av)
+void		ft_fc_list(t_cmd_opt opt)
 {
-	int first;
-	int last;
+	int		first;
+	int		last;
 
-	if (ft_strequ(av[0], "-l"))
-	{
-		get_first_last(av, &first, &last);
-		list(first, last);
-	}
-	return (0);
+	get_first_last(&first, &last);
+	list(first, last, opt);
 }

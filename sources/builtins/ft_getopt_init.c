@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getopt.h                                        :+:      :+:    :+:   */
+/*   ft_getopt_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/13 18:58:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/14 18:29:26 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/16 15:10:26 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/16 15:40:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GETOPT_H
-# define FT_GETOPT_H
+#include "defs.h"
+#include "xfuncs.h"
+#include "ft_getopt.h"
 
-# include "libft.h"
+void	ft_getopt_init(char *cmd_name)
+{
+	t_string	str;
 
-extern char	*g_optarg;
-extern int	g_optind;
-extern int	g_optpos;
-extern int	g_optopt;
-extern int	g_opterr;
-extern char	*g_opterrpref;
-
-int			ft_getopt(int argc, char *const argv[], const char *optstring);
-
-#endif
+	str = str_xcopy(g_project_name);
+	str_xaddback(&str, ": ", 2);
+	str_xaddback(&str, cmd_name, ft_strlen(cmd_name));
+	str_xaddback(&str, ": ", 2);
+	g_opterrpref = str.s;
+}

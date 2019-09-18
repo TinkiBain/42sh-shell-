@@ -6,11 +6,11 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 15:21:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/07 17:20:27 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/09/16 14:37:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin_test.h"
+#include "ft_test.h"
 
 static	int		check_minus(char **argv)
 {

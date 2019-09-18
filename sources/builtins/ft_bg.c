@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bg.c                                               :+:      :+:    :+:   */
+/*   ft_bg.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:00:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 18:24:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/16 15:37:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			bg(t_pjobs *local_job, const char *name)
+int			ft_bg(t_pjobs *local_job, const char *name)
 {
 	t_pjobs		*local;
 	t_job		*job;

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getopt.h                                        :+:      :+:    :+:   */
+/*   ft_getopt_clear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/13 18:58:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/14 18:29:26 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/16 15:38:04 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/16 15:38:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GETOPT_H
-# define FT_GETOPT_H
+#include "ft_string.h"
+#include "ft_getopt.h"
 
-# include "libft.h"
-
-extern char	*g_optarg;
-extern int	g_optind;
-extern int	g_optpos;
-extern int	g_optopt;
-extern int	g_opterr;
-extern char	*g_opterrpref;
-
-int			ft_getopt(int argc, char *const argv[], const char *optstring);
-
-#endif
+void	ft_getopt_clear(void)
+{
+	g_optarg = NULL;
+	g_optind = 1;
+	g_optpos = 1;
+	ft_strdel(&g_opterrpref);
+}

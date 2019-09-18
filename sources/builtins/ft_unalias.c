@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unalias.c                                          :+:      :+:    :+:   */
+/*   ft_unalias.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:38:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 19:00:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/16 15:45:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		unalias_delete_one(const char *str, t_alias **alias)
 			if ((*alias)->body_alias)
 				free((*alias)->body_alias);
 			free(*alias);
-			tmp->next = (*alias)->next;;
+			tmp->next = (*alias)->next;
 			return (0);
 		}
 		tmp = *alias;
@@ -57,12 +57,12 @@ int		unalias_check_flag(const char *str)
 	return (1);
 }
 
-int					unalias(const char **av)
+int		ft_unalias(const char **av)
 {
 	extern t_alias	*g_alias;
-	int	flag;
-	int	tmp;
-	int	return_value;
+	int				flag;
+	int				tmp;
+	int				return_value;
 
 	return_value = 0;
 	if (!*av)

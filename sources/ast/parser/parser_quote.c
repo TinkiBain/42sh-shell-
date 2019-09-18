@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_free_all.c                                   :+:      :+:    :+:   */
+/*   parser_quote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/06 18:22:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/17 20:13:52 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/09/16 13:54:40 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/17 22:23:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "parser.h"
 
-void		lexer_free_all(t_lex *lex)
+char		*parser_quote(char *str, char **new_str)
 {
-	t_lex	*tmp;
+	char	*begin;
 
-	while (lex)
+	++str;
+	begin = str;
+	while (*str != '\'')
 	{
-		tmp = lex->next;
-		if (lex->lexem)
-			free(lex->lexem);
-		free(lex);
-		lex = tmp;
+		if (!*str)
+		{
+			*new_str = ft_strrejoin(*new_str, ft_strndup(begin, str - begin), 3);
+			str = parser_recall_readline(str);
+			begin = str;
+		}
+		else
+			++str;
 	}
+	*new_str = ft_strrejoin(*new_str, ft_strndup(begin, str - begin), 3);
+	return (str + 1);
 }

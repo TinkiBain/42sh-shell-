@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:15:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 22:29:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:32:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int		redirect(t_io_redirect *redir)
 {
+	redir_set();
 	redir->file_name = tdq(redir->file_name);
 	if (redir->io_number == -2 && !(redir->type == GREATAND))
 		return (redirect_error_range_fd());

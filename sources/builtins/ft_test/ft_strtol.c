@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 14:27:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/14 19:16:15 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/09/16 14:39:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/param.h>
 #include <errno.h>
 #include "libft.h"
-#include "builtin_test.h"
+#include "ft_test.h"
 
 #define NUM 0
 #define CUTOFF 1

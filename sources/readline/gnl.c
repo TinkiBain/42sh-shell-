@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 15:57:28 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/09 18:24:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/15 18:04:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static int	gnl_input_loop(void)
 	return (ret);
 }
 
-char		*gnl(char *prompt, char *oldline)
+char		*gnl(char *prompt)
 {
 	int			ret;
-	extern int	g_exit;
+	extern int	g_eof;
 
 	signal(SIGINT, sigh_gnl);
 	g_line->result = str_xcreate(0);
@@ -63,9 +63,7 @@ char		*gnl(char *prompt, char *oldline)
 	ft_putstr_fd(g_line->prompt.s, g_opt.rl_out);
 	ret = gnl_input_loop();
 	if (ret == 0)
-		g_exit = 1;
-	if (oldline)
-		str_xaddfront(&g_line->result, oldline, ft_strlen(oldline));
+		g_eof = 1;
 	if (ret <= 0)
 		str_delete(&g_line->result);
 	if (ret < 0)

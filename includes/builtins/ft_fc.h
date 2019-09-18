@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getopt.h                                        :+:      :+:    :+:   */
+/*   ft_fc.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/13 18:58:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/14 18:29:26 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/16 14:12:39 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/16 14:41:43 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GETOPT_H
-# define FT_GETOPT_H
+#ifndef FT_FC_H
+# define FT_FC_H
 
-# include "libft.h"
+# include "builtins.h"
 
-extern char	*g_optarg;
-extern int	g_optind;
-extern int	g_optpos;
-extern int	g_optopt;
-extern int	g_opterr;
-extern char	*g_opterrpref;
+typedef struct	s_cmd_opt
+{
+	t_uint e : 1;
+	t_uint l : 1;
+	t_uint n : 1;
+	t_uint r : 1;
+	t_uint s : 1;
+}				t_cmd_opt;
 
-int			ft_getopt(int argc, char *const argv[], const char *optstring);
+void	ft_fc_list(t_cmd_opt opt);
 
 #endif

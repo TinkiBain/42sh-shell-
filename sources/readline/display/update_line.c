@@ -6,19 +6,26 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 12:30:47 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 17:37:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
+#include <errno.h>
 
 extern t_opt	g_opt;
 
 int				get_term_cols(void)
 {
 	struct winsize	ws;
+	int				ret;
 
-	ioctl(g_opt.rl_in, TIOCGWINSZ, &ws);
+	ret = ioctl(g_opt.rl_in, TIOCGWINSZ, &ws);
+	if (ret == -1)
+	{
+		loginfo("! Error: ioctl() returned -1");
+		return (TERM_MAX_COL);
+	}
 	if (!ws.ws_col || ws.ws_col > TERM_MAX_COL)
 		return (TERM_MAX_COL);
 	return (ws.ws_col);
@@ -60,6 +67,8 @@ static void		convert_nl(t_buffer *buf, int width)
 		if (str_get(buf->b, i) == '\n')
 		{
 			add = (width - (i % width)) - 1;
+			if (buf->cpos > i)
+				buf->cpos += add;
 			from = i + 1;
 			shift_escseq(&buf->escseqs, from, add);
 			buf->b.s[i] = ' ';
@@ -118,5 +127,6 @@ void			update_line(t_line *line, int first)
 	else
 		resize(&newbuf, first);
 	clear_linebuf();
+	/* newbuf.cpos -= newbuf.cpos_shift; */
 	ft_memcpy(&g_buffer, &newbuf, sizeof(t_buffer));
 }

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   die_log.c                                          :+:      :+:    :+:   */
+/*   parser_check_word.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 16:05:11 by wtalea            #+#    #+#             */
-/*   Updated: 2019/07/27 17:10:53 by wtalea           ###   ########.fr       */
+/*   Created: 2019/09/15 16:56:37 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/15 19:18:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_wtalea.h"
+#include "parser.h"
 
-void	die_log(char *str)
+char		*parser_check_word()
 {
-	write(2, str, ft_strlen(str));
-	exit(-5);
+	char	*str;
+	char	*new_str;
+
+	if (g_lex->type != WORD)
+		return (NULL);
+	new_str = NULL;
+	str = g_lex->lexem;
+	new_str = parser_word_expansion(str);
+	return (new_str);
 }

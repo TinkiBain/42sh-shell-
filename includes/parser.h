@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/15 15:32:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/17 19:45:15 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,8 +249,16 @@ t_cmd_prefix				*parser_free_cmd_prefix(t_cmd_prefix *list);
 t_cmd_suffix				*parser_cmd_suffix(void);
 t_cmd_suffix				*parser_free_cmd_suffix(t_cmd_suffix *list);
 char						*parser_check_alias(char *str);
+char						*parser_call_back_readline(void);
+char						*parser_recall_readline(char *begin);
 char						*parser_name(void);
 char						*parser_fname(void);
+char						*parser_expansion_subshell(char *str, char **new_str);
+char						*parser_quote(char *str, char **new_str);
+char						*parser_dquote(char *str, char **new_str);
+char						*parser_word_expansion(char *str);
+char						*parser_sheilding(char *str);
+int							parser_find_eq(void);
 int							parser_sequential_sep(void);
 int							parser_io_number(void);
 int							parser_separator(void);

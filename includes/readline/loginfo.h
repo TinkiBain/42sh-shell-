@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:04:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 20:00:44 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/16 12:24:12 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 # include <execinfo.h>
 # include "ft_readline.h"
 
-# define DEF_LOG_PATH		"./." PROJECT_NAME ".log"
-# define LOG_PATH			"~/." PROJECT_NAME ".log"
+# define DEF_LOGPATH		"./." PROJECT_NAME ".log"
+
+/*
+** 100 Mb log limit. Truncates on startup.
+*/
+
+# define LOGSIZE			104857600
 # define BT_BUFSIZE			32
 
 void	logopen(void);

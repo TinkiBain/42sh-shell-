@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 15:34:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:59:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ extern t_opt	g_opt;
 static void	sig_init(void)
 {
 	signal(SIGINT, sigh_ignore);
-//	signal(SIGTSTP, SIG_DFL);
 	signal(SIGSEGV, sigh_sigsegv);
 	signal(SIGABRT, sigh_sigabrt);
 	signal(SIGWINCH, sigh_sigwinch);
 	signal(SIGTERM, sigh_sigterm);
 }
 
-static void	init_line(t_line *line, char *prompt, char *oldline)
+static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)
 {
 	t_string		temp_str;
 	extern t_opt	g_opt;
@@ -40,25 +39,21 @@ static void	init_line(t_line *line, char *prompt, char *oldline)
 	convert_escapes(&line->prompt);
 	line->vi_mode = g_opt.vi_mode;
 	line->emacs_mode = g_opt.emacs_mode;
-	line->oldstr = str_xcopy(oldline);
 	line->arg = 1;
+	line->mode = mode;
 	init_bindings(line->vi_mode, &line->key_bindings);
 	push_undo_list(line);
 }
 
 static void	clear_line(t_line *line, int clear_flag, t_history **history)
 {
+	history_save(line->history_orig, line->str, line->mode);
 	line->result = str_xduplicate(*line->str);
-	str_xaddfront(&line->result, line->oldstr.s, line->oldstr.len);
-	if (line->oldstr.s)
-		str_delete(line->str);
-	history_save(line->history_orig, line->str);
 	history_clear(line->history);
 	*history = line->history_orig;
 	str_delete(&line->prompt);
 	str_delete(&line->kill_buffer);
 	str_delete(&line->hs.query);
-	str_delete(&line->oldstr);
 	str_delete(&line->keybuf);
 	clear_bindings(&line->key_bindings);
 	if (clear_flag)
@@ -67,25 +62,26 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 }
 
 /*
-** If EOF, return NULL.
+** If EOF, return NULL and set g_eof to 1.
 ** If error, write message and return NULL.
-** Possible errors: E_READ
 */
 
-char		*ft_readline(char *prompt, char *oldline)
+char		*ft_readline(char *prompt, enum e_rl_mode mode)
 {
+	extern int		g_eof;
 	extern int		g_line_num;
 	t_line			line;
 	int				ret;
 
+	g_eof = 0;
 	g_line_num++;
 	sig_init();
 	g_line = &line;
 	if (!g_opt.emacs_mode && !g_opt.vi_mode)
-		return (gnl(prompt, oldline));
+		return (gnl(prompt));
 	term_init();
 	term_setup();
-	init_line(&line, prompt, oldline);
+	init_line(&line, prompt, mode);
 	init_linebuf(&line);
 	update_line(NULL, 1);
 	ret = input_loop(&line);
