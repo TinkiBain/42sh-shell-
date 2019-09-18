@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:35:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 19:09:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 20:52:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ char			*parser_recall_readline(char c)
 	extern char	*g_buf;
 	char		*new_str;
 	t_lex		*lex;
-	int			i;
 
 	new_str = NULL;
-	i = ft_strlen(g_lex->lexem);
 	g_lex->lexem = ft_strrejoin(g_lex->lexem, "\n", 1);
 	while (!new_str)
 	{
@@ -50,5 +48,5 @@ char			*parser_recall_readline(char c)
 	g_lex->lexem = lex->lexem;
 	g_lex->next = lex->next;
 	free(lex);
-	return (g_lex->lexem + i);
+	return (g_lex->lexem);
 }

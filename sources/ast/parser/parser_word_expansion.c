@@ -6,65 +6,38 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 18:55:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 21:07:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-char		*parser_sheilding(char *str)
-{
-	++str;
-	if (*str)
-	{
-		++str;
-		return (str);
-	}
-//	str = parser_recall_readline(str);
-	return (str);
-}
-
-char		*parser_find_spec_simb(char *str, char **new_str)
-{
-	char	*begin;
-
-	begin = str;
-	while (*str)
-	{
-		if (*str == '\\')
-			str = parser_sheilding(str);
-		else if (*str == '`' || *str == '$' || *str == '\'' || *str == '"')
-			break ;
-		++str;
-	}
-	*new_str = ft_strrejoin(*new_str, ft_strndup(begin, str - begin), 3);
-	return (str);
-}
+#include "sh.h"
 
 char		*parser_word_expansion(char *str)
 {
-	char	*new_str;
+	char	*begin;
+	char	c;
 
 	if (!str)
 		return (NULL);
-	new_str = ft_strnew(0);
+	begin = str;
 	while (*str)
 	{
-		if (*str == '`')
-			str = parser_expansion_subshell(str, &new_str);
-		else if (*str == '\'')
-			str = parser_quote(str, &new_str);
-		else if (*str == '"')
-			str = parser_dquote(str, &new_str);
-//		else if (*str == '$')
-//			str = parser_dollar(str, &new_str);
-		else
-			str = parser_find_spec_simb(str, &new_str);
-		if (!str)
+		if (*str == '\'' || *str == '`' || *str == '"' || *str == '\\')
 		{
-			free(new_str);
-			return (NULL);
+			c = *str;
+			str = lexer_find_char(str, *str);
+			if (!*str)
+			{
+				begin = parser_recall_readline(c);
+				str = begin;
+			}
+			else
+				++str;
 		}
+		else
+			++str;
 	}
-	return (new_str);
+	begin = tdq(ft_strdup(begin)); 
+	return (begin);
 }
