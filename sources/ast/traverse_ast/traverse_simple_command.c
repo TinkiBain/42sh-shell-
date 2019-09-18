@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/14 20:38:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/18 21:18:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	traverse_cmd_pref(t_cmd_prefix *pref, char ***env, int *flag)
 	{
 		if (pref->assignment_word)
 		{
-			pref->assignment_word = tdq(pref->assignment_word);
 			if (!*flag)
 			{
 				*env = create_copy_env(*env);
@@ -43,7 +42,6 @@ static void	traverse_cmd_suf(t_simple_cmd *cmd, char ***av)
 	{
 		if (suff->word)
 		{
-			suff->word = tdq(suff->word);
 			push_back_av(av, suff->word);
 		}
 		suff = suff->cmd_suf;
