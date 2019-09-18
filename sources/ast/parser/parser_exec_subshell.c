@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 20:13:28 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/17 18:32:35 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 16:53:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void			parser_exec_subshell(char *cmd, char **new_str)
 		close(pipefd[0]);
 		close(pipefd[1]);
 		execve(g_shell_path, arr, environ);
-		exit(0);
 	}
 	else
 	{
@@ -65,19 +64,21 @@ char		*parser_expansion_subshell(char *str, char **new_str)
 	tmp = ft_strnew(0);
 	while (*str != stop_sim)
 	{
-	//	if (!*str)
-	//	{
-	//		tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
-	//		// recall readline передать tmp и begin для join
-	//		++str;
-	//	}
-		if (*str == '\\')
+		if (!*str)
+		{
+			tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
+			str = parser_recall_readline(stop_sim);
+			begin = str;
+		}
+		else if (*str == '\\')
 		{
 			tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
 			++str;
 			begin = str;
+			++str;
 		}
-		++str;
+		else
+			++str;
 	}
 	tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
 	parser_exec_subshell(tmp, new_str);

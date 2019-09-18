@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:30:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 15:31:56 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 17:32:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	                 ;
 */
 
-char				*parser_call_back_readline(void)
+char				*parser_call_back_readline(int lex_or)
 {
 	extern int		g_eof;
 	extern t_opt 	g_opt;
@@ -28,13 +28,16 @@ char				*parser_call_back_readline(void)
 
 	tmp = ft_readline((g_opt.rl_gnl == 0 ?
 				get_var_value("PS3") : ""), RL_APPEND);
-	ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
+	if (!g_eof)
+		ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
 	free(g_buf);
 	g_buf = tmp;
 	if (g_eof)
 	{
-		init_lex(EOF, NULL, &g_lex);
-		g_eof = 0;
+		if (lex_or)
+			init_lex(EOF, NULL, &g_lex);
+		else
+			init_lex(EOF, NULL, &g_error_lex);
 		return (NULL);
 	}
 	return (tmp);
@@ -43,6 +46,7 @@ char				*parser_call_back_readline(void)
 void				parser_new_line_list(void)
 {
 	char			*buf;
+	extern int		g_eof;
 	t_lex			*tmp;
 
 	while (g_lex && g_lex->type == NEWLINE)
@@ -51,9 +55,12 @@ void				parser_new_line_list(void)
 		g_lex = g_lex->next;
 		if (!g_end_parsing)
 		{
-			buf = parser_call_back_readline();
+			buf = parser_call_back_readline(1);
 			if (!buf)
+			{
+				g_eof = 0;
 				break ;
+			}
 			g_lex = lexer(buf);
 			while (g_lex->back)
 				g_lex = g_lex->back;

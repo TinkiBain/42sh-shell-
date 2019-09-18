@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:39:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/16 22:01:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 18:53:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,14 @@ t_simple_cmd			*parser_simple_command(void)
 	list = parser_init_simple_command();
 	list->cmd_pref = parser_cmd_prefix();
 	list->cmd_name = parser_simple_command_take_name();
-	list->cmd_suf = parser_cmd_suffix();
-	list->lex_end = g_lex;
+	if (g_error_lex)
+		return (parser_free_simple_command(list));
 	if (!list->cmd_pref && !list->cmd_name)
 	{
 		g_error_lex = g_lex;
 		return (parser_free_simple_command(list));
 	}
+	list->cmd_suf = parser_cmd_suffix();
+	list->lex_end = g_lex;
 	return (list);
 }

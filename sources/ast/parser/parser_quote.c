@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:54:40 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/17 22:23:36 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 19:10:00 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ char		*parser_quote(char *str, char **new_str)
 		if (!*str)
 		{
 			*new_str = ft_strrejoin(*new_str, ft_strndup(begin, str - begin), 3);
-			str = parser_recall_readline(str);
+			str = parser_recall_readline('\'');
+			if (!str)
+				return (NULL);
 			begin = str;
 		}
 		else

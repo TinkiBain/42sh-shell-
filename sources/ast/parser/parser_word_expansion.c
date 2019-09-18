@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 15:19:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 18:55:47 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ char		*parser_word_expansion(char *str)
 //			str = parser_dollar(str, &new_str);
 		else
 			str = parser_find_spec_simb(str, &new_str);
+		if (!str)
+		{
+			free(new_str);
+			return (NULL);
+		}
 	}
 	return (new_str);
 }
