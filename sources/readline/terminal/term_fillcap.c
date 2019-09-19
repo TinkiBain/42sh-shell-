@@ -6,14 +6,20 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 20:28:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 17:22:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:01:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "terminal.h"
 
-static void	term_fillcap_3(void)
+static void	term_fillcap_3(char **p)
 {
+	char	*t;
+
+	t = tgetstr("vi", p);
+	g_cap.cur_hide = ft_xstrdup(t ? t : "");
+	t = tgetstr("ve", p);
+	g_cap.cur_show = ft_xstrdup(t ? t : "");
 	g_cap.key_ctrl_left = ft_xstrdup("\033[1;5D");
 	g_cap.key_ctrl_right = ft_xstrdup("\033[1;5C");
 	g_cap.key_ctrl_up = ft_xstrdup("\033[1;5A");
@@ -46,7 +52,7 @@ static void	term_fillcap_2(char **p)
 	g_cap.key_down = ft_xstrdup(t ? t : "\033OB");
 	t = tgetstr("u7", p);
 	g_cap.get_pos = t ? ft_xstrdup(t) : t;
-	term_fillcap_3();
+	term_fillcap_3(p);
 }
 
 void		term_fillcap(void)
@@ -107,5 +113,7 @@ void		clear_termcap(void)
 	ft_strdel(&g_cap.key_right);
 	ft_strdel(&g_cap.key_up);
 	ft_strdel(&g_cap.key_down);
+	ft_strdel(&g_cap.cur_hide);
+	ft_strdel(&g_cap.cur_show);
 	clear_termcap_2();
 }

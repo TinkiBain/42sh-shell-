@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 15:25:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 19:02:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void			update_line(t_line *line, int first)
 	t_buffer	newbuf;
 	int			cols;
 
+	term_putstr(g_cap.cur_hide);
 	cols = get_term_cols();
 	build_newbuf(&newbuf, line, cols);
 	if (line)
@@ -130,4 +131,5 @@ void			update_line(t_line *line, int first)
 	clear_linebuf();
 	/* newbuf.cpos -= newbuf.cpos_shift; */
 	ft_memcpy(&g_buffer, &newbuf, sizeof(t_buffer));
+	term_putstr(g_cap.cur_show);
 }
