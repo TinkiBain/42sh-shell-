@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 16:53:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:13:01 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,8 @@ t_lex		*lexer(char *str)
 	{
 		if (lexer_isspace(*str) && ++str)
 			continue ;
-		if (*str == '#')
-			break ;
-		if (*str == '(')
-			init_lex(LBRACKET, NULL, &lex);
-		else if (*str == ')')
-			init_lex(RBRACKET, NULL, &lex);
+		if (*str == '#' || *str == '(' || *str == ')')
+			str = lexer_check_bracket(str, &lex);
 		else if (*str == '>' || *str == '<' || *str == '|' || *str == '&'
 				|| *str == ';')
 			str = lexer_check_token(str, &lex);
@@ -70,9 +66,13 @@ t_lex		*lexer(char *str)
 			str = lexer_check_io_number(str, &lex);
 		else
 			str = lexer_find_word(str, &lex);
+		if (*str == '\n')
+			init_lex(NEWLINE, NULL, &lex);
 		if (*str)
 			++str;
 	}
+	if (lex && lex->type == NEWLINE)
+		return (lex);
 	init_lex(NEWLINE, NULL, &lex);
 	return (lex);
 }

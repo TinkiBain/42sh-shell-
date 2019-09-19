@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 22:06:15 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:08:09 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void		print_lexem(t_lex *lex);
 char		*lexer_check_io_number(char *str, t_lex **lex);
 char		*lexer_find_char(char *str, char c);
 char		*lexer_find_word(char *str, t_lex **lex);
-char		*lexer_find_bracket(char *str);
+char		*lexer_find_dollar(char *str);
 char		*lexer_find_rbrace(char *str);
+char		*lexer_check_bracket(char *str, t_lex **lex);
 
 #endif

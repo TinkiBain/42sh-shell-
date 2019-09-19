@@ -6,13 +6,13 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:29:24 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/02 21:28:58 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:03:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-char		*lexer_find_bracket(char *str)
+char		*lexer_find_dollar(char *str)
 {
 	int		count_bracket;
 	int		arifmetic;
