@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 17:52:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:23:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static void	read_file(int fd, t_line *line)
 		}
 		ft_strdel(&s);
 	}
+	if (str_get(str, str.len - 1) == '\n')
+		str_remove(&str, str.len - 1, 1);
 	if (ret < 0)
 		loginfo("vi_vi(): gnl error");
 	else

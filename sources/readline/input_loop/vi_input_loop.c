@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 12:34:12 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:27:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static int		perform_action(t_line *line)
 			&& line->cpos != 0)
 			line->cpos--;
 		update_bindings(line->vi_mode, &line->key_bindings);
-		update_line(line, 0);
+		if (line->action != vi_vi)
+			update_line(line, 0);
 		line->arg = 1;
 	}
 	return (1);
