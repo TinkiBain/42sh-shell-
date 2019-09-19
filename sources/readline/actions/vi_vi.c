@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 19:28:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/19 14:18:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		vi_vi(t_line *line)
 	int		fd;
 	char	**argv;
 
-	fd = open(TMP_PATH, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU);
+	fd = open(TMP_PATH, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
 	if (fd < 0)
 	{
 		loginfo("vi_vi(): open error (%s)", TMP_PATH);
