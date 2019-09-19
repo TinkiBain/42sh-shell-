@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 21:07:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 15:57:10 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ char		*parser_word_expansion(char *str)
 	char	*begin;
 	char	c;
 
-	if (!str)
-		return (NULL);
 	begin = str;
-	while (*str)
+	while (str && *str)
 	{
 		if (*str == '\'' || *str == '`' || *str == '"' || *str == '\\')
 		{
@@ -37,6 +35,8 @@ char		*parser_word_expansion(char *str)
 		}
 		else
 			++str;
+		if (g_error_lex)
+			return (NULL);
 	}
 	begin = tdq(ft_strdup(begin)); 
 	return (begin);

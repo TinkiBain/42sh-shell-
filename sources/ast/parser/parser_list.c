@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 16:01:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 16:14:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 17:26:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_pars_list			*parser_list(t_pars_list *list_down)
 		return (parser_free_list(list));
 	if (!g_lex)
 		return (list);
-	if ((g_lex->type == JOB || g_lex->type == SEMI)
+	if ((g_lex->type == JOB || g_lex->type == SEMI || g_lex->type == NEWLINE)
 			&& g_lex->next && g_lex->next->type != NEWLINE)
 	{
 		list->sep = g_lex->type;
