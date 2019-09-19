@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 16:35:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:05:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,39 @@ static void	history_join_last(t_history *history, t_string *str)
 	history_save_rewrite(history);
 }
 
-void		history_save(t_history *history, t_string *str, enum e_rl_mode mode)
+static void	push(t_history *history, t_string *str)
 {
+	char		**arr;
+	int			i;
 	t_string	newstr;
 
+	if (!ft_strchr(str->s, '\n'))
+	{
+		newstr = str_xduplicate(*str);
+		history_push(history, newstr);
+	}
+	else
+	{
+		arr = ft_xstrsplit(str->s, '\n');
+		i = -1;
+		while (arr[++i])
+		{
+			newstr = str_xcopy(arr[i]);
+			history_push(history, newstr);
+		}
+		ft_free_double_ptr_arr((void ***)&arr);
+	}
+}
+
+void		history_save(t_history *history, t_string *str, enum e_rl_mode mode)
+{
 	if (mode == RL_APPEND)
 		history_join_last(history, str);
 	else if (mode == RL_HEREDOC)
 		return ;
 	else if (str->len > 0)
 	{
-		newstr = str_xduplicate(*str);
-		history_push(history, newstr);
+		push(history, str);
 		if (!history->path)
 			return ;
 		if (history->size >= history->max_size)

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 14:18:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 17:52:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,23 @@ static void	start_vi(char **argv)
 
 static void	read_file(int fd, t_line *line)
 {
+	char		*s;
 	t_string	str;
-	char		c;
 	int			ret;
 
+	s = NULL;
 	str = str_xcreate(0);
-	while ((ret = read(fd, &c, 1) > 0))
-		str_addback(&str, &c, 1);
+	while ((ret = get_next_line(fd, &s)) > 0)
+	{
+		if (*s)
+		{
+			str_addback(&str, s, ft_strlen(s));
+			str_addback(&str, "\n", 1);
+		}
+		ft_strdel(&s);
+	}
 	if (ret < 0)
-		loginfo("vi_vi(): read error");
+		loginfo("vi_vi(): gnl error");
 	else
 	{
 		str_delete(line->str);
