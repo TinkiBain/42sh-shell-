@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:43:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 20:08:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:24:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bindings.h"
+#include "del_funcs.h"
 
 void		update_bindings(int vi_mode, t_vector *key_bindings)
 {

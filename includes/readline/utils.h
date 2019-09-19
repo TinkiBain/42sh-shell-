@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:02:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 19:50:34 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 14:48:30 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 
 # include "ft_readline.h"
 
-void		del_bind_str(void *elem);
-void		del_str(void *s);
-void		del_pchar(void *s);
 int			cmp_pstring(const void *a, const void *b);
-void		del_undo_one(void *p, size_t i);
 int			max_int(int a, int b);
+void		convert_escapes(t_string *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 12:34:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 14:31:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void		perform_action(t_line *line)
 
 	if (check_arg(line))
 		return ;
-	if (line->arg > 1024)
-		line->arg = 1024;
+	if (line->arg > CMD_MAXARG)
+		line->arg = CMD_MAXARG;
 	b = find_binding(&line->key_bindings, line->keybuf);
 	if (b && (line->action = b->action))
 	{

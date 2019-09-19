@@ -6,11 +6,12 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 14:03:34 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/25 17:28:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:58:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "undo.h"
+#include "del_funcs.h"
 
 t_undo_item		*pop_undo_list(t_list **undo)
 {
@@ -48,13 +49,4 @@ void			push_undo_list(t_line *line)
 		if (!*undo)
 			die();
 	}
-}
-
-void			del_undo_one(void *p, size_t i)
-{
-	if (i)
-		;
-	if (p)
-		str_delete(&((t_undo_item *)p)->string);
-	free(p);
 }

@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_escapes.c                                  :+:      :+:    :+:   */
+/*   del_funcs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/20 17:34:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/26 15:25:23 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/19 14:46:27 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/19 15:57:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_readline.h"
+#include "del_funcs.h"
+#include "bindings.h"
 
-void			convert_escapes(t_string *str)
+void		del_bind_str(void *elem)
 {
-	int		i;
-	char	c;
-	t_uchar	n;
-	int		count;
+	str_delete(&((t_binding *)elem)->sequence);
+}
 
-	i = -1;
-	n = 0;
-	while ((c = str_get(*str, ++i)))
-	{
-		if (c == '\\')
-			n = ft_atoi_octal(&str->s[i + 1], &count);
-		if (n)
-		{
-			str_remove(str, i, count + 1);
-			str_xinsert(str, i, (char *)&n, 1);
-		}
-		n = 0;
-	}
+void		del_str(void *s)
+{
+	str_delete(s);
+}
+
+void		del_pchar(void *s)
+{
+	ft_strdel((char **)s);
+}
+
+void		del_undo_one(void *p, size_t i)
+{
+	if (i)
+		;
+	if (p)
+		str_delete(&((t_undo_item *)p)->string);
+	free(p);
 }

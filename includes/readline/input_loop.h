@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:45:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:56:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/19 14:31:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft_readline.h"
 
 # define KEYBUF_SIZE			32
+# define CMD_MAXARG				999999
 
 int		input_loop(t_line *line);
 int		em_input_loop(t_line *line);

@@ -6,12 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 17:37:51 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:25:39 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "display.h"
 #include <errno.h>
+#include "display.h"
+#include "del_funcs.h"
 
 extern t_opt	g_opt;
 

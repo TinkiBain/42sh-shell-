@@ -6,11 +6,12 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 15:59:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:56:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+#include "del_funcs.h"
 
 t_line			*g_line;
 extern t_opt	g_opt;

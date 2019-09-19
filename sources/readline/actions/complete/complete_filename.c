@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:41:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 01:04:05 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:26:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
+#include "del_funcs.h"
 
 static int		get_start(t_line *line)
 {

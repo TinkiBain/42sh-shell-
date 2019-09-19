@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   possible_filename_completions.c                    :+:      :+:    :+:   */
+/*   del_funcs.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/13 07:48:28 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 15:26:06 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/19 14:47:23 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/19 15:57:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "actions.h"
-#include "del_funcs.h"
+#ifndef DEL_FUNCS_H
+# define DEL_FUNCS_H
 
-void			possible_filename_completions(t_line *line)
-{
-	t_vector	vec;
+# include "libft.h"
+# include "ft_string.h"
 
-	vec = filter_filenames(line);
-	if (vec.len != 1)
-		show_completions(vec.v, vec.len);
-	vec_delete(&vec, del_str);
-}
+void		del_bind_str(void *elem);
+void		del_str(void *s);
+void		del_pchar(void *s);
+void		del_undo_one(void *p, size_t i);
+
+#endif

@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:19:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/20 03:55:50 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/19 15:25:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
+#include "del_funcs.h"
 
 void	clear_linebuf(void)
 {
