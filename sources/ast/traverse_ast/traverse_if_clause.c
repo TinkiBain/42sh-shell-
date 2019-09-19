@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 15:16:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/15 15:33:49 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:32:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	traverse_else_part(t_else_part *elem, char **env, t_pjobs *local)
 	{
 		if (elem->next_else_part)
 			traverse_else_part(elem->next_else_part, env, local);
+		else
+			traverse_compound_list(elem->compound_list, env, local);
 	}
 }
 
