@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 19:28:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 17:07:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_complete_cmd		*exec_ast(char *buf, t_lex **lex)
 	{
 		parser_print_error();
 		list = parser_free(list);
+		free(g_error_lex);
 	}
 	free(g_buf);
 	return (list);

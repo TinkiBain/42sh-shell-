@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 17:16:59 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 17:22:31 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/16 21:52:24 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_cmd_suffix		*parser_cmd_suffix(void)
 	}
 	else
 	{
-		list->word = ft_strdup(g_lex->lexem);
+		list->word = parser_word_expansion(g_lex->lexem);
 		g_lex = g_lex->next;
 	}
 	if (g_error_lex)

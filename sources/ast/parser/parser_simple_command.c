@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:39:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 21:59:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/18 18:53:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ static char				*parser_simple_command_take_name(void)
 		else
 			tmp = g_lex->lexem;
 		g_if_alias = 0;
+		tmp = parser_word_expansion(tmp);
 		if (tmp)
 			g_lex = g_lex->next;
 		else
 			return (NULL);
-		return (ft_strdup(tmp));
+		return (tmp);
 	}
 	return (NULL);
 }
@@ -78,12 +79,14 @@ t_simple_cmd			*parser_simple_command(void)
 	list = parser_init_simple_command();
 	list->cmd_pref = parser_cmd_prefix();
 	list->cmd_name = parser_simple_command_take_name();
-	list->cmd_suf = parser_cmd_suffix();
-	list->lex_end = g_lex;
+	if (g_error_lex)
+		return (parser_free_simple_command(list));
 	if (!list->cmd_pref && !list->cmd_name)
 	{
 		g_error_lex = g_lex;
 		return (parser_free_simple_command(list));
 	}
+	list->cmd_suf = parser_cmd_suffix();
+	list->lex_end = g_lex;
 	return (list);
 }

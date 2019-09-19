@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/09 18:38:59 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/17 16:25:55 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char		*lexer_find_word(char *str, t_lex **lex)
 			break ;
 		else if (lexer_check_spec_symbol(*str) && (flag = 1))
 			break ;
-		if (*str == '\'' || *str == '"' || *str == '\\')
+		if (*str == '\'' || *str == '"' || *str == '\\' || *str == '`')
 			str = lexer_find_char(str, *str);
 		if (*str == '$')
 			str = lexer_find_bracket(str + 1);

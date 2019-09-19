@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:12:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 20:15:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/18 19:08:26 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static char			*parser_check_assignment_word()
 				tmp = lexer_find_char(tmp, *tmp);
 			else if (*tmp == '=')
 			{
-				tmp = g_lex->lexem;
+				tmp = parser_word_expansion(g_lex->lexem);
 				g_lex = g_lex->next;
-				return (ft_strdup(tmp));
+				return (tmp);
 			}
 			else
 				++tmp;
