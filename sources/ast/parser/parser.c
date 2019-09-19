@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 16:56:29 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 17:11:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:50:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ t_complete_cmd		*parser_free(t_complete_cmd *list)
 t_complete_cmd		*parser(void)
 {
 	t_complete_cmd	*complete_cmd;
+	extern int		g_parser_expansion;
 
 	g_end_parsing = 0;
+	g_parser_expansion = 0;
 	complete_cmd = (t_complete_cmd*)ft_xmalloc(sizeof(t_complete_cmd));
 	complete_cmd->sep = 0;
 	complete_cmd->list = parser_list(NULL);

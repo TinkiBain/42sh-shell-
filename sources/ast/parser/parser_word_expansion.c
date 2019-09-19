@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 15:57:10 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:49:34 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 char		*parser_word_expansion(char *str)
 {
+	extern int	g_parser_expanison;
 	char	*begin;
 	char	c;
 
+	if (g_parser_expansion)
+		return (ft_strdup(begin));
 	begin = str;
 	while (str && *str)
 	{
