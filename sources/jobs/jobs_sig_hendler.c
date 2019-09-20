@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/20 15:50:28 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/20 16:08:40 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void			def_kill_or_done(t_job *first, int sig)
 			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
-		if (g_pjobs->workgpid == 0)
+		if (g_pjobs->workgpid == 0 || !(first->next))
 			deletejob(&g_pjobs, first->num);
 	}
 	else
