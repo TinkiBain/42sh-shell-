@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 20:00:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/20 15:02:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*get_lexem_value(int type);
 char	*get_job_name(t_lex *lex, t_lex *lex_end, int separator);
 char	*get_subjob_name(t_command *command);
 
+void	push_back_av(char ***av, char *elem);
 void	traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 												int in_fork, t_pjobs *local);
 void	call_subshell(char *str, int sep, char **env, t_pjobs *local);
@@ -37,13 +38,6 @@ void	traverse_compound_list(t_compound_list *list, char **env, t_pjobs *local);
 void	traverse_function_definition(t_func_definition *func, char **env,
 																int in_fork);
 void	traverse_if_clause(t_if_clause *list, char **env, t_pjobs *local);
-void	push_back_av(char ***av, char *elem);
-
-void	dollar(int *j, char **str);
-char	*tilda_check(char *str);
-char	*tdq(char *str);
-
-int		check_spec_symbol(char c);
-int		check_spec_symboli_dq(char c);
+void	traverse_while_clause(t_while_clause *list, char **env, t_pjobs *local);
 
 #endif

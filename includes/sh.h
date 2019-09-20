@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/16 17:53:59 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/20 15:05:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "xfuncs.h"
 # include "jobs.h"
 # include "builtins.h"
+# include "expansion.h"
 
 typedef struct	s_opt
 {

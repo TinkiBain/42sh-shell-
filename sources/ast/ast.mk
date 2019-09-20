@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/19 18:08:37 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/20 15:05:40 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ SRCS_TRAVERSE_AST=\
 	traverse_compound_command.c\
 	traverse_compound_list.c\
 	traverse_function_definition.c\
-	traverse_if_clause.c
+	traverse_if_clause.c\
+	traverse_while_clause.c
 
 SRCS_AST_REDIRECT=\
 	redir_add_table.c\
