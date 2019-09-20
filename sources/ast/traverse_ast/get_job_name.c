@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_job_name.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 22:01:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/14 17:12:08 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/18 20:09:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*get_job_name(t_lex *lex, t_lex *lex_end, int separator)
 	char	*str;
 	char	*tmp;
 
+	(void)separator;
 	str = ft_xstrdup((lex->lexem) ? lex->lexem : get_lexem_value(lex->type));
 	while ((lex = lex->next) && lex < lex_end)
 	{
@@ -26,7 +27,7 @@ char	*get_job_name(t_lex *lex, t_lex *lex_end, int separator)
 											: get_lexem_value(lex->type));
 		str = ft_strrejoin(str, tmp, 3);
 	}
-	if (lex_end->type == PIPE)
+/*	if (lex_end->type == PIPE)
 	{
 		tmp = ft_strjoin(" ", get_lexem_value(lex_end->type));
 		str = ft_strrejoin(str, tmp, 3);
@@ -35,7 +36,7 @@ char	*get_job_name(t_lex *lex, t_lex *lex_end, int separator)
 	{
 		tmp = ft_strjoin(" ", get_lexem_value(separator));
 		str = ft_strrejoin(str, tmp, 3);
-	}
+	}*/
 	return (str);
 }
 

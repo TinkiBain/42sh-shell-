@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/18 17:10:48 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/20 15:10:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void			def_kill_or_done(t_job *first, int sig)
 			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
-		if (g_pjobs->workgpid == 0)
+		if (g_pjobs->workgpid != 0)
 			deletejob(&g_pjobs, first->num);
 	}
 	else
@@ -86,6 +86,7 @@ static void			pjobs_sig(int sig, int done_pid)
 	t_pjobs			*first;
 	t_job			*job;
 
+	job = NULL;
 	job = job_finder(done_pid, g_pjobs);
 	if (job == NULL)
 		return ;
@@ -101,7 +102,6 @@ static void			pjobs_sig(int sig, int done_pid)
 			first->status = ft_strdup("\tsuspended (tty output)\t");
 		free(job->status);
 		job->status = ft_xstrdup("suspended");
-
 	}
 }
 

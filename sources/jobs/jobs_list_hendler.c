@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/16 19:25:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/18 19:49:19 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			freedsubjob(t_job **new)
 static void		freedjob(t_pjobs **new)
 {
 	t_job		*subnew;
-	
+
 	free((*new)->status);
 	free((*new)->name);
 	(*new)->status = NULL;

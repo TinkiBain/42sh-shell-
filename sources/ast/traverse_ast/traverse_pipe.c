@@ -25,12 +25,13 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 			setpgrp();
 		dup2(fd, 0);
 		close(fd);
+		raise(SIGSTOP);
 		traverse_command(cmd, env, in_fork, local);
 		exit(g_res_exec);
 	}
 	redir_reset();
 	if (local->flag == 1)
-	ft_printf(" %d\n", pid);
+		ft_printf(" %d\n", pid);
 	ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
 	pipe_av(local->job);
 	if (local->flag == 0)
@@ -56,6 +57,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(fd, 0);
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
+		raise(SIGSTOP);
 		traverse_command(pipe_seq->command, environ, in_fork, local);
 		exit(g_res_exec);
 	}
