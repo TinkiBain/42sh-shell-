@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 19:22:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/18 19:49:09 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:10:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ t_job		*job_finder(int pid, t_pjobs *local)
 	while (local)
 	{
 		h = local->job;
-		while (local->job)
+		while (h)
 		{
-			if (local->job->pid == pid)
-				return (local->job);
-			local->job = local->job->next;
+			if (h->pid == pid)
+				return (h);
+			h = h->next;
 		}
-		local->job = h;
 		local = local->next;
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/20 17:18:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/20 20:46:35 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void			def_kill_or_done(t_job *first, int sig)
 {
-	if (!first->next)
-	{
+	//if (!first->next)
+	//{
 		if (sig == SIGKILL || sig == SIGTERM)
-			ft_printf("[%d]\tTerminatede\t%s\n", first->num, first->name);
+			ft_printf("[%d]\tTerminated\t%s\n", first->num, first->name);
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
 		if (g_pjobs->workgpid == 0 || !(first->next))
 			deletejob(&g_pjobs, first->num);
-	}
+	//}
 	else
 	{
 		free(first->status);
@@ -38,7 +38,7 @@ static void			sigstop(void)
 	job = NULL;
 	setpgid(g_subjob->job->pid, 0);
 	ft_printf("\n42sh: suspended %s\n", g_subjob->name);
-	first = subjob_changer(g_subjob->name, &g_pjobs, 1);
+	first = subjob_changer(g_subjob->name, &g_pjobs, 0);
 	first->job = g_subjob->job;
 	g_subjob->job = NULL;
 	free(first->status);
@@ -59,10 +59,20 @@ static void			sig_per_stop(int done_pid, t_job *job)
 	first = g_pjobs;
 	while (first)
 	{
-		if ((job = pid_checl(done_pid, first->job)))
+		if ((pid_checl(done_pid, first->job)))
 		{
-			ft_printf("\n42sh: suspended %s\n",
+			job = first->job;
+			if (ft_strcmp(job->status, " suspended\t"))
+				ft_printf("\n42sh: suspended %s\n",
 				jobs_find_num(first, job->num)->name);
+			free (first->status);
+			first->status = ft_xstrdup(" suspended\t");
+			while (job)
+			{
+				free (job->status);
+				job->status = ft_xstrdup(" suspended\t");
+				job = job->next;
+			}
 			break ;
 		}
 		first = first->next;
@@ -97,9 +107,9 @@ static void			pjobs_sig(int sig, int done_pid)
 	{
 		free(first->status);
 		if (sig == SUSPINT)
-			first->status = ft_xstrdup("\tsuspended (tty input)\t");
+			first->status = ft_xstrdup(" suspended (tty input)\t");
 		if (sig == SUSPOUT)
-			first->status = ft_xstrdup("\tsuspended (tty output)\t");
+			first->status = ft_xstrdup(" suspended (tty output)\t");
 		free(job->status);
 		job->status = ft_xstrdup("suspended");
 	}
