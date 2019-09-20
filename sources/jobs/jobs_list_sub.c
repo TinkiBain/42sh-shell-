@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:37:06 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/14 13:41:05 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/20 17:17:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ t_job			*ft_addsubjob(char *path, int num)
 {
 	t_job		*new;
 
-	new = (t_job*)malloc(sizeof(*new));
+	if (!(new = (t_job*)malloc(sizeof(*new))))
+		return (NULL);
 	new->name = path;
-	new->status = ft_strdup("\t[Running]\t");
+	new->status = ft_xstrdup("\t[Running]\t");
 	new->next = NULL;
 	new->num = num;
 	return (new);
