@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 21:10:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/19 18:50:51 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "lexer.h"
 
+int							g_parser_expansion;
 int							g_end_parsing;
 int							g_parser_case_list_end;
 t_lex						*g_lex;

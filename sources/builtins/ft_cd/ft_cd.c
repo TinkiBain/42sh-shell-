@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/22 15:30:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/16 15:43:24 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/20 21:16:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
 #include "sh.h"
 
-const char		*check_flag(const char **av, int *flag)
+const char	*check_flag(const char **av, int *flag)
 {
 	while (*av)
 	{
@@ -41,14 +40,20 @@ const char		*check_flag(const char **av, int *flag)
 	return (NULL);
 }
 
-int				change_dir_variable(const char *dir, char ***env)
+void		*cd_error_invalid_flag(char c)
 {
-	int			return_value;
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": cd: -", 2);
+	write(2, &c, 1);
+	ft_putstr_fd(": invalid option\ncd: usage: cd [-L|-P] [dir]\n", 2);
+	return (NULL);
+}
 
+int			change_dir_variable(const char *dir, char ***env)
+{
 	if (!dir)
 	{
-		if (!(dir = ft_getenv("HOME", *env, 4)))
-			dir = get_var_value("HOME");
+		dir = get_var_value("HOME");
 		if (!dir)
 		{
 			ft_putstr_fd(g_project_name, 2);
@@ -58,81 +63,69 @@ int				change_dir_variable(const char *dir, char ***env)
 	}
 	else
 	{
-		if (!(dir = ft_getenv("OLDPWD", *env, 6)))
-			dir = get_var_value("OLDPWD");
+		dir = get_var_value("OLDPWD");
 		if (!dir)
 		{
 			ft_putstr_fd(g_project_name, 2);
 			ft_putstr_fd(": cd: OLDPWD not set\n", 2);
 			return (1);
 		}
+		ft_putendl(dir);
 	}
-	if (!(return_value = change_dir_with_flag(dir)))
-		ft_putendl_fd(get_var_value("PWD"), 1);
-	return (return_value);
+	dir = ft_strdup(dir);
+	return (change_dir((char *)dir, (char *)dir, 1, env));
 }
 
-char			**cd_fill_path(const char *dir)
+char		*check_cdpath(const char *curpath)
 {
-	char		**arr;
-	char		**new_arr;
+	struct stat	st;
+	char		**arr_cd_path;
+	char		*cdpath;
 	int			i;
 
-	arr = ft_strsplit(get_var_value("CDPATH"), ':');
 	i = 0;
-	while (arr && arr[i])
+	cdpath = get_var_value("CDPATH");
+	if (!cdpath)
+		return (NULL);
+	arr_cd_path = ft_strsplit(cdpath, ':');
+	while (arr_cd_path[i])
 	{
-		if (arr[i][ft_strlen(arr[i]) - 1] != '/')
-			arr[i] = ft_strrejoin(arr[i], "/", 1);
-		arr[i] = ft_strrejoin(arr[i], dir, 1);
-		++i;
+		arr_cd_path[i] = ft_strrejoin(arr_cd_path[i], "/", 1);
+		cdpath = ft_strjoin(arr_cd_path[i], curpath);
+		if (stat(cdpath, &st))
+			free(cdpath);
+		else if (st.st_mode & S_IFDIR)
+			break ;
+		else
+			free(cdpath);
+		cdpath = NULL;
 	}
-	new_arr = (char**)xmalloc(sizeof(char*) * (i + 2));
-	i = 0;
-	while (arr && arr[i])
-	{
-		new_arr[i] = arr[i];
-		++i;
-	}
-	new_arr[i] = ft_strdup(dir);
-	new_arr[i + 1] = NULL;
-	free(arr);
-	return (new_arr);
+	ft_free_double_ptr_arr((void ***)&arr_cd_path);
+	return (cdpath);
 }
 
-int				last_check_cd(char **av, int i)
+int			ft_cd(const char **av, char ***env)
 {
-	if (av[i + 1])
-		ft_putendl_fd(av[i], 2);
-	ft_free_double_ptr_arr((void ***)&av);
-	return (0);
-}
-
-int				ft_cd(const char **av, char ***env)
-{
+	char		*curpath;
+	const char	*tmp;
 	int			flag;
-	const char	*dir;
-	char		**arr;
-	int			return_value;
-	int			i;
 
 	flag = 0;
-	dir = check_flag(av, &flag);
+	tmp = check_flag(av, &flag);
 	if (flag < 0)
 		return (1);
-	if (!dir || ft_strequ(dir, "-"))
-		return (change_dir_variable(dir, env));
-	arr = cd_fill_path(dir);
-	i = -1;
-	while (arr[++i])
+	if (!tmp || ft_strequ(tmp, "-"))
+		return (change_dir_variable(tmp, env));
+	if (*tmp == '/')
+		return (change_dir(ft_strdup(tmp), tmp, flag, env));
+	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
 	{
-		if (flag)
-			return_value = change_dir_with_flag(arr[i]);
-		else
-			return_value = change_dir_without_flag(arr[i]);
-		if (!return_value)
-			return (last_check_cd(arr, i));
+		curpath = ft_strjoin(get_var_value("PWD"), "/");
+		curpath = ft_strrejoin(curpath, tmp, 1);
+		return (change_dir(curpath, tmp, flag, env));
 	}
-	ft_free_double_ptr_arr((void ***)&arr);
-	return (cd_error(dir));
+	if ((curpath = check_cdpath(tmp)))
+		return (change_dir(curpath, tmp, flag, env));
+	curpath = ft_strjoin(get_var_value("PWD"), "/");
+	return (change_dir(ft_strrejoin(curpath, tmp, 1), tmp, flag, env));
 }

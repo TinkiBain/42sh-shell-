@@ -6,30 +6,34 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:38:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/16 15:45:24 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/19 18:44:47 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int		unalias_delete_one(const char *str, t_alias **alias)
+int		unalias_delete_one(const char *str, t_alias *alias)
 {
 	t_alias	*tmp;
+	extern t_alias	*g_alias;
 
 	tmp = NULL;
-	while (*alias)
+	while (alias)
 	{
-		if (ft_strequ((*alias)->head, str))
+		if (ft_strequ(alias->head, str))
 		{
-			free((*alias)->head);
-			if ((*alias)->body_alias)
-				free((*alias)->body_alias);
-			free(*alias);
-			tmp->next = (*alias)->next;
+			free(alias->head);
+			if (alias->body_alias)
+				free(alias->body_alias);
+			if (tmp)
+				tmp->next = alias->next;
+			else
+				g_alias = alias->next;
+			free(alias);
 			return (0);
 		}
-		tmp = *alias;
-		alias = &(*alias)->next;
+		tmp = alias;
+		alias = alias->next;
 	}
 	return (1);
 }
@@ -77,7 +81,7 @@ int		ft_unalias(const char **av)
 		return (alias_free_all());
 	while (*av)
 	{
-		tmp = unalias_delete_one(*av, &g_alias);
+		tmp = unalias_delete_one(*av, g_alias);
 		if (tmp)
 			return_value = tmp;
 		++av;
