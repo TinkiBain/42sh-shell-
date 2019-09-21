@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 20:08:53 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 15:26:27 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int			ft_fg(t_pjobs *local_job, const char *name)
 		local->job = local->job->next;
 	}
 	local->job = job;
-	if (local->job->next)
-		pipe_av(local->job);
+	pipe_av(local->job);
 	ft_waitpid(local->job->pid);
 	return (pid_fredy());
 }

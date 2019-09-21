@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/20 15:07:21 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 19:05:32 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ extern t_pjobs		*g_subjob;
 extern int			g_wait_flags;
 extern int			*g_pipe_pid;
 
-t_job				*ljobs_startet(char *str, int flag, int num, int pid);
+t_pjobs				*ljobs_startet(char *str, int flag, int num, int pid);
 t_job				*pid_checl(int pid, t_job *job);
 t_job				*job_finder(int pid, t_pjobs *local);
 t_pjobs				*jobs_find_num(t_pjobs *local, int num);

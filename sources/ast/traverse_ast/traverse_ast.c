@@ -6,27 +6,11 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 20:16:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 19:36:07 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-int			pid_fredy()
-{
-	int i;
-
-	i = -1;
-	if (g_pipe_pid)
-	{
-		while (g_pipe_pid[++i] != 0)
-			g_pipe_pid[i] = 0;
-		free(g_pipe_pid);
-		g_pipe_pid = NULL;
-	}
-	g_wait_flags = 0;
-	return (1);
-}
 
 static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 {
@@ -40,7 +24,6 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 				|| (flag == OR_IF && g_res_exec))
 	{
 		traverse_pipe_sequence(elem->pipeline->pipe_sequence, environ, local);
-		pid_fredy();
 		if (elem->pipeline->bang)
 		{
 			g_res_exec = (!g_res_exec) ? 1 : 0;
@@ -80,4 +63,6 @@ void			traverse_ast(t_complete_cmd *root)
 		return ;
 	root->list->sep = root->sep;
 	traverse_list(root->list, root->sep);
+	if (g_subjob)
+		deletejob(&g_subjob, g_subjob->num);
 }

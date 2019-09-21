@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/20 20:46:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 19:43:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void			sigstop(void)
 	job = NULL;
 	setpgid(g_subjob->job->pid, 0);
 	ft_printf("\n42sh: suspended %s\n", g_subjob->name);
-	first = subjob_changer(g_subjob->name, &g_pjobs, 0);
+	first = subjob_changer(ft_xstrdup(g_subjob->name), &g_pjobs, 0);
 	first->job = g_subjob->job;
 	g_subjob->job = NULL;
 	free(first->status);
@@ -115,30 +115,70 @@ static void			pjobs_sig(int sig, int done_pid)
 	}
 }
 
+void g(int f)
+{
+	int i;
+
+	i = 0;
+	if (g_pipe_pid)
+	{
+		while (g_pipe_pid[i] != 0)
+		{
+			if (g_pipe_pid[i] ==  f)
+			{
+				g_pipe_pid[i] = -1;
+				return ;
+			}
+			i++;
+		}
+	}
+}
+
+int taa(void)
+{
+	int i;
+
+	i = 0;
+	if (g_pipe_pid)
+	{
+		while (g_pipe_pid[i] != 0)
+		{
+			if (g_pipe_pid[i] != -1)
+				return (-1);
+			i++;
+		}
+	}
+	return (1);
+}
+
 void				jobs_sig(void)
 {
 	pid_t			done_pid;
-	int				sig;
+	int				st;
 	t_job			*job;
-
+	
 	job = NULL;
-	sig = 0;
-	done_pid = waitpid(-1, &sig, WUNTRACED);
-	g_res_exec = sig;
+	st = 0;
+	done_pid = waitpid(-1, &st, WUNTRACED);
+	//ft_putnbr_fd(done_pid,2);
+	// printf("%d\n", done_pid);
+	if (g_pipe_pid)
+		g(done_pid);
+	g_res_exec = st;
 	g_wait_flags = done_pid;
 	if (WIFEXITED(g_res_exec))
 		g_res_exec = WEXITSTATUS(g_res_exec);
 	set_result();
-	if (sig == SUSPCHLD)
+	if (st == SUSPCHLD)
 	{
 		sig_per_stop(done_pid, NULL);
 		return ;
 	}
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
-		if (g_subjob->workgpid == 0)
+		if (g_subjob->workgpid == 0 && taa() > 0)
 			deletejob(&g_subjob, g_subjob->num);
 		return ;
 	}
-	pjobs_sig(sig, done_pid);
+	pjobs_sig(st, done_pid);
 }
