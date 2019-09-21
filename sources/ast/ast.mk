@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/20 15:05:40 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/21 19:28:56 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS_TRAVERSE_AST=\
 	call_subshell.c\
 	check_cmd.c\
 	get_job_name.c\
+	get_process_name.c\
 	is_builtin.c\
 	push_back_av.c\
 	traverse_ast.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 19:43:23 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 20:20:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	pipe_seq_simple_builtin(t_command *cmd, char **env, t_pjobs *local)
 		}
 		else
 		{
-			local = ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
+			local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
 			ft_printf("[%d] [%d]\n", local->num, pid);
 		}
 	}
@@ -68,7 +68,7 @@ static void	pipe_seq_simple_non_builtin(t_command *cmd,
 	}
 	else
 	{
-		local = ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
+		local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
 		if (local->flag == 1)
 			ft_printf("[%d] [%d]\n", local->num, pid);
 		else
