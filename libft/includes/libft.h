@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/03 20:39:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/21 19:47:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void				ft_dlstadd(t_dlist **alst, t_dlist *new);
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
 void				ft_dlstaddback(t_dlist **alst, t_dlist *new);
 size_t				ft_dlstsize(t_dlist *lst);
+void				ft_dlst2start(t_dlist **alst);
+void				ft_dlst2end(t_dlist **alst);
 
 int					ft_printf(const char *format, ...);
 int					ft_vprintf(const char *format, va_list ap);

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 15:38:21 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/21 20:06:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ static int	show_usage(void)
 	return (1);
 }
 
-static void	run_fc(t_cmd_opt opt)
+static void	run_fc(const char **argv, t_cmd_opt opt)
 {
 	if (opt.l)
-		ft_fc_list(opt);
+		ft_fc_list(argv, opt);
+	else if (opt.
 }
 
 int			ft_fc(const char **argv)
@@ -60,7 +61,7 @@ int			ft_fc(const char **argv)
 			opt.e = 1;
 		else if (o == '?')
 			return (show_usage());
-	run_fc(opt);
+	run_fc(argv, opt);
 	ft_getopt_clear();
 	return (0);
 }
