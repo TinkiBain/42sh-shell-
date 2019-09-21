@@ -6,13 +6,14 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 15:07:19 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 17:49:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "parser.h"
 #include "exec.h"
+#include "sem.h"
 
 t_opt		g_opt;
 char		**g_var;
@@ -63,11 +64,13 @@ void		main_loop(void)
 	project_name = ft_xstrdup(g_project_name);
 	while (!g_eof)
 	{
+		init_sem();
 		if (!(line = ft_readline((g_opt.rl_gnl == 0 ?
 							get_var_value("PS1") : ""), RL_DEFAULT)))
 			continue ;
 		ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
 		execute_line(line);
+		clear_sem();
 	}
 	ft_strdel(&project_name);
 }

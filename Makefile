@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/16 15:26:18 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/21 17:26:29 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES:=\
 SH_INCLUDES=\
 	ast.h		defs.h			variables.h		exec.h\
 	hash.h		lexer.h			parser.h		sh.h\
-	xfuncs.h	lib_wtalea.h	error.h
+	xfuncs.h	lib_wtalea.h	error.h			sem.h
 
 HEADER=\
 	$(addprefix includes/, $(SH_INCLUDES))\
@@ -56,7 +56,8 @@ SRCS_WITHOUT_DIR=\
 	shell_init.c\
 	shell_clear.c\
 	exec_ast.c\
-	signals_hendler.c
+	signals_hendler.c\
+	sem.c
 
 JOBS_DIR=jobs
 
