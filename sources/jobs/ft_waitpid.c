@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/21 19:05:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 20:59:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,21 @@ int		pipe_av(t_job *job)
 
 int t(int len)
 {
+	int st;
 	int	t_len;
 
 	t_len = 0;
-
+	st = 0;
 	while (t_len < len)
 	{
 		if (g_pipe_pid[t_len] != -1)
+		{
+			if (waitpid(g_pipe_pid[t_len], &st, WNOHANG | WUNTRACED) > 0)
+				g_pipe_pid[t_len] = -1;
+		//	printf ("AAAA %d\n", waitpid(g_pipe_pid[t_len], &st, WNOHANG | WUNTRACED));
+		//	sleep(1);
 			return (-1);
+		}
 		t_len++;
 	}
 	return (1);
