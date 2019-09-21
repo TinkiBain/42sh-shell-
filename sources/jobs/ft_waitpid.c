@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_waitpid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/21 19:05:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/21 21:10:08 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,18 @@ int		pipe_av(t_job *job)
 int t(int len)
 {
 	int	t_len;
+	int st;
 
+	st = 0;
 	t_len = 0;
-
 	while (t_len < len)
 	{
 		if (g_pipe_pid[t_len] != -1)
+		{
+			if (waitpid(g_pipe_pid[t_len], &st, WNOHANG | WUNTRACED))
+				g_pipe_pid[t_len] = -1;
 			return (-1);
+		}
 		t_len++;
 	}
 	return (1);
