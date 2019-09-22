@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 14:17:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/17 14:20:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:31:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-t_string	str_ncopy(char *s, int n)
+t_string	str_ncopy(const char *s, int n)
 {
 	t_string	str;
 

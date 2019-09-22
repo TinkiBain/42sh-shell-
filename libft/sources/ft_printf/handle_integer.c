@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:47:31 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/01/29 20:03:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:54:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_llint		pullarg_integer(va_list ap, t_uchar length)
 	if (length == L_LL)
 		return (long long int)va_arg(ap, long long int);
 	if (length == L_J)
-		return (intmax_t)va_arg(ap, intmax_t);
+		return (INTMAX_T)va_arg(ap, INTMAX_T);
 	if (length == L_Z)
 		return (long int)va_arg(ap, long int);
 	return (int)va_arg(ap, int);
@@ -40,7 +40,7 @@ static t_ullint		pullarg_unsigned(va_list ap, t_uchar length)
 	if (length == L_LL)
 		return (unsigned long long int)va_arg(ap, long long int);
 	if (length == L_J)
-		return (uintmax_t)va_arg(ap, uintmax_t);
+		return (UINTMAX_T)va_arg(ap, UINTMAX_T);
 	if (length == L_Z)
 		return (size_t)va_arg(ap, size_t);
 	return (unsigned int)va_arg(ap, int);

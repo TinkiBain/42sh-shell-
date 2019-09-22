@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:20:57 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 13:46:26 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:37:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-static t_string	*create(t_string *str, char *s, size_t size)
+static t_string	*create(t_string *str, const char *s, size_t size)
 {
 	*str = str_create(size);
 	if (!str->alloc)
@@ -21,7 +21,7 @@ static t_string	*create(t_string *str, char *s, size_t size)
 	return (str);
 }
 
-t_string		*str_insert(t_string *str, int to, char *s, size_t size)
+t_string		*str_insert(t_string *str, int to, const char *s, size_t size)
 {
 	size_t	newalloc;
 	size_t	copy;

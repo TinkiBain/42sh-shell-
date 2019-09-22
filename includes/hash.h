@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/05 23:05:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:43:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 
 unsigned int				generate_hash(char *str, unsigned int len);
 int							ft_intlen(int num);
-int							ft_abs(int n);
 void						ft_itoa_nm(int n, char *nb);
 
 typedef struct				s_hash

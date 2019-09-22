@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 18:51:14 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/24 18:51:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:31:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_string		str_xduplicate(t_string str)
 	return (new);
 }
 
-t_string		str_xcopy(char *s)
+t_string		str_xcopy(const char *s)
 {
 	t_string str;
 
@@ -42,7 +42,7 @@ t_string		str_xcopy(char *s)
 	return (str);
 }
 
-t_string		str_xncopy(char *s, int n)
+t_string		str_xncopy(const char *s, int n)
 {
 	t_string str;
 

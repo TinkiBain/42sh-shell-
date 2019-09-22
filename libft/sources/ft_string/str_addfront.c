@@ -6,13 +6,13 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 16:49:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/03/08 18:25:14 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:37:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-static t_string	*create(t_string *str, char *s, size_t size)
+static t_string	*create(t_string *str, const char *s, size_t size)
 {
 	*str = str_create(size);
 	if (!str->alloc)
@@ -21,7 +21,7 @@ static t_string	*create(t_string *str, char *s, size_t size)
 	return (str);
 }
 
-t_string		*str_addfront(t_string *str, char *s, size_t size)
+t_string		*str_addfront(t_string *str, const char *s, size_t size)
 {
 	size_t	newalloc;
 
