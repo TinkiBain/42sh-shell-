@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 15:01:53 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 15:04:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:22:03 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 void	dollar(int *j, char **str);
 char	*tilda_check(char *str);
 char	*tdq(char *str);
+char	*ft_dollar_word(char *str, int k, int *j);
+char	*brace_handler(char *str, int *j);
+char	*buf_finder(char *tmp);
+int		back_bigest_eq(char *s1, char *s2);
 
 int		check_spec_symbol(char c);
 int		check_spec_symboli_dq(char c);

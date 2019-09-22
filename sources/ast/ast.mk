@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/21 19:28:56 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/22 20:19:23 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,10 @@ SRCS_AST_EXPANSION=\
 	check_spec_symbol.c\
 	dollar.c\
 	tilda.c\
-	tdq.c
+	tdq.c\
+	dollar_brace.c\
+	dollar_hendler_plus.c\
+	back_bigest_eq.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c
