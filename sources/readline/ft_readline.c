@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 15:56:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:59:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)
 
 static void	clear_line(t_line *line, int clear_flag, t_history **history)
 {
-	history_save(line->history_orig, line->str, line->mode);
+	history_save(line->history_orig, line->str, line->mode,
+					line->action == vi_vi ? 1 : 0);
 	line->result = str_xduplicate(*line->str);
 	history_clear(line->history);
 	*history = line->history_orig;

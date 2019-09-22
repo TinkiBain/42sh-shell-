@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:54:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 19:00:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:09:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct			s_cap
 	char	*key_ctrl_right;
 	char	*key_ctrl_up;
 	char	*key_ctrl_down;
-	char	*get_pos;
 	char	*cur_hide;
 	char	*cur_show;
 }						t_cap;

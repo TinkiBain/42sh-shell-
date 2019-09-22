@@ -6,114 +6,63 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 20:28:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 19:01:14 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:15:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "terminal.h"
 
-static void	term_fillcap_3(char **p)
-{
-	char	*t;
-
-	t = tgetstr("vi", p);
-	g_cap.cur_hide = ft_xstrdup(t ? t : "");
-	t = tgetstr("ve", p);
-	g_cap.cur_show = ft_xstrdup(t ? t : "");
-	g_cap.key_ctrl_left = ft_xstrdup("\033[1;5D");
-	g_cap.key_ctrl_right = ft_xstrdup("\033[1;5C");
-	g_cap.key_ctrl_up = ft_xstrdup("\033[1;5A");
-	g_cap.key_ctrl_down = ft_xstrdup("\033[1;5B");
-}
-
 static void	term_fillcap_2(char **p)
 {
-	char	*t;
-
-	t = tgetstr("kh", p);
-	g_cap.key_home = ft_xstrdup(t ? t : "\033OH");
-	t = tgetstr("@7", p);
-	g_cap.key_end = ft_xstrdup(t ? t : "\033OF");
-	t = tgetstr("kD", p);
-	g_cap.key_delete = ft_xstrdup(t ? t : "\033[3~");
-	t = tgetstr("kI", p);
-	g_cap.key_insert = ft_xstrdup(t ? t : "\033[2~");
-	t = tgetstr("ks", p);
-	g_cap.kp_start = ft_xstrdup(t ? t : "\033[?1h\033=");
-	t = tgetstr("ke", p);
-	g_cap.kp_end = ft_xstrdup(t ? t : "\033[?1l\E>");
-	t = tgetstr("kl", p);
-	g_cap.key_left = ft_xstrdup(t ? t : "\033OD");
-	t = tgetstr("kr", p);
-	g_cap.key_right = ft_xstrdup(t ? t : "\033OC");
-	t = tgetstr("ku", p);
-	g_cap.key_up = ft_xstrdup(t ? t : "\033OA");
-	t = tgetstr("kd", p);
-	g_cap.key_down = ft_xstrdup(t ? t : "\033OB");
-	t = tgetstr("u7", p);
-	g_cap.get_pos = t ? ft_xstrdup(t) : t;
-	term_fillcap_3(p);
+	g_cap.key_home = tgetstr("kh", p);
+	g_cap.key_end = tgetstr("@7", p);
+	g_cap.key_delete = tgetstr("kD", p);
+	g_cap.key_insert = tgetstr("kI", p);
+	g_cap.kp_start = tgetstr("ks", p);
+	g_cap.kp_end = tgetstr("ke", p);
+	g_cap.key_left = tgetstr("kl", p);
+	g_cap.key_right = tgetstr("kr", p);
+	g_cap.key_up = tgetstr("ku", p);
+	g_cap.key_down = tgetstr("kd", p);
+	g_cap.cur_hide = tgetstr("vi", p);
+	g_cap.cur_show = tgetstr("ve", p);
 }
 
 void		term_fillcap(void)
 {
-	char		buf[TERM_BUFFER];
-	char		*t;
+	static char	buf[TERM_BUFFER];
 	char		*p;
+	char		*t;
 
 	p = buf;
 	t = tgetstr("pc", &p);
 	g_cap.pad_char = ft_xstrdup(t ? t : "\0");
 	t = tgetstr("cr", &p);
 	g_cap.car_ret = ft_xstrdup(t ? t : "\r");
-	t = tgetstr("up", &p);
-	g_cap.go_up = ft_xstrdup(t ? t : "\033[A");
 	t = tgetstr("do", &p);
 	g_cap.go_down = ft_xstrdup(t ? t : "\n");
-	t = tgetstr("nd", &p);
-	g_cap.go_right = ft_xstrdup(t ? t : "\033[C");
 	t = tgetstr("le", &p);
 	g_cap.go_left = ft_xstrdup(t ? t : "\b");
-	t = tgetstr("cl", &p);
-	g_cap.clear_all = ft_xstrdup(t ? t : "\033[H\033[2J");
-	t = tgetstr("cd", &p);
-	g_cap.clear_down = ft_xstrdup(t ? t : "\033[J");
-	t = tgetstr("ce", &p);
-	g_cap.clear_end = ft_xstrdup(t ? t : "\033[K");
+	g_cap.go_up = tgetstr("up", &p);
+	g_cap.go_right = tgetstr("nd", &p);
+	g_cap.clear_all = tgetstr("cl", &p);
+	g_cap.clear_down = tgetstr("cd", &p);
+	g_cap.clear_end = tgetstr("ce", &p);
+	g_cap.key_ctrl_left = ft_xstrdup("\033[1;5D");
+	g_cap.key_ctrl_right = ft_xstrdup("\033[1;5C");
+	g_cap.key_ctrl_up = ft_xstrdup("\033[1;5A");
+	g_cap.key_ctrl_down = ft_xstrdup("\033[1;5B");
 	term_fillcap_2(&p);
-}
-
-static void	clear_termcap_2(void)
-{
-	ft_strdel(&g_cap.key_ctrl_left);
-	ft_strdel(&g_cap.key_ctrl_right);
-	ft_strdel(&g_cap.key_ctrl_up);
-	ft_strdel(&g_cap.key_ctrl_down);
-	ft_strdel(&g_cap.get_pos);
 }
 
 void		clear_termcap(void)
 {
 	ft_strdel(&g_cap.pad_char);
 	ft_strdel(&g_cap.car_ret);
-	ft_strdel(&g_cap.go_up);
 	ft_strdel(&g_cap.go_down);
-	ft_strdel(&g_cap.go_right);
 	ft_strdel(&g_cap.go_left);
-	ft_strdel(&g_cap.clear_all);
-	ft_strdel(&g_cap.clear_down);
-	ft_strdel(&g_cap.clear_end);
-	ft_strdel(&g_cap.kp_start);
-	ft_strdel(&g_cap.kp_end);
-	ft_strdel(&g_cap.key_home);
-	ft_strdel(&g_cap.key_end);
-	ft_strdel(&g_cap.key_delete);
-	ft_strdel(&g_cap.key_insert);
-	ft_strdel(&g_cap.key_left);
-	ft_strdel(&g_cap.key_right);
-	ft_strdel(&g_cap.key_up);
-	ft_strdel(&g_cap.key_down);
-	ft_strdel(&g_cap.cur_hide);
-	ft_strdel(&g_cap.cur_show);
-	clear_termcap_2();
+	ft_strdel(&g_cap.key_ctrl_left);
+	ft_strdel(&g_cap.key_ctrl_right);
+	ft_strdel(&g_cap.key_ctrl_up);
+	ft_strdel(&g_cap.key_ctrl_down);
 }

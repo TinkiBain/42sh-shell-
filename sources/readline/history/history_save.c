@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 18:05:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:57:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,13 @@ static void	history_join_last(t_history *history, t_string *str)
 	history_save_rewrite(history);
 }
 
-static void	push(t_history *history, t_string *str)
+static void	push(t_history *history, t_string *str, int split_nl)
 {
 	char		**arr;
 	int			i;
 	t_string	newstr;
 
-	if (!ft_strchr(str->s, '\n'))
-	{
-		newstr = str_xduplicate(*str);
-		history_push(history, newstr);
-	}
-	else
+	if (ft_strchr(str->s, '\n') && split_nl)
 	{
 		arr = ft_xstrsplit(str->s, '\n');
 		i = -1;
@@ -78,9 +73,15 @@ static void	push(t_history *history, t_string *str)
 		}
 		ft_free_double_ptr_arr((void ***)&arr);
 	}
+	else
+	{
+		newstr = str_xduplicate(*str);
+		history_push(history, newstr);
+	}
 }
 
-void		history_save(t_history *history, t_string *str, enum e_rl_mode mode)
+void		history_save(t_history *history, t_string *str,
+						 enum e_rl_mode mode, int split_nl)
 {
 	if (mode == RL_APPEND)
 		history_join_last(history, str);
@@ -88,7 +89,7 @@ void		history_save(t_history *history, t_string *str, enum e_rl_mode mode)
 		return ;
 	else if (str->len > 0)
 	{
-		push(history, str);
+		push(history, str, split_nl);
 		if (!history->path)
 			return ;
 		if (history->size >= history->max_size)

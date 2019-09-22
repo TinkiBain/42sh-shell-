@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 21:15:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 16:08:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:58:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_history		*g_history;
 void		history_load(t_history *history);
 void		history_push(t_history *history, t_string str);
 void		history_save(t_history *history, t_string *str,
-							enum e_rl_mode mode);
+							enum e_rl_mode mode, int split_nl);
 void		history_clear(t_history *history);
 t_history	*history_copy(t_history *history);
 int			history_expand(t_line *line);

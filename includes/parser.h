@@ -6,13 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 18:50:51 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/22 13:35:03 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
+# include <sys/wait.h>
 # include "lexer.h"
 
 int							g_parser_expansion;
