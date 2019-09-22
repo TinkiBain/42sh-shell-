@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 14:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/31 14:17:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 18:26:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void			add_force_builds(void)
 	add_force_build("bg", NULL);
 	add_force_build("cd", NULL);
 	add_force_build("echo", NULL);
-	add_force_build("env", NULL);
 	add_force_build("exit", NULL);
 	add_force_build("fc", NULL);
 	add_force_build("fg", NULL);

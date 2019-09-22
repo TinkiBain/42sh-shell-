@@ -12,8 +12,7 @@
 
 #include "sh.h"
 
-static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
-												int in_fork, t_pjobs *local)
+static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, int in_fork, t_pjobs *local)
 {
 	pid_t		pid;
 
@@ -26,7 +25,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 		dup2(fd, 0);
 		close(fd);
 		raise(SIGSTOP);
-		traverse_command(cmd, env, in_fork, local);
+		traverse_command(cmd, in_fork, local);
 		exit(g_res_exec);
 	}
 	redir_reset();
@@ -36,10 +35,8 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 	pipe_av(local->job);
 }
 
-void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
-												int in_fork, t_pjobs *local)
+void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, int in_fork, t_pjobs *local)
 {
-	extern char	**environ;
 	pid_t		pid;
 	int			pipefd[2];
 
@@ -56,7 +53,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
 		raise(SIGSTOP);
-		traverse_command(pipe_seq->command, environ, in_fork, local);
+		traverse_command(pipe_seq->command, in_fork, local);
 		exit(g_res_exec);
 	}
 	redir_reset();
@@ -66,9 +63,8 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	local = ljobs_startet(get_process_name(pipe_seq->command), local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
-		traverse_pipe(pipe_seq, pipefd[0], environ, in_fork, local);
+		traverse_pipe(pipe_seq, pipefd[0], in_fork, local);
 	else
-		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command,
-														env, in_fork, local);
+		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command, in_fork, local);
 	close(pipefd[0]);
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 20:17:44 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:58:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 {
-	extern char	**environ;
 	static int	flag;
 
 	flag = flag1;
@@ -23,7 +22,7 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 	if (!flag || (flag == AND_IF && !g_res_exec)
 				|| (flag == OR_IF && g_res_exec))
 	{
-		traverse_pipe_sequence(elem->pipeline->pipe_sequence, environ, local);
+		traverse_pipe_sequence(elem->pipeline->pipe_sequence, local);
 		if (elem->pipeline->bang)
 		{
 			g_res_exec = (!g_res_exec) ? 1 : 0;
@@ -62,7 +61,7 @@ static void		traverse_list(t_pars_list *list, int sep)
 	if (cmd_is_subshell(list->and_or, list->sep))
 	{
 		sub_job_name = get_job_name(list->lex_begin, list->lex_end);
-		call_subshell(sub_job_name, list->sep, environ, local);
+		call_subshell(sub_job_name, local);
 	}
 	else
 		traverse_and_or(list->and_or, 0, local);

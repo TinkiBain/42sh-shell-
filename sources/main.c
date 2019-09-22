@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 17:49:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 17:46:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 #include "sem.h"
 
 t_opt		g_opt;
-char		**g_var;
-char		**g_var_names;
+int			g_res_exec;
 char		*g_project_name;
+char		*g_shell_path;
+char		**g_var;
+char		**g_prefix_vars;
+char		**g_var_names;
 t_pjobs		*g_pjobs;
 t_pjobs		*g_subjob;
 int			g_line_num = 0;
 int			g_eof;
 int			g_wait_flags;
 char		*g_tty;
-int			g_res_exec;
 int			*g_open_fd;
-char		*g_shell_path;
 int			*g_pipe_pid;
 char		*g_buf;
 t_alias		*g_alias;		/* TODO: move definitions to appropriate places */

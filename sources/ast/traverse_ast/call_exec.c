@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 21:16:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/22 18:24:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@
 ** Need to remove check access later
 */
 
-static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
+static int		call_nonbuilin_exec(const char *path, char *const *av)
 {
-	char	*argv[3];
-	char	*shell_path;
+	char		*argv[3];
+	char		*shell_path;
+	extern char	**environ;
 
 	// if (!access(path, X_OK))
 	// {
-		if (execve(path, av, env) == -1)
+		if (execve(path, av, environ) == -1)
 		{
 			shell_path = ft_strjoin(get_var_value("SHELLHOME"), "/");
 			shell_path = ft_strrejoin(shell_path, g_project_name, 1);
@@ -36,7 +37,7 @@ static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 			argv[1] = av[0];
 			argv[2] = NULL;
 			// add shell_path before av[0] and send all av to execve
-			execve(shell_path, (char *const *)argv, env);
+			execve(shell_path, (char *const *)argv, environ);
 			// ft_putstr_fd(g_project_name, 2);
 			// ft_putstr_fd(": ", 1);
 			// ft_putstr_fd(av[0], 2);
@@ -54,7 +55,7 @@ static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
 	return (0);
 }
 
-static int	call_if_builtin(const char **av, char ***env)
+static int		call_if_builtin(const char **av, char ***env)
 {
 	if (**av == '%')
 		return (ft_fg(g_pjobs, *av));
@@ -64,8 +65,6 @@ static int	call_if_builtin(const char **av, char ***env)
 		return (ft_cd(av + 1, env));
 	else if (ft_strequ(*av, "echo"))
 		return (ft_echo(av + 1));
-	else if (ft_strequ(*av, "env"))
-		return (ft_env(av + 1, *env));
 	else if (ft_strequ(*av, "set"))
 		return (ft_set(av + 1));
 	else if (ft_strequ(*av, "unset"))
@@ -93,14 +92,15 @@ static int	call_if_builtin(const char **av, char ***env)
 	return (0);
 }
 
-int			call_exec(const char **av, char ***env)
+int				call_exec(const char **av)
 {
-	char	*p;
-	int		res;
+	char		*p;
+	int			res;
+	extern char	**g_var;
 
 	if ((res = is_builtin(*av)) == 1)
 	{
-		g_res_exec = call_if_builtin(av, env);
+		g_res_exec = call_if_builtin(av, &g_var);
 		set_result();
 		return (g_res_exec);
 	}
@@ -109,10 +109,9 @@ int			call_exec(const char **av, char ***env)
 	if (res == 0)
 	{
 		if ((p = get_bin((char *)*av)))
-			return (call_nonbuilin_exec((const char *)p,
-										(char *const *)av, *env));
+			return (call_nonbuilin_exec((const char *)p, (char *const *)av));
 		else if (ft_strchr(*av, '/'))
-			return (call_nonbuilin_exec(*av, (char *const *)av, *env));
+			return (call_nonbuilin_exec(*av, (char *const *)av));
 	}
 	return (127);
 }

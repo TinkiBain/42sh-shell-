@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 20:20:11 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:57:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ int			pid_fredy()
 	return (1);
 }
 
-static void	pipe_seq_simple_builtin(t_command *cmd, char **env, t_pjobs *local)
+static void	pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 {
 	pid_t	pid;
 
 	if (local->flag == 0)
 	{
-		traverse_command(cmd, env, 0, local);
+		traverse_command(cmd, 0, local);
 	}
 	else if (local->flag == 1)
 	{
 		if ((pid = fork()) == 0)
 		{
 			setpgrp();
-			traverse_command(cmd, env, 0, local);
+			traverse_command(cmd, 0, local);
 			exit(g_res_exec);
 		}
 		else
@@ -54,8 +54,7 @@ static void	pipe_seq_simple_builtin(t_command *cmd, char **env, t_pjobs *local)
 	}
 }
 
-static void	pipe_seq_simple_non_builtin(t_command *cmd,
-								char **env, t_pjobs *local, char *cmd_name)
+static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local, char *cmd_name)
 {
 	pid_t	pid;
 
@@ -64,7 +63,7 @@ static void	pipe_seq_simple_non_builtin(t_command *cmd,
 	{
 		if (local->flag == 1)
 			setpgrp();
-		traverse_command(cmd, env, 1, local);
+		traverse_command(cmd, 1, local);
 	}
 	else
 	{
@@ -76,8 +75,7 @@ static void	pipe_seq_simple_non_builtin(t_command *cmd,
 	}
 }
 
-static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
-											t_pjobs *local)
+static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 {
 	char	*cmd_name;
 
@@ -88,32 +86,31 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
 		if ((cmd_name = cmd->simple_command->cmd_name))
 		{
 			if (is_builtin(cmd_name))
-				pipe_seq_simple_builtin(cmd, env, local);
+				pipe_seq_simple_builtin(cmd, local);
 			else if (check_cmd(cmd_name) == 0)
-				pipe_seq_simple_non_builtin(cmd, env, local, cmd_name);
+				pipe_seq_simple_non_builtin(cmd, local, cmd_name);
 			else if (local->job)
 				freedsubjob(&local->job);
 		}
 		else
-			traverse_command(cmd, env, 0, local);
+			traverse_command(cmd, 0, local);
 	}
 	else
-		traverse_command(cmd, env, 0, local);
+		traverse_command(cmd, 0, local);
 	redir_reset();
 }
 
-void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
-															t_pjobs *local)
+void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, t_pjobs *local)
 {
 	if (pipe_seq->next)
 	{
 		if (local->flag == 1)
 			ft_printf("[%d]", local->num);
-		traverse_pipe(pipe_seq, 0, env, 1, local);
+		traverse_pipe(pipe_seq, 0, 1, local);
 		if (local->flag == 0)
 			ft_waitpid(-1);
 		pid_fredy();
 	}
 	else
-		traverse_pipe_seq_without_pipe(pipe_seq->command, env, local);
+		traverse_pipe_seq_without_pipe(pipe_seq->command, local);
 }
