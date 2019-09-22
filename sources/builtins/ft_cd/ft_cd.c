@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/20 21:16:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:45:23 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ char		*check_cdpath(const char *curpath)
 int			ft_cd(const char **av, char ***env)
 {
 	char		*curpath;
+	char		*path;
 	const char	*tmp;
 	int			flag;
 
@@ -118,14 +119,17 @@ int			ft_cd(const char **av, char ***env)
 		return (change_dir_variable(tmp, env));
 	if (*tmp == '/')
 		return (change_dir(ft_strdup(tmp), tmp, flag, env));
+	path = ft_strdup(get_var_value("PWD"));
+	if (!path)
+		path = ft_strdup(getcwd(NULL, 1024));
 	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
 	{
-		curpath = ft_strjoin(get_var_value("PWD"), "/");
+		curpath = ft_strrejoin(path, "/", 1);
 		curpath = ft_strrejoin(curpath, tmp, 1);
 		return (change_dir(curpath, tmp, flag, env));
 	}
 	if ((curpath = check_cdpath(tmp)))
 		return (change_dir(curpath, tmp, flag, env));
-	curpath = ft_strjoin(get_var_value("PWD"), "/");
+	curpath = ft_strrejoin(path, "/", 1);
 	return (change_dir(ft_strrejoin(curpath, tmp, 1), tmp, flag, env));
 }
