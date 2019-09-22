@@ -32,7 +32,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 	redir_reset();
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
-	local = ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
+	local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
 	pipe_av(local->job);
 }
 
@@ -63,7 +63,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 	close(pipefd[1]);
 	if (local && local->flag == 1)
 		ft_printf(" %d", pid);
-	local = ljobs_startet(get_subjob_name(pipe_seq->command), local->flag, local->num, pid);
+	local = ljobs_startet(get_process_name(pipe_seq->command), local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
 		traverse_pipe(pipe_seq, pipefd[0], environ, in_fork, local);

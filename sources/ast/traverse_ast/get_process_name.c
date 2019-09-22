@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_compound_list.c                           :+:      :+:    :+:   */
+/*   get_process_name.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 21:57:35 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 19:28:26 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/09/12 22:01:59 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/09/21 19:21:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void		traverse_compound_list(t_compound_list *list, char **env,
-														t_pjobs *local)
+char	*get_process_name(t_command *command)
 {
-	char	*str;
+	t_simple_cmd *cmd;
+	char		*str;
 
-	str = get_job_name(list->lex_begin, list->lex_end);
-	call_subshell(str, list->separator, env, local);
+	if ((cmd = command->simple_command))
+		str = get_job_name(cmd->lex_begin, cmd->lex_end);
+	// else if (command->compound_command)
+	// 	return (get_job_name(cmd->lex_begin, cmd->lex_end));
+	else
+		str = ft_strdup("subjob");
+	return (str);
 }
