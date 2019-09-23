@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/21 20:21:39 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/23 17:00:31 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,12 +156,12 @@ void				jobs_sig(void)
 	pid_t			done_pid;
 	int				st;
 	t_job			*job;
-	
+
 	job = NULL;
 	st = 0;
-	done_pid = waitpid(-1, &st, WUNTRACED);
+	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
 	//ft_putnbr_fd(done_pid,2);
-	// printf("%d\n", done_pid);
+//	printf("waitpid %d\n", done_pid);
 	if (g_pipe_pid)
 		g(done_pid);
 	g_res_exec = st;

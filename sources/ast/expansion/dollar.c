@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/22 21:23:12 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/23 16:16:51 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void			dollar(int *j, char **str)
 		while ((*str)[*j + 1] && check_spec_symbol((*str)[*j + 1])
 				&& (*str)[*j + 1] != '$' && (*str)[*j] != '}')
 			(*j) += 1;
-	printf ("%d\n", *j);
+	//printf ("%d\n", *j);
 	modular_conversion(word, str, l, j);
 }
