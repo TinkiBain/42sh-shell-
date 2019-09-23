@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complete_command_option.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 23:05:28 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/05 23:05:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 20:51:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static void	cut_by_space(t_string *str)
 	str_xaddback(str, " ", 1);
 }
 
-/* 
+/*
 ** data[0] - n (size of arr)
 ** data[1] - start (pos in line where query starts)
 ** data[2] - unmatch_start (pos in line where first unmatch char appears)
 */
 
-void	complete_command_option(t_line *line)
+void		complete_command_option(t_line *line)
 {
 	t_string		query;
 	t_string		command;

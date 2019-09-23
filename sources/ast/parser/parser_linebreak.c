@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parser_linebreak.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:30:04 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 20:31:37 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:12:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-/*  Grammar rule
- ** linebreak        : newline_list
- **                  | / empty /
- **                  ;
+/*
+** Grammar rule
+** linebreak        : newline_list
+**                  | / empty /
+**                  ;
 */
 
 void		parser_linebreak(void)

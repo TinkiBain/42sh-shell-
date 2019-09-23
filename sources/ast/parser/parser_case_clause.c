@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_case_clause.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 18:30:21 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 21:28:01 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:18:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ t_case_clause			*parser_case_clause(void)
 		return (parser_free_case_clause(list));
 	}
 	g_lex = g_lex->next;
-	return (list);	
+	return (list);
 }

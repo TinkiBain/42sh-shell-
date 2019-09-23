@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_io_redirect.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/23 14:11:49 by ggwin-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 t_io_redirect			*parser_free_io_redirect(t_io_redirect *list)
@@ -21,10 +33,10 @@ static t_io_redirect	*parser_init_io_redirect(int type, int io_number)
 	return (list);
 }
 
-t_io_redirect		*parser_io_redirect(void)
+t_io_redirect			*parser_io_redirect(void)
 {
-	t_io_redirect	*list;
-	int				io_number;
+	t_io_redirect		*list;
+	int					io_number;
 
 	if (!g_lex)
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_fname.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 22:00:41 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 22:06:44 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:17:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 **                  ;
 */
 
-char	*parser_fname(void)
+char		*parser_fname(void)
 {
 	char	*str;
+
 	if (parser_check_reserved_words())
 	{
 		g_error_lex = g_lex;

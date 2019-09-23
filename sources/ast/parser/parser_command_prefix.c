@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:12:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 19:08:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:17:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static char			*parser_check_assignment_word()
+static char			*parser_check_assignment_word(void)
 {
 	char			*tmp;
 

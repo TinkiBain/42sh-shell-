@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 19:58:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:03:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static int		cmd_is_subshell(t_and_or *and_or, int sep)
 {
 	if (sep == JOB)
 	{
-		if ((and_or->next) || (and_or->pipeline->pipe_sequence->command
-			&& and_or->pipeline->pipe_sequence->command->compound_command))
-		return (1);
+		if ((and_or->next) || (and_or->pipeline->pipe_sequence->command &&
+				and_or->pipeline->pipe_sequence->command->compound_command))
+			return (1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/21 17:26:29 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/23 13:54:21 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,12 +74,11 @@ SRCS_VAR=\
 	add_new_var.c				create_copy_env.c\
 	ft_getenv.c					remove_var.c\
 	replace_var.c				check_readonly_var.c\
-	print_var_readonly.c		set_var.c\
+	set_var_shellopts.c			set_var.c\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
-	get_var_value.c				print_all_vars.c\
-	set_var_in_g_var.c			set_result.c\
-	set_var_shellopts.c
+	get_var_value.c				print_vars.c\
+	set_var_in_g_var.c			set_result.c
 
 XFUNCS_DIR=xfuncs
 

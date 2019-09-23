@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 22:02:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:45:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		print_error(const char *msg, const char *info)
 	release_sem();
 }
 
-void	print_error_exit(const char *msg, const char *info, const int code)
+void		print_error_exit(const char *msg, const char *info, const int code)
 {
 	print_error(msg, info);
 	logclose();

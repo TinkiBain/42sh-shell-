@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_word_expansion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 19:33:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:07:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 char		*parser_word_expansion(char *str)
 {
 	extern int	g_parser_expanison;
-	char	*begin;
-	char	c;
+	char		*begin;
+	char		c;
 
 	begin = str;
 	while (str && *str)
@@ -41,6 +41,6 @@ char		*parser_word_expansion(char *str)
 	}
 	if (g_parser_expansion)
 		return (ft_strdup(begin));
-	begin = tdq(ft_strdup(begin)); 
+	begin = tdq(ft_strdup(begin));
 	return (begin);
 }

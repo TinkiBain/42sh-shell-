@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_lexem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 20:46:01 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/08/29 21:13:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:19:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_spec(int type)
 		ft_putstr("<>");
 	else if (type == 23)
 		ft_putstr("!");
-	write(1, " " ,1);
+	write(1, " ", 1);
 }
 
 void	print_lexem(t_lex *lex)

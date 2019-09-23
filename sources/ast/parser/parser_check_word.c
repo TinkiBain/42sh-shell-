@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_check_word.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 16:56:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/15 19:18:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:18:07 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char		*parser_check_word()
+char		*parser_check_word(void)
 {
 	char	*str;
 	char	*new_str;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_vi.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/21 19:06:38 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/22 20:50:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void		vi_vi(t_line *line)
 	int		fd;
 	char	**argv;
 
-	fd = open(TMP_PATH, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+	fd = open(TMP_PATH, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU |
+													S_IRWXG | S_IRWXO);
 	if (fd < 0)
 	{
 		loginfo("vi_vi(): open error (%s)", TMP_PATH);

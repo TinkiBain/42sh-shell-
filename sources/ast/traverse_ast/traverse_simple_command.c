@@ -6,16 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 19:47:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 13:56:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 extern char	**g_var;
-extern char	**environ;
-
-// #define IS_COPY_ENV		2
 
 static void	traverse_cmd_pref(t_cmd_prefix *pref, t_vector *prefix_vars)
 {
@@ -47,6 +44,7 @@ void		traverse_simple_command(t_simple_cmd *cmd, int in_fork)
 {
 	t_vector	av;
 	t_vector	prefix_vars;
+	extern char	**environ;
 
 	av = vec_create(0, sizeof(char *));
 	if (cmd->cmd_name)

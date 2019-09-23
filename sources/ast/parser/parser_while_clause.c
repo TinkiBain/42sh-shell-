@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_while_clause.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:00:35 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 21:24:56 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:07:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_while_clause	*parser_init_while_clause(void)
 	list = (t_while_clause*)ft_xmalloc(sizeof(t_while_clause));
 	list->compound_list = NULL;
 	list->do_group = NULL;
-	return (list);	
+	return (list);
 }
 
 t_while_clause			*parser_while_clause(void)

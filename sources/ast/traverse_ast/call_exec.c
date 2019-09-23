@@ -6,19 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 18:24:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:02:28 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 /*
-**	When execve() return -1 in function call_nonbuilin_exec()
-**	need to call our shel for execute script.
-*/
-
-/*
-** Need to remove check access later
+**	When first execve() in function call_nonbuilin_exec() return -1
+**	we are calling our shell for execute script.
 */
 
 static int		call_nonbuilin_exec(const char *path, char *const *av)
@@ -27,31 +23,16 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	char		*shell_path;
 	extern char	**environ;
 
-	// if (!access(path, X_OK))
-	// {
-		if (execve(path, av, environ) == -1)
-		{
-			shell_path = ft_strjoin(get_var_value("SHELLHOME"), "/");
-			shell_path = ft_strrejoin(shell_path, g_project_name, 1);
-			argv[0] = g_project_name;
-			argv[1] = av[0];
-			argv[2] = NULL;
-			// add shell_path before av[0] and send all av to execve
-			execve(shell_path, (char *const *)argv, environ);
-			// ft_putstr_fd(g_project_name, 2);
-			// ft_putstr_fd(": ", 1);
-			// ft_putstr_fd(av[0], 2);
-			// ft_putendl_fd(": execve return (-1) from call_exec()", 2);
-			// exit(-1);
-		}
-	// }
-	// else
-	// {
-	// 	ft_putstr_fd(g_project_name, 2);
-	// 	ft_putstr_fd(": permission denied: ", 2);
-	// 	ft_putendl_fd(path, 2);
-	// 	exit(1);
-	// }
+	if (execve(path, av, environ) == -1)
+	{
+		shell_path = ft_strjoin(get_var_value("SHELLHOME"), "/");
+		shell_path = ft_strrejoin(shell_path, g_project_name, 1);
+		argv[0] = g_project_name;
+		argv[1] = av[0];
+		argv[2] = NULL;
+		if (execve(shell_path, (char *const *)argv, environ) == -1)
+			exit(-1);
+	}
 	return (0);
 }
 

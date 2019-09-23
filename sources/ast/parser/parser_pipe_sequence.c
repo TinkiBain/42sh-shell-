@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_pipe_sequence.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/09/23 14:12:24 by ggwin-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 /*
- ** Grammar rule
- ** pipe_sequence    :                             command
- **                  | pipe_sequence '|' linebreak command
- **                  ;
+** Grammar rule
+** pipe_sequence    :                             command
+**                  | pipe_sequence '|' linebreak command
+**                  ;
 */
 
 t_pipe_sequence		*parser_free_pipe_sequence(t_pipe_sequence *list)

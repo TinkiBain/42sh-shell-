@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/20 18:03:48 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/22 21:23:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			cd_error(const char *error_dir, char *curpath)
 int			change_dir(char *curpath, const char *av, int flag, char ***env)
 {
 	char	*arr_for_env[3];
-	int 	fd;
+	int		fd;
 	char	dir_path[1024];
 
 	if ((fd = open(curpath, O_DIRECTORY)) < 0)

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/07 18:25:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 13:47:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #define FLAG_N					2
 #define FLAG_F					4
 
-#define NOT_A_VALID_IDENTIFIER	1
-#define INVALID_OPTION			2
+#define INVALID_OPTION			1
 
 static void		print_usage(char c)
 {
@@ -47,20 +46,23 @@ static int		add_flags(const char *str, int *opt)
 	return (0);
 }
 
-static int		export_var(const char *str, int opt)
+static int		print_export_error(const char *str)
+{
+	char		*error_msg;
+
+	error_msg = ft_strjoin("'", str);
+	error_msg = ft_strrejoin(error_msg, "': not a valid identifier", 1);
+	print_error(error_msg, "export");
+	ft_strdel(&error_msg);
+	return (1);
+}
+
+static void		export_var(const char *str, int opt)
 {
 	extern char	**environ;
 	char		*p;
 	const char	*tmp_var;
 
-	if (*str == '-')
-	{
-		ft_putstr_fd(g_project_name, 2);
-		ft_putstr_fd(": export: '", 2);
-		ft_putstr_fd(str, 2);
-		ft_putendl_fd("': not a valid identifier", 2);
-		return (1);
-	}
 	if ((p = ft_strchr(str, '=')))
 		set_var(str, &environ, 0);
 	if (opt & FLAG_N)
@@ -77,7 +79,6 @@ static int		export_var(const char *str, int opt)
 		set_var(tmp_var, &environ, 0);
 		ft_strdel((char **)&tmp_var);
 	}
-	return (0);
 }
 
 int				ft_export(const char **av)
@@ -98,12 +99,13 @@ int				ft_export(const char **av)
 				if (add_flags(str, &opt) == INVALID_OPTION)
 					return (2);
 			}
-			else if ((flag = 1) &&
-							(export_var(str, opt) == NOT_A_VALID_IDENTIFIER))
-				res = NOT_A_VALID_IDENTIFIER;
+			else if ((flag = 1) && *str == '-')
+				res = print_export_error(str);
+			else
+				export_var(str, opt);
 			++av;
 		}
 	if (!flag)
-		print_all_vars(0);
+		print_vars(0);
 	return (res);
 }

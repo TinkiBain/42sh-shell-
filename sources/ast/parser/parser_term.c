@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_term.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 22:23:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:08:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static t_term	*parser_init_term(t_term *list_down)
 	return (list);
 }
 
-t_term		*parser_term(t_term *list_down)
+t_term			*parser_term(t_term *list_down)
 {
-	t_term	*list;
+	t_term		*list;
 
 	if (!g_lex)
 		return (NULL);

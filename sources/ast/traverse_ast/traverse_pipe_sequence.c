@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 19:57:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:28:18 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	**g_var;
 
-int			pid_fredy()
+int			pid_fredy(void)
 {
 	int i;
 
@@ -48,13 +48,15 @@ static void	pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 		}
 		else
 		{
-			local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
+			local = ljobs_startet(get_process_name(cmd), local->flag,
+														local->num, pid);
 			ft_printf("[%d] [%d]\n", local->num, pid);
 		}
 	}
 }
 
-static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local, char *cmd_name)
+static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
+															char *cmd_name)
 {
 	pid_t	pid;
 
@@ -67,7 +69,8 @@ static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local, char *cm
 	}
 	else
 	{
-		local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
+		local = ljobs_startet(get_process_name(cmd), local->flag,
+													local->num, pid);
 		if (local->flag == 1)
 			ft_printf("[%d] [%d]\n", local->num, pid);
 		else
@@ -106,7 +109,7 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, t_pjobs *local)
 	{
 		if (local->flag == 1)
 			ft_printf("[%d]", local->num);
-		traverse_pipe(pipe_seq, 0, 1, local);
+		traverse_pipe(pipe_seq, 0, local);
 		if (local->flag == 0)
 			ft_waitpid(-1);
 		pid_fredy();

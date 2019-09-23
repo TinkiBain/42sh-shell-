@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/03 22:14:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 13:47:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int				ft_set(const char **av)
 	if (av)
 	{
 		if (!*av)
-			print_all_vars(1);
+			print_vars(1);
 		else
 			while (*av)
 				handle_set_arg(av++);

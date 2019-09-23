@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 19:09:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/12 20:33:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 14:08:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		parser_print_error_lexem(char *lex)
+static void	parser_print_error_lexem(char *lex)
 {
 	ft_putstr_fd(": syntax error near unexpected token `", 2);
 	ft_putstr_fd(lex, 2);

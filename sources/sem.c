@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   sem.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/21 17:25:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 20:41:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sem.h"
 
-int		g_semid;
+int					g_semid;
 
-void	init_sem(void)
+void				init_sem(void)
 {
 	union semun		arg;
 
@@ -24,13 +24,13 @@ void	init_sem(void)
 		print_error("Error in semctl()", "init_sem()");
 }
 
-void		clear_sem(void)
+void				clear_sem(void)
 {
 	if (semctl(g_semid, 0, IPC_RMID) == -1)
 		print_error("Error in semctl()", "clear_sem()");
 }
 
-void		reserve_sem(void)
+void				reserve_sem(void)
 {
 	struct sembuf	sops;
 
@@ -41,7 +41,7 @@ void		reserve_sem(void)
 		;
 }
 
-void		release_sem(void)
+void				release_sem(void)
 {
 	struct sembuf	sops;
 
