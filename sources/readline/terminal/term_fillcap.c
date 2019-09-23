@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 20:28:45 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 19:15:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:27:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void		term_fillcap(void)
 	g_cap.car_ret = ft_xstrdup(t ? t : "\r");
 	t = tgetstr("do", &p);
 	g_cap.go_down = ft_xstrdup(t ? t : "\n");
-	t = tgetstr("le", &p);
-	g_cap.go_left = ft_xstrdup(t ? t : "\b");
+	g_cap.go_left = tgetstr("le", &p);
 	g_cap.go_up = tgetstr("up", &p);
 	g_cap.go_right = tgetstr("nd", &p);
 	g_cap.clear_all = tgetstr("cl", &p);
@@ -60,7 +59,6 @@ void		clear_termcap(void)
 	ft_strdel(&g_cap.pad_char);
 	ft_strdel(&g_cap.car_ret);
 	ft_strdel(&g_cap.go_down);
-	ft_strdel(&g_cap.go_left);
 	ft_strdel(&g_cap.key_ctrl_left);
 	ft_strdel(&g_cap.key_ctrl_right);
 	ft_strdel(&g_cap.key_ctrl_up);

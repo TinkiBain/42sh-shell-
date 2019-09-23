@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 19:37:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/23 17:35:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,9 @@ void			resize(t_buffer *newbuf, int first)
 	int j;
 	int pos;
 
+	
 	if (!first)
-		move_cursor(g_buffer.cpos, 0, g_buffer.out_cols);
+		move_cursor(g_buffer.cpos, 0, newbuf->out_cols);
 	pos = 0;
 	i = -1;
 	while (++i < max_int(newbuf->out_rows, g_buffer.out_rows))
