@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/22 13:30:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/23 20:32:18 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void			main_readline_loop(void);
 void			shell_init(int ac, char **av);
 void			shell_init_readline(void);
 void			shell_clear(void);
+void			execute_line(char *buf);
 
 #endif
