@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 15:01:53 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 21:22:03 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/23 18:14:13 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int		back_bigest_eq(char *s1, char *s2);
 
 int		check_spec_symbol(char c);
 int		check_spec_symboli_dq(char c);
+int		back_smaller_eq(char *s1, char *s2);
 
 #endif

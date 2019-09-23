@@ -6,7 +6,7 @@
 #    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/22 20:19:23 by jterry           ###   ########.fr        #
+#    Updated: 2019/09/23 20:28:58 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ SRCS_AST_EXPANSION=\
 	tdq.c\
 	dollar_brace.c\
 	dollar_hendler_plus.c\
-	back_bigest_eq.c
+	back_bigest_eq.c\
+	back_smaller_eq.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c

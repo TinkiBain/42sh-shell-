@@ -1,62 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   back_bigest_eq.c                                   :+:      :+:    :+:   */
+/*   back_smaller_eq.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 20:10:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/23 20:49:54 by jterry           ###   ########.fr       */
+/*   Created: 2019/09/23 18:13:39 by jterry            #+#    #+#             */
+/*   Updated: 2019/09/23 20:48:19 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		ft_while(char *s1, char *s2, int *ij, int *j)
+void		ft_while(char *s1, char *s2, int *ij, int *j)
 {
-	while (s1[*ij])
+	while (ij >= 0 && *j >= 0)
 	{
 		if (s1[*ij] != s2[*j])
 		{
 			if (s2[*j] == '*')
 			{
-				*j += 1;
+				(*j) -= 1;
 				continue ;
 			}
-			if (s2[*j - 1] == '*')
+			if (s2[*j + 1] == '*')
 			{
-				*ij += 1;
+				*ij -= 1;
 				continue ;
 			}
-			*j = 0;
+			*j = ft_strlen(s2) - 1;
 			break ;
 		}
-		*ij += 1;
-		*j += 1;
+		*ij -= 1;
+		*j -= 1;
 	}
 }
 
-int				back_bigest_eq(char *s1, char *s2)
+int			back_smaller_eq(char *s1, char *s2)
 {
 	int i;
 	int j;
 	int ij;
 
-	i = 0;
-	j = 0;
-	while (s1[i])
+	i = ft_strlen(s1) - 1;
+	j = ft_strlen(s2) - 1;
+	if (j == 0 && s2[j] == '*')
+		return (0);
+	while (i != 0 && j != 0)
 	{
-		if (s1[i] == *s2 || *s2 == '*')
+		if (s1[i] == s2[j] || s2[j] == '*')
 		{
 			ij = i;
 			ft_while(s1, s2, &ij, &j);
 			while(s2[j] == '*')
-				j++;
-			if (!s1[ij] && !s2[j])
-				return (i);
-			j = 0;
+				j--;
+			if (j == -1)
+				return (s2[0] == '*' ? 0 : ij + 1);
+			j = ft_strlen(s2) - 1;
 		}
-		i++;
+		i--;
 	}
 	return (-1);
 }
