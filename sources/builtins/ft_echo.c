@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 18:45:05 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/23 17:44:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,17 @@ int			ft_echo(const char **command)
 	if (write(1, command[i], 0))
 	{
 		print_error("echo: ", "write error: Bad file descriptor");
-		return (0);
+		return (1);
 	}
 	while (command[i] && command[i][0] == '-')
 		if ((flag = ft_options_contr(command, &i)) == -1)
 			break ;
 	if (command[i] == NULL)
-		return (1);
+		return (0);
 	while (command[i])
 		if (ft_writer_contr(command, i++, -12, 0) < 0)
 			return (0);
 	if (flag != 1)
 		write(1, "\n", 1);
-	return (1);
+	return (0);
 }
