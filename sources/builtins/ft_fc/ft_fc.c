@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 15:38:21 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/23 17:13:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fc.h"
-
-static int	count_len(const char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 static int	show_usage(void)
 {
@@ -37,14 +27,12 @@ static void	run_fc(t_cmd_opt opt)
 		ft_fc_list(opt);
 }
 
-int			ft_fc(const char **argv)
+int			ft_fc(const char **argv, int argc)
 {
-	int			argc;
 	int			o;
 	t_cmd_opt	opt;
 
 	ft_bzero(&opt, sizeof(opt));
-	argc = count_len(argv);
 	ft_getopt_init("fc");
 	while (argv[g_optind] && !ft_isdigit(argv[g_optind][1]) &&
 				(o = ft_getopt(argc, (char *const *)argv, "lnrse:")) != -1)

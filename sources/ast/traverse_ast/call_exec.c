@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 14:02:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 17:12:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	return (0);
 }
 
-static int		call_if_builtin(const char **av, char ***env)
+static int		call_if_builtin(const char **av, int ac)
 {
 	if (**av == '%')
 		return (ft_fg(g_pjobs, *av));
 	else if (ft_strequ(*av, "exit"))
 		return (ft_exit(av + 1));
 	else if (ft_strequ(*av, "cd"))
-		return (ft_cd(av + 1, env));
+		return (ft_cd(av + 1));
 	else if (ft_strequ(*av, "echo"))
 		return (ft_echo(av + 1));
 	else if (ft_strequ(*av, "set"))
@@ -55,7 +55,7 @@ static int		call_if_builtin(const char **av, char ***env)
 	else if (ft_strequ(*av, "type"))
 		return (ft_type(av + 1));
 	else if (ft_strequ(*av, "fc"))
-		return (ft_fc(av));
+		return (ft_fc(av, ac));
 	else if (ft_strequ(*av, "export"))
 		return (ft_export(av + 1));
 	else if (ft_strequ(*av, "jobs"))
@@ -73,7 +73,7 @@ static int		call_if_builtin(const char **av, char ***env)
 	return (0);
 }
 
-int				call_exec(const char **av)
+int				call_exec(const char **av, int ac)
 {
 	char		*p;
 	int			res;
@@ -81,7 +81,7 @@ int				call_exec(const char **av)
 
 	if ((res = is_builtin(*av)) == 1)
 	{
-		g_res_exec = call_if_builtin(av, &g_var);
+		g_res_exec = call_if_builtin(av, ac);
 		set_result();
 		return (g_res_exec);
 	}

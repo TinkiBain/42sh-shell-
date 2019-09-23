@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/20 21:07:13 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 16:52:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		check_full_path(char *curpath)
 	}
 }
 
-int			change_dir(char *curpath, const char *av, int flag, char ***env)
+int			change_dir(char *curpath, const char *av, int flag)
 {
 	char	*arr_for_env[3];
 
@@ -89,6 +89,5 @@ int			change_dir(char *curpath, const char *av, int flag, char ***env)
 	free(arr_for_env[0]);
 	free(arr_for_env[1]);
 	free(curpath);
-	(void)env;
 	return (0);
 }

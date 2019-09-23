@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/23 14:45:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/23 16:50:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_string	format_info(const char *info)
 	}
 	if (!ft_strequ(str.s, info))
 	{
-		str_insert(&str, 0, "$'", 2);
+		str_insert(&str, 0, "'", 1);
 		str_insert(&str, str.len, "'", 1);
 	}
 	return (str);
