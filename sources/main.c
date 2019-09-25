@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 17:46:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 22:43:59 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void		main_loop(void)
 		if (!(line = ft_readline((g_opt.rl_gnl == 0 ?
 							get_var_value("PS1") : ""), RL_DEFAULT)))
 			continue ;
-		ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
 		execute_line(line);
 		clear_sem();
 	}

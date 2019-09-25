@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 18:27:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/25 22:57:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int				vi_input_loop(t_line *line)
 		if (line->action == vi_comment || line->action == vi_vi ||
 			*keybuf == CTRL_D || *keybuf == NL)
 			return (ret);
+		if (*keybuf == CTRL_C)
+			return (0);
 		str_delete(&line->keybuf);
 		ft_bzero(keybuf, KEYBUF_SIZE);
 	}
