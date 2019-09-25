@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/20 15:05:40 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/25 22:11:03 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,26 @@ SRCS_AST_EXPANSION=\
 	check_spec_symbol.c\
 	dollar.c\
 	tilda.c\
-	tdq.c
+	tdq.c\
+	arifmetic.c\
+	arifmetic_lexer.c\
+	arifmetic_lexer_var.c\
+	arifmetic_lexer_digit.c\
+	arifmetic_lexer_check_token.c\
+	arifmetic_lexer_simple_operations.c\
+	arifmetic_lexer_logical_op.c\
+	arifmetic_expr.c\
+	expr_logical_op.c\
+	expr_equal.c\
+	expr_less_great.c\
+	expr_shift_bits.c\
+	expr_arifmetic.c\
+	expr_arifmetic_mul.c\
+	expr_prefix.c\
+	expr_get_var_value.c\
+	expr_unar_op.c\
+	expr_suffix.c\
+	expr_check_var.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c

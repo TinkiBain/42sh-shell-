@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 18:08:25 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/21 18:54:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char		*lexer_find_char(char *str, char c)
 	}
 	return (str);
 }
-
+/*
 char		*lexer_find_square_bracket(char *str)
 {
 	int		i;
@@ -48,7 +48,7 @@ char		*lexer_find_square_bracket(char *str)
 	}
 	return (str);
 }
-
+*/
 char		*lexer_find_word(char *str, t_lex **lex)
 {
 	char	*begin;
@@ -66,8 +66,8 @@ char		*lexer_find_word(char *str, t_lex **lex)
 			str = lexer_find_char(str, *str);
 		if (*str == '$')
 			str = lexer_find_dollar(str + 1);
-		if (*str == '[')
-			str = lexer_find_square_bracket(str);
+//		if (*str == '[')
+//			str = lexer_find_square_bracket(str);
 		if (*str)
 			++str;
 	}

@@ -6,18 +6,19 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 19:33:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/24 15:27:06 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "sh.h"
+#include "arifmetic.h"
 
 char		*parser_word_expansion(char *str)
 {
 	extern int	g_parser_expanison;
-	char	*begin;
-	char	c;
+	char		*begin;
+	char		c;
 
 	begin = str;
 	while (str && *str)
@@ -41,6 +42,8 @@ char		*parser_word_expansion(char *str)
 	}
 	if (g_parser_expansion)
 		return (ft_strdup(begin));
+	if (*begin == '$')
+		return (arifmetic_exp(begin));
 	begin = tdq(ft_strdup(begin)); 
 	return (begin);
 }
