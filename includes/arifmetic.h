@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 22:09:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/25 22:23:05 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ size_t		expr_check_div_null(size_t right_value, size_t left_value, int op);
 size_t		expr_prefix(void);
 size_t		expr_unar_op(void);
 size_t		expr_suffix(void);
+size_t		expr_bracket(void);
 size_t		expr_check_var(void);
 size_t		expr_get_var_value(void);
 size_t		expr_digit(void);

@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 21:02:27 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 22:10:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/25 22:22:34 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ size_t		expr_suffix(void)
 		free(var);
 		return (type == SUFFIX_MIN ? var_value + 1 : var_value - 1);
 	}
-	return (expr_check_var());
+	return (expr_bracket());
 }
