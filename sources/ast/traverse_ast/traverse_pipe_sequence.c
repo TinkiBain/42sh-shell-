@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 21:21:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:25:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 {
 	char	*cmd_name;
 
-	redir_set();
 	traverse_redirections(cmd);
 	if (cmd->simple_command)
 	{
@@ -100,7 +99,8 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 	}
 	else
 		traverse_command(cmd, 0, local);
-	redir_reset();
+	if (cmd->simple_command || cmd->redirect_list)
+		redir_reset();
 }
 
 void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, t_pjobs *local)
