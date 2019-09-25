@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 17:43:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 20:14:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void			call_subshell(char *str, t_pjobs *local)
 		if (local->flag == 1)
 			setpgrp();
 		execute_line(str);
-		shell_clear();
 		exit(g_res_exec);
 	}
 	local = ljobs_startet(str, local->flag, local->num, pid);

@@ -6,19 +6,29 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 20:28:36 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 20:33:43 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void		traverse_for_clause(t_for_clause *list, char **env, t_pjobs *local)
+void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
 {
-	traverse_compound_list(list->, env, local);
-	if (!g_res_exec)
+	extern char	**g_var;
+	char		*var_name;
+	char		*var;
+	t_wordlist	*wordlist;
+
+	var_name = ft_strjoin(list->name, "=");
+	if (check_readonly_var(var_name, ft_strlen(var_name)))
+		return ;
+	wordlist = list->wordlist;
+	while (wordlist)
 	{
-		traverse_compound_list(list->if_body, env, local);
+		var = ft_strjoin(var_name, wordlist->word);
+		set_var(var, &g_var, 0);
+		ft_strdel(&var);
+		traverse_compound_list(list->do_group, local);
+		wordlist = wordlist->next;
 	}
-	else if (list->else_part)
-		traverse_else_part(list->else_part, env, local);
 }
