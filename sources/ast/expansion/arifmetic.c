@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 20:36:55 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/25 22:19:09 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char		*arifmetic_exp(char *str)
 	rez = 0;
 	str[ft_strlen(str) - 2] = '\0';
 	lex = arifmetic_lexer(str);
+	g_error_arifmetic = NULL;
 	g_lex_arif = lex;
 	if (lex)
 		rez = expr();
