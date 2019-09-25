@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/25 22:57:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/25 23:08:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,14 @@ static void		loop_buffer(t_line *line, char keybuf[KEYBUF_SIZE])
 	}
 }
 
-int				vi_input_loop(t_line *line)
+int				vi_input_loop(t_line *line, char keybuf[KEYBUF_SIZE])
 {
-	char	keybuf[KEYBUF_SIZE];
 	int		ret;
 
 	ft_bzero(keybuf, KEYBUF_SIZE);
 	while ((ret = read(g_opt.rl_in, keybuf, KEYBUF_SIZE - 1)) > 0)
 	{
-		if (*keybuf == CTRL_D && line->str->len == 0)
+		if (*keybuf == CTRL_C || (*keybuf == CTRL_D && line->str->len == 0))
 			return (0);
 		if (is_ansiseq(keybuf))
 		{

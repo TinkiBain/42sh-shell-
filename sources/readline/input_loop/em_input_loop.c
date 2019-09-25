@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 15:15:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/25 22:56:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/25 23:08:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,14 @@ static void		perform_action(t_line *line)
 	}
 }
 
-int				em_input_loop(t_line *line)
+int				em_input_loop(t_line *line, char keybuf[KEYBUF_SIZE])
 {
-	char	keybuf[KEYBUF_SIZE];
 	int		ret;
 
 	ft_bzero(keybuf, KEYBUF_SIZE);
 	while ((ret = read(g_opt.rl_in, keybuf, 1)) > 0 && *keybuf != NL)
 	{
-		if (*keybuf == CTRL_D && line->str->len == 0)
+		if (*keybuf == CTRL_C || (*keybuf == CTRL_D && line->str->len == 0))
 			return (0);
 		if (*keybuf == ESC)
 		{
@@ -85,8 +84,6 @@ int				em_input_loop(t_line *line)
 		line->keybuf = str_xcopy(keybuf);
 		perform_action(line);
 		loginfo_line(line);
-		if (*keybuf == CTRL_C)
-			return (0);
 		str_delete(&line->keybuf);
 		ft_bzero(keybuf, KEYBUF_SIZE);
 	}
