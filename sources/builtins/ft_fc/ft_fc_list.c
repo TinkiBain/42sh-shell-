@@ -6,120 +6,105 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:39:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/21 20:05:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/26 22:03:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fc.h"
 
-int		ft_abs(int n);
-
-/*
-static void	list(int first, int last, t_cmd_opt opt)
+static int		ft_fc_is_asc(t_dlist *p_first, t_dlist *p_last)
 {
-	t_dlist	*p;
+	t_dlist		*p;
+
+	p = p_first;
+	while (p->next)
+	{
+		if (p == p_last)
+			return (1);
+		p = p->next;
+	}
+	return (0);
+}
+
+static int		get_start(t_dlist *p_first)
+{
+	t_dlist *p;
 	int		i;
 
 	p = g_history->item;
-	while (p->prev)
-		p = p->prev;
+	ft_dlst2start(&p);
 	i = g_history->start_index;
-	while (p->next)
+	while (p != p_first)
 	{
-		if (i >= first && i <= last)
-		{
-			if (opt.n)
-				ft_printf("\t%s\n", ((t_string *)p->content)->s);
-			else
-				ft_printf("%d\t%s\n", i, ((t_string *)p->content)->s);
-		}
 		i++;
 		p = p->next;
 	}
+	return (i);
 }
 
-void		get_first_last(int *first, int *last)
+void			ft_fc_list_get_first_last(const char **argv, t_dlist **pp_first,
+											t_dlist **pp_last, int *asc)
 {
-	*first = g_history->start_index + g_history->size - 17;
-	*last = g_history->start_index + g_history->size - 1;
-}
-
-*/
-
-static t_dlist	*ft_fc_find_arg_number(char *str, int check_start)
-{
-	t_dlist	*p;
-	int		n;
-	int		i;
-
-	n = ft_atoi(str);
-	n = (n == 0 ? -1 : n);
-	p = g_history->item;
-	i = 1;
-	while (n < 0 ? p->next : p->prev)
-		p = (n < 0 ? p->next : p->prev);
-	while (n < 0 ? p->prev : p->next)
+	if (!pp_first || !pp_last)
+		return ;
+	if (argv[g_optind] && argv[g_optind + 1])
 	{
-		if (i == ft_abs(n))
-			return (p);
-		i++;
-		p = (n < 0 ? p->prev : p->next);
+		*pp_first = ft_fc_find_arg(argv[g_optind]);
+		*pp_last = ft_fc_find_arg(argv[g_optind + 1]);
 	}
-	if (check_start)
-		return (n < 0 ? NULL : p);
-	return (p);
-}
-
-static t_dlist	*ft_fc_find_arg_string(char *str)
-{
-	t_dlist	*p;
-
-	p = g_history->item;
-	ft_dlst2end(&p);
-	while (p->prev)
+	else if (argv[g_optind])
 	{
-		if (ft_strnequ(((t_string *)p->content)->s, str, len))
-			return (p);
-		p = p->prev;
+		*pp_first = ft_fc_find_arg(argv[g_optind]);
+		*pp_last = ft_fc_find_arg_number("-2", 0);
 	}
-	return (NULL);
-}
-
-t_dlist			*ft_fc_find_arg(char *str)
-{
-	t_dlist *p;
-
-	if (ft_isdigit(*str || *str == '+' || *str == '-'))
-		p = ft_fc_find_arg_number(str, 1);
 	else
-		p = ft_fc_find_arg_string(str);
-	if (!p)
-		print_error("history specification out of range", "fc");
-	return (p);
+	{
+		*pp_first = ft_fc_find_arg_number("-17", 0);
+		*pp_last = ft_fc_find_arg_number("-2", 0);
+	}
+	*asc = ft_fc_is_asc(*pp_first, *pp_last);
+}
+
+t_vector		ft_fc_build_vector(const char **argv, int *start)
+{
+	t_vector	vec;
+	t_dlist		*p_first;
+	t_dlist		*p_last;
+	int			asc;
+
+	vec = vec_create(0, sizeof(t_string));
+	ft_fc_list_get_first_last(argv, &p_first, &p_last, &asc);
+	*start = get_start(p_first);
+	*start = (asc ? *start : *start * -1);
+	if (!p_first || !p_last)
+		return (vec);
+	while (p_first && p_first != p_last)
+	{
+		vec_addback(&vec, p_first->content);
+		p_first = (asc ? p_first->next : p_first->prev);
+	}
+	if (p_first == p_last)
+		vec_addback(&vec, p_first->content);
+	return (vec);
 }
 
 void			ft_fc_list(const char **argv, t_cmd_opt opt)
 {
-	t_dlist *p_first;
-	t_dlist *p_last;
+	t_vector	vec;
+	int			i;
+	t_string	*s;
+	int			start;
 
-	if (argv[g_optind] && argv[g_optind + 1])
+	vec = ft_fc_build_vector(argv, &start);
+	i = 0;
+	while ((s = vec_get(vec, i))) /* TODO: indices not shifted by start_index :( */
 	{
-		p_first = ft_fc_find_arg(argv[g_optind]);
-		p_last = ft_fc_find_arg(argv[g_optind]);
+		if (opt.n)
+			ft_printf("\t%s\n", s->s);
+		else
+			ft_printf("%d\t%s\n", ft_abs(start), s->s);
+		i++;
+		start++;
 	}
-	else if (argv[g_optind])
-	{
-		p_first = ft_fc_find_arg(argv[g_optind]);
-		p_last = ft_fc_find_arg_number("-1", 0);
-	}
-	else
-	{
-		p_first = ft_fc_find_arg_number("-17", 0);
-		p_last = ft_fc_find_arg_number("-1", 0);
-	}
-	// TODO: build array from first to last and show it
-	
-	get_first_last(&first, &last);
-	list(first, last, opt);
+	ft_memdel(&vec.v);
 }

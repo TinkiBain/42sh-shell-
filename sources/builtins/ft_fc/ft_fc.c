@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/21 20:06:10 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/26 19:46:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	run_fc(const char **argv, t_cmd_opt opt)
 {
 	if (opt.l)
 		ft_fc_list(argv, opt);
-	else if (opt.
 }
 
 int			ft_fc(const char **argv)

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 13:08:26 by gmelisan          #+#    #+#              #
-#    Updated: 2019/09/20 21:06:20 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/09/26 21:18:30 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS_BUILTIN_TEST=\
 	ft_isupper.c
 
 SRCS_BUILTIN_FC=\
-	ft_fc.c		ft_fc_list.c
+	ft_fc.c		ft_fc_list.c	ft_fc_find_arg.c
 
 SRCS_BUILTIN_CD=\
 	ft_cd.c		change_dir.c
