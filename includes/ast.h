@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 20:33:00 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 20:41:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ int		traverse_redirect_list(t_redirect_list *list);
 void	traverse_compound_command(t_compound_cmd *cmd, t_pjobs *local);
 void	traverse_compound_list(t_compound_list *list, t_pjobs *local);
 void	traverse_function_definition(t_func_definition *func, int in_fork);
+void	traverse_case_clause(t_case_clause *list, t_pjobs *local);
+void	traverse_for_clause(t_for_clause *list, t_pjobs *local);
 void	traverse_if_clause(t_if_clause *list, t_pjobs *local);
 void	traverse_while_clause(t_while_clause *list, t_pjobs *local);
-void	traverse_for_clause(t_for_clause *list, t_pjobs *local);
+void	traverse_until_clause(t_while_clause *list, t_pjobs *local);
 
 #endif

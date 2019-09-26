@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/24 19:51:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 21:58:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void			traverse_ast(t_complete_cmd *root)
 {
 	if (!root)
 		return ;
+	signal_monitor();
 	g_res_exec = 0;
 	root->list->sep = root->sep;
 	traverse_list(root->list, root->sep);
