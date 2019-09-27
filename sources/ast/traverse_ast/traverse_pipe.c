@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 20:58:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 22:38:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 
 	redir_set();
 	// str = get_process_name(cmd);
-	traverse_redirections(cmd);
+	if (traverse_redirections(cmd) == -1)
+	{
+		redir_reset();
+		return ;
+	}
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)
@@ -46,7 +50,11 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local)
 
 	redir_set();
 	// str = get_process_name(pipe_seq->command);
-	traverse_redirections(pipe_seq->command);
+	if (traverse_redirections(pipe_seq->command) == -1)
+	{
+		redir_reset();
+		return ;
+	}
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid = fork()) == 0)

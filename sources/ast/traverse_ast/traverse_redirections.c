@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:47:46 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 17:24:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 22:37:18 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int			traverse_redirections(t_command *cmd)
 		redir_set();
 		return (traverse_redirect_list(cmd->redirect_list));
 	}
-	return (-1);
+	return (0);
 }

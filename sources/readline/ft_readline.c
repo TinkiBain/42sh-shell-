@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 21:59:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/25 23:13:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 t_line			*g_line;
 extern t_opt	g_opt;
+extern int		g_eof;
 
 static void	sig_init(void)
 {
@@ -61,6 +62,8 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 	if (clear_flag)
 		str_delete(&line->result);
 	ft_lstdel(&(line->undo), del_undo_one);
+	if (!g_eof && g_opt.rl_gnl == 0)
+		ft_putstr("\n");
 }
 
 /*
@@ -70,7 +73,6 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 
 char		*ft_readline(char *prompt, enum e_rl_mode mode)
 {
-	extern int		g_eof;
 	extern int		g_line_num;
 	t_line			line;
 	int				ret;
@@ -90,6 +92,6 @@ char		*ft_readline(char *prompt, enum e_rl_mode mode)
 	clear_linebuf();
 	clear_line(&line, ret, &g_history);
 	term_restore();
-	loginfo("Readline returned \"%s\"", line.result.s);
+	loginfo("Readline returned \'%s\', g_eof = %d", line.result.s, g_eof);
 	return (line.result.s);
 }

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/27 19:29:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:53:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void		main_loop(void)
 			clear_sem();
 			continue ;
 		}
-		ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
 		execute_line(line);
 		clear_sem();
 	}
