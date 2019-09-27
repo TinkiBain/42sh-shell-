@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 17:49:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/27 17:28:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void		main_loop(void)
 		init_sem();
 		if (!(line = ft_readline((g_opt.rl_gnl == 0 ?
 							get_var_value("PS1") : ""), RL_DEFAULT)))
+		{
+			clear_sem();
 			continue ;
+		}
 		ft_putstr(g_opt.rl_gnl == 0 ? "\n" : "");
 		execute_line(line);
 		clear_sem();

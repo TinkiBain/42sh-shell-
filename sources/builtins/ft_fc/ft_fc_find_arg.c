@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 20:34:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/26 21:17:12 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/27 15:50:30 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern int		ft_abs(int n);
 
-t_dlist			*ft_fc_find_arg_number(const char *str, int check_start)
+t_dlist			*ft_fc_find_arg_number(const char *str)
 {
 	t_dlist	*p;
 	int		n;
@@ -23,7 +23,7 @@ t_dlist			*ft_fc_find_arg_number(const char *str, int check_start)
 	n = ft_atoi(str);
 	n = (n == 0 ? -1 : n);
 	p = g_history->item;
-	i = 1;
+	i = (n > 0 ? g_history->start_index : 0);
 	while (n < 0 ? p->next : p->prev)
 		p = (n < 0 ? p->next : p->prev);
 	while (n < 0 ? p->prev : p->next)
@@ -33,9 +33,9 @@ t_dlist			*ft_fc_find_arg_number(const char *str, int check_start)
 		i++;
 		p = (n < 0 ? p->prev : p->next);
 	}
-	if (check_start)
-		return (n < 0 ? NULL : p);
-	return (p);
+	if (n < g_history->start_index)
+		return (NULL);
+	return (p->prev);
 }
 
 static t_dlist	*ft_fc_find_arg_string(const char *str)
@@ -60,10 +60,8 @@ t_dlist			*ft_fc_find_arg(const char *str)
 	t_dlist *p;
 
 	if (ft_isdigit(*str) || *str == '+' || *str == '-')
-		p = ft_fc_find_arg_number(str, 0);
+		p = ft_fc_find_arg_number(str);
 	else
 		p = ft_fc_find_arg_string(str);
-	if (!p)
-		print_error("history specification out of range", "fc");
 	return (p);
 }
