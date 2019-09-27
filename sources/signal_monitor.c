@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals_hendler.c                                  :+:      :+:    :+:   */
+/*   signal_monitor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/23 16:59:47 by jterry           ###   ########.fr       */
+/*   Created: 2019/09/27 19:06:18 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/27 19:07:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	signals(int signo)
 	if (signo == SIGTSTP)
 		write(1, "\n", 0);
 	if (signo == SIGPIPE)
-		ft_printf ("Phiv\n");
+		ft_printf("Phiv\n");	/* ?? */
 }
 
 void		signal_monitor(void)

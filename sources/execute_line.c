@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_ast.c                                         :+:      :+:    :+:   */
+/*   execute_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 01:39:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 19:33:09 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/09/27 19:00:12 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/27 19:30:48 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_complete_cmd		*exec_ast(char *buf, t_lex **lex)
+char				*g_buf;
+
+static t_complete_cmd	*exec_ast(char *buf, t_lex **lex)
 {
 	t_complete_cmd	*list;
 	extern char		*g_buf;
@@ -38,4 +40,23 @@ t_complete_cmd		*exec_ast(char *buf, t_lex **lex)
 	}
 	free(g_buf);
 	return (list);
+}
+
+void					execute_line(char *line)
+{
+	t_complete_cmd	*list;
+	t_lex			*lex;
+	char			*tmp;
+
+	if (*(tmp = ft_xstrtrim(line)))
+	{
+		list = exec_ast(line, &lex);
+		if (list)
+			traverse_ast(list);
+		parser_free(list);
+		lexer_free_all(lex);
+	}
+	else
+		ft_strdel(&line);
+	ft_strdel(&tmp);
 }

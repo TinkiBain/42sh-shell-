@@ -6,13 +6,11 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 20:34:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/27 15:50:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/27 18:48:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fc.h"
-
-extern int		ft_abs(int n);
 
 t_dlist			*ft_fc_find_arg_number(const char *str)
 {
@@ -33,9 +31,9 @@ t_dlist			*ft_fc_find_arg_number(const char *str)
 		i++;
 		p = (n < 0 ? p->prev : p->next);
 	}
-	if (n < g_history->start_index)
+	if (n > 0 && n < g_history->start_index)
 		return (NULL);
-	return (p->prev);
+	return (p);
 }
 
 static t_dlist	*ft_fc_find_arg_string(const char *str)

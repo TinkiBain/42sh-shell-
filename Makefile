@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/23 13:54:21 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/27 19:09:58 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ SRCS_WITHOUT_DIR=\
 	main.c\
 	shell_init.c\
 	shell_clear.c\
-	exec_ast.c\
-	signals_hendler.c\
+	execute_line.c\
+	signal_monitor.c\
 	sem.c
 
 JOBS_DIR=jobs
@@ -84,7 +84,7 @@ XFUNCS_DIR=xfuncs
 
 SRCS_XFUNCS=\
 	ft_xstrdup.c	 ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
-	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c
+	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c
 
 ERROR_DIR=error
 

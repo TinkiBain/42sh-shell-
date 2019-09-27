@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 16:13:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/27 18:15:03 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/27 19:15:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int		ft_fc_reexec(const char **argv, t_cmd_opt opt)
 		exec_str = replace_if_need(replace, (t_string *)item->content);
 		ft_putendl(exec_str);
 		execute_line(exec_str);
-		ft_strdel(&exec_str);
 	}
 	if (opt.s)
 		return (res);
