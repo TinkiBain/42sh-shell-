@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:13:39 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/23 20:48:19 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/28 21:22:09 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void		ft_while(char *s1, char *s2, int *ij, int *j)
 {
+	int i;
+	int ji;
+
+	ji = 0;
+	i = 0;
 	while (ij >= 0 && *j >= 0)
 	{
+		if (i == 0)
+			i = *ij;
 		if (s1[*ij] != s2[*j])
 		{
 			if (s2[*j] == '*')
@@ -25,11 +32,19 @@ void		ft_while(char *s1, char *s2, int *ij, int *j)
 			}
 			if (s2[*j + 1] == '*')
 			{
+				ji = *j;
 				*ij -= 1;
+				i = *ij;
 				continue ;
 			}
-			*j = ft_strlen(s2) - 1;
-			break ;
+			if (ji == 0 && i == 0)
+			{
+				*j = ft_strlen(s2) - 1;
+				break ;
+			}
+			*j = ji;
+			*ij = i;
+			i = 0;
 		}
 		*ij -= 1;
 		*j -= 1;
@@ -48,6 +63,8 @@ int			back_smaller_eq(char *s1, char *s2)
 		return (0);
 	while (i != 0 && j != 0)
 	{
+		if (s1[i] != s2[j] && s2[j] != '*')
+			return (-1);
 		if (s1[i] == s2[j] || s2[j] == '*')
 		{
 			ij = i;
