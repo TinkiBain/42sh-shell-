@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/23 18:13:51 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/25 20:56:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,26 @@ static char         *freed_proc_value(char *bud, char *value, int len, int flag)
 		return(ft_strndup(bud, len));
 }
 
-static char         *back_deleter(char *bud, char *value, int flag)
+static char 		*value_rep(char *value)
 {
-	int len;
 	int i;
 
 	i = 0;
-	len = 0;
-
 	value = ft_strdup(value);
 	while (value[i] != '}')
 		i++;
 	value[i] = '\0';
 	value = tdq(value);
+	return (value);
+}
+
+static char         *back_deleter(char *bud, char *value, int flag)
+{
+	int len;
+
+	len = 0;
+
+	value = value_rep(value);
 	if (*value == '\0')
 		return (ft_strdup(bud));
 	if (flag == 0)
@@ -50,6 +57,41 @@ static char         *back_deleter(char *bud, char *value, int flag)
 	}
 }
 
+static char         *forward_deleter(char *bud, char *value, int flag)
+{
+	int len;
+	char *tmp;
+	int i;
+
+	i = 0;
+	len = 0;
+	value = value_rep(value);
+	if (*value == '\0')
+		return (ft_strdup(bud));
+	if (flag == 0)
+	{
+		if ((len = forward_smaller_eq(bud, value)) < 0)
+			return (freed_proc_value(bud, value, 0, 1));
+		tmp = malloc(sizeof(char) * (ft_strlen(bud) - len + 1));
+		while (bud[len])
+		{
+			tmp[i] = bud[len];
+			i++;
+			len++;
+		}
+		tmp[i] = '\0';
+		//free(bud);
+		return(freed_proc_value(tmp, value, len, 0));
+	}
+	return(bud);
+	/*else
+	{
+		if ((len = forward_bigest_eq(bud, value)) < 0)
+			return (freed_proc_value(bud, value, 0, 1));
+		return(freed_proc_value(bud, value, len, 0));
+	}*/
+}
+
 static char        *brace_handler_plus(char *buf, char *str)
 {
 	int i;
@@ -57,8 +99,12 @@ static char        *brace_handler_plus(char *buf, char *str)
 	i = 1;
 	if (*str == '%' && *(str + 1) == '%')
 		return (back_deleter(buf, str + 2, 1));
-	if (*str == '%')
+	else if (*str == '%')
 		return (back_deleter(buf, str + 1, 0));
+	else if (*str == '#' && *(str + 1) == '#')
+		return (forward_deleter(buf, str + 2, 1));
+	else if (*str == '#')
+		return (forward_deleter(buf, str + 1, 0));
 
 	return(ft_strdup(buf));
 }
