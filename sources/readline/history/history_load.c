@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/08 09:39:28 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/28 20:27:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	history_open(t_history *history)
 	history->max_size = s_max ? ft_atoi(s_max) + 1 : 0;
 	ft_strdel(&s_max);
 	if (history->path)
-		fd = open(history->path, O_RDONLY | O_CREAT, S_IRWXU);
+		fd = open(history->path, O_RDONLY, S_IRWXU);
 	if (fd < 0)
 		loginfo("Can't open history file: %s", history->path);
 	return (fd);

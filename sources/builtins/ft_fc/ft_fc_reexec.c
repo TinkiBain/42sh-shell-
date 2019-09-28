@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 16:13:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/27 19:15:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/28 20:30:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,28 @@ static char	*replace_if_need(const char *arg, t_string *str)
 	return (result.s);		
 }
 
-int		ft_fc_reexec(const char **argv, t_cmd_opt opt)
+static int	execute(const char *replace, t_dlist *item)
+{
+	char		*exec_str;
+	t_string	*item_str;
+
+	exec_str = replace_if_need(replace, (t_string *)item->content);
+	ft_dlst2end(&item);
+	item_str = (t_string *)item->content;
+	str_remove(item_str, 0, item_str->len);
+	str_addback(item_str, exec_str, ft_strlen(exec_str));
+	ft_putendl(exec_str);
+	ft_getopt_clear();
+	// fork ?
+	execute_line(exec_str);
+	return (g_res_exec);
+}
+
+int			ft_fc_reexec(const char **argv)
 {
 	t_dlist		*item;
-	char		*exec_str;
 	const char	*replace;
-	int			res;
 
-	res = 0;
 	replace = NULL;
 	if (ft_strchr(argv[g_optind], '='))
 	{
@@ -67,19 +81,13 @@ int		ft_fc_reexec(const char **argv, t_cmd_opt opt)
 		g_optind++;
 	}
 	if (argv[g_optind])
-	{
-		if (!(item = ft_fc_find_arg(argv[g_optind])))
-			print_error("no command found", "fc");
-	}
+		item = ft_fc_find_arg(argv[g_optind]);
 	else
 		item = ft_fc_find_arg_number("-1");
-	if (item)
+	if (!item)
 	{
-		exec_str = replace_if_need(replace, (t_string *)item->content);
-		ft_putendl(exec_str);
-		execute_line(exec_str);
+		print_error("no command found", "fc");
+		return (1);
 	}
-	if (opt.s)
-		return (res);
-	return (res);
+	return (execute(replace, item));
 }
