@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 21:58:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/29 18:38:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 			set_result();
 		}
 	}
-	else
-		return ;
 	flag = elem->and_or_if;
 }
 
