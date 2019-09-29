@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 16:48:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/29 21:07:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	traverse_cmd_pref(t_cmd_prefix *pref, t_vector *prefix_vars)
 	}
 }
 
-static void	traverse_cmd_suf(t_cmd_suffix	*suff, t_vector *av)
+static void	traverse_cmd_suf(t_cmd_suffix *suff, t_vector *av)
 {
 	while (suff)
 	{

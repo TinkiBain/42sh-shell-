@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   back_bigest_eq.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 20:10:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/25 19:55:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/29 20:53:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int				back_bigest_eq(char *s1, char *s2)
 		{
 			ij = i;
 			ft_while(s1, s2, &ij, &j);
-			while(s2[j] == '*')
+			while (s2[j] == '*')
 				j++;
 			if (!s1[ij] && !s2[j])
 				return (i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_hendler_plus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/22 21:22:27 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/29 20:54:25 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ char		*buf_finder(char *tmp)
 	return (buf);
 }
 
-static char		*next_char_check(char *str, int *j)
+static char	*next_char_check(char *str, int *j)
 {
 	if (*str && *str == '$')
 		return (ft_strdup(ft_itoa(getpid())));
 	else if (*str && *str == '{')
-		return(brace_handler(str + 1, j));
+		return (brace_handler(str + 1, j));
 	else
 		return (NULL);
 }

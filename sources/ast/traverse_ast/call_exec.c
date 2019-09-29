@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/29 19:54:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:51:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,30 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	return (0);
 }
 
+static int		call_if_other_builtin(const char **av, int ac)
+{
+	if (ft_strequ(*av, "fc"))
+	{
+		redir_reset();
+		return (ft_fc(av, ac));
+	}
+	else if (ft_strequ(*av, "jobs"))
+		return (jobs(g_pjobs, -1, *(av + 1)));
+	else if (ft_strequ(*av, "fg"))
+		return (ft_fg(g_pjobs, *(av + 1)));
+	else if (ft_strequ(*av, "bg"))
+		return (ft_bg(g_pjobs, *(av + 1)));
+	else if (ft_strequ(*av, "kill"))
+		return (ft_kill(av + 1, g_pjobs, 15));
+	else if (ft_strequ(*av, "alias"))
+		return (ft_alias(av + 1));
+	else if (ft_strequ(*av, "unalias"))
+		return (ft_unalias(av + 1));
+	else if (ft_strequ(*av, "test"))
+		return (ft_test((char **)av + 1));
+	return (0);
+}
+
 static int		call_if_builtin(const char **av, int ac)
 {
 	if (**av == '%')
@@ -54,28 +78,9 @@ static int		call_if_builtin(const char **av, int ac)
 		return (ft_hash((char **)av));
 	else if (ft_strequ(*av, "type"))
 		return (ft_type(av + 1));
-	else if (ft_strequ(*av, "fc"))
-	{
-		redir_reset();
-		return (ft_fc(av, ac));
-	}
 	else if (ft_strequ(*av, "export"))
 		return (ft_export(av + 1));
-	else if (ft_strequ(*av, "jobs"))
-		return (jobs(g_pjobs, -1, *(av + 1)));
-	else if (ft_strequ(*av, "fg"))
-		return (ft_fg(g_pjobs, *(av + 1)));
-	else if (ft_strequ(*av, "bg"))
-		return (ft_bg(g_pjobs, *(av + 1)));
-	else if (ft_strequ(*av, "kill"))
-		return (ft_kill(av + 1, g_pjobs, 15));
-	else if (ft_strequ(*av, "alias"))
-		return (ft_alias(av + 1));
-	else if (ft_strequ(*av, "unalias"))
-		return (ft_unalias(av + 1));
-	else if (ft_strequ(*av, "test"))
-		return (ft_test((char **)av + 1));
-	return (0);
+	return (call_if_other_builtin(av, ac));
 }
 
 int				call_exec(const char **av, int ac)

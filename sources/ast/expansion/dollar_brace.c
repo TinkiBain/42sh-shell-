@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_brace.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/25 20:56:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/29 20:57:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static char         *freed_proc_value(char *bud, char *value, int len, int flag)
+static char			*freed_proc_value(char *bud, char *value, int len, int flag)
 {
 	free(value);
 	if (flag == 1)
@@ -34,7 +34,7 @@ static char 		*value_rep(char *value)
 	return (value);
 }
 
-static char         *back_deleter(char *bud, char *value, int flag)
+static char			*back_deleter(char *bud, char *value, int flag)
 {
 	int len;
 
@@ -57,7 +57,7 @@ static char         *back_deleter(char *bud, char *value, int flag)
 	}
 }
 
-static char         *forward_deleter(char *bud, char *value, int flag)
+static char			*forward_deleter(char *bud, char *value, int flag)
 {
 	int len;
 	char *tmp;
@@ -92,7 +92,7 @@ static char         *forward_deleter(char *bud, char *value, int flag)
 	}*/
 }
 
-static char        *brace_handler_plus(char *buf, char *str)
+static char			*brace_handler_plus(char *buf, char *str)
 {
 	int i;
 
@@ -109,7 +109,7 @@ static char        *brace_handler_plus(char *buf, char *str)
 	return(ft_strdup(buf));
 }
 
-char		*brace_handler(char *str, int *j)
+char				*brace_handler(char *str, int *j)
 {
 	int		len;
 	int		i;
