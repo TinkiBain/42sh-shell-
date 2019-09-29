@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 14:27:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:39:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/29 13:22:32 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,5 @@ long				ft_strtol(const char *str, char **endptr, int base)
 	check_cut_off(nums, base, cp);
 	if (endptr != 0)
 		*endptr = ((char*)cp - 1);
-	return (nums[NUM]);
+	return (nums[ACC]); //Why not NUM?
 }
