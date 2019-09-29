@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/23 17:13:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/29 13:08:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		ft_set(const char **av);
 int		ft_type(const char **av);
 int		ft_unset(const char **av);
 int		ft_fc(const char **av, int ac);
+int		ft_test(char **argv);
 
 #endif
