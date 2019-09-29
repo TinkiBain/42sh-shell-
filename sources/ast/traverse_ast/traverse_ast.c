@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/29 18:38:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/29 18:57:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ static void		traverse_list(t_pars_list *list, int sep)
 	{
 		sub_job_name = get_job_name(list->lex_begin, list->lex_end);
 		call_subshell(sub_job_name, local);
-		// execute_line(sub_job_name);
-		// call_subshell(sub_job_name, local);
 	}
 	else
 		traverse_and_or(list->and_or, 0, local);
