@@ -6,14 +6,14 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 21:55:04 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/03 23:05:31 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/29 15:06:05 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libft.a
 
 CC=clang
-FLAGS=-Wall -Wextra -Werror
+FLAGS=-Wall -Wextra -Werror -MMD
 FLAGS+=-g
 
 RED=\033[0;31m
@@ -46,7 +46,7 @@ $(NAME): $(LIBFT_OBJS_SUBDIRS) $(LIBFT_OBJS)
 $(LIBFT_OBJS_SUBDIRS):
 	@mkdir -p $@
 
-$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_SRCS_DIR)/%.c $(LIBFT_HEADERS)
+$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_SRCS_DIR)/%.c# $(LIBFT_HEADERS)
 	@$(CC) $(FLAGS) $(LIBFT_INCLUDES) -c $< -o $@
 
 clean:

@@ -6,14 +6,14 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/27 19:09:58 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/29 15:14:38 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=42sh
 
 CC=clang
-FLAGS=-Wall -Wextra -Werror
+FLAGS=-Wall -Wextra -Werror -MMD
 FLAGS+=-g
 
 INCLUDES:=\
@@ -27,10 +27,10 @@ SH_INCLUDES=\
 	hash.h		lexer.h			parser.h		sh.h\
 	xfuncs.h	lib_wtalea.h	error.h			sem.h
 
-HEADER=\
-	$(addprefix includes/, $(SH_INCLUDES))\
-	$(addprefix includes/readline/, $(READLINE_INCLUDES))\
-	$(addprefix includes/builtins/, $(BUILTINS_INCLUDES))\
+# HEADER=\
+# 	$(addprefix includes/, $(SH_INCLUDES))\
+# 	$(addprefix includes/readline/, $(READLINE_INCLUDES))\
+# 	$(addprefix includes/builtins/, $(BUILTINS_INCLUDES))\
 
 SRCS_DIR=sources
 OBJS_DIR=objects
@@ -152,7 +152,7 @@ $(LIBFT_A):
 $(LIBFT_DIR)/$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_DIR)/$(LIBFT_SRCS_DIR)/%.c
 	@make -C $(LIBFT_DIR)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c# $(HEADER)
 	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
 
 $(OBJS_SUBDIRS):
