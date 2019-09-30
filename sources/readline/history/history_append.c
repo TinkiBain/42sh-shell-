@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/28 20:23:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/30 22:51:24 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ static void	push(t_history *history, t_string *str, int split_nl)
 void		history_append(t_history *history, t_string *str,
 						 enum e_rl_mode mode, int split_nl)
 {
+	extern t_opt	g_opt;
+
+	if (!g_opt.history)
+		return ;
 	if (mode == RL_APPEND)
 		history_join_last(history, str);
 	else if (mode == RL_HEREDOC)
