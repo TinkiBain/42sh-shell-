@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/29 21:24:24 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/30 20:47:24 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SRCS_TRAVERSE_AST=\
 	get_job_name.c\
 	get_process_name.c\
 	is_builtin.c\
-	push_back_av.c\
 	traverse_ast.c\
 	traverse_pipe.c\
 	traverse_pipe_sequence.c\

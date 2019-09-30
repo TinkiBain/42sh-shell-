@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/29 15:14:38 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/09/30 22:30:55 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,6 @@ CREATE_BUILTINS_SUBDIRS=$(addprefix $(OBJS_DIR)/$(BUILTINS_DIR)/, $(BUILTINS_SUB
 OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(AST_DIR)\
 	$(CREATE_AST_SUBDIRS)\
-	$(OBJS_DIR)/$(BUILTIN_DIR)\
 	$(OBJS_DIR)/$(READLINE_DIR)\
 	$(CREATE_READLINE_SUBDIRS)\
 	$(OBJS_DIR)/$(HASH_DIR)\
