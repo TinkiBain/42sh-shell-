@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 20:30:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 23:13:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:52:15 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void				parser_new_line_list(void)
 	{
 		tmp = g_lex;
 		g_lex = g_lex->next;
-		if (!g_end_parsing)
+		if (!g_end_parsing && !g_lex)
 		{
 			buf = parser_call_back_readline(1);
 			if (!buf)
