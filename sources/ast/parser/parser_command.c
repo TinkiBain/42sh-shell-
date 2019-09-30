@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:18:15 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 22:07:46 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/30 17:49:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static t_command	*parser_init_command(void)
 	list->simple_command = NULL;
 	list->compound_command = NULL;
 	list->function_definition = NULL;
+	list->redirect_list = NULL;
 	return (list);
 }
 

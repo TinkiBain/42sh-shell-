@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:47:46 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 22:37:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/30 17:51:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	traverse_redirections_in_simple_cmd(t_simple_cmd *cmd)
 	t_cmd_suffix	*suff;
 	int				res;
 
+	res = 0;
 	pref = cmd->cmd_pref;
 	while (pref)
 	{
