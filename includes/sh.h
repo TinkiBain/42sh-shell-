@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/27 19:06:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/30 15:25:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_opt
 	t_uint		emacs_mode;
 	t_uint		enable_color;
 	t_uint		noclobber;
+	t_uint		history;
 	t_uint		rl_in;
 	t_uint		rl_out;
 	t_uint		rl_gnl;

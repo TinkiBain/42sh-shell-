@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 20:42:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/30 15:23:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void			fill_options(int rl_in)
 	g_opt.enable_color = 1;
 	g_opt.noclobber = 1;
 	g_opt.vi_mode = 0;
+	g_opt.history = 1;
 	g_opt.emacs_mode = (rl_in == 0 ? 1 : 0);
 	g_opt.rl_in = rl_in;
 	g_opt.rl_out = STDERR;
