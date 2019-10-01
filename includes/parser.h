@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:45:35 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/01 21:18:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ typedef struct		s_compound_cmd
 	t_while_clause		*while_clause;
 	t_while_clause		*until_clause;
 	t_case_clause		*case_clause;
+	t_lex				*begin_lex;
+	t_lex				*end_lex;
 }					t_compound_cmd;
 
 typedef struct		s_command
@@ -159,6 +161,7 @@ typedef struct		s_redirect_list
 {
 	struct s_redirect_list	*next;
 	t_io_redirect			*io_redirect;
+	t_lex					*end_lex;
 }					t_redirect_list;
 
 typedef struct		s_pipe_sequence
