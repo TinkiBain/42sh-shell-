@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/21 19:05:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 22:18:02 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define SUSPINT 5503
 # define SUSPOUT 5759
 # define SUSPCHLD 4735
+# define SUSTOP 4479
 
 typedef struct		s_job
 {
@@ -63,5 +64,11 @@ int					find_highnum(t_pjobs *local);
 int					ft_waitpid(pid_t pid);
 int					pipe_av(t_job *job);
 int					pid_fredy();
+
+char				*core_dump_signals(int st, char *name);
+char				*ignored_signals(int st, char *name);
+char				*terminal_signals(int st, char *name);
+char				*stop_signals(int st, char *name);
+char				*that_sig(int st, char *name);
 
 #endif

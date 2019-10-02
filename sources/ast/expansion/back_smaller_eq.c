@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:13:39 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 16:26:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 17:07:12 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ void		ft_while(char *s1, char *s2, int *ij, int *j)
 		{
 			if (s2[*j] == '*')
 			{
-				printf ("asdf\n");
 				(*j) -= 1;
 				continue ;
 			}
 			if (s2[*j + 1] == '*')
 			{
-				printf ("asdfasdf\n");
-
 				ji = *j;
 				*ij -= 1;
 				i = *ij;
@@ -60,14 +57,12 @@ int			back_smaller_eq(char *s1, char *s2)
 	int j;
 	int ij;
 
-	printf ("%s %s\n", s1 ,s2);
 	i = ft_strlen(s1) - 1;
 	j = ft_strlen(s2) - 1;
 	if (j == 0 && s2[j] == '*')
 		return (0);
 	while (i >= 0 && j >= 0)
 	{
-		printf ("%c %c\n", s1[i] ,s2[j]);
 		if (s1[i] != s2[j] && s2[j] != '*')
 			return (-1);
 		if (s1[i] == s2[j] || s2[j] == '*')

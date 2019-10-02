@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/02 17:24:04 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/02 21:19:26 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,17 +56,24 @@ SRCS_WITHOUT_DIR=\
 	shell_init.c\
 	shell_clear.c\
 	execute_line.c\
-	signal_monitor.c\
 	sem.c
 
 JOBS_DIR=jobs
 
+SIG_DIR=signals
+
 SRCS_JOBS=\
 	jobs.c					jobs_helper.c\
 	jobs_list_hendler.c		jobs_list_sub.c\
-	jobs_sig_hendler.c		fgbg_helper.c\
+	ft_waitpid.c			fgbg_helper.c\
 	jobs_last_elem.c		jobs_list_counter.c\
-	jobs_start_file.c		ft_waitpid.c
+	jobs_start_file.c
+
+SRCS_SIG=\
+	kind_of_sig.c 			sig_hendler.c\
+	signal_monitor.c
+
+
 
 VAR_DIR=variables
 
@@ -100,6 +107,7 @@ SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))\
 	$(addprefix $(ERROR_DIR)/, $(SRCS_ERROR))\
 	$(addprefix $(BUILTINS_DIR)/, $(SRCS_BUILTINS))\
+	$(addprefix $(SIG_DIR)/, $(SRCS_SIG))\
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
@@ -129,6 +137,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
 	$(OBJS_DIR)/$(VAR_DIR)\
 	$(OBJS_DIR)/$(JOBS_DIR)\
+	$(OBJS_DIR)/$(SIG_DIR)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)\
 	$(OBJS_DIR)/$(ERROR_DIR)\
 	$(OBJS_DIR)/$(BUILTINS_DIR)\

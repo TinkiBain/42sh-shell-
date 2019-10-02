@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_brace.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/29 20:57:00 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:53:51 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,22 @@ static char			*forward_deleter(char *bud, char *value, int flag)
 		//free(bud);
 		return(freed_proc_value(tmp, value, len, 0));
 	}
-	return(bud);
-	/*else
+	else
 	{
 		if ((len = forward_bigest_eq(bud, value)) < 0)
 			return (freed_proc_value(bud, value, 0, 1));
-		return(freed_proc_value(bud, value, len, 0));
-	}*/
+		tmp = malloc(sizeof(char) * (ft_strlen(bud) - len + 1));
+		while (bud[len])
+		{
+			tmp[i] = bud[len];
+			i++;
+			len++;
+		}
+		tmp[i] = '\0';
+		//free(bud);
+		return(freed_proc_value(tmp, value, len, 0));
+	}
+	return(bud);
 }
 
 static char			*brace_handler_plus(char *buf, char *str)

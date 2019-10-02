@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/28 20:14:22 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/02 21:45:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ extern int		g_eof;
 static void	sig_init(void)
 {
 	signal(SIGINT, sigh_ignore);
-	signal(SIGSEGV, sigh_sigsegv);
-	signal(SIGABRT, sigh_sigabrt);
-	signal(SIGWINCH, sigh_sigwinch);
-	signal(SIGTERM, sigh_sigterm);
+	// signal(SIGSEGV, sigh_sigsegv);
+	// signal(SIGABRT, sigh_sigabrt);
+	// signal(SIGWINCH, sigh_sigwinch);
+	// signal(SIGTERM, sigh_sigterm);
 }
 
 static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)

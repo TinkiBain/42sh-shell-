@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/28 20:40:27 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 16:58:51 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ static void		modular_conversion(char *word, char **str, int l, int *j)
 		(*str) = ft_strrejoin((*str), word, 1);
 	if (residue)
 		(*str) = ft_strrejoin((*str), residue, 3);
-	*j = l + ft_strlen(word) - 1;
 	if (word)
+	{
+		*j = l + ft_strlen(word) - 1;
 		free(word);
+	}
 }
 
 void			dollar(int *j, char **str)
@@ -47,7 +49,7 @@ void			dollar(int *j, char **str)
 	int		l;
 
 	l = *j;
-	if (!(word = ft_dollar_word(&(*str)[(*j) + 1], -1, j)))
+	if (!(word = ft_dollar_word(&(*str)[(*j) + 1], -1, j)) && !(str[*j]))
 	{
 		word_not_found(str, j, l);
 		return ;

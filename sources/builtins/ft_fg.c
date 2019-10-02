@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/21 15:26:27 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 19:22:19 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int			ft_fg(t_pjobs *local_job, const char *name)
 		return (fg_null_error(name));
 	free(local->status);
 	local->status = ft_xstrdup(" running\t\t");
-	tcsetpgrp(0, local->workgpid);
 	job = local->job;
+	tcsetpgrp(0, job->pid);
 	while (local->job)
 	{
 		free(local->job->status);

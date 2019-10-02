@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/30 20:47:24 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/02 17:54:31 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,8 @@ SRCS_AST_EXPANSION=\
 	dollar_hendler_plus.c\
 	back_bigest_eq.c\
 	back_smaller_eq.c\
-	forward_smaller_eq.c
+	forward_smaller_eq.c\
+	forward_bigest_eq.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c
