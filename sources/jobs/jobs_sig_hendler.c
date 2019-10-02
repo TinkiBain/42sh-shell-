@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   jobs_sig_hendler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/23 17:00:31 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 17:23:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,6 @@ void				jobs_sig(void)
 	g_wait_flags = done_pid;
 	if (WIFEXITED(g_res_exec))
 		g_res_exec = WEXITSTATUS(g_res_exec);
-	set_result();
 	if (st == SUSPCHLD)
 	{
 		sig_per_stop(done_pid, NULL);

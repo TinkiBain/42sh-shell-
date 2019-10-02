@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/29 18:57:54 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:42:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 	{
 		traverse_pipe_sequence(elem->pipeline->pipe_sequence, local);
 		if (elem->pipeline->bang)
-		{
 			g_res_exec = (!g_res_exec) ? 1 : 0;
-			set_result();
-		}
 	}
 	flag = elem->and_or_if;
 }

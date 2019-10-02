@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 13:54:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:24:08 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int		remove_var(const char *av, char ***env);
 int		replace_var(const char *var, char **env, size_t len, int flag);
 void	print_vars(int show_shell_vars);
 int		print_var_names(void);
-void	set_result(void);
 int		set_var(const char *var, char ***env, int change_readonly);
 int		set_var_in_g_var(const char **av);
 void	set_var_shellopts(void);

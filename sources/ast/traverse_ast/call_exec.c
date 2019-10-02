@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/29 20:51:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/02 17:24:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int				call_exec(const char **av, int ac)
 	if ((res = is_builtin(*av)) == 1)
 	{
 		g_res_exec = call_if_builtin(av, ac);
-		set_result();
 		return (g_res_exec);
 	}
 	else
