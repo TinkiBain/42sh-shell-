@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expr_get_var_value.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 20:10:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 17:06:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 22:10:49 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ size_t			expr_get_var_value(void)
 	if (!*var)
 	{
 		g_lex_arif = g_lex_arif->next;
-		return (atoll(begin));
+		if (*begin && *(begin + 1) == 'x')
+			return (expr_atoll(begin, 16));
+		return (expr_atoll(begin, 10));
 	}
 	g_error_arifmetic = g_lex_arif;
 	return (0);

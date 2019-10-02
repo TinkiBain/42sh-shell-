@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 20:48:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 22:09:49 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define EOF_AR			37
 # define EXCLUSIVE_OR	38
 # define LOGICAL_NOT	39
+# define UNAR_PLUS		40
 
 t_lex		*g_error_arifmetic;
 t_lex		*g_lex_arif;
@@ -93,6 +94,7 @@ size_t		expr_get_var_value(void);
 size_t		expr_return_value(void);
 size_t		expr_digit(void);
 size_t		expr_bracket(void);
+size_t		expr_atoll(char *str, int base);
 
 /*
 size_t		expr(void);

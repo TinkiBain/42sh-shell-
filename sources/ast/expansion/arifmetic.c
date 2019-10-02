@@ -6,13 +6,13 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 18:03:02 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 22:11:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-void		arifmetic_error(char *str, t_lex *begin)
+void			arifmetic_error(char *str, t_lex *begin)
 {
 	ft_putstr_fd(g_project_name, 2);
 	ft_putstr_fd(": ", 2);
@@ -40,16 +40,46 @@ void		arifmetic_error(char *str, t_lex *begin)
 	ft_putendl_fd("\")", 2);
 }	
 
-size_t		expr_digit(void)
+size_t			expr_atoll(char *str, int base)
+{
+	size_t		rez;
+
+	if (!str)
+		return (0);
+	rez = 0;
+	if (base == 16)
+	{
+		if (*str == '0' || *(str + 1))
+			str += 2;
+		else
+			return (0);
+	}
+	while (*str)
+	{
+		if (base == 16 && *str >= 'A' && *str <= 'F')
+			rez = rez * 16 + (*str - 50);
+		else if (base == 16 && (*str >= 'a' && *str <= 'f'))
+			rez = rez * 16 + (*str - 82);
+		else
+			rez = rez * base + (*str - '0');
+		++str;
+	}
+	return (rez);
+}
+
+size_t			expr_digit(void)
 {
 	size_t	value;
 
-	value = atoll(g_lex_arif->lexem);
+	if (*(g_lex_arif->lexem + 1) == 'x')
+		value = expr_atoll(g_lex_arif->lexem, 16);
+	else
+		value = expr_atoll(g_lex_arif->lexem, 10);
 	g_lex_arif = g_lex_arif->next;
 	return (value);
 }
 
-char		*arifmetic_exp(char *str)
+char			*arifmetic_exp(char *str)
 {
 	size_t	rez;
 	t_lex	*lex;
