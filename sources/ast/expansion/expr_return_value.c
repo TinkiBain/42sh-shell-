@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expr_unar_op.c                                     :+:      :+:    :+:   */
+/*   expr_return_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/24 20:52:26 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 20:23:29 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/10/01 17:30:17 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/10/01 19:18:05 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_unar_op(void)
+size_t		expr_return_value(void)
 {
-	if (g_lex_arif && (g_lex_arif->type == PLUS || g_lex_arif->type == MINUS))
+	size_t	return_value;
+
+	if (!g_lex_arif || (g_lex_arif->type != DIGIT && g_lex_arif->type != VAR))
 	{
-		if (g_lex_arif->type == MINUS)
-		{
-			g_lex_arif = g_lex_arif->next;
-			return (expr_logical_op() * -1);
-		}
-		else
-		{
-			g_lex_arif = g_lex_arif->next;
-			return (expr_logical_op());
-		}
+		init_lex(EOF_AR, NULL, &g_error_arifmetic);
+		return (0);
 	}
-	return (expr_suffix());
+	return_value = 0;
+	if (g_lex_arif->type == DIGIT)
+		return_value = expr_digit();
+	else
+		return_value = expr_get_var_value();
+	return (return_value);
 }

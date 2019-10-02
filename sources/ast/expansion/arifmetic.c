@@ -6,11 +6,39 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 22:19:09 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 18:03:02 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
+
+void		arifmetic_error(char *str, t_lex *begin)
+{
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(str, 2);
+	if (g_error_arifmetic->type == DIVISION_NULL)
+		ft_putstr_fd(": division by 0 ", 2);
+	else if (g_error_arifmetic->type >= 3 && g_error_arifmetic->type <= 12)
+		ft_putstr_fd(": attempted assignment to non-variable ", 2); 
+	else
+		ft_putstr_fd(": syntax error: operand expected ", 2);
+	ft_putstr_fd("(error token is \"", 2);
+	if (!g_lex_arif)
+	{
+		while (begin->next)
+			begin = begin->next;
+		ft_putstr_fd(begin->lexem, 2);
+	}
+	while (g_lex_arif)
+	{
+		ft_putstr_fd(g_lex_arif->lexem, 2);
+		if (g_lex_arif->next)
+			ft_putstr_fd(" ", 2);
+		g_lex_arif = g_lex_arif->next;
+	}
+	ft_putendl_fd("\")", 2);
+}	
 
 size_t		expr_digit(void)
 {
@@ -29,13 +57,17 @@ char		*arifmetic_exp(char *str)
 	str += 3;
 	rez = 0;
 	str[ft_strlen(str) - 2] = '\0';
+	str = ft_strtrim(str);
 	lex = arifmetic_lexer(str);
 	g_error_arifmetic = NULL;
 	g_lex_arif = lex;
 	if (lex)
 		rez = expr();
+	if (g_lex_arif && !g_error_arifmetic)
+		g_error_arifmetic = g_lex_arif;
 	if (g_error_arifmetic)
-		printf("%d\n", g_error_arifmetic->type);
+		arifmetic_error(str, lex);
 	lexer_free_all(lex);
+	free(str);
 	return (ft_itoa_base(rez, 10));
 }

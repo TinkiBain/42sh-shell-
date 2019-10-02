@@ -6,37 +6,11 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 16:34:43 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 20:34:38 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/01 17:07:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
-
-size_t		expr_check_type(size_t var_value, int type, size_t value)
-{
-	if (g_error_arifmetic)
-		return (0);
-	if (type == ASSIGNMENT)
-		return (value);
-	else if (type == ADD_ASSIGNMENT)
-		return (var_value + value);
-	else if (type == MIN_ASSIGNMENT)
-		return (var_value - value);
-	else if (type == MUL_ASSIGNMENT)
-		return (var_value * value);
-	else if (type == DIV_ASSIGNMENT)
-		return (var_value / value); // проверка деления на ноль
-	else if (type == MOD_ASSIGNMENT)
-		return (var_value % value); // проверка деление на ноль
-	else if (type == DLS_ASSIGNMENT)
-		return (var_value << value);
-	else if (type == DGR_ASSIGNMENT)
-		return (var_value >> value);
-	else if (type == AND_ASSIGNMENT)
-		return (var_value & value);
-	else
-		return (var_value | value);
-}
 
 size_t		expr(void)
 {

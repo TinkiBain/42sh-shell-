@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 17:35:08 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 21:18:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 16:46:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char		*arifmetic_lexer_check_suffix(char *str, t_lex **lex, char c)
 	{
 		str += 2;
 		if (c == '+')
-			init_lex(SUFFIX_ADD, NULL, lex);
+			init_lex(SUFFIX_ADD, ft_strdup("++"), lex);
 		else
-			init_lex(SUFFIX_MIN, NULL, lex);
+			init_lex(SUFFIX_MIN, ft_strdup("--"), lex);
 	}
 	return (str);
 }

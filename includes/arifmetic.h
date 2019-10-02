@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 22:23:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/01 20:48:57 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@
 # define RBRACKET_ARIF	35
 # define DIVISION_NULL	36
 # define EOF_AR			37
+# define EXCLUSIVE_OR	38
+# define LOGICAL_NOT	39
 
 t_lex		*g_error_arifmetic;
 t_lex		*g_lex_arif;
@@ -72,6 +74,27 @@ char		*arifmetic_lexer_check_token(char *str, t_lex **lex);
 char		*arifmetic_lexer_var(char *str, t_lex **lex);
 char		*arifmetic_lexer_digit(char *str, t_lex **lex);
 char		*arifmetic_exp(char *str);
+
+size_t		expr(void);
+size_t		expr_or(void);
+size_t		expr_and(void);
+size_t		expr_logic_or(void);
+size_t		expr_exclusive_or(void);
+size_t		expr_logic_and(void);
+size_t		expr_equal(void);
+size_t		expr_relat_op(void);
+size_t		expr_shift(void);
+size_t		expr_additive(void);
+size_t		expr_multiplicativ(void);
+size_t		expr_prefix(void);
+size_t		expr_suffix(void);
+size_t		expr_unar(void);
+size_t		expr_get_var_value(void);
+size_t		expr_return_value(void);
+size_t		expr_digit(void);
+size_t		expr_bracket(void);
+
+/*
 size_t		expr(void);
 size_t		expr_logical_op(void);
 size_t		expr_equal(void);
@@ -80,12 +103,13 @@ size_t		expr_shift_bits(void);
 size_t		expr_arifmetic(void);
 size_t		expr_arifmetic_mul(void);
 size_t		expr_check_div_null(size_t right_value, size_t left_value, int op);
-size_t		expr_prefix(void);
+size_t		xpr_prefix(void);
 size_t		expr_unar_op(void);
 size_t		expr_suffix(void);
 size_t		expr_bracket(void);
 size_t		expr_check_var(void);
 size_t		expr_get_var_value(void);
 size_t		expr_digit(void);
+*/
 
 #endif

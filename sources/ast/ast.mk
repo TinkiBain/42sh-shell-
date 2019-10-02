@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/25 22:23:23 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/01 19:59:59 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,19 +87,37 @@ SRCS_AST_EXPANSION=\
 	arifmetic_lexer_check_token.c\
 	arifmetic_lexer_simple_operations.c\
 	arifmetic_lexer_logical_op.c\
-	arifmetic_expr.c\
-	expr_logical_op.c\
+	expr.c\
+	expr_or.c\
+	expr_and.c\
+	expr_logic_or.c\
+	expr_exclusive_or.c\
+	expr_logic_and.c\
 	expr_equal.c\
-	expr_less_great.c\
-	expr_shift_bits.c\
-	expr_arifmetic.c\
-	expr_arifmetic_mul.c\
-	expr_prefix.c\
-	expr_get_var_value.c\
-	expr_unar_op.c\
+	expr_relat_op.c\
+	expr_shift.c\
+	expr_multiplicativ.c\
+	expr_additive.c\
 	expr_suffix.c\
-	expr_check_var.c\
+	expr_prefix.c\
+	expr_unar.c\
+	expr_get_var_value.c\
+	expr_return_value.c\
 	expr_bracket.c
+
+#	arifmetic_expr.c\
+#	expr_logical_op.c\
+#	expr_equal.c\
+#	expr_less_great.c\
+#	expr_shift_bits.c\
+#	expr_arifmetic.c\
+#	expr_arifmetic_mul.c\
+#	expr_prefix.c\
+#	expr_get_var_value.c\
+#	expr_unar_op.c\
+#	expr_suffix.c\
+#	expr_check_var.c\
+#	expr_bracket.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c

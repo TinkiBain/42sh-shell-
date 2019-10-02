@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 19:43:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/25 20:58:23 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/01 19:17:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t		expr_prefix(void)
 	size_t		var_value;
 	char		*var;
 	int			type;
-
+	
 	if (g_lex_arif && (g_lex_arif->type == PREFIX_ADD
 				|| g_lex_arif->type == PREFIX_MIN))
 	{
@@ -40,5 +40,5 @@ size_t		expr_prefix(void)
 		free(var);
 		return (var_value);
 	}
-	return (expr_unar_op());
+	return (expr_unar());
 }
