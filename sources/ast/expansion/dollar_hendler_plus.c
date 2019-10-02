@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 16:33:48 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 16:44:06 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@ static char	*next_char_check(char *str, int *j)
 	if (*str && *str == '$')
 		return (ft_strdup(ft_itoa(getpid())));
 	else if (*str && *str == '{')
-		return (brace_handler(str + 1, j));
+	{
+		if (str[1] && str[1] == '$')
+			return (ft_strdup(ft_itoa(getpid())));
+		else if (str[1] && str[1] == '?')
+			return (ft_strdup(ft_itoa(g_res_exec)));
+		else
+			return (brace_handler(str + 1, j));
+	}
 	else if (*str && *str == '?')
 		return (ft_strdup(ft_itoa(g_res_exec)));
 	else
