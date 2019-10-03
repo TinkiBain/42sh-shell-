@@ -12,7 +12,7 @@
 
 #include "sh.h"
 
-void		zero_hendler(const char *str, int *j)
+void		zero_handler(const char *str, int *j)
 {
 	t_uchar	c;
 	int		i;
@@ -36,7 +36,7 @@ void		zero_hendler(const char *str, int *j)
 	write(1, &c, 1);
 }
 
-int			echo_hendler(const char *command, int *j)
+int			echo_handler(const char *command, int *j)
 {
 	*j += 1;
 	if (command[*j] == 'a')
@@ -56,7 +56,7 @@ int			echo_hendler(const char *command, int *j)
 	else if (command[*j] == 'c')
 		return (0);
 	else if (command[*j] == '0')
-		zero_hendler(command, j);
+		zero_handler(command, j);
 	else if (command[*j] == '\\')
 		return (-1);
 	else
@@ -84,7 +84,7 @@ static int	ft_writer_contr(const char **command, int i, int l, int j)
 		if (command[i][j] == '\\')
 		{
 			if (command[i][j + 1])
-				l = echo_hendler(command[i], &j);
+				l = echo_handler(command[i], &j);
 			if (l == 0)
 				return (-1);
 			else if ((command[i][j] && command[i][j] == '\\'

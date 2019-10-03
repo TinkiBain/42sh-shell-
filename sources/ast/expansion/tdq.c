@@ -12,7 +12,7 @@
 
 #include "sh.h"
 
-static void		spec_char_hendler(int *i, char *str, int *i_t, char **tmp)
+static void		spec_char_handler(int *i, char *str, int *i_t, char **tmp)
 {
 	(*i) += 1;
 	if (str[*i] == 'n')
@@ -54,7 +54,7 @@ int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 		while (str[++(*i)] != '\"')
 		{
 			if (str[*i] == '\\')
-				spec_char_hendler(i, str, t_i, tmp);
+				spec_char_handler(i, str, t_i, tmp);
 			else
 				(*tmp)[(*t_i)++] = str[*i];
 		}

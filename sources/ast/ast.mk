@@ -84,7 +84,7 @@ SRCS_AST_EXPANSION=\
 	tilda.c\
 	tdq.c\
 	dollar_brace.c\
-	dollar_hendler_plus.c\
+	dollar_handler_plus.c\
 	back_bigest_eq.c\
 	back_smaller_eq.c\
 	forward_smaller_eq.c\

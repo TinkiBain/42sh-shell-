@@ -64,13 +64,13 @@ SIG_DIR=signals
 
 SRCS_JOBS=\
 	jobs.c					jobs_helper.c\
-	jobs_list_hendler.c		jobs_list_sub.c\
+	jobs_list_handler.c		jobs_list_sub.c\
 	ft_waitpid.c			fgbg_helper.c\
 	jobs_last_elem.c		jobs_list_counter.c\
 	jobs_start_file.c
 
 SRCS_SIG=\
-	kind_of_sig.c 			sig_hendler.c\
+	kind_of_sig.c 			sig_handler.c\
 	signal_monitor.c
 
 

@@ -26,7 +26,7 @@ static int		ft_isstrnum(const char *c)
 	return (1);
 }
 
-static void		kill_hendler_proc(const char **cmd, t_pjobs *local_job, int sig)
+static void		kill_handler_proc(const char **cmd, t_pjobs *local_job, int sig)
 {
 	int			num;
 
@@ -47,14 +47,14 @@ static void		kill_hendler_proc(const char **cmd, t_pjobs *local_job, int sig)
 		kill(local_job->job->pid, sig);
 }
 
-static void		kill_hendler(const char **cmd, t_pjobs *local_job,
+static void		kill_handler(const char **cmd, t_pjobs *local_job,
 		int sig, t_pjobs *fir)
 {
 	int			kek;
 
 	if (**cmd == '%')
 	{
-		kill_hendler_proc(cmd, local_job, sig);
+		kill_handler_proc(cmd, local_job, sig);
 		local_job = fir;
 	}
 	else
@@ -70,7 +70,7 @@ static void		kill_hendler(const char **cmd, t_pjobs *local_job,
 	}
 }
 
-static int		ft_sighendler(const char *str)
+static int		ft_sighandler(const char *str)
 {
 	if (!ft_strcmp(str, "SIGCONT"))
 		return (SIGCONT);
@@ -99,7 +99,7 @@ int				ft_kill(const char **cmd, t_pjobs *local_job, int sig)
 	if (*cmd && (*cmd)[0] == '-' && (*cmd)[1] == 's')
 	{
 		cmd++;
-		if ((sig = ft_sighendler(*cmd) > 0))
+		if ((sig = ft_sighandler(*cmd) > 0))
 			cmd++;
 		else
 			sig = SIGSTOP;
@@ -111,7 +111,7 @@ int				ft_kill(const char **cmd, t_pjobs *local_job, int sig)
 	}
 	while (*cmd)
 	{
-		kill_hendler(cmd, local_job, sig, fir);
+		kill_handler(cmd, local_job, sig, fir);
 		cmd++;
 	}
 	return (0);
