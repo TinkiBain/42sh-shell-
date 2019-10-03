@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 22:21:31 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/03 16:24:57 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static char	*parser_find_dollar(char *str)
 	{
 		while (*str)
 		{
+			if (*str == '\'' || *str == '\\' || *str == '"')
+				str = lexer_find_char(str, *str);
 			if (*str == '(')
 				brackets++;
 			else if (*str == ')')

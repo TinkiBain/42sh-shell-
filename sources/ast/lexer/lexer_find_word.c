@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/21 18:54:54 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/03 16:17:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char		*lexer_find_char(char *str, char c)
 				return (str);
 			++str;
 		}
+		else if (*str == '$')
+			str = lexer_find_dollar(str);
 		++str;
 	}
 	return (str);

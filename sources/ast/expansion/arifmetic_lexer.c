@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 17:21:28 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 17:37:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/03 16:37:29 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ char		*arifmetic_lexer_not(char *str, t_lex **lex)
 t_lex		*arifmetic_lexer(char *str)
 {
 	t_lex	*lex;
+	char	*begin;
 
 	lex = NULL;
-	while (*str)
+	while (str && *str)
 	{
-		if (ft_isspace(*str))
-		{
+		begin = str;
+		while (ft_isspace(*str))
 			++str;
-			continue ;
-		}
 		if (ft_isalpha(*str))
 			str = arifmetic_lexer_var(str, &lex);
 		else if (ft_isdigit(*str))
@@ -55,14 +54,12 @@ t_lex		*arifmetic_lexer(char *str)
 			str = arifmetic_lexer_bracket(str, &lex);
 		else if (*str == '!')
 			str = arifmetic_lexer_not(str, &lex);
-//		else if (*str == '?' && ++str)
-//			init_lex(TERN_
 		else
 			str = arifmetic_lexer_check_token(str, &lex);
 	}
-	if (!lex)
-		return (NULL);
-	while (lex->back)
+	if (!str)
+		init_lex(DIGIT, begin, &g_error_arifmetic);
+	while (lex && lex->back)
 		lex = lex->back;
 	return (lex);
 }

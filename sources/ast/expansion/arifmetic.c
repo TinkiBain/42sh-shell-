@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 22:11:04 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/03 16:42:59 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ void			arifmetic_error(char *str, t_lex *begin)
 	}
 	ft_putendl_fd("\")", 2);
 }	
+
+char			*arifmetic_print_lex_error(char *str)
+{
+
+	ft_putstr_fd(g_project_name, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": syntax error: operand expected ", 2);
+	ft_putstr_fd("(error token is \"", 2);
+	ft_putstr_fd(g_error_arifmetic->lexem, 2);
+	ft_putendl_fd("\")", 2);
+	lexer_free_all(g_error_arifmetic);
+	lexer_free_all(g_lex_arif);
+	return (NULL);
+}
 
 size_t			expr_atoll(char *str, int base)
 {
@@ -88,9 +103,11 @@ char			*arifmetic_exp(char *str)
 	rez = 0;
 	str[ft_strlen(str) - 2] = '\0';
 	str = ft_strtrim(str);
-	lex = arifmetic_lexer(str);
 	g_error_arifmetic = NULL;
+	lex = arifmetic_lexer(str);
 	g_lex_arif = lex;
+	if (g_error_arifmetic)
+		return (arifmetic_print_lex_error(str));
 	if (lex)
 		rez = expr();
 	if (g_lex_arif && !g_error_arifmetic)

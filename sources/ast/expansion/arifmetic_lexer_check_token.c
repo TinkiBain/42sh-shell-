@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:20:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 21:12:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/03 16:32:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ char		*arifmetic_lexer_check_token(char *str, t_lex **lex)
 		return (arifmetic_lexer_and(str, lex));
 	else if (*str == '|')
 		return (arifmetic_lexer_or(str, lex));
-	return (str);
+	return (NULL);
 }
