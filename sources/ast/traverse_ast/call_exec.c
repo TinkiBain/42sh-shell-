@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/02 17:24:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/03 17:04:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int		call_if_other_builtin(const char **av, int ac)
 		return (ft_unalias(av + 1));
 	else if (ft_strequ(*av, "test"))
 		return (ft_test((char **)av + 1));
+	else if (ft_strequ(*av, "history"))
+		return (ft_history(av + 1));
 	return (0);
 }
 

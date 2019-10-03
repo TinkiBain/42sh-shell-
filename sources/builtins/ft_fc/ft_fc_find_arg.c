@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/26 20:34:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/27 18:48:10 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/03 16:55:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_dlist			*ft_fc_find_arg_number(const char *str)
 	n = ft_atoi(str);
 	n = (n == 0 ? -1 : n);
 	p = g_history->item;
+	if (n > 0 && n < g_history->start_index)
+		return (NULL);
 	i = (n > 0 ? g_history->start_index : 0);
 	while (n < 0 ? p->next : p->prev)
 		p = (n < 0 ? p->next : p->prev);
@@ -31,9 +33,7 @@ t_dlist			*ft_fc_find_arg_number(const char *str)
 		i++;
 		p = (n < 0 ? p->prev : p->next);
 	}
-	if (n > 0 && n < g_history->start_index)
-		return (NULL);
-	return (p);
+	return (n > 0 ? p->prev : p);
 }
 
 static t_dlist	*ft_fc_find_arg_string(const char *str)

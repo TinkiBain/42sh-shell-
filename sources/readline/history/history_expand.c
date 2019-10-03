@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:54:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/25 22:26:33 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/03 16:35:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ static int		find_len(int n)
 static t_string	*get_hist_n(t_history *history, int n, int *len)
 {
 	t_dlist *p;
-	int		abs_n;
 	int		i;
 
-	abs_n = (n > 0 ? n : -n);
 	*len = find_len(n);
 	p = history->item;
 	while (n > 0 ? p->prev : p->next)
@@ -39,7 +37,7 @@ static t_string	*get_hist_n(t_history *history, int n, int *len)
 		(n < history->start_index)))
 		|| (n < 0 && (-n > history->size)))
 		return (NULL);
-	while (++i < abs_n && p)
+	while (++i < ft_abs(n) && p)
 		p = (n > 0 ? p->next : p->prev);
 	if (p && p != history->item)
 		return ((t_string *)p->content);
