@@ -6,13 +6,50 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/24 15:27:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 22:21:31 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "sh.h"
 #include "arifmetic.h"
+
+static char *parser_strchr(char *str, char c)
+{
+	if (!str)
+		return (str);
+	while (*str)
+	{
+		if (*str == c)
+			return (str);
+		++str;
+	}
+	return (str);
+}
+
+static char	*parser_find_dollar(char *str)
+{
+	int		brackets;
+
+	++str;
+	brackets = 0;
+	if (*str == '{')
+		return (parser_strchr(str, '}'));
+	if (*str == '(')
+	{
+		while (*str)
+		{
+			if (*str == '(')
+				brackets++;
+			else if (*str == ')')
+				brackets--;
+			if (!brackets)
+				return (str);
+			++str;
+		}
+	}
+	return (str);
+}
 
 char		*parser_word_expansion(char *str)
 {
@@ -23,10 +60,14 @@ char		*parser_word_expansion(char *str)
 	begin = str;
 	while (str && *str)
 	{
-		if (*str == '\'' || *str == '`' || *str == '"' || *str == '\\')
+		if (*str == '\'' || *str == '`' || *str == '"' || *str == '\\'
+				|| *str == '$')
 		{
 			c = *str;
-			str = lexer_find_char(str, *str);
+			if (*str == '$')
+				str = parser_find_dollar(str);
+			else
+				str = lexer_find_char(str, *str);
 			if (!*str)
 			{
 				begin = parser_recall_readline(c);
