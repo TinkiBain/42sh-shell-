@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/01 19:59:59 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/05 17:56:04 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,8 @@ SRCS_AST_EXPANSION=\
 	expr_unar.c\
 	expr_get_var_value.c\
 	expr_return_value.c\
-	expr_bracket.c
+	expr_bracket.c\
+	substitution.c
 
 #	arifmetic_expr.c\
 #	expr_logical_op.c\

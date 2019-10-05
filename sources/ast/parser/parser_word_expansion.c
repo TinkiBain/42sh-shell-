@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/03 16:24:57 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/05 19:53:47 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*parser_find_dollar(char *str)
 
 char		*parser_word_expansion(char *str)
 {
-	extern int	g_parser_expanison;
+//	extern int	g_parser_expanison;
 	char		*begin;
 	char		c;
 
@@ -83,10 +83,10 @@ char		*parser_word_expansion(char *str)
 		if (g_error_lex)
 			return (NULL);
 	}
-	if (g_parser_expansion)
-		return (ft_strdup(begin));
-	if (*begin == '$')
-		return (arifmetic_exp(begin));
-	begin = tdq(ft_strdup(begin)); 
-	return (begin);
+//	if (g_parser_expansion)
+//		return (ft_strdup(begin));
+//	if (*begin == '$')
+//		return (arifmetic_exp(begin));
+//	begin = tdq(ft_strdup(begin)); 
+	return (ft_strdup(begin));
 }
