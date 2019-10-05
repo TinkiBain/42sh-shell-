@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/02 17:54:31 by jterry           ###   ########.fr        #
+#    Updated: 2019/10/05 19:57:28 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,32 @@ SRCS_AST_EXPANSION=\
 	back_bigest_eq.c\
 	back_smaller_eq.c\
 	forward_smaller_eq.c\
-	forward_bigest_eq.c
+	forward_bigest_eq.c\
+	arifmetic.c\
+	arifmetic_lexer.c\
+	arifmetic_lexer_var.c\
+	arifmetic_lexer_digit.c\
+	arifmetic_lexer_check_token.c\
+	arifmetic_lexer_simple_operations.c\
+	arifmetic_lexer_logical_op.c\
+	expr.c\
+	expr_or.c\
+	expr_and.c\
+	expr_logic_or.c\
+	expr_exclusive_or.c\
+	expr_logic_and.c\
+	expr_equal.c\
+	expr_relat_op.c\
+	expr_shift.c\
+	expr_multiplicativ.c\
+	expr_additive.c\
+	expr_suffix.c\
+	expr_prefix.c\
+	expr_unar.c\
+	expr_get_var_value.c\
+	expr_return_value.c\
+	expr_bracket.c\
+	substitution.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c

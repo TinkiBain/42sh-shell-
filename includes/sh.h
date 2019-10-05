@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/30 15:25:11 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 20:03:55 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,29 @@
 # include "builtins.h"
 # include "expansion.h"
 
-typedef struct	s_opt
+typedef struct		s_opt
 {
-	t_uint		vi_mode;
-	t_uint		emacs_mode;
-	t_uint		enable_color;
-	t_uint		noclobber;
-	t_uint		history;
-	t_uint		rl_in;
-	t_uint		rl_out;
-	t_uint		rl_gnl;
-}				t_opt;
+	t_uint			vi_mode;
+	t_uint			emacs_mode;
+	t_uint			enable_color;
+	t_uint			noclobber;
+	t_uint			history;
+	t_uint			rl_in;
+	t_uint			rl_out;
+	t_uint			rl_gnl;
+}					t_opt;
 
-typedef struct	s_alias
+typedef struct		s_alias
 {
 	struct s_alias	*next;
 	char			*head;
 	char			*body_alias;
-}				t_alias;
+}					t_alias;
 
-void			signal_monitor();
-void			shell_init(int ac, char **av);
-void			shell_clear(void);
-void			execute_line(char *buf);
+void				signal_monitor();
+void				shell_init(int ac, char **av);
+void				shell_clear(void);
+void				execute_line(char *buf);
+t_complete_cmd		*exec_ast(char *buf, t_lex **lex);
 
 #endif

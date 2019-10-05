@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:00:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/27 19:30:48 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/05 20:02:38 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char				*g_buf;
 
-static t_complete_cmd	*exec_ast(char *buf, t_lex **lex)
+t_complete_cmd		*exec_ast(char *buf, t_lex **lex)
 {
 	t_complete_cmd	*list;
 	extern char		*g_buf;
