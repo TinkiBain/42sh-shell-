@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 22:00:41 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 22:06:44 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/05 20:40:55 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ char	*parser_fname(void)
 		g_error_lex = g_lex;
 		return (NULL);
 	}
-	str = parser_name();
-	if (g_error_lex)
-		g_lex->type = NOT_VALID_ID;
+	str = ft_xstrdup(g_lex->lexem);
+	g_lex = g_lex->next;
+//	str = parser_name();
+//	if (g_error_lex)
+//		g_lex->type = NOT_VALID_ID;
 	return (str);
 }
