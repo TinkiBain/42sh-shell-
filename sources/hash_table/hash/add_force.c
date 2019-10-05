@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 14:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/03 17:39:54 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/05 21:38:09 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void			add_force_builds(void)
 	add_force_build("unalias", NULL);
 	add_force_build("unset", NULL);
 	add_force_build("history", NULL);
+	add_force_build("source", NULL);
 }
