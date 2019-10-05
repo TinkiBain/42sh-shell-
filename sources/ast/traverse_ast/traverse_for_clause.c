@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 20:33:43 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 20:54:18 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
 	wordlist = list->wordlist;
 	while (wordlist)
 	{
+		wordlist->word = tdq(wordlist->word);
 		var = ft_strjoin(var_name, wordlist->word);
 		set_var(var, &g_var, 0);
 		ft_strdel(&var);

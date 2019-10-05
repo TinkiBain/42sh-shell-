@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/23 16:50:11 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:11:01 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_string	format_info(const char *info)
 	return (str);
 }
 
-void		print_error(const char *msg, const char *info)
+void			print_error(const char *msg, const char *info)
 {
 	extern t_opt	g_opt;
 	extern int		g_line_num;
@@ -59,7 +59,7 @@ void		print_error(const char *msg, const char *info)
 	release_sem();
 }
 
-void		print_error_exit(const char *msg, const char *info, const int code)
+void			print_error_exit(const char *msg, const char *info, const int code)
 {
 	print_error(msg, info);
 	logclose();

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/29 21:07:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:17:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	traverse_cmd_pref(t_cmd_prefix *pref, t_vector *prefix_vars)
 	while (pref)
 	{
 		if (pref->assignment_word)
+		{
+			pref->assignment_word = tdq(pref->assignment_word);
 			vec_addback(prefix_vars, &(pref->assignment_word));
+		}
 		pref = pref->cmd_pref;
 	}
 }
@@ -29,7 +32,10 @@ static void	traverse_cmd_suf(t_cmd_suffix *suff, t_vector *av)
 	while (suff)
 	{
 		if (suff->word)
+		{
+			suff->word = tdq(suff->word);
 			vec_addback(av, &(suff->word));
+		}
 		suff = suff->cmd_suf;
 	}
 }
@@ -48,7 +54,10 @@ void		traverse_simple_command(t_simple_cmd *cmd, int in_fork)
 
 	av = vec_create(0, sizeof(char *));
 	if (cmd->cmd_name)
+	{
+		// cmd->cmd_name = tdq(cmd->cmd_name);
 		vec_addback(&av, &(cmd->cmd_name));
+	}
 	prefix_vars = vec_create(0, sizeof(char *));
 	traverse_cmd_pref(cmd->cmd_pref, &prefix_vars);
 	traverse_cmd_suf(cmd->cmd_suf, &av);

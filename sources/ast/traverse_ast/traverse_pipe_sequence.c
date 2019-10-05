@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/02 20:17:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/05 22:26:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 	}
 	if (cmd->simple_command)
 	{
+		cmd->simple_command->cmd_name = tdq(cmd->simple_command->cmd_name);
 		if ((cmd_name = cmd->simple_command->cmd_name))
 		{
 			if (is_builtin(cmd_name))

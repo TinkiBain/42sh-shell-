@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:20:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/01 21:45:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 20:48:39 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ void	traverse_function_definition(t_func_definition *func, t_vector *funcs)
 	t_compound_cmd	*cmd;
 	t_redirect_list	*redir_list;
 	char			*str;
+	char			*tmp;
+	extern char		**g_var;
 
 	cmd = func->function_body->compound_command;
+	str = ft_xstrjoin(func->function_name, "={ ");
 	if ((redir_list = func->function_body->redirect_list))
-		str = get_job_name(cmd->begin_lex, redir_list->end_lex);
+		tmp = get_job_name(cmd->begin_lex, redir_list->end_lex);
 	else
-		str = get_job_name(cmd->begin_lex, cmd->end_lex);
-	printf("BASH_FUNC_%s%%%%=() {  %s\n}\n", func->function_name, str);
-	funcs = vec_addback(funcs, func);
+		tmp = get_job_name(cmd->begin_lex, cmd->end_lex);
+	str = ft_strrejoin(str, tmp, 3);
+	str = ft_strrejoin(str, "\n}", 1);
+	set_var((const char *)str, &g_var, 0);
+	printf("%s\n", str);
+	ft_strdel(&str);
+	funcs = vec_addback(funcs, func->function_name);
 }

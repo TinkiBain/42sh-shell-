@@ -6,16 +6,18 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:15:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/29 20:58:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:03:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "ast.h"
+#include "expansion.h"
 #include <sys/ioctl.h>
 
 int		redirect(t_io_redirect *redir)
 {
+	redir->file_name = tdq(redir->file_name);
 	if (redir->io_number == -2 && !(redir->type == GREATAND))
 		return (redirect_error_range_fd());
 	if (redir->type == LESS)

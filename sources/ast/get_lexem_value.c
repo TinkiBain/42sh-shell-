@@ -6,11 +6,36 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:23:38 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/01 21:22:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:15:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+char	*get_another_value(int type)
+{
+	if (type == CLOBBER)
+		return (">|");
+	else if (type == GREAT)
+		return (">");
+	else if (type == DGREAT)
+		return (">>");
+	else if (type == GREATAND)
+		return (">&");
+	else if (type == LESS)
+		return ("<");
+	else if (type == DLESS)
+		return ("<<");
+	else if (type == TLESS)
+		return ("<<<");
+	else if (type == DLESSDASH)
+		return ("<<-");
+	else if (type == LESSAND)
+		return ("<&");
+	else if (type == LESSGREAT)
+		return ("<>");
+	return ("NOT_VALID_ID");
+}
 
 char	*get_lexem_value(int type)
 {
@@ -38,26 +63,5 @@ char	*get_lexem_value(int type)
 		return ("&>>");
 	else if (type == ANDLESS)
 		return ("&<");
-	else if (type == CLOBBER)
-		return (">|");
-	else if (type == GREAT)
-		return (">");
-	else if (type == DGREAT)
-		return (">>");
-	else if (type == GREATAND)
-		return (">&");
-	else if (type == LESS)
-		return ("<");
-	else if (type == DLESS)
-		return ("<<");
-	else if (type == TLESS)
-		return ("<<<");
-	else if (type == DLESSDASH)
-		return ("<<-");
-	else if (type == LESSAND)
-		return ("<&");
-	else if (type == LESSGREAT)
-		return ("<>");
-	else
-		return ("NOT_VALID_ID");
+	return (get_another_value(type));
 }
