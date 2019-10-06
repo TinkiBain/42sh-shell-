@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:14:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 18:32:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 20:40:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		traverse_command(t_command *cmd, int in_fork, t_pjobs *local)
 	extern t_vector	g_func_defs;
 
 	if (cmd->simple_command)
-		traverse_simple_command(cmd->simple_command, in_fork);
+		traverse_simple_command(cmd->simple_command, in_fork, local);
 	else if (cmd->compound_command)
 	{
 		local->workgpid = 1;

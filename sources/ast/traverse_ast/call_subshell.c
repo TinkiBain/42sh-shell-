@@ -6,13 +6,13 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/25 20:14:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 21:23:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void			call_subshell(char *str, t_pjobs *local)
+int			call_subshell(char *str, t_pjobs *local)
 {
 	pid_t		pid;
 	extern char	**environ;
@@ -29,4 +29,5 @@ void			call_subshell(char *str, t_pjobs *local)
 		ft_printf("[%d] [%d]\n", local->num, pid);
 	else
 		ft_waitpid(pid);
+	return (0);
 }

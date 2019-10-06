@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/05 21:35:20 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:31:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,12 @@ static int		call_if_builtin(const char **av, int ac)
 	return (call_if_other_builtin(av, ac));
 }
 
-int				call_exec(const char **av, int ac)
+int				call_exec(const char **av, int ac, t_pjobs *local)
 {
 	char		*p;
 	int			res;
 	extern char	**g_var;
+	extern char	**g_func_defs;
 
 	if ((res = is_builtin(*av)) == 1)
 	{
@@ -104,7 +105,12 @@ int				call_exec(const char **av, int ac)
 		res = check_cmd(*av);
 	if (res == 0)
 	{
-		if ((p = get_bin((char *)*av)))
+		if ((p = ft_getenv(*av, g_func_defs, ft_strlen(*av))))
+		{
+			call_subshell(ft_xstrdup(p), local);
+			exit(g_res_exec);
+		}
+		else if ((p = get_bin((char *)*av)))
 			return (call_nonbuilin_exec((const char *)p, (char *const *)av));
 		else if (ft_strchr(*av, '/'))
 			return (call_nonbuilin_exec(*av, (char *const *)av));
