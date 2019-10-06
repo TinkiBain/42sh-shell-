@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 19:09:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:08:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 14:52:59 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ static void	parser_print_redirect_error(int type)
 void		parser_print_error(void)
 {
 	if (!g_error_lex)
+		return ;
+	if (g_error_lex->type == ERR_SINT)
 		return ;
 	ft_putstr_fd(g_project_name, 2);
 	if (g_error_lex->type == WORD || g_error_lex->type == IO_NUMBER)
