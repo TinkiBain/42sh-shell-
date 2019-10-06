@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_find_word.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/03 16:17:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/06 15:43:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char		*lexer_find_char(char *str, char c)
 			++str;
 		}
 		else if (*str == '$')
-			str = lexer_find_dollar(str);
+			str = lexer_find_dollar(str + 1);
 		++str;
 	}
 	return (str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_word_expansion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 19:57:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/06 15:37:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static char	*parser_find_dollar(char *str)
 
 	++str;
 	brackets = 0;
+	if (*str != '{' || *str != '(')
+		return (str - 1);
 	if (*str == '{')
 		return (parser_strchr(str, '}'));
 	if (*str == '(')
@@ -87,6 +89,6 @@ char		*parser_word_expansion(char *str)
 //		return (ft_strdup(begin));
 //	if (*begin == '$')
 //		return (arifmetic_exp(begin));
-//	begin = tdq(ft_strdup(begin)); 
+//	begin = tdq(ft_strdup(begin));
 	return (ft_strdup(begin));
 }
