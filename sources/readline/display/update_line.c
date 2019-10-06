@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 19:02:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/25 21:41:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,18 @@ static void		convert_nl(t_buffer *buf, int width)
 	int	add;
 	int from;
 
-	add = 0;
 	i = -1;
-	from = 0;
+	buf->shift_cpos = 0;
 	while (str_get(buf->b, ++i))
 	{
 		if (str_get(buf->b, i) == '\n')
 		{
 			add = (width - (i % width)) - 1;
 			if (buf->cpos > i)
+			{
 				buf->cpos += add;
+				buf->shift_cpos += add;
+			}
 			from = i + 1;
 			shift_escseq(&buf->escseqs, from, add);
 			buf->b.s[i] = ' ';
@@ -87,6 +89,7 @@ static void		build_newbuf(t_buffer *newbuf, t_line *line, int cols)
 		newbuf->b = str_xduplicate(g_buffer.original);
 		newbuf->original = str_xduplicate(g_buffer.original);
 		newbuf->cpos = g_buffer.cpos;
+		newbuf->cpos -= g_buffer.shift_cpos;
 	}
 	else
 	{
@@ -129,7 +132,6 @@ void			update_line(t_line *line, int first)
 	else
 		resize(&newbuf, first);
 	clear_linebuf();
-	/* newbuf.cpos -= newbuf.cpos_shift; */
 	ft_memcpy(&g_buffer, &newbuf, sizeof(t_buffer));
 	term_putstr(g_cap.cur_show);
 }

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 15:21:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:37:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/29 13:57:10 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int		check_argv(char **argv)
 			return (2);
 		}
 	}
-	return (2);
+	return (0);
 }
 
 int				ft_test(char **argv)

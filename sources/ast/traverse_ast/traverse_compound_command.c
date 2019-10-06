@@ -6,22 +6,24 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 19:24:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 15:05:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/29 21:19:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void		traverse_compound_command(t_compound_cmd *cmd, char **env, int in_fork, t_pjobs *local)
+void		traverse_compound_command(t_compound_cmd *cmd, t_pjobs *local)
 {
 	if (cmd->if_clause)
-		traverse_if_clause(cmd->if_clause, env, local);
+		traverse_if_clause(cmd->if_clause, local);
+	else if (cmd->for_clause)
+		traverse_for_clause(cmd->for_clause, local);
 	else if (cmd->while_clause)
-		traverse_while_clause(cmd->while_clause, env, local);
-	// else if (cmd->for_clause)
-	// 	traverse_for_clause(cmd->for_clause);
+		traverse_while_clause(cmd->while_clause, local);
+	else if (cmd->until_clause)
+		traverse_until_clause(cmd->until_clause, local);
+	else if (cmd->case_clause)
+		traverse_case_clause(cmd->case_clause, local);
 	else
-		traverse_compound_list(cmd->compound_list, env, local);
-		// cmd->if_clause
-	(void)in_fork;
+		traverse_compound_list(cmd->compound_list, local);
 }

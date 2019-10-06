@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 15:56:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/02 21:45:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 t_line			*g_line;
 extern t_opt	g_opt;
+extern int		g_eof;
 
 static void	sig_init(void)
 {
 	signal(SIGINT, sigh_ignore);
-	signal(SIGSEGV, sigh_sigsegv);
-	signal(SIGABRT, sigh_sigabrt);
-	signal(SIGWINCH, sigh_sigwinch);
-	signal(SIGTERM, sigh_sigterm);
+	// signal(SIGSEGV, sigh_sigsegv);
+	// signal(SIGABRT, sigh_sigabrt);
+	// signal(SIGWINCH, sigh_sigwinch);
+	// signal(SIGTERM, sigh_sigterm);
 }
 
 static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)
@@ -48,7 +49,8 @@ static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)
 
 static void	clear_line(t_line *line, int clear_flag, t_history **history)
 {
-	history_save(line->history_orig, line->str, line->mode);
+	history_append(line->history_orig, line->str, line->mode,
+					line->action == vi_vi ? 1 : 0);
 	line->result = str_xduplicate(*line->str);
 	history_clear(line->history);
 	*history = line->history_orig;
@@ -60,6 +62,8 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 	if (clear_flag)
 		str_delete(&line->result);
 	ft_lstdel(&(line->undo), del_undo_one);
+	if (!g_eof && g_opt.rl_gnl == 0)
+		ft_putstr("\n");
 }
 
 /*
@@ -69,7 +73,6 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 
 char		*ft_readline(char *prompt, enum e_rl_mode mode)
 {
-	extern int		g_eof;
 	extern int		g_line_num;
 	t_line			line;
 	int				ret;
@@ -89,6 +92,6 @@ char		*ft_readline(char *prompt, enum e_rl_mode mode)
 	clear_linebuf();
 	clear_line(&line, ret, &g_history);
 	term_restore();
-	loginfo("Readline returned \"%s\"", line.result.s);
+	loginfo("Readline returned \'%s\', g_eof = %d", line.result.s, g_eof);
 	return (line.result.s);
 }

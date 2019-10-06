@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 15:56:36 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 21:41:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 19:45:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@
 # define COLOR_PURPLE	"\033[0;35m"
 # define COLOR_CYAN		"\033[0;36m"
 # define COLOR_EOC		"\033[0m"
-
-typedef unsigned char			t_uchar;
-typedef unsigned int			t_uint;
-typedef unsigned long int		t_ulint;
-typedef long long int			t_llint;
-typedef unsigned long long int	t_ullint;
 
 /*
 ** ll, h, l, ll, L

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/05 17:56:04 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/05 19:57:28 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ SRCS_TRAVERSE_AST=\
 	call_subshell.c\
 	check_cmd.c\
 	get_job_name.c\
+	get_process_name.c\
 	is_builtin.c\
-	push_back_av.c\
 	traverse_ast.c\
 	traverse_pipe.c\
 	traverse_pipe_sequence.c\
@@ -56,7 +56,10 @@ SRCS_TRAVERSE_AST=\
 	traverse_compound_list.c\
 	traverse_function_definition.c\
 	traverse_if_clause.c\
-	traverse_while_clause.c
+	traverse_while_clause.c\
+	traverse_until_clause.c\
+	traverse_for_clause.c\
+	traverse_case_clause.c
 
 SRCS_AST_REDIRECT=\
 	redir_add_table.c\
@@ -80,6 +83,12 @@ SRCS_AST_EXPANSION=\
 	dollar.c\
 	tilda.c\
 	tdq.c\
+	dollar_brace.c\
+	dollar_handler_plus.c\
+	back_bigest_eq.c\
+	back_smaller_eq.c\
+	forward_smaller_eq.c\
+	forward_bigest_eq.c\
 	arifmetic.c\
 	arifmetic_lexer.c\
 	arifmetic_lexer_var.c\
@@ -105,20 +114,6 @@ SRCS_AST_EXPANSION=\
 	expr_return_value.c\
 	expr_bracket.c\
 	substitution.c
-
-#	arifmetic_expr.c\
-#	expr_logical_op.c\
-#	expr_equal.c\
-#	expr_less_great.c\
-#	expr_shift_bits.c\
-#	expr_arifmetic.c\
-#	expr_arifmetic_mul.c\
-#	expr_prefix.c\
-#	expr_get_var_value.c\
-#	expr_unar_op.c\
-#	expr_suffix.c\
-#	expr_check_var.c\
-#	expr_bracket.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c

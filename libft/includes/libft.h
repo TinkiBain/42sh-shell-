@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/03 20:39:57 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/27 18:03:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,35 @@
 # include <sys/stat.h>
 # include <stdio.h>
 
-# ifdef __linux__
-#  define uintmax_t      __uintmax_t
-#  define intmax_t       __intmax_t
-#  define O_SYMLINK		0
-#  define F_GETPATH		0
-# endif
-
 typedef unsigned char			t_uchar;
 typedef unsigned int			t_uint;
 typedef unsigned long int		t_ulint;
 typedef long long int			t_llint;
 typedef unsigned long long int	t_ullint;
+
+# ifndef INTMAX_T
+#  ifdef intmax_t
+#   define INTMAX_T		intmax_t
+#  else
+#   define INTMAX_T		t_llint
+#  endif
+# endif
+
+# ifndef UINTMAX_T
+#  ifdef uintmax_t
+#   define UINTMAX_T	uintmax_t
+#  else
+#   define UINTMAX_T	t_ullint
+#  endif
+# endif
+
+# ifndef O_SYMLINK
+#  define O_SYMLINK		0
+# endif
+
+# ifndef F_GETPATH
+#  define F_GETPATH		0
+# endif
 
 void				ft_bzero(void *s, size_t n);
 void				*ft_memalloc(size_t size);
@@ -141,10 +158,14 @@ void				ft_dlstadd(t_dlist **alst, t_dlist *new);
 void				ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
 void				ft_dlstaddback(t_dlist **alst, t_dlist *new);
 size_t				ft_dlstsize(t_dlist *lst);
+void				ft_dlst2start(t_dlist **alst);
+void				ft_dlst2end(t_dlist **alst);
 
 int					ft_printf(const char *format, ...);
 int					ft_vprintf(const char *format, va_list ap);
 int					ft_fdprintf(int fd, const char *format, ...);
 int					ft_vfdprintf(int fd, const char *format, va_list ap);
+
+int					ft_abs(int n);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/21 18:45:23 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/05 20:00:23 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		*cd_error_invalid_flag(char c)
 	return (NULL);
 }
 
-int			change_dir_variable(const char *dir, char ***env)
+int			change_dir_variable(const char *dir)
 {
 	if (!dir)
 	{
@@ -73,7 +73,7 @@ int			change_dir_variable(const char *dir, char ***env)
 		ft_putendl(dir);
 	}
 	dir = ft_strdup(dir);
-	return (change_dir((char *)dir, (char *)dir, 1, env));
+	return (change_dir((char *)dir, (char *)dir, 1));
 }
 
 char		*check_cdpath(const char *curpath)
@@ -104,7 +104,7 @@ char		*check_cdpath(const char *curpath)
 	return (cdpath);
 }
 
-int			ft_cd(const char **av, char ***env)
+int			ft_cd(const char **av)
 {
 	char		*curpath;
 	char		*path;
@@ -116,9 +116,9 @@ int			ft_cd(const char **av, char ***env)
 	if (flag < 0)
 		return (1);
 	if (!tmp || ft_strequ(tmp, "-"))
-		return (change_dir_variable(tmp, env));
+		return (change_dir_variable(tmp));
 	if (*tmp == '/')
-		return (change_dir(ft_strdup(tmp), tmp, flag, env));
+		return (change_dir(ft_strdup(tmp), tmp, flag));
 	path = ft_strdup(get_var_value("PWD"));
 	if (!path)
 		path = ft_strdup(getcwd(NULL, 1024));
@@ -126,10 +126,10 @@ int			ft_cd(const char **av, char ***env)
 	{
 		curpath = ft_strrejoin(path, "/", 1);
 		curpath = ft_strrejoin(curpath, tmp, 1);
-		return (change_dir(curpath, tmp, flag, env));
+		return (change_dir(curpath, tmp, flag));
 	}
 	if ((curpath = check_cdpath(tmp)))
-		return (change_dir(curpath, tmp, flag, env));
+		return (change_dir(curpath, tmp, flag));
 	curpath = ft_strrejoin(path, "/", 1);
-	return (change_dir(ft_strrejoin(curpath, tmp, 1), tmp, flag, env));
+	return (change_dir(ft_strrejoin(curpath, tmp, 1), tmp, flag));
 }

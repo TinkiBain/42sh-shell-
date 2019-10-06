@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/16 17:53:00 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/26 19:18:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "ft_readline.h"
 #include <errno.h>
+extern int	g_eof;
 
 static void	close_fd(int fd[2])
 {
@@ -55,6 +56,8 @@ static void	save_fd(int fd[2])
 	}
 }
 
+extern int	g_eof;
+
 int			redir_dless(t_io_redirect *redir)
 {
 	int				pipefd[2];
@@ -69,8 +72,10 @@ int			redir_dless(t_io_redirect *redir)
 	{
 		str = ft_readline(g_opt.rl_gnl == 0 ?
 							get_var_value("PS2") : "", RL_HEREDOC);
-		ft_putstr_fd(g_opt.rl_gnl == 0 ? "\n" : "", 0);
-		if (!str || ft_strequ(str, redir->file_name))
+		// ft_putstr_fd(g_opt.rl_gnl == 0 ? "\n" : "", 0);
+		if (!str && !g_eof)
+			return (-1);
+		if ((!str || ft_strequ(str, redir->file_name)) && !(g_eof = 0))
 			break ;
 		ft_putstr_fd(str, pipefd[1]);
 		ft_putstr_fd("\n", pipefd[1]);

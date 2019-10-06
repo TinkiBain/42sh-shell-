@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/20 15:07:15 by jterry           ###   ########.fr       */
+/*   Updated: 2019/09/30 21:25:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "parser.h"
 #include "exec.h"
 
-void		preliminary_check_fd(void)
+void				preliminary_check_fd(void)
 {
 	extern t_opt	g_opt;
 
@@ -31,24 +31,25 @@ void		preliminary_check_fd(void)
 	}
 }
 
-static void	fill_options(int rl_in)
+static void			fill_options(int rl_in)
 {
 	extern t_opt	g_opt;
 
 	g_opt.enable_color = 1;
 	g_opt.noclobber = 1;
 	g_opt.vi_mode = 0;
+	g_opt.history = 1;
 	g_opt.emacs_mode = (rl_in == 0 ? 1 : 0);
 	g_opt.rl_in = rl_in;
 	g_opt.rl_out = STDERR;
 }
 
-static int	get_fd(int ac, char **av)
+static int			get_fd(int ac, char **av)
 {
 	extern char		*g_project_name;
 	extern t_opt	g_opt;
-	char	*p;
-	int		fd;
+	char			*p;
+	int				fd;
 
 	p = (av[0]) ? ft_strrchr(av[0], '/') : NULL;
 	g_project_name = ft_xstrdup((p) ? (p + 1) : av[0]);
@@ -69,10 +70,11 @@ static int	get_fd(int ac, char **av)
 	return (0);
 }
 
-void		shell_init(int ac, char **av)
+void				shell_init(int ac, char **av)
 {
 	extern char		**environ;
 	extern t_alias	*g_alias;
+	extern t_vector	g_func_defs;
 	int				fd;
 
 	fd = get_fd(ac, av);
@@ -89,4 +91,5 @@ void		shell_init(int ac, char **av)
 	g_history = ft_xmemalloc(sizeof(t_history));
 	g_history->start_index = 1;
 	history_load(g_history);
+	g_func_defs = vec_create(0, sizeof(char *));
 }

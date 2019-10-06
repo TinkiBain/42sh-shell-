@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 12:31:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 18:45:05 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 16:53:27 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void		zero_hendler(const char *str, int *j)
+void		zero_handler(const char *str, int *j)
 {
 	t_uchar	c;
 	int		i;
@@ -36,7 +36,7 @@ void		zero_hendler(const char *str, int *j)
 	write(1, &c, 1);
 }
 
-int			echo_hendler(const char *command, int *j)
+int			echo_handler(const char *command, int *j)
 {
 	*j += 1;
 	if (command[*j] == 'a')
@@ -56,7 +56,7 @@ int			echo_hendler(const char *command, int *j)
 	else if (command[*j] == 'c')
 		return (0);
 	else if (command[*j] == '0')
-		zero_hendler(command, j);
+		zero_handler(command, j);
 	else if (command[*j] == '\\')
 		return (-1);
 	else
@@ -84,7 +84,7 @@ static int	ft_writer_contr(const char **command, int i, int l, int j)
 		if (command[i][j] == '\\')
 		{
 			if (command[i][j + 1])
-				l = echo_hendler(command[i], &j);
+				l = echo_handler(command[i], &j);
 			if (l == 0)
 				return (-1);
 			else if ((command[i][j] && command[i][j] == '\\'
@@ -110,21 +110,21 @@ int			ft_echo(const char **command)
 	j = 0;
 	flag = 0;
 	if (command[i] == NULL)
-		return (write(1, "\n", 1) > 0 ? 1 : 0);
+		return (write(1, "\n", 1) > 0 ? 0 : 1);
 	if (write(1, command[i], 0))
 	{
 		print_error("echo: ", "write error: Bad file descriptor");
-		return (0);
+		return (1);
 	}
 	while (command[i] && command[i][0] == '-')
 		if ((flag = ft_options_contr(command, &i)) == -1)
 			break ;
 	if (command[i] == NULL)
-		return (1);
+		return (0);
 	while (command[i])
 		if (ft_writer_contr(command, i++, -12, 0) < 0)
 			return (0);
 	if (flag != 1)
 		write(1, "\n", 1);
-	return (1);
+	return (0);
 }

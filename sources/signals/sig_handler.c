@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   jobs_sig_hendler.c                                 :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/20 20:46:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/02 22:20:44 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 static void			def_kill_or_done(t_job *first, int sig)
 {
-	//if (!first->next)
-	//{
-		if (sig == SIGKILL || sig == SIGTERM)
-			ft_printf("[%d]\tTerminated\t%s\n", first->num, first->name);
-		else
-			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
-		if (g_pjobs->workgpid == 0 || !(first->next))
-			deletejob(&g_pjobs, first->num);
-	//}
+	char *msg;
+
+	if ((msg = that_sig(sig, g_pjobs->name)))
+		ft_printf("[%d]\t%s\n", first->num, msg);
+	else
+		ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
+	if (g_pjobs->workgpid == 0 || !(first->next))
+		deletejob(&g_pjobs, first->num);
 	else
 	{
 		free(first->status);
@@ -30,29 +29,29 @@ static void			def_kill_or_done(t_job *first, int sig)
 	}
 }
 
-static void			sigstop(void)
+static void			sigstop(char *msg)
 {
 	t_pjobs			*first;
 	t_job			*job;
 
 	job = NULL;
 	setpgid(g_subjob->job->pid, 0);
-	ft_printf("\n42sh: suspended %s\n", g_subjob->name);
-	first = subjob_changer(g_subjob->name, &g_pjobs, 0);
+	ft_printf("\n42sh: %s %s\n", msg, g_subjob->name);
+	first = subjob_changer(ft_xstrdup(g_subjob->name), &g_pjobs, 0);
 	first->job = g_subjob->job;
 	g_subjob->job = NULL;
 	free(first->status);
-	first->status = ft_xstrdup(" suspended\t");
+	first->status = ft_xstrdup(msg);
 	job = first->job;
 	while (job)
 	{
 		free(job->status);
-		job->status = ft_xstrdup(" suspended\t");
+		job->status = ft_xstrdup(msg);
 		job = job->next;
 	}
 }
 
-static void			sig_per_stop(int done_pid, t_job *job)
+static void			sig_per_stop(int done_pid, t_job *job, char *msg)
 {
 	t_pjobs			*first;
 
@@ -62,15 +61,14 @@ static void			sig_per_stop(int done_pid, t_job *job)
 		if ((pid_checl(done_pid, first->job)))
 		{
 			job = first->job;
-			if (ft_strcmp(job->status, " suspended\t"))
-				ft_printf("\n42sh: suspended %s\n",
-				jobs_find_num(first, job->num)->name);
+			if (ft_strcmp(job->status, msg))
+				ft_printf("\n42sh: %s %s\n", msg, jobs_find_num(first, job->num)->name);
 			free (first->status);
-			first->status = ft_xstrdup(" suspended\t");
+			first->status = ft_xstrdup(msg);
 			while (job)
 			{
 				free (job->status);
-				job->status = ft_xstrdup(" suspended\t");
+				job->status = ft_xstrdup(msg);
 				job = job->next;
 			}
 			break ;
@@ -80,15 +78,16 @@ static void			sig_per_stop(int done_pid, t_job *job)
 	while (job)
 	{
 		free(job->status);
-		job->status = ft_xstrdup(" suspended\t");
+		job->status = ft_xstrdup(msg);
 		job = job->next;
 	}
 	if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
-		sigstop();
+		sigstop(msg);
 		if (g_subjob->workgpid == 0)
 			deletejob(&g_subjob, g_subjob->num);
 	}
+	free(msg);
 }
 
 static void			pjobs_sig(int sig, int done_pid)
@@ -115,30 +114,74 @@ static void			pjobs_sig(int sig, int done_pid)
 	}
 }
 
+void g(int f)
+{
+	int i;
+
+	i = 0;
+	if (g_pipe_pid)
+	{
+		while (g_pipe_pid[i] != 0)
+		{
+			if (g_pipe_pid[i] ==  f)
+			{
+				g_pipe_pid[i] = -1;
+				return ;
+			}
+			i++;
+		}
+	}
+}
+
+int taa(void)
+{
+	int i;
+
+	i = 0;
+	if (g_pipe_pid)
+	{
+		while (g_pipe_pid[i] != 0)
+		{
+			if (g_pipe_pid[i] != -1)
+				return (-1);
+			i++;
+		}
+	}
+	return (1);
+}
+
 void				jobs_sig(void)
 {
 	pid_t			done_pid;
-	int				sig;
+	int				st;
 	t_job			*job;
+	char			*msg;
 
+	msg = NULL;
 	job = NULL;
-	sig = 0;
-	done_pid = waitpid(-1, &sig, WUNTRACED);
-	g_res_exec = sig;
+	st = 0;
+	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
+	//ft_putnbr_fd(done_pid,2);
+	//printf("waitpid %d\n", done_pid);
+	if (g_pipe_pid)
+		g(done_pid);
+	g_res_exec = st;
 	g_wait_flags = done_pid;
+	//printf ("%d %d %d %d\n", WTERMSIG(st), st, WIFSTOPPED(st), WSTOPSIG(st));
 	if (WIFEXITED(g_res_exec))
 		g_res_exec = WEXITSTATUS(g_res_exec);
-	set_result();
-	if (sig == SUSPCHLD)
+	if (WIFSTOPPED(st))
 	{
-		sig_per_stop(done_pid, NULL);
+		sig_per_stop(done_pid, NULL, ft_strdup("  suspended\t"));
 		return ;
 	}
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
-		if (g_subjob->workgpid == 0)
+		if ((msg = that_sig(st, g_subjob->name)))
+			print_error(msg, NULL);
+		if (g_subjob->workgpid == 0 && taa() > 0)
 			deletejob(&g_subjob, g_subjob->num);
 		return ;
 	}
-	pjobs_sig(sig, done_pid);
+	pjobs_sig(st, done_pid);
 }

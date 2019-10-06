@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_redirect_list.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 19:47:51 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/08 16:57:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/01 21:18:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static t_redirect_list	*parser_init_redirect_list(t_redirect_list *list_down)
 	list = (t_redirect_list*)ft_xmalloc(sizeof(t_redirect_list));
 	list->next = list_down;
 	list->io_redirect = NULL;
+	list->end_lex = NULL;
 	return (list);
 }
 
@@ -48,6 +49,9 @@ t_redirect_list			*parser_redirect_list(t_redirect_list *list_down)
 	list = parser_init_redirect_list(list_down);
 	list->io_redirect = parser_io_redirect();
 	if (!list->io_redirect)
-		return (parser_free_redirect_list(list));
+	{
+		list->end_lex = g_lex;
+		return (list);
+	}
 	return (parser_redirect_list(list));
 }

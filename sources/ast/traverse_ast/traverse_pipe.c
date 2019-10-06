@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_pipe.c                         :+:      :+:    :+:   */
+/*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 21:04:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/25 22:38:19 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
-												int in_fork, t_pjobs *local)
+static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 {
 	pid_t		pid;
+	// char		*str;
 
 	redir_set();
-	traverse_redirections(cmd);
+	// str = get_process_name(cmd);
+	if (traverse_redirections(cmd) == -1)
+	{
+		redir_reset();
+		return ;
+	}
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)
@@ -26,27 +31,30 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, char **env,
 		dup2(fd, 0);
 		close(fd);
 		raise(SIGSTOP);
-		traverse_command(cmd, env, in_fork, local);
+		traverse_command(cmd, 1, local);
+		// execute_line(str);
 		exit(g_res_exec);
 	}
 	redir_reset();
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
-	ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
+	local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
 	pipe_av(local->job);
-	if (local->flag == 0)
-		ft_waitpid(pid);
 }
 
-void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
-												int in_fork, t_pjobs *local)
+void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local)
 {
-	extern char	**environ;
 	pid_t		pid;
 	int			pipefd[2];
+	// char		*str;
 
 	redir_set();
-	traverse_redirections(pipe_seq->command);
+	// str = get_process_name(pipe_seq->command);
+	if (traverse_redirections(pipe_seq->command) == -1)
+	{
+		redir_reset();
+		return ;
+	}
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid = fork()) == 0)
@@ -58,23 +66,19 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, char **env,
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
 		raise(SIGSTOP);
-		traverse_command(pipe_seq->command, environ, in_fork, local);
+		// execute_line(str);
+		traverse_command(pipe_seq->command, 1, local);
 		exit(g_res_exec);
 	}
 	redir_reset();
 	close(pipefd[1]);
 	if (local && local->flag == 1)
 		ft_printf(" %d", pid);
-	ljobs_startet(get_subjob_name(pipe_seq->command), local->flag, local->num, pid);
+	local = ljobs_startet(get_process_name(pipe_seq->command), local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
-	{
-		traverse_pipe(pipe_seq, pipefd[0], environ, in_fork, local);
-		if (local->flag == 0)
-			ft_waitpid(pid);
-	}
+		traverse_pipe(pipe_seq, pipefd[0], local);
 	else
-		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command,
-														env, in_fork, local);
+		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command, local);
 	close(pipefd[0]);
 }

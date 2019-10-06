@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/03 22:14:02 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/30 15:22:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,33 @@
 
 extern t_opt	g_opt;
 
-static void		print_plus_options(void)
+static void		print_options(int is_minus_o)
 {
-	char	*name;
-	char	*val;
 	char	*format;
 
-	format = "set %so %s\n";
-	name = "vi";
-	val = (g_opt.vi_mode) ? "+" : "-";
-	ft_printf(format, val, name);
-	name = "emacs";
-	val = (g_opt.emacs_mode) ? "+" : "-";
-	ft_printf(format, val, name);
-	name = "color";
-	val = (g_opt.enable_color) ? "+" : "-";
-	ft_printf(format, val, name);
-	name = "noclobber";
-	val = (g_opt.noclobber) ? "+" : "-";
-	ft_printf(format, val, name);
-}
-
-static void		print_minus_options(void)
-{
-	char	*name;
-	char	*val;
-	char	*format;
-
-	format = "%-15s\t%s\n";
-	name = "vi";
-	val = (g_opt.vi_mode) ? "on" : "off";
-	ft_printf(format, name, val);
-	name = "emacs";
-	val = (g_opt.emacs_mode) ? "on" : "off";
-	ft_printf(format, name, val);
-	name = "color";
-	val = (g_opt.enable_color) ? "on" : "off";
-	ft_printf(format, name, val);
-	name = "noclobber";
-	val = (g_opt.noclobber) ? "on" : "off";
-	ft_printf(format, name, val);
+	format = (is_minus_o) ? "%-15s\t%s\n" : "set %so %s\n";
+	if (is_minus_o)
+	{
+		ft_printf(format, "vi", (g_opt.vi_mode) ? "on" : "off");
+		ft_printf(format, "emacs", (g_opt.emacs_mode) ? "on" : "off");
+		ft_printf(format, "color", (g_opt.enable_color) ? "on" : "off");
+		ft_printf(format, "noclobber", (g_opt.noclobber) ? "on" : "off");
+		ft_printf(format, "history", (g_opt.history) ? "on" : "off");
+	}
+	else
+	{
+		ft_printf(format, (g_opt.vi_mode) ? "+" : "-", "vi");
+		ft_printf(format, (g_opt.emacs_mode) ? "+" : "-", "emacs");
+		ft_printf(format, (g_opt.enable_color) ? "+" : "-", "color");
+		ft_printf(format, (g_opt.noclobber) ? "+" : "-", "noclobber");
+		ft_printf(format, (g_opt.history) ? "+" : "-", "history");
+	}
 }
 
 static void		handle_set_minus_o(const char **av)
 {
 	if (!*(++av))
-		print_minus_options();
+		print_options(1);
 	else
 	{
 		if (ft_strequ(*(av), "vi"))
@@ -76,6 +57,8 @@ static void		handle_set_minus_o(const char **av)
 			g_opt.enable_color = 1;
 		else if (ft_strequ(*(av), "noclobber"))
 			g_opt.noclobber = 1;
+		else if (ft_strequ(*(av), "history"))
+			g_opt.history = 1;
 		set_var_shellopts();
 	}
 }
@@ -89,7 +72,7 @@ static void		handle_set_arg(const char **av)
 	else if (ft_strequ(*(av), "+o"))
 	{
 		if (!*(++av))
-			print_plus_options();
+			print_options(0);
 		else
 		{
 			if (ft_strequ(*(av), "vi"))
@@ -100,6 +83,8 @@ static void		handle_set_arg(const char **av)
 				g_opt.enable_color = 0;
 			else if (ft_strequ(*(av), "noclobber"))
 				g_opt.noclobber = 0;
+			else if (ft_strequ(*(av), "history"))
+				g_opt.history = 0;
 			set_var_shellopts();
 		}
 	}
@@ -114,7 +99,7 @@ int				ft_set(const char **av)
 	if (av)
 	{
 		if (!*av)
-			print_all_vars(1);
+			print_vars(1);
 		else
 			while (*av)
 				handle_set_arg(av++);

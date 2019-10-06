@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_vi.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 18:23:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 20:50:31 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	start_vi(char **argv)
 
 	local = jobs_startet(ft_xstrdup("vi mode"), 0);
 	pid = fork();
-	ljobs_startet(ft_xstrdup("vi mode"), local->flag, local->num, pid);
+	local = ljobs_startet(ft_xstrdup("vi mode"), local->flag, local->num, pid);
 	if (pid == 0
 		&& execve(argv[0], argv, environ) < 0)
 		loginfo("vi_vi(): execve error");
@@ -82,7 +82,8 @@ void		vi_vi(t_line *line)
 	int		fd;
 	char	**argv;
 
-	fd = open(TMP_PATH, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+	fd = open(TMP_PATH, O_RDWR | O_CREAT | O_TRUNC, S_IRWXU |
+													S_IRWXG | S_IRWXO);
 	if (fd < 0)
 	{
 		loginfo("vi_vi(): open error (%s)", TMP_PATH);

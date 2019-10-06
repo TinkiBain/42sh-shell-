@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_getpos.c                                      :+:      :+:    :+:   */
+/*   ft_dlst2end.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 17:22:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:44:09 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/09/21 19:45:06 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/21 19:46:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "terminal.h"
+#include "libft.h"
 
-int		term_getpos(int *row, int *col)
+void	ft_dlst2end(t_dlist **alst)
 {
-	extern t_opt	g_opt;
-	char			buf[ONECAP_BUFFER];
-	int				i;
+	t_dlist *p;
 
-	*row = 0;
-	*col = 0;
-	if (!g_cap.get_pos)
-		return (1);
-	bzero(buf, ONECAP_BUFFER);
-	term_putstr(g_cap.get_pos);
-	read(g_opt.rl_in, buf, ONECAP_BUFFER - 1);
-	*row = ft_atoi(buf + 2) - 1;
-	i = 0;
-	while (i < ONECAP_BUFFER && buf[i] != ';')
-		i++;
-	*col = ft_atoi(buf + ++i) - 1;
-	return (0);
+	if (!alst || !*alst)
+		return ;
+	p = *alst;
+	while (p->next)
+		p = p->next;
+	*alst = p;
 }

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_xstrtrim.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <wtalea@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 17:56:30 by wtalea            #+#    #+#             */
-/*   Updated: 2018/12/05 17:57:16 by wtalea           ###   ########.fr       */
+/*   Created: 2019/09/27 18:55:48 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/09/27 18:56:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "xfuncs.h"
 
-int		ft_abs(int n)
+char	*ft_xstrtrim(char const *s)
 {
-	if (n < 0)
-		return (n * -1);
-	return (n);
+	char	*res;
+
+	if (!s)
+		return (NULL);
+	res = ft_strtrim(s);
+	if (!res)
+		die();
+	return (res);
 }

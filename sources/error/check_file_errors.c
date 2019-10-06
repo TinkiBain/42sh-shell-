@@ -6,13 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:26:54 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/13 14:23:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 20:53:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-
 
 int		check_file_errors(const char *file_name, int flag)
 {

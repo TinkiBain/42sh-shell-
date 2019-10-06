@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:22:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 12:28:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/25 21:37:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void			redisplay(t_buffer *newbuf)
 	{
 		if ((i + 1 == m ? 0 : 1) && skip_row_if_equal(newbuf, &pos))
 			continue ;
-		move_cur_to(oldpos, pos, newbuf->out_cols);
+		move_cursor(oldpos, pos, newbuf->out_cols);
 		j = -1;
 		while (++j < cols(newbuf, i) + 1)
 		{
@@ -109,7 +109,7 @@ void			redisplay(t_buffer *newbuf)
 		}
 		oldpos = pos;
 	}
-	move_cur_to(pos, newbuf->cpos, newbuf->out_cols);
+	move_cursor(pos, newbuf->cpos, newbuf->out_cols);
 }
 
 void			resize(t_buffer *newbuf, int first)
@@ -119,7 +119,11 @@ void			resize(t_buffer *newbuf, int first)
 	int pos;
 
 	if (!first)
-		move_cur_start();
+	{
+		move_cursor(newbuf->cpos, 0,
+					LINUX ? g_buffer.out_cols : newbuf->out_cols);
+		term_putstr(g_cap.car_ret);
+	}
 	pos = 0;
 	i = -1;
 	while (++i < max_int(newbuf->out_rows, g_buffer.out_rows))
@@ -132,6 +136,5 @@ void			resize(t_buffer *newbuf, int first)
 		}
 	}
 	term_putstr(g_cap.clear_down);
-	while (pos > newbuf->cpos)
-		move_cur_left(pos--, newbuf->out_cols);
+	move_cursor(pos, newbuf->cpos, newbuf->out_cols);
 }

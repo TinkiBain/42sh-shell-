@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/02 14:28:49 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/13 19:00:23 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/09/27 18:03:58 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LIBFT_DLIST_DIR=dlist
 
 LIBFT_SRCS_WITHOUT_DIR=\
 	get_next_line.c		ft_qsort.c		ft_arr_str_qsort.c\
-	ft_getopt.c
+	ft_getopt.c			ft_abs.c
 
 LIBFT_SRCS_MEM=ft_bzero.c	ft_memalloc.c				ft_memccpy.c\
 		ft_memchr.c			ft_memcmp.c					ft_memcpy.c\
@@ -92,7 +92,8 @@ LIBFT_SRCS_LIST=ft_lstadd.c		ft_lstaddback.c			ft_lstdel.c\
 
 LIBFT_SRCS_DLIST=ft_dlstadd.c	ft_dlstaddback.c		ft_dlstdel.c\
 	ft_dlstdelend.c				ft_dlstdelfront.c		ft_dlstdelone.c\
-	ft_dlstiter.c				ft_dlstnew.c			ft_dlstsize.c
+	ft_dlstiter.c				ft_dlstnew.c			ft_dlstsize.c\
+	ft_dlst2start.c				ft_dlst2end.c
 
 LIBFT_SOURCES=$(LIBFT_SRCS_WITHOUT_DIR)\
 	$(addprefix $(LIBFT_MEM_DIR)/, $(LIBFT_SRCS_MEM))\

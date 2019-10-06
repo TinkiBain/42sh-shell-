@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:25:17 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 21:38:25 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/28 20:14:47 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void		shell_clear(void)
 	extern char		**g_var_names;
 	extern t_opt	g_opt;
 
+	history_save(g_history);
 	history_clear(g_history);
 	del_hash();
 	ft_free_double_ptr_arr((void ***)&environ);

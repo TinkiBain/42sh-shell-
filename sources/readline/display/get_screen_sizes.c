@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 20:12:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/03 20:51:10 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/23 17:29:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 int			get_screen_width(void)
 {
-	return (g_buffer.out_cols);
+	struct winsize	ws;
+	extern t_opt	g_opt;
+
+	ioctl(g_opt.rl_in, TIOCGWINSZ, &ws);
+	if (!ws.ws_col)
+		return (TERM_MAX_COL);
+	return (ws.ws_col);
 }
 
 int			get_screen_height(void)

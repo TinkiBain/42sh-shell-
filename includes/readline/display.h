@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 11:28:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/13 12:52:19 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/09/22 21:17:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_buffer
 	t_string	b;
 	t_vector	escseqs;
 	int			cpos;
+	int			shift_cpos;
 	int			prompt_len;
 	int			prompt_full_len;
 	t_string	*out;
@@ -43,11 +44,8 @@ int				get_screen_width(void);
 int				get_screen_height(void);
 int				get_term_cols(void);
 
-void			move_cur_start(void);
-void			move_cur_left(int oldpos, int width);
-void			move_cur_right(int oldpos, int width);
 void			move_cur_nl(void);
-void			move_cur_to(int oldpos, int newpos, int width);
+void			move_cursor(int oldpos, int newpos, int width);
 
 void			colorize(t_string *str, int start);
 

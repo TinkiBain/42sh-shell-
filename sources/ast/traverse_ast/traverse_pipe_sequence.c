@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/19 15:52:19 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/02 20:17:02 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,49 @@
 
 extern char	**g_var;
 
-static void	pipe_seq_simple_builtin(t_command *cmd, char **env, t_pjobs *local)
+int			pid_fredy(void)
+{
+	int i;
+
+	i = -1;
+	if (g_pipe_pid)
+	{
+		while (g_pipe_pid[++i] != 0)
+			g_pipe_pid[i] = 0;
+		free(g_pipe_pid);
+		g_pipe_pid = NULL;
+	}
+	g_wait_flags = 0;
+	return (1);
+}
+
+static void	pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 {
 	pid_t	pid;
 
 	if (local->flag == 0)
 	{
-		deletejob(&g_subjob, g_subjob->num);
-		traverse_command(cmd, env, 0, local);
+		traverse_command(cmd, 0, local);
 	}
 	else if (local->flag == 1)
 	{
 		if ((pid = fork()) == 0)
 		{
 			setpgrp();
-			traverse_command(cmd, env, 0, local);
+			traverse_command(cmd, 0, local);
 			exit(g_res_exec);
 		}
 		else
 		{
-			ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
+			local = ljobs_startet(get_process_name(cmd), local->flag,
+														local->num, pid);
 			ft_printf("[%d] [%d]\n", local->num, pid);
-			ft_waitpid(pid);
 		}
 	}
 }
 
-static void	pipe_seq_simple_non_builtin(t_command *cmd,
-								char **env, t_pjobs *local, char *cmd_name)
+static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
+															char *cmd_name)
 {
 	pid_t	pid;
 
@@ -50,53 +65,59 @@ static void	pipe_seq_simple_non_builtin(t_command *cmd,
 	{
 		if (local->flag == 1)
 			setpgrp();
-		traverse_command(cmd, env, 1, local);
+		traverse_command(cmd, 1, local);
 	}
 	else
 	{
-		ljobs_startet(get_subjob_name(cmd), local->flag, local->num, pid);
-		if (local->flag == 0)
-			ft_waitpid(pid);
-		else
+		local = ljobs_startet(get_process_name(cmd), local->flag,
+													local->num, pid);
+		if (local->flag == 1)
 			ft_printf("[%d] [%d]\n", local->num, pid);
+		else
+			ft_waitpid(pid);
 	}
 }
 
-static void	traverse_pipe_seq_without_pipe(t_command *cmd, char **env,
-											t_pjobs *local)
+static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 {
 	char	*cmd_name;
 
-	redir_set();
-	traverse_redirections(cmd);
+	if (traverse_redirections(cmd) == -1)
+	{
+		redir_reset();
+		return ;
+	}
 	if (cmd->simple_command)
 	{
 		if ((cmd_name = cmd->simple_command->cmd_name))
 		{
 			if (is_builtin(cmd_name))
-				pipe_seq_simple_builtin(cmd, env, local);
+				pipe_seq_simple_builtin(cmd, local);
 			else if (check_cmd(cmd_name) == 0)
-				pipe_seq_simple_non_builtin(cmd, env, local, cmd_name);
+				pipe_seq_simple_non_builtin(cmd, local, cmd_name);
 			else if (local->job)
 				freedsubjob(&local->job);
 		}
 		else
-			traverse_command(cmd, env, 0, local);
+			traverse_command(cmd, 0, local);
 	}
 	else
-		traverse_command(cmd, env, 0, local);
-	redir_reset();
+		traverse_command(cmd, 0, local);
+	if (cmd->simple_command || cmd->redirect_list)
+		redir_reset();
 }
 
-void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, char **env,
-															t_pjobs *local)
+void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, t_pjobs *local)
 {
 	if (pipe_seq->next)
 	{
 		if (local->flag == 1)
 			ft_printf("[%d]", local->num);
-		traverse_pipe(pipe_seq, 0, env, 1, local);
+		traverse_pipe(pipe_seq, 0, local);
+		if (local->flag == 0)
+			ft_waitpid(-1);
+		pid_fredy();
 	}
 	else
-		traverse_pipe_seq_without_pipe(pipe_seq->command, env, local);
+		traverse_pipe_seq_without_pipe(pipe_seq->command, local);
 }

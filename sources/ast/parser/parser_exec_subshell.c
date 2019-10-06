@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_exec_subshell.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 20:13:28 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/18 16:53:33 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:15:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			parser_exec_subshell(char *cmd, char **new_str)
 	arr[0] = g_shell_path;
 	arr[1] = NULL;
 	if (pipe(pipefd))
-		exit (-1);
+		exit(-1);
 	write(pipefd[1], cmd, ft_strlen(cmd));
 	write(pipefd[1], "\nexit\n", 6);
 	if ((pid = fork()) == 0)
@@ -49,11 +49,11 @@ void			parser_exec_subshell(char *cmd, char **new_str)
 	}
 }
 
-char		*parser_expansion_subshell(char *str, char **new_str)
+char			*parser_expansion_subshell(char *str, char **new_str)
 {
-	char	*tmp;
-	char	*begin;
-	char	stop_sim;
+	char		*tmp;
+	char		*begin;
+	char		stop_sim;
 
 	if (*str == '`')
 		stop_sim = '`';

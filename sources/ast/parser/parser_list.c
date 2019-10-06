@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parser_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 16:01:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 17:26:08 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:10:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 /*
- ** Grammar rule
- ** list    : list separator_op and_or
- **         |                   and_or
- **         ;
+** Grammar rule
+** list    : list separator_op and_or
+**         |                   and_or
+**         ;
 */
 
 t_pars_list			*parser_free_list(t_pars_list *list)

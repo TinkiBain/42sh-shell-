@@ -6,78 +6,43 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/20 21:16:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/03 17:04:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 /*
-**	When execve() return -1 in function call_nonbuilin_exec()
-**	need to call our shel for execute script.
+**	When first execve() in function call_nonbuilin_exec() return -1
+**	we are calling our shell for execute script.
 */
 
-/*
-** Need to remove check access later
-*/
-
-static int	call_nonbuilin_exec(const char *path, char *const *av, char **env)
+static int		call_nonbuilin_exec(const char *path, char *const *av)
 {
-	char	*argv[3];
-	char	*shell_path;
+	char		*argv[3];
+	char		*shell_path;
+	extern char	**environ;
 
-	// if (!access(path, X_OK))
-	// {
-		if (execve(path, av, env) == -1)
-		{
-			shell_path = ft_strjoin(get_var_value("SHELLHOME"), "/");
-			shell_path = ft_strrejoin(shell_path, g_project_name, 1);
-			argv[0] = g_project_name;
-			argv[1] = av[0];
-			argv[2] = NULL;
-			// add shell_path before av[0] and send all av to execve
-			execve(shell_path, (char *const *)argv, env);
-			// ft_putstr_fd(g_project_name, 2);
-			// ft_putstr_fd(": ", 1);
-			// ft_putstr_fd(av[0], 2);
-			// ft_putendl_fd(": execve return (-1) from call_exec()", 2);
-			// exit(-1);
-		}
-	// }
-	// else
-	// {
-	// 	ft_putstr_fd(g_project_name, 2);
-	// 	ft_putstr_fd(": permission denied: ", 2);
-	// 	ft_putendl_fd(path, 2);
-	// 	exit(1);
-	// }
+	if (execve(path, av, environ) == -1)
+	{
+		shell_path = ft_strjoin(get_var_value("SHELLHOME"), "/");
+		shell_path = ft_strrejoin(shell_path, g_project_name, 1);
+		argv[0] = g_project_name;
+		argv[1] = av[0];
+		argv[2] = NULL;
+		if (execve(shell_path, (char *const *)argv, environ) == -1)
+			exit(-1);
+	}
 	return (0);
 }
 
-static int	call_if_builtin(const char **av, char ***env)
+static int		call_if_other_builtin(const char **av, int ac)
 {
-	if (**av == '%')
-		return (ft_fg(g_pjobs, *av));
-	else if (ft_strequ(*av, "exit"))
-		return (ft_exit(av + 1));
-	else if (ft_strequ(*av, "cd"))
-		return (ft_cd(av + 1, env));
-	else if (ft_strequ(*av, "echo"))
-		return (ft_echo(av + 1));
-	else if (ft_strequ(*av, "env"))
-		return (ft_env(av + 1, *env));
-	else if (ft_strequ(*av, "set"))
-		return (ft_set(av + 1));
-	else if (ft_strequ(*av, "unset"))
-		return (ft_unset(av + 1));
-	else if (ft_strequ(*av, "hash"))
-		return (ft_hash((char **)av));
-	else if (ft_strequ(*av, "type"))
-		return (ft_type(av + 1));
-	else if (ft_strequ(*av, "fc"))
-		return (ft_fc(av));
-	else if (ft_strequ(*av, "export"))
-		return (ft_export(av + 1));
+	if (ft_strequ(*av, "fc"))
+	{
+		redir_reset();
+		return (ft_fc(av, ac));
+	}
 	else if (ft_strequ(*av, "jobs"))
 		return (jobs(g_pjobs, -1, *(av + 1)));
 	else if (ft_strequ(*av, "fg"))
@@ -90,18 +55,45 @@ static int	call_if_builtin(const char **av, char ***env)
 		return (ft_alias(av + 1));
 	else if (ft_strequ(*av, "unalias"))
 		return (ft_unalias(av + 1));
+	else if (ft_strequ(*av, "test"))
+		return (ft_test((char **)av + 1));
+	else if (ft_strequ(*av, "history"))
+		return (ft_history(av + 1));
 	return (0);
 }
 
-int			call_exec(const char **av, char ***env)
+static int		call_if_builtin(const char **av, int ac)
 {
-	char	*p;
-	int		res;
+	if (**av == '%')
+		return (ft_fg(g_pjobs, *av));
+	else if (ft_strequ(*av, "exit"))
+		return (ft_exit(av + 1));
+	else if (ft_strequ(*av, "cd"))
+		return (ft_cd(av + 1));
+	else if (ft_strequ(*av, "echo"))
+		return (ft_echo(av + 1));
+	else if (ft_strequ(*av, "set"))
+		return (ft_set(av + 1));
+	else if (ft_strequ(*av, "unset"))
+		return (ft_unset(av + 1));
+	else if (ft_strequ(*av, "hash"))
+		return (ft_hash((char **)av));
+	else if (ft_strequ(*av, "type"))
+		return (ft_type(av + 1));
+	else if (ft_strequ(*av, "export"))
+		return (ft_export(av + 1));
+	return (call_if_other_builtin(av, ac));
+}
+
+int				call_exec(const char **av, int ac)
+{
+	char		*p;
+	int			res;
+	extern char	**g_var;
 
 	if ((res = is_builtin(*av)) == 1)
 	{
-		g_res_exec = call_if_builtin(av, env);
-		set_result();
+		g_res_exec = call_if_builtin(av, ac);
 		return (g_res_exec);
 	}
 	else
@@ -109,10 +101,9 @@ int			call_exec(const char **av, char ***env)
 	if (res == 0)
 	{
 		if ((p = get_bin((char *)*av)))
-			return (call_nonbuilin_exec((const char *)p,
-										(char *const *)av, *env));
+			return (call_nonbuilin_exec((const char *)p, (char *const *)av));
 		else if (ft_strchr(*av, '/'))
-			return (call_nonbuilin_exec(*av, (char *const *)av, *env));
+			return (call_nonbuilin_exec(*av, (char *const *)av));
 	}
 	return (127);
 }

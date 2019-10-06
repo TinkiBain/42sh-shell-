@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/01 17:54:28 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/05 19:58:51 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=42sh
 
 CC=clang
-FLAGS=-Wall -Wextra -Werror
+FLAGS=-Wall -Wextra -Werror -MMD
 FLAGS+=-g
 
 INCLUDES:=\
@@ -25,12 +25,12 @@ INCLUDES:=\
 SH_INCLUDES=\
 	ast.h		defs.h			variables.h		exec.h\
 	hash.h		lexer.h			parser.h		sh.h\
-	xfuncs.h	lib_wtalea.h	error.h
+	xfuncs.h	lib_wtalea.h	error.h			sem.h
 
-HEADER=\
-	$(addprefix includes/, $(SH_INCLUDES))\
-	$(addprefix includes/readline/, $(READLINE_INCLUDES))\
-	$(addprefix includes/builtins/, $(BUILTINS_INCLUDES))\
+# HEADER=\
+# 	$(addprefix includes/, $(SH_INCLUDES))\
+# 	$(addprefix includes/readline/, $(READLINE_INCLUDES))\
+# 	$(addprefix includes/builtins/, $(BUILTINS_INCLUDES))\
 
 SRCS_DIR=sources
 OBJS_DIR=objects
@@ -55,17 +55,25 @@ SRCS_WITHOUT_DIR=\
 	main.c\
 	shell_init.c\
 	shell_clear.c\
-	exec_ast.c\
-	signals_hendler.c
+	execute_line.c\
+	sem.c
 
 JOBS_DIR=jobs
 
+SIG_DIR=signals
+
 SRCS_JOBS=\
 	jobs.c					jobs_helper.c\
-	jobs_list_hendler.c		jobs_list_sub.c\
-	jobs_sig_hendler.c		fgbg_helper.c\
+	jobs_list_handler.c		jobs_list_sub.c\
+	ft_waitpid.c			fgbg_helper.c\
 	jobs_last_elem.c		jobs_list_counter.c\
-	jobs_start_file.c		ft_waitpid.c
+	jobs_start_file.c
+
+SRCS_SIG=\
+	kind_of_sig.c 			sig_handler.c\
+	signal_monitor.c
+
+
 
 VAR_DIR=variables
 
@@ -73,18 +81,17 @@ SRCS_VAR=\
 	add_new_var.c				create_copy_env.c\
 	ft_getenv.c					remove_var.c\
 	replace_var.c				check_readonly_var.c\
-	print_var_readonly.c		set_var.c\
+	set_var_shellopts.c			set_var.c\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
-	get_var_value.c				print_all_vars.c\
-	set_var_in_g_var.c			set_result.c\
-	set_var_shellopts.c
+	get_var_value.c				print_vars.c\
+	set_var_in_g_var.c
 
 XFUNCS_DIR=xfuncs
 
 SRCS_XFUNCS=\
 	ft_xstrdup.c	 ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
-	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c
+	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c
 
 ERROR_DIR=error
 
@@ -100,6 +107,7 @@ SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))\
 	$(addprefix $(ERROR_DIR)/, $(SRCS_ERROR))\
 	$(addprefix $(BUILTINS_DIR)/, $(SRCS_BUILTINS))\
+	$(addprefix $(SIG_DIR)/, $(SRCS_SIG))\
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
@@ -123,13 +131,13 @@ CREATE_BUILTINS_SUBDIRS=$(addprefix $(OBJS_DIR)/$(BUILTINS_DIR)/, $(BUILTINS_SUB
 OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(AST_DIR)\
 	$(CREATE_AST_SUBDIRS)\
-	$(OBJS_DIR)/$(BUILTIN_DIR)\
 	$(OBJS_DIR)/$(READLINE_DIR)\
 	$(CREATE_READLINE_SUBDIRS)\
 	$(OBJS_DIR)/$(HASH_DIR)\
 	$(CREATE_HASH_SUBDIRS)\
 	$(OBJS_DIR)/$(VAR_DIR)\
 	$(OBJS_DIR)/$(JOBS_DIR)\
+	$(OBJS_DIR)/$(SIG_DIR)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)\
 	$(OBJS_DIR)/$(ERROR_DIR)\
 	$(OBJS_DIR)/$(BUILTINS_DIR)\
@@ -152,7 +160,7 @@ $(LIBFT_A):
 $(LIBFT_DIR)/$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_DIR)/$(LIBFT_SRCS_DIR)/%.c
 	@make -C $(LIBFT_DIR)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c# $(HEADER)
 	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
 
 $(OBJS_SUBDIRS):

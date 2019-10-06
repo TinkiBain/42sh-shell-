@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/08 20:15:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/09/22 20:04:21 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	synchronize_var(const char *var, char **env, size_t name_len)
 		tmp = environ;
 	if (ft_getenv(var, tmp, name_len))
 		replace_var(var, tmp, name_len, 0);
+	else if (env == environ)
+		add_new_var(var, &g_var, 0);
 }
 
 static void	check_main_vars(const char *var, size_t name_len)

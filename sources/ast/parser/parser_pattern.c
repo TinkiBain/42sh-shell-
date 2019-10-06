@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_pattern.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 20:19:57 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 21:12:11 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:11:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /*
 ** Grammar rule
 ** pattern          :             WORD          Apply rule 4
-**                  | pattern '|' WORD          Do not apply rule 4 
-** 	                ;
+**                  | pattern '|' WORD          Do not apply rule 4
+**                  ;
 */
 
 t_pattern			*parser_free_pattern(t_pattern *list)

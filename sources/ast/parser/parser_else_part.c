@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_else_part.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:47:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/15 15:28:51 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/23 14:16:51 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_else_part			*parser_elif_part(void)
 		g_error_lex = g_lex;
 	if (g_error_lex)
 		return (parser_free_else_part(list));
-	list->compound_list	= parser_compound_list();
+	list->compound_list = parser_compound_list();
 	if (g_error_lex)
 		return (parser_free_else_part(list));
 	list->next_else_part = parser_else_part();

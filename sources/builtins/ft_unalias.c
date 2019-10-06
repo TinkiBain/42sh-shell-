@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:38:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/19 18:44:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/09/22 20:53:11 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		unalias_delete_one(const char *str, t_alias *alias)
 {
-	t_alias	*tmp;
+	t_alias			*tmp;
 	extern t_alias	*g_alias;
 
 	tmp = NULL;
