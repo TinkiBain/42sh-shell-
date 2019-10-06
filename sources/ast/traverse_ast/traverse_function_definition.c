@@ -6,19 +6,19 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:20:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/05 20:48:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 17:11:17 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void	traverse_function_definition(t_func_definition *func, t_vector *funcs)
+void	traverse_function_definition(t_func_definition *func)
 {
 	t_compound_cmd	*cmd;
 	t_redirect_list	*redir_list;
 	char			*str;
 	char			*tmp;
-	extern char		**g_var;
+	extern char		**g_func_defs;
 
 	cmd = func->function_body->compound_command;
 	str = ft_xstrjoin(func->function_name, "={ ");
@@ -28,8 +28,7 @@ void	traverse_function_definition(t_func_definition *func, t_vector *funcs)
 		tmp = get_job_name(cmd->begin_lex, cmd->end_lex);
 	str = ft_strrejoin(str, tmp, 3);
 	str = ft_strrejoin(str, "\n}", 1);
-	set_var((const char *)str, &g_var, 0);
+	set_var((const char *)str, &g_func_defs, 0);
 	printf("%s\n", str);
 	ft_strdel(&str);
-	funcs = vec_addback(funcs, func->function_name);
 }

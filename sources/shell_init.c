@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/30 21:25:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 17:14:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void				shell_init(int ac, char **av)
 {
 	extern char		**environ;
 	extern t_alias	*g_alias;
-	extern t_vector	g_func_defs;
+	extern char		**g_func_defs;
 	int				fd;
 
 	fd = get_fd(ac, av);
@@ -91,5 +91,6 @@ void				shell_init(int ac, char **av)
 	g_history = ft_xmemalloc(sizeof(t_history));
 	g_history->start_index = 1;
 	history_load(g_history);
-	g_func_defs = vec_create(0, sizeof(char *));
+	g_func_defs = ft_xmalloc(sizeof(char *));
+	*g_func_defs = NULL;
 }

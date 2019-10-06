@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/30 21:30:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 17:12:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	traverse_for_clause(t_for_clause *list, t_pjobs *local);
 void	traverse_while_clause(t_while_clause *list, t_pjobs *local);
 void	traverse_until_clause(t_while_clause *list, t_pjobs *local);
 void	traverse_case_clause(t_case_clause *list, t_pjobs *local);
-void	traverse_function_definition(t_func_definition *func, t_vector *funcs);
+void	traverse_function_definition(t_func_definition *func);
 
 #endif

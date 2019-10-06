@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:14:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/30 22:08:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/06 18:32:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void		traverse_command(t_command *cmd, int in_fork, t_pjobs *local)
 		if (cmd->redirect_list)
 			traverse_redirect_list(cmd->redirect_list);
 		traverse_compound_command(cmd->compound_command, local);
+		redir_reset();
 	}
 	else if (cmd->function_definition)
-		traverse_function_definition(cmd->function_definition, &g_func_defs);
+		traverse_function_definition(cmd->function_definition);
 }
