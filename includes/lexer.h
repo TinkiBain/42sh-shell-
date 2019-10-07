@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:26:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:25:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int						g_if_alias;
 # define DLESSAND		23
 # define LBRACKET		24
 # define RBRACKET		25
-# define NOT_VALID_ID	26
+# define ERR_SINT		26
 
 t_lex					*lexer(char *str);
 void					lexer_free_all(t_lex *lex);

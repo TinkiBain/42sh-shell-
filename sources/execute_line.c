@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:00:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/05 20:02:38 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/05 22:29:25 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_complete_cmd		*exec_ast(char *buf, t_lex **lex)
 	if (g_error_lex)
 	{
 		parser_print_error();
-		if (g_error_lex->type == EOF)
+		if (g_error_lex->type == EOF || g_error_lex->type == ERR_SINT)
 			free(g_error_lex);
 		list = parser_free(list);
 	}

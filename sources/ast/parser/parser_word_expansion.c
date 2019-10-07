@@ -6,13 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/06 15:37:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 20:18:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "sh.h"
 #include "arifmetic.h"
+#include "globing.h"
 
 static char *parser_strchr(char *str, char c)
 {
