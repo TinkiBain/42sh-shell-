@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/05 20:13:28 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/07 17:26:22 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_kill(const char **cmd, t_pjobs *local_job, int sig);
 int		ft_set(const char **av);
 int		ft_type(const char **av);
 int		ft_unset(const char **av);
-int		ft_fc(const char **av, int ac);
+int		ft_fc(const char **av, int ac, t_pjobs *local);
 int		ft_test(char **argv);
 int		ft_history(const char **argv);
 int		ft_source(int argc, const char **argv);

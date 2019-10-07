@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/03 19:41:24 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 17:25:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static int	show_usage(void)
 	return (1);
 }
 
-static int	run_fc(const char **argv, t_cmd_opt opt)
+static int	run_fc(const char **argv, t_cmd_opt opt, t_pjobs *local)
 {
 	int		ret;
 
 	ret = 0;
 
 	if (opt.s)
-		ret = ft_fc_reexec(argv);
+		ret = ft_fc_reexec(argv, local);
 	else if (opt.l)
 		ret = ft_fc_list(argv, opt);
 	else
@@ -53,7 +53,7 @@ static int	fill_opt(t_cmd_opt *opt, int o)
 	return (0);
 }
 
-int			ft_fc(const char **argv, int argc)
+int			ft_fc(const char **argv, int argc, t_pjobs *local)
 {
 	int			o;
 	t_cmd_opt	opt;
@@ -65,7 +65,7 @@ int			ft_fc(const char **argv, int argc)
 				(o = ft_getopt(argc, (char *const *)argv, "lnrse:")) != -1)
 		if (fill_opt(&opt, o) == 1)
 			return (1);
-	ret = run_fc(argv, opt);
+	ret = run_fc(argv, opt, local);
 	ft_getopt_clear();
 	return (ret);
 }

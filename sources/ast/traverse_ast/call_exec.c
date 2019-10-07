@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 17:17:03 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 17:26:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	return (0);
 }
 
-static int		call_if_other_builtin(const char **av, int ac)
+static int		call_if_other_builtin(const char **av, int ac, t_pjobs *local)
 {
 	if (ft_strequ(*av, "fc"))
-		return (ft_fc(av, ac));
+		return (ft_fc(av, ac, local));
 	else if (ft_strequ(*av, "jobs"))
 		return (jobs(g_pjobs, -1, *(av + 1)));
 	else if (ft_strequ(*av, "fg"))
@@ -59,7 +59,7 @@ static int		call_if_other_builtin(const char **av, int ac)
 	return (0);
 }
 
-static int		call_if_builtin(const char **av, int ac)
+static int		call_if_builtin(const char **av, int ac, t_pjobs *local)
 {
 	if (**av == '%')
 		return (ft_fg(g_pjobs, *av));
@@ -83,7 +83,7 @@ static int		call_if_builtin(const char **av, int ac)
 		return (ft_source(ac, av + 1));
 	else if (ft_strequ(*av, "."))
 		return (ft_source(ac, av + 1));
-	return (call_if_other_builtin(av, ac));
+	return (call_if_other_builtin(av, ac, local));
 }
 
 int				call_exec(const char **av, int ac, t_pjobs *local)
@@ -95,7 +95,7 @@ int				call_exec(const char **av, int ac, t_pjobs *local)
 
 	if ((res = is_builtin(*av)) == 1)
 	{
-		g_res_exec = call_if_builtin(av, ac);
+		g_res_exec = call_if_builtin(av, ac, local);
 		return (g_res_exec);
 	}
 	else
