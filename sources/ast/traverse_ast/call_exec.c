@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 21:31:30 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 17:17:03 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 static int		call_if_other_builtin(const char **av, int ac)
 {
 	if (ft_strequ(*av, "fc"))
-	{
-		redir_reset();
 		return (ft_fc(av, ac));
-	}
 	else if (ft_strequ(*av, "jobs"))
 		return (jobs(g_pjobs, -1, *(av + 1)));
 	else if (ft_strequ(*av, "fg"))

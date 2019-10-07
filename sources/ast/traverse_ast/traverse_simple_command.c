@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 20:41:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 17:12:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,7 @@ void		traverse_simple_command(t_simple_cmd *cmd, int in_fork, t_pjobs *local)
 
 	av = vec_create(0, sizeof(char *));
 	if (cmd->cmd_name)
-	{
-		// cmd->cmd_name = tdq(cmd->cmd_name);
 		vec_addback(&av, &(cmd->cmd_name));
-	}
 	prefix_vars = vec_create(0, sizeof(char *));
 	traverse_cmd_pref(cmd->cmd_pref, &prefix_vars);
 	traverse_cmd_suf(cmd->cmd_suf, &av);
