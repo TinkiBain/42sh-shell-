@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:56:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/19 23:34:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				fill_g_var_names(void)
 	size_t		size;
 
 	if (g_var_names)
-		ft_free_double_ptr_arr((void ***)&g_var_names);
+		ft_free_ptr_array((void ***)&g_var_names);
 	size = get_array_size(environ);
 	size += get_array_size(g_var);
 	g_var_names = (char **)ft_xmalloc(sizeof(char *) * (size + 1));

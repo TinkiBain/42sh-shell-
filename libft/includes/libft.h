@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/27 18:03:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void				*ft_xmalloc(size_t size);
 t_uchar				ft_atoi_octal(char *str, int *count);
 int					ft_atoi(const char *str);
 int					ft_gnl(const int fd, char **line);
-void				ft_free_double_ptr_arr(void ***arr);
+void				ft_free_ptr_array(void ***arr);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);

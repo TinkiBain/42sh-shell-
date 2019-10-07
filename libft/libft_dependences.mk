@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/02 14:28:49 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/27 18:03:58 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ LIBFT_SRCS_MEM=ft_bzero.c	ft_memalloc.c				ft_memccpy.c\
 		ft_memchr.c			ft_memcmp.c					ft_memcpy.c\
 		ft_memcpy_rev.c		ft_memdel.c					ft_memmove.c\
 		ft_memset.c			ft_realloc.c				ft_swap.c\
-		ft_xmalloc.c		ft_free_double_ptr_arr.c
+		ft_xmalloc.c		ft_free_ptr_array.c
 
 LIBFT_SRCS_STR=ft_atoi.c	ft_isalnum.c			ft_isalpha.c\
 	ft_isascii.c			ft_isdigit.c			ft_isprint.c\

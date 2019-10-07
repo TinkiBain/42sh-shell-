@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/09 19:23:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			init_g_var(void)
 	extern char		**environ;
 
 	if (g_var)
-		ft_free_double_ptr_arr((void ***)&g_var);
+		ft_free_ptr_array((void ***)&g_var);
 	if (environ)
 		g_var = create_copy_env(environ);
 	else

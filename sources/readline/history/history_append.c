@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_append.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/30 22:51:24 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	push(t_history *history, t_string *str, int split_nl)
 			newstr = str_xcopy(arr[i]);
 			history_push(history, newstr);
 		}
-		ft_free_double_ptr_arr((void ***)&arr);
+		ft_free_ptr_array((void ***)&arr);
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   del_hash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 15:00:19 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/29 17:20:18 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	del_hash(void)
 				cp = (*((g_table) + i))->next;
 				ft_strdel(&(*((g_table) + i))->path);
 				ft_strdel(&(*((g_table) + i))->name);
-				ft_free_double_ptr_arr((void ***)&(*(g_table + i))->flags_args);
+				ft_free_ptr_array((void ***)&(*(g_table + i))->flags_args);
 				free(*((g_table) + i));
 				*((g_table) + i) = cp;
 			}

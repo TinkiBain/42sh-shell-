@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:18:05 by dwisoky           #+#    #+#             */
-/*   Updated: 2018/11/27 19:40:00 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/30 15:47:16 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/07 14:55:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_putnbr(int n)
 {
-	if (n == -2147483648)
-		ft_putstr("-2147483648");
-	else
+	unsigned int	num;
+	char			c;
+
+	if (n < 0)
 	{
-		if (n < 0)
-		{
-			ft_putchar('-');
-			n = n * -1;
-		}
-		if (n >= 10)
-		{
-			ft_putnbr(n / 10);
-			ft_putchar(n % 10 + '0');
-		}
-		else
-			ft_putchar(n + '0');
+		write(1, "-", 1);
+		num = (unsigned int)(-n);
 	}
+	else
+		num = (unsigned int)n;
+	if (num >= 10)
+		ft_putnbr(num / 10);
+	c = (num % 10) + '0';
+	write(1, &c, 1);
 }

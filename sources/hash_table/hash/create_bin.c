@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_bin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:14 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 12:53:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ void			create_bin(char *str)
 	cp = ft_xstrsplit(str, ':');
 	while (*(cp + i))
 		split_hash(*(cp + i++), &g_table);
-	ft_free_double_ptr_arr((void ***)&cp);
+	ft_free_ptr_array((void ***)&cp);
 }
