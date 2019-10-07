@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 17:32:08 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 18:12:41 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/07 16:47:31 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			ft_aster(char *s1, char *s2, int i, int j)
 			ij++;
 		}
 	}
-	return(ij + 1);
+	return(ij);
 }
 
 int			forward_bigest_eq(char *s1, char *s2)
@@ -70,6 +70,8 @@ int			forward_bigest_eq(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
+	if (s2[ft_strlen(s2) - 1] == '*')
+		return (ft_strlen(s1));
 	if (s1[i] != s2[j] && s2[j] != '*')
 		return(0);
 	while (s2[j])

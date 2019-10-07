@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 22:23:58 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/07 20:22:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,5 +267,6 @@ int					parser_find_eq(void);
 void				parser_linebreak(void);
 void				parser_new_line_list(void);
 void				parser_print_error(void);
+char				*parser_find_dollar(char *str);
 
 #endif

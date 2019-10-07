@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_exp.c                                    :+:      :+:    :+:   */
+/*   arifmetic.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/03 16:42:59 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/07 20:31:51 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			arifmetic_error(char *str, t_lex *begin)
 	if (g_error_arifmetic->type == DIVISION_NULL)
 		ft_putstr_fd(": division by 0 ", 2);
 	else if (g_error_arifmetic->type >= 3 && g_error_arifmetic->type <= 12)
-		ft_putstr_fd(": attempted assignment to non-variable ", 2); 
+		ft_putstr_fd(": attempted assignment to non-variable ", 2);
 	else
 		ft_putstr_fd(": syntax error: operand expected ", 2);
 	ft_putstr_fd("(error token is \"", 2);
@@ -38,7 +38,7 @@ void			arifmetic_error(char *str, t_lex *begin)
 		g_lex_arif = g_lex_arif->next;
 	}
 	ft_putendl_fd("\")", 2);
-}	
+}
 
 char			*arifmetic_print_lex_error(char *str)
 {

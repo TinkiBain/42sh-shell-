@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 17:53:51 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/07 16:51:14 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ static char			*brace_handler_plus(char *buf, char *str)
 	int i;
 
 	i = 1;
+	printf ("-%s %s-\n", buf, str);
 	if (*str == '%' && *(str + 1) == '%')
 		return (back_deleter(buf, str + 2, 1));
 	else if (*str == '%')

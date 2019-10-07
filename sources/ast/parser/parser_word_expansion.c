@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_word_expansion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/07 20:18:32 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/07 20:31:55 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static char *parser_strchr(char *str, char c)
 	return (str);
 }
 
-static char	*parser_find_dollar(char *str)
+char	*parser_find_dollar(char *str)
 {
 	int		brackets;
 
 	++str;
 	brackets = 0;
-	if (*str != '{' || *str != '(')
+	if (*str != '{' && *str != '(')
 		return (str - 1);
 	if (*str == '{')
 		return (parser_strchr(str, '}'));

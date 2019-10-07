@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitution.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/04 21:32:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/07 21:50:50 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*substitution_exec(char *str)
 	t_lex			*lex;
 	t_lex			*tmp;
 	char			*src;
-	
+
 	if (pipe(pipefd) < 0)
 		return (NULL);
 	tmpfd = dup(1);
@@ -66,7 +66,7 @@ char		*substitution(char *str)
 	if (*str == '$')
 	{
 		begin += 2;
-		str = lexer_find_dollar(str);
+		str = parser_find_dollar(str);
 	}
 	else
 	{

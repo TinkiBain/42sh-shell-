@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 16:58:51 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/07 20:39:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void			dollar(int *j, char **str)
 {
 	char	*word;
 	int		l;
+	char	*tmp;
 
+	tmp = NULL;
 	l = *j;
 	if (!(word = ft_dollar_word(&(*str)[(*j) + 1], -1, j)) && !(str[*j]))
 	{
@@ -56,6 +58,10 @@ void			dollar(int *j, char **str)
 	}
 	if ((*str)[(*j) + 1] == '$')
 		(*j) += 1;
+	else if ((*str)[*j + 1] == '(' && (*str)[*j + 2] == '(')
+		*j += ft_strlen(*str) - ft_strlen(parser_find_dollar(*str));
+	else if ((*str)[*j + 1] == '(')
+		*j += ft_strlen(*str) - ft_strlen(parser_find_dollar(*str));
 	else
 		while ((*str)[*j + 1] && check_spec_symbol((*str)[*j + 1])
 				&& (*str)[*j + 1] != '$' && (*str)[*j] != '}')
