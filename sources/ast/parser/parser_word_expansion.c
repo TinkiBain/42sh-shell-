@@ -6,13 +6,14 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 19:57:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/07 18:27:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "sh.h"
 #include "arifmetic.h"
+#include "globing.h"
 
 static char *parser_strchr(char *str, char c)
 {

@@ -6,7 +6,7 @@
 #    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/05 19:57:28 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/06 14:58:46 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,8 @@ SRCS_AST_EXPANSION=\
 	expr_get_var_value.c\
 	expr_return_value.c\
 	expr_bracket.c\
-	substitution.c
+	substitution.c\
+	globing.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c
