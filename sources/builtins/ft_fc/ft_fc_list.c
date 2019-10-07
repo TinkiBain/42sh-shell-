@@ -6,44 +6,14 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:39:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/27 15:52:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:08:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fc.h"
 
-static int		ft_fc_is_asc(t_dlist *p_first, t_dlist *p_last)
-{
-	t_dlist		*p;
-
-	p = p_first;
-	while (p->next)
-	{
-		if (p == p_last)
-			return (1);
-		p = p->next;
-	}
-	return (0);
-}
-
-static int		get_start(t_dlist *p_first)
-{
-	t_dlist *p;
-	int		i;
-
-	p = g_history->item;
-	ft_dlst2start(&p);
-	i = g_history->start_index;
-	while (p != p_first)
-	{
-		i++;
-		p = p->next;
-	}
-	return (i);
-}
-
-void			ft_fc_list_get_first_last(const char **argv,
-										t_dlist **pp_first, t_dlist **pp_last)
+static void		get_first_last(const char **argv,
+									t_dlist **pp_first, t_dlist **pp_last)
 {
 	if (!pp_first || !pp_last)
 		return ;
@@ -66,30 +36,6 @@ void			ft_fc_list_get_first_last(const char **argv,
 		print_error("history specification out of range", "fc");
 }
 
-t_vector		ft_fc_build_vector(const char **argv, int *start, t_cmd_opt opt)
-{
-	t_vector	vec;
-	t_dlist		*p_first;
-	t_dlist		*p_last;
-	int			asc;
-
-	vec = vec_create(0, sizeof(t_string));
-	ft_fc_list_get_first_last(argv, &p_first, &p_last);
-	if (!p_first || !p_last)
-		return (vec);
-	asc = ft_fc_is_asc(p_first, p_last);
-	*start = get_start(opt.r ? p_last : p_first);
-	*start = (asc ? *start : *start * -1);
-	while (p_first && p_first != p_last)
-	{
-		vec_addback(&vec, p_first->content);
-		p_first = (asc ? p_first->next : p_first->prev);
-	}
-	if (p_first == p_last)
-		vec_addback(&vec, p_first->content);
-	return (vec);
-}
-
 int				ft_fc_list(const char **argv, t_cmd_opt opt)
 {
 	t_vector	vec;
@@ -97,7 +43,7 @@ int				ft_fc_list(const char **argv, t_cmd_opt opt)
 	t_string	*s;
 	int			start;
 
-	vec = ft_fc_build_vector(argv, &start, opt);
+	vec = ft_fc_build_vector(argv, &start, opt, get_first_last);
 	i = (opt.r ? vec.len - 1 : 0);
 	while ((s = vec_get(vec, i)))
 	{

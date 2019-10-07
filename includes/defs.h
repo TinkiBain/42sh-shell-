@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/25 20:37:43 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:30:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define DEFS_H
 
 # define PROJECT_NAME			"42sh"
+
+# define TMP_PATH				"/tmp/" PROJECT_NAME "_tmp"
+# define DEFAULT_TEXTEDITOR		"/usr/bin/vim"
+# define EDPATH					"/bin/ed"
 
 # define STDIN					0
 # define STDOUT					1

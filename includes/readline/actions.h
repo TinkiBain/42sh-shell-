@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/05 23:08:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:29:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include "ft_qsort.h"
 
 # define COMPLETION_QUERY_ITEMS		100
-# define TMP_PATH					"/tmp/" PROJECT_NAME "_tmp"
-# define DEFAULT_TEXTEDITOR			"/usr/bin/vim"
 
 void		self_insert(t_line *line);
 void		backward_delete_char(t_line *line);

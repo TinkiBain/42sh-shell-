@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 16:13:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 17:25:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:10:39 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static int	execute(const char *replace, t_dlist *item, t_pjobs *local)
 	item_str = (t_string *)item->content;
 	str_remove(item_str, 0, item_str->len);
 	str_addback(item_str, exec_str, ft_strlen(exec_str));
-	ft_putendl(exec_str);
 	ft_getopt_clear();
+	local = jobs_startet(ft_xstrdup(exec_str), 0); /* 0? */
 	call_subshell(exec_str, local);
 	return (g_res_exec);
 }

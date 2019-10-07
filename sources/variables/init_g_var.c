@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 19:32:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	set_default_vars(void)
 	set_var_if_not_exist("HISTPATH=~/." PROJECT_NAME ".history", &g_var, 1);
 	set_var_if_not_exist("HISTSIZE=" DEFAULT_HISTSIZE, &g_var, 1);
 	set_var_if_not_exist("LOGPATH=~/." PROJECT_NAME ".log", &g_var, 1);
+	set_var_if_not_exist("FCEDIT=/usr/bin/vim", &g_var, 1);
 	tmp = ft_strrejoin("PS1=" "\\033[0;31m", g_project_name, 0);
 	tmp = ft_strrejoin(tmp, ">\\033[0m ", 1);
 	set_var_if_not_exist(tmp, &g_var, 1);

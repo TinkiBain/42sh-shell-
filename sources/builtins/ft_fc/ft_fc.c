@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 17:25:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/07 20:27:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	run_fc(const char **argv, t_cmd_opt opt, t_pjobs *local)
 	else if (opt.l)
 		ret = ft_fc_list(argv, opt);
 	else
-		ret = ft_fc_edit(argv, opt);
+		ret = ft_fc_edit(argv, opt, local);
 	return (ret);
 }
 

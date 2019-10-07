@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 22:00:06 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/07 21:32:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void		signal_monitor(void)
 	signal(SIGTSTP, signals);
 	signal(SIGTTOU, signals);
 	signal(SIGPIPE, signals);
+	signal(SIGTTIN, signals);
 	signal(SIGINT, signals);
 }
