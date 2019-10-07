@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/16 17:10:04 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/07 16:15:48 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,24 @@ static void	check_arg_format(const char *av)
 	}
 }
 
+static void	exit_clear(int n)
+{
+	shell_clear();
+	exit(n);
+}
+
 int			ft_exit(const char **av)
 {
 	char		res;
 
+	
 	if (av && *av)
 	{
 		check_arg_count(av);
 		check_arg_format(*av);
 		res = (char)ft_atoi(*av);
-		exit(res);
+		exit_clear(res);
 	}
-	exit(g_res_exec);
+	exit_clear(g_res_exec);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 01:05:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:39:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ static void		add_one(t_vector *vec, t_string *query,
 	fullpath = str_xduplicate(*path);
 	str_name = str_xcopy(name);
 	str_xaddback(&fullpath, str_name.s, str_name.len);
-	stat(fullpath.s, &st);
+	ft_bzero(&st, sizeof(st));
+	if (stat(fullpath.s, &st) == -1)
+		loginfo("! stat(\"%s\", &st) returned -1", fullpath.s);
 	str_delete(&fullpath);
 	if ((st.st_mode & S_IFMT) == S_IFDIR)
 		str_xaddback(&str_name, "/", 1);
