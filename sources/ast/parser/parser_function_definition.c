@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_function_definition.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/08 16:19:16 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 20:39:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/08 17:38:47 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_func_definition	*parser_function_definition(void)
 	list->function_name = parser_fname();
 	if (g_error_lex)
 		return (parser_free_function_definition(list));
-	g_lex = g_lex->next->next;
+	g_lex = g_lex->next;
 	if (g_lex->type != RBRACKET)
 	{
 		g_error_lex = g_lex;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/06 14:58:46 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/08 17:36:09 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,14 +34,14 @@ SRCS_PARSER=\
 	parser_while_clause.c	parser_do_group.c			parser_for_clause.c\
 	parser_wordlist.c		parser_sequential_sep.c		parser_case_clause.c\
 	parser_case_list.c		parser_case_item.c			parser_pattern.c\
-	parser_check_alias.c	parser_name.c				parser_find_eq.c\
-	parser_fname.c			parser_word_expansion.c		parser_recall_readline.c\
-	parser_exec_subshell.c
+	parser_check_alias.c	parser_find_eq.c			parser_fname.c\
+	parser_word_expansion.c	parser_recall_readline.c	parser_exec_subshell.c
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
 	call_subshell.c\
 	check_cmd.c\
+	check_name.c\
 	get_job_name.c\
 	get_process_name.c\
 	is_builtin.c\

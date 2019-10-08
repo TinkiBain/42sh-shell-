@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_for_clause.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 21:35:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 21:25:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/08 17:49:12 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ t_for_clause		*parser_for_clause(void)
 		return (NULL);
 	}
 	list = parser_init_for_clause();
-	list->name = parser_name();
+	list->name = parser_fname();
 	if (g_error_lex)
 		return (parser_free_for_clause(list));
-	g_lex = g_lex->next;
 	parser_linebreak();
 	list->wordlist = parser_wordlist();
 	if (g_error_lex)

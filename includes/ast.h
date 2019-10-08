@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 21:23:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 17:35:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*get_process_name(t_command *command);
 int		call_exec(const char **av, int ac, t_pjobs *local);
 int		call_subshell(char *str, t_pjobs *local);
 int		check_cmd(const char *cmd);
+int		check_name(char *str);
 
 /*
 **		Functions for traverse Abstruct Sintax Tree:

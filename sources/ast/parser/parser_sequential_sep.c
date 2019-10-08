@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sequential_sep.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 22:19:30 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 22:22:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/08 17:48:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int			parser_sequential_sep(void)
 {
-	if (g_lex->type == SEMI)
+	if (g_lex && g_lex->type == SEMI)
 	{
 		g_lex = g_lex->next;
 		parser_linebreak();

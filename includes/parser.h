@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/07 20:22:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/08 17:23:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,6 @@ t_cmd_suffix		*parser_free_cmd_suffix(t_cmd_suffix *list);
 char				*parser_check_alias(char *str);
 char				*parser_call_back_readline(int lex_or);
 char				*parser_recall_readline(char c);
-char				*parser_name(void);
 char				*parser_fname(void);
 char				*parser_expansion_subshell(char *str, char **new_str);
 char				*parser_word_expansion(char *str);
