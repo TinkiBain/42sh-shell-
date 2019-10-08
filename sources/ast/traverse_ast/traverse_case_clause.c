@@ -6,11 +6,36 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 19:07:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/30 20:27:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 20:33:32 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+/*
+** case_clause		: Case WORD linebreak in linebreak case_list    Esac
+** 					| Case WORD linebreak in linebreak case_list_ns Esac
+** 					| Case WORD linebreak in linebreak              Esac
+** 					;
+** case_list_ns		: case_list case_item_ns
+** 					|           case_item_ns
+** 					;
+** case_list		: case_list case_item
+** 					|           case_item
+** 					;
+** case_item_ns		:     pattern ')'               linebreak
+** 					|     pattern ')' compound_list linebreak
+** 					| '(' pattern ')'               linebreak
+** 					| '(' pattern ')' compound_list linebreak
+** 					;
+** case_item		:     pattern ')' linebreak     DSEMI linebreak
+** 					|     pattern ')' compound_list DSEMI linebreak
+** 					| '(' pattern ')' linebreak     DSEMI linebreak
+** 					| '(' pattern ')' compound_list DSEMI linebreak
+** 					;
+** pattern		 	:             WORD
+** 					| pattern '|' WORD
+*/
 
 void			traverse_case_clause(t_case_clause *list, t_pjobs *local)
 {

@@ -6,11 +6,19 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 17:55:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 21:43:35 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+/*
+** for_clause	: For name linebreak                            do_group
+** 				| For name linebreak in          sequential_sep do_group
+** 				| For name linebreak in wordlist sequential_sep do_group
+** 				;
+** do_group		: Do compound_list Done
+*/
 
 void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
 {
@@ -19,9 +27,8 @@ void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
 	char		*var;
 	t_wordlist	*wordlist;
 
-	if (check_name(list->name))
-		return ;
-	if (check_readonly_var(list->name, ft_strlen(list->name)))
+	if (check_name(list->name) || (check_readonly_var(list->name,
+													ft_strlen(list->name))))
 		return ;
 	var_name = ft_strjoin(list->name, "=");
 	wordlist = list->wordlist;
