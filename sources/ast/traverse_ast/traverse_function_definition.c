@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 20:20:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 20:53:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:15:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@ void	traverse_function_definition(t_func_definition *func)
 	str = ft_strrejoin(str, tmp, 3);
 	str = ft_strrejoin(str, "\n}", 1);
 	set_var((const char *)str, &g_func_defs, 0);
-	// printf("%s\n", ft_getenv(func->function_name, g_func_defs, ft_strlen(func->function_name)));
-	// printf("%s\n", *g_func_defs);
 	ft_strdel(&str);
 }

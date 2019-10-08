@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/05 22:26:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:24:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern char	**g_var;
 
-int			pid_fredy(void)
+int				pid_fredy(void)
 {
 	int i;
 
@@ -30,14 +30,12 @@ int			pid_fredy(void)
 	return (1);
 }
 
-static void	pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
+static void		pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 {
 	pid_t	pid;
 
 	if (local->flag == 0)
-	{
 		traverse_command(cmd, 0, local);
-	}
 	else if (local->flag == 1)
 	{
 		if ((pid = fork()) == 0)
@@ -55,12 +53,15 @@ static void	pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 	}
 }
 
-static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
+static void		pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
 															char *cmd_name)
 {
-	pid_t	pid;
+	pid_t		pid;
+	extern int	g_subshell_without_fork;
 
 	hash_add_count(cmd_name);
+	if (g_subshell_without_fork)
+		return (traverse_command(cmd, 1, local));
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)
@@ -78,15 +79,12 @@ static void	pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
 	}
 }
 
-static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
+static void		pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 {
 	char	*cmd_name;
 
 	if (traverse_redirections(cmd) == -1)
-	{
-		redir_reset();
-		return ;
-	}
+		return (redir_reset());
 	if (cmd->simple_command)
 	{
 		cmd->simple_command->cmd_name = tdq(cmd->simple_command->cmd_name);
@@ -108,7 +106,8 @@ static void	traverse_pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 		redir_reset();
 }
 
-void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, t_pjobs *local)
+void			traverse_pipe_sequence(t_pipe_sequence *pipe_seq,
+														t_pjobs *local)
 {
 	if (pipe_seq->next)
 	{
@@ -120,5 +119,5 @@ void		traverse_pipe_sequence(t_pipe_sequence *pipe_seq, t_pjobs *local)
 		pid_fredy();
 	}
 	else
-		traverse_pipe_seq_without_pipe(pipe_seq->command, local);
+		pipe_seq_without_pipe(pipe_seq->command, local);
 }

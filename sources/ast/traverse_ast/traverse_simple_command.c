@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 17:12:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:23:44 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	handle_previx_vars(const char **av, char ***env)
 		set_var(*(av++), env, 0);
 }
 
-void		traverse_simple_command(t_simple_cmd *cmd, int in_fork, t_pjobs *local)
+void		traverse_simple_command(t_simple_cmd *cmd, int in_fork,
+														t_pjobs *local)
 {
 	t_vector	av;
 	t_vector	prefix_vars;

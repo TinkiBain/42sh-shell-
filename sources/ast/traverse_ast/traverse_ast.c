@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/02 17:42:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 15:56:33 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,18 @@ static void		traverse_list(t_pars_list *list, int sep)
 
 void			traverse_ast(t_complete_cmd *root)
 {
+	extern int	g_subshell_without_fork;
+
 	if (!root)
 		return ;
 	signal_monitor();
 	g_res_exec = 0;
 	root->list->sep = root->sep;
+	if (g_subshell_without_fork)
+	{
+		if (root->list->next || root->list->and_or->next)
+			g_subshell_without_fork = 0;
+	}
 	traverse_list(root->list, root->sep);
 	if (g_subjob)
 		deletejob(&g_subjob, g_subjob->num);
