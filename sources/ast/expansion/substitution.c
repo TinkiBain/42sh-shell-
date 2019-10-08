@@ -6,18 +6,21 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/07 22:30:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/08 17:42:06 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char		*substitution_write(int pipefd[2])
+char		*substitution_write(int pipefd[2], pid_t pid, char *str)
 {
 	char	buf[1024];
 	char	*tmp;
 	int		i;
 
+	free(str);
+	close(pipefd[1]);
+	waitpid(pid, NULL, 0);
 	tmp = ft_strnew(1);
 	while ((i = read(pipefd[0], buf, 1023)))
 	{
@@ -25,7 +28,8 @@ char		*substitution_write(int pipefd[2])
 		tmp = ft_strrejoin(tmp, buf, 1);
 	}
 	close(pipefd[0]);
-	tmp[ft_strlen(tmp) - 1] = '\0';
+	if (ft_strlen(tmp))
+		tmp[ft_strlen(tmp) - 1] = '\0';
 	return (tmp);
 }
 
@@ -35,6 +39,7 @@ char		*substitution_exec(char *str)
 	t_complete_cmd	*parser_list;
 	int				pipefd[2];
 	t_lex			*lex;
+	extern t_opt	g_opt;
 
 	if (pipe(pipefd) < 0)
 		exit(-1);
@@ -43,6 +48,10 @@ char		*substitution_exec(char *str)
 		close(pipefd[0]);
 		dup2(pipefd[1], 1);
 		lex = NULL;
+		close(0);
+		g_opt.vi_mode = 0;
+		g_opt.emacs_mode = 0;
+		g_opt.rl_gnl = 1;
 		parser_list = exec_ast(str, &lex);
 		if (parser_list)
 			traverse_ast(parser_list);
@@ -50,9 +59,7 @@ char		*substitution_exec(char *str)
 		lexer_free_all(lex);
 		exit(0);
 	}
-	close(pipefd[1]);
-	waitpid(pid, NULL, 0);
-	return (substitution_write(pipefd));
+	return (substitution_write(pipefd, pid, str));
 }
 
 char		*substitution(char *str)
