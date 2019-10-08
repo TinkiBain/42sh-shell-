@@ -121,8 +121,10 @@ io_redirect      	:           io_file
 					| IO_NUMBER io_here
 					;
 io_file          	: '<'       filename
+					| '<'		subshell
 					| LESSAND   filename
 					| '>'       filename
+					| '>'       subshell
 					| GREATAND  filename
 					| DGREAT    filename
 					| LESSGREAT filename

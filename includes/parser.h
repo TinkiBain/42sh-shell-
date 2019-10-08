@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/08 17:23:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/08 18:59:08 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ t_lex						*g_error_lex;
 
 typedef struct		s_io_redirect
 {
-	char				*file_name;
-	int					type;
-	int					io_number;
+	struct s_compound_list		*compound_list;
+	char						*file_name;
+	int							type;
+	int							io_number;
 }					t_io_redirect;
 
 typedef struct		s_cmd_suffix
