@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/26 19:18:00 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 19:25:52 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,22 @@ static void	save_fd(int fd[2])
 
 extern int	g_eof;
 
+void		redir_dless_push(char *str, int fd)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+			dollar(&i, &str);
+		else
+			++i;
+	}
+	ft_putendl_fd(str, fd);
+	free(str);
+}
+
 int			redir_dless(t_io_redirect *redir)
 {
 	int				pipefd[2];
@@ -72,14 +88,11 @@ int			redir_dless(t_io_redirect *redir)
 	{
 		str = ft_readline(g_opt.rl_gnl == 0 ?
 							get_var_value("PS2") : "", RL_HEREDOC);
-		// ft_putstr_fd(g_opt.rl_gnl == 0 ? "\n" : "", 0);
 		if (!str && !g_eof)
 			return (-1);
 		if ((!str || ft_strequ(str, redir->file_name)) && !(g_eof = 0))
 			break ;
-		ft_putstr_fd(str, pipefd[1]);
-		ft_putstr_fd("\n", pipefd[1]);
-		free(str);
+		redir_dless_push(str, pipefd[1]);
 	}
 	free(str);
 	if (redir->io_number == -1)
