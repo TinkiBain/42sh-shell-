@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 19:18:54 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 18:33:07 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 18:22:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int		traverse_redirect_list(t_redirect_list *list)
 	while (list)
 	{
 		if (list->io_redirect && (res = redirect(list->io_redirect)) == -1)
+		{
+			redir_reset();
 			return (res);
+		}
 		list = list->next;
 	}
 	return (res);
