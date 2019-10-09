@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/07 20:42:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 17:07:37 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ char		*buf_finder(char *tmp)
 	char	*buf;
 
 	if ((buf = get_var_value(tmp)) == NULL)
-	{
-		free(tmp);
 		return (0);
-	}
-	free(tmp);
 	if ((buf) == NULL)
 		return (0);
 	return (buf);

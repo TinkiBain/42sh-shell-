@@ -6,11 +6,14 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/07 16:51:14 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 17:39:57 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern t_opt		g_opt;
+extern char			**g_var;
 
 static char			*freed_proc_value(char *bud, char *value, int len, int flag)
 {
@@ -29,6 +32,8 @@ static char 		*value_rep(char *value)
 	value = ft_strdup(value);
 	while (value[i] != '}')
 		i++;
+	if (i == 0)
+		return (NULL);
 	value[i] = '\0';
 	value = tdq(value);
 	return (value);
@@ -101,12 +106,18 @@ static char			*forward_deleter(char *bud, char *value, int flag)
 	return(bud);
 }
 
-static char			*brace_handler_plus(char *buf, char *str)
+static char			*brace_handler_plus(char *buf, char *str, char *name)
 {
 	int i;
+	char *value;
+	char stat_name[2048];
 
+	i = -1;
+	while (name[++i])
+		stat_name[i] = name[i];
+	free(name);
 	i = 1;
-	printf ("-%s %s-\n", buf, str);
+	value = NULL;
 	if (*str == '%' && *(str + 1) == '%')
 		return (back_deleter(buf, str + 2, 1));
 	else if (*str == '%')
@@ -115,7 +126,46 @@ static char			*brace_handler_plus(char *buf, char *str)
 		return (forward_deleter(buf, str + 2, 1));
 	else if (*str == '#')
 		return (forward_deleter(buf, str + 1, 0));
-
+	else if (*str == ':')
+	{
+		if (str[1] == '-')
+		{
+			if (buf == NULL)
+				return (value_rep(&str[2]));
+		}
+		else if (str[1] == '=')
+		{
+			if (buf == NULL)
+			{
+				value = ft_strrejoin(stat_name, "=", 0);
+				value = ft_strrejoin(value, value_rep(&str[2]), 1);
+				set_var(value, &g_var, 0);
+				return (value_rep(&str[2]));
+			}
+		}
+		else if (str[1] == '+')
+		{
+			if (buf)
+				return (value_rep(&str[2]));
+			else
+				return (NULL);
+		}
+		else if (str[1] == '?')
+		{
+			if (!buf)
+			{
+				value = value_rep(&str[2]);
+				if (g_opt.rl_gnl == 1)
+					ft_exit(NULL);
+				else if (value == NULL)
+					print_error("parameter null or not set", stat_name);
+				else
+					print_error(value, stat_name);
+				free(value);
+				return(NULL);
+			}
+		}
+	}
 	return(ft_strdup(buf));
 }
 
@@ -137,7 +187,9 @@ char				*brace_handler(char *str, int *j)
 		tmp[len] = str[len];
 	tmp[len] = '\0';
 	bud_bear = buf_finder(tmp);
+	//printf ("%s    %s          %d\n", bud_bear, str, len);
 	if (str[len] != '}')
-		return(brace_handler_plus(bud_bear, &str[len]));
+		return(brace_handler_plus(bud_bear, &str[len], tmp));
+	free(tmp);
 	return (ft_strdup(bud_bear));
 }
