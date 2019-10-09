@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 21:17:02 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/08 17:55:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	print_error_name(char *str)
 {
 	str = ft_xstrjoin("`", str);
 	str = ft_strrejoin(str, "'", 1);
-	print_error("not a valid identifier", str);
+	print_error(str, "not a valid identifier");
 	ft_strdel(&str);
 	return (1);
 }

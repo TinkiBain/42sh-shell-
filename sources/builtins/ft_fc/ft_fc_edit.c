@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 18:51:07 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 20:48:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		get_first_last(const char **argv,
 		*pp_last = *pp_first;
 	}
 	if (!*pp_first || !*pp_last)
-		print_error("history specification out of range", "fc");
+		print_error("fc", "history specification out of range");
 }
 
 static int		write_file(char *path, t_vector vec)

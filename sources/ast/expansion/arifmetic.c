@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/07 20:31:51 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 16:47:00 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void			arifmetic_error(char *str, t_lex *begin)
 {
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(str, 2);
 	if (g_error_arifmetic->type == DIVISION_NULL)
-		ft_putstr_fd(": division by 0 ", 2);
+		print_error_vaarg("%s: division by 0 ", str);
 	else if (g_error_arifmetic->type >= 3 && g_error_arifmetic->type <= 12)
-		ft_putstr_fd(": attempted assignment to non-variable ", 2);
+		print_error_vaarg("%s: attempted assignment to non-variable ", str);
 	else
-		ft_putstr_fd(": syntax error: operand expected ", 2);
-	ft_putstr_fd("(error token is \"", 2);
+		print_error_vaarg("%s: syntax error: operand expected", str);
+	
+	ft_putstr_fd("(error token is \"", STDERR);
 	if (!g_lex_arif)
 	{
 		while (begin->next)
@@ -42,14 +40,8 @@ void			arifmetic_error(char *str, t_lex *begin)
 
 char			*arifmetic_print_lex_error(char *str)
 {
-
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": syntax error: operand expected ", 2);
-	ft_putstr_fd("(error token is \"", 2);
-	ft_putstr_fd(g_error_arifmetic->lexem, 2);
-	ft_putendl_fd("\")", 2);
+	print_error_vaarg("%s: syntax error: operand expected "
+			"(error token is \"%s\")\n", str, g_error_arifmetic->lexem);
 	lexer_free_all(g_error_arifmetic);
 	lexer_free_all(g_lex_arif);
 	return (NULL);

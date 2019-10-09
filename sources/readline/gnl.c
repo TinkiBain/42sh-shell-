@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 15:57:28 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/02 21:34:22 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int		gnl_input_loop(void)
 			break ;
 		if (ret < 0)
 		{
-			print_error("Read error", NULL);
+			print_error("gnl", "Read error");
 			str_delete(&g_line->result);
 			return (ret);
 		}
@@ -66,8 +66,6 @@ char			*gnl(char *prompt)
 		g_eof = 1;
 	if (ret <= 0)
 		str_delete(&g_line->result);
-	if (ret < 0)
-		print_error("Read error", NULL);
 	str_delete(&g_line->prompt);
 	return (g_line->result.s);
 }

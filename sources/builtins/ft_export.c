@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/23 13:47:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:22:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@
 
 static void		print_usage(char c)
 {
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": export: -", 2);
-	ft_putchar_fd(c, 2);
-	ft_putendl_fd(": invalid option", 2);
+	print_error_vaarg("export: -%c: invalid option", c);
 	ft_putendl_fd("export: usage: export [-nf] [name[=value] ...]"
 														" or export -p", 2);
 }
@@ -52,7 +49,7 @@ static int		print_export_error(const char *str)
 
 	error_msg = ft_strjoin("'", str);
 	error_msg = ft_strrejoin(error_msg, "': not a valid identifier", 1);
-	print_error(error_msg, "export");
+	print_error("export", error_msg);
 	ft_strdel(&error_msg);
 	return (1);
 }

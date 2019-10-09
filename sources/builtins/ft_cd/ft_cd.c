@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:17:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ const char	*check_flag(const char **av, int *flag)
 
 void		*cd_error_invalid_flag(char c)
 {
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": cd: -", 2);
-	write(2, &c, 1);
-	ft_putstr_fd(": invalid option\ncd: usage: cd [-L|-P] [dir]\n", 2);
+	print_error_vaarg("cd: -%c: invalid option\n", c);
+	ft_putstr_fd("cd: usage: cd [-L|-P] [dir]\n", STDERR);
 	return (NULL);
 }
 
@@ -56,8 +54,7 @@ int			change_dir_variable(const char *dir)
 		dir = get_var_value("HOME");
 		if (!dir)
 		{
-			ft_putstr_fd(g_project_name, 2);
-			ft_putstr_fd(": cd: HOME not set\n", 2);
+			print_error("cd", "HOME not set");
 			return (1);
 		}
 	}
@@ -66,8 +63,7 @@ int			change_dir_variable(const char *dir)
 		dir = get_var_value("OLDPWD");
 		if (!dir)
 		{
-			ft_putstr_fd(g_project_name, 2);
-			ft_putstr_fd(": cd: OLDPWD not set\n", 2);
+			print_error("cd", "OLDPWD not set");
 			return (1);
 		}
 		ft_putendl(dir);

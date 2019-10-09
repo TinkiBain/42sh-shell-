@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 16:13:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 21:10:39 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int			ft_fc_reexec(const char **argv, t_pjobs *local)
 		item = ft_fc_find_arg_number("-1");
 	if (!item)
 	{
-		print_error("no command found", "fc");
+		print_error("fc", "no command found");
 		return (1);
 	}
 	return (execute(replace, item, local));

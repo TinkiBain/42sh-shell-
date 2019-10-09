@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:39:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ typedef unsigned long long int	t_ullint;
 #  else
 #   define UINTMAX_T	t_ullint
 #  endif
-# endif
-
-# ifndef O_SYMLINK
-#  define O_SYMLINK		0
 # endif
 
 # ifndef F_GETPATH

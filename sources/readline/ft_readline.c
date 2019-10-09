@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/02 21:45:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 14:46:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 
 /*
 ** If EOF, return NULL and set g_eof to 1.
+** If Ctrl-C, return NULL, g_eof is 0.
 ** If error, write message and return NULL.
 */
 

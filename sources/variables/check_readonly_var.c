@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 16:25:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 14:36:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:54 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		check_readonly_var(const char *var, size_t name_len)
 		ft_strnequ(var, "SHELL_ALIASES", name_len))
 	{
 		((char *)var)[name_len] = '\0';
-		print_error("readonly variable", var);
+		print_error(var, "readonly variable");
 		return (1);
 	}
 	return (0);

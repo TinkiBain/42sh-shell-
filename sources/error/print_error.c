@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/05 22:11:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:51:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static t_string	format_info(const char *info)
 	return (str);
 }
 
-void			print_error(const char *msg, const char *info)
+void			print_error(const char *info, const char *msg)
 {
 	extern t_opt	g_opt;
 	extern int		g_line_num;
@@ -59,9 +59,28 @@ void			print_error(const char *msg, const char *info)
 	release_sem();
 }
 
-void			print_error_exit(const char *msg, const char *info, const int code)
+void			print_error_exit(const char *info, const char *msg, const int code)
 {
-	print_error(msg, info);
+	print_error(info, msg);
 	logclose();
 	exit(code);
+}
+
+void			print_error_vaarg(const char *msg, ...)
+{
+	va_list			ap;
+	extern t_opt	g_opt;
+	extern int		g_line_num;
+	
+	reserve_sem();
+	ft_fdprintf(STDERR, "%s: ", g_project_name);
+	if (g_opt.rl_gnl != 0)
+		ft_fdprintf(STDERR, "line %d: ", g_line_num);
+	va_start(ap, msg);
+	ft_vfdprintf(STDERR, msg, ap);
+	va_end(ap);
+	va_start(ap, msg);
+	loginfo_vaarg(msg, ap);
+	va_end(ap);
+	release_sem();
 }

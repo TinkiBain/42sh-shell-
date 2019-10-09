@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 16:24:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:30:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		logclose(void)
 	close(g_logfd);
 }
 
-void		loginfo(char *str, ...)
+void		loginfo(const char *str, ...)
 {
 	va_list	ap;
 
@@ -63,6 +63,20 @@ void		loginfo(char *str, ...)
 	va_start(ap, str);
 	ft_vfdprintf(g_logfd, str, ap);
 	va_end(ap);
+	ft_fdprintf(g_logfd, "\n");
+}
+
+void		loginfo_vaarg(const char *str, va_list ap)
+{
+	if (!DEBUG || g_logfd < 0)
+		return ;
+	if (g_logfd <= 2 &&
+		dup2(g_logfd, 10) != -1)
+	{
+		close(g_logfd);
+		g_logfd = 10;
+	}
+	ft_vfdprintf(g_logfd, str, ap);
 	ft_fdprintf(g_logfd, "\n");
 }
 

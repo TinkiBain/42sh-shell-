@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 15:29:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:45:28 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
 void		main_loop(void)
 {
 	char		*line;
-	char		*project_name;
 	int			i;
 
 	i = 0;
-	project_name = ft_xstrdup(g_project_name);
 	while (!g_eof)
 	{
 		init_sem();
@@ -54,7 +52,6 @@ void		main_loop(void)
 		execute_line(line);
 		clear_sem();
 	}
-	ft_strdel(&project_name);
 }
 
 int			main(int ac, char **av)
@@ -63,5 +60,6 @@ int			main(int ac, char **av)
 	shell_init(ac, av);
 	main_loop();
 	shell_clear();
+	print_exit();
 	return (g_res_exec);
 }

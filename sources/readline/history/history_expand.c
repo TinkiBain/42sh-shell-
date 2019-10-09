@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:54:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/03 16:35:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:57:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int		change_line(t_line *line, t_string *f, int i, int len)
 	}
 	else
 	{
-		print_error("event not found", line->str->s);
+		print_error(line->str->s, "event not found");
 		str_remove(line->str, 0, line->str->len);
 		return (0);
 	}

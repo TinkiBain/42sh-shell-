@@ -6,43 +6,32 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:25:05 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/29 17:30:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:41:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
 #include "defs.h"
+#include "error.h"
 
 void	hash_usage(void)
 {
-	write(STDERR, g_project_name, ft_strlen(g_project_name));
-	write(STDERR, ": ", 2);
-	write(STDERR, HASH_USAGE, ft_strlen(HASH_USAGE));
-	write(STDERR, "\n", 1);
+	ft_putstr(HASH_NAME);
+	ft_putstr(": ");
+	ft_putendl_fd(HASH_USAGE, STDERR);
 }
 
 void	hash_invalid_option(char c)
 {
-	write(STDERR, g_project_name, ft_strlen(g_project_name));
-	write(STDERR, ": ", 2);
-	write(STDERR, HASH_NAME, ft_strlen(HASH_NAME));
-	write(STDERR, ": -", 3);
-	write(STDERR, &c, 1);
-	write(STDERR, ": invalid option\n", 17);
+	print_error_vaarg(HASH_NAME ": -%c: invalid option\n", c);
 }
 
 void	hash_empty(void)
 {
-	write(1, HASH_NAME, ft_strlen(HASH_NAME));
-	write(1, ": hash table empty\n", 19);
+	print_error(HASH_NAME, "hash table empty");
 }
 
 void	hash_not_found(char *name)
 {
-	write(STDERR, g_project_name, ft_strlen(g_project_name));
-	write(STDERR, ": ", 2);
-	write(STDERR, HASH_NAME, ft_strlen(HASH_NAME));
-	write(STDERR, ": ", 2);
-	write(STDERR, name, ft_strlen(name));
-	write(STDERR, ": not found\n", 12);
+	print_error_vaarg(HASH_NAME ": %s: not found\n", name);
 }

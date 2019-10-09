@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 14:18:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int			check_binary(char *path)
 	close(fd);
 	if (magic == MH_MAGIC || magic == MH_MAGIC_64)
 	{
-		print_error("cannot execute binary file", path);
+		print_error(path, "cannot execute binary file");
 		return (1);
 	}
 	return (0);
