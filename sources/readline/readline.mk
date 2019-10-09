@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/09/30 22:28:58 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/09 19:05:33 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,8 @@ SRCS_READLINE_INPUTLOOP=\
 SRCS_READLINE_HISTORY=\
 	go_history.c		history_clear.c		history_copy.c\
 	history_load.c		history_push.c		history_save.c\
-	history_expand.c	history_search.c	history_search_clear.c\
+	history_expand.c	history_expand_one.c\
+	history_search.c	history_search_clear.c\
 	history_append.c
 
 READLINE_SUBDIRS=\
