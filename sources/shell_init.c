@@ -6,10 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/06 17:14:22 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:18:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mach-o/loader.h>
 #include "sh.h"
 #include "parser.h"
 #include "exec.h"
@@ -44,6 +45,23 @@ static void			fill_options(int rl_in)
 	g_opt.rl_out = STDERR;
 }
 
+static int			check_binary(char *path)
+{
+	int			fd;
+	uint32_t	magic;
+
+	magic = 0;
+	fd = open(path, O_RDONLY, S_IRWXU);
+	read(fd, &magic, sizeof(magic));
+	close(fd);
+	if (magic == MH_MAGIC || magic == MH_MAGIC_64)
+	{
+		print_error("cannot execute binary file", path);
+		return (1);
+	}
+	return (0);
+}
+
 static int			get_fd(int ac, char **av)
 {
 	extern char		*g_project_name;
@@ -56,7 +74,7 @@ static int			get_fd(int ac, char **av)
 	fd = -1;
 	if (ac > 1)
 	{
-		if (check_file_errors(av[1], F_OK) ||
+		if (check_file_errors(av[1], F_OK) || check_binary(av[1]) ||
 							(fd = open(av[1], O_RDONLY)) < 0)
 			exit(g_res_exec);
 	}

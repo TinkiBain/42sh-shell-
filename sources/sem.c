@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 20:41:56 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:18:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ void				clear_sem(void)
 {
 	if (semctl(g_semid, 0, IPC_RMID) == -1)
 		print_error("Error in semctl()", "clear_sem()");
+	g_semid = 0;
 }
 
 void				reserve_sem(void)
 {
 	struct sembuf	sops;
 
+	if (!g_semid)
+		return ;
 	sops.sem_num = 0;
 	sops.sem_op = -1;
 	sops.sem_flg = 0;
@@ -45,6 +48,8 @@ void				release_sem(void)
 {
 	struct sembuf	sops;
 
+	if (!g_semid)
+		return ;
 	sops.sem_num = 0;
 	sops.sem_op = 1;
 	sops.sem_flg = 0;
