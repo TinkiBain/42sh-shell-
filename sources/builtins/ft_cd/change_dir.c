@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 16:52:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:10:23 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int			cd_error(const char *error_dir, char *curpath)
 {
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": cd: ", 2);
+	print_error_vaarg("cd: ");
 	perror(error_dir);
 	if (curpath)
 		free(curpath);

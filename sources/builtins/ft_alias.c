@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/16 15:46:17 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:09:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static int		alias_set_str(const char *str, t_alias **alias)
 
 static int		alias_print_str(const char *str)
 {
-	extern char		*g_project_name;
 	extern t_alias	*g_alias;
 	t_alias			*tmp;
 
@@ -85,10 +84,7 @@ static int		alias_print_str(const char *str)
 		}
 		tmp = tmp->next;
 	}
-	ft_putstr_fd(g_project_name, 2);
-	ft_putstr_fd(": alias: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": not found\n", 2);
+	print_error_vaarg("alias: %s: not found\n", str);
 	return (1);
 }
 

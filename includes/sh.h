@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 20:03:55 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/09 15:07:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_alias
 void				signal_monitor();
 void				shell_init(int ac, char **av);
 void				shell_clear(void);
+void				print_exit(void);
 void				execute_line(char *buf);
 t_complete_cmd		*exec_ast(char *buf, t_lex **lex);
 

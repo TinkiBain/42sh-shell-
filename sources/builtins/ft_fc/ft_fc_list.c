@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:39:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 18:08:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		get_first_last(const char **argv,
 		*pp_last = ft_fc_find_arg_number("-1");
 	}
 	if (!*pp_first || !*pp_last)
-		print_error("history specification out of range", "fc");
+		print_error("fc", "history specification out of range");
 }
 
 int				ft_fc_list(const char **argv, t_cmd_opt opt)

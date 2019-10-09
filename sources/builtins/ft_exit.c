@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 16:15:48 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:24:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ static void	check_arg_count(const char **av)
 	{
 		++ac;
 		if (ac > 1)
-		{
-			ft_putstr_fd(g_project_name, 2);
-			ft_putendl_fd(": exit: too many arguments", 2);
-			exit(1);
-		}
+			print_error_exit("exit", "too many arguments", 1);
 	}
 }
 
@@ -37,20 +33,8 @@ static void	check_arg_format(const char *av)
 	while (*tmp)
 	{
 		if (!ft_isdigit(*(tmp++)))
-		{
-			ft_putstr_fd(g_project_name, 2);
-			ft_putstr_fd(": exit: ", 2);
-			ft_putstr_fd(av, 2);
-			ft_putendl_fd(": numeric argument required", 2);
-			exit(255);
-		}
+			print_error_exit("exit", "numeric argument required", 255);
 	}
-}
-
-static void	exit_clear(int n)
-{
-	shell_clear();
-	exit(n);
 }
 
 int			ft_exit(const char **av)
@@ -63,8 +47,9 @@ int			ft_exit(const char **av)
 		check_arg_count(av);
 		check_arg_format(*av);
 		res = (char)ft_atoi(*av);
-		exit_clear(res);
+		shell_clear();
+		exit(res);
 	}
-	exit_clear(g_res_exec);
-	return (0);
+	shell_clear();
+	exit(g_res_exec);
 }

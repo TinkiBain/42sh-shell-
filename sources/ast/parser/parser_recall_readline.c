@@ -6,24 +6,20 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 18:35:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/08 18:57:15 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/09 16:26:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include "error.h"
 
 char			*parser_error_recall_readline(char c)
 {
-	extern char	*g_project_name;
 	extern int	g_eof;
 
 	if (g_error_lex->type != ERR_SINT)
-	{
-		ft_putstr_fd(g_project_name, 2);
-		ft_putstr_fd(": unexpected EOF while looking for matching `", 2);
-		write(2, &c, 1);
-		ft_putstr_fd("'\n", 2);
-	}
+		print_error_vaarg("unexpected EOF while "
+							"looking for matching `%c'\n", c);
 	g_eof = 0;
 	return (NULL);
 }

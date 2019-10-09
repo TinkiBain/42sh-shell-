@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 22:20:44 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ void				jobs_sig(void)
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
 		if ((msg = that_sig(st, g_subjob->name)))
-			print_error(msg, NULL);
+			print_error("jobs_sig()", msg);
 		if (g_subjob->workgpid == 0 && taa() > 0)
 			deletejob(&g_subjob, g_subjob->num);
 		return ;

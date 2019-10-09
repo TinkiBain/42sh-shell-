@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:35:07 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 20:47:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	**have_e_arg(char *str)
 		name = get_bin(name);
 	if (!name)
 	{
-		print_error("command not found", g_optarg);
+		print_error(g_optarg, "command not found");
 		return (NULL);
 	}
 	argv = ft_xmemalloc(sizeof(char *) * 3);

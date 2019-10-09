@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 18:47:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/06 20:46:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			check_cmd(const char *cmd)
 		return ((check_file_errors(cmd, X_OK)) ? g_res_exec : 0);
 	else if (!get_bin((char *)cmd))
 	{
-		print_error("command not found", cmd);
+		print_error(cmd, "command not found");
 		return ((g_res_exec = 127));
 	}
 	return (0);

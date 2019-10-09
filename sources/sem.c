@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 14:18:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void				init_sem(void)
 	g_semid = semget(IPC_PRIVATE, 1, S_IRUSR | S_IWUSR | IPC_CREAT | IPC_EXCL);
 	arg.val = 1;
 	if (semctl(g_semid, 0, SETVAL, arg) == -1)
-		print_error("Error in semctl()", "init_sem()");
+		print_error("init_sem()", "Error in semctl()");
 }
 
 void				clear_sem(void)
 {
 	if (semctl(g_semid, 0, IPC_RMID) == -1)
-		print_error("Error in semctl()", "clear_sem()");
+		print_error("clear_sem()", "Error in semctl()");
 	g_semid = 0;
 }
 

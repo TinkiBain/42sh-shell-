@@ -6,11 +6,19 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:25:17 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:15:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+void		print_exit(void)
+{
+	extern t_opt	g_opt;
+
+	if (!g_opt.rl_gnl)
+		ft_putstr_fd("exit\n", 2);
+}
 
 void		shell_clear(void)
 {
@@ -32,7 +40,5 @@ void		shell_clear(void)
 	alias_free_all();
 	if (g_opt.rl_gnl != 0)
 		close(g_opt.rl_in);
-	else
-		ft_putstr_fd("exit\n", 2);
 	logclose();
 }

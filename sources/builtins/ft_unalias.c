@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:38:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/22 20:53:11 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 16:32:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ int		unalias_check_flag(const char *str)
 			++str;
 		else
 		{
-			ft_putstr_fd(g_project_name, 2);
-			ft_putstr_fd(": unalias: -", 2);
-			write(2, str, 1);
-			ft_putstr_fd(": invalid option\n", 2);
+			print_error_vaarg("unalias: -%c: invalid option\n", *str);	
 			ft_putstr_fd("unalias: usage: unalias [-a] name [name ...]\n", 2);
 			return (-1);
 		}

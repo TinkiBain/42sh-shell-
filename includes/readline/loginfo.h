@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:04:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/16 12:24:12 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:32:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 
 void	logopen(void);
 void	logclose(void);
-void	loginfo(char *format, ...);
+void	loginfo(const char *format, ...);
+void	loginfo_vaarg(const char *str, va_list ap);
 void	loginfo_line(t_line *line);
 void	loginfo_backtrace(void);
 

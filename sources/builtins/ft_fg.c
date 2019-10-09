@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/02 19:22:19 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/09 17:19:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 int			fg_null_error(const char *name)
 {
-	ft_putstr_fd(g_project_name, 2);
 	if (name)
-	{
-		ft_putstr_fd(": fg: job not found ", 2);
-		ft_putendl_fd(name, 2);
-	}
+		print_error_vaarg("fg: %s: job not found\n", name);
 	else
-		ft_putstr_fd(": fg: no current job\n", 2);
+		print_error("fg", "no current job");
 	return (1);
 }
 
