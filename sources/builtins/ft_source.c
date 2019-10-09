@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 17:44:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/05 21:34:17 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/09 17:58:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@
 static	int		error(const char *str, int err_code)
 {
 	if (err_code == USAGE)
-		write(2, "source: usage: source filename\n", 32);
+		ft_putendl_fd("source: usage: source filename\n", STDERR);
 	else if (err_code == NO_SUCH)
-	{
-		write(2, "source: no such file or directory: ", 35);
-		write(2, str, ft_strlen(str));
-		write(2, "\n", 1);
-	}
+		print_error_vaarg("source: %s: no such file or directory\n", str);
 	return (1);
 }
 

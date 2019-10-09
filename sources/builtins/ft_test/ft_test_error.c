@@ -6,33 +6,28 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 17:16:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:37:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/09 18:04:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_test.h"
 #include "defs.h"
+#include "error.h"
 
 int		test_unary(char *src)
 {
-	write(2, PROJECT_NAME, ft_strlen(PROJECT_NAME));
-	write(2, ": test: ", 8);
-	write(2, src, ft_strlen(src));
-	write(2, ": unary operator expected\n", 26);
+	print_error_vaarg("test: %s: unary operator expected\n", src);
 	return (2);
 }
 
 int		test_too_many(void)
 {
-	write(2, "test: too many arguments\n", 25);
+	print_error("test", "too many arguments");
 	return (2);
 }
 
 int		test_integer_expression(char *src)
 {
-	write(2, PROJECT_NAME, ft_strlen(PROJECT_NAME));
-	write(2, ": test: ", 8);
-	write(2, src, ft_strlen(src));
-	write(2, ": integer expression expected\n", 30);
+	print_error_vaarg("test: %s: integer expression expected\n", src);
 	return (2);
 }
