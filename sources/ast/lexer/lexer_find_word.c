@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/06 15:43:12 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/09 17:58:31 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char		*lexer_find_char(char *str, char c)
 			++str;
 			if (!*str)
 				return (str);
-			++str;
 		}
 		else if (*str == '$')
 			str = lexer_find_dollar(str + 1);
@@ -32,25 +31,7 @@ char		*lexer_find_char(char *str, char c)
 	}
 	return (str);
 }
-/*
-char		*lexer_find_square_bracket(char *str)
-{
-	int		i;
 
-	i = 0;
-	while (*str)
-	{
-		if (*str == '[')
-			i++;
-		else if (*str == ']')
-			i--;
-		if (!i)
-			break ;
-		++str;
-	}
-	return (str);
-}
-*/
 char		*lexer_find_word(char *str, t_lex **lex)
 {
 	char	*begin;
@@ -68,8 +49,6 @@ char		*lexer_find_word(char *str, t_lex **lex)
 			str = lexer_find_char(str, *str);
 		if (*str == '$')
 			str = lexer_find_dollar(str + 1);
-//		if (*str == '[')
-//			str = lexer_find_square_bracket(str);
 		if (*str)
 			++str;
 	}
