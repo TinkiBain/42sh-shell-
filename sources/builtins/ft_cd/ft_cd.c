@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 17:17:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/10 21:35:10 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,10 @@ int			ft_cd(const char **av)
 		return (change_dir_variable(tmp));
 	if (*tmp == '/')
 		return (change_dir(ft_strdup(tmp), tmp, flag));
-	path = ft_strdup(get_var_value("PWD"));
+	if (!flag)
+		path = ft_strdup(get_var_value("PWD"));
+	else
+		path = ft_strdup(getcwd(NULL, 1024));
 	if (!path)
 		path = ft_strdup(getcwd(NULL, 1024));
 	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
