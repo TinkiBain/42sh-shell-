@@ -6,11 +6,10 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/10 17:02:43 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mach-o/loader.h>
 #include "sh.h"
 #include "parser.h"
 #include "exec.h"
@@ -48,7 +47,7 @@ static void			fill_options(int rl_in)
 static int			check_binary(char *path)
 {
 	int			fd;
-	uint32_t	magic;
+	t_uint		magic;
 
 	magic = 0;
 	fd = open(path, O_RDONLY, S_IRWXU);

@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 15:07:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/10 17:02:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # include "jobs.h"
 # include "builtins.h"
 # include "expansion.h"
+
+# ifdef __APPLE__
+#  include <mach-o/loader.h>
+# else
+#  define MH_MAGIC		0x464c457f
+#  define MH_MAGIC_64	0x464c457f
+# endif
 
 typedef struct		s_opt
 {
