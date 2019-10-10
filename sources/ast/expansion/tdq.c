@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/07 18:52:30 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:41:35 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 	return (1);
 }
 
-static char		*cleaner(char *str)
+char			*cleaner(char *str)
 {
 	char	*tmp;
 	int		i;
@@ -126,6 +126,8 @@ char			*tdq(char *str)
 		tdq_while(&i, &str);
 		i++;
 	}
+	str = tdq_substitution(str);
+	free(tmp);
 	if (*str == '~')
 	{
 		str = cleaner(str);

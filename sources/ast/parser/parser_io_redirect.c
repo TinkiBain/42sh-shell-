@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/08 18:08:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/10 18:58:12 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_io_redirect			*parser_io_redirect(void)
 		if (g_lex)
 		{
 			if (g_lex->type == WORD)
-				list->file_name = ft_strdup(g_lex->lexem);
+				list->file_name = parser_word_expansion(g_lex->lexem);
 			else
 			{
 				g_error_lex = g_lex;

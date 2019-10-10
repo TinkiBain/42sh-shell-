@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 15:51:58 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/10 19:35:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/10 17:19:55 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void	redir_add_fd_table(int fd)
 	if (g_open_fd)
 		size = *g_open_fd + 1;
 	i = 0;
-	tmp = (int *)ft_xmalloc(sizeof(int) * size + 1);
+	if (size)
+		tmp = (int *)ft_xmalloc(sizeof(int) * (size + 1));
+	else
+	{
+		tmp = (int *)ft_xmalloc(sizeof(int) * (size + 2));
+		tmp[0] = 0;
+	}
 	while (i < size)
 	{
 		tmp[i] = g_open_fd[i];
