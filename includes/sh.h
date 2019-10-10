@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/10 17:02:20 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/10 21:34:00 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct		s_opt
 	t_uint			rl_in;
 	t_uint			rl_out;
 	t_uint			rl_gnl;
+	t_uint			is_subshell;
+	t_uint			is_single_cmd;
 }					t_opt;
 
 typedef struct		s_alias

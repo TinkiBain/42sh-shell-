@@ -6,23 +6,24 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 15:58:01 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/10 15:11:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			call_subshell(char *str, t_pjobs *local)
+int					call_subshell(char *str, t_pjobs *local)
 {
-	pid_t		pid;
-	extern char	**environ;
-	extern int	g_subshell_without_fork;
+	extern t_opt	g_opt;
+	extern char		**environ;
+	pid_t			pid;
 
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)
 			setpgrp();
-		g_subshell_without_fork = 1;
+		g_opt.is_subshell = 1;
+		g_opt.is_single_cmd = 1;
 		execute_line(str);
 		exit(g_res_exec);
 	}

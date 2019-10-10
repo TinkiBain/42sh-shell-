@@ -6,15 +6,15 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 15:56:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:27:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
+static void			traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 {
-	static int	flag;
+	static int		flag;
 
 	flag = flag1;
 	if (elem->next)
@@ -40,12 +40,12 @@ static int		cmd_is_subshell(t_and_or *and_or, int sep)
 	return (0);
 }
 
-static void		traverse_list(t_pars_list *list, int sep)
+static void			traverse_list(t_pars_list *list, int sep)
 {
-	t_pjobs		*local;
-	char		*pjobs_name;
-	char		*sub_job_name;
-	extern char	**environ;
+	extern char		**environ;
+	t_pjobs			*local;
+	char			*pjobs_name;
+	char			*sub_job_name;
 
 	if (list->sep != JOB && list->next)
 		traverse_list(list->next, list->next->sep);
@@ -62,19 +62,19 @@ static void		traverse_list(t_pars_list *list, int sep)
 		traverse_and_or(list->and_or, 0, local);
 }
 
-void			traverse_ast(t_complete_cmd *root)
+void				traverse_ast(t_complete_cmd *root)
 {
-	extern int	g_subshell_without_fork;
+	extern t_opt	g_opt;
 
 	if (!root)
 		return ;
-	signal_monitor();
 	g_res_exec = 0;
+	signal_monitor();
 	root->list->sep = root->sep;
-	if (g_subshell_without_fork)
+	if (g_opt.is_subshell)
 	{
 		if (root->list->next || root->list->and_or->next)
-			g_subshell_without_fork = 0;
+			g_opt.is_single_cmd = 0;
 	}
 	traverse_list(root->list, root->sep);
 	if (g_subjob)

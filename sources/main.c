@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/09 17:45:28 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/10 15:11:33 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int			g_wait_flags;
 char		*g_tty;
 int			*g_open_fd;
 int			*g_pipe_pid;
-int			g_subshell_without_fork;
 t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
 
 void		main_loop(void)
