@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 19:03:31 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 19:03:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/10 17:11:57 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static int		change_line(t_line *line, t_string *f, int i, int len)
 	}
 }
 
-int				history_expand_one(t_line *line, int *pos)
+int				history_expand_one(t_line *line, int *pos, int *first)
 {
 	int			i;
 	char		c;
@@ -101,6 +101,9 @@ int				history_expand_one(t_line *line, int *pos)
 	len = (c == '!' ? len - 1 : len);
 	if (len == 0)
 		return (1);
+	if (*first)
+		move_cur_nl();
+	*first = 0;
 	*pos += change_line(line, f, i, len) - 1;
 	return (f ? f->len : 0);
 }
