@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/10 19:27:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 16:39:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void				traverse_ast(t_complete_cmd *root)
 
 	if (!root)
 		return ;
-	g_res_exec = 0;
 	signal_monitor();
 	root->list->sep = root->sep;
 	if (g_opt.is_subshell)
