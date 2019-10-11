@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/02 20:00:21 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 19:19:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 int		pipe_av(t_job *job)
 {
 	int i;
+	int len;
+	t_job *tjob;
 
-	g_pipe_pid = (int*)ft_xmalloc(sizeof(int) * 100);
+	tjob = job;
+	len = 0;
+	while (tjob)
+	{
+		len++;
+		tjob = tjob->next;
+	}
+	g_pipe_pid = (int*)ft_xmalloc(sizeof(int) * (len + 1));
 	i = 0;
-	while (job)
+	while (i < len)
 	{
 		g_pipe_pid[i] = job->pid;
 		job = job->next;

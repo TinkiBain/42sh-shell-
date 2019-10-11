@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 14:29:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:07:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	signals(int signo)
 {
 	extern t_line	*g_line;
 
-	loginfo("Caught signal %d", signo);
+	//loginfo("Caught signal %d", signo);
 	if (signo == SIGCHLD)
 		jobs_sig();
 	else if (signo == SIGTTOU)
@@ -57,8 +57,21 @@ static void	signal_sigwinch(int signo)
 	}
 }
 
+void 		termination_handler(int signum, siginfo_t *info, void *ucontext)
+{
+	if (signum == SIGILL)
+		printf ("%d\n%d\n%d\n%ld\n%p\n", info->si_signo, info->si_errno, info->si_code, info->si_band, info->si_addr);
+		(void)ucontext;
+}
+
 void		signal_monitor(void)
 {
+	struct sigaction new_action;
+	new_action.sa_sigaction = termination_handler;
+  	sigemptyset (&new_action.sa_mask);
+	new_action.sa_flags = SA_SIGINFO;
+
+	sigaction(SIGILL, &new_action, NULL);
 	signal(SIGCONT, signals);
 	signal(SIGCHLD, signals);
 	signal(SIGTSTP, signals);

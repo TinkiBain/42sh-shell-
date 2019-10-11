@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 17:21:13 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 18:29:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ int					pid_fredy(void)
 	{
 		while (g_pipe_pid[++i] != 0)
 			g_pipe_pid[i] = 0;
-		free(g_pipe_pid);
-		g_pipe_pid = NULL;
 	}
+
 	g_wait_flags = 0;
 	return (1);
 }
