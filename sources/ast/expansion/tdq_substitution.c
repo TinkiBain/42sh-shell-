@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:12:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/10 20:39:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char		*tdq_substitution(char *str)
 		}
 		else if (*str == '`' || ft_strnequ(str, "$(", 2))
 		{
-			new_str = ft_strrejoin(new_str, ft_strndup(begin, str - begin), 3);
+			new_str = ft_strrejoin(new_str, ft_xstrndup(begin, str - begin), 3);
 			new_str = ft_strrejoin(new_str, substitution(str), 3);
 			str = lexer_find_char(str, '`');
 			++str;

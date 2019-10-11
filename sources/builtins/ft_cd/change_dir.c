@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 17:10:23 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int			change_dir(char *curpath, const char *av, int flag)
 	check_full_path(curpath);
 	if (chdir(curpath) < 0)
 		return (cd_error(av, curpath));
-	arr_for_env[0] = ft_strjoin("OLDPWD=", get_var_value("PWD"));
+	arr_for_env[0] = ft_xstrjoin("OLDPWD=", get_var_value("PWD"));
 	if (!flag)
-		arr_for_env[1] = ft_strjoin("PWD=", curpath);
+		arr_for_env[1] = ft_xstrjoin("PWD=", curpath);
 	else
 		arr_for_env[1] = ft_strrejoin("PWD=", getcwd(NULL, 1024), 2);
 	arr_for_env[2] = NULL;

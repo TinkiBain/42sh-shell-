@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 17:21:28 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/03 16:37:29 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 char		*arifmetic_lexer_bracket(char *str, t_lex **lex)
 {
 	if (*str == '(')
-		init_lex(LBRACKET_ARIF, ft_strdup("("), lex);
+		init_lex(LBRACKET_ARIF, ft_xstrdup("("), lex);
 	else
-		init_lex(RBRACKET_ARIF, ft_strdup(")"), lex);
+		init_lex(RBRACKET_ARIF, ft_xstrdup(")"), lex);
 	++str;
 	return (str);
 }
@@ -28,10 +28,10 @@ char		*arifmetic_lexer_not(char *str, t_lex **lex)
 	if (*str == '=')
 	{
 		++str;
-		init_lex(NOT_EQUAL_IF, ft_strdup("!="), lex);
+		init_lex(NOT_EQUAL_IF, ft_xstrdup("!="), lex);
 	}
 	else
-		init_lex(LOGICAL_NOT, ft_strdup("!"), lex);
+		init_lex(LOGICAL_NOT, ft_xstrdup("!"), lex);
 	return (str);
 }
 

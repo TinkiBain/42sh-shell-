@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 20:19:57 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:11:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_pattern			*parser_pattern(void)
 		return (NULL);
 	}
 	list = parser_init_pattern();
-	list->word = ft_strdup(g_lex->lexem);
+	list->word = ft_xstrdup(g_lex->lexem);
 	g_lex = g_lex->next;
 	if (g_lex->type == PIPE)
 	{

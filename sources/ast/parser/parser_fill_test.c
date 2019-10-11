@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 19:02:15 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/21 20:45:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char		*parser_fill_test(void)
 {
 	char	*tmp;
 
-	tmp = ft_strdup("[[ ");
+	tmp = ft_xstrdup("[[ ");
 	g_lex = g_lex->next;
 	
 }

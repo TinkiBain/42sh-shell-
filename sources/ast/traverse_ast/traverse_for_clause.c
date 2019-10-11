@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 21:43:35 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
 	if (check_name(list->name) || (check_readonly_var(list->name,
 													ft_strlen(list->name))))
 		return ;
-	var_name = ft_strjoin(list->name, "=");
+	var_name = ft_xstrjoin(list->name, "=");
 	wordlist = list->wordlist;
 	while (wordlist)
 	{
 		wordlist->word = tdq(wordlist->word);
-		var = ft_strjoin(var_name, wordlist->word);
+		var = ft_xstrjoin(var_name, wordlist->word);
 		set_var(var, &g_var, 0);
 		ft_strdel(&var);
 		traverse_compound_list(list->do_group, local);

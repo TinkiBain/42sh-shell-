@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/22 20:04:21 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int			set_var(const char *var, char ***env, int change_readonly)
 		if (!p && (p = get_var_value((char *)var)))
 		{
 			flag = 1;
-			tmp_var = (const char *)ft_strjoin(var, "=");
+			tmp_var = (const char *)ft_xstrjoin(var, "=");
 			tmp_var = (const char *)ft_strrejoin(tmp_var, p, 1);
 		}
 		else if (!p && (flag = 1))
-			tmp_var = (const char *)ft_strjoin(var, "=");
+			tmp_var = (const char *)ft_xstrjoin(var, "=");
 		if (change_readonly || !check_readonly_var(tmp_var, name_len))
 			handle_set_var(tmp_var, name_len, env, flag);
 	}

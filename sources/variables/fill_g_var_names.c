@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:56:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		copy_var_names(char **var_names, char **vars, size_t *i)
 	{
 		if ((p = ft_strchr(*vars, '=')))
 		{
-			*(var_names + (*i)++) = ft_strndup(*vars, p - *vars);
+			*(var_names + (*i)++) = ft_xstrndup(*vars, p - *vars);
 		}
 		++vars;
 	}

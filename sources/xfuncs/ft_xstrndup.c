@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_var_name.c                                     :+:      :+:    :+:   */
+/*   ft_xstrndup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/16 20:02:38 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 15:19:51 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/11 15:16:48 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/11 15:18:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "xfuncs.h"
 
-char	*get_var_name(const char *var, size_t *name_len)
+char	*ft_xstrndup(const char *src, int j)
 {
 	char	*p;
-	size_t	size;
-
-	if ((p = ft_strchr(var, '=')))
-	{
-		size = p - var;
-		if (name_len)
-			*name_len = size;
-		return (ft_xstrndup(var, size));
-	}
-	return (NULL);
+	
+	if (!src)
+		return (NULL);
+	p = ft_strndup(src, j);
+	if (!p)
+		die();
+	return (p);
 }

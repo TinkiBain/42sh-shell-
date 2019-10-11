@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 18:30:21 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:18:47 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_case_clause	*parser_init_case_clause(void)
 	t_case_clause		*list;
 
 	list = (t_case_clause*)ft_xmalloc(sizeof(t_case_clause));
-	list->word = ft_strdup(g_lex->lexem);
+	list->word = ft_xstrdup(g_lex->lexem);
 	g_lex = g_lex->next;
 	parser_linebreak();
 	list->case_list = NULL;

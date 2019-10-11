@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 17:09:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int		alias_set_str(const char *str, t_alias **alias)
 
 	if (!(body = ft_strchr(str, '=')))
 		return (0);
-	head = ft_strndup(str, body - str);
+	head = ft_xstrndup(str, body - str);
 	body = ft_xstrdup(body + 1);
 	while (*alias)
 	{

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/01 19:15:21 by wtalea            #+#    #+#             */
-/*   Updated: 2019/08/17 06:58:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ char	*paste_path(char *str1, char *str2)
 	if (len1 && len2)
 	{
 		if (*(str1 + len1 - 1) != '/')
-			dst = ft_strjoin(str1, "/");
-		cp = ft_strjoin((dst ? dst : str1), str2);
+			dst = ft_xstrjoin(str1, "/");
+		cp = ft_xstrjoin((dst ? dst : str1), str2);
 		if (dst)
 			free(dst);
 	}

@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/10 16:55:45 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char		*substitution(char *str)
 		str = lexer_find_char(begin, '`');
 		begin++;
 	}
-	begin = ft_strndup(begin, str - begin);
+	begin = ft_xstrndup(begin, str - begin);
 	begin = cleaner(begin);
 	return (substitution_exec(begin));
 }

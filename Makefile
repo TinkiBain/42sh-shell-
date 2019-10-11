@@ -6,7 +6,7 @@
 #    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/05 19:58:51 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/11 15:20:21 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,8 @@ XFUNCS_DIR=xfuncs
 
 SRCS_XFUNCS=\
 	ft_xstrdup.c	 ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
-	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c
+	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c\
+	ft_xstrndup.c
 
 ERROR_DIR=error
 

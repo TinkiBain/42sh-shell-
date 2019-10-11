@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 17:35:08 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/03 16:50:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char		*arifmetic_lexer_check_suffix(char *str, t_lex **lex, char c)
 	{
 		str += 2;
 		if (c == '+')
-			init_lex(SUFFIX_ADD, ft_strdup("++"), lex);
+			init_lex(SUFFIX_ADD, ft_xstrdup("++"), lex);
 		else
-			init_lex(SUFFIX_MIN, ft_strdup("--"), lex);
+			init_lex(SUFFIX_MIN, ft_xstrdup("--"), lex);
 	}
 	return (str);
 }
@@ -32,7 +32,7 @@ char		*arifmetic_lexer_var(char *str, t_lex **lex)
 	begin = str;
 	while (ft_isalpha(*str) || ft_isdigit(*str))
 		++str;
-	begin = ft_strndup(begin, str - begin);
+	begin = ft_xstrndup(begin, str - begin);
 	init_lex(VAR, begin, lex);
 	if (*str == '+' || *str == '-')
 		str = arifmetic_lexer_check_suffix(str, lex, *str);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/10 18:58:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_io_redirect			*parser_check_subshell(int io_number)
 	{
 		list = parser_init_io_redirect(g_lex->type, io_number);
 		g_lex = g_lex->next;
-		list->file_name = ft_strdup(g_lex->lexem);
+		list->file_name = ft_xstrdup(g_lex->lexem);
 		g_lex = g_lex->next;
 		return (list);
 	}

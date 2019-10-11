@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 22:31:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 17:15:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ size_t		expr(void)
 		value = expr_check_type(var_value, type, value);
 		if (g_error_arifmetic)
 			return (0);
-		var = ft_strjoin(var, "=");
+		var = ft_xstrjoin(var, "=");
 		var = ft_strrejoin(var, ft_itoa_base(value, 10), 3);
 		set_var(var, &g_var, 0);
 		free(var);

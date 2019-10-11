@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 22:23:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/08 17:48:03 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ t_wordlist			*parser_wordlist(void)
 		g_lex = g_lex->next;
 		if (g_lex->type == WORD)
 		{
-			list = parser_init_wordlist(ft_strdup(g_lex->lexem));
+			list = parser_init_wordlist(ft_xstrdup(g_lex->lexem));
 			tmp = list;
 			while (g_lex && g_lex->type == WORD)
 			{
-				tmp->next = parser_init_wordlist(ft_strdup(g_lex->lexem));
+				tmp->next = parser_init_wordlist(ft_xstrdup(g_lex->lexem));
 				tmp = tmp->next;
 			}
 		}

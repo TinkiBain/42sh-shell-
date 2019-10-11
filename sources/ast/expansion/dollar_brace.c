@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/09 17:39:57 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static char			*freed_proc_value(char *bud, char *value, int len, int flag)
 {
 	free(value);
 	if (flag == 1)
-		return(ft_strdup(bud));
+		return(ft_xstrdup(bud));
 	else
-		return(ft_strndup(bud, len));
+		return(ft_xstrndup(bud, len));
 }
 
 static char 		*value_rep(char *value)
@@ -29,7 +29,7 @@ static char 		*value_rep(char *value)
 	int i;
 
 	i = 0;
-	value = ft_strdup(value);
+	value = ft_xstrdup(value);
 	while (value[i] != '}')
 		i++;
 	if (i == 0)
@@ -47,7 +47,7 @@ static char			*back_deleter(char *bud, char *value, int flag)
 
 	value = value_rep(value);
 	if (*value == '\0')
-		return (ft_strdup(bud));
+		return (ft_xstrdup(bud));
 	if (flag == 0)
 	{
 		if ((len = back_smaller_eq(bud, value)) < 0)
@@ -72,7 +72,7 @@ static char			*forward_deleter(char *bud, char *value, int flag)
 	len = 0;
 	value = value_rep(value);
 	if (*value == '\0')
-		return (ft_strdup(bud));
+		return (ft_xstrdup(bud));
 	if (flag == 0)
 	{
 		if ((len = forward_smaller_eq(bud, value)) < 0)
@@ -166,7 +166,7 @@ static char			*brace_handler_plus(char *buf, char *str, char *name)
 			}
 		}
 	}
-	return(ft_strdup(buf));
+	return(ft_xstrdup(buf));
 }
 
 char				*brace_handler(char *str, int *j)
@@ -191,5 +191,5 @@ char				*brace_handler(char *str, int *j)
 	if (str[len] != '}')
 		return(brace_handler_plus(bud_bear, &str[len], tmp));
 	free(tmp);
-	return (ft_strdup(bud_bear));
+	return (ft_xstrdup(bud_bear));
 }

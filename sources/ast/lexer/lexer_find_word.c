@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 17:58:31 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char		*lexer_find_word(char *str, t_lex **lex)
 		if (*str)
 			++str;
 	}
-	begin = ft_strndup(begin, str - begin);
+	begin = ft_xstrndup(begin, str - begin);
 	init_lex(WORD, begin, lex);
 	if (flag)
 		--str;

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/09 17:07:37 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char *hash(char *str, int *j)
 	tmp[len] = '\0';
 	bud_bear = buf_finder(tmp);
 	if (!bud_bear)
-		return (ft_strdup("0"));
+		return (ft_xstrdup("0"));
 	return (ft_itoa(ft_strlen(bud_bear)));
 }
 
@@ -68,13 +68,13 @@ static char	*next_char_check(char *str, int *j)
 		return (ft_itoa(g_res_exec));
 	else if (*str && *str == '(' && str[1] == '(')
 	{
-		tmp = ft_strjoin("$", str);
+		tmp = ft_xstrjoin("$", str);
 		tmp[ft_strlen(str) - ft_strlen(parser_find_dollar(tmp)) + 2] = '\0';
 		return (arifmetic_exp(tmp));
 	}
 	else if (*str && *str == '(')
 	{
-		tmp = ft_strjoin("$", str);
+		tmp = ft_xstrjoin("$", str);
 		return (substitution(tmp));
 	}
 	else
@@ -98,5 +98,5 @@ char		*ft_dollar_word(char *str, int k, int *j)
 	while (++k < i)
 		tmp[k] = str[k + flag];
 	tmp[k] = '\0';
-	return (ft_strdup(buf_finder(tmp)));
+	return (ft_xstrdup(buf_finder(tmp)));
 }

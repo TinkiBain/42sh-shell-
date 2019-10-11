@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 19:43:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 19:17:08 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t		expr_prefix(void)
 	{
 		type = g_lex_arif->type;
 		g_lex_arif = g_lex_arif->next;
-		var = ft_strjoin(g_lex_arif->lexem, "=");
+		var = ft_xstrjoin(g_lex_arif->lexem, "=");
 		var_value = expr_get_var_value();
 		if (g_error_arifmetic)
 		{

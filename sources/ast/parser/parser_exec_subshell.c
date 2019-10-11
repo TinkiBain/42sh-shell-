@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 20:13:28 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:15:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ char			*parser_expansion_subshell(char *str, char **new_str)
 	{
 		if (!*str)
 		{
-			tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
+			tmp = ft_strrejoin(tmp, ft_xstrndup(begin, str - begin), 3);
 			str = parser_recall_readline(stop_sim);
 			begin = str;
 		}
 		else if (*str == '\\')
 		{
-			tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
+			tmp = ft_strrejoin(tmp, ft_xstrndup(begin, str - begin), 3);
 			++str;
 			begin = str;
 			++str;
@@ -80,7 +80,7 @@ char			*parser_expansion_subshell(char *str, char **new_str)
 		else
 			++str;
 	}
-	tmp = ft_strrejoin(tmp, ft_strndup(begin, str - begin), 3);
+	tmp = ft_strrejoin(tmp, ft_xstrndup(begin, str - begin), 3);
 	parser_exec_subshell(tmp, new_str);
 	free(tmp);
 	return (str + 1);

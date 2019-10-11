@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 17:38:49 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 22:07:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*arifmetic_lexer_digit(char *str, t_lex **lex)
 	else
 		while (ft_isdigit(*str))
 			++str;
-	begin = ft_strndup(begin, str - begin);
+	begin = ft_xstrndup(begin, str - begin);
 	init_lex(DIGIT, begin, lex);
 	return (str);
 }
