@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/10 21:34:00 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:41:24 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_alias
 
 void				signal_monitor();
 void				shell_init(int ac, char **av);
+int					check_binary(char *path);
 void				shell_clear(void);
 void				print_exit(void);
 void				execute_line(char *buf);

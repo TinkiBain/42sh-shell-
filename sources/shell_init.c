@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:36:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void			fill_options(int rl_in)
 	g_opt.rl_out = STDERR;
 }
 
-static int			check_binary(char *path)
+int					check_binary(char *path)
 {
 	int			fd;
 	t_uint		magic;

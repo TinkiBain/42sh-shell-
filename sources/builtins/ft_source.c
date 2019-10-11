@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 17:44:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/09 17:58:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:47:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int				ft_source(int argc, const char **argv)
 	{
 		if (!check_valid(*argv))
 			return (error(*argv, NO_SUCH));
+		if (check_binary((char *)*argv))
+			return (1);
 		FD = open(*argv, O_RDONLY);
 		if (FD > 0)
 			gnl_exec(line, fd);
