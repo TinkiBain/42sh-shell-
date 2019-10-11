@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 15:58:28 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 14:26:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include "keys.h"
 # include "bindings.h"
 # include "display.h"
-# include "signal_handlers.h"
 # include "actions.h"
 # include "history.h"
 # include "history_search.h"

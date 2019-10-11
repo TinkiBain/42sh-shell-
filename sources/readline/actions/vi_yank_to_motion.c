@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 04:12:30 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 19:28:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 14:28:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ static void	yank_all(t_line *line)
 
 void		vi_yank_to_motion(t_line *line)
 {
-	t_line	*new_line;
-	int		ignore;
+	extern t_line	*g_line;
+	t_line			*new_line;
+	int				ignore;
 
 	if (line != g_line)
 		return ;

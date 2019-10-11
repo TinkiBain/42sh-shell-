@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/09 19:05:33 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/11 14:25:34 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,14 @@ READLINE_INCLUDES=\
 	actions.h				bindings.h			display.h\
 	escseqs.h				ft_readline.h		history.h\
 	history_search.h		input_loop.h		keys.h\
-	line.h					loginfo.h			signal_handlers.h\
+	line.h					loginfo.h			colors.h\
 	terminal.h				utils.h				undo.h\
-	colors.h				del_funcs.h
+	del_funcs.h
 
 SRCS_READLINE_WITHOUT_DIR=\
-	ft_readline.c			loginfo.c			signal_handlers.c\
+	ft_readline.c			loginfo.c			gnl.c\
 	utils.c					del_funcs.c			duplicate_line.c\
-	undo.c					gnl.c
+	undo.c					
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c					backward_delete_char.c\

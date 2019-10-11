@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:49:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 19:25:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 14:28:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ static void	delete_all_save(t_line *line)
 
 void		vi_delete_to_motion_save(t_line *line)
 {
-	t_line	*new_line;
-	int		ignore;
+	extern t_line	*g_line;
+	t_line			*new_line;
+	int				ignore;
 
 	if (line != g_line)
 		return ;

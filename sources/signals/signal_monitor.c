@@ -6,24 +6,55 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/07 21:32:58 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 14:29:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+static void	sigh_exit(int signo)
+{
+	term_restore();
+	ft_putchar('\n');
+	loginfo_backtrace();
+	if (signo == SIGSEGV)
+		print_error_exit("fatal", "Segmentation fault", 1);
+	else if (signo == SIGABRT)
+		print_error_exit("fatal", "Aborted", 1);
+	else
+		print_error_exit(NULL, "Fatal error", 1);
+}
+
 static void	signals(int signo)
 {
+	extern t_line	*g_line;
+
+	loginfo("Caught signal %d", signo);
 	if (signo == SIGCHLD)
 		jobs_sig();
-	if (signo == SIGTTOU)
+	else if (signo == SIGTTOU)
 		tcsetpgrp(0, getpid());
-	if (signo == SIGTTIN)
+	else if (signo == SIGTTIN)
 		tcsetpgrp(1, getpid());
-	if (signo == SIGTSTP)
-		write(1, "\n", 0);
-	if (signo == SIGINT)
-		write(1, "\n", 1);
+	else if (signo == SIGTSTP)
+		;
+	else if (signo == SIGINT)
+		ft_putstr("\n");
+	else if (signo == SIGTERM)
+		reset_line(g_line);
+}
+
+static void	signal_sigwinch(int signo)
+{
+	extern t_opt	g_opt;
+
+	if (signo == SIGWINCH)
+	{
+		loginfo("SIGWINCH caught: [%dx%d]",
+				get_screen_width(), get_screen_height());
+		if (g_opt.vi_mode || g_opt.emacs_mode)
+			update_line(NULL, 0);
+	}
 }
 
 void		signal_monitor(void)
@@ -35,4 +66,8 @@ void		signal_monitor(void)
 	signal(SIGPIPE, signals);
 	signal(SIGTTIN, signals);
 	signal(SIGINT, signals);
+	signal(SIGTERM, signals);
+	signal(SIGSEGV, sigh_exit);
+	signal(SIGABRT, sigh_exit);
+	signal(SIGWINCH, signal_sigwinch);
 }
