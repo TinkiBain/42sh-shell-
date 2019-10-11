@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/10 16:41:35 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:02:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,12 @@ char			*tdq(char *str)
 		return (NULL);
 	i = 0;
 	tmp = str;
-	while (str[i] != '\0')
+	while (str[0] && str[i] != '\0')
 	{
 		tdq_while(&i, &str);
 		i++;
 	}
+	tmp = str;
 	str = tdq_substitution(str);
 	free(tmp);
 	if (*str == '~')
