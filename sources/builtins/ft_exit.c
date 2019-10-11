@@ -12,7 +12,7 @@
 
 #include "sh.h"
 
-static void	check_arg_count(const char **av)
+static int	check_arg_count(const char **av)
 {
 	int	ac;
 
@@ -21,34 +21,48 @@ static void	check_arg_count(const char **av)
 	{
 		++ac;
 		if (ac > 1)
+		{
 			print_error_exit("exit", "too many arguments", 1);
+			return (255);
+		}
 	}
+	return (0);
 }
 
-static void	check_arg_format(const char *av)
+static char	check_arg_format(const char *av)
 {
 	const char	*tmp;
+	long		res;
+	char		*str;
 
 	tmp = av;
+	str = NULL;
+	if (*tmp == '-' || *tmp == '+')
+		++tmp;
+	res = 255;
 	while (*tmp)
-	{
 		if (!ft_isdigit(*(tmp++)))
-			print_error_exit("exit", "numeric argument required", 255);
-	}
+		{
+			print_error_vaarg("exit: %s: numeric argument required\n", av);
+			return (res);
+		}
+	if (ft_strlen(av) > 20)
+		print_error_vaarg("exit: %s: numeric argument required\n", av);
+	else
+		res = (char)ft_atoi(av);
+	return ((char)res);
 }
 
 int			ft_exit(const char **av)
 {
 	char		res;
 
+	res = (char)g_res_exec;
 	if (av && *av)
 	{
-		check_arg_count(av);
-		check_arg_format(*av);
-		res = (char)ft_atoi(*av);
-		shell_clear();
-		exit(res);
+		if (!(res = check_arg_count(av)))
+			res = check_arg_format(*av);
 	}
 	shell_clear();
-	exit(g_res_exec);
+	exit(res);
 }
