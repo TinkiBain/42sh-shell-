@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 18:02:36 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 20:53:58 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,18 @@ static void		spec_char_handler(int *i, char *str, int *i_t, char **tmp)
 	*i_t += 1;
 }
 
+void			cleaner_escape(char *str, int *i)
+{
+	if (str[*i + 1] == '\n')
+		(*i) += 2;
+	else
+		++(*i);
+}
+
 int				cleaner_while(char **tmp, int *t_i, int *i, char *str)
 {
 	if (str[*i] == '\\')
-		(*i) += 1;
+		cleaner_escape(str, i);
 	else if (str[*i] == '\'')
 	{
 		while (str[++(*i)] != '\'')
@@ -126,9 +134,6 @@ char			*tdq(char *str)
 		tdq_while(&i, &str);
 		i++;
 	}
-	tmp = str;
-	str = tdq_substitution(str);
-	free(tmp);
 	if (*str == '~')
 	{
 		str = cleaner(str);

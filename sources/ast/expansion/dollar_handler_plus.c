@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_handler_plus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 18:12:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 21:20:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ char		*buf_finder(char *tmp)
 	char	*buf;
 
 	if ((buf = get_var_value(tmp)) == NULL)
-	{
-		free(tmp);
-		return (0);
-	}
-	free(tmp);
-	if ((buf) == NULL)
 		return (0);
 	return (buf);
 }
@@ -88,6 +82,7 @@ static char	*next_char_check(char *str, int *j)
 char		*ft_dollar_word(char *str, int k, int *j)
 {
 	char	*tmp;
+	char	*src;
 	int		i;
 	int		flag;
 
@@ -102,5 +97,7 @@ char		*ft_dollar_word(char *str, int k, int *j)
 	while (++k < i)
 		tmp[k] = str[k + flag];
 	tmp[k] = '\0';
-	return (ft_xstrdup(buf_finder(tmp)));
+	src = ft_xstrdup(buf_finder(tmp));
+	free(tmp);
+	return (src);
 }

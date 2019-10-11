@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 21:05:47 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		*cd_error_invalid_flag(char c)
 	return (NULL);
 }
 
-int			change_dir_variable(const char *dir)
+int			change_dir_variable(const char *dir, int flag)
 {
 	if (!dir)
 	{
@@ -69,7 +69,7 @@ int			change_dir_variable(const char *dir)
 		ft_putendl(dir);
 	}
 	dir = ft_xstrdup(dir);
-	return (change_dir((char *)dir, (char *)dir, 1));
+	return (change_dir((char *)dir, (char *)dir, flag));
 }
 
 char		*check_cdpath(const char *curpath)
@@ -112,13 +112,13 @@ int			ft_cd(const char **av)
 	if (flag < 0)
 		return (1);
 	if (!tmp || ft_strequ(tmp, "-"))
-		return (change_dir_variable(tmp));
+		return (change_dir_variable(tmp, flag));
 	if (*tmp == '/')
 		return (change_dir(ft_xstrdup(tmp), tmp, flag));
 	if (!flag)
 		path = ft_xstrdup(get_var_value("PWD"));
 	else
-		path = ft_xstrdup(getcwd(NULL, 1024));
+		path = getcwd(NULL, 1024);
 	if (!path)
 		path = ft_xstrdup(getcwd(NULL, 1024));
 	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
