@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 15:16:33 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 17:17:48 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,14 +180,12 @@ char				*brace_handler(char *str, int *j)
 	len = -1;
 	while (str[i] && str[i] != '}')
 		i++;
-	//printf ("%d %d %c\n", i, *j, str[*j]);
 	*j += i + 2;
 	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
 	while (++len < i && check_spec_symbol(str[len]))
 		tmp[len] = str[len];
 	tmp[len] = '\0';
 	bud_bear = buf_finder(tmp);
-	//printf ("%s    %s          %d\n", bud_bear, str, len);
 	if (str[len] != '}')
 		return(brace_handler_plus(bud_bear, &str[len], tmp));
 	free(tmp);
