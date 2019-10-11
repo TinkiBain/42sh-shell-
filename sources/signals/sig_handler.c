@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 18:27:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 22:28:52 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static void			def_kill_or_done(t_job *first, int sig)
 	char *msg;
 
 	if ((msg = that_sig(sig, g_pjobs->name)))
+	{
 		ft_printf("[%d]\t%s\n", first->num, msg);
+		free(msg);
+	}
 	else
 		ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
 	if (g_pjobs->workgpid == 0 || !(first->next))
