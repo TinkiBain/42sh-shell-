@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:25:17 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 15:15:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:21:24 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void		shell_clear(void)
 	history_save(g_history);
 	history_clear(g_history);
 	del_hash();
+	redir_reset();
 	ft_free_ptr_array((void ***)&environ);
 	ft_free_ptr_array((void ***)&g_var);
 	ft_free_ptr_array((void ***)&g_var_names);
