@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arifmetic.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 16:47:00 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:36:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void			arifmetic_error(char *str, t_lex *begin)
 		print_error_vaarg("%s: attempted assignment to non-variable ", str);
 	else
 		print_error_vaarg("%s: syntax error: operand expected", str);
-	
 	ft_putstr_fd("(error token is \"", STDERR);
 	if (!g_lex_arif)
 	{
@@ -47,13 +46,30 @@ char			*arifmetic_print_lex_error(char *str)
 	return (NULL);
 }
 
-size_t			expr_atoll(char *str, int base)
+int				expr_sign(char **str)
 {
-	size_t		rez;
+	int			flag;
+
+	flag = 0;
+	while (**str == '-' || **str == '+')
+	{
+		if (**str == '-')
+			flag++;
+		(*str)++;
+	}
+	return (flag);
+}
+
+long			expr_atoll(char *str, int base)
+{
+	long		rez;
+	int			flag;
+
 
 	if (!str)
 		return (0);
 	rez = 0;
+	flag = expr_sign(&str);
 	if (base == 16)
 	{
 		if (*str == '0' || *(str + 1))
@@ -71,12 +87,12 @@ size_t			expr_atoll(char *str, int base)
 			rez = rez * base + (*str - '0');
 		++str;
 	}
-	return (rez);
+	return (flag % 2 ? rez * -1 : rez);
 }
 
-size_t			expr_digit(void)
+long			expr_digit(void)
 {
-	size_t	value;
+	long	value;
 
 	if (*(g_lex_arif->lexem + 1) == 'x')
 		value = expr_atoll(g_lex_arif->lexem, 16);
@@ -88,7 +104,7 @@ size_t			expr_digit(void)
 
 char			*arifmetic_exp(char *str)
 {
-	size_t	rez;
+	long	rez;
 	t_lex	*lex;
 
 	str += 3;

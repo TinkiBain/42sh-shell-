@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expr_return_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 17:30:17 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 19:18:05 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 19:20:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_return_value(void)
+long		expr_return_value(void)
 {
-	size_t	return_value;
+	long	return_value;
 
 	if (!g_lex_arif || (g_lex_arif->type != DIGIT && g_lex_arif->type != VAR))
 	{

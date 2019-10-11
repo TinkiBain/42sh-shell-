@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   arifmetic_expr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 16:34:43 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 18:46:12 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr(void)
+long		expr(void)
 {
 	extern char	**g_var;
-	size_t		value;
+	long		value;
 	int			type_assign;
 	char		*var;
 
@@ -33,7 +33,7 @@ size_t		expr(void)
 		var = ft_strrejoin(var, ft_itoa_base(value, 10), 3);
 		set_var(var, &g_var, 0);
 		free(var);
-		return (value);	
+		return (value);
 	}
 	return (expr_logical_op());
 }

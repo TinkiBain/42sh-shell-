@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 22:09:49 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:45:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,42 +76,24 @@ char		*arifmetic_lexer_var(char *str, t_lex **lex);
 char		*arifmetic_lexer_digit(char *str, t_lex **lex);
 char		*arifmetic_exp(char *str);
 
-size_t		expr(void);
-size_t		expr_or(void);
-size_t		expr_and(void);
-size_t		expr_logic_or(void);
-size_t		expr_exclusive_or(void);
-size_t		expr_logic_and(void);
-size_t		expr_equal(void);
-size_t		expr_relat_op(void);
-size_t		expr_shift(void);
-size_t		expr_additive(void);
-size_t		expr_multiplicativ(void);
-size_t		expr_prefix(void);
-size_t		expr_suffix(void);
-size_t		expr_unar(void);
-size_t		expr_get_var_value(void);
-size_t		expr_return_value(void);
-size_t		expr_digit(void);
-size_t		expr_bracket(void);
-size_t		expr_atoll(char *str, int base);
-
-/*
-size_t		expr(void);
-size_t		expr_logical_op(void);
-size_t		expr_equal(void);
-size_t		expr_less_great(void);
-size_t		expr_shift_bits(void);
-size_t		expr_arifmetic(void);
-size_t		expr_arifmetic_mul(void);
-size_t		expr_check_div_null(size_t right_value, size_t left_value, int op);
-size_t		xpr_prefix(void);
-size_t		expr_unar_op(void);
-size_t		expr_suffix(void);
-size_t		expr_bracket(void);
-size_t		expr_check_var(void);
-size_t		expr_get_var_value(void);
-size_t		expr_digit(void);
-*/
+long		expr(void);
+long		expr_or(void);
+long		expr_and(void);
+long		expr_logic_or(void);
+long		expr_exclusive_or(void);
+long		expr_logic_and(void);
+long		expr_equal(void);
+long		expr_relat_op(void);
+long		expr_shift(void);
+long		expr_additive(void);
+long		expr_multiplicativ(void);
+long		expr_prefix(void);
+long		expr_suffix(void);
+long		expr_unar(void);
+long		expr_get_var_value(void);
+long		expr_return_value(void);
+long		expr_digit(void);
+long		expr_bracket(void);
+long		expr_atoll(char *str, int base);
 
 #endif

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   expr_additive.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:51:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 16:18:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:54:32 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_additive(void)
+long		expr_additive(void)
 {
-	size_t	left_value;
-	size_t	right_value;
+	long	left_value;
+	long	right_value;
 	int		type;
 
 	left_value = expr_multiplicativ();

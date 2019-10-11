@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 17:17:48 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 18:34:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static char			*freed_proc_value(char *bud, char *value, int len, int flag)
 {
 	free(value);
 	if (flag == 1)
-		return(ft_xstrdup(bud));
+		return (ft_xstrdup(bud));
 	else
-		return(ft_xstrndup(bud, len));
+		return (ft_xstrndup(bud, len));
 }
 
-static char 		*value_rep(char *value)
+static char			*value_rep(char *value)
 {
 	int i;
 
@@ -44,7 +44,6 @@ static char			*back_deleter(char *bud, char *value, int flag)
 	int len;
 
 	len = 0;
-
 	value = value_rep(value);
 	if (*value == '\0')
 		return (ft_xstrdup(bud));
@@ -52,21 +51,21 @@ static char			*back_deleter(char *bud, char *value, int flag)
 	{
 		if ((len = back_smaller_eq(bud, value)) < 0)
 			return (freed_proc_value(bud, value, 0, 1));
-		return(freed_proc_value(bud, value, len, 0));
+		return (freed_proc_value(bud, value, len, 0));
 	}
 	else
 	{
 		if ((len = back_bigest_eq(bud, value)) < 0)
 			return (freed_proc_value(bud, value, 0, 1));
-		return(freed_proc_value(bud, value, len, 0));
+		return (freed_proc_value(bud, value, len, 0));
 	}
 }
 
 static char			*forward_deleter(char *bud, char *value, int flag)
 {
-	int len;
-	char *tmp;
-	int i;
+	int		len;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	len = 0;
@@ -77,7 +76,7 @@ static char			*forward_deleter(char *bud, char *value, int flag)
 	{
 		if ((len = forward_smaller_eq(bud, value)) < 0)
 			return (freed_proc_value(bud, value, 0, 1));
-		tmp = malloc(sizeof(char) * (ft_strlen(bud) - len + 1));
+		tmp = ft_xmalloc(sizeof(char) * (ft_strlen(bud) - len + 1));
 		while (bud[len])
 		{
 			tmp[i] = bud[len];
@@ -85,14 +84,13 @@ static char			*forward_deleter(char *bud, char *value, int flag)
 			len++;
 		}
 		tmp[i] = '\0';
-		//free(bud);
-		return(freed_proc_value(tmp, value, len, 0));
+		return (freed_proc_value(tmp, value, len, 0));
 	}
 	else
 	{
 		if ((len = forward_bigest_eq(bud, value)) < 0)
 			return (freed_proc_value(bud, value, 0, 1));
-		tmp = malloc(sizeof(char) * (ft_strlen(bud) - len + 1));
+		tmp = ft_xmalloc(sizeof(char) * (ft_strlen(bud) - len + 1));
 		while (bud[len])
 		{
 			tmp[i] = bud[len];
@@ -100,17 +98,16 @@ static char			*forward_deleter(char *bud, char *value, int flag)
 			len++;
 		}
 		tmp[i] = '\0';
-		//free(bud);
-		return(freed_proc_value(tmp, value, len, 0));
+		return (freed_proc_value(tmp, value, len, 0));
 	}
-	return(bud);
+	return (bud);
 }
 
 static char			*brace_handler_plus(char *buf, char *str, char *name)
 {
-	int i;
-	char *value;
-	char stat_name[2048];
+	int		i;
+	char	*value;
+	char	stat_name[2048];
 
 	i = -1;
 	while (name[++i])
@@ -162,11 +159,11 @@ static char			*brace_handler_plus(char *buf, char *str, char *name)
 				else
 					print_error(value, stat_name);
 				free(value);
-				return(NULL);
+				return (NULL);
 			}
 		}
 	}
-	return(ft_xstrdup(buf));
+	return (ft_xstrdup(buf));
 }
 
 char				*brace_handler(char *str, int *j)

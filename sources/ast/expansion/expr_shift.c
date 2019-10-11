@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   expr_shift.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:40:36 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 17:45:11 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:54:06 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_shift(void)
+long		expr_shift(void)
 {
-	size_t	right_value;
-	size_t	left_value;
+	long	right_value;
+	long	left_value;
 	int		type;
 
 	left_value = expr_additive();

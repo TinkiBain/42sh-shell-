@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   expr_and.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:34:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 17:01:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:48:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_and(void)
+long		expr_and(void)
 {
-	size_t	left_value;
-	size_t	right_value;
+	long	left_value;
+	long	right_value;
 
 	left_value = expr_logic_or();
 	if (g_error_arifmetic)

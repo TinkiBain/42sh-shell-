@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   expr_multiplicativ.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 17:13:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 16:13:44 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:54:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_multiplicativ(void)
+long		expr_multiplicativ(void)
 {
-	size_t	left_value;
-	size_t	right_value;
+	long	left_value;
+	long	right_value;
 	int		type;
 
 	left_value = expr_prefix();

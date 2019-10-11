@@ -6,16 +6,16 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 20:10:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 22:10:49 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 19:37:29 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t			expr_get_var_value(void)
+long expr_get_var_value(void)
 {
-	char	*begin;
-	char	*var;
+	char *begin;
+	char *var;
 
 	var = get_var_value(g_lex_arif->lexem);
 	begin = var;

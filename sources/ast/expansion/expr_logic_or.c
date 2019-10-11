@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   expr_logic_or.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 18:39:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 17:02:03 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:49:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_logic_or(void)
+long		expr_logic_or(void)
 {
-	size_t	left_value;
-	size_t	right_value;
+	long	left_value;
+	long	right_value;
 
 	left_value = expr_exclusive_or();
 	if (g_error_arifmetic)

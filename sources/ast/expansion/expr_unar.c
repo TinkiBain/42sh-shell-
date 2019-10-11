@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expr_unar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 17:22:19 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/02 20:08:13 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:55:51 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_unar(void)
+long		expr_unar(void)
 {
-	size_t	left_value;
+	long	left_value;
 	int		type;
 
 	type = 0;

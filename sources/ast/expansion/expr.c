@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expr.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 22:31:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:21:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_check_type(size_t var_value, int type, size_t value)
+long		expr_check_type(long var_value, int type, long value)
 {
 	if (!g_error_arifmetic &&
 			(type == DIV_ASSIGNMENT || type == MOD_ASSIGNMENT) && value == 0)
@@ -41,11 +41,11 @@ size_t		expr_check_type(size_t var_value, int type, size_t value)
 		return (var_value | value);
 }
 
-size_t		expr(void)
+long		expr(void)
 {
 	extern char	**g_var;
-	size_t		value;
-	size_t		var_value;
+	long		value;
+	long		var_value;
 	char		*var;
 	int			type;
 

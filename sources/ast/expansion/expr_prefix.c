@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   expr_prefix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 19:43:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:37:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
 
-size_t		expr_prefix(void)
+long		expr_prefix(void)
 {
 	extern char	**g_var;
-	size_t		var_value;
+	long		var_value;
 	char		*var;
 	int			type;
-	
+
 	if (g_lex_arif && (g_lex_arif->type == PREFIX_ADD
 				|| g_lex_arif->type == PREFIX_MIN))
 	{
@@ -31,10 +31,7 @@ size_t		expr_prefix(void)
 			free(var);
 			return (0);
 		}
-		if (type == PREFIX_ADD)
-			++var_value;
-		else
-			--var_value;
+		var_value += (type == PREFIX_ADD) ? 1 : -1;
 		var = ft_strrejoin(var, ft_itoa_base(var_value, 10), 3);
 		set_var(var, &g_var, 0);
 		free(var);
