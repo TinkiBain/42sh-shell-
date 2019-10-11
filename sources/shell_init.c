@@ -6,13 +6,31 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 18:36:40 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:25:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "parser.h"
 #include "exec.h"
+
+t_opt		g_opt;
+int			g_res_exec;
+char		*g_project_name;
+char		*g_shell_path;
+char		**g_var;
+char		**g_prefix_vars;
+char		**g_var_names;
+char		**g_func_defs;
+t_pjobs		*g_pjobs;
+t_pjobs		*g_subjob;
+int			g_line_num;
+int			g_eof;
+int			g_wait_flags;
+char		*g_tty;
+int			*g_open_fd;
+int			*g_pipe_pid;
+t_alias		*g_alias;
 
 void				preliminary_check_fd(void)
 {

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 20:45:11 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/10 15:11:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:26:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,12 @@
 #include "exec.h"
 #include "sem.h"
 
-t_opt		g_opt;
-int			g_res_exec;
-char		*g_project_name;
-char		*g_shell_path;
-char		**g_var;
-char		**g_prefix_vars;
-char		**g_var_names;
-char		**g_func_defs;
-t_pjobs		*g_pjobs;
-t_pjobs		*g_subjob;
-int			g_line_num;
-int			g_eof;
-int			g_wait_flags;
-char		*g_tty;
-int			*g_open_fd;
-int			*g_pipe_pid;
-t_alias		*g_alias;		/* TODO: move definitions to appropriate places */
-
 void		main_loop(void)
 {
-	char		*line;
-	int			i;
+	extern int		g_eof;
+	extern t_opt	g_opt;
+	char			*line;
+	int				i;
 
 	i = 0;
 	while (!g_eof)

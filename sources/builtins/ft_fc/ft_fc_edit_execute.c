@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:33:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 21:41:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:17:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int			ft_fc_edit_execute(char *path, t_pjobs *local)
 	int		ret;
 	int		fd;
 
-	if ((fd = open(path, O_RDONLY,
-				   S_IRWXU | S_IRWXG | S_IRWXO)) < 0)
+	if ((fd = open(path, O_RDONLY, S_IRWXU | S_IRWXG | S_IRWXO)) < 0)
 		loginfo("ft_fc(): open error (%s)", path);
 	while ((ret = get_next_line(fd, &s)) > 0)
 		if (*s)

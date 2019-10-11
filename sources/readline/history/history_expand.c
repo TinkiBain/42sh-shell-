@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 13:54:22 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/10 17:18:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:11:13 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int				history_expand(t_line *line)
 		else if (c == '!' &&
 				!(res = history_expand_one(line, &i, &first)))
 			break ;
-	}	
+	}
 	return (res);
 }

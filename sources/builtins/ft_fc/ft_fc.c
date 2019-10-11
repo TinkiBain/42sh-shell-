@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 20:27:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:16:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	run_fc(const char **argv, t_cmd_opt opt, t_pjobs *local)
 	int		ret;
 
 	ret = 0;
-
 	if (opt.s)
 		ret = ft_fc_reexec(argv, local);
 	else if (opt.l)

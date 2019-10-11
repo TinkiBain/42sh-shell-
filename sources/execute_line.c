@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:00:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 17:23:36 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 20:26:51 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_complete_cmd		*exec_ast(char *buf, t_lex **lex)
 	return (list);
 }
 
-void					execute_line(char *line)
+void				execute_line(char *line)
 {
 	t_complete_cmd	*list;
 	t_lex			*lex;

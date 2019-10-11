@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 04:39:02 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/05 23:08:45 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:10:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	need_complete_command_argument(t_line *line)
 {
 	int		i;
 	char	c;
+
 	i = line->cpos - 1;
 	while ((c = str_get(*line->str, i)) && !ft_isspace(c))
 		i--;

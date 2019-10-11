@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 18:51:07 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 20:24:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 20:18:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		write_file(char *path, t_vector vec)
 	t_string	*str;
 
 	if ((fd = open(path, O_RDWR | O_CREAT | O_TRUNC,
-				   S_IRWXU | S_IRWXG | S_IRWXO)) < 0)
+								S_IRWXU | S_IRWXG | S_IRWXO)) < 0)
 	{
 		loginfo("ft_fc(): open error (%s)", path);
 		return (1);
@@ -56,7 +56,7 @@ static int		write_file(char *path, t_vector vec)
 	return (0);
 }
 
-static int	clear(t_vector vec, char **argv, int ret)
+static int		clear(t_vector vec, char **argv, int ret)
 {
 	free(vec.v);
 	if (argv)

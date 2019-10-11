@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/09 17:24:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:16:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int			ft_exit(const char **av)
 {
 	char		res;
 
-	
 	if (av && *av)
 	{
 		check_arg_count(av);

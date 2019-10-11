@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 16:09:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:10:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	push(t_history *history, t_string *str, int split_nl)
 }
 
 void		history_append(t_history *history, t_string *str,
-						 enum e_rl_mode mode, int split_nl)
+								enum e_rl_mode mode, int split_nl)
 {
 	extern t_opt	g_opt;
 
