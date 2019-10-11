@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 15:17:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 17:21:13 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 	char			*cmd_name;
 
 
-	printf ("REDIR\n");
 	if (traverse_redirections(cmd) == -1)
 		return ;
-	printf ("UNDER\n");
 	if (cmd->simple_command)
 	{
 		cmd->simple_command->cmd_name = tdq(cmd->simple_command->cmd_name);

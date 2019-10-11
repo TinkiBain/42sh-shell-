@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 19:00:12 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 20:44:34 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/11 17:23:36 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void					execute_line(char *line)
 
 	if (*(tmp = ft_xstrtrim(line)))
 	{
-		printf ("%s\n", tmp);
 		list = exec_ast(line, &lex);
 		if (list)
 			traverse_ast(list);
