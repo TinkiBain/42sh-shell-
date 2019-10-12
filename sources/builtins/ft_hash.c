@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 22:32:39 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/26 18:04:01 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 14:00:29 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define FLAG_T 0x10
 #define FLAGS "r"
 
-static	void	hash_find_flags(int *flags, char c)
+static	int		hash_find_flags(int *flags, char c)
 {
 	if (c == 'r')
 		*flags |= FLAG_R;
@@ -28,7 +28,9 @@ static	void	hash_find_flags(int *flags, char c)
 	{
 		hash_invalid_option(c);
 		hash_usage();
+		return (1);
 	}
+	return (0);
 }
 
 static	int		hash_flags_check(char **argv, int *i)
@@ -48,7 +50,8 @@ static	int		hash_flags_check(char **argv, int *i)
 		j = 1;
 		while (*((*argv) + j))
 		{
-			hash_find_flags(&flags, *((*argv) + j));
+			if (hash_find_flags(&flags, *((*argv) + j)))
+				return (-1);
 			++j;
 		}
 		++(*i);
@@ -65,5 +68,7 @@ int				ft_hash(char **argv)
 	flags = 0;
 	i = 0;
 	flags = hash_flags_check(argv + 1, &i);
+	if (flags == -1)
+		return (1);
 	return (hash_start_work(flags, (argv + 1 + i)));
 }
