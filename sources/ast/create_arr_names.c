@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:34:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 17:40:39 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 18:28:07 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ static	void	add_names_alias(t_alias *alias, int *j)
 }
 
 #if 0
-static	void	add_names_func(g_alias *alias, int *j)
+static	void	add_names_func(t_func *func, int *j)
 {
-	while (alias)
+	while (func)
 	{
-		if (find_name(alias->head, g_cmd_names))
+		if (find_name(func->head, g_cmd_names))
 		{
-			*(g_cmd_names + *j) = alias->head;
+			*(g_cmd_names + *j) = func->head;
 			++(*j);
 		}
-		alias = alias->next;
+		func = func->next;
 	}
 }
 #endif
@@ -94,7 +94,7 @@ void			create_arr_names(void)
 		if (LEN_ALIAS)
 			add_names_alias(g_alias, &J);
 //		if (LEN_FUNC)
-//			add_names_func(g_alias, &J);
-		ft_arr_str_qsort(g_cmd_names, g_prog_names_count);
+//			add_names_func(g_func, &J);
+		ft_arr_str_qsort(g_cmd_names, g_prog_names_count + LEN_ALIAS + LEN_FUNC);
 	}
 }

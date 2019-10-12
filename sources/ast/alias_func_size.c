@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 16:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 17:37:49 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 18:25:36 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 extern	t_alias	*g_alias;
 
 #if 0
-int		func_size_list(g_alias *func)
+int		func_size_list(t_func *func)
 {
 	int		i;
 

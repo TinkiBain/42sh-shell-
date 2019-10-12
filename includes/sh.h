@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 17:43:10 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 18:26:38 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void				shell_clear(void);
 void				print_exit(void);
 void				execute_line(char *buf);
 int					alias_size_list(t_alias *alias);
-void				fill_hash_names(void);
+void				fill_g_cmd_names(void);
 t_complete_cmd		*exec_ast(char *buf, t_lex **lex);
 
 #endif
