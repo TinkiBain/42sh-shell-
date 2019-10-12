@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/12 18:13:06 by jterry           ###   ########.fr        #
+#    Updated: 2019/10/12 20:40:19 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ INCLUDES:=\
 	-I libft/includes
 
 SH_INCLUDES=\
-	ast.h		defs.h			variables.h		exec.h\
-	hash.h		lexer.h			parser.h		sh.h\
-	xfuncs.h	lib_wtalea.h	error.h			sem.h
+	ast.h			defs.h		variables.h		exec.h\
+	hash.h			lexer.h		parser.h		sh.h\
+	lib_wtalea.h	error.h		sem.h
 
 # HEADER=\
 # 	$(addprefix includes/, $(SH_INCLUDES))\
@@ -74,6 +74,20 @@ SRCS_SIG=\
 	sig_monitor.c				sig_stop_kind.c\
 	sig_pjobs_sig.c
 
+DICTIONARY_DIR=dictionary
+
+SRCS_DICTIONARY=\
+	ft_dict_del.c			ft_dict_push_back.c		ft_dict_remove_elem.c\
+	ft_get_dict_value.c		ft_dict_del_one.c		ft_dict_push_front.c\
+	ft_get_dict.c			ft_init_dict.c
+
+XFUNCS_DIR=xfuncs
+
+SRCS_XFUNCS=\
+	ft_xstrdup.c	ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
+	str_xfuncs2.c	vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c\
+	ft_xstrndup.c
+
 VAR_DIR=variables
 
 SRCS_VAR=\
@@ -86,13 +100,6 @@ SRCS_VAR=\
 	get_var_value.c				print_vars.c\
 	set_var_in_g_var.c
 
-XFUNCS_DIR=xfuncs
-
-SRCS_XFUNCS=\
-	ft_xstrdup.c	 ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
-	str_xfuncs2.c	 vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c\
-	ft_xstrndup.c
-
 ERROR_DIR=error
 
 SRCS_ERROR=\
@@ -104,10 +111,11 @@ SOURCES=$(SRCS_WITHOUT_DIR)\
 	$(addprefix $(HASH_DIR)/, $(SRCS_HASH))\
 	$(addprefix $(READLINE_DIR)/, $(SRCS_READLINE))\
 	$(addprefix $(VAR_DIR)/, $(SRCS_VAR))\
-	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))\
 	$(addprefix $(ERROR_DIR)/, $(SRCS_ERROR))\
 	$(addprefix $(BUILTINS_DIR)/, $(SRCS_BUILTINS))\
 	$(addprefix $(SIG_DIR)/, $(SRCS_SIG))\
+	$(addprefix $(DICTIONARY_DIR)/, $(SRCS_DICTIONARY))\
+	$(addprefix $(XFUNCS_DIR)/, $(SRCS_XFUNCS))
 
 SRCS=$(addprefix $(SRCS_DIR)/, $(SOURCES))
 OBJS=$(addprefix $(OBJS_DIR)/, $(SOURCES:.c=.o))
@@ -138,10 +146,11 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(VAR_DIR)\
 	$(OBJS_DIR)/$(JOBS_DIR)\
 	$(OBJS_DIR)/$(SIG_DIR)\
-	$(OBJS_DIR)/$(XFUNCS_DIR)\
 	$(OBJS_DIR)/$(ERROR_DIR)\
 	$(OBJS_DIR)/$(BUILTINS_DIR)\
 	$(CREATE_BUILTINS_SUBDIRS)\
+	$(OBJS_DIR)/$(DICTIONARY_DIR)\
+	$(OBJS_DIR)/$(XFUNCS_DIR)
 
 .PHONY: all clean fclean re
 

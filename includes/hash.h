@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 17:35:46 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 20:09:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void						hash_print(void);
 int							hash_start_work(int flags, char **argv);
 int							count_hash_on(void);
 void						hash_print_new(int count, t_hash *table[count],
-		int count_len);
+															int count_len);
 void						find_and_del_hash(char *name);
 
 /*

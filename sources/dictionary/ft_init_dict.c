@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_init_dict.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 18:04:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 14:21:16 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/10/12 13:56:20 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/12 17:36:36 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-size_t			ft_strlen(const char *str)
+t_dict	*ft_init_dict(const char *key, const char *value)
 {
-	const char	*start;
+	t_dict	*dict;
 
-	start = str;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-		str++;
-	return (str - start);
+	if (!key)
+		return (NULL);
+	dict = (t_dict *)ft_xmalloc(sizeof(t_dict));
+	dict->key = ft_xstrdup(key);
+	dict->key_len = ft_strlen(key);
+	dict->value = ft_xstrdup(value);
+	dict->value_len = ft_strlen(value);
+	dict->next = NULL;
+	return (dict);
 }

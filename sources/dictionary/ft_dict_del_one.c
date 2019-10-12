@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_dict_del_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 18:04:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 14:21:16 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/26 22:02:59 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/12 19:53:56 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-size_t			ft_strlen(const char *str)
+void	ft_dict_del_one(t_dict **dict)
 {
-	const char	*start;
-
-	start = str;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-		str++;
-	return (str - start);
+	if (!dict || !*dict)
+		return ;
+	ft_strdel(&(*dict)->key);
+	ft_strdel(&(*dict)->value);
+	free(*dict);
+	*dict = NULL;
 }

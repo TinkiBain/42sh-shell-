@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_dict_remove_elem.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 18:04:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 14:21:16 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/11/27 19:00:21 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/12 19:58:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-size_t			ft_strlen(const char *str)
+void	ft_dict_remove_elem(t_dict **dict, t_dict *elem)
 {
-	const char	*start;
+	t_dict	*prev;
+	t_dict	*tmp;
 
-	start = str;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-		str++;
-	return (str - start);
+	if (!dict || !*dict || !elem)
+		return ;
+	prev = NULL;
+	tmp = *dict;
+	while (tmp)
+	{
+		if (tmp == elem)
+		{
+			if (prev)
+				prev->next = tmp->next;
+			else
+				*dict = tmp->next;
+			ft_dict_del_one(&tmp);
+			break ;
+		}
+		tmp = tmp->next;
+		prev = tmp;
+	}
 }

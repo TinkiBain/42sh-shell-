@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_arr_names.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:34:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 18:28:07 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 20:01:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 #define LEN_FUNC ints[3]
 
 char			**g_cmd_names;
-extern	t_alias	*g_alias;
+extern t_alias	*g_alias;
+extern t_dict	*g_func_defs;
 
 static	int		find_name(char *name, char **cmd)
 {
@@ -55,20 +56,18 @@ static	void	add_names_alias(t_alias *alias, int *j)
 	}
 }
 
-#if 0
-static	void	add_names_func(t_func *func, int *j)
+static	void	add_names_func(t_dict *func, int *j)
 {
 	while (func)
 	{
-		if (find_name(func->head, g_cmd_names))
+		if (find_name(func->key, g_cmd_names))
 		{
-			*(g_cmd_names + *j) = func->head;
+			*(g_cmd_names + *j) = func->key;
 			++(*j);
 		}
 		func = func->next;
 	}
 }
-#endif
 
 void			create_arr_names(void)
 {
@@ -78,7 +77,7 @@ void			create_arr_names(void)
 
 	ft_bzero(ints, (sizeof(int) * INTS_LEN));
 	LEN_ALIAS = alias_size_list(g_alias);
-//	LEN_FUNC = func_size_list(g_func_defs);
+	LEN_FUNC = func_size_list(g_func_defs);
 	if (g_prog_names_count || LEN_ALIAS || LEN_FUNC)
 	{
 		if ((g_cmd_names = (char **)ft_memalloc((sizeof(char *) *
@@ -93,8 +92,8 @@ void			create_arr_names(void)
 			}
 		if (LEN_ALIAS)
 			add_names_alias(g_alias, &J);
-//		if (LEN_FUNC)
-//			add_names_func(g_func, &J);
+		if (LEN_FUNC)
+			add_names_func(g_func_defs, &J);
 		ft_arr_str_qsort(g_cmd_names, g_prog_names_count + LEN_ALIAS + LEN_FUNC);
 	}
 }

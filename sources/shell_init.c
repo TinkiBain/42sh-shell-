@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 20:25:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 14:22:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 #include "parser.h"
 #include "exec.h"
 
-t_opt		g_opt;
-int			g_res_exec;
-char		*g_project_name;
-char		*g_shell_path;
-char		**g_var;
-char		**g_prefix_vars;
-char		**g_var_names;
-char		**g_func_defs;
-t_pjobs		*g_pjobs;
-t_pjobs		*g_subjob;
-int			g_line_num;
-int			g_eof;
-int			g_wait_flags;
-char		*g_tty;
-int			*g_open_fd;
-int			*g_pipe_pid;
-t_alias		*g_alias;
+t_opt				g_opt;
+int					g_res_exec;
+char				*g_project_name;
+char				*g_shell_path;
+char				**g_var;
+char				**g_prefix_vars;
+char				**g_var_names;
+t_pjobs				*g_pjobs;
+t_pjobs				*g_subjob;
+int					g_line_num;
+int					g_eof;
+int					g_wait_flags;
+char				*g_tty;
+int					*g_open_fd;
+int					*g_pipe_pid;
+t_alias				*g_alias;
+t_dict				*g_func_defs;
 
 void				preliminary_check_fd(void)
 {
@@ -109,7 +109,7 @@ void				shell_init(int ac, char **av)
 {
 	extern char		**environ;
 	extern t_alias	*g_alias;
-	extern char		**g_func_defs;
+	extern t_dict	*g_func_defs;
 	int				fd;
 
 	fd = get_fd(ac, av);
@@ -126,6 +126,5 @@ void				shell_init(int ac, char **av)
 	g_history = ft_xmemalloc(sizeof(t_history));
 	g_history->start_index = 1;
 	history_load(g_history);
-	g_func_defs = ft_xmalloc(sizeof(char *));
-	*g_func_defs = NULL;
+	g_func_defs = NULL;
 }

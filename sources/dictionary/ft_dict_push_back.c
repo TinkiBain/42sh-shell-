@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_dict_push_back.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 18:04:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 14:21:16 by ggwin-go         ###   ########.fr       */
+/*   Created: 2018/12/02 14:14:34 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/12 18:10:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-size_t			ft_strlen(const char *str)
+void	ft_dict_push_back(t_dict **dict, t_dict *new_elem)
 {
-	const char	*start;
+	t_dict	*tmp;
 
-	start = str;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-		str++;
-	return (str - start);
+	if (!dict || !new_elem)
+		return ;
+	if (!*dict)
+		*dict = new_elem;
+	else
+	{
+		tmp = *dict;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_elem;
+	}
 }

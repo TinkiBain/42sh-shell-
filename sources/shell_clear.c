@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:25:17 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 18:21:24 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/12 18:26:59 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void		shell_clear(void)
 {
 	extern char		**environ;
 	extern char		**g_var;
-	extern char		**g_func_defs;
 	extern char		**g_var_names;
+	extern t_dict	*g_func_defs;
 	extern t_opt	g_opt;
 
 	history_save(g_history);
@@ -35,7 +35,7 @@ void		shell_clear(void)
 	ft_free_ptr_array((void ***)&environ);
 	ft_free_ptr_array((void ***)&g_var);
 	ft_free_ptr_array((void ***)&g_var_names);
-	ft_free_ptr_array((void ***)&g_func_defs);
+	ft_dict_del(&g_func_defs);
 	ft_memdel((void **)&g_project_name);
 	ft_memdel((void **)&g_shell_path);
 	alias_free_all();

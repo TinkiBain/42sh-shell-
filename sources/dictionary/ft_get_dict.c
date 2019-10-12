@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_get_dict.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 18:04:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 14:21:16 by ggwin-go         ###   ########.fr       */
+/*   Created: 2019/10/12 14:25:26 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/12 17:30:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "sh.h"
 
-size_t			ft_strlen(const char *str)
+t_dict	*ft_get_dict(t_dict *dict, const char *key)
 {
-	const char	*start;
-
-	start = str;
-	if (!str)
-		return (0);
-	while (*str != '\0')
-		str++;
-	return (str - start);
+	if (key)
+		while (dict)
+		{
+			if (ft_strequ(key, dict->key))
+				return (dict);
+			dict = dict->next;
+		}
+	return (NULL);
 }
