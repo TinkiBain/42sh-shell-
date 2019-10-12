@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 19:19:26 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 17:37:22 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		pipe_av(t_job *job)
 {
-	int i;
-	int len;
-	t_job *tjob;
+	int		i;
+	int		len;
+	t_job	*tjob;
 
 	tjob = job;
 	len = 0;

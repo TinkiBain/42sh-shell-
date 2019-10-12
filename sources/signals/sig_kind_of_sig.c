@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kind_of_sig.c                                      :+:      :+:    :+:   */
+/*   sig_kind_of_sig.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 21:11:51 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 19:38:12 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 17:34:37 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char				*core_dump_signals(int st, char *name)
+char			*core_dump_signals(int st, char *name)
 {
 	char *msg;
 
@@ -49,14 +49,14 @@ char			*ignored_signals(int st, char *name)
 	if (st == SIGCONT)
 		msg = ft_xstrjoin(" continue\t", name);
 	else if (st == SIGCHLD)
-		msg = ft_xstrjoin(" child process terminated, stopped, or continued\t", name);
+		msg = ft_xstrjoin(" child process term, stop, or cont\t", name);
 	else if (st == SIGURG)
-		msg = ft_xstrjoin(" high bandwidth data is available at a socket\t", name);
+		msg = ft_xstrjoin(" high bandwidth data is"
+			"available at a socket\t", name);
 	else if (st == SIGWINCH)
 		msg = ft_xstrjoin(" terminal window size changed\t", name);
 	return (msg);
 }
-
 
 char			*terminal_signals(int st, char *name)
 {

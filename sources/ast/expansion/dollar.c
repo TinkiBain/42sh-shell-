@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/07 20:39:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 19:48:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void		modular_conversion(char *word, char **str, int l, int *j)
 	char	*residue;
 
 	residue = ft_xstrdup(&(*str)[*j + 1]);
-	//printf ("w - %s \nr - %s\nj - %d\nstr - %s\n", word, residue, *j, *str);
 	(*str)[l] = '\0';
 	if (word)
 		(*str) = ft_strrejoin((*str), word, 1);

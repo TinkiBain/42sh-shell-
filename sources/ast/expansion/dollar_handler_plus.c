@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_handler_plus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 21:20:41 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 17:39:43 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ char		*buf_finder(char *tmp)
 	return (buf);
 }
 
-static char *hash(char *str, int *j)
+static char	*hash(char *str, int *j)
 {
-	int i;
-	int len;
-	char *tmp;
-	char *bud_bear;
+	int		i;
+	int		len;
+	char	*tmp;
+	char	*bud_bear;
 
 	i = 0;
 	len = -1;
@@ -44,6 +44,18 @@ static char *hash(char *str, int *j)
 	return (ft_itoa(ft_strlen(bud_bear)));
 }
 
+static char	*in_brace(char *str, int *j)
+{
+	if (str[1] && str[1] == '$')
+		return (ft_itoa(getpid()));
+	else if (str[1] && str[1] == '?')
+		return (ft_itoa(g_res_exec));
+	else if (str[1] && str[1] == '#')
+		return (hash(str + 2, j));
+	else
+		return (brace_handler(str + 1, j));
+}
+
 static char	*next_char_check(char *str, int *j)
 {
 	char *tmp;
@@ -52,16 +64,7 @@ static char	*next_char_check(char *str, int *j)
 	if (*str && *str == '$')
 		return (ft_itoa(getpid()));
 	else if (*str && *str == '{')
-	{
-		if (str[1] && str[1] == '$')
-			return (ft_itoa(getpid()));
-		else if (str[1] && str[1] == '?')
-			return (ft_itoa(g_res_exec));
-		else if (str[1] && str[1] == '#')
-			return (hash(str + 2, j));
-		else
-			return (brace_handler(str + 1, j));
-	}
+		return (in_brace(str, j));
 	else if (*str && *str == '?')
 		return (ft_itoa(g_res_exec));
 	else if (*str && *str == '(' && str[1] == '(')

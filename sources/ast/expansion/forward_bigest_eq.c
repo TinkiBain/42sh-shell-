@@ -6,61 +6,98 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 17:32:08 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/07 16:47:31 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 19:14:43 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-int			ft_aster(char *s1, char *s2, int i, int j)
+static int	no_eq(char *s2, int *ij, int *j, int *i)
 {
-	int ij;
-	int ji;
-
-	ij = ft_strlen(s1) - 1;
-	while (s2[j] == '*')
-		j++;
-	ji = j;
-	while (s2[ji] && ij > i)
+	if (s2[ij[1]] == '*')
 	{
-		ji = j;
-		while (ij >= 0 && s1[ij] != s2[j])
-			ij--;
-		if (ij < 0)
-			return (-1);
-		i = ij;
-		while (s2[ji])
-		{
-			if (!s1[ij])
-			{
-				ij = i;
-				while (ij >= 0 && s1[ij] != s2[j])
-					ij--;
-			}
-			if (s1[ij] != s2[ji])
-			{
-				if (s2[ji] == '*')
-				{
-					ji++;
-					j = ji;
-					continue ;
-				}
-				if (s2[ji] && s2[ji - 1] == '*')
-				{
-					ij++;
-					continue ;
-				}
-				else
-				{
-					ij = i - 1;
-					break ;
-				}
-			}
-			ji++;
-			ij++;
-		}
+		ij[1]++;
+		*j = ij[1];
+		return (1);
 	}
-	return(ij);
+	if (s2[ij[1]] && s2[ij[1] - 1] == '*')
+	{
+		ij[0]++;
+		return (1);
+	}
+	else
+	{
+		ij[0] = *i - 1;
+		return (2);
+	}
+	return (0);
+}
+
+static int	checker(char *s1, char *s2, int *i, int *j)
+{
+	int res;
+
+	res = 0;
+	if (!s1[i[0]])
+	{
+		i[0] = j[0];
+		while (i >= 0 && s1[i[0]] != s2[j[1]])
+			i[0]--;
+	}
+	if (s1[i[0]] != s2[i[1]])
+	{
+		res = no_eq(s2, i, &j[1], &j[0]);
+		if (res == 1)
+			return (1);
+		else if (res == 2)
+			return (2);
+	}
+	return (0);
+}
+
+static int	main_loop(char *s1, char *s2, int *i, int *j)
+{
+	int res;
+
+	i[1] = j[1];
+	while (i[0] >= 0 && s1[i[0]] != s2[j[1]])
+		i[0]--;
+	if (i[0] < 0)
+		return (-1);
+	j[0] = i[0];
+	while (s2[i[1]])
+	{
+		res = checker(s1, s2, i, j);
+		if (res == 1)
+			continue ;
+		else if (res == 2)
+			break ;
+		i[1]++;
+		i[0]++;
+	}
+	return (0);
+}
+
+int			ft_aster(char *s1, char *s2, int ij, int ji)
+{
+	int *i;
+	int *j;
+	int res;
+
+	i = (int *)malloc(sizeof(int) * 2);
+	j = (int *)malloc(sizeof(int) * 2);
+	j[0] = ij;
+	j[1] = ji;
+	i[0] = ft_strlen(s1) - 1;
+	while (s2[j[1]] == '*')
+		j[1]++;
+	i[1] = j[1];
+	while (s2[i[1]] && i[0] > j[0])
+		if (main_loop(s1, s2, i, j) < 0)
+			return (-1);
+	res = i[0];
+	free(i);
+	return (res);
 }
 
 int			forward_bigest_eq(char *s1, char *s2)
@@ -73,13 +110,13 @@ int			forward_bigest_eq(char *s1, char *s2)
 	if (s2[ft_strlen(s2) - 1] == '*')
 		return (ft_strlen(s1));
 	if (s1[i] != s2[j] && s2[j] != '*')
-		return(0);
+		return (0);
 	while (s2[j])
 	{
 		if (s1[i] != s2[j])
 		{
 			if (s2[j] == '*')
-				return(ft_aster(s1, s2, i, j));
+				return (ft_aster(s1, s2, i, j));
 			return (-1);
 		}
 		j++;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/11 15:20:21 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/12 18:13:06 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,10 +70,9 @@ SRCS_JOBS=\
 	jobs_start_file.c
 
 SRCS_SIG=\
-	kind_of_sig.c 			sig_handler.c\
-	signal_monitor.c
-
-
+	sig_kind_of_sig.c			sig_main_handler.c\
+	sig_monitor.c				sig_stop_kind.c\
+	sig_pjobs_sig.c
 
 VAR_DIR=variables
 
