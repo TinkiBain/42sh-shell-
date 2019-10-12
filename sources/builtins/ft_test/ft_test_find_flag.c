@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 18:47:32 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:39:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:20:18 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static	int	test_minus_continue(char c, char *src)
 		return (test_file_exists_and_exec(src));
 	else if (c == 'z')
 		return (test_string_null(src));
+	else if (c == 'b')
+		return (test_file_block(src));
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:16:22 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:14:20 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:07:52 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int			test_file_socket(char *str);
 int			test_file_link(char *str);
 int			test_file_dir(char *str);
 int			test_file_symbol(char *str);
+int			test_file_block(char *str);
 int			test_file_exists(char *str);
 int			test_file_set_group_id(char *str);
 int			test_file_set_user_id(char *str);

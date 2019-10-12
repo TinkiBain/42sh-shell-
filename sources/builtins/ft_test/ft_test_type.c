@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 19:52:40 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:39:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 14:29:22 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		test_file_symbol(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISCHR(stats.st_mode))
 			return (0);
 	}
@@ -32,7 +32,7 @@ int		test_file_dir(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISDIR(stats.st_mode))
 			return (0);
 	}
@@ -58,7 +58,7 @@ int		test_file_socket(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISSOCK(stats.st_mode))
 			return (0);
 	}
@@ -71,7 +71,7 @@ int		test_file_usual(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISREG(stats.st_mode))
 			return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 21:04:32 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:39:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 15:20:17 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,17 @@ int		test_file_exists_and_fat(char *str)
 	}
 	return (1);
 }
+
+int		test_file_block(char *str)
+{
+	struct stat	stats;
+
+	if (!access(str, F_OK))
+	{
+		stat(str, &stats);
+		if (S_ISBLK(stats.st_mode))
+			return (0);
+	}
+	return (1);
+}
+

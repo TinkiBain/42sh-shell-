@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 20:53:36 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/16 14:39:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 14:28:53 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		test_file_set_group_id(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISGID & (stats.st_mode))
 			return (0);
 	}
@@ -39,7 +39,7 @@ int		test_file_set_user_id(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISUID & (stats.st_mode))
 			return (0);
 	}
@@ -52,7 +52,7 @@ int		test_file_pipe(char *str)
 
 	if (!access(str, F_OK))
 	{
-		lstat(str, &stats);
+		stat(str, &stats);
 		if (S_ISFIFO(stats.st_mode))
 			return (0);
 	}
