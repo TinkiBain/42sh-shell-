@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 17:49:40 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/08/31 22:14:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:43:31 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,13 @@ void		fill_hash_table(void)
 	add_force_builds();
 	create_arr_names();
 	add_flags_args();
+}
+
+void		fill_hash_names(void)
+{
+	extern	char	**g_cmd_names;
+
+	if (g_cmd_names)
+		free(g_cmd_names);
+	create_arr_names();
 }

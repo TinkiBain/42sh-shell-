@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:38:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 20:19:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:48:43 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ int		ft_unalias(const char **av)
 			return_value = tmp;
 		++av;
 	}
+	fill_hash_names();
 	return (return_value);
 }

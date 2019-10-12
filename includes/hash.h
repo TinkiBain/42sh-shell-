@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:18:24 by wtalea            #+#    #+#             */
-/*   Updated: 2019/09/22 19:43:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:35:46 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "ft_qsort.h"
 # include "xfuncs.h"
 # include <dirent.h>
+# include "sh.h"
 
 # define HASH_LEN 200
 # define HASH_USAGE "usage: hash [-r] [name ...]"

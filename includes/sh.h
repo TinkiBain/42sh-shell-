@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 18:41:24 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:43:10 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int					check_binary(char *path);
 void				shell_clear(void);
 void				print_exit(void);
 void				execute_line(char *buf);
+int					alias_size_list(t_alias *alias);
+void				fill_hash_names(void);
 t_complete_cmd		*exec_ast(char *buf, t_lex **lex);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/09 20:08:24 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/12 18:01:59 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,10 @@ SRCS_AST_EXPANSION=\
 	globing.c
 
 SRCS_AST_WITHOUT_DIR=\
-	get_lexem_value.c
+	get_lexem_value.c\
+	alias_func_size.c\
+	fill_hash_table.c\
+	create_arr_names.c
 
 AST_SUBDIRS=\
 	$(AST_REDIRECT_DIR)\

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:16:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:45:03 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ int				ft_alias(const char **av)
 			return_value = tmp;
 		++av;
 	}
+	fill_hash_names();
 	return (0);
 }
