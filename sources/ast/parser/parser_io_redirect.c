@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_io_redirect.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/12 17:28:23 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/10/12 17:28:26 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_io_redirect			*parser_check_subshell(int io_number)
 	}
 	else
 	{
-		g_error_lex = g_lex;
+		g_error_lex = g_lex->next;
 		return (NULL);
 	}
 }
@@ -79,17 +79,14 @@ t_io_redirect			*parser_io_redirect(void)
 	{
 		list = parser_init_io_redirect(g_lex->type, io_number);
 		g_lex = g_lex->next;
-		if (g_lex)
+		if (g_lex->type == WORD)
+			list->file_name = parser_word_expansion(g_lex->lexem);
+		else
 		{
-			if (g_lex->type == WORD)
-				list->file_name = parser_word_expansion(g_lex->lexem);
-			else
-			{
-				g_error_lex = g_lex;
-				return (parser_free_io_redirect(list));
-			}
-			g_lex = g_lex->next;
+			g_error_lex = g_lex->next;
+			return (parser_free_io_redirect(list));
 		}
+		g_lex = g_lex->next;
 	}
 	return (list);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_process_name.c                                 :+:      :+:    :+:   */
+/*   ft_get_dict_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 22:01:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 21:18:01 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/10/12 13:56:20 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/12 17:30:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char		*get_process_name(t_command *command)
+char	*ft_get_dict_value(t_dict *dict, const char *key)
 {
-	t_simple_cmd	*cmd;
-	char			*str;
-
-	if ((cmd = command->simple_command))
-		str = get_job_name(cmd->lex_begin, cmd->lex_end);
-	else
-		str = ft_xstrdup("subjob");
-	return (str);
+	if (key)
+		while (dict)
+		{
+			if (ft_strequ(key, dict->key))
+				return (dict->value);
+			dict = dict->next;
+		}
+	return (NULL);
 }

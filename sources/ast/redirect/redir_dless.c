@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 19:25:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 21:01:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "ft_readline.h"
 #include <errno.h>
+
 extern int	g_eof;
 
 static void	close_fd(int fd[2])
@@ -95,8 +96,7 @@ int			redir_dless(t_io_redirect *redir)
 		redir_dless_push(str, pipefd[1]);
 	}
 	free(str);
-	if (redir->io_number == -1)
-		redir->io_number = 0;
+	redir->io_number = (redir->io_number == -1) ? 0 : redir->io_number;
 	ft_reset_fd(save);
 	if (dup2(pipefd[0], redir->io_number) < 0)
 		return (redirect_error_fd(redir->io_number));

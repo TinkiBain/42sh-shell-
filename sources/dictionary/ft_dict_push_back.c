@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_process_name.c                                 :+:      :+:    :+:   */
+/*   ft_dict_push_back.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 22:01:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 21:18:01 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/12/02 14:14:34 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/12 18:10:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char		*get_process_name(t_command *command)
+void	ft_dict_push_back(t_dict **dict, t_dict *new_elem)
 {
-	t_simple_cmd	*cmd;
-	char			*str;
+	t_dict	*tmp;
 
-	if ((cmd = command->simple_command))
-		str = get_job_name(cmd->lex_begin, cmd->lex_end);
+	if (!dict || !new_elem)
+		return ;
+	if (!*dict)
+		*dict = new_elem;
 	else
-		str = ft_xstrdup("subjob");
-	return (str);
+	{
+		tmp = *dict;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new_elem;
+	}
 }

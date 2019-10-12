@@ -6,11 +6,32 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:23:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/11 22:11:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 17:14:23 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+int		parser_check_reserved_words_norm(void)
+{
+	if (ft_strequ(g_lex->lexem, "esac"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "fi"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "for"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "if"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "in"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "then"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "until"))
+		return (1);
+	else if (ft_strequ(g_lex->lexem, "while"))
+		return (1);
+	return (0);
+}
 
 int		parser_check_reserved_words(void)
 {
@@ -32,21 +53,5 @@ int		parser_check_reserved_words(void)
 		return (1);
 	else if (ft_strequ(g_lex->lexem, "else"))
 		return (1);
-	else if (ft_strequ(g_lex->lexem, "esac"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "fi"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "for"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "if"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "in"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "then"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "until"))
-		return (1);
-	else if (ft_strequ(g_lex->lexem, "while"))
-		return (1);
-	return (0);
+	return (parser_check_reserved_words_norm());
 }

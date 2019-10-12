@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 21:15:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 19:26:22 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char		*arifmetic_lexer_check_token(char *str, t_lex **lex);
 char		*arifmetic_lexer_var(char *str, t_lex **lex);
 char		*arifmetic_lexer_digit(char *str, t_lex **lex);
 char		*arifmetic_exp(char *str);
+char		*arithmetic_print_lex_error(char *str);
+void		*arithmetic_error(char *str, t_lex *begin);
 long		expr(void);
 long		expr_or(void);
 long		expr_and(void);

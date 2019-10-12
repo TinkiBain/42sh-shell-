@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 15:12:39 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/23 14:17:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:09:23 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_cmd_prefix		*parser_cmd_prefix(void)
 		return (NULL);
 	list = parser_init_cmd_prefix();
 	if (!(list->assignment_word = parser_check_assignment_word()))
-		if (!(list->io_redir = parser_io_redirect())) //изменить на io_redirect
+		if (!(list->io_redir = parser_io_redirect()))
 			return (parser_free_cmd_prefix(list));
 	if (g_error_lex)
 		return (parser_free_cmd_prefix(list));

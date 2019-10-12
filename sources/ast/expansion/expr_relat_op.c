@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:26:44 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 18:53:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 19:10:16 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ long		expr_relat_op(void)
 		else if (type == LESS_EQ)
 			left_value = left_value <= right_value;
 		else if (type == GREAT_IF)
-			left_value =  left_value > right_value;
+			left_value = left_value > right_value;
 		else
 			left_value = left_value >= right_value;
 	}

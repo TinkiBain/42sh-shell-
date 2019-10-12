@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 17:17:55 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 18:17:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ static int		call_if_builtin(const char **av, int ac, t_pjobs *local)
 
 int				call_exec(const char **av, int ac, t_pjobs *local)
 {
-	char		*p;
-	int			res;
-	extern char	**g_var;
-	extern char	**g_func_defs;
+	char			*p;
+	int				res;
+	extern char		**g_var;
+	extern t_dict	*g_func_defs;
 
 	if ((res = is_builtin(*av)) == 1)
 	{
@@ -102,7 +102,7 @@ int				call_exec(const char **av, int ac, t_pjobs *local)
 		res = check_cmd(*av);
 	if (res == 0)
 	{
-		if ((p = ft_getenv(*av, g_func_defs, ft_strlen(*av))))
+		if ((p = ft_get_dict_value(g_func_defs, *av)))
 		{
 			call_subshell(ft_xstrdup(p), local);
 			exit(g_res_exec);

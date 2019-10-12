@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   globing.h                                          :+:      :+:    :+:   */
+/*   ft_get_dict.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/06 14:57:26 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/06 17:06:05 by dwisoky          ###   ########.fr       */
+/*   Created: 2019/10/12 14:25:26 by ggwin-go          #+#    #+#             */
+/*   Updated: 2019/10/12 17:30:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GLOBING_H
-# define GLOBING_H
+#include "sh.h"
 
-# include "libft.h"
-
-int		globing(char *str_gl, char *str);
-
-#endif
+t_dict	*ft_get_dict(t_dict *dict, const char *key)
+{
+	if (key)
+		while (dict)
+		{
+			if (ft_strequ(key, dict->key))
+				return (dict);
+			dict = dict->next;
+		}
+	return (NULL);
+}

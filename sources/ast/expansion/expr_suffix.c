@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 21:02:27 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 18:42:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 19:10:54 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ long		expr_suffix(void)
 
 	if (g_lex_arif && g_lex_arif->next && g_lex_arif->type == VAR &&
 			(g_lex_arif->next->type == SUFFIX_ADD
-			 || g_lex_arif->next->type == SUFFIX_MIN))
+			|| g_lex_arif->next->type == SUFFIX_MIN))
 	{
 		var = ft_xstrjoin(g_lex_arif->lexem, "=");
 		var_value = expr_return_value();

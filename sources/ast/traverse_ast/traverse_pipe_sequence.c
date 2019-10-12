@@ -6,7 +6,11 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/10/12 21:28:08 by jterry           ###   ########.fr       */
+=======
+/*   Updated: 2019/10/12 21:19:26 by dwisoky          ###   ########.fr       */
+>>>>>>> d85b3285fa5baeacec238df2a2a37eed1f2534ee
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +28,6 @@ int					pid_fredy(void)
 		while (g_pipe_pid[++i] != 0)
 			g_pipe_pid[i] = 0;
 	}
-
 	g_wait_flags = 0;
 	return (1);
 }
@@ -81,7 +84,6 @@ static void			pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
 static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 {
 	char			*cmd_name;
-
 
 	if (traverse_redirections(cmd) == -1)
 		return ;

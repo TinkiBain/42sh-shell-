@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 18:47:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/09 14:28:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 16:38:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int			check_cmd(const char *cmd)
 {
 	extern char		**g_var;
-	extern char		**g_func_defs;
+	extern t_dict	*g_func_defs;
 	const char		*p;
 
 	p = cmd;
-	if (ft_getenv(cmd, g_func_defs, ft_strlen(cmd)))
+	if (ft_get_dict(g_func_defs, cmd))
 		return (0);
 	while (*p)
 	{

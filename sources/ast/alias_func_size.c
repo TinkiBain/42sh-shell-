@@ -3,32 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   alias_func_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 16:43:31 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 18:25:36 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/12 20:02:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hash.h"
+#include "dictionary.h"
 
 extern	t_alias	*g_alias;
 
-#if 0
-int		func_size_list(t_func *func)
+int		func_size_list(t_dict *func)
 {
 	int		i;
 
 	i = 0;
 	while (func)
 	{
-		if (!get_bin(func->head))
+		if (!get_bin(func->key))
 			++i;
 		func = func->next;
 	}
 	return (i);
 }
-#endif
 
 int		alias_size_list(t_alias *alias)
 {

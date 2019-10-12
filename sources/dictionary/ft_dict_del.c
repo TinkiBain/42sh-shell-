@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_process_name.c                                 :+:      :+:    :+:   */
+/*   ft_dict_del.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 22:01:59 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 21:18:01 by dwisoky          ###   ########.fr       */
+/*   Created: 2018/11/26 22:13:35 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/12 19:09:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char		*get_process_name(t_command *command)
+void	ft_dict_del(t_dict **dict)
 {
-	t_simple_cmd	*cmd;
-	char			*str;
-
-	if ((cmd = command->simple_command))
-		str = get_job_name(cmd->lex_begin, cmd->lex_end);
-	else
-		str = ft_xstrdup("subjob");
-	return (str);
+	if (!dict || !*dict)
+		return ;
+	if (*dict != NULL)
+		ft_dict_del(&((*dict)->next));
+	ft_dict_del_one(dict);
 }

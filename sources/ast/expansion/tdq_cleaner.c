@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 19:16:10 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 19:19:44 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 21:16:41 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int		cleaner_while(char **tmp, int *t_i, int *i, char *str)
 	return (1);
 }
 
-char		*cleaner(char *str)
+char			*cleaner(char *str)
 {
 	char	*tmp;
 	int		i;
