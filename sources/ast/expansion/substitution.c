@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 19:43:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 17:01:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ char		*substitution_exec(char *str)
 
 char		*substitution(char *str)
 {
+	char	*tmp;
 	char	*begin;
 
 	begin = str;
+	tmp = str;
 	if (*str == '$')
 	{
 		begin += 2;
@@ -79,5 +81,6 @@ char		*substitution(char *str)
 	}
 	begin = ft_xstrndup(begin, str - begin);
 	begin = cleaner(begin);
+	free(tmp);
 	return (substitution_exec(begin));
 }

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/11 20:53:58 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 15:51:48 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ char			*tdq(char *str)
 	{
 		tdq_while(&i, &str);
 		i++;
+		i = (ft_strlen(str) < (size_t)i) ? 0 : i;
 	}
 	if (*str == '~')
 	{
