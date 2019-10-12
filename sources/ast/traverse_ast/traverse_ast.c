@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 17:18:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 21:18:29 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void			traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
 	flag = elem->and_or_if;
 }
 
-static int		cmd_is_subshell(t_and_or *and_or, int sep)
+static int			cmd_is_subshell(t_and_or *and_or, int sep)
 {
 	if (sep == JOB)
 	{

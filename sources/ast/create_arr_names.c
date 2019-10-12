@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:34:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 20:01:15 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/12 21:15:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,8 @@ void			create_arr_names(void)
 	LEN_FUNC = func_size_list(g_func_defs);
 	if (g_prog_names_count || LEN_ALIAS || LEN_FUNC)
 	{
-		if ((g_cmd_names = (char **)ft_memalloc((sizeof(char *) *
-					(g_prog_names_count + LEN_ALIAS + LEN_FUNC + 1)))) == NULL)
-			die();
+		g_cmd_names = (char **)ft_xmalloc((sizeof(char *) *
+					(g_prog_names_count + LEN_ALIAS + LEN_FUNC + 1)));
 		if (g_prog_names_count)
 			while (I < HASH_LEN)
 			{
@@ -94,6 +93,7 @@ void			create_arr_names(void)
 			add_names_alias(g_alias, &J);
 		if (LEN_FUNC)
 			add_names_func(g_func_defs, &J);
-		ft_arr_str_qsort(g_cmd_names, g_prog_names_count + LEN_ALIAS + LEN_FUNC);
+		ft_arr_str_qsort(g_cmd_names,
+				g_prog_names_count + LEN_ALIAS + LEN_FUNC);
 	}
 }
