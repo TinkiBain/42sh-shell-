@@ -6,7 +6,7 @@
 /*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 17:44:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/11 18:47:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/12 14:12:13 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #define TMP fd[1]
 #define USAGE 1
 #define NO_SUCH 2
+#define HISTORY g_opt.history
+
+extern	t_opt	g_opt;
 
 static	int		error(const char *str, int err_code)
 {
@@ -23,6 +26,7 @@ static	int		error(const char *str, int err_code)
 		ft_putendl_fd("source: usage: source filename\n", STDERR);
 	else if (err_code == NO_SUCH)
 		print_error_vaarg("source: %s: no such file or directory\n", str);
+	HISTORY = 1;
 	return (1);
 }
 
@@ -74,6 +78,7 @@ int				ft_source(int argc, const char **argv)
 	ft_bzero(fd, (sizeof(int) * 2));
 	if (argc >= 2)
 	{
+		HISTORY = 0;
 		if (!check_valid(*argv))
 			return (error(*argv, NO_SUCH));
 		if (check_binary((char *)*argv))
@@ -86,5 +91,6 @@ int				ft_source(int argc, const char **argv)
 	}
 	else
 		return (error(NULL, USAGE));
+	HISTORY = 1;
 	return (0);
 }
