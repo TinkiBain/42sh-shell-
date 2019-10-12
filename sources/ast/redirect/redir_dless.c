@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/09 19:25:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 19:49:43 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "ft_readline.h"
 #include <errno.h>
+
 extern int	g_eof;
 
 static void	close_fd(int fd[2])

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/12 19:54:36 by jterry           ###   ########.fr        #
+#    Updated: 2019/10/12 20:58:57 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ AST_EXPANSION_DIR=expansion
 
 SRCS_LEXER=\
 	lexer.c					lexer_check_token.c			lexer_find_dollar.c\
-	print_lexem.c			lexer_check_io_number.c		lexer_free_all.c\
-	lexer_find_word.c		lexer_check_bracket.c
+	lexer_check_bracket.c	lexer_check_io_number.c		lexer_free_all.c\
+	lexer_find_word.c
 
 SRCS_PARSER=\
 	parser_list.c			parser_and_or.c				parser_linebreak.c\
@@ -35,7 +35,7 @@ SRCS_PARSER=\
 	parser_wordlist.c		parser_sequential_sep.c		parser_case_clause.c\
 	parser_case_list.c		parser_case_item.c			parser_pattern.c\
 	parser_check_alias.c	parser_find_eq.c			parser_fname.c\
-	parser_word_expansion.c	parser_recall_readline.c	parser_exec_subshell.c
+	parser_word_expansion.c	parser_recall_readline.c
 
 SRCS_TRAVERSE_AST=\
 	call_exec.c\
@@ -84,7 +84,6 @@ SRCS_AST_EXPANSION=\
 	tilda.c\
 	tdq.c\
 	tdq_cleaner.c\
-	tdq_substitution.c\
 	dollar_brace.c\
 	dollar_handler_plus.c\
 	back_bigest_eq.c\
@@ -116,9 +115,9 @@ SRCS_AST_EXPANSION=\
 	expr_return_value.c\
 	expr_bracket.c\
 	substitution.c\
-	globing.c\
 	dollar_brace_forward.c\
-	dollar_double_dote.c
+	dollar_double_dote.c\
+	arithmetic_error.c
 
 SRCS_AST_WITHOUT_DIR=\
 	get_lexem_value.c\

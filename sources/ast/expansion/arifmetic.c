@@ -6,53 +6,11 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 16:40:09 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 16:47:21 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 19:22:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
-
-void			*arifmetic_error(char *str, t_lex *begin)
-{
-	if (g_error_arifmetic->type == DIVISION_NULL)
-		print_error_vaarg("%s: division by 0 ", str);
-	else if (g_error_arifmetic->type >= 3 && g_error_arifmetic->type <= 12)
-		print_error_vaarg("%s: attempted assignment to non-variable ", str);
-	else
-		print_error_vaarg("%s: syntax error: operand expected", str);
-	ft_putstr_fd("(error token is \"", STDERR);
-	if (g_error_arifmetic->type == DIVISION_NULL)
-		lexer_free_all(g_error_arifmetic);
-	if (!g_lex_arif)
-	{
-		while (begin->next)
-			begin = begin->next;
-		ft_putstr_fd(begin->lexem, 2);
-	}
-	while (g_lex_arif)
-	{
-		ft_putstr_fd(g_lex_arif->lexem, 2);
-		if (g_lex_arif->next)
-			ft_putstr_fd(" ", 2);
-		g_lex_arif = g_lex_arif->next;
-	}
-	ft_putendl_fd("\")", 2);
-	free(str);
-	while (begin->back)
-		begin = begin->back;
-	lexer_free_all(begin);
-	return (NULL);
-}
-
-char			*arifmetic_print_lex_error(char *str)
-{
-	print_error_vaarg("%s: syntax error: operand expected "
-			"(error token is \"%s\")\n", str, g_error_arifmetic->lexem);
-	lexer_free_all(g_error_arifmetic);
-	lexer_free_all(g_lex_arif);
-	free(str);
-	return (NULL);
-}
 
 int				expr_sign(char **str)
 {
@@ -72,7 +30,6 @@ long			expr_atoll(char *str, int base)
 {
 	long		rez;
 	int			flag;
-
 
 	if (!str)
 		return (0);
@@ -126,13 +83,13 @@ char			*arifmetic_exp(char *str)
 	lex = arifmetic_lexer(str);
 	g_lex_arif = lex;
 	if (g_error_arifmetic)
-		return (arifmetic_print_lex_error(str));
+		return (arithmetic_print_lex_error(str));
 	if (lex)
 		rez = expr();
 	if (g_lex_arif && !g_error_arifmetic)
 		g_error_arifmetic = g_lex_arif;
 	if (g_error_arifmetic)
-		return (arifmetic_error(str, lex));
+		return (arithmetic_error(str, lex));
 	lexer_free_all(lex);
 	free(str);
 	return (ft_itoa_base(rez, 10));

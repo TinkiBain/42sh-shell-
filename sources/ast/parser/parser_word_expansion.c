@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parser_word_expansion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 19:19:20 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/12 17:29:58 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/10/12 19:16:30 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "sh.h"
 #include "arifmetic.h"
-#include "globing.h"
 
-static char *parser_strchr(char *str, char c)
+static char	*parser_strchr(char *str, char c)
 {
 	if (!str)
 		return (str);
@@ -28,7 +27,7 @@ static char *parser_strchr(char *str, char c)
 	return (str);
 }
 
-char	*parser_find_dollar(char *str)
+char		*parser_find_dollar(char *str)
 {
 	int		brackets;
 
@@ -67,18 +66,15 @@ char		*parser_word_expansion(char *str)
 		if (*str == '\'' || *str == '`' || *str == '"' || *str == '\\'
 				|| *str == '$')
 		{
-			c = *str;
-			if (*str == '$')
+			if ((c = *str) && *str == '$')
 				str = parser_find_dollar(str);
 			else
 				str = lexer_find_char(str, *str);
-			if (!*str)
-			{
-				begin = parser_recall_readline(c);
-				str = begin;
-			}
-			else
-				++str;
+		}
+		if (!*str)
+		{
+			begin = parser_recall_readline(c);
+			str = begin;
 		}
 		else
 			++str;

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 22:00:41 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 22:23:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 17:18:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,5 @@ char		*parser_fname(void)
 	}
 	str = ft_xstrdup(g_lex->lexem);
 	g_lex = g_lex->next;
-//	str = parser_name();
-//	if (g_error_lex)
-//		g_lex->type = NOT_VALID_ID;
 	return (str);
 }

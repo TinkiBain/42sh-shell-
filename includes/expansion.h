@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 15:01:53 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 18:36:45 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 20:56:36 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*freed_proc_value(char *bud, char *value, int len, int flag);
 char	*double_dote(char *str, char *value, char *buf, char *name);
 
 char	*substitution(char *str);
-char	*tdq_substitution(char *str);
 char	*cleaner(char *str);
 
 int		check_spec_symbol(char c);

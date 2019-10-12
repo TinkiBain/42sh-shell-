@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_case_clause.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:30:21 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/12 17:21:49 by dwisoky           #+#    #+#             */
+/*   Updated: 2019/10/12 17:40:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static t_case_clause	*parser_init_case_clause(void)
 {
 	t_case_clause		*list;
 
+	if (g_lex->type != WORD)
+	{
+		g_error_lex = g_lex;
+		return (NULL);
+	}
 	list = (t_case_clause*)ft_xmalloc(sizeof(t_case_clause));
 	list->word = ft_xstrdup(g_lex->lexem);
 	g_lex = g_lex->next;
@@ -48,12 +53,8 @@ t_case_clause			*parser_case_clause(void)
 	t_case_clause		*list;
 
 	g_lex = g_lex->next;
-	if (g_lex->type != WORD)
-	{
-		g_error_lex = g_lex;
+	if (!(list = parser_init_case_clause()))
 		return (NULL);
-	}
-	list = parser_init_case_clause();
 	if (g_lex->type != WORD || !ft_strequ(g_lex->lexem, "in"))
 	{
 		g_error_lex = g_lex;

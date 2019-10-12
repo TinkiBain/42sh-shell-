@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:09:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/05 22:25:40 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/12 17:54:48 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void					lexer_free_all(t_lex *lex);
 void					init_lex(int type, void *lexem, t_lex **lex);
 char					*lexer_check_token(char *str, t_lex **lex);
 int						lexer_check_spec_symbol(char c);
-void					print_lexem(t_lex *lex);
 char					*lexer_check_io_number(char *str, t_lex **lex);
 char					*lexer_find_char(char *str, char c);
 char					*lexer_find_word(char *str, t_lex **lex);
