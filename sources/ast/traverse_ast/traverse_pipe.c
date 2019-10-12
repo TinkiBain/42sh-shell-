@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/09 18:23:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/12 21:28:55 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
 	local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
-	pipe_av(local->job);
 }
 
 void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local)

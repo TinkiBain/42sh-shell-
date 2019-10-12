@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 18:29:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/12 21:28:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,16 @@ void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq,
 	if (pipe_seq->next)
 	{
 		if (local->flag == 1)
+		{
+			pipe_av(local->job);
 			ft_printf("[%d]", local->num);
+		}
 		traverse_pipe(pipe_seq, 0, local);
 		if (local->flag == 0)
+		{
+			pipe_av(local->job);
 			ft_waitpid(-1);
+		}
 		pid_fredy();
 	}
 	else
