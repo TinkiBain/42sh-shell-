@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 14:24:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 16:53:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,51 @@ void				clear_sem(void)
 	g_semid = 0;
 }
 
-void				reserve_sem(void)
+void				reserve_sem(int n)
 {
 	struct sembuf	sops;
 
 	if (!g_semid)
 		return ;
 	sops.sem_num = 0;
-	sops.sem_op = -1;
+	sops.sem_op = -n;
 	sops.sem_flg = 0;
 	while (semop(g_semid, &sops, 1) == -1)
 		;
 }
 
-void				release_sem(void)
+void				release_sem(int n)
 {
 	struct sembuf	sops;
 
 	if (!g_semid)
 		return ;
 	sops.sem_num = 0;
-	sops.sem_op = 1;
+	sops.sem_op = n;
 	sops.sem_flg = 0;
 	semop(g_semid, &sops, 1);
 }
+
+/* void				inrease_sem(int n) */
+/* { */
+/* 	struct sembuf	sops; */
+
+/* 	if (!g_semid) */
+/* 		return ; */
+/* 	sops.sem_num = 0; */
+/* 	sops.sem_op = n; */
+/* 	sops.sem_flg = 0; */
+/* 	semop(g_semid, &sops, 1); */
+/* 	while (semop(g_semid, &sops, 1) == -1) */
+/* 		; */
+/* } */
+
+/* void				decrease_sem(int n) */
+/* { */
+/* 	if (!g_semid) */
+/* 		return ; */
+/* 	sops.sem_num = 0; */
+/* 	sops.sem_op = -n; */
+/* 	sops.sem_flg = 0; */
+/* 	semop(g_semid, &sops, 1); */
+/* } */

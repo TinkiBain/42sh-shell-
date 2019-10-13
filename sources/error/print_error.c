@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:34:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:02:48 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			print_error(const char *info, const char *msg)
 	extern int		g_line_num;
 	t_string		info_formatted;
 
-	reserve_sem();
+	reserve_sem(1);
 	ft_fdprintf(STDERR, "%s: ", g_project_name);
 	if (g_opt.rl_gnl != 0)
 		ft_fdprintf(STDERR, "line %d: ", g_line_num);
@@ -56,7 +56,7 @@ void			print_error(const char *info, const char *msg)
 	}
 	ft_fdprintf(STDERR, "%s\n\r", msg);
 	loginfo("! Error: %s (\"%s\")", msg, info);
-	release_sem();
+	release_sem(1);
 }
 
 void			print_error_exit(const char *info, const char *msg,
@@ -73,7 +73,7 @@ void			print_error_vaarg(const char *msg, ...)
 	extern t_opt	g_opt;
 	extern int		g_line_num;
 
-	reserve_sem();
+	reserve_sem(1);
 	ft_fdprintf(STDERR, "%s: ", g_project_name);
 	if (g_opt.rl_gnl != 0)
 		ft_fdprintf(STDERR, "line %d: ", g_line_num);
@@ -83,5 +83,5 @@ void			print_error_vaarg(const char *msg, ...)
 	va_start(ap, msg);
 	loginfo_vaarg(msg, ap);
 	va_end(ap);
-	release_sem();
+	release_sem(1);
 }

@@ -6,13 +6,14 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 15:05:43 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:02:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+#include "sem.h"
 
-int		pipe_av(t_job *job)
+int		pipe_av(t_job *job, int counter)
 {
 	int		i;
 	int		len;
@@ -36,12 +37,11 @@ int		pipe_av(t_job *job)
 	g_wait_flags = 0;
 	g_pipe_pid[i] = 0;
 	i = 0;
-	//while (g_pipe_pid[i])
-	//	kill(g_pipe_pid[i++], SIGCONT);
+	release_sem(counter);
 	return (1);
 }
 
-int		t(int len)
+static int		t(int len)
 {
 	int	t_len;
 	int st;
@@ -50,11 +50,11 @@ int		t(int len)
 	t_len = 0;
 	while (t_len < len)
 	{
+		//printf ("%d\n", t_len);
 		if (g_pipe_pid[t_len] != -1)
 		{
-			if (waitpid(g_pipe_pid[t_len], &st, WNOHANG | WUNTRACED))
-				g_pipe_pid[t_len] = -1;
-			return (-1);
+			t_len = 0;
+			continue ;
 		}
 		t_len++;
 	}

@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 14:25:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 16:54:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ union	semun {
 
 void	init_sem(void);
 void	clear_sem(void);
-void	reserve_sem(void);
-void	release_sem(void);
+void	reserve_sem(int n);
+void	release_sem(int n);
 
 #endif

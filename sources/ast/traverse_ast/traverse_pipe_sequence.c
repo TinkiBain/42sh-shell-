@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 11:27:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:09:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,20 @@ static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq,
 														t_pjobs *local)
 {
+	int counter;
+
+	counter = 0;
 	if (pipe_seq->next)
 	{
 		if (local->flag == 1)
 		{
-			pipe_av(local->job);
+			pipe_av(local->job, counter + 1);
 			ft_printf("[%d]", local->num);
 		}
-		traverse_pipe(pipe_seq, 0, local);
+		traverse_pipe(pipe_seq, 0, local, &counter);
 		if (local->flag == 0)
 		{
-			pipe_av(local->job);
+			pipe_av(local->job, counter + 1);
 			ft_waitpid(-1);
 		}
 		pid_fredy();
