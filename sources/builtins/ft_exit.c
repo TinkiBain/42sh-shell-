@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:41:34 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 17:05:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 20:57:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int			ft_exit(int ac, const char **av)
 {
 	char		res;
 
-	ft_putstr_fd("exit\n", 2);
 	res = (char)g_res_exec;
 	if (ac > 2)
 	{
