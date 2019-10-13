@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 16:53:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:48:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,13 @@ void				release_sem(int n)
 	semop(g_semid, &sops, 1);
 }
 
-/* void				inrease_sem(int n) */
-/* { */
-/* 	struct sembuf	sops; */
+int					get_sem(void)
+{
+	extern int		g_semid;
+	union semun		arg;
 
-/* 	if (!g_semid) */
-/* 		return ; */
-/* 	sops.sem_num = 0; */
-/* 	sops.sem_op = n; */
-/* 	sops.sem_flg = 0; */
-/* 	semop(g_semid, &sops, 1); */
-/* 	while (semop(g_semid, &sops, 1) == -1) */
-/* 		; */
-/* } */
-
-/* void				decrease_sem(int n) */
-/* { */
-/* 	if (!g_semid) */
-/* 		return ; */
-/* 	sops.sem_num = 0; */
-/* 	sops.sem_op = -n; */
-/* 	sops.sem_flg = 0; */
-/* 	semop(g_semid, &sops, 1); */
-/* } */
+	ft_bzero(&arg, sizeof(arg));
+	if (g_semid)
+		return (semctl(g_semid, 0, GETVAL, arg));
+	return (0);
+}
