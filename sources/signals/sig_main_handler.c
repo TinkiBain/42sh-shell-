@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 20:36:15 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 21:39:55 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void			jobs_sig(void)
 	}
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
-		msg_cntr(st);
+		if (st != SIGINT)
+			msg_cntr(st);
 		if (pipe_jobs_check() > 0)
 			deletejob(&g_subjob, g_subjob->num);
 		return ;

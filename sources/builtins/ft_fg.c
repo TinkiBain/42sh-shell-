@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 19:59:23 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 22:00:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ int			ft_fg(t_pjobs *local_job, const char *name)
 	else
 		local = NULL;
 	if (local == NULL)
-	{
-		printf ("adfa\n");
 		return (fg_null_error(name));
-	}
 	free(local->status);
 	local->status = ft_xstrdup(" running\t\t");
 	job = local->job;
