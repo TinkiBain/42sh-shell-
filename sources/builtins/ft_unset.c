@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 18:08:29 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 23:31:46 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,26 @@
 
 extern char			**g_var;
 extern t_dict		*g_func_defs;
+
+static void			remove_func_def(const char *str)
+{
+	extern t_dict	*g_func_defs;
+	extern char		**environ;
+	t_dict			*func;
+	char			*tmp;
+
+	if (!(func = ft_get_dict(g_func_defs, str)))
+		return ;
+	tmp = ft_xstrjoin("BASH_FUNC_", str);
+	tmp = ft_xstrrejoin(tmp, "%%=() { ", 1);
+	tmp = ft_xstrrejoin(tmp, func->value, 1);
+	tmp = ft_xstrrejoin(tmp, "\n}", 1);
+	remove_var(tmp, &g_var);
+	remove_var(tmp, &environ);
+	ft_strdel(&tmp);
+	ft_dict_remove_elem(&g_func_defs, func);
+	fill_g_cmd_names();
+}
 
 int					ft_unset(const char **av)
 {
@@ -29,10 +49,7 @@ int					ft_unset(const char **av)
 	{
 		len = ft_strlen(*av);
 		if (flag && g_func_defs)
-		{
-			ft_dict_remove_elem(&g_func_defs, ft_get_dict(g_func_defs, *av));
-			fill_g_cmd_names();
-		}
+			remove_func_def(*av);
 		else if (!check_readonly_var(*av, len))
 		{
 			remove_var(*av, &g_var);

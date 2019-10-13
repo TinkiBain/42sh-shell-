@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 21:34:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 01:14:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ static void	sigh_exit(int signo)
 		print_error_exit(NULL, "Fatal error", 1);
 }
 
+/*
+**	loginfo("Caught signal %d", signo);
+*/
+
 static void	signals(int signo)
 {
 	extern t_line	*g_line;
 
-	//loginfo("Caught signal %d", signo);
 	if (signo == SIGCHLD)
 		jobs_sig();
 	else if (signo == SIGTTOU)

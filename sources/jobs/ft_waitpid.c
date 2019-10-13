@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 20:25:21 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 01:17:45 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				pipe_av(t_job *job, int counter)
 	return (1);
 }
 
-static void		zero()
+static void		zero(void)
 {
 	int i;
 
@@ -61,7 +61,8 @@ static int		t(int len)
 	{
 		if (g_pipe_pid[t_len] != -1)
 		{
-			if ((pid = waitpid(g_pipe_pid[t_len], NULL, WUNTRACED | WNOHANG)) > 0)
+			if ((pid = waitpid(g_pipe_pid[t_len], NULL,
+									WUNTRACED | WNOHANG)) > 0)
 				g_pipe_pid[t_len] = -1;
 			t_len = 0;
 			continue ;

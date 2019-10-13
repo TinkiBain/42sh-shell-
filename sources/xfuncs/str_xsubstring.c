@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sem.h                                              :+:      :+:    :+:   */
+/*   str_xsubstring.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 01:19:41 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/08/24 18:51:14 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/14 02:01:38 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEM_H
-# define SEM_H
+#include "xfuncs.h"
 
-# include <sys/sem.h>
-# include "error.h"
+t_string		str_xsubstring(t_string str, int start, int len)
+{
+	t_string new;
 
-# define SEMPIPE		0
-# define SEMPRINT		1
-
-void	init_sem(void);
-void	clear_sem(void);
-void	reserve_sem(int semnum, int n);
-void	release_sem(int semnum, int n);
-void	set_sem(int semnum, int val);
-
-/*
-** int		get_sem(void);
-*/
-
-#endif
+	new = str_substring(str, start, len);
+	if (!new.s)
+		die();
+	return (new);
+}

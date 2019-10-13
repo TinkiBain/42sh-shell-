@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xfuncs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 05:55:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 17:11:39 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/14 02:09:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		die(void);
 void		*xmalloc(size_t size);
 void		*ft_xmemalloc(size_t size);
 char		*ft_xstrdup(const char *src);
-char		*ft_xstrndup(const char *src, int j);
+char		*ft_xstrndup(const char *src, size_t j);
 char		*ft_xstrjoin(char const *s1, char const *s2);
 char		**ft_xstrsplit(char const *s, char c);
 char		*ft_xstrtrim(char const *s);

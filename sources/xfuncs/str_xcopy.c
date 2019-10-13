@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sem.h                                              :+:      :+:    :+:   */
+/*   str_xcopy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 01:19:41 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/14 02:00:40 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/14 02:00:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEM_H
-# define SEM_H
+#include "xfuncs.h"
 
-# include <sys/sem.h>
-# include "error.h"
+t_string		str_xcopy(const char *s)
+{
+	t_string str;
 
-# define SEMPIPE		0
-# define SEMPRINT		1
-
-void	init_sem(void);
-void	clear_sem(void);
-void	reserve_sem(int semnum, int n);
-void	release_sem(int semnum, int n);
-void	set_sem(int semnum, int val);
-
-/*
-** int		get_sem(void);
-*/
-
-#endif
+	str = str_copy(s);
+	if (s && !str.s)
+		die();
+	return (str);
+}

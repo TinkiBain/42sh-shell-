@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/13 17:23:05 by wtalea           ###   ########.fr        #
+#    Updated: 2019/10/14 02:07:51 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,9 +79,10 @@ SRCS_DICTIONARY=\
 XFUNCS_DIR=xfuncs
 
 SRCS_XFUNCS=\
-	ft_xstrdup.c	ft_xstrjoin.c		ft_xstrsplit.c		str_xfuncs1.c\
-	str_xfuncs2.c	vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c\
-	ft_xstrndup.c	ft_xstrrejoin.c
+	ft_xstrdup.c	ft_xstrjoin.c		ft_xstrsplit.c		str_xsubstring.c\
+	str_xinsert.c	vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c\
+	ft_xstrndup.c	ft_xstrrejoin.c		str_xcreate.c		str_xduplicate.c\
+	str_xcopy.c		str_xncopy.c		str_xaddback.c		str_xaddfront.c
 
 VAR_DIR=variables
 
@@ -93,7 +94,7 @@ SRCS_VAR=\
 	get_var_name.c				init_g_var.c\
 	fill_g_var_names.c			print_var_names.c\
 	get_var_value.c				print_vars.c\
-	set_var_in_g_var.c
+	set_var_in_g_var.c			init_g_func_defs.c
 
 ERROR_DIR=error
 

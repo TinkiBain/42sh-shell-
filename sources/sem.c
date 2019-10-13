@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 19:44:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/14 01:17:11 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@ void				set_sem(int semnum, int val)
 		loginfo("Error while set_sem(%d, %d)", semnum, val);
 }
 
-/* int					get_sem(void) */
-/* { */
-/* 	extern int		g_semid; */
-/* 	union semun		arg; */
-
-/* 	ft_bzero(&arg, sizeof(arg)); */
-/* 	if (g_semid) */
-/* 		return (semctl(g_semid, 0, GETVAL, arg)); */
-/* 	return (0); */
-/* } */
+/*
+** int					get_sem(void)
+** {
+** 	extern int		g_semid;
+** 	union semun		arg;
+**
+** 	ft_bzero(&arg, sizeof(arg));
+** 	if (g_semid)
+** 		return (semctl(g_semid, 0, GETVAL, arg));
+** 	return (0);
+** }
+*/
