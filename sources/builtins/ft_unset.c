@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 12:05:34 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:08:29 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ extern t_dict		*g_func_defs;
 
 int					ft_unset(const char **av)
 {
-	extern char		**environ;
 	size_t			len;
+	extern char		**environ;
 	int				flag;
 
 	if (!g_var)
@@ -42,5 +42,5 @@ int					ft_unset(const char **av)
 		}
 		++av;
 	}
-	return (1);
+	return (0);
 }

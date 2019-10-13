@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 12:29:45 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 18:06:29 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*lexer_find_word(char *str, t_lex **lex)
 	flag = 0;
 	while (*str)
 	{
-		if (ft_isspace(*str))
+		if (*str != '\n' && ft_isspace(*str))
 			break ;
 		else if (lexer_check_spec_symbol(*str) && (flag = 1))
 			break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 17:04:19 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:05:52 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 */
 
 int		ft_alias(const char **av);
+int		cd_norm(char *path, const char *tmp, int flag);
+int		change_dir(char *curpath, const char *av, int flag);
+int		ft_cd(const char **av);
 int		ft_bg(t_pjobs *local_job, const char *name);
 int		ft_cd(const char **av);
 int		ft_echo(const char **av);

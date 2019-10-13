@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 19:15:46 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 12:29:50 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 18:06:33 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		init_lex(int type, void *lexem, t_lex **lex)
 int			lexer_check_spec_symbol(char c)
 {
 	if (c == ';' || c == '|' || c == '<' || c == '>' || c == '&' || c == '(' ||
-			c == ')' || c == '#')
+			c == ')' || c == '#' || c == '\n')
 		return (1);
 	return (0);
 }
