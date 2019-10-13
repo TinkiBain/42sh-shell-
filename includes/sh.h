@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 20:09:47 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 14:22:48 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include "libft.h"
 # include "error.h"
 # include "ast.h"
+# include "lexer.h"
 # include "hash.h"
 # include "ft_readline.h"
 # include "variables.h"
-# include "lib_wtalea.h"
 # include "xfuncs.h"
 # include "jobs.h"
 # include "builtins.h"
@@ -66,7 +66,7 @@ void				execute_line(char *buf);
 void				fill_g_cmd_names(void);
 t_complete_cmd		*exec_ast(char *buf, t_lex **lex);
 
-int							alias_size_list(t_alias *alias);
-int							func_size_list(t_dict *func);
+int					alias_size_list(t_alias *alias);
+int					func_size_list(t_dict *func);
 
 #endif

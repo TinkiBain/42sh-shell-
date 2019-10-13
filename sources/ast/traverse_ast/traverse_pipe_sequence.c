@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 21:52:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 11:27:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 {
 	char			*cmd_name;
 
-	if (traverse_redirections(cmd) == -1)
-		return ;
 	if (cmd->simple_command)
 	{
 		cmd->simple_command->cmd_name = tdq(cmd->simple_command->cmd_name);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 17:25:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 12:02:18 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int					call_subshell(char *str, t_pjobs *local)
 	extern char		**environ;
 	pid_t			pid;
 
+	if (g_opt.is_subshell && g_opt.is_single_cmd)
+	{
+		execute_line(str);
+		exit(g_res_exec);
+	}
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)

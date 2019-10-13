@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/12 20:58:57 by dwisoky          ###   ########.fr        #
+#    Updated: 2019/10/13 12:08:50 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ SRCS_TRAVERSE_AST=\
 	traverse_command.c\
 	traverse_simple_command.c\
 	traverse_redirect_list.c\
-	traverse_redirections.c\
 	traverse_compound_command.c\
 	traverse_compound_list.c\
 	traverse_function_definition.c\

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    readline.mk                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/11 20:12:44 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/13 12:40:53 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ READLINE_INCLUDES=\
 SRCS_READLINE_WITHOUT_DIR=\
 	ft_readline.c			loginfo.c			loginfo_line.c\
 	gnl.c					utils.c				del_funcs.c\
-	duplicate_line.c		undo.c					
+	duplicate_line.c		undo.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c					backward_delete_char.c\

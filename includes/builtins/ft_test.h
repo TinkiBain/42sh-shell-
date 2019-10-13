@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_test.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:16:22 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 15:07:52 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/13 12:50:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_TEST_H
 
 # include <errno.h>
-# include "exec.h"
+# include "builtins.h"
 
 long		ft_strtol(const char *nptr, char **endptr, register int base);
 int			ft_find_num(char *str);

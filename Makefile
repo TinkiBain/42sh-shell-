@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/12 20:40:19 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/13 13:04:58 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,9 @@ INCLUDES:=\
 	-I libft/includes
 
 SH_INCLUDES=\
-	ast.h			defs.h		variables.h		exec.h\
-	hash.h			lexer.h		parser.h		sh.h\
-	lib_wtalea.h	error.h		sem.h
-
-# HEADER=\
-# 	$(addprefix includes/, $(SH_INCLUDES))\
-# 	$(addprefix includes/readline/, $(READLINE_INCLUDES))\
-# 	$(addprefix includes/builtins/, $(BUILTINS_INCLUDES))\
+	ast.h			defs.h		variables.h\
+	hash.h			lexer.h		parser.h\
+	error.h			sem.h		sh.h
 
 SRCS_DIR=sources
 OBJS_DIR=objects
@@ -169,7 +164,7 @@ $(LIBFT_A):
 $(LIBFT_DIR)/$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_DIR)/$(LIBFT_SRCS_DIR)/%.c
 	@make -C $(LIBFT_DIR)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c# $(HEADER)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
 
 $(OBJS_SUBDIRS):

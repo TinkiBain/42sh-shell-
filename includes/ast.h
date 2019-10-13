@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 17:35:56 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 12:53:37 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "lexer.h"
 # include "parser.h"
-# include "exec.h"
+# include "builtins.h"
 # include "redirect.h"
+# include "jobs.h"
 
 /*
 **		Functions for make source substring from lexem:
@@ -42,7 +43,6 @@ int		check_name(char *str);
 void	traverse_ast(t_complete_cmd *root);
 void	traverse_pipe_sequence(t_pipe_sequence *elem, t_pjobs *local);
 void	traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local);
-int		traverse_redirections(t_command *cmd);
 int		traverse_redirect_list(t_redirect_list *list);
 void	traverse_command(t_command *cmd, int in_fork, t_pjobs *local);
 void	traverse_simple_command(t_simple_cmd *cmd, int in_fork, t_pjobs *local);

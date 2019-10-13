@@ -6,18 +6,19 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 20:14:08 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 12:05:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "hash.h"
 
+extern char			**g_var;
+extern t_dict		*g_func_defs;
+
 int					ft_unset(const char **av)
 {
-	extern char		**g_var;
 	extern char		**environ;
-	extern t_dict	*g_func_defs;
 	size_t			len;
 	int				flag;
 

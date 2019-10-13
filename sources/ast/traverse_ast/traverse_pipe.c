@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 21:28:55 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 12:12:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 {
 	pid_t		pid;
 
-	if (traverse_redirections(cmd) == -1)
-		return ;
 	if ((pid = fork()) == 0)
 	{
 		if (local->flag == 1)
@@ -28,7 +26,6 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
-	redir_reset();
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
 	local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
@@ -39,8 +36,6 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local)
 	pid_t		pid;
 	int			pipefd[2];
 
-	if (traverse_redirections(pipe_seq->command) == -1)
-		return ;
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid = fork()) == 0)
@@ -55,7 +50,6 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local)
 		traverse_command(pipe_seq->command, 1, local);
 		exit(g_res_exec);
 	}
-	redir_reset();
 	close(pipefd[1]);
 	if (local && local->flag == 1)
 		ft_printf(" %d", pid);
