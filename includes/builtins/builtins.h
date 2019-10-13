@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 18:05:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 19:31:04 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		ft_test(char **argv);
 int		ft_type(const char **av);
 int		ft_unalias(const char **av);
 int		ft_unset(const char **av);
+int		ft_square_test(int argc, const char **argv);
 
 /*
 **		Secondary functions
