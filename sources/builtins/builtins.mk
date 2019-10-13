@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 13:08:26 by gmelisan          #+#    #+#              #
-#    Updated: 2019/10/07 20:51:16 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/13 19:30:04 by wtalea           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS_BUILTINS_WITHOUT_DIR=\
 	ft_exit.c		ft_export.c		ft_getopt_init.c	ft_getopt_clear.c\
 	ft_fg.c			ft_hash.c		ft_kill.c			ft_set.c\
 	ft_type.c		ft_unalias.c	ft_unset.c			ft_history.c\
-	ft_source.c
+	ft_source.c		ft_square_test.c
 
 SRCS_BUILTIN_TEST=\
 	ft_test.c\
