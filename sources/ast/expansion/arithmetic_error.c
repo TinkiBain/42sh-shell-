@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   arithmetic_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 19:19:40 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 19:42:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 17:26:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arifmetic.h"
+
+extern t_opt	g_opt;
 
 void			arithmetic_error_norma(t_lex *begin)
 {
@@ -21,7 +23,7 @@ void			arithmetic_error_norma(t_lex *begin)
 
 void			*arithmetic_error(char *str, t_lex *begin)
 {
-	if (g_error_arifmetic->type == DIVISION_NULL)
+	if (g_error_arifmetic->type == DIVISION_NULL && (g_opt.arifmetic_error = 1))
 		print_error_vaarg("%s: division by 0 ", str);
 	else if (g_error_arifmetic->type >= 3 && g_error_arifmetic->type <= 12)
 		print_error_vaarg("%s: attempted assignment to non-variable ", str);

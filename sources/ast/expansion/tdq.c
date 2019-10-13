@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tdq.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 12:27:27 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 19:09:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern t_opt	g_opt;
 
 void			tdq_while(int *i, char **str)
 {
@@ -52,6 +54,8 @@ char			*tdq(char *str)
 	while (str[0] && str[i] != '\0')
 	{
 		tdq_while(&i, &str);
+		if (g_opt.arifmetic_error)
+			return (str);
 		i++;
 		i = (ft_strlen(str) < (size_t)i) ? 0 : i;
 	}
