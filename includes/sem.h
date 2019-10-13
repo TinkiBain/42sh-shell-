@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 18:46:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:52:10 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,14 @@
 # include <sys/sem.h>
 # include "error.h"
 
-# ifdef __linux__
-
-union	semun {
-	int				val;
-	struct semid_ds	*buf;
-	unsigned short	*array;
-};
-
-# endif
+# define SEMPIPE		0
+# define SEMPRINT		1
 
 void	init_sem(void);
 void	clear_sem(void);
-void	reserve_sem(int n);
-void	release_sem(int n);
-int		get_sem(void);
+void	reserve_sem(int semnum, int n);
+void	release_sem(int semnum, int n);
+void	set_sem(int semnum, int val);
+//int		get_sem(void);
 
 #endif

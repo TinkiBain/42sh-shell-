@@ -72,6 +72,7 @@ void			jobs_sig(void)
 	st = 0;
 	//sleep(1);
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
+	printf("%d\n", done_pid);
 	if (g_pipe_pid)
 		pipe_and_done_pid(done_pid);
 	g_wait_flags = done_pid;
