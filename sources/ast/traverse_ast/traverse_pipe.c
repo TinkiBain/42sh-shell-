@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 18:49:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:15:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 		if (local->flag == 1)
 			setpgrp();
 		reserve_sem(1);
-		ft_printf("Reserve unlocked, sem = %d\n", get_sem());
 		close(pipefd[0]);
 		dup2(fd, 0);
 		dup2(pipefd[1], 1);

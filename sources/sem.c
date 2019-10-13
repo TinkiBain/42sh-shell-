@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sem.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 18:48:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:15:02 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void				init_sem(void)
 	union semun		arg;
 
 	g_semid = semget(IPC_PRIVATE, 1, S_IRUSR | S_IWUSR | IPC_CREAT | IPC_EXCL);
-	arg.val = 1;
+	arg.val = 0;
 	if (semctl(g_semid, 0, SETVAL, arg) == -1)
 		print_error("init_sem()", "Error in semctl()");
 }
@@ -40,7 +40,7 @@ void				reserve_sem(int n)
 	sops.sem_num = 0;
 	sops.sem_op = -n;
 	sops.sem_flg = 0;
-	while (semop(g_semid, &sops, 1) == -1)
+	if (semop(g_semid, &sops, 1) == -1)
 		;
 }
 
@@ -64,5 +64,5 @@ int					get_sem(void)
 	ft_bzero(&arg, sizeof(arg));
 	if (g_semid)
 		return (semctl(g_semid, 0, GETVAL, arg));
-	return (0);
+	return (99);
 }

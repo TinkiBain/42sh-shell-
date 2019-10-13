@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 17:39:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 19:14:12 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int				pipe_av(t_job *job, int counter)
 	g_wait_flags = 0;
 	g_pipe_pid[i] = 0;
 	i = 0;
+	//ft_printf("\nC=%d\n", get_sem());
 	release_sem(counter);
+	//ft_printf("\nC2=%d\n", get_sem());
 	return (1);
 }
 
