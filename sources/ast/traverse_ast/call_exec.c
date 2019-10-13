@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 15:44:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:05:27 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	return (0);
 }
 
-static int		call_if_other_builtin(const char **av, int ac, t_pjobs *local)
+static int		call_if_other_builtin(int ac, const char **av, t_pjobs *local)
 {
 	if (ft_strequ(*av, "fc"))
-		return (ft_fc(av, ac, local));
+		return (ft_fc(ac, av, local));
 	else if (ft_strequ(*av, "jobs"))
 		return (jobs(g_pjobs, -1, *(av + 1)));
 	else if (ft_strequ(*av, "fg"))
@@ -59,12 +59,12 @@ static int		call_if_other_builtin(const char **av, int ac, t_pjobs *local)
 	return (0);
 }
 
-static int		call_if_builtin(const char **av, int ac, t_pjobs *local)
+static int		call_if_builtin(int ac, const char **av, t_pjobs *local)
 {
 	if (**av == '%')
 		return (ft_fg(g_pjobs, *av));
 	else if (ft_strequ(*av, "exit"))
-		return (ft_exit(av + 1, ac));
+		return (ft_exit(ac, av));
 	else if (ft_strequ(*av, "cd"))
 		return (ft_cd(av + 1));
 	else if (ft_strequ(*av, "echo"))
@@ -83,10 +83,10 @@ static int		call_if_builtin(const char **av, int ac, t_pjobs *local)
 		return (ft_source(ac, av + 1));
 	else if (ft_strequ(*av, "."))
 		return (ft_source(ac, av + 1));
-	return (call_if_other_builtin(av, ac, local));
+	return (call_if_other_builtin(ac, av, local));
 }
 
-int				call_exec(const char **av, int ac, t_pjobs *local)
+int				call_exec(int ac, const char **av, t_pjobs *local)
 {
 	char			*p;
 	int				res;
@@ -95,7 +95,7 @@ int				call_exec(const char **av, int ac, t_pjobs *local)
 
 	if ((res = is_builtin(*av)) == 1)
 	{
-		g_res_exec = call_if_builtin(av, ac, local);
+		g_res_exec = call_if_builtin(ac, av, local);
 		return (g_res_exec);
 	}
 	else

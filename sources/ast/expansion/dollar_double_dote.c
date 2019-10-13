@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 18:34:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 19:18:19 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 17:04:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		*dd_qwest(char *str, char *value, char *name)
 {
 	value = value_rep(&str[2]);
 	if (g_opt.rl_gnl == 1)
-		ft_exit(NULL);
+		ft_exit(0, NULL);
 	else if (value == NULL)
 		print_error("parameter null or not set", name);
 	else
