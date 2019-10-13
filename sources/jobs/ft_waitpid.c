@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 19:39:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 20:25:21 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int				pipe_av(t_job *job, int counter)
 	}
 	g_wait_flags = 0;
 	g_pipe_pid[i] = 0;
-	i = 0;
-	//ft_printf("\nC=%d\n", get_sem());
 	release_sem(SEMPIPE, counter);
-	//ft_printf("\nC2=%d\n", get_sem());
 	return (1);
 }
 
@@ -56,6 +53,7 @@ static int		t(int len)
 {
 	int	t_len;
 	int st;
+	int pid;
 
 	st = 0;
 	t_len = 0;
@@ -63,6 +61,8 @@ static int		t(int len)
 	{
 		if (g_pipe_pid[t_len] != -1)
 		{
+			if ((pid = waitpid(g_pipe_pid[t_len], NULL, WUNTRACED | WNOHANG)) > 0)
+				g_pipe_pid[t_len] = -1;
 			t_len = 0;
 			continue ;
 		}

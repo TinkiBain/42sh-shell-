@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 21:34:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 20:36:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void			sig_per_stop(int done_pid, t_job *job, char *msg)
 			if (ft_strcmp(job->status, msg))
 				ft_printf("\n42sh: %s %s\n", msg,
 					jobs_find_num(first, job->num)->name);
+			free(first->status);
+			first->status = ft_xstrdup(msg);
 			sig_change_status(job, msg);
 			break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 17:30:49 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 20:36:15 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,9 @@ static void		pipe_and_done_pid(int done_pid)
 	{
 		while (g_pipe_pid[i] != 0)
 		{
-			//printf ("..%d %d\n", g_pipe_pid[i], done_pid );
 			if (g_pipe_pid[i] == done_pid)
 			{
-			//	printf ("..%d\n", g_pipe_pid[i] );
 				g_pipe_pid[i] = -1;
-			//	printf ("..%d\n", g_pipe_pid[i]);
 				return ;
 			}
 			i++;
@@ -70,9 +67,7 @@ void			jobs_sig(void)
 
 	msg = NULL;
 	st = 0;
-	//sleep(1);
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
-	printf("%d\n", done_pid);
 	if (g_pipe_pid)
 		pipe_and_done_pid(done_pid);
 	g_wait_flags = done_pid;

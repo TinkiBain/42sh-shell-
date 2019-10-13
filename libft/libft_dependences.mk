@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    libft_dependences.mk                               :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/02 14:28:49 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/07 15:00:05 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/13 20:15:26 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ LIBFT_SRCS_STR=ft_atoi.c	ft_isalnum.c			ft_isalpha.c\
 
 LIBFT_SRCS_OUTPUT=ft_putchar.c	ft_putchar_fd.c		ft_putendl.c\
 			ft_putendl_fd.c		ft_putnbr.c			ft_putnbr_fd.c\
-			ft_putstr.c			ft_putstr_fd.c
+			ft_putstr.c			ft_putstr_fd.c		ft_putstr_bf.c
 
 SRCS_FT_PRINTF=convert_float.c	convert_integer.c		ft_fdprintf.c\
 	ft_printf.c					ft_vfdprintf.c			ft_vprintf.c\
