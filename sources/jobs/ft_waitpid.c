@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_waitpid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 21:35:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 15:05:43 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		pipe_av(t_job *job)
 	g_wait_flags = 0;
 	g_pipe_pid[i] = 0;
 	i = 0;
-	while (g_pipe_pid[i])
-		kill(g_pipe_pid[i++], SIGCONT);
+	//while (g_pipe_pid[i])
+	//	kill(g_pipe_pid[i++], SIGCONT);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_pjobs_sig.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 17:32:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 15:04:22 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void		def_kill_or_done(t_job *first, int sig)
 	}
 	else
 		ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
-	if (g_pjobs->workgpid == 0 || !(first->next))
-		deletejob(&g_pjobs, first->num);
-	else
-	{
+	//if (g_pjobs->workgpid == 0 || !(first->next))
+	//	deletejob(&g_pjobs, first->num);
+	//else
+	//{
 		free(first->status);
 		first->status = ft_xstrdup("Done\t\t");
-	}
+	//}
 }
 
 void			pjobs_sig(int sig, int done_pid)

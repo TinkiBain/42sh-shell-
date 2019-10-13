@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_main_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 12:28:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 15:11:36 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void			jobs_sig(void)
 
 	msg = NULL;
 	st = 0;
-	// sleep(1);
+	//sleep(1);
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
 	if (g_pipe_pid)
 		pipe_and_done_pid(done_pid);
@@ -96,7 +96,8 @@ void			jobs_sig(void)
 	{
 		msg_cntr(st);
 		if (pipe_jobs_check() > 0)
-			deletejob(&g_subjob, g_subjob->num);
+			(void)NULL;
+		//	deletejob(&g_subjob, g_subjob->num);
 		return ;
 	}
 	pjobs_sig(st, done_pid);

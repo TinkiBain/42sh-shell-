@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 12:12:38 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 15:06:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 			setpgrp();
 		dup2(fd, 0);
 		close(fd);
-		raise(SIGSTOP);
+		//raise(SIGSTOP);
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
@@ -46,7 +46,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local)
 		dup2(fd, 0);
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);
-		raise(SIGSTOP);
+		//raise(SIGSTOP);
 		traverse_command(pipe_seq->command, 1, local);
 		exit(g_res_exec);
 	}
