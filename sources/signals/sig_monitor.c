@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 18:10:42 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 17:32:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	signals(int signo)
 {
 	extern t_line	*g_line;
 
-	loginfo("Caught signal %d", signo);
+	//loginfo("Caught signal %d", signo);
 	if (signo == SIGCHLD)
 		jobs_sig();
 	else if (signo == SIGTTOU)

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_waitpid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 17:02:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:39:02 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "sem.h"
 
-int		pipe_av(t_job *job, int counter)
+int				pipe_av(t_job *job, int counter)
 {
 	int		i;
 	int		len;
@@ -41,6 +41,15 @@ int		pipe_av(t_job *job, int counter)
 	return (1);
 }
 
+static void		zero()
+{
+	int i;
+
+	i = -1;
+	while (g_pipe_pid[++i])
+		g_pipe_pid[i] = 0;
+}
+
 static int		t(int len)
 {
 	int	t_len;
@@ -50,7 +59,6 @@ static int		t(int len)
 	t_len = 0;
 	while (t_len < len)
 	{
-		//printf ("%d\n", t_len);
 		if (g_pipe_pid[t_len] != -1)
 		{
 			t_len = 0;
@@ -58,10 +66,12 @@ static int		t(int len)
 		}
 		t_len++;
 	}
+	zero();
+	free(g_pipe_pid);
 	return (1);
 }
 
-int		ft_waitpid(pid_t pid)
+int				ft_waitpid(pid_t pid)
 {
 	int len;
 	int i;

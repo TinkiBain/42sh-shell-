@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 17:01:59 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:37:33 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int					jobs_list_counter(t_pjobs *local_job);
 int					find_highnum(t_pjobs *local);
 int					ft_waitpid(pid_t pid);
 int					pipe_av(t_job *job, int counter);
-int					pid_fredy();
 
 char				*core_dump_signals(int st, char *name);
 char				*ignored_signals(int st, char *name);

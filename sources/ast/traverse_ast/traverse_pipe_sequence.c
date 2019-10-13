@@ -3,30 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 17:09:38 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:41:27 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
 extern char			**g_var;
-
-int					pid_fredy(void)
-{
-	int				i;
-
-	i = -1;
-	if (g_pipe_pid)
-	{
-		while (g_pipe_pid[++i] != 0)
-			g_pipe_pid[i] = 0;
-	}
-	g_wait_flags = 0;
-	return (1);
-}
 
 static void			pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 {
@@ -111,17 +97,11 @@ void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq,
 	if (pipe_seq->next)
 	{
 		if (local->flag == 1)
-		{
-			pipe_av(local->job, counter + 1);
 			ft_printf("[%d]", local->num);
-		}
 		traverse_pipe(pipe_seq, 0, local, &counter);
+		pipe_av(local->job, counter + 1);
 		if (local->flag == 0)
-		{
-			pipe_av(local->job, counter + 1);
 			ft_waitpid(-1);
-		}
-		pid_fredy();
 	}
 	else
 		pipe_seq_without_pipe(pipe_seq->command, local);
