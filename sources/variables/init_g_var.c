@@ -6,13 +6,14 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/07 19:32:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:21:27 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "variables.h"
 #include "defs.h"
+#include "xfuncs.h"
 
 extern char		**g_var;
 
@@ -32,13 +33,13 @@ static void	set_default_vars(void)
 	set_var_if_not_exist("HISTSIZE=" DEFAULT_HISTSIZE, &g_var, 1);
 	set_var_if_not_exist("LOGPATH=~/." PROJECT_NAME ".log", &g_var, 1);
 	set_var_if_not_exist("FCEDIT=/usr/bin/vim", &g_var, 1);
-	tmp = ft_strrejoin("PS1=" "\\033[0;31m", g_project_name, 0);
-	tmp = ft_strrejoin(tmp, ">\\033[0m ", 1);
+	tmp = ft_xstrrejoin("PS1=" "\\033[0;31m", g_project_name, 0);
+	tmp = ft_xstrrejoin(tmp, ">\\033[0m ", 1);
 	set_var_if_not_exist(tmp, &g_var, 1);
 	ft_memdel((void **)&tmp);
 	set_var_if_not_exist("PS2=heredoc> ", &g_var, 1);
 	set_var_if_not_exist("PS3=> ", &g_var, 1);
-	tmp = ft_strrejoin("SHELLHOME=", getcwd(NULL, 1024), 2);
+	tmp = ft_xstrrejoin("SHELLHOME=", getcwd(NULL, 1024), 2);
 	set_var(tmp, &g_var, 1);
 	ft_memdel((void **)&tmp);
 	set_var_shellopts();

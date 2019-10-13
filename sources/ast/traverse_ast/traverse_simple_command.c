@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 14:19:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:05:34 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		traverse_simple_command(t_simple_cmd *cmd, int in_fork,
 	else if (prefix_vars.len)
 		g_prefix_vars = (char **)prefix_vars.v;
 	if (av.len)
-		call_exec((const char **)av.v, (int)av.len, local);
+		call_exec((int)av.len, (const char **)av.v, local);
 	else if (prefix_vars.len)
 		handle_previx_vars((const char **)prefix_vars.v, &g_var);
 	ft_memdel(&av.v);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:50:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:20:08 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void				shell_init(int ac, char **av)
 	environ = create_copy_env(environ);
 	init_g_var();
 	g_shell_path = ft_xstrjoin(get_var_value("SHELLHOME"), "/");
-	g_shell_path = ft_strrejoin(g_shell_path, g_project_name, 1);
+	g_shell_path = ft_xstrrejoin(g_shell_path, g_project_name, 1);
 	fill_g_var_names();
 	fill_hash_table();
 	logopen();

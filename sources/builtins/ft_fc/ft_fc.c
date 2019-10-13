@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 20:16:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:02:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	fill_opt(t_cmd_opt *opt, int o)
 	return (0);
 }
 
-int			ft_fc(const char **argv, int argc, t_pjobs *local)
+int			ft_fc(int argc, const char **argv, t_pjobs *local)
 {
 	int			o;
 	t_cmd_opt	opt;

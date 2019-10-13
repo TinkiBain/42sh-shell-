@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 18:34:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 16:29:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:54:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		*dd_qwest(char *str, char *value, char *name)
 {
 	value = value_rep(&str[2]);
 	if (g_opt.rl_gnl == 1)
-		ft_exit(NULL, 0);
+		ft_exit(0, NULL);
 	else if (value == NULL)
 		print_error("parameter null or not set", name);
 	else
@@ -30,8 +30,8 @@ static char		*dd_qwest(char *str, char *value, char *name)
 
 static char		*dd_equal(char *str, char *value, char *name)
 {
-	value = ft_strrejoin(name, "=", 0);
-	value = ft_strrejoin(value, value_rep(&str[2]), 1);
+	value = ft_xstrrejoin(name, "=", 0);
+	value = ft_xstrrejoin(value, value_rep(&str[2]), 1);
 	set_var(value, &g_var, 0);
 	return (value_rep(&str[2]));
 }

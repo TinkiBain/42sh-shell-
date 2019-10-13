@@ -6,7 +6,11 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/10/13 17:01:42 by gmelisan         ###   ########.fr       */
+=======
+/*   Updated: 2019/10/13 17:03:58 by ggwin-go         ###   ########.fr       */
+>>>>>>> e4e9d28da8a8769d0a6756f77aa3ff89202f0ea2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +35,7 @@ char	*get_process_name(t_command *command);
 **		Functions for call subshell or check/launch command:
 */
 
-int		call_exec(const char **av, int ac, t_pjobs *local);
+int		call_exec(int ac, const char **av, t_pjobs *local);
 int		call_subshell(char *str, t_pjobs *local);
 int		check_cmd(const char *cmd);
 int		check_name(char *str);

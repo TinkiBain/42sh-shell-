@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 15:56:18 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 15:14:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:21:58 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	set_var_shellopts(void)
 	flag = 0;
 	shellopts = ft_xstrdup("SHELLOPTS=");
 	if (g_opt.vi_mode)
-		shellopts = ft_strrejoin(shellopts, (!flag++) ? "vi" : ":vi", 1);
+		shellopts = ft_xstrrejoin(shellopts, (!flag++) ? "vi" : ":vi", 1);
 	if (g_opt.emacs_mode)
-		shellopts = ft_strrejoin(shellopts, (!flag++) ? "emacs" : ":emacs", 1);
+		shellopts = ft_xstrrejoin(shellopts, (!flag++) ? "emacs" : ":emacs", 1);
 	if (g_opt.enable_color)
-		shellopts = ft_strrejoin(shellopts, (!flag++) ? "color" : ":color", 1);
+		shellopts = ft_xstrrejoin(shellopts, (!flag++) ? "color" : ":color", 1);
 	if (g_opt.noclobber)
-		shellopts = ft_strrejoin(shellopts, (!flag++) ? "noclobber"
+		shellopts = ft_xstrrejoin(shellopts, (!flag++) ? "noclobber"
 													: ":noclobber", 1);
 	set_var(shellopts, &g_var, 1);
 	ft_memdel((void **)&shellopts);
