@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_source.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 17:44:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/12 14:12:13 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/10/13 20:44:06 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	int		error(const char *str, int err_code)
 	HISTORY = 1;
 	return (1);
 }
-
+/*
 static	int		find_spaces(char *line)
 {
 	while (*line)
@@ -37,23 +37,38 @@ static	int		find_spaces(char *line)
 			return (1);
 	return (0);
 }
-
+*/
 static	void	gnl_exec(char *line, int fd[2])
 {
-	TMP = dup(STDIN);
-	dup2(FD, STDIN);
-	while (get_next_line(STDIN, &line))
-		if (line)
-		{
-			if (!line)
-				exit(-1);
-			if (find_spaces(line))
-				execute_line(line);
-			else
-				free(line);
-		}
-	dup2(TMP, STDIN);
+	extern int		g_eof;
+	extern t_opt	g_opt;
+
+	g_opt.rl_gnl = 1;
+	g_opt.rl_in = FD;
+	g_opt.emacs_mode = 0;
+	g_opt.vi_mode = 0;
+	while (1)
+	{
+		line = ft_readline("", RL_DEFAULT);
+		if (g_eof)
+			break ;
+		execute_line(line);
+	}
+	g_eof = 0;
+//	while (get_next_line(STDIN, &line))
+//		if (line)
+//		{
+//			if (!line)
+//				exit(-1);
+//			if (find_spaces(line))
+//				execute_line(line);
+//			else
+//				free(line);
+//		}
 	close(FD);
+	g_opt.rl_gnl = 0;
+	g_opt.rl_in = 0;
+	g_opt.emacs_mode = 1;
 }
 
 static	int		check_valid(const char *argv)
