@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 17:01:04 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 17:16:28 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char		*substitution_write(int pipefd[2], pid_t pid, char *str)
 	while ((i = read(pipefd[0], buf, 1023)))
 	{
 		buf[i] = '\0';
-		tmp = ft_strrejoin(tmp, buf, 1);
+		tmp = ft_xstrrejoin(tmp, buf, 1);
 	}
 	close(pipefd[0]);
 	if (ft_strlen(tmp))

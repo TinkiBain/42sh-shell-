@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 16:34:43 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 18:46:12 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 17:13:27 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long		expr(void)
 		if (g_error_arifmetic)
 			return (0);
 		var = ft_xstrjoin(var, "=");
-		var = ft_strrejoin(var, ft_itoa_base(value, 10), 3);
+		var = ft_xstrrejoin(var, ft_itoa_base(value, 10), 3);
 		set_var(var, &g_var, 0);
 		free(var);
 		return (value);

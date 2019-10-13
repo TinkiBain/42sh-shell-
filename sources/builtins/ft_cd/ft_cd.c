@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 21:05:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/13 17:19:28 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char		*check_cdpath(const char *curpath)
 	arr_cd_path = ft_strsplit(cdpath, ':');
 	while (arr_cd_path[i])
 	{
-		arr_cd_path[i] = ft_strrejoin(arr_cd_path[i], "/", 1);
+		arr_cd_path[i] = ft_xstrrejoin(arr_cd_path[i], "/", 1);
 		cdpath = ft_xstrjoin(arr_cd_path[i], curpath);
 		if (stat(cdpath, &st))
 			free(cdpath);
@@ -123,12 +123,12 @@ int			ft_cd(const char **av)
 		path = ft_xstrdup(getcwd(NULL, 1024));
 	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
 	{
-		curpath = ft_strrejoin(path, "/", 1);
-		curpath = ft_strrejoin(curpath, tmp, 1);
+		curpath = ft_xstrrejoin(path, "/", 1);
+		curpath = ft_xstrrejoin(curpath, tmp, 1);
 		return (change_dir(curpath, tmp, flag));
 	}
 	if ((curpath = check_cdpath(tmp)))
 		return (change_dir(curpath, tmp, flag));
-	curpath = ft_strrejoin(path, "/", 1);
-	return (change_dir(ft_strrejoin(curpath, tmp, 1), tmp, flag));
+	curpath = ft_xstrrejoin(path, "/", 1);
+	return (change_dir(ft_xstrrejoin(curpath, tmp, 1), tmp, flag));
 }

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 12:27:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 17:16:49 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static char			*tilda(char *str, char *buf)
 	{
 		if ((buf = get_var_value("PWD")) < 0)
 			return (str);
-		buf = ft_strrejoin(buf, &str[2], 0);
+		buf = ft_xstrrejoin(buf, &str[2], 0);
 	}
 	else if (str[1] == '-' && (str[2] == '/' || !str[2]))
 	{
 		if ((buf = get_var_value("OLDPWD")) < 0)
 			return (str);
-		buf = ft_strrejoin(buf, &str[2], 0);
+		buf = ft_xstrrejoin(buf, &str[2], 0);
 	}
 	else if (str[1] == '/')
 	{
 		buf = get_var_value("HOME");
-		buf = ft_strrejoin(buf, &str[1], 0);
+		buf = ft_xstrrejoin(buf, &str[1], 0);
 		return (buf);
 	}
 	else if (str[1])

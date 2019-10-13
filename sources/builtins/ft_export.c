@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:19:53 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int		print_export_error(const char *str)
 	char		*error_msg;
 
 	error_msg = ft_xstrjoin("'", str);
-	error_msg = ft_strrejoin(error_msg, "': not a valid identifier", 1);
+	error_msg = ft_xstrrejoin(error_msg, "': not a valid identifier", 1);
 	print_error("export", error_msg);
 	ft_strdel(&error_msg);
 	return (1);
@@ -69,7 +69,7 @@ static void		export_var(const char *str, int opt)
 		if ((p = get_var_value((char *)str)))
 		{
 			tmp_var = (const char *)ft_xstrjoin(str, "=");
-			tmp_var = (const char *)ft_strrejoin(tmp_var, p, 1);
+			tmp_var = (const char *)ft_xstrrejoin(tmp_var, p, 1);
 		}
 		else
 			tmp_var = (const char *)ft_xstrjoin(str, "=");

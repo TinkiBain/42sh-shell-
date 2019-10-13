@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 18:34:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 17:04:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/13 17:15:09 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static char		*dd_qwest(char *str, char *value, char *name)
 
 static char		*dd_equal(char *str, char *value, char *name)
 {
-	value = ft_strrejoin(name, "=", 0);
-	value = ft_strrejoin(value, value_rep(&str[2]), 1);
+	value = ft_xstrrejoin(name, "=", 0);
+	value = ft_xstrrejoin(value, value_rep(&str[2]), 1);
 	set_var(value, &g_var, 0);
 	return (value_rep(&str[2]));
 }

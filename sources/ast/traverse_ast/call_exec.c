@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 17:05:27 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/13 17:17:28 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	if (execve(path, av, environ) == -1)
 	{
 		shell_path = ft_xstrjoin(get_var_value("SHELLHOME"), "/");
-		shell_path = ft_strrejoin(shell_path, g_project_name, 1);
+		shell_path = ft_xstrrejoin(shell_path, g_project_name, 1);
 		argv[0] = g_project_name;
 		argv[1] = av[0];
 		argv[2] = NULL;
