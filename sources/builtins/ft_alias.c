@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/14 20:54:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/14 21:11:13 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int		alias_set_str(const char *str, t_alias **alias)
 	{
 		print_error_vaarg("alias: `%s': invalid alias name\n", head);
 		free(head);
-		return (1);
+		return (0);
 	}
 	body = ft_xstrdup(body + 1);
 	while (*alias)
@@ -62,12 +62,12 @@ static int		alias_set_str(const char *str, t_alias **alias)
 			free(head);
 			free((*alias)->body_alias);
 			(*alias)->body_alias = body;
-			return (0);
+			return (1);
 		}
 		else
 			alias = &(*alias)->next;
 	*alias = alias_init(head, body);
-	return (0);
+	return (1);
 }
 
 static int		alias_print_str(const char *str)

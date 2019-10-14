@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 17:44:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/14 18:23:28 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/14 20:57:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,7 @@ static	int		error(const char *str, int err_code)
 	HISTORY = 1;
 	return (1);
 }
-/*
-static	int		find_spaces(char *line)
-{
-	while (*line)
-		if (!ft_isspace(*(line++)))
-			return (1);
-	return (0);
-}
-*/
+
 static	void	gnl_exec(char *line, int fd[2])
 {
 	extern int		g_eof;
