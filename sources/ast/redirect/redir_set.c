@@ -17,6 +17,9 @@ void			redir_set(void)
 	extern	char *g_tty;
 
 	g_tty = ttyname(0);
-	g_open_fd = (int *)ft_xmalloc(sizeof(int) * 1);
-	*g_open_fd = 0;
+	if (!g_open_fd)
+	{
+		g_open_fd = (int *)ft_xmalloc(sizeof(int) * 1);
+		*g_open_fd = 0;
+	}
 }
