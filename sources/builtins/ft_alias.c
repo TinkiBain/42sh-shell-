@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 20:24:42 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/14 01:53:26 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/14 20:54:14 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,28 @@ static int		alias_set_str(const char *str, t_alias **alias)
 	char			*head;
 	char			*body;
 
-	if (!(body = ft_strchr(str, '=')))
+	if (*str == '=' || !(body = ft_strchr(str, '=')))
 		return (0);
 	head = ft_xstrndup(str, body - str);
+	if (ft_strchr(head, '/'))
+	{
+		print_error_vaarg("alias: `%s': invalid alias name\n", head);
+		free(head);
+		return (1);
+	}
 	body = ft_xstrdup(body + 1);
 	while (*alias)
-	{
 		if (ft_strequ(head, (*alias)->head))
 		{
 			free(head);
 			free((*alias)->body_alias);
 			(*alias)->body_alias = body;
-			return (1);
+			return (0);
 		}
-		alias = &(*alias)->next;
-	}
+		else
+			alias = &(*alias)->next;
 	*alias = alias_init(head, body);
-	return (1);
+	return (0);
 }
 
 static int		alias_print_str(const char *str)
@@ -113,5 +118,5 @@ int				ft_alias(const char **av)
 		++av;
 	}
 	fill_g_cmd_names();
-	return (0);
+	return (return_value);
 }

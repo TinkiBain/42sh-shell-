@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 17:44:37 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/13 20:44:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/14 18:23:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ static	void	gnl_exec(char *line, int fd[2])
 		execute_line(line);
 	}
 	g_eof = 0;
-//	while (get_next_line(STDIN, &line))
-//		if (line)
-//		{
-//			if (!line)
-//				exit(-1);
-//			if (find_spaces(line))
-//				execute_line(line);
-//			else
-//				free(line);
-//		}
 	close(FD);
 	g_opt.rl_gnl = 0;
 	g_opt.rl_in = 0;
