@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 21:39:59 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:10:09 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ char				*ignored_signals(int st, char *name);
 char				*terminal_signals(int st, char *name);
 char				*stop_signals(int st, char *name);
 char				*that_sig(int st, char *name);
-void				sig_per_stop(int done_pid, t_job *job, char *msg);
+void				sig_per_stop(int done_pid, t_job *job, char *msg,
+								t_pjobs *first);
 void				pjobs_sig(int sig, int done_pid);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 20:47:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/14 16:30:23 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,20 @@ char			*freed_proc_value(char *bud, char *value, int len, int flag)
 char			*value_rep(char *value)
 {
 	int i;
+	int ct;
 
+	ct = 0;
 	i = 0;
 	value = ft_xstrdup(value);
-	while (value[i] != '}')
+	while (value[i] && value[i] != '}')
+	{
+		if (value[i] == '{')
+			ct++;
 		i++;
+	}
 	if (i == 0)
 		return (NULL);
-	value[i + 1] = '\0';
+	value[i + ct] = '\0';
 	value = tdq(value);
 	return (value);
 }

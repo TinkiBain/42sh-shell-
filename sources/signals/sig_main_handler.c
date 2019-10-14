@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 01:16:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:10:31 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ void			jobs_sig(void)
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);
 	if (WIFSTOPPED(st))
-		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t")));
+		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t"),
+							g_pjobs));
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
 		if (st != SIGINT)

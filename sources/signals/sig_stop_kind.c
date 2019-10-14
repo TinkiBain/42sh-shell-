@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 21:39:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:10:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		sigstop(char *msg)
 
 	job = NULL;
 	setpgid(g_subjob->job->pid, 0);
-	ft_printf("\n42sh: %s %s\n", msg, g_subjob->name);
+	ft_printf("\n42sh: %s\t%s\n", msg, g_subjob->name);
 	first = subjob_changer(ft_xstrdup(g_subjob->name), &g_pjobs, 0);
 	first->job = g_subjob->job;
 	g_subjob->job = NULL;
@@ -44,18 +44,16 @@ static void		sig_change_status(t_job *job, char *msg)
 	}
 }
 
-void			sig_per_stop(int done_pid, t_job *job, char *msg)
+void			sig_per_stop(int done_pid, t_job *job,
+								char *msg, t_pjobs *first)
 {
-	t_pjobs		*first;
-
-	first = g_pjobs;
 	while (first)
 	{
 		if ((pid_checl(done_pid, first->job)))
 		{
 			job = first->job;
 			if (ft_strcmp(job->status, msg))
-				ft_printf("\n42sh: %s %s\n", msg,
+				ft_printf("\n42sh: %s%s\n", msg,
 					jobs_find_num(first, job->num)->name);
 			free(first->status);
 			first->status = ft_xstrdup(msg);

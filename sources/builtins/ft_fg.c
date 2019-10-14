@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 22:00:41 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:05:17 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,50 @@ int			fg_null_error(const char *name)
 	return (1);
 }
 
-int			ft_fg(t_pjobs *local_job, const char *name)
+void		closer(t_job *job, int counter, int *pids)
 {
-	t_pjobs		*local;
+	int iter;
+
+	pipe_av(job, counter);
+	iter = -1;
+	tcsetpgrp(0, job->pid);
+	while (pids[++iter])
+		kill(pids[iter], SIGCONT);
+	if (iter > 1)
+		ft_waitpid(-1);
+	else
+		ft_waitpid(pids[0]);
+}
+
+void		ft_fg_part(t_pjobs *local, int *pids, int iter)
+{
 	t_job		*job;
 	int			counter;
 
 	counter = 0;
+	job = local->job;
+	while (local->job)
+	{
+		pids[iter++] = local->job->pid;
+		counter++;
+		free(local->job->status);
+		local->job->status = ft_xstrdup("  running\t\t");
+		local->job = local->job->next;
+	}
+	local->job = job;
+	closer(job, counter, pids);
+}
+
+int			ft_fg(t_pjobs *local_job, const char *name)
+{
+	t_pjobs		*local;
+	int			pids[100];
+	int			iter;
+
+	iter = 0;
+	while (iter < 100)
+		pids[iter++] = 0;
+	iter = 0;
 	if (local_job)
 		local = name_proc_hendl(local_job, (char*)name);
 	else
@@ -35,19 +72,7 @@ int			ft_fg(t_pjobs *local_job, const char *name)
 	if (local == NULL)
 		return (fg_null_error(name));
 	free(local->status);
-	local->status = ft_xstrdup(" running\t\t");
-	job = local->job;
-	tcsetpgrp(0, job->pid);
-	while (local->job)
-	{
-		counter++;
-		free(local->job->status);
-		kill(local->job->pid, SIGCONT);
-		local->job->status = ft_xstrdup(" running\t\t");
-		local->job = local->job->next;
-	}
-	local->job = job;
-	pipe_av(local->job, counter);
-	ft_waitpid(local->job->pid);
+	local->status = ft_xstrdup("  running\t\t");
+	ft_fg_part(local, pids, iter);
 	return (0);
 }

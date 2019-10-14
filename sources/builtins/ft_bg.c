@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:00:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/09 17:18:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/14 18:01:42 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,35 @@ int			bg_null_error(const char *name)
 	return (1);
 }
 
+void		ft_bg_part(t_pjobs *local, int *pids, int iter)
+{
+	t_job		*job;
+
+	job = local->job;
+	ft_printf("[%d]\tcontinued\t%s\n", local->num, local->name);
+	while (local->job)
+	{
+		pids[iter++] = local->job->pid;
+		free(local->job->status);
+		local->job->status = ft_xstrdup(" running\t\t");
+		local->job = local->job->next;
+	}
+	local->job = job;
+	iter = -1;
+	while (pids[++iter])
+		kill(pids[iter], SIGCONT);
+}
+
 int			ft_bg(t_pjobs *local_job, const char *name)
 {
 	t_pjobs		*local;
-	t_job		*job;
+	int			pids[100];
+	int			iter;
 
+	iter = 0;
+	while (iter < 100)
+		pids[iter++] = 0;
+	iter = 0;
 	if (local_job)
 		local = name_proc_hendl(local_job, (char*)name);
 	else
@@ -35,15 +59,6 @@ int			ft_bg(t_pjobs *local_job, const char *name)
 	setpgid(local->workgpid, 0);
 	free(local->status);
 	local->status = ft_xstrdup(" running\t\t");
-	job = local->job;
-	while (local->job)
-	{
-		free(local->job->status);
-		kill(local->job->pid, SIGCONT);
-		local->job->status = ft_xstrdup(" running\t\t");
-		local->job = local->job->next;
-	}
-	local->job = job;
-	ft_printf("[%d]\t\t[Continued]\t%s\n", local->num, local->name);
+	ft_bg_part(local, pids, iter);
 	return (1);
 }
