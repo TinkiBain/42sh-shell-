@@ -1,0 +1,2 @@
+-f  -- export function definition to environ
+-n  -- remove variable from environ

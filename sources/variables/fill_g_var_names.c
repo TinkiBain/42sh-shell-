@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 20:56:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 15:16:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/14 17:31:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,22 @@ static void		remove_duplicates(char ***vars)
 	char		**tmp;
 	char		**p;
 
-	if (vars)
+	if (!vars)
+		return ;
+	tmp = *vars;
+	while (*tmp)
 	{
-		tmp = *vars;
-		while (*tmp)
+		while (*(tmp + 1) && ft_strequ(*tmp, *(tmp + 1)))
 		{
-			while (*(tmp + 1) && ft_strequ(*tmp, *(tmp + 1)))
+			p = tmp;
+			free(*p);
+			while (*p)
 			{
-				p = tmp;
-				free(*p);
-				while (*p)
-				{
-					*p = *(p + 1);
-					++p;
-				}
+				*p = *(p + 1);
+				++p;
 			}
-			++tmp;
 		}
+		++tmp;
 	}
 }
 

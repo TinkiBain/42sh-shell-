@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 23:23:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/14 21:15:46 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int			print_export_error(const char *str)
 	return (1);
 }
 
-static void			export_func_def(const char *str)
+static void			export_func_def(const char *str, int opt)
 {
 	extern t_dict	*g_func_defs;
 	extern char		**environ;
@@ -56,26 +56,26 @@ static void			export_func_def(const char *str)
 
 	if (!(func = ft_get_dict(g_func_defs, str)))
 		return ;
-	tmp = ft_xstrjoin("BASH_FUNC_", str);
-	tmp = ft_xstrrejoin(tmp, "%%=() { ", 1);
-	tmp = ft_xstrrejoin(tmp, func->value, 1);
-	tmp = ft_xstrrejoin(tmp, "\n}", 1);
-	set_var(tmp, &environ, 0);
+	tmp = get_str_function_var(str, (opt & FLAG_N) ? NULL : func->value);
+	if (opt & FLAG_N)
+		remove_var(tmp, &environ);
+	else
+		set_var(tmp, &environ, 0);
 	ft_strdel(&tmp);
 }
 
 static void			export_var(const char *str, int opt)
 {
 	extern char		**environ;
-	char			*p;
 	const char		*tmp_var;
+	char			*p;
 
-	if ((p = ft_strchr(str, '=')))
+	if (!(opt & FLAG_F) && (p = ft_strchr(str, '=')))
 		set_var(str, &environ, 0);
-	if (opt & FLAG_N)
-		remove_var(str, &environ);
 	if (opt & FLAG_F)
-		export_func_def(str);
+		export_func_def(str, opt);
+	else if (opt & FLAG_N)
+		remove_var(str, &environ);
 	else if (!p)
 	{
 		if ((p = get_var_value((char *)str)))
