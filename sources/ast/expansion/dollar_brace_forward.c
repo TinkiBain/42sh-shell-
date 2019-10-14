@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:44:02 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 19:18:18 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:57:52 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char			*forward_deleter(char *bud, char *value, int flag)
 	i = 0;
 	len = 0;
 	value = value_rep(value);
+	if (!value)
+		return (ft_xstrdup(bud));
 	if (*value == '\0')
 		return (ft_xstrdup(bud));
 	if (flag == 0)
