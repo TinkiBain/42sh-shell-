@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 12:25:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/01 16:41:20 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/14 18:39:32 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	vi_replace_char(t_line *line, char c)
 			j++;
 		}
 		line->cpos = j - 1;
+		if (line->cpos < 0)
+			line->cpos = 0;
 	}
 }
 
