@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/15 20:43:44 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/15 22:15:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@ static void	close_fd(int fd[2], int tmp)
 
 static int	save_fd(void)
 {
-	int				fd;
 	int				old_fd;
 	extern char		*g_tty_name;
 	extern t_opt	g_opt;
+	extern int		g_open;
 
 	old_fd = g_opt.rl_in;
 	if (g_tty_name)
 	{
-		fd = open(g_tty_name, O_RDWR);
-		g_opt.rl_in = fd;
+		g_opt.rl_in = g_open;
 	}
 	return (old_fd);
 }
