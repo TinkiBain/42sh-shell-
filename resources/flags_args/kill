@@ -1,0 +1,3 @@
+-l  -- list signal names or numbers of specified signals
+-n  -- specify signal number
+-s  -- specify signal name
