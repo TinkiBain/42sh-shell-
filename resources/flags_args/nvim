@@ -1,0 +1,57 @@
+--cmd                         -- execute given command before loading any RC files
+--help                    -h  -- print help and exit
+--literal                     -- do not expand wildcards in arguments (this is useless with ZSH)
+--nofork                  -f  -- do not detach the GUI version from the shell
+--noplugin                    -- do not load plugin scripts
+--remote                      -- edit given files in a vim server if possible
+--remote-expr                 -- evaluate given expression in a vim server and print result
+--remote-send                 -- send given keys to vim server if possible
+--remote-silent               -- as --remote but without complaining if not possible
+--remote-tab                  -- as --remote but open tab page for each file
+--remote-tab-silent           -- as --remote-silent but open tab page for each file
+--remote-tab-wait             -- as --remote-wait but open tab page for each file
+--remote-tab-wait-silent      -- as --remote-wait-silent but open tab page for each file
+--remote-wait                 -- as --remote but wait for files to have been edited
+--remote-wait-silent          -- as --remote-wait but without complaining if not possible
+--serverlist                  -- list available vim servers and exit
+--servername                  -- name of vim server to send to or name of server to become
+--socketid                    -- run GVIM in another window
+--startuptime                 -- write startup timing messages to given file
+--version                     -- print version information and exit
+-A                            -- start in Arabic mode
+-C                            -- start in compatible mode
+-D                            -- debugging mode
+-E                            -- improved ex mode
+-F                            -- start in Farsi mode
+-H                            -- start in Hebrew mode
+-L                        -r  -- list swap files and exit or recover from a swap file
+-M                            -- modifications in text not allowed
+-N                            -- start in incompatible mode
+-O                            -- number of windows to vertically split open (default is one for each file)
+-R                            -- readonly mode
+-S                            -- source a session file after loading the first file
+-T                            -- set terminal type
+-V                            -- verbosity level
+-W                            -- write all typed commands to given file, overwriting existing file
+-X                            -- do not connect to X server
+-Z                            -- restricted mode
+-b                            -- binary mode
+-c                            -- execute given command after loading the first file
+-d                            -- diff mode
+-e                            -- ex mode
+-g                            -- start with GUI
+-i                            -- use given viminfo file instead of default .viminfo
+-l                            -- lisp mode
+-m                            -- modifications (writing files) not allowed
+-n                            -- no swap file (memory only)
+-nb                           -- start as NetBean server
+-o                            -- number of windows to open (default: one for each file)
+-p                            -- number of tabs to open (default: one for each file)
+-q                            -- quickfix file
+-s                            -- read normal-mode commands from script file
+-t                            -- edit file where tag is defined
+-u                            -- use given vimrc file instead of default .vimrc
+-v                            -- vi mode
+-w                            -- append all typed commands to given file
+-x                            -- edit encrypted files
+-y                            -- easy mode
