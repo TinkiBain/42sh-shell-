@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 00:34:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/15 20:34:16 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int					g_line_num;
 int					g_eof;
 int					g_wait_flags;
 char				*g_tty;
+char				*g_tty_name;
 int					*g_open_fd;
 int					*g_pipe_pid;
 t_alias				*g_alias;
@@ -34,6 +35,7 @@ t_dict				*g_func_defs;
 
 void				preliminary_check_fd(void)
 {
+	extern char		*g_tty_name;
 	extern t_opt	g_opt;
 
 	if (fcntl(0, F_GETFL) < -1)
@@ -47,6 +49,7 @@ void				preliminary_check_fd(void)
 			g_opt.rl_gnl = 1;
 		}
 	}
+	g_tty_name = ttyname(0);
 }
 
 static void			fill_options(int rl_in)

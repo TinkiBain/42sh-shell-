@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 12:51:33 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/15 20:43:44 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,47 +17,34 @@
 
 extern int	g_eof;
 
-static void	close_fd(int fd[2])
+static void	close_fd(int fd[2], int tmp)
 {
+	extern t_opt	g_opt;
+
 	close(fd[0]);
 	close(fd[1]);
-}
-
-static void	ft_reset_fd(int fd[2])
-{
-	dup2(fd[0], 0);
-	dup2(fd[1], 1);
-	if (!fd[0])
-		close(fd[0]);
-	if (!fd[1])
-		close(fd[1]);
-}
-
-static void	save_fd(int fd[2])
-{
-	int		tmp_fd;
-
-	fd[0] = 0;
-	fd[1] = 1;
-	fd[0] = dup(0);
-	close(0);
-	tmp_fd = open(g_tty, O_RDWR);
-	if (tmp_fd)
+	if (g_opt.rl_in != (unsigned int)tmp)
 	{
-		dup2(tmp_fd, 0);
-		close(tmp_fd);
-	}
-	fd[1] = dup(1);
-	close(1);
-	tmp_fd = open(g_tty, O_RDWR);
-	if (tmp_fd != 1)
-	{
-		dup2(tmp_fd, 1);
-		close(tmp_fd);
+		close(g_opt.rl_in);
+		g_opt.rl_in = tmp;
 	}
 }
 
-extern int	g_eof;
+static int	save_fd(void)
+{
+	int				fd;
+	int				old_fd;
+	extern char		*g_tty_name;
+	extern t_opt	g_opt;
+
+	old_fd = g_opt.rl_in;
+	if (g_tty_name)
+	{
+		fd = open(g_tty_name, O_RDWR);
+		g_opt.rl_in = fd;
+	}
+	return (old_fd);
+}
 
 void		redir_dless_push(char *str, int fd)
 {
@@ -77,14 +64,14 @@ void		redir_dless_push(char *str, int fd)
 
 int			redir_dless(t_io_redirect *redir)
 {
-	int				pipefd[2];
-	char			*str;
-	int				save[2];
 	extern t_opt	g_opt;
+	int				pipefd[2];
+	int				tmp;
+	char			*str;
 
 	if (pipe(pipefd) < 0)
 		exit(-1);
-	save_fd(save);
+	tmp = save_fd();
 	while (1)
 	{
 		str = ft_readline(g_opt.rl_gnl == 0 ?
@@ -97,9 +84,8 @@ int			redir_dless(t_io_redirect *redir)
 	}
 	free(str);
 	redir->io_number = (redir->io_number == -1) ? 0 : redir->io_number;
-	ft_reset_fd(save);
 	if (dup2(pipefd[0], redir->io_number) < 0)
 		return (redirect_error_fd(redir->io_number));
-	close_fd(pipefd);
+	close_fd(pipefd, tmp);
 	return (1);
 }
