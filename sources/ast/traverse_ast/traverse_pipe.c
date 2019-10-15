@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/15 22:13:44 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 22:45:50 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 
 	if ((pid = fork()) == 0)
 	{
-		setpgid(getpid(), local->workgpid);
+		printf ("%d %d\n", setpgid(getpid(), local->workgpid), local->workgpid);
+		perror(NULL);
 		reserve_sem(SEMPIPE, 1);
-		dup2(fd, 0);
-		close(fd);
+		if (fd)
+		{
+			dup2(fd, 0);
+			close(fd);
+		}
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
@@ -35,12 +39,16 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 												t_command *cmd)
 {
 	if (local->workgpid == 0)
+	{
+		setpgrp();
 		local->workgpid = getpid();
+	}
 	else
 		setpgid(getpid(), local->workgpid);
 	reserve_sem(SEMPIPE, 1);
 	close(pipefd[0]);
-	dup2(fd, 0);
+	if (fd)
+		dup2(fd, 0);
 	dup2(pipefd[1], 1);
 	close(pipefd[1]);
 	traverse_command(cmd, 1, local);
