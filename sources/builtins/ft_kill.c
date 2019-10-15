@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/09/16 18:45:29 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 19:14:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ static void		kill_handler_proc(const char **cmd, t_pjobs *local_job, int sig)
 	else
 		while (local_job && local_job->num != num)
 			local_job = local_job->next;
-	if (!local_job && num)
+	if (!local_job)
 	{
-		ft_printf("kill: %%%d: no such job\n", num);
+		ft_printf("kill: no such job\n");
 		cmd++;
 		return ;
 	}
-	if (local_job)
-		kill(local_job->job->pid, sig);
+	killpg(local_job->job->pid, sig);
 }
 
 static void		kill_handler(const char **cmd, t_pjobs *local_job,

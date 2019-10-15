@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:00:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/14 18:01:42 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 18:20:28 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void		ft_bg_part(t_pjobs *local, int *pids, int iter)
 	}
 	local->job = job;
 	iter = -1;
-	while (pids[++iter])
-		kill(pids[iter], SIGCONT);
+	killpg(job->pid, SIGCONT);
 }
 
 int			ft_bg(t_pjobs *local_job, const char *name)

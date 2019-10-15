@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 17:41:27 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 17:58:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ static void			pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
 		return (traverse_command(cmd, 1, local));
 	if ((pid = fork()) == 0)
 	{
-		if (local->flag == 1)
-			setpgrp();
+		setpgrp();
+		if (local->flag == 0)
+			tcsetpgrp(0, getpid());
 		traverse_command(cmd, 1, local);
 	}
 	else

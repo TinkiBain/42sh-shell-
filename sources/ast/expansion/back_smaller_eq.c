@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:13:39 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 18:50:21 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 20:28:40 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			back_smaller_eq(char *s1, char *s2)
 	i = ft_strlen(s1) - 1;
 	j = ft_strlen(s2) - 1;
 	if (j == 0 && s2[j] == '*')
-		return (0);
+		return (ft_strlen(s1) - 1);
 	while (i >= 0 && j >= 0)
 	{
 		if (s1[i] != s2[j] && s2[j] != '*')

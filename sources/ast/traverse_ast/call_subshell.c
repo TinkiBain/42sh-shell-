@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 12:02:18 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:57:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int					call_subshell(char *str, t_pjobs *local)
 	}
 	if ((pid = fork()) == 0)
 	{
-		if (local->flag == 1)
-			setpgrp();
+		setpgrp();
+		if (local->flag == 0)
+			tcsetpgrp(0, getpid());
 		g_opt.is_subshell = 1;
 		g_opt.is_single_cmd = 1;
 		execute_line(str);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 21:11:51 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 18:11:25 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 16:03:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ char			*terminal_signals(int st, char *name)
 		msg = ft_xstrjoin("\talarm\t", name);
 	else if (st == SIGHUP)
 		msg = ft_xstrjoin("\thangup\t", name);
-	else if (st == SIGINT)
-		msg = ft_xstrjoin("\tterminal interrupt signal\t", name);
 	else if (st == SIGKILL)
 		msg = ft_xstrjoin("\tkill\t", name);
 	else if (st == SIGPIPE)

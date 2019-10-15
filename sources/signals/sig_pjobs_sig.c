@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 17:45:13 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 19:05:31 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void		def_kill_or_done(t_job *first, int sig)
+static void		def_kill_or_done(t_job *first, int sig, char *name)
 {
 	char *msg;
 
@@ -21,9 +21,14 @@ static void		def_kill_or_done(t_job *first, int sig)
 		ft_printf("[%d]\t%s\n", first->num, msg);
 		free(msg);
 	}
-	else
-		ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, first->name);
-	if (g_pjobs->workgpid == 0 || !(first->next))
+	else if (sig != 2 && sig != 256)
+	{
+		if (sig == 0)
+			ft_printf("[%d]\tDone  \t\t%s\n", first->num, name);
+		else
+			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, name);
+	}
+	if (!(first->next))
 		deletejob(&g_pjobs, first->num);
 	else
 	{
@@ -42,8 +47,8 @@ void			pjobs_sig(int sig, int done_pid)
 	if (job == NULL)
 		return ;
 	first = jobs_find_num(g_pjobs, job->num);
-	if (done_pid != 0 && sig != SUSPINT && sig != SUSPOUT)
-		def_kill_or_done(first->job, sig);
+	if (done_pid != 0 && sig != SUSPINT && sig != SUSPOUT && !(job->next))
+		def_kill_or_done(job, sig, first->name);
 	else if (sig == SUSPINT || sig == SUSPOUT)
 	{
 		free(first->status);
