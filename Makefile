@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
+#    By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/14 02:07:51 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/14 21:04:16 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,16 @@ FLAGS=-Wall -Wextra -Werror -MMD
 FLAGS+=-g
 
 INCLUDES:=\
-	-I includes \
-	-I includes/readline \
-	-I includes/builtins \
+	-I includes\
+	-I includes/readline\
+	-I includes/builtins\
 	-I libft/includes
 
 SH_INCLUDES=\
-	ast.h			defs.h		variables.h\
-	hash.h			lexer.h		parser.h\
-	error.h			sem.h		sh.h
+	arifmetic.h		ast.h			defs.h			dictionary.h\
+	error.h			expansion.h		hash.h			jobs.h\
+	lexer.h			parser.h		redirect.h		sem.h\
+	sh.h			variables.h		xfuncs.h
 
 SRCS_DIR=sources
 OBJS_DIR=objects
@@ -47,54 +48,58 @@ BUILTINS_DIR=builtins
 include $(SRCS_DIR)/$(BUILTINS_DIR)/builtins.mk
 
 SRCS_WITHOUT_DIR=\
-	main.c\
-	shell_init.c\
-	shell_clear.c\
-	execute_line.c\
-	sem.c
+	execute_line.c			main.c\
+	sem.c					shell_clear.c\
+	shell_init.c
 
 JOBS_DIR=jobs
 
 SIG_DIR=signals
 
 SRCS_JOBS=\
+	fgbg_helper.c			ft_waitpid.c\
 	jobs.c					jobs_helper.c\
-	jobs_list_handler.c		jobs_list_sub.c\
-	ft_waitpid.c			fgbg_helper.c\
 	jobs_last_elem.c		jobs_list_counter.c\
+	jobs_list_handler.c		jobs_list_sub.c\
 	jobs_start_file.c
 
 SRCS_SIG=\
-	sig_kind_of_sig.c			sig_main_handler.c\
-	sig_monitor.c				sig_stop_kind.c\
-	sig_pjobs_sig.c
+	sig_kind_of_sig.c		sig_main_handler.c\
+	sig_monitor.c			sig_pjobs_sig.c\
+	sig_stop_kind.c
 
 DICTIONARY_DIR=dictionary
 
 SRCS_DICTIONARY=\
-	ft_dict_del.c			ft_dict_push_back.c		ft_dict_remove_elem.c\
-	ft_get_dict_value.c		ft_dict_del_one.c		ft_dict_push_front.c\
-	ft_get_dict.c			ft_init_dict.c
+	ft_dict_del.c			ft_dict_del_one.c\
+	ft_dict_push_back.c		ft_dict_push_front.c\
+	ft_dict_remove_elem.c	ft_get_dict.c\
+	ft_get_dict_value.c		ft_init_dict.c
 
 XFUNCS_DIR=xfuncs
 
 SRCS_XFUNCS=\
-	ft_xstrdup.c	ft_xstrjoin.c		ft_xstrsplit.c		str_xsubstring.c\
-	str_xinsert.c	vec_xfuncs.c		xmalloc.c			ft_xstrtrim.c\
-	ft_xstrndup.c	ft_xstrrejoin.c		str_xcreate.c		str_xduplicate.c\
-	str_xcopy.c		str_xncopy.c		str_xaddback.c		str_xaddfront.c
+	ft_xstrdup.c			ft_xstrjoin.c\
+	ft_xstrndup.c			ft_xstrrejoin.c\
+	ft_xstrsplit.c			ft_xstrtrim.c\
+	str_xaddback.c			str_xaddfront.c\
+	str_xcopy.c				str_xcreate.c\
+	str_xduplicate.c		str_xinsert.c\
+	str_xncopy.c			str_xsubstring.c\
+	vec_xfuncs.c			xmalloc.c
 
 VAR_DIR=variables
 
 SRCS_VAR=\
-	add_new_var.c				create_copy_env.c\
-	ft_getenv.c					remove_var.c\
-	replace_var.c				check_readonly_var.c\
-	set_var_shellopts.c			set_var.c\
-	get_var_name.c				init_g_var.c\
-	fill_g_var_names.c			print_var_names.c\
-	get_var_value.c				print_vars.c\
-	set_var_in_g_var.c			init_g_func_defs.c
+	add_new_var.c			check_readonly_var.c\
+	create_copy_env.c		fill_g_var_names.c\
+	ft_getenv.c				get_str_function_var.c\
+	get_var_name.c			get_var_value.c\
+	init_g_func_defs.c		init_g_var.c\
+	print_var_names.c		print_vars.c\
+	remove_var.c			replace_var.c\
+	set_var.c				set_var_in_g_var.c\
+	set_var_shellopts.c
 
 ERROR_DIR=error
 
@@ -148,7 +153,7 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 	$(OBJS_DIR)/$(DICTIONARY_DIR)\
 	$(OBJS_DIR)/$(XFUNCS_DIR)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re vg
 
 LIBFT_OBJS_DEPENDS=$(addprefix $(LIBFT_DIR)/, $(LIBFT_OBJS))
 
@@ -194,12 +199,6 @@ ifneq ($(NAME_CLEAN),)
 else
 	@printf "$(RED)Objects and bin $(NAME_CLEAN) already cleaned$(NC)\n"
 endif
-
-test: $(LIBFT_A)
-	$(CC) $(FLAGS) -g $(SRCS) -o $(NAME) $(INCLUDES) $(LIBFT_A) -lcurses
-
-sanitize:
-	$(CC) $(FLAGS) -g -fsanitize=address $(SRCS) -o $(NAME) $(INCLUDES)	$(LIBFT_A) -lcurses
 
 vg:
 	valgrind --leak-check=full --sigill-diagnostics=yes ./$(NAME) $(ARG)
