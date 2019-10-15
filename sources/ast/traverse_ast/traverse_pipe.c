@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/15 19:19:33 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 19:32:25 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 	if ((pid = fork()) == 0)
 	{
 		setpgid(getpid(), local->workgpid);
-		if (local->flag == 0)
-			tcsetpgrp(0, local->workgpid);
 		reserve_sem(SEMPIPE, 1);
 		dup2(fd, 0);
 		close(fd);
@@ -37,8 +35,6 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 												t_command *cmd)
 {
 	setpgrp();
-	if (local->flag == 0)
-		tcsetpgrp(0, local->workgpid);
 	reserve_sem(SEMPIPE, 1);
 	close(pipefd[0]);
 	dup2(fd, 0);
@@ -61,7 +57,10 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 	if (local->workgpid == 0)
 		local->workgpid = pid;
 	if (pid == 0)
+	{
+		tcsetpgrp(0, local->workgpid);
 		inside_fork(fd, pipefd, local, pipe_seq->command);
+	}
 	close(pipefd[1]);
 	if (local && local->flag == 1)
 		ft_printf(" %d", pid);
