@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_g_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/14 01:24:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/15 16:53:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int			init_g_var(void)
 		ft_bzero(g_var, sizeof(char *));
 	}
 	set_default_vars();
+	remove_var("OLDPWD", &g_var);
+	remove_var("OLDPWD", &environ);
 	return (0);
 }
