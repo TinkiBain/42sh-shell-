@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/15 20:34:16 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/15 22:10:01 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int					*g_open_fd;
 int					*g_pipe_pid;
 t_alias				*g_alias;
 t_dict				*g_func_defs;
+int					g_open;
 
 void				preliminary_check_fd(void)
 {
@@ -50,6 +51,7 @@ void				preliminary_check_fd(void)
 		}
 	}
 	g_tty_name = ttyname(0);
+	g_open = open(g_tty_name, O_RDWR);
 }
 
 static void			fill_options(int rl_in)
