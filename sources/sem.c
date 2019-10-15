@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 01:17:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:56:17 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void				init_sem(void)
 
 void				clear_sem(void)
 {
-	if (semctl(g_semid, SEMPIPE, IPC_RMID) == -1)
-		loginfo("Error in clear_sem() SEMPIPE");
-	if (semctl(g_semid, SEMPRINT, IPC_RMID) == -1)
-		loginfo("Error in clear_sem() SEMPRINT");
+	if (semctl(g_semid, 0, IPC_RMID) == -1)
+		loginfo("Error in clear_sem()");
 	g_semid = 0;
 }
 
