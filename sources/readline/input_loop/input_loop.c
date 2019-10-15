@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/15 16:40:53 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 17:30:03 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 19:29:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int				input_loop(t_line *line)
 		ret = em_input_loop(line, keybuf);
 	loginfo("End reading loop");
 	if (ret < 0)
-	{
-		print_error("Read error", line->str->s);
-		exit (0);
-	}
+		loginfo("! Read error");
 	if (line->mode != RL_HEREDOC && !history_expand(line))
 		return (1);
 	line->cpos = line->str->len;
