@@ -1,5 +1,0 @@
--L  -- print each alias in the form of calls to alias
--g  -- list or define global aliases
--m  -- print aliases matching specified pattern
--r  -- list or define regular aliases
--s  -- list or define suffix aliases

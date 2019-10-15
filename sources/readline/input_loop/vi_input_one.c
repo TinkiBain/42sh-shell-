@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 16:22:40 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 17:29:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/15 03:52:02 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int		perform_action_one(t_line *line)
 	if (check_arg(line))
 		return (0);
 	b = find_binding(&line->key_bindings, line->keybuf);
-	if (b && (line->action = b->action))
+	if (b && (line->action = b->action) && is_vi_motion(line->action))
 	{
 		line->action(line);
 		line->arg = 1;

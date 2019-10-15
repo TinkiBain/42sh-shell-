@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 11:54:06 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:36:51 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/15 03:25:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int		perform_action(t_line *line)
 	if (b && (line->action = b->action))
 	{
 		line->action(line);
+		loginfo_line(line);
 		if (line->vi_mode == VI_COMMAND && line->cpos == (int)line->str->len
 			&& line->cpos != 0)
 			line->cpos--;

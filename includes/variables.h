@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 22:02:51 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/14 00:03:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:13:28 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		check_readonly_var(const char *var, size_t name_len);
 char	*ft_getenv(const char *name, char **env, size_t len);
 char	*get_var_value(char *name);
 char	*get_var_name(const char *var, size_t *name_len);
+char	*get_str_function_var(const char *name, const char *value);
 
 /*
 **		Init global var
