@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/14 01:20:44 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:12:55 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		ft_cd(const char **av);
 int		ft_bg(t_pjobs *local_job, const char *name);
 int		ft_cd(const char **av);
 int		ft_echo(const char **av);
-int		ft_env(const char **av, char **env);
 int		ft_exit(int ac, const char **av);
 int		ft_export(const char **av);
 int		ft_fc(int ac, const char **av, t_pjobs *local);

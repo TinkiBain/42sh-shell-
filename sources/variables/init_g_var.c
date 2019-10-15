@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_g_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/15 16:53:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/15 17:14:14 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "defs.h"
 #include "xfuncs.h"
 
-extern char		**g_var;
+extern char	**g_var;
 
 static void	set_var_if_not_exist(char *var, char ***vars, int change_readolnly)
 {
@@ -27,7 +27,7 @@ static void	set_var_if_not_exist(char *var, char ***vars, int change_readolnly)
 
 static void	set_default_vars(void)
 {
-	char			*tmp;
+	char	*tmp;
 
 	set_var_if_not_exist("HISTPATH=~/." PROJECT_NAME ".history", &g_var, 1);
 	set_var_if_not_exist("HISTSIZE=" DEFAULT_HISTSIZE, &g_var, 1);
