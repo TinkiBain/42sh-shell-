@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 16:39:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:42:46 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int		match(t_string name, t_string query)
 {
-	int i;
+	int			i;
 
 	i = -1;
 	while (str_get(query, ++i))
@@ -82,8 +82,9 @@ static t_vector	build_filenames_vector(t_string str)
 	i = str.len;
 	while ((c = str_get(str, --i)) && c != '/')
 		str_xaddfront(&query, &c, 1);
+	complete_unescape(&query);
 	i++;
-	while ((c = str_get(str, --i)) && !ft_isspace(c))
+	while ((c = str_get(str, --i)) && !complete_isspace_check(str, i))
 		str_xaddfront(&path, &c, 1);
 	path.s = tdq(path.s);
 	str_fixlen(&path);
@@ -100,7 +101,7 @@ t_vector		filter_filenames(t_line *line)
 	int			i;
 
 	i = line->cpos - 1;
-	while (str_get(*line->str, i) && !ft_isspace(str_get(*line->str, i)))
+	while (str_get(*line->str, i) && !complete_isspace_check(*line->str, i))
 		i--;
 	++i;
 	str = str_xsubstring(*line->str, i, line->cpos - i);

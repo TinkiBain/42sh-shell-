@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 01:19:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/14 15:46:58 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 
 # define SEMPIPE		0
 # define SEMPRINT		1
+
+# ifdef __linux__
+union semun {
+	int				val;
+	struct semid_ds	*buf;
+	unsigned short	*array;
+};
+# endif
 
 void	init_sem(void);
 void	clear_sem(void);

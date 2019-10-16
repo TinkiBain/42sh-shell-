@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/13 12:40:53 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/16 17:18:55 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ SRCS_READLINE_COMPLETE=\
 	complete_filename.c			possible_filename_completions.c\
 	complete_command.c			possible_command_completions.c\
 	complete_command_option.c	possible_variable_completions.c\
-	complete_variable.c			find_common_part.c
+	complete_variable.c			find_common_part.c\
+	escaping.c
 
 SRCS_READLINE_TERMINAL=\
 	terminal.c					term_fillcap.c\

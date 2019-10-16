@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:41:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/19 15:26:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:33:41 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int		get_start(t_line *line)
 	char	c;
 
 	i = line->cpos - 1;
-	while ((c = str_get(*line->str, i)) && !ft_isspace(c) && c != '/')
+	while ((c = str_get(*line->str, i))
+		   && !complete_isspace_check(*line->str, i) && c != '/')
 		i--;
 	return (++i);
 }
@@ -33,6 +34,7 @@ void			complete_filename(t_line *line)
 
 	vec = filter_filenames(line);
 	found = find_common_part(vec.v, vec.len);
+	complete_escape(&found);
 	start = get_start(line);
 	unmatch_start = line->cpos - start;
 	if ((found.len > 0 && (int)found.len > unmatch_start) || vec.len == 1)
