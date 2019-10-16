@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/07 18:29:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/16 17:37:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void		vi_paste_before(t_line *line);
 void		vi_yank_to_motion(t_line *line);
 void		vi_yank_to_end(t_line *line);
 
+void		undo(t_line *line);
+void		undo_all(t_line *line);
+
 struct		s_var
 {
 	char	**arr;
@@ -114,7 +117,9 @@ void		possible_command_completions(t_line *line);
 void		complete_command_option(t_line *line);
 void		complete_variable(t_line *line);
 void		possible_variable_completions(t_line *line);
-void		undo(t_line *line);
-void		undo_all(t_line *line);
+
+void		complete_unescape(t_string *str);
+void		complete_escape(t_string *str);
+int			complete_isspace_check(t_string str, int i);
 
 #endif
