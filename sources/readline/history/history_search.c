@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/28 16:51:21 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/25 21:21:16 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:53:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history_search.h"
+#include "colors.h"
 
 static int	hs_strrstr(t_string haystack, t_string needle, int from)
 {
@@ -100,12 +101,13 @@ static void	hs_decorate(t_line *line)
 		{
 			line->cpos = i;
 			j = 0;
-			str_xinsert(line->str, i, UNDERLINE_SEQ, ft_strlen(UNDERLINE_SEQ));
-			i += ft_strlen(UNDERLINE_SEQ);
+			str_xinsert(line->str, i, COLOR_UNDERLINE,
+							ft_strlen(COLOR_UNDERLINE));
+			i += ft_strlen(COLOR_UNDERLINE);
 			while (str_get(line->hs.query, ++j) ==
 					str_get(*line->str, ++i) && str_get(*line->str, i))
 				;
-			str_xinsert(line->str, i, RESET_SEQ, ft_strlen(RESET_SEQ));
+			str_xinsert(line->str, i, COLOR_EOC, ft_strlen(COLOR_EOC));
 			break ;
 		}
 	}

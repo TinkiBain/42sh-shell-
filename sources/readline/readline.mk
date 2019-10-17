@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/16 17:18:55 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/17 15:55:58 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ SRCS_READLINE_DISPLAY=\
 	clear_linebuf.c			init_linebuf.c		move_cursor.c\
 	redisplay.c				update_line.c		escseqs.c\
 	escseq_test_unmatch.c	get_screen_sizes.c	colorize.c\
+	colorize_functions.c
 
 SRCS_READLINE_INPUTLOOP=\
 	em_input_loop.c		input_loop.c	is_ansiseq.c	vi_input_loop.c\

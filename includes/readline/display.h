@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 11:28:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 21:17:06 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:41:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int				get_term_cols(void);
 void			move_cur_nl(void);
 void			move_cursor(int oldpos, int newpos, int width);
 
-void			colorize(t_string *str, int start);
+void			colorize(t_string *str, int start, int cpos);
+int				colorize_alpha(t_string *str, int *i);
+int				colorize_cmd_sep(t_string *str, int i, char *color, int *cpos);
+int				colorize_arg(t_string *str, int i, char *color, int *cpos);
+int				colorize_paren(t_string *str, int i, char *color);
 
 #endif

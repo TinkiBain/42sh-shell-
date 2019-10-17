@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:54:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 19:09:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:47:40 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void					term_putstr(char *str);
 void					term_init(void);
 void					term_setup(void);
 void					term_restore(void);
-void					colorize_alpha(t_string *str, int *i);
 void					term_fillcap(void);
 void					clear_termcap(void);
 void					term_putstr(char *str);

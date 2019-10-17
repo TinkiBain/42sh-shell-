@@ -6,85 +6,70 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:37:50 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/14 19:41:27 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:51:35 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
 #include "colors.h"
 
-static int	skip_esqseq(t_string *str, int i)
+static int	skip_esqseq(t_string *str, int i, int *cpos)
 {
-	i++;
-	if (str_get(*str, i) != '[')
-		return (i - 1);
-	i++;
+	int j;
+
+	j = i;
+	j++;
+	if (str_get(*str, j) != '[')
+		return (j - i - 1);
+	j++;
 	while (42)
 	{
-		while (ft_isdigit(str_get(*str, i)))
-			i++;
-		if (str_get(*str, i) != ';')
-			return (i);
-		i++;
+		while (ft_isdigit(str_get(*str, j)))
+			j++;
+		if (str_get(*str, j) != ';')
+			return (j - i);
+		j++;
 	}
-	return (i - 1);
+	*cpos += (j - i - 1);
+	return (j - i - 1);
 }
 
 static int	skip_to_char(t_string *str, int i, char c)
 {
-	i++;
-	while (str_get(*str, i) && str_get(*str, i) != c)
-		i++;
-	return (i);
+	int j;
+
+	j = i;
+	j++;
+	while (str_get(*str, j) && str_get(*str, j) != c)
+		j++;
+	return (j - i);
 }
 
-static void	colorize_arg(t_string *str, int *i, char *color)
-{
-	char	c;
-
-	str_xinsert(str, *i, color, ft_strlen(color));
-	*i += ft_strlen(color);
-	while ((c = str_get(*str, *i)) &&
-			!ft_isspace(c) &&
-			ft_strchr(")]}", c) == NULL)
-		*i += 1;
-	str_xinsert(str, *i, COLOR_EOC, ft_strlen(COLOR_EOC));
-	*i += ft_strlen(COLOR_EOC) - 1;
-}
-
-static void	colorize_cmd_sep(t_string *str, int *i, char *color)
-{
-	if (!ft_isalpha(str_get(*str, *i)))
-	{
-		str_xinsert(str, *i, color, ft_strlen(color));
-		*i += ft_strlen(color);
-		*i += 1;
-		str_xinsert(str, *i, COLOR_EOC, ft_strlen(COLOR_EOC));
-		*i += ft_strlen(COLOR_EOC) - 1;
-	}
-	else
-		colorize_alpha(str, i);
-}
-
-void		colorize(t_string *str, int start)
+void		colorize(t_string *str, int start, int cpos)
 {
 	int			i;
+	int			dif;
 	char		c;
 
 	i = start - 1;
+	cpos += start;
 	while ((c = str_get(*str, ++i)))
 	{
+		dif = 0;
 		if (c == ESC)
-			i = skip_esqseq(str, i);
+			dif = skip_esqseq(str, i, &cpos);
+		else if ((c == '(' || c == ')') && i == cpos)
+			dif = colorize_paren(str, i, COLOR_REVVID);
 		else if (c == '"' || c == '\'')
-			i = skip_to_char(str, i, c);
+			dif = skip_to_char(str, i, c);
 		else if (c == '-' && ft_isspace(str_get(*str, i - 1)))
-			colorize_arg(str, &i, COLOR_CYAN);
+			dif = colorize_arg(str, i, COLOR_CYAN, &cpos);
 		else if (c == '&' || c == '|' || c == ';')
-			colorize_cmd_sep(str, &i, COLOR_GREEN);
+			dif = colorize_cmd_sep(str, i, COLOR_GREEN, &cpos);
 		else if (c == '>' || c == '<' || c == 0153)
-			colorize_cmd_sep(str, &i, COLOR_WHITE);
+			dif = colorize_cmd_sep(str, i, COLOR_WHITE, &cpos);
 		else if (c == '\\')
-			++i;
+			dif = 1;
+		i += dif;
 	}
 }
