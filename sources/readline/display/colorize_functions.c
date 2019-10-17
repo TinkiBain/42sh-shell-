@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:40:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/17 16:42:34 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/17 18:59:09 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		colorize_paren(t_string *str, int i, char *color)
 		j += 1;
 		str_xinsert(str, j, COLOR_EOC, ft_strlen(COLOR_EOC));
 		j += ft_strlen(COLOR_EOC) - 1;
-		return (dir < 0 ? j - i : 0);
+		return (dir < 0 ? i - j : 0);
 	}
 	return (0);
 }
