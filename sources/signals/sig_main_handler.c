@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/15 19:05:09 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 16:14:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void			jobs_sig(void)
 	g_wait_flags = done_pid;
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);
-	tcsetpgrp(0, getpid());
+	if (st == 4735)
+		tcsetpgrp(0, getpid());
 	if (WIFSTOPPED(st))
 	{
 		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t"),
