@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 01:17:45 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 22:44:17 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int		t(int len)
 	int st;
 	int pid;
 
+	pid = 0;
 	st = 0;
 	t_len = 0;
 	while (t_len < len)
@@ -63,7 +64,7 @@ static int		t(int len)
 		{
 			if ((pid = waitpid(g_pipe_pid[t_len], NULL,
 									WUNTRACED | WNOHANG)) > 0)
-				g_pipe_pid[t_len] = -1;
+				jobs_sig(pid);
 			t_len = 0;
 			continue ;
 		}

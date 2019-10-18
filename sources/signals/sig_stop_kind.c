@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/15 17:05:38 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 22:44:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ static void		sigstop(char *msg)
 	job = first->job;
 	while (job)
 	{
-		free(job->status);
-		job->status = ft_xstrdup(msg);
+		if (ft_strcmp(first->status, "Done\t\t"))
+		{
+			free(job->status);
+			job->status = ft_xstrdup(msg);
+		}
 		job = job->next;
 	}
 }
@@ -38,6 +41,7 @@ static void		sig_change_status(t_job *job, char *msg)
 {
 	while (job)
 	{
+		kill(job->pid, SIGTSTP);
 		free(job->status);
 		job->status = ft_xstrdup(msg);
 		job = job->next;
@@ -47,6 +51,7 @@ static void		sig_change_status(t_job *job, char *msg)
 void			sig_per_stop(int done_pid, t_job *job,
 								char *msg, t_pjobs *first)
 {
+	tcsetpgrp(0, getpid());
 	while (first)
 	{
 		if ((pid_checl(done_pid, first->job)))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/18 16:18:34 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/18 22:44:29 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 
 	if ((pid = fork()) == 0)
 	{
+		// ft_printf("inside_fork() %d\n", getpid());
 		setpgid(getpid(), local->workgpid);
 		reserve_sem(SEMPIPE, 1);
 		if (fd)
@@ -38,10 +39,11 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 												t_command *cmd)
 {
+	// ft_printf("inside_fork() %d\n", getpid());
 	if (local->workgpid == 0)
 	{
-		setpgid(0, 0);
-		local->workgpid = getpgrp();
+		setpgid(getpid(), getpid());
+		local->workgpid = getpid();
 	}
 	else
 		setpgid(getpid(), local->workgpid);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/18 20:12:18 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 22:17:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ void			pjobs_sig(int sig, int done_pid)
 	first = jobs_find_num(g_pjobs, job->num);
 	if (done_pid != 0 && sig != SUSPINT && sig != SUSPOUT && !(job->next))
 		def_kill_or_done(job, sig, first->name);
-	else if (sig == SUSPINT || sig == SUSPOUT)
+	else if (sig == SUSPINT || sig == SUSPOUT
+			|| ft_strcmp(first->status, "Done\t\t"))
 	{
 		free(first->status);
 		if (sig == SUSPINT)
 			first->status = ft_xstrdup(" suspended (tty input)\t");
 		if (sig == SUSPOUT)
 			first->status = ft_xstrdup(" suspended (tty output)\t");
+		else
+			first->status = ft_xstrdup(" suspended \t\t");
 		free(job->status);
 		job->status = ft_xstrdup("suspended");
 	}
