@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 15:51:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/18 20:04:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void			term_putstr(char *str)
 		ft_putstr_fd(str, g_opt.rl_out);
 }
 
+void			term_save(void)
+{
+	tcgetattr(g_opt.rl_in, &g_init_tios);
+}
+
 void			term_setup(void)
 {
 	struct termios	work_tios;
@@ -64,7 +69,6 @@ void			term_setup(void)
 	PC = *g_cap.pad_char;
 	BC = g_cap.go_left;
 	UP = g_cap.go_up;
-	tcgetattr(g_opt.rl_in, &g_init_tios);
 	term_putstr(g_cap.kp_start);
 	work_tios = g_init_tios;
 	work_tios.c_oflag = 0;

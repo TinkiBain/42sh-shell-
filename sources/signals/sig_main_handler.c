@@ -76,7 +76,10 @@ void			jobs_sig(void)
 	g_wait_flags = done_pid;
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);
-	tcsetpgrp(0, getpid());
+	//ft_printf("pid: %d", getpid());
+	if (st == 4735)
+	if (tcsetpgrp(0, getpid()) < 0)
+		perror("tcsetpgrp returned -1");
 	if (WIFSTOPPED(st))
 	{
 		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t"),

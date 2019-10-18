@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:54:51 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/17 15:47:40 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/18 20:05:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct			s_cap
 char					*term_getstr(char *str);
 void					term_putstr(char *str);
 void					term_init(void);
+void					term_save(void);
 void					term_setup(void);
 void					term_restore(void);
 void					term_fillcap(void);

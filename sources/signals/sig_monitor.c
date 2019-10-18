@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 17:19:52 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 20:06:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static void	sigh_exit(int signo)
 		print_error_exit(NULL, "Fatal error", 1);
 }
 
-/*
-**	loginfo("Caught signal %d", signo);
-*/
+extern int	g_term_broken;
 
 static void	signals(int signo)
 {
@@ -36,9 +34,17 @@ static void	signals(int signo)
 	if (signo == SIGCHLD)
 		jobs_sig();
 	else if (signo == SIGTTOU)
+	{
 		tcsetpgrp(0, getpid());
+		g_term_broken = 1;
+		term_restore();
+	}
 	else if (signo == SIGTTIN)
+	{
 		tcsetpgrp(1, getpid());
+		g_term_broken = 1;
+		term_restore();
+	}
 	else if (signo == SIGINT)
 		ft_putstr("\n");
 	else if (signo == SIGTERM)
