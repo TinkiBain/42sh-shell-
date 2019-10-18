@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:06:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/17 17:11:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/17 19:28:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define COLOR_GREY			"\033[2;37m"
 # define COLOR_UNDERLINE	"\033[4m"
 # define COLOR_REVVID		"\033[7;37m"
+# define COLOR_BGYELLOW		"\033[103;30m"
 
 # define COLOR_EOC			"\033[0m"
 

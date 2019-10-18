@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/16 17:13:04 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/18 16:18:34 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
+	setpgid(pid, local->workgpid);
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
 	local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
