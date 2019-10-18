@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/15 19:05:31 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 20:12:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void		def_kill_or_done(t_job *first, int sig, char *name)
 		ft_printf("[%d]\t%s\n", first->num, msg);
 		free(msg);
 	}
-	else if (sig != 2 && sig != 256)
+	else if (sig != 2)
 	{
-		if (sig == 0)
+		if (sig == 0 || sig == 256)
 			ft_printf("[%d]\tDone  \t\t%s\n", first->num, name);
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, name);

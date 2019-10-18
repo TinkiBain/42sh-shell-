@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 15:51:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/18 20:29:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void			term_putstr(char *str)
 		ft_putstr_fd(str, g_opt.rl_out);
 }
 
+void			term_save(void)
+{
+	tcgetattr(g_opt.rl_in, &g_init_tios);
+}
+
 void			term_setup(void)
 {
 	struct termios	work_tios;
@@ -64,7 +69,6 @@ void			term_setup(void)
 	PC = *g_cap.pad_char;
 	BC = g_cap.go_left;
 	UP = g_cap.go_up;
-	tcgetattr(g_opt.rl_in, &g_init_tios);
 	term_putstr(g_cap.kp_start);
 	work_tios = g_init_tios;
 	work_tios.c_oflag = 0;
@@ -72,7 +76,8 @@ void			term_setup(void)
 	work_tios.c_lflag &= ~(ICANON | ECHO | ISIG);
 	work_tios.c_cc[VMIN] = 1;
 	work_tios.c_cc[VTIME] = 0;
-	tcsetattr(g_opt.rl_in, TCSANOW, &work_tios);
+	if (tcsetattr(g_opt.rl_in, TCSANOW, &work_tios) < 0)
+		tcsetattr(g_opt.rl_in, TCSANOW, &work_tios);
 	ospeed = work_tios.c_ospeed;
 	g_term_broken = 1;
 }

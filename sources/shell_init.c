@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/15 22:10:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 20:04:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,5 @@ void				shell_init(int ac, char **av)
 	g_history->start_index = 1;
 	history_load(g_history);
 	init_g_func_defs();
+	term_save();
 }

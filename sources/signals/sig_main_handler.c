@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/18 16:14:41 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/18 20:54:22 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static int		pipe_jobs_check(void)
 	{
 		while (g_pipe_pid[i] != 0)
 		{
-			if (g_pipe_pid[i] == -1)
-				return (1);
+			if (g_pipe_pid[i] != -1)
+				return (-1);
 			i++;
 		}
 	}
-	return (-1);
+	return (1);
 }
 
 static void		msg_cntr(int st)
@@ -90,5 +90,6 @@ void			jobs_sig(void)
 			deletejob(&g_subjob, g_subjob->num);
 		return ;
 	}
-	pjobs_sig(st, done_pid);
+	if (pipe_jobs_check() > 0)
+		pjobs_sig(st, done_pid);
 }
