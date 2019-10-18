@@ -6,14 +6,14 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/15 17:13:25 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/18 21:51:33 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=42sh
 
 CC=clang
-FLAGS=-Wall -Wextra -Werror -MMD
+FLAGS=-Wall -Wextra -Werror
 FLAGS+=-g
 
 INCLUDES:=\
@@ -157,12 +157,15 @@ OBJS_SUBDIRS=$(OBJS_DIR)\
 
 LIBFT_OBJS_DEPENDS=$(addprefix $(LIBFT_DIR)/, $(LIBFT_OBJS))
 
+
 all: $(NAME)
 
 $(NAME): $(LIBFT_A) $(LIBFT_OBJS_DEPENDS) $(OBJS_SUBDIRS) $(OBJS)
 	@printf "$(BLUE)Compiling $(NAME_CLEAN)...$(NC)\n"
 	@$(CC) $(OBJS) $(LIBFT_A) $(INCLUDES) $(FLAGS) -o $(NAME) -lcurses
 	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
+
+-include $(OBJS:.o=.d)
 
 $(LIBFT_A):
 	@make -C $(LIBFT_DIR)
@@ -171,7 +174,7 @@ $(LIBFT_DIR)/$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_DIR)/$(LIBFT_SRCS_DIR)/%.c
 	@make -C $(LIBFT_DIR)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $<
+	@$(CC) $(INCLUDES) $(FLAGS) -o $@ -c $< -MMD
 
 $(OBJS_SUBDIRS):
 	@mkdir -p $@
