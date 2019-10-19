@@ -23,7 +23,7 @@ int		colorize_arg(t_string *str, int i, char *color, int *cpos)
 	j += ft_strlen(color);
 	while ((c = str_get(*str, j)) &&
 			!ft_isspace(c) &&
-			ft_strchr(")]};&|<>", c) == NULL)
+			ft_strchr(")]};&|<>\033", c) == NULL)
 	{
 		*cpos -= 1;
 		j += 1;
