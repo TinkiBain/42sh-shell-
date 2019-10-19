@@ -80,3 +80,6 @@ Session.vim
 
 # emacs tags
 TAGS
+
+21sh.dSYM/
+42sh.dSYM/
