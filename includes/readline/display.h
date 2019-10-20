@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 11:28:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/17 16:41:35 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/20 03:01:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void			redisplay(t_buffer *newbuf);
 void			resize(t_buffer *newbuf, int first);
 int				get_screen_width(void);
 int				get_screen_height(void);
-int				get_term_cols(void);
 
 void			move_cur_nl(void);
 void			move_cursor(int oldpos, int newpos, int width);

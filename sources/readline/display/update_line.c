@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 17:17:38 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/15 21:28:36 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/20 03:00:48 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,6 @@
 #include "del_funcs.h"
 
 extern t_opt	g_opt;
-
-int				get_term_cols(void)
-{
-	struct winsize	ws;
-	int				ret;
-
-	ret = ioctl(g_opt.rl_in, TIOCGWINSZ, &ws);
-	if (ret == -1)
-	{
-		loginfo("! Error: ioctl() returned -1");
-		return (TERM_MAX_COL);
-	}
-	if (!ws.ws_col || ws.ws_col > TERM_MAX_COL)
-		return (TERM_MAX_COL);
-	return (ws.ws_col);
-}
 
 t_string		*build_bufout(t_string str, int width)
 {
@@ -125,7 +109,7 @@ void			update_line(t_line *line, int first)
 	int			cols;
 
 	term_putstr(g_cap.cur_hide);
-	cols = get_term_cols();
+	cols = get_screen_width();
 	build_newbuf(&newbuf, line, cols);
 	if (line)
 		redisplay(&newbuf);

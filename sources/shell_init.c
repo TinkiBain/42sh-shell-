@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/18 20:04:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/20 03:16:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void			fill_options(int rl_in)
 	g_opt.emacs_mode = (rl_in == 0 ? 1 : 0);
 	g_opt.rl_in = rl_in;
 	g_opt.rl_out = STDERR;
+	g_opt.promptsp = 1;
 }
 
 int					check_binary(char *path)

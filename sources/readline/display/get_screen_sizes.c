@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 20:12:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/17 15:39:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/20 03:00:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ int			get_screen_width(void)
 	struct winsize	ws;
 	extern t_opt	g_opt;
 
-	ioctl(g_opt.rl_in, TIOCGWINSZ, &ws);
-	if (!ws.ws_col)
+	ft_bzero(&ws, sizeof(ws));
+	if (ioctl(g_opt.rl_in, TIOCGWINSZ, &ws) == -1)
+	{
+		loginfo("! Error: ioctl() returned -1");
+		return (TERM_MAX_COL);
+	}
+	if (!ws.ws_col || ws.ws_col > TERM_MAX_COL)
 		return (TERM_MAX_COL);
 	return (ws.ws_col);
 }

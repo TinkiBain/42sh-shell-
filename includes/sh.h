@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 19:17:10 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/20 02:46:47 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_opt
 	t_uint			enable_color;
 	t_uint			noclobber;
 	t_uint			history;
+	t_uint			promptsp;
 	t_uint			rl_in;
 	t_uint			rl_out;
 	t_uint			rl_gnl;
