@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/09/30 15:22:55 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/21 19:25:52 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void		print_options(int is_minus_o)
 		ft_printf(format, "color", (g_opt.enable_color) ? "on" : "off");
 		ft_printf(format, "noclobber", (g_opt.noclobber) ? "on" : "off");
 		ft_printf(format, "history", (g_opt.history) ? "on" : "off");
+		ft_printf(format, "promptsp", (g_opt.promptsp) ? "on" : "off");
 	}
 	else
 	{
@@ -34,6 +35,7 @@ static void		print_options(int is_minus_o)
 		ft_printf(format, (g_opt.enable_color) ? "+" : "-", "color");
 		ft_printf(format, (g_opt.noclobber) ? "+" : "-", "noclobber");
 		ft_printf(format, (g_opt.history) ? "+" : "-", "history");
+		ft_printf(format, (g_opt.promptsp) ? "+" : "-", "promptsp");
 	}
 }
 
@@ -59,6 +61,8 @@ static void		handle_set_minus_o(const char **av)
 			g_opt.noclobber = 1;
 		else if (ft_strequ(*(av), "history"))
 			g_opt.history = 1;
+		else if (ft_strequ(*(av), "promptsp"))
+			g_opt.promptsp = 1;
 		set_var_shellopts();
 	}
 }
@@ -85,6 +89,8 @@ static void		handle_set_arg(const char **av)
 				g_opt.noclobber = 0;
 			else if (ft_strequ(*(av), "history"))
 				g_opt.history = 0;
+			else if (ft_strequ(*(av), "promptsp"))
+				g_opt.promptsp = 0;
 			set_var_shellopts();
 		}
 	}
