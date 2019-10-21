@@ -6,14 +6,14 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 15:40:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/18 17:29:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/19 21:17:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "display.h"
 #include "colors.h"
 
-int		colorize_arg(t_string *str, int i, char *color, int *cpos)
+int			colorize_arg(t_string *str, int i, char *color, int *cpos)
 {
 	int		j;
 	char	c;
@@ -35,7 +35,7 @@ int		colorize_arg(t_string *str, int i, char *color, int *cpos)
 	return (j - i);
 }
 
-int		colorize_cmd_sep(t_string *str, int i, char *color, int *cpos)
+int			colorize_cmd_sep(t_string *str, int i, char *color, int *cpos)
 {
 	int		j;
 
@@ -83,12 +83,12 @@ static int	find_matching_paren(t_string *str, int i)
 	return (i);
 }
 
-int		colorize_paren(t_string *str, int i, char *color)
+int			colorize_paren(t_string *str, int i, char *color)
 {
 	int		j;
 	int		k;
 	int		dir;
-	
+
 	dir = (str_get(*str, i) == '(' ? 1 : -1);
 	j = find_matching_paren(str, i);
 	if (str_get(*str, j))

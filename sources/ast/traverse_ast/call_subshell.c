@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   call_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/21 19:56:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
+extern t_opt		g_opt;
+
 int					call_subshell(char *str, t_pjobs *local)
 {
-	extern t_opt	g_opt;
 	extern char		**environ;
 	pid_t			pid;
 
@@ -33,6 +34,8 @@ int					call_subshell(char *str, t_pjobs *local)
 		execute_line(str);
 		exit(g_res_exec);
 	}
+	else if (pid == -1)
+		print_error_exit("fork error", NULL, 1);
 	local = ljobs_started(str, local->flag, local->num, pid);
 	if (local->flag == 1)
 		ft_printf("[%d] [%d]\n", local->num, pid);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/19 21:33:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/21 19:44:48 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 	//printf("increment counter in proc %d (%d)\n", getpid(), *counter);
 	if ((pid = fork()) == 0)
 	{
-		// ft_printf("inside_fork() %d\n", getpid());
 		setpgid(getpid(), local->workgpid);
 		if (local->workgpid == 0)
 			tcsetpgrp(0, getpid());
@@ -33,9 +32,13 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 			dup2(fd, 0);
 			close(fd);
 		}
+		if (local->flag == 0)
+			tcsetpgrp(0, local->workgpid);
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
+	else if (pid == -1)
+		print_error_exit("fork error", NULL, 1);
 	setpgid(pid, local->workgpid);
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
@@ -45,7 +48,6 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 												t_command *cmd, int *counter)
 {
-	// ft_printf("inside_fork() %d\n", getpid());
 	if (local->workgpid == 0)
 	{
 		setpgid(getpid(), getpid());
@@ -62,6 +64,8 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 		dup2(fd, 0);
 	dup2(pipefd[1], 1);
 	close(pipefd[1]);
+	if (local->flag == 0)
+		tcsetpgrp(0, local->workgpid);
 	traverse_command(cmd, 1, local);
 	exit(g_res_exec);
 }
@@ -77,9 +81,9 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid = fork()) == 0)
-	{
 		inside_fork(fd, pipefd, local, pipe_seq->command, counter);
-	}
+	else if (pid == -1)
+		print_error_exit("fork error", NULL, 1);
 	if (local->workgpid == 0)
 		local->workgpid = pid;
 	setpgid(pid, local->workgpid);

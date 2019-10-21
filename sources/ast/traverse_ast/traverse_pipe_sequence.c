@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/19 21:31:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:17:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ static void			pipe_seq_simple_builtin(t_command *cmd, t_pjobs *local)
 	{
 		if ((pid = fork()) == 0)
 		{
-			setpgrp();
+			setpgid(getpid(), getpid());
 			traverse_command(cmd, 0, local);
 			exit(g_res_exec);
 		}
-		else
-		{
-			local = ljobs_started(get_process_name(cmd),
-						local->flag, local->num, pid);
-			ft_printf("[%d] [%d]\n", local->num, pid);
-		}
+		else if (pid == -1)
+			print_error_exit("fork error", NULL, 1);
+		setpgid(pid, pid);
+		local = ljobs_started(get_process_name(cmd),
+					local->flag, local->num, pid);
+		ft_printf("[%d] [%d]\n", local->num, pid);
 	}
 }
 
@@ -53,15 +53,17 @@ static void			pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
 			tcsetpgrp(0, getpid());
 		traverse_command(cmd, 1, local);
 	}
+	else if (pid == -1)
+		print_error_exit("fork error", NULL, 1);
+	setpgid(pid, pid);
+	local = ljobs_started(get_process_name(cmd),
+					local->flag, local->num, pid);
+	if (local->flag == 1)
+		ft_printf("[%d] [%d]\n", local->num, pid);
 	else
 	{
-		setpgid(pid, pid);
-		local = ljobs_started(get_process_name(cmd),
-						local->flag, local->num, pid);
-		if (local->flag == 1)
-			ft_printf("[%d] [%d]\n", local->num, pid);
-		else
-			ft_waitpid(pid);
+		tcsetpgrp(0, pid);
+		ft_waitpid(pid);
 	}
 }
 
@@ -92,11 +94,14 @@ static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 
 extern int			g_open;
 
-void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq,
-														t_pjobs *local)
+void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq)
 {
+	t_pjobs			*local;
+	char			*pjobs_name;
 	int				counter;
 
+	pjobs_name = get_job_name(pipe_seq->lex_begin, pipe_seq->lex_end);
+	local = jobs_started(pjobs_name, 0);
 	counter = 0;
 	if (pipe_seq->next)
 	{

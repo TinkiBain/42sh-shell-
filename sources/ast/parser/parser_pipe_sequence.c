@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 18:29:18 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 12:31:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/21 20:28:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_pipe_sequence		*parser_init_pipe_sequence(void)
 	list = (t_pipe_sequence*)ft_xmalloc(sizeof(t_pipe_sequence));
 	list->next = NULL;
 	list->pipe_op = 0;
+	list->lex_begin = g_lex;
+	list->lex_end = NULL;
 	list->command = NULL;
 	return (list);
 }
@@ -47,7 +49,10 @@ t_pipe_sequence		*parser_pipe_sequence(void)
 	list = parser_init_pipe_sequence();
 	list->command = parser_command();
 	if (!g_lex)
+	{
+		list->lex_end = g_lex;
 		return (list);
+	}
 	if (g_error_lex)
 		return (parser_free_pipe_sequence(list));
 	if (g_lex->type == PIPE)
@@ -57,5 +62,6 @@ t_pipe_sequence		*parser_pipe_sequence(void)
 		parser_linebreak();
 		list->next = parser_pipe_sequence();
 	}
+	list->lex_end = g_lex;
 	return (list);
 }

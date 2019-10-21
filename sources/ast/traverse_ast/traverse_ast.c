@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_ast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:16:58 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 extern t_opt		g_opt;
 
-static void			traverse_and_or(t_and_or *elem, int flag1, t_pjobs *local)
+static void			traverse_and_or(t_and_or *elem, int flag1)
 {
 	static int		flag;
 
 	flag = flag1;
 	if (elem->next)
-		traverse_and_or(elem->next, flag, local);
+		traverse_and_or(elem->next, flag);
 	if (g_opt.arifmetic_error)
 		return ;
 	if (!flag || (flag == AND_IF && !g_res_exec)
 				|| (flag == OR_IF && g_res_exec))
 	{
-		traverse_pipe_sequence(elem->pipeline->pipe_sequence, local);
+		traverse_pipe_sequence(elem->pipeline->pipe_sequence);
 		if (elem->pipeline->bang)
 			g_res_exec = (!g_res_exec) ? 1 : 0;
 	}
@@ -55,17 +55,15 @@ static void			traverse_list(t_pars_list *list, int sep)
 		traverse_list(list->next, list->next->sep);
 	if (g_opt.arifmetic_error)
 		return ;
-	pjobs_name = get_job_name(list->lex_begin, list->lex_end);
-	local = jobs_started(pjobs_name, sep);
-	if (list->and_or->next)
-		local->workgpid = 1;
 	if (cmd_is_subshell(list->and_or, list->sep))
 	{
+		pjobs_name = get_job_name(list->lex_begin, list->lex_end);
+		local = jobs_started(pjobs_name, sep);
 		sub_job_name = get_job_name(list->lex_begin, list->lex_end);
 		call_subshell(sub_job_name, local);
 	}
 	else
-		traverse_and_or(list->and_or, 0, local);
+		traverse_and_or(list->and_or, 0);
 }
 
 void				traverse_ast(t_complete_cmd *root)

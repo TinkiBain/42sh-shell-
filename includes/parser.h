@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:32:07 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/08 18:59:08 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/21 20:36:45 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ typedef struct		s_pipe_sequence
 {
 	t_command				*command;
 	struct s_pipe_sequence	*next;
+	t_lex					*lex_begin;
+	t_lex					*lex_end;
 	int						pipe_op;
 }					t_pipe_sequence;
 

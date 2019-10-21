@@ -6,17 +6,19 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/14 01:22:20 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/19 21:27:59 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-char		*substitution_write(int pipefd[2], pid_t pid, char *str)
+extern t_opt	g_opt;
+
+char			*substitution_write(int pipefd[2], pid_t pid, char *str)
 {
-	char	buf[1024];
-	char	*tmp;
-	int		i;
+	char		buf[1024];
+	char		*tmp;
+	int			i;
 
 	free(str);
 	close(pipefd[1]);
@@ -33,13 +35,12 @@ char		*substitution_write(int pipefd[2], pid_t pid, char *str)
 	return (tmp);
 }
 
-char		*substitution_exec(char *str)
+char			*substitution_exec(char *str)
 {
 	pid_t			pid;
 	t_complete_cmd	*parser_list;
 	int				pipefd[2];
 	t_lex			*lex;
-	extern t_opt	g_opt;
 
 	if (pipe(pipefd) < 0)
 		exit(-1);
@@ -59,13 +60,15 @@ char		*substitution_exec(char *str)
 		lexer_free_all(lex);
 		exit(0);
 	}
+	else if (pid == -1)
+		print_error_exit("fork error", NULL, 1);
 	return (substitution_write(pipefd, pid, str));
 }
 
-char		*substitution(char *str)
+char			*substitution(char *str)
 {
-	char	*tmp;
-	char	*begin;
+	char		*tmp;
+	char		*begin;
 
 	begin = str;
 	tmp = str;

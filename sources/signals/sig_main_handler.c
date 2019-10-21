@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_main_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/19 21:34:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:34:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ void			jobs_sig(int pid)
 		g_res_exec = WEXITSTATUS(st);
 	if (WIFSTOPPED(st))
 	{
-		while (g_pipe_pid[d])
-			kill(SIGTSTP, g_pipe_pid[d++]);
+		if (st == SUSPCHLD)
+			g_res_exec = 1;
+		if (g_pipe_pid)
+			while (g_pipe_pid[d])
+				kill(SIGTSTP, g_pipe_pid[d++]);
 		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t"),
 							g_pjobs));
 	}
