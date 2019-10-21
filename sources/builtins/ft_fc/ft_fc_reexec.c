@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 16:13:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 20:17:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	execute(const char *replace, t_dlist *item, t_pjobs *local)
 	str_remove(item_str, 0, item_str->len);
 	str_addback(item_str, exec_str, ft_strlen(exec_str));
 	ft_getopt_clear();
-	local = jobs_startet(ft_xstrdup(exec_str), 0);
+	local = jobs_started(ft_xstrdup(exec_str), 0);
 	call_subshell(exec_str, local);
 	return (g_res_exec);
 }

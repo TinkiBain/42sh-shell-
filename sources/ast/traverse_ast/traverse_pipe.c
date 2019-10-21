@@ -6,22 +6,28 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/18 22:44:29 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/19 21:33:11 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "sem.h"
 
-static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
+static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int *counter)
 {
 	pid_t		pid;
 
+	*counter += 1;
+	//printf("increment counter in proc %d (%d)\n", getpid(), *counter);
 	if ((pid = fork()) == 0)
 	{
 		// ft_printf("inside_fork() %d\n", getpid());
 		setpgid(getpid(), local->workgpid);
-		reserve_sem(SEMPIPE, 1);
+		if (local->workgpid == 0)
+			tcsetpgrp(0, getpid());
+		//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
+		reserve_sem(SEMPIPE, *counter);
+		//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
 		if (fd)
 		{
 			dup2(fd, 0);
@@ -33,21 +39,24 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local)
 	setpgid(pid, local->workgpid);
 	if (local->flag == 1)
 		ft_printf(" %d\n", pid);
-	local = ljobs_startet(get_process_name(cmd), local->flag, local->num, pid);
+	local = ljobs_started(get_process_name(cmd), local->flag, local->num, pid);
 }
 
 static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
-												t_command *cmd)
+												t_command *cmd, int *counter)
 {
 	// ft_printf("inside_fork() %d\n", getpid());
 	if (local->workgpid == 0)
 	{
 		setpgid(getpid(), getpid());
 		local->workgpid = getpid();
+		tcsetpgrp(0, getpid());
 	}
 	else
 		setpgid(getpid(), local->workgpid);
-	reserve_sem(SEMPIPE, 1);
+	//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
+	reserve_sem(SEMPIPE, *counter);
+	//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
 	close(pipefd[0]);
 	if (fd)
 		dup2(fd, 0);
@@ -64,11 +73,12 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 	int			pipefd[2];
 
 	*counter += 1;
+	//printf("increment counter in proc %d (%d)\n", getpid(), *counter);
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	if ((pid = fork()) == 0)
 	{
-		inside_fork(fd, pipefd, local, pipe_seq->command);
+		inside_fork(fd, pipefd, local, pipe_seq->command, counter);
 	}
 	if (local->workgpid == 0)
 		local->workgpid = pid;
@@ -76,12 +86,12 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 	close(pipefd[1]);
 	if (local && local->flag == 1)
 		ft_printf(" %d", pid);
-	local = ljobs_startet(get_process_name(pipe_seq->command),
+	local = ljobs_started(get_process_name(pipe_seq->command),
 								local->flag, local->num, pid);
 	pipe_seq = pipe_seq->next;
 	if (pipe_seq->next)
 		traverse_pipe(pipe_seq, pipefd[0], local, counter);
 	else
-		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command, local);
+		handle_last_cmd_in_pipe(pipefd[0], pipe_seq->command, local, counter);
 	close(pipefd[0]);
 }

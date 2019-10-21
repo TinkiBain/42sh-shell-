@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vi_vi.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:40:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static void	start_vi(char **argv)
 	extern char	**environ;
 	t_pjobs		*local;
 
-	local = jobs_startet(ft_xstrdup("vi mode"), 0);
+	local = jobs_started(ft_xstrdup("vi mode"), 0);
 	pid = fork();
-	local = ljobs_startet(ft_xstrdup("vi mode"), local->flag, local->num, pid);
+	local = ljobs_started(ft_xstrdup("vi mode"), local->flag, local->num, pid);
 	if (pid == 0
 		&& execve(argv[0], argv, environ) < 0)
 		loginfo("vi_vi(): execve error");

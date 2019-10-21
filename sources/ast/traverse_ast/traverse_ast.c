@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_ast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 17:25:31 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void			traverse_list(t_pars_list *list, int sep)
 	if (g_opt.arifmetic_error)
 		return ;
 	pjobs_name = get_job_name(list->lex_begin, list->lex_end);
-	local = jobs_startet(pjobs_name, sep);
+	local = jobs_started(pjobs_name, sep);
 	if (list->and_or->next)
 		local->workgpid = 1;
 	if (cmd_is_subshell(list->and_or, list->sep))

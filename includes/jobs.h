@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/18 22:00:13 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/21 19:35:34 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ extern t_pjobs		*g_subjob;
 extern int			g_wait_flags;
 extern int			*g_pipe_pid;
 
-t_pjobs				*ljobs_startet(char *str, int flag, int num, int pid);
+t_pjobs				*ljobs_started(char *str, int flag, int num, int pid);
 t_job				*pid_checl(int pid, t_job *job);
 t_job				*job_finder(int pid, t_pjobs *local);
 t_pjobs				*jobs_find_num(t_pjobs *local, int num);
 t_pjobs				*name_proc_hendl(t_pjobs *local_job, char *name);
 t_pjobs				*subjob_changer(char *str, t_pjobs **gjobs, int flag);
-t_pjobs				*jobs_startet(char *str, int sep);
+t_pjobs				*jobs_started(char *str, int sep);
 t_pjobs				*ft_addjob(char *name, int flag);
 t_pjobs				*jobs_last_elem(t_pjobs *job);
 void				jobs_sig(int pid);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/18 22:44:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/19 21:34:11 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void			jobs_sig(int pid)
 	pid_t			done_pid;
 	int				st;
 	char			*msg;
+	int d;
+
+	d = 0;
 
 	msg = NULL;
 	st = 0;
@@ -74,15 +77,19 @@ void			jobs_sig(int pid)
 		done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
 	else
 		done_pid = pid;
-	// printf ("\n-pid - %d\n", done_pid);
+	printf ("\n-pid - %d %d\n", done_pid, st);
 	if (g_pipe_pid)
 		pipe_and_done_pid(done_pid);
 	g_wait_flags = done_pid;
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);
 	if (WIFSTOPPED(st))
+	{
+		while (g_pipe_pid[d])
+			kill(SIGTSTP, g_pipe_pid[d++]);
 		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t"),
 							g_pjobs));
+	}
 	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
 	{
 		msg_cntr(st);

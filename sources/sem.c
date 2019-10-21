@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 18:56:17 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:52:01 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void				reserve_sem(int semnum, int n)
 		return ;
 	sops.sem_num = semnum;
 	sops.sem_op = -n;
-	sops.sem_flg = 0;
+	sops.sem_flg = SEM_UNDO;
 	if (semop(g_semid, &sops, 1) == -1)
 		;
 }
@@ -67,15 +67,15 @@ void				set_sem(int semnum, int val)
 		loginfo("Error while set_sem(%d, %d)", semnum, val);
 }
 
-/*
-** int					get_sem(void)
-** {
-** 	extern int		g_semid;
-** 	union semun		arg;
-**
-** 	ft_bzero(&arg, sizeof(arg));
-** 	if (g_semid)
-** 		return (semctl(g_semid, 0, GETVAL, arg));
-** 	return (0);
-** }
-*/
+
+int					get_sem(int semnum)
+{
+	extern int		g_semid;
+	union semun		arg;
+
+	ft_bzero(&arg, sizeof(arg));
+	if (g_semid)
+		return (semctl(g_semid, semnum, GETVAL, arg));
+	return (0);
+}
+

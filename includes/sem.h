@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sem.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/16 18:12:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/19 20:47:32 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	reserve_sem(int semnum, int n);
 void	release_sem(int semnum, int n);
 void	set_sem(int semnum, int val);
 
-/*
-** int		get_sem(void);
-*/
+int		get_sem(int semnum);
 
 #endif
