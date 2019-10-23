@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 20:52:52 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 23:03:56 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void		sig_change_status(t_job *job, char *msg)
 void			sig_per_stop(int done_pid, t_job *job,
 								char *msg, t_pjobs *first)
 {
-	tcsetpgrp(0, getpid());
 	while (first)
 	{
 		if (process_finder(done_pid, job_finder(done_pid, first)))

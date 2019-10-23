@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 22:26:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 23:00:15 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void				shell_init(int ac, char **av)
 	extern t_alias	*g_alias;
 	int				fd;
 
+	setpgid(getpid(), getpid());
 	fd = get_fd(ac, av);
 	g_alias = NULL;
 	fill_options(fd);
