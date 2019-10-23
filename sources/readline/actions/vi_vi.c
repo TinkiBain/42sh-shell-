@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 19:41:09 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	start_vi(char **argv)
 		&& execve(argv[0], argv, environ) < 0)
 		loginfo("vi_vi(): execve error");
 	else if (pid > 0)
-		ft_waitpid(pid);
+		ft_waitpid(pid, NULL);
 	else
 		loginfo("vi_vi(): fork error");
 }

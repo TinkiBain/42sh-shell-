@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/18 22:19:40 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 22:30:19 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ int			fg_null_error(const char *name)
 	return (1);
 }
 
-void		closer(t_job *job, int counter, int *pids)
+void		closer(t_job *job, int *pids)
 {
-	pipe_av(job, counter);
 	killpg(job->pid, SIGCONT);
 	tcsetpgrp(0, job->pid);
 	if (job->next)
-		ft_waitpid(-1);
+		ft_waitpid(-1, job);
 	else
-		ft_waitpid(pids[0]);
+		ft_waitpid(pids[0], NULL);
 }
 
 void		ft_fg_part(t_pjobs *local, int *pids, int iter)
@@ -41,14 +40,17 @@ void		ft_fg_part(t_pjobs *local, int *pids, int iter)
 	job = local->job;
 	while (local->job)
 	{
-		pids[iter++] = local->job->pid;
-		counter++;
-		free(local->job->status);
-		local->job->status = ft_xstrdup("  running\t\t");
+		if (ft_strcmp(local->job->status, "\tDone\t\t"))
+		{
+			pids[iter++] = local->job->pid;
+			counter++;
+			free(local->job->status);
+			local->job->status = ft_xstrdup("  running\t\t");
+		}
 		local->job = local->job->next;
 	}
 	local->job = job;
-	closer(job, counter, pids);
+	closer(job, pids);
 }
 
 int			ft_fg(t_pjobs *local_job, const char *name)

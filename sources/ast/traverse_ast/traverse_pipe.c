@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/23 14:17:57 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:50:15 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 #include "sem.h"
 
-static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int *counter)
+static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local, int *counter)
 {
 	pid_t		pid;
 
 	*counter += 1;
-	//printf("increment counter in proc %d (%d)\n", getpid(), *counter);
+	// printf("increment counter in proc %d (%d)\n", getpid(), *counter);
 	if ((pid = fork()) == 0)
 	{
 		setpgid(getpid(), local->workgpid);
-		//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
-		//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
-		// if (fd)
-		// {
-			dup2(fd, 0);
-			close(fd);
-		// }
+		// print_error_vaarg ("loop  reserve(%d) - %s\n", *counter, get_process_name(cmd));
+		dup2(fd, 0);
+		close(fd);
+		release_sem(SEMPIPE, 1);
 		reserve_sem(SEMPIPE, *counter);
+		// print_error_vaarg ("loop  reserve(%d) - %s\n", *counter, get_process_name(cmd));
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
@@ -45,8 +43,7 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 												t_command *cmd, int *counter)
 {
 	setpgid(getpid(), local->workgpid);
-	//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
-	//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
+	// print_error_vaarg ("loop  reserve(%d) - %s\n", *counter, get_process_name(cmd));
 	close(pipefd[0]);
 	if (fd)
 		dup2(fd, 0);
@@ -55,6 +52,7 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 	if (fd == 0 && local->flag == 0)
 		tcsetpgrp(0, getpid());
 	reserve_sem(SEMPIPE, *counter);
+	// print_error_vaarg ("loop  reserve(%d) - %s\n", *counter, get_process_name(cmd));
 	traverse_command(cmd, 1, local);
 	exit(g_res_exec);
 }
@@ -66,7 +64,7 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 	int			pipefd[2];
 
 	*counter += 1;
-	//printf("increment counter in proc %d (%d)\n", getpid(), *counter);
+	// prisntf("increment counter in proc %d (%d)\n", getpid(), *counter);
 	if (pipe(pipefd) == -1)
 		exit(-1);
 	pid = fork();

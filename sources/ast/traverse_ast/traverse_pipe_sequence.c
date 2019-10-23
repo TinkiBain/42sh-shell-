@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/23 16:13:29 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:23:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void			pipe_seq_simple_non_builtin(t_command *cmd, t_pjobs *local,
 	else
 	{
 		tcsetpgrp(0, pid);
-		ft_waitpid(pid);
+		ft_waitpid(pid, NULL);
 	}
 }
 
@@ -102,7 +102,7 @@ void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq, int sep)
 
 	pjobs_name = get_job_name(pipe_seq->lex_begin, pipe_seq->lex_end);
 	local = jobs_started(pjobs_name, sep);
-	counter = 0;
+	counter = 1;
 	if (pipe_seq->next)
 	{
 		if (local->flag == 1)
@@ -110,9 +110,9 @@ void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq, int sep)
 		traverse_pipe(pipe_seq, 0, local, &counter);
 		if (local->flag == 0)
 			tcsetpgrp(0, local->workgpid);
-		pipe_av(local->job, counter + 1);
+		pipe_av(counter);
 		if (local->flag == 0)
-			ft_waitpid(-1);
+			ft_waitpid(-1, local->job);
 	}
 	else
 		pipe_seq_without_pipe(pipe_seq->command, local);

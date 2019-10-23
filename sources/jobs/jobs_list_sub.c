@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 18:37:06 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 20:05:48 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_job			*ft_addsubjob(char *path, int num)
 	new->status = ft_xstrdup(" running\t\t");
 	new->next = NULL;
 	new->num = num;
+	new->done = 0;
 	return (new);
 }
 

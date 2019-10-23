@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/19 20:52:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 18:31:49 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,19 @@ void				reserve_sem(int semnum, int n)
 	sops.sem_op = -n;
 	sops.sem_flg = SEM_UNDO;
 	if (semop(g_semid, &sops, 1) == -1)
+		;
+}
+
+void				reserve_sem_while(int semnum, int n)
+{
+	struct sembuf	sops;
+
+	if (!g_semid)
+		return ;
+	sops.sem_num = semnum;
+	sops.sem_op = -n;
+	sops.sem_flg = SEM_UNDO;
+	while (semop(g_semid, &sops, 1) == -1)
 		;
 }
 

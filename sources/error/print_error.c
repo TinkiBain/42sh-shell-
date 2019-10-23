@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 16:31:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:32:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void			print_error_vaarg(const char *msg, ...)
 {
 	va_list		ap;
 
-	reserve_sem(SEMPRINT, 1);
+	reserve_sem_while(SEMPRINT, 1);
 	ft_fdprintf(STDERR, "%s: ", g_project_name);
 	if (g_opt.rl_gnl != 0)
 		ft_fdprintf(STDERR, "line %d: ", g_line_num);
