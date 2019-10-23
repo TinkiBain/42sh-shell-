@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 16:31:53 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 23:10:30 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,36 @@ static t_string	format_info(const char *info)
 	return (str);
 }
 
-// void			print_error(const char *info, const char *msg)
-// {
-// 	extern t_opt	g_opt;
-// 	extern int		g_line_num;
-// 	t_string		info_formatted;
-
-// 	reserve_sem(SEMPRINT, 1);
-// 	ft_fdprintf(STDERR, "%s: ", g_project_name);
-// 	if (g_opt.rl_gnl != 0)
-// 		ft_fdprintf(STDERR, "line %d: ", g_line_num);
-// 	if (info)
-// 	{
-// 		info_formatted = format_info(info);
-// 		ft_fdprintf(STDERR, "%s: ", info_formatted.s);
-// 		str_delete(&info_formatted);
-// 	}
-// 	ft_fdprintf(STDERR, "%s\n\r", msg);
-// 	loginfo("! Error: %s (\"%s\")", msg, info);
-// 	release_sem(SEMPRINT, 1);
-// }
-
 void			print_error(const char *info, const char *msg)
 {
 	t_string	info_formatted;
-	char		*tmp;
+	t_string	tmp;
+	char		*p;
 
 	// reserve_sem(SEMPRINT, 1);
-	tmp = ft_xstrjoin(g_project_name, ": ");
+	tmp = str_xcreate(1024);
+	str_xaddback(&tmp, g_project_name, ft_strlen(g_project_name));
+	str_xaddback(&tmp, ": ", 2);
 	if (g_opt.rl_gnl != 0)
 	{
-		tmp = ft_xstrrejoin(tmp, "line ", 1);
-		tmp = ft_xstrrejoin(tmp, ft_itoa(g_line_num), 2);
-		tmp = ft_xstrrejoin(tmp, ": ", 1);
+		str_xaddback(&tmp, "line ", 5);
+		p = ft_itoa(g_line_num);
+		str_xaddback(&tmp, p, ft_strlen(p));
+		ft_strdel(&p);
+		str_xaddback(&tmp, ": ", 2);
 	}
 	if (info)
 	{
 		info_formatted = format_info(info);
-		tmp = ft_xstrrejoin(tmp, info_formatted.s, 1);
-		tmp = ft_xstrrejoin(tmp, ": ", 1);
+		str_xaddback(&tmp, info_formatted.s, info_formatted.len);
+		str_xaddback(&tmp, ": ", 2);
 		str_delete(&info_formatted);
 	}
-	tmp = ft_xstrrejoin(tmp, msg, 1);
-	tmp = ft_xstrrejoin(tmp, "\n\r", 1);
-	ft_putstr_fd(tmp, STDERR);
+	str_xaddback(&tmp, msg, ft_strlen(msg));
+	str_xaddback(&tmp, "\n\r", 2);
+	write(STDERR, tmp.s, tmp.len);
 	loginfo("! Error: %s (\"%s\")", msg, info);
-	ft_strdel(&tmp);
+	str_delete(&tmp);
 	// release_sem(SEMPRINT, 1);
 }
 

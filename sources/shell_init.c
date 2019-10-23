@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/20 03:16:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:59:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void				shell_init(int ac, char **av)
 	extern t_alias	*g_alias;
 	int				fd;
 
+	setpgid(getpid(), getpid());
 	fd = get_fd(ac, av);
 	g_alias = NULL;
 	fill_options(fd);
