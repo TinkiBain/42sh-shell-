@@ -86,8 +86,8 @@ void			term_restore(void)
 {
 	if (g_term_broken)
 	{
-		term_putstr(g_cap.kp_end);
-		term_putstr(g_cap.cur_show);
+		// term_putstr(g_cap.kp_end);
+		// term_putstr(g_cap.cur_show);
 		tcsetattr(g_opt.rl_in, TCSANOW, &g_init_tios);
 		clear_termcap();
 		g_term_broken = 0;

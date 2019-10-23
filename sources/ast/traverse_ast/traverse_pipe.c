@@ -22,10 +22,9 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 	if ((pid = fork()) == 0)
 	{
 		setpgid(getpid(), local->workgpid);
-		if (local->workgpid == 0)
-			tcsetpgrp(0, getpid());
+		// if (local->workgpid == 0)
+		// 	tcsetpgrp(0, local->workgpid);
 		//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
-		reserve_sem(SEMPIPE, *counter);
 		//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
 		if (fd)
 		{
@@ -33,7 +32,8 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 			close(fd);
 		}
 		if (local->flag == 0)
-			tcsetpgrp(0, local->workgpid);
+			tcsetpgrp(0, getpid());
+		reserve_sem(SEMPIPE, *counter);
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
 	}
@@ -48,16 +48,8 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 												t_command *cmd, int *counter)
 {
-	if (local->workgpid == 0)
-	{
-		setpgid(getpid(), getpid());
-		local->workgpid = getpid();
-		tcsetpgrp(0, getpid());
-	}
-	else
-		setpgid(getpid(), local->workgpid);
+	setpgid(getpid(), local->workgpid);
 	//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
-	reserve_sem(SEMPIPE, *counter);
 	//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
 	close(pipefd[0]);
 	if (fd)
@@ -65,7 +57,8 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 	dup2(pipefd[1], 1);
 	close(pipefd[1]);
 	if (local->flag == 0)
-		tcsetpgrp(0, local->workgpid);
+		tcsetpgrp(0, getpid());
+	reserve_sem(SEMPIPE, *counter);
 	traverse_command(cmd, 1, local);
 	exit(g_res_exec);
 }
@@ -80,12 +73,13 @@ void			traverse_pipe(t_pipe_sequence *pipe_seq, int fd,
 	//printf("increment counter in proc %d (%d)\n", getpid(), *counter);
 	if (pipe(pipefd) == -1)
 		exit(-1);
-	if ((pid = fork()) == 0)
+	pid = fork();
+	if (local->workgpid == 0)
+		local->workgpid = pid;
+	if (pid == 0)
 		inside_fork(fd, pipefd, local, pipe_seq->command, counter);
 	else if (pid == -1)
 		print_error_exit("fork error", NULL, 1);
-	if (local->workgpid == 0)
-		local->workgpid = pid;
 	setpgid(pid, local->workgpid);
 	close(pipefd[1]);
 	if (local && local->flag == 1)

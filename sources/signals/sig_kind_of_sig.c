@@ -69,8 +69,8 @@ char			*terminal_signals(int st, char *name)
 		msg = ft_xstrjoin("\thangup\t", name);
 	else if (st == SIGKILL)
 		msg = ft_xstrjoin("\tkill\t", name);
-	else if (st == SIGPIPE)
-		msg = ft_xstrjoin("\twrite on a pipe with no one to read it\t", name);
+	// else if (st == SIGPIPE)
+	// 	msg = ft_xstrjoin("\twrite on a pipe with no one to read it\t", name);
 	else if (st == SIGPROF)
 		msg = ft_xstrjoin("\tprofiling timer expired\t", name);
 	else if (st == SIGTERM)
