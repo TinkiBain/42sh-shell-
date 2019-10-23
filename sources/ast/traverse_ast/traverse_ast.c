@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/21 20:16:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:29:40 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 extern t_opt		g_opt;
 
-static void			traverse_and_or(t_and_or *elem, int flag1)
+static void			traverse_and_or(t_and_or *elem, int sep, int init_flag)
 {
 	static int		flag;
 
-	flag = flag1;
+	flag = init_flag;
 	if (elem->next)
-		traverse_and_or(elem->next, flag);
+		traverse_and_or(elem->next, sep, flag);
 	if (g_opt.arifmetic_error)
 		return ;
 	if (!flag || (flag == AND_IF && !g_res_exec)
 				|| (flag == OR_IF && g_res_exec))
 	{
-		traverse_pipe_sequence(elem->pipeline->pipe_sequence);
+		traverse_pipe_sequence(elem->pipeline->pipe_sequence, sep);
 		if (elem->pipeline->bang)
 			g_res_exec = (!g_res_exec) ? 1 : 0;
 	}
@@ -63,7 +63,7 @@ static void			traverse_list(t_pars_list *list, int sep)
 		call_subshell(sub_job_name, local);
 	}
 	else
-		traverse_and_or(list->and_or, 0);
+		traverse_and_or(list->and_or, sep, 0);
 }
 
 void				traverse_ast(t_complete_cmd *root)

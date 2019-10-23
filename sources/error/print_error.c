@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 15:46:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:31:53 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			print_error(const char *info, const char *msg)
 	t_string	info_formatted;
 	char		*tmp;
 
-	reserve_sem(SEMPRINT, 1);
+	// reserve_sem(SEMPRINT, 1);
 	tmp = ft_xstrjoin(g_project_name, ": ");
 	if (g_opt.rl_gnl != 0)
 	{
@@ -87,7 +87,7 @@ void			print_error(const char *info, const char *msg)
 	ft_putstr_fd(tmp, STDERR);
 	loginfo("! Error: %s (\"%s\")", msg, info);
 	ft_strdel(&tmp);
-	release_sem(SEMPRINT, 1);
+	// release_sem(SEMPRINT, 1);
 }
 
 void			print_error_exit(const char *info, const char *msg,

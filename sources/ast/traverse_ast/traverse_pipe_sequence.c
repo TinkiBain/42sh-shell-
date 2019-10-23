@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/21 20:17:45 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:13:29 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs *local)
 
 extern int			g_open;
 
-void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq)
+void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq, int sep)
 {
 	t_pjobs			*local;
 	char			*pjobs_name;
 	int				counter;
 
 	pjobs_name = get_job_name(pipe_seq->lex_begin, pipe_seq->lex_end);
-	local = jobs_started(pjobs_name, 0);
+	local = jobs_started(pjobs_name, sep);
 	counter = 0;
 	if (pipe_seq->next)
 	{
