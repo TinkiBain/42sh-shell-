@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/21 19:44:48 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 14:17:57 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,13 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs *local,int 
 	if ((pid = fork()) == 0)
 	{
 		setpgid(getpid(), local->workgpid);
-		// if (local->workgpid == 0)
-		// 	tcsetpgrp(0, local->workgpid);
 		//print_error_vaarg ("%d reserve 1 - %d\n", *counter, get_sem(0));
 		//print_error_vaarg ("%d reserve 2 - %d\n", *counter, get_sem(0));
-		if (fd)
-		{
+		// if (fd)
+		// {
 			dup2(fd, 0);
 			close(fd);
-		}
-		if (local->flag == 0)
-			tcsetpgrp(0, getpid());
+		// }
 		reserve_sem(SEMPIPE, *counter);
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
@@ -56,7 +52,7 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs *local,
 		dup2(fd, 0);
 	dup2(pipefd[1], 1);
 	close(pipefd[1]);
-	if (local->flag == 0)
+	if (fd == 0 && local->flag == 0)
 		tcsetpgrp(0, getpid());
 	reserve_sem(SEMPIPE, *counter);
 	traverse_command(cmd, 1, local);
