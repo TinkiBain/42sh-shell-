@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 21:23:18 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/22 21:37:27 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:04:15 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_string		*str_addback(t_string *str, const char *s, size_t size);
 t_string		*str_addfront(t_string *str, const char *s, size_t size);
 void			str_remove(t_string *str, int from, int n);
 t_string		*str_insert(t_string *str, int to, const char *s, size_t size);
+t_string		*str_replace(t_string *str, const char *what, const char *with);
 
 #endif

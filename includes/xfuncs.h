@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 05:55:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/14 02:09:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:40:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ t_string	str_xncopy(const char *s, int n);
 t_string	str_xsubstring(t_string str, int start, int len);
 void		str_xaddback(t_string *str, const char *s, size_t size);
 void		str_xaddfront(t_string *str, const char *s, size_t size);
-void		str_xinsert(t_string *str, int to, const char *s, size_t size);
+t_string	*str_xinsert(t_string *str, int to, const char *s, size_t size);
+t_string	*str_xreplace(t_string *str, const char *what, const char *with);
 
 t_vector	vec_xcreate(size_t len, size_t size);
 t_vector	vec_xduplicate(t_vector vec, void *(*duplicate)(void *));

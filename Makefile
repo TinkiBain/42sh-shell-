@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/18 21:51:33 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/23 20:41:40 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,8 @@ SRCS_XFUNCS=\
 	str_xcopy.c				str_xcreate.c\
 	str_xduplicate.c		str_xinsert.c\
 	str_xncopy.c			str_xsubstring.c\
-	vec_xfuncs.c			xmalloc.c
+	str_xreplace.c			vec_xfuncs.c\
+	xmalloc.c
 
 VAR_DIR=variables
 

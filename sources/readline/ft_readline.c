@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:36:29 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:37:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+#include "expand_prompt.h"
 #include "del_funcs.h"
 
 t_line			*g_line;
@@ -29,7 +30,7 @@ static void	init_line(t_line *line, char *prompt, enum e_rl_mode mode)
 	history_push(line->history, temp_str);
 	line->str = (t_string *)line->history->item->content;
 	line->prompt = str_xcopy(prompt ? prompt : "");
-	convert_escapes(&line->prompt);
+	expand_prompt(&line->prompt);
 	line->vi_mode = g_opt.vi_mode;
 	line->emacs_mode = g_opt.emacs_mode;
 	line->arg = 1;

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_xinsert.c                                      :+:      :+:    :+:   */
+/*   expand_prompt.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:24:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 20:39:48 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/23 19:36:14 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/23 19:36:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xfuncs.h"
+#ifndef EXPAND_PROMPT_H
+# define EXPAND_PROMPT_H
 
-t_string	*str_xinsert(t_string *str, int to, const char *s, size_t size)
-{
-	t_string	*p;
+# include "ft_readline.h"
 
-	if (!str || !s || !size)
-		return (str);
-	if (!(p = str_insert(str, to, s, size)))
-		die();
-	return (p);
-}
+void		expand_prompt(t_string *str);
+
+#endif

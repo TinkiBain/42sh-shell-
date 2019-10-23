@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:06:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/20 03:07:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:22:11 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@
 # define COLOR_BGYELLOW			"\033[103;30m"
 
 # define COLOR_EOC				"\033[0m"
-
-
 
 #endif
