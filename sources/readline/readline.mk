@@ -6,7 +6,7 @@
 #    By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 14:44:06 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/17 15:55:58 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/23 19:41:23 by gmelisan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ READLINE_INCLUDES=\
 SRCS_READLINE_WITHOUT_DIR=\
 	ft_readline.c			loginfo.c			loginfo_line.c\
 	gnl.c					utils.c				del_funcs.c\
-	duplicate_line.c		undo.c
+	duplicate_line.c		undo.c				expand_prompt.c
 
 SRCS_READLINE_ACTIONS=\
 	backward_char.c					backward_delete_char.c\

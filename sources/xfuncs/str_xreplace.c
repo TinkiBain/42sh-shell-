@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_xinsert.c                                      :+:      :+:    :+:   */
+/*   str_xreplace.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/06 18:24:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 20:39:48 by gmelisan         ###   ########.fr       */
+/*   Created: 2019/10/23 20:31:33 by gmelisan          #+#    #+#             */
+/*   Updated: 2019/10/23 21:03:06 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xfuncs.h"
 
-t_string	*str_xinsert(t_string *str, int to, const char *s, size_t size)
+t_string	*str_xreplace(t_string *str, const char *what, const char *with)
 {
 	t_string	*p;
 
-	if (!str || !s || !size)
+	if (!str || !what || !with || !ft_strlen(what) || !ft_strlen(with))
 		return (str);
-	if (!(p = str_insert(str, to, s, size)))
+	if (!(p = str_replace(str, what, with)))
 		die();
 	return (p);
 }

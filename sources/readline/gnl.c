@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 15:57:28 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:36:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:24:16 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_readline.h"
+#include "expand_prompt.h"
 
 extern t_opt	g_opt;
 extern t_line	*g_line;
@@ -59,7 +60,7 @@ char			*gnl(char *prompt)
 	signal(SIGINT, sigh_gnl);
 	g_line->result = str_xcreate(0);
 	g_line->prompt = str_xcopy(prompt ? prompt : "");
-	convert_escapes(&g_line->prompt);
+	expand_prompt(&g_line->prompt);
 	ft_putstr_fd(g_line->prompt.s, g_opt.rl_out);
 	ret = gnl_input_loop();
 	if (ret == 0)
