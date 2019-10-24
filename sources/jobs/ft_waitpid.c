@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 23:06:05 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 17:21:25 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,15 @@ int				pipe_av(int counter)
 static int		pipe_all_pids_check(t_job *local)
 {
 	int st;
-	int pid;
 	t_job *job;
 
 	job = local;
-	pid = 0;
 	st = 0;
 	while (job)
 	{
 		if (!job->done)
 		{
-			if ((pid = waitpid(job->pid, &st, WUNTRACED | WNOHANG | WCONTINUED)) > 0)
+			if (waitpid(job->pid, &st, WUNTRACED | WNOHANG) > 0)
 				job->done = 1;
 			job = local;
 			continue ;
@@ -64,8 +62,6 @@ int				ft_waitpid(pid_t pid, t_job *local)
 		{
 			if (g_wait_flags == pid)
 			{
-			//	printf ("asdf\n");
-			//	sleep(2);
 				g_wait_flags = 0;
 				return (1);
 			}

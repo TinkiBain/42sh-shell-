@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 23:02:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 17:23:53 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char		*ft_readline(char *prompt, enum e_rl_mode mode)
 	g_line_num++;
 	g_line = &line;
 	tcsetpgrp(0, getpid());
+	g_wait_flags = 0;
 	if (!g_opt.emacs_mode && !g_opt.vi_mode)
 		return (gnl(prompt));
 	term_init();
