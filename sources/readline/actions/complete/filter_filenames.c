@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_filenames.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/16 17:42:46 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:08:58 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static t_vector	build_filenames_vector(t_string str)
 	i++;
 	while ((c = str_get(str, --i)) && !complete_isspace_check(str, i))
 		str_xaddfront(&path, &c, 1);
-	path.s = tdq(path.s);
+	path.s = tdq(path.s, NULL);
 	str_fixlen(&path);
 	if (path.len == 0)
 		str_xaddfront(&path, ".", 1);

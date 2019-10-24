@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_while_clause.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:15:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 21:46:52 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:34:02 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** while_clause	: While compound_list Do compound_list Done
 */
 
-void	traverse_while_clause(t_while_clause *list, t_pjobs *local)
+void	traverse_while_clause(t_while_clause *list, t_pjobs **local)
 {
 	if (list->compound_list)
 		while (1)

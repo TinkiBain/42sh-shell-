@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fc.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 18:05:51 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/24 20:29:33 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_dlist			*ft_fc_find_arg(const char *str);
 t_dlist			*ft_fc_find_arg_number(const char *str);
 
 int				ft_fc_list(const char **argv, t_cmd_opt opt);
-int				ft_fc_reexec(const char **argv, t_pjobs *local);
-int				ft_fc_edit(const char **argv, t_cmd_opt opt, t_pjobs *local);
+int				ft_fc_reexec(const char **argv, t_pjobs **local);
+int				ft_fc_edit(const char **argv, t_cmd_opt opt, t_pjobs **local);
 char			**ft_fc_edit_build_argv(char *path, t_cmd_opt opt);
 int				ft_fc_edit_run_editor(char **argv);
-int				ft_fc_edit_execute(char *path, t_pjobs *local);
+int				ft_fc_edit_execute(char *path, t_pjobs **local);
 
 #endif

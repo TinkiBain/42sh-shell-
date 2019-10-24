@@ -6,13 +6,13 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:33:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/19 20:49:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 20:29:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fc.h"
 
-int			ft_fc_edit_execute(char *path, t_pjobs *local)
+int			ft_fc_edit_execute(char *path, t_pjobs **local)
 {
 	char	*s;
 	int		ret;
@@ -25,7 +25,7 @@ int			ft_fc_edit_execute(char *path, t_pjobs *local)
 		{
 			ft_getopt_clear();
 			ft_putendl_fd(s, STDERR);
-			local = jobs_started(ft_xstrdup(s), 0);
+			(*local) = jobs_started(ft_xstrdup(s), 0);
 			call_subshell(s, local);
 		}
 		else

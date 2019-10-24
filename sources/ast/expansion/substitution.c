@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   substitution.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 20:58:11 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/19 21:27:59 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/24 21:12:07 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char			*substitution_write(int pipefd[2], pid_t pid, char *str)
 	return (tmp);
 }
 
-char			*substitution_exec(char *str)
+char			*substitution_exec(char *str, t_pjobs **local)
 {
 	pid_t			pid;
 	t_complete_cmd	*parser_list;
@@ -62,10 +62,11 @@ char			*substitution_exec(char *str)
 	}
 	else if (pid == -1)
 		print_error_exit("fork error", NULL, 1);
+	(*local) = ljobs_started(ft_xstrdup(str), (*local)->flag, (*local)->num, pid);
 	return (substitution_write(pipefd, pid, str));
 }
 
-char			*substitution(char *str)
+char			*substitution(char *str, t_pjobs **local)
 {
 	char		*tmp;
 	char		*begin;
@@ -85,5 +86,5 @@ char			*substitution(char *str)
 	begin = ft_xstrndup(begin, str - begin);
 	begin = cleaner(begin);
 	free(tmp);
-	return (substitution_exec(begin));
+	return (substitution_exec(begin, local));
 }

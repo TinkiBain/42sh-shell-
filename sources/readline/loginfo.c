@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loginfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:36:18 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:07:45 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		logopen(void)
 
 	if (!DEBUG)
 		return ;
-	path = tdq(ft_xstrdup(get_var_value("LOGPATH")));
+	path = tdq(ft_xstrdup(get_var_value("LOGPATH")), NULL);
 	if (stat(path, &st) == 0 && st.st_size >= LOGSIZE)
 		g_logfd = open(path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU);
 	else

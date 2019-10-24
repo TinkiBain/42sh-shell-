@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_case_clause.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 19:07:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 20:33:32 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:58:02 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@
 ** 					| pattern '|' WORD
 */
 
-void			traverse_case_clause(t_case_clause *list, t_pjobs *local)
+void			traverse_case_clause(t_case_clause *list, t_pjobs **local)
 {
 	t_case_list	*elem;
 	t_pattern	*pattern;
 	char		*target;
 
-	list->word = tdq(list->word);
+	list->word = tdq(list->word, local);
 	elem = list->case_list;
 	target = list->word;
 	while (elem)

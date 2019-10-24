@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 18:51:07 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/11 20:18:44 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:28:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int		clear(t_vector vec, char **argv, int ret)
 	return (ret);
 }
 
-int				ft_fc_edit(const char **fc_argv, t_cmd_opt opt, t_pjobs *local)
+int				ft_fc_edit(const char **fc_argv, t_cmd_opt opt, t_pjobs **local)
 {
 	t_vector	vec;
 	int			start;

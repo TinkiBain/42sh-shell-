@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_if_clause.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 15:16:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/08 21:42:23 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:33:38 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **				| Else                    compound_list
 */
 
-static void	traverse_else_part(t_else_part *elem, t_pjobs *local)
+static void	traverse_else_part(t_else_part *elem, t_pjobs **local)
 {
 	if (elem->head_compound)
 		traverse_compound_list(elem->head_compound, local);
@@ -35,7 +35,7 @@ static void	traverse_else_part(t_else_part *elem, t_pjobs *local)
 	}
 }
 
-void		traverse_if_clause(t_if_clause *list, t_pjobs *local)
+void		traverse_if_clause(t_if_clause *list, t_pjobs **local)
 {
 	traverse_compound_list(list->if_head, local);
 	if (!g_res_exec)

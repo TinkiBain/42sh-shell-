@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 18:55:28 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 21:01:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char		*in_brace(char *str, int *j)
 		return (brace_handler(str + 1, j));
 }
 
-static char		*next_char_check(char *str, int *j)
+static char		*next_char_check(char *str, int *j, t_pjobs **local)
 {
 	char		*tmp;
 
@@ -78,13 +78,13 @@ static char		*next_char_check(char *str, int *j)
 	else if (*str && *str == '(')
 	{
 		tmp = ft_xstrjoin("$", str);
-		return (substitution(tmp));
+		return (substitution(tmp, local));
 	}
 	else
 		return (NULL);
 }
 
-char			*ft_dollar_word(char *str, int k, int *j)
+char			*ft_dollar_word(char *str, int k, int *j, t_pjobs **local)
 {
 	char		*tmp;
 	char		*src;
@@ -93,7 +93,7 @@ char			*ft_dollar_word(char *str, int k, int *j)
 
 	i = 0;
 	flag = 0;
-	if ((tmp = next_char_check(str, j)))
+	if ((tmp = next_char_check(str, j, local)))
 		return (tmp);
 	else if (g_opt.arifmetic_error)
 		return (NULL);

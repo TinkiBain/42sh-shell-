@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:37:28 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:09:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	history_open(t_history *history)
 	char	*s_max;
 
 	fd = -1;
-	history->path = tdq(ft_xstrdup(get_var_value("HISTPATH")));
+	history->path = tdq(ft_xstrdup(get_var_value("HISTPATH")), NULL);
 	s_max = ft_xstrdup(get_var_value("HISTSIZE"));
 	history->max_size = s_max ? ft_atoi(s_max) + 1 : 0;
 	ft_strdel(&s_max);

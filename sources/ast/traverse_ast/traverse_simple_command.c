@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_simple_command.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 19:14:56 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:00:56 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 extern char		**g_var;
 extern t_opt	g_opt;
 
-static int		traverse_cmd_pref(t_cmd_prefix *pref, t_vector *prefix_vars)
+static int		traverse_cmd_pref(t_cmd_prefix *pref, t_vector *prefix_vars, t_pjobs **local)
 {
 	while (pref)
 	{
 		if (pref->assignment_word)
 		{
-			pref->assignment_word = tdq(pref->assignment_word);
+			pref->assignment_word = tdq(pref->assignment_word, local);
 			vec_addback(prefix_vars, &(pref->assignment_word));
 		}
-		else if (redirect(pref->io_redir) == -1)
+		else if (redirect(pref->io_redir, local) == -1)
 		{
 			g_res_exec = 1;
 			redir_reset();
@@ -35,16 +35,16 @@ static int		traverse_cmd_pref(t_cmd_prefix *pref, t_vector *prefix_vars)
 	return (0);
 }
 
-static int		traverse_cmd_suf(t_cmd_suffix *suff, t_vector *av)
+static int		traverse_cmd_suf(t_cmd_suffix *suff, t_vector *av, t_pjobs **local)
 {
 	while (suff)
 	{
 		if (suff->word)
 		{
-			suff->word = tdq(suff->word);
+			suff->word = tdq(suff->word, local);
 			vec_addback(av, &(suff->word));
 		}
-		else if (redirect(suff->io_redir) == -1)
+		else if (redirect(suff->io_redir, local) == -1)
 		{
 			g_res_exec = 1;
 			redir_reset();
@@ -73,7 +73,7 @@ static void		traverse_cmd_error(int in_fork, t_vector av,
 }
 
 void			traverse_simple_command(t_simple_cmd *cmd, int in_fork,
-														t_pjobs *local)
+														t_pjobs **local)
 {
 	t_vector	av;
 	t_vector	prefix_vars;
@@ -84,8 +84,8 @@ void			traverse_simple_command(t_simple_cmd *cmd, int in_fork,
 	if (cmd->cmd_name)
 		vec_addback(&av, &(cmd->cmd_name));
 	prefix_vars = vec_create(0, sizeof(char *));
-	if (traverse_cmd_pref(cmd->cmd_pref, &prefix_vars) == -1
-			|| traverse_cmd_suf(cmd->cmd_suf, &av) == -1
+	if (traverse_cmd_pref(cmd->cmd_pref, &prefix_vars, local) == -1
+			|| traverse_cmd_suf(cmd->cmd_suf, &av, local) == -1
 			|| g_opt.arifmetic_error)
 		return (traverse_cmd_error(in_fork, av, prefix_vars));
 	if (in_fork && prefix_vars.len)

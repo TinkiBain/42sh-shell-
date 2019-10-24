@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 18:00:07 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 18:58:13 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 21:03:49 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char			*value_rep(char *value)
 	if (i == 0)
 		return (NULL);
 	value[i + ct] = '\0';
-	value = tdq(value);
+	value = tdq(value, NULL);
 	return (value);
 }
 

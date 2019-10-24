@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_for_clause.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/11 15:24:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:58:09 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** do_group		: Do compound_list Done
 */
 
-void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
+void			traverse_for_clause(t_for_clause *list, t_pjobs **local)
 {
 	extern char	**g_var;
 	char		*var_name;
@@ -34,7 +34,7 @@ void			traverse_for_clause(t_for_clause *list, t_pjobs *local)
 	wordlist = list->wordlist;
 	while (wordlist)
 	{
-		wordlist->word = tdq(wordlist->word);
+		wordlist->word = tdq(wordlist->word, local);
 		var = ft_xstrjoin(var_name, wordlist->word);
 		set_var(var, &g_var, 0);
 		ft_strdel(&var);

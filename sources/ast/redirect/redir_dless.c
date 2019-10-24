@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_dless.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/15 22:15:56 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/24 20:58:43 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	save_fd(void)
 	return (old_fd);
 }
 
-void		redir_dless_push(char *str, int fd)
+void		redir_dless_push(char *str, int fd, t_pjobs **local)
 {
 	int		i;
 
@@ -53,7 +53,7 @@ void		redir_dless_push(char *str, int fd)
 	while (str[i])
 	{
 		if (str[i] == '$')
-			dollar(&i, &str);
+			dollar(&i, &str, local);
 		else
 			++i;
 	}
@@ -61,7 +61,7 @@ void		redir_dless_push(char *str, int fd)
 	free(str);
 }
 
-int			redir_dless(t_io_redirect *redir)
+int			redir_dless(t_io_redirect *redir, t_pjobs **local)
 {
 	extern t_opt	g_opt;
 	int				pipefd[2];
@@ -79,7 +79,7 @@ int			redir_dless(t_io_redirect *redir)
 			return (-1);
 		if ((!str || ft_strequ(str, redir->file_name)) && !(g_eof = 0))
 			break ;
-		redir_dless_push(str, pipefd[1]);
+		redir_dless_push(str, pipefd[1], local);
 	}
 	free(str);
 	redir->io_number = (redir->io_number == -1) ? 0 : redir->io_number;

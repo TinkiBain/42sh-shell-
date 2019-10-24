@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 18:53:52 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:27:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int		call_nonbuilin_exec(const char *path, char *const *av)
 	return (0);
 }
 
-static int		call_if_other_builtin(int ac, const char **av, t_pjobs *local)
+static int		call_if_other_builtin(int ac, const char **av, t_pjobs **local)
 {
 	if (ft_strequ(*av, "fc"))
 		return (ft_fc(ac, av, local));
@@ -63,7 +63,7 @@ static int		call_if_other_builtin(int ac, const char **av, t_pjobs *local)
 	return (0);
 }
 
-static int		call_if_builtin(int ac, const char **av, t_pjobs *local)
+static int		call_if_builtin(int ac, const char **av, t_pjobs **local)
 {
 	if (**av == '%')
 		return (ft_fg(g_pjobs, *av));
@@ -90,7 +90,7 @@ static int		call_if_builtin(int ac, const char **av, t_pjobs *local)
 	return (call_if_other_builtin(ac, av, local));
 }
 
-int				call_exec(int ac, const char **av, t_pjobs *local)
+int				call_exec(int ac, const char **av, t_pjobs **local)
 {
 	char			*p;
 	int				res;

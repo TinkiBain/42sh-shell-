@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:14:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/12 14:11:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:00:39 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-void		traverse_command(t_command *cmd, int in_fork, t_pjobs *local)
+void		traverse_command(t_command *cmd, int in_fork, t_pjobs **local)
 {
 	if (cmd->simple_command)
 		traverse_simple_command(cmd->simple_command, in_fork, local);
 	else if (cmd->compound_command)
 	{
-		local->workgpid = 1;
 		if (cmd->redirect_list)
-			traverse_redirect_list(cmd->redirect_list);
+			traverse_redirect_list(cmd->redirect_list, local);
 		traverse_compound_command(cmd->compound_command, local);
 		redir_reset();
 	}

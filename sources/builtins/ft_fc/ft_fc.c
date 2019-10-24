@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 16:26:34 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 17:02:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:28:07 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	show_usage(void)
 	return (1);
 }
 
-static int	run_fc(const char **argv, t_cmd_opt opt, t_pjobs *local)
+static int	run_fc(const char **argv, t_cmd_opt opt, t_pjobs **local)
 {
 	int		ret;
 
@@ -52,7 +52,7 @@ static int	fill_opt(t_cmd_opt *opt, int o)
 	return (0);
 }
 
-int			ft_fc(int argc, const char **argv, t_pjobs *local)
+int			ft_fc(int argc, const char **argv, t_pjobs **local)
 {
 	int			o;
 	t_cmd_opt	opt;

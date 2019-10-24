@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/15 17:26:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 21:07:20 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_opt	g_opt;
 
-void			tdq_while(int *i, char **str)
+void			tdq_while(int *i, char **str, t_pjobs **local)
 {
 	if ((*str)[*i] == '\\')
 		(*i) += 1;
@@ -31,7 +31,7 @@ void			tdq_while(int *i, char **str)
 		{
 			if ((*str)[*i] == '$' && (*str)[(*i) + 1]
 					&& check_spec_symbol((*str)[(*i) + 1]))
-				dollar(i, str);
+				dollar(i, str, local);
 			else if ((*str)[*i] == '\\')
 				(*i) += 1;
 			(*i) += 1;
@@ -39,10 +39,10 @@ void			tdq_while(int *i, char **str)
 	}
 	else if ((*str)[*i] == '$' && (*str)[(*i) + 1]
 			&& check_spec_symbol((*str)[(*i) + 1]))
-		dollar(i, str);
+		dollar(i, str, local);
 }
 
-char			*tdq(char *str)
+char			*tdq(char *str, t_pjobs **local)
 {
 	char	*tmp;
 	int		i;
@@ -53,7 +53,7 @@ char			*tdq(char *str)
 	tmp = str;
 	while (str[0] && str[i] != '\0')
 	{
-		tdq_while(&i, &str);
+		tdq_while(&i, &str, local);
 		if (g_opt.arifmetic_error)
 			return (str);
 		i++;

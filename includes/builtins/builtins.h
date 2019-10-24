@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 18:54:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:29:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_cd(const char **av);
 int		ft_echo(const char **av);
 int		ft_exit(int ac, const char **av);
 int		ft_export(const char **av);
-int		ft_fc(int ac, const char **av, t_pjobs *local);
+int		ft_fc(int ac, const char **av, t_pjobs **local);
 int		ft_fg(t_pjobs *local_job, const char *name);
 int		ft_hash(char **argv);
 int		ft_history(const char **argv);
