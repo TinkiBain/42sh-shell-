@@ -36,7 +36,7 @@ static t_for_clause	*parser_init_for_clause(void)
 {
 	t_for_clause	*list;
 
-	list = (t_for_clause*)ft_xmalloc(sizeof(t_for_clause));
+	list = (t_for_clause*)ft_xmemalloc(sizeof(t_for_clause));
 	list->name = NULL;
 	list->wordlist = NULL;
 	list->do_group = NULL;

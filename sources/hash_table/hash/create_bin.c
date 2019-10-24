@@ -20,7 +20,7 @@ t_hash			*create_hash(char *name, char *path, unsigned int key)
 {
 	t_hash		*temp;
 
-	temp = (t_hash *)xmalloc(sizeof(t_hash));
+	temp = (t_hash *)ft_xmemalloc(sizeof(t_hash));
 	temp->name = ft_xstrdup(name);
 	temp->path = path ? ft_xstrdup(path) : NULL;
 	temp->hash = key;

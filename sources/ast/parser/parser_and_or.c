@@ -34,7 +34,7 @@ static t_and_or	*parser_init_and_or(t_and_or *list_down)
 {
 	t_and_or	*list;
 
-	list = (t_and_or*)ft_xmalloc(sizeof(t_and_or));
+	list = (t_and_or*)ft_xmemalloc(sizeof(t_and_or));
 	list->next = list_down;
 	list->and_or_if = 0;
 	list->pipeline = NULL;

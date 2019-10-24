@@ -61,7 +61,7 @@ static t_simple_cmd		*parser_init_simple_command(void)
 {
 	t_simple_cmd		*list;
 
-	list = (t_simple_cmd*)ft_xmalloc(sizeof(t_simple_cmd));
+	list = (t_simple_cmd*)ft_xmemalloc(sizeof(t_simple_cmd));
 	list->cmd_pref = NULL;
 	list->cmd_name = NULL;
 	list->cmd_suf = NULL;

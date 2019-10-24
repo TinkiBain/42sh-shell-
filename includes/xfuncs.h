@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 05:55:27 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 20:40:31 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:25:19 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "ft_vector.h"
 
 void		die(void);
-void		*xmalloc(size_t size);
+void		*ft_xmalloc(size_t size);
 void		*ft_xmemalloc(size_t size);
 char		*ft_xstrdup(const char *src);
 char		*ft_xstrndup(const char *src, size_t j);

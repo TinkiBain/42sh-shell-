@@ -35,7 +35,7 @@ static t_alias	*alias_init(char *head, char *body)
 {
 	t_alias		*list;
 
-	list = (t_alias*)ft_xmalloc(sizeof(t_alias));
+	list = (t_alias*)ft_xmemalloc(sizeof(t_alias));
 	list->head = head;
 	list->body_alias = body;
 	return (list);

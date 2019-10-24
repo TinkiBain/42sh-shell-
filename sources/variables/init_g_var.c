@@ -53,7 +53,7 @@ int			init_g_var(void)
 		g_var = create_copy_env(environ);
 	else
 	{
-		g_var = (char **)ft_xmalloc(sizeof(char *));
+		g_var = (char **)ft_xmemalloc(sizeof(char *));
 		ft_bzero(g_var, sizeof(char *));
 	}
 	set_default_vars();

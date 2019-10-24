@@ -34,7 +34,7 @@ static t_if_clause	*parser_init_if_clause(void)
 {
 	t_if_clause		*list;
 
-	list = (t_if_clause*)ft_xmalloc(sizeof(t_if_clause));
+	list = (t_if_clause*)ft_xmemalloc(sizeof(t_if_clause));
 	list->if_head = NULL;
 	list->if_body = NULL;
 	list->else_part = NULL;

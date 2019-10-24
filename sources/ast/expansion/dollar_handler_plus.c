@@ -36,7 +36,7 @@ static char		*hash(char *str, int *j)
 	while (str[i] && str[i] != '}')
 		i++;
 	*j += i + 2;
-	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
+	tmp = (char *)ft_xmemalloc(sizeof(char) * (i + 1));
 	while (++len < i && check_spec_symbol(str[len]))
 		tmp[len] = str[len];
 	tmp[len] = '\0';
@@ -100,7 +100,7 @@ char			*ft_dollar_word(char *str, int k, int *j)
 	else
 		while (str[i] && check_spec_symbol(str[i]) && str[i] != '$')
 			i++;
-	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
+	tmp = (char *)ft_xmemalloc(sizeof(char) * (i + 1));
 	while (++k < i)
 		tmp[k] = str[k + flag];
 	tmp[k] = '\0';

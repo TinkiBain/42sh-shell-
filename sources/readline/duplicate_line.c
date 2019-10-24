@@ -16,9 +16,9 @@ t_line	*duplicate_line(t_line *line)
 {
 	t_line	*new;
 
-	new = xmalloc(sizeof(t_line));
+	new = ft_xmemalloc(sizeof(t_line));
 	ft_memcpy(new, line, sizeof(t_line));
-	new->str = xmalloc(sizeof(t_string));
+	new->str = ft_xmemalloc(sizeof(t_string));
 	*new->str = str_xduplicate(*line->str);
 	new->arg = 1;
 	return (new);

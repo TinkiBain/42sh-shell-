@@ -33,7 +33,7 @@ t_complete_cmd		*parser(void)
 	extern int		g_parser_expansion;
 
 	g_end_parsing = 0;
-	complete_cmd = (t_complete_cmd*)ft_xmalloc(sizeof(t_complete_cmd));
+	complete_cmd = (t_complete_cmd*)ft_xmemalloc(sizeof(t_complete_cmd));
 	complete_cmd->sep = 0;
 	complete_cmd->list = parser_list(NULL);
 	if (g_error_lex)

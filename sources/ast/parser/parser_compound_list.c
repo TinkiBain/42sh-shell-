@@ -34,7 +34,7 @@ static t_compound_list		*parser_init_compound_list(void)
 {
 	t_compound_list			*list;
 
-	list = (t_compound_list*)ft_xmalloc(sizeof(t_compound_list));
+	list = (t_compound_list*)ft_xmemalloc(sizeof(t_compound_list));
 	list->term = NULL;
 	list->separator = 0;
 	return (list);

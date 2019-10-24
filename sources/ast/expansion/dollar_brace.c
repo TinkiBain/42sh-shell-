@@ -109,7 +109,7 @@ char			*brace_handler(char *str, int *j)
 		i++;
 	}
 	*j += i + 2 + count;
-	tmp = (char *)ft_xmalloc(sizeof(char) * (i + 1));
+	tmp = (char *)ft_xmemalloc(sizeof(char) * (i + 1));
 	while (++len < i && check_spec_symbol(str[len]))
 		tmp[len] = str[len];
 	tmp[len] = '\0';

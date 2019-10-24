@@ -23,7 +23,7 @@ char	**create_copy_env(char **env)
 	size = 0;
 	while (*(tmp++))
 		++size;
-	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 1));
+	new_env = (char **)ft_xmemalloc(sizeof(char *) * (size + 1));
 	tmp = new_env;
 	while (*env)
 	{

@@ -23,10 +23,10 @@ void	redir_add_fd_table(int fd)
 		size = *g_open_fd + 1;
 	i = 0;
 	if (size)
-		tmp = (int *)ft_xmalloc(sizeof(int) * (size + 1));
+		tmp = (int *)ft_xmemalloc(sizeof(int) * (size + 1));
 	else
 	{
-		tmp = (int *)ft_xmalloc(sizeof(int) * (size + 2));
+		tmp = (int *)ft_xmemalloc(sizeof(int) * (size + 2));
 		tmp[0] = 0;
 	}
 	while (i < size)

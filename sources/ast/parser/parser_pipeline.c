@@ -32,7 +32,7 @@ static t_pipeline	*parser_init_pipeline(void)
 {
 	t_pipeline		*list;
 
-	list = (t_pipeline*)ft_xmalloc(sizeof(t_pipeline));
+	list = (t_pipeline*)ft_xmemalloc(sizeof(t_pipeline));
 	list->bang = 0;
 	list->pipe_sequence = NULL;
 	return (list);

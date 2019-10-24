@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/11 04:05:55 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/05/13 22:12:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/24 18:15:18 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_llitoa(unsigned long long int nb)
 		nb /= 10;
 		++j;
 	}
-	str = (char*)ft_xmalloc(sizeof(char) * (j + 1));
+	str = (char*)malloc(sizeof(char) * (j + 1));
 	i = 0;
 	while (j > 0)
 	{

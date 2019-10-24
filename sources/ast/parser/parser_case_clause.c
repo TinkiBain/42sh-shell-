@@ -40,7 +40,7 @@ static t_case_clause	*parser_init_case_clause(void)
 		g_error_lex = g_lex;
 		return (NULL);
 	}
-	list = (t_case_clause*)ft_xmalloc(sizeof(t_case_clause));
+	list = (t_case_clause*)ft_xmemalloc(sizeof(t_case_clause));
 	list->word = ft_xstrdup(g_lex->lexem);
 	g_lex = g_lex->next;
 	parser_linebreak();

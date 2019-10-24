@@ -41,7 +41,7 @@ static t_case_item	*parser_init_case_item(void)
 {
 	t_case_item		*list;
 
-	list = (t_case_item*)ft_xmalloc(sizeof(t_case_item));
+	list = (t_case_item*)ft_xmemalloc(sizeof(t_case_item));
 	list->pattern = NULL;
 	list->compound_list = NULL;
 	return (list);

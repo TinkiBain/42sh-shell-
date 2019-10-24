@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 23:13:55 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/13 20:14:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 18:14:55 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_realloc(void **ptr, size_t oldsize, size_t newsize);
 void				ft_swap(void *a, void *b);
-void				*ft_xmalloc(size_t size);
 
 t_uchar				ft_atoi_octal(char *str, int *count);
 int					ft_atoi(const char *str);

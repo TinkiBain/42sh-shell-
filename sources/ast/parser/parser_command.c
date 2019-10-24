@@ -37,7 +37,7 @@ static t_command	*parser_init_command(void)
 {
 	t_command		*list;
 
-	list = (t_command*)ft_xmalloc(sizeof(t_command));
+	list = (t_command*)ft_xmemalloc(sizeof(t_command));
 	list->simple_command = NULL;
 	list->compound_command = NULL;
 	list->function_definition = NULL;

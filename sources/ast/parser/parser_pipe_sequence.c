@@ -33,7 +33,7 @@ t_pipe_sequence		*parser_init_pipe_sequence(void)
 {
 	t_pipe_sequence	*list;
 
-	list = (t_pipe_sequence*)ft_xmalloc(sizeof(t_pipe_sequence));
+	list = (t_pipe_sequence*)ft_xmemalloc(sizeof(t_pipe_sequence));
 	list->next = NULL;
 	list->pipe_op = 0;
 	list->lex_begin = g_lex;

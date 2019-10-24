@@ -54,7 +54,7 @@ static t_cmd_prefix	*parser_init_cmd_prefix(void)
 {
 	t_cmd_prefix	*list;
 
-	list = (t_cmd_prefix*)ft_xmalloc(sizeof(t_cmd_prefix));
+	list = (t_cmd_prefix*)ft_xmemalloc(sizeof(t_cmd_prefix));
 	list->io_redir = NULL;
 	list->assignment_word = NULL;
 	return (list);

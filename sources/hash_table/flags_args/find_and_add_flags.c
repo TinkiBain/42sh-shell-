@@ -36,7 +36,7 @@ static	void	read_and_fill(int fd, t_hash *table)
 		free(line);
 		++len;
 	}
-	table->flags_args = (char **)xmalloc(sizeof(char *) * (len + 1));
+	table->flags_args = (char **)ft_xmemalloc(sizeof(char *) * (len + 1));
 	lseek(fd, 0, SEEK_SET);
 	fill_arr(fd, &table->flags_args);
 }

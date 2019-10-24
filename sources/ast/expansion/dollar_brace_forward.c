@@ -21,7 +21,7 @@ static char		*forward_bigest(int len, char *value, char *bud)
 	tmp = NULL;
 	if ((len = forward_smaller_eq(bud, value)) < 0)
 		return (freed_proc_value(bud, value, 0, 1));
-	tmp = ft_xmalloc(sizeof(char) * (ft_strlen(bud) - len + 1));
+	tmp = ft_xmemalloc(sizeof(char) * (ft_strlen(bud) - len + 1));
 	while (bud[len])
 	{
 		tmp[i] = bud[len];
@@ -41,7 +41,7 @@ static char		*forward_smaller(int len, char *value, char *bud)
 	tmp = NULL;
 	if ((len = forward_bigest_eq(bud, value)) < 0)
 		return (freed_proc_value(bud, value, 0, 1));
-	tmp = ft_xmalloc(sizeof(char) * (ft_strlen(bud) - len + 1));
+	tmp = ft_xmemalloc(sizeof(char) * (ft_strlen(bud) - len + 1));
 	while (bud[len])
 	{
 		tmp[i] = bud[len];

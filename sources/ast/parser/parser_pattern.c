@@ -34,7 +34,7 @@ static t_pattern	*parser_init_pattern(void)
 {
 	t_pattern		*list;
 
-	list = (t_pattern*)ft_xmalloc(sizeof(t_pattern));
+	list = (t_pattern*)ft_xmemalloc(sizeof(t_pattern));
 	list->next_pattern = NULL;
 	list->word = NULL;
 	return (list);

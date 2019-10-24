@@ -33,7 +33,7 @@ static t_function_body		*parser_init_function_body(void)
 {
 	t_function_body			*list;
 
-	list = (t_function_body*)ft_xmalloc(sizeof(t_function_body));
+	list = (t_function_body*)ft_xmemalloc(sizeof(t_function_body));
 	list->compound_command = NULL;
 	list->redirect_list = NULL;
 	return (list);

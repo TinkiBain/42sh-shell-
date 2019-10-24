@@ -24,7 +24,7 @@ int	add_new_var(const char *av, char ***env, int flag)
 	p = *env;
 	while (*(p++))
 		++size;
-	new_env = (char **)ft_xmalloc(sizeof(char *) * (size + 2));
+	new_env = (char **)ft_xmemalloc(sizeof(char *) * (size + 2));
 	ft_bzero(new_env, sizeof(char *) * (size + 2));
 	tmp = new_env;
 	p = *env;

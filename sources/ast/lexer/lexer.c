@@ -22,7 +22,7 @@ void		init_lex(int type, void *lexem, t_lex **lex)
 		tmp = (*lex)->next;
 	else
 		tmp = *lex;
-	tmp = (t_lex*)xmalloc(sizeof(t_lex));
+	tmp = (t_lex*)ft_xmemalloc(sizeof(t_lex));
 	if (*lex)
 		(*lex)->next = tmp;
 	tmp->type = type;

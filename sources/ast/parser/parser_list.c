@@ -33,7 +33,7 @@ static t_pars_list	*parser_init_list(t_pars_list *list_down)
 {
 	t_pars_list		*list;
 
-	list = (t_pars_list*)ft_xmalloc(sizeof(t_pars_list));
+	list = (t_pars_list*)ft_xmemalloc(sizeof(t_pars_list));
 	list->next = list_down;
 	list->sep = 0;
 	list->and_or = NULL;

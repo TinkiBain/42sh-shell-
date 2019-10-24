@@ -28,7 +28,7 @@ static t_io_redirect	*parser_init_io_redirect(int type, int io_number)
 {
 	t_io_redirect		*list;
 
-	list = (t_io_redirect*)ft_xmalloc(sizeof(t_io_redirect));
+	list = (t_io_redirect*)ft_xmemalloc(sizeof(t_io_redirect));
 	list->file_name = NULL;
 	list->io_number = io_number;
 	list->type = type;

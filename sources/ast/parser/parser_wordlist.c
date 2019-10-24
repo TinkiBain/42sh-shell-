@@ -27,7 +27,7 @@ static t_wordlist	*parser_init_wordlist(char *str)
 {
 	t_wordlist		*list;
 
-	list = (t_wordlist*)ft_xmalloc(sizeof(t_wordlist));
+	list = (t_wordlist*)ft_xmemalloc(sizeof(t_wordlist));
 	g_lex = g_lex->next;
 	list->next = NULL;
 	list->word = str;

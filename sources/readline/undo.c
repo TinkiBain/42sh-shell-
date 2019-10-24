@@ -23,7 +23,7 @@ t_undo_item		*pop_undo_list(t_list **undo)
 	if (*undo && ((*undo)->next))
 	{
 		cp = (*undo)->next;
-		temp = (t_undo_item *)xmalloc(sizeof(t_undo_item));
+		temp = (t_undo_item *)ft_xmemalloc(sizeof(t_undo_item));
 		*temp = *(t_undo_item *)((*undo)->content);
 		del_undo_one(*undo, 1);
 		*undo = cp;

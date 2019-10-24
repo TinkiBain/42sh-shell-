@@ -35,7 +35,7 @@ static t_while_clause	*parser_init_while_clause(void)
 {
 	t_while_clause		*list;
 
-	list = (t_while_clause*)ft_xmalloc(sizeof(t_while_clause));
+	list = (t_while_clause*)ft_xmemalloc(sizeof(t_while_clause));
 	list->compound_list = NULL;
 	list->do_group = NULL;
 	return (list);

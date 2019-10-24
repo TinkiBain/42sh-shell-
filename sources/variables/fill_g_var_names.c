@@ -74,7 +74,7 @@ int				fill_g_var_names(void)
 		ft_free_ptr_array((void ***)&g_var_names);
 	size = get_array_size(environ);
 	size += get_array_size(g_var);
-	g_var_names = (char **)ft_xmalloc(sizeof(char *) * (size + 1));
+	g_var_names = (char **)ft_xmemalloc(sizeof(char *) * (size + 1));
 	ft_bzero(g_var_names, sizeof(char *) * (size + 1));
 	tmp = environ;
 	size = 0;

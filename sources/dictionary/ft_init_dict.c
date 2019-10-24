@@ -18,7 +18,7 @@ t_dict	*ft_init_dict(const char *key, const char *value)
 
 	if (!key)
 		return (NULL);
-	dict = (t_dict *)ft_xmalloc(sizeof(t_dict));
+	dict = (t_dict *)ft_xmemalloc(sizeof(t_dict));
 	dict->key = ft_xstrdup(key);
 	dict->key_len = ft_strlen(key);
 	dict->value = ft_xstrdup(value);

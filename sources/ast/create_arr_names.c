@@ -80,7 +80,7 @@ void			create_arr_names(void)
 	LEN_FUNC = func_size_list(g_func_defs);
 	if (g_prog_names_count || LEN_ALIAS || LEN_FUNC)
 	{
-		g_cmd_names = (char **)ft_xmalloc((sizeof(char *) *
+		g_cmd_names = (char **)ft_xmemalloc((sizeof(char *) *
 					(g_prog_names_count + LEN_ALIAS + LEN_FUNC + 1)));
 		if (g_prog_names_count)
 			while (I < HASH_LEN)

@@ -33,7 +33,7 @@ static t_term	*parser_init_term(t_term *list_down)
 {
 	t_term		*list;
 
-	list = (t_term*)ft_xmalloc(sizeof(t_term));
+	list = (t_term*)ft_xmemalloc(sizeof(t_term));
 	list->next = list_down;
 	list->separator = 0;
 	list->and_or = NULL;

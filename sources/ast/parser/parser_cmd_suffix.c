@@ -37,7 +37,7 @@ static t_cmd_suffix	*parser_init_cmd_suffix(void)
 {
 	t_cmd_suffix	*list;
 
-	list = (t_cmd_suffix*)ft_xmalloc(sizeof(t_cmd_suffix));
+	list = (t_cmd_suffix*)ft_xmemalloc(sizeof(t_cmd_suffix));
 	list->cmd_suf = NULL;
 	list->io_redir = NULL;
 	list->word = NULL;

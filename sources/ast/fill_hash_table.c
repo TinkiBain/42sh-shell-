@@ -20,7 +20,7 @@ void		fill_hash_table(void)
 	if (g_table)
 		del_hash();
 	g_prog_names_count = 0;
-	g_table = (t_hash **)ft_xmalloc(sizeof(t_hash) * HASH_LEN);
+	g_table = (t_hash **)ft_xmemalloc(sizeof(t_hash) * HASH_LEN);
 	create_bin(get_var_value("PATH"));
 	add_force_builds();
 	create_arr_names();

@@ -19,7 +19,7 @@ void			redir_set(void)
 	g_tty = ttyname(0);
 	if (!g_open_fd)
 	{
-		g_open_fd = (int *)ft_xmalloc(sizeof(int) * 1);
+		g_open_fd = (int *)ft_xmemalloc(sizeof(int) * 1);
 		*g_open_fd = 0;
 	}
 }

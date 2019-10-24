@@ -37,7 +37,7 @@ static t_case_list	*parser_init_case_list(void)
 {
 	t_case_list		*list;
 
-	list = (t_case_list*)ft_xmalloc(sizeof(t_case_list));
+	list = (t_case_list*)ft_xmemalloc(sizeof(t_case_list));
 	list->next = NULL;
 	list->case_item = NULL;
 	return (list);

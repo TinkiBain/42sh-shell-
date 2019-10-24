@@ -34,7 +34,7 @@ static t_else_part	*parser_init_else_part(void)
 {
 	t_else_part		*list;
 
-	list = (t_else_part*)ft_xmalloc(sizeof(t_else_part));
+	list = (t_else_part*)ft_xmemalloc(sizeof(t_else_part));
 	list->head_compound = NULL;
 	list->compound_list = NULL;
 	list->next_else_part = NULL;

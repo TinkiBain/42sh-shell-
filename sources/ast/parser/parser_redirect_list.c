@@ -33,7 +33,7 @@ static t_redirect_list	*parser_init_redirect_list(t_redirect_list *list_down)
 {
 	t_redirect_list		*list;
 
-	list = (t_redirect_list*)ft_xmalloc(sizeof(t_redirect_list));
+	list = (t_redirect_list*)ft_xmemalloc(sizeof(t_redirect_list));
 	list->next = list_down;
 	list->io_redirect = NULL;
 	list->end_lex = NULL;

@@ -33,7 +33,7 @@ t_func_definition	*parser_init_function_definition(void)
 {
 	t_func_definition	*list;
 
-	list = (t_func_definition*)ft_xmalloc(sizeof(t_func_definition));
+	list = (t_func_definition*)ft_xmemalloc(sizeof(t_func_definition));
 	list->function_name = NULL;
 	list->function_body = NULL;
 	return (list);

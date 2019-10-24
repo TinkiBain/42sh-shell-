@@ -42,7 +42,7 @@ static t_compound_cmd	*parser_init_compound_command(void)
 {
 	t_compound_cmd	*list;
 
-	list = (t_compound_cmd*)ft_xmalloc(sizeof(t_compound_cmd));
+	list = (t_compound_cmd*)ft_xmemalloc(sizeof(t_compound_cmd));
 	list->compound_list = NULL;
 	list->if_clause = NULL;
 	list->while_clause = NULL;
