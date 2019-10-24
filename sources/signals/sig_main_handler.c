@@ -3,51 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   sig_main_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/21 20:34:42 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:26:29 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-#include <errno.h>
 
-static void		pipe_and_done_pid(int done_pid)
+/*
+** Return 1 or 0 if all process in main_job is ended
+*/
+
+static int		pipe_jobs_check(t_job *main_job)
 {
-	int i;
+	t_job *job;
 
-	i = 0;
-	if (g_pipe_pid)
+	job = main_job;
+	while (job)
 	{
-		while (g_pipe_pid[i] != 0)
-		{
-			if (g_pipe_pid[i] == done_pid)
-			{
-				g_pipe_pid[i] = -1;
-				return ;
-			}
-			i++;
-		}
-	}
-}
-
-static int		pipe_jobs_check(void)
-{
-	int i;
-
-	i = 0;
-	if (g_pipe_pid)
-	{
-		while (g_pipe_pid[i] != 0)
-		{
-			if (g_pipe_pid[i] != -1)
-				return (-1);
-			i++;
-		}
+		if (!job->done)
+			return (-1);
+		job = job->next;
 	}
 	return (1);
 }
+
+/*
+** This func print msg about shild status
+*/
 
 static void		msg_cntr(int st)
 {
@@ -57,29 +42,36 @@ static void		msg_cntr(int st)
 	if ((msg = that_sig(st, g_subjob->name)))
 		print_error(NULL, msg);
 	if (msg)
-		free(msg);
+		free (msg);
 }
 
-extern int errno;
+char *st_sif(int st)
+{
+	if (st == SUSTOP)
+		return (ft_strdup("\tstoped\t"));
+	else if (st == SUSPCHLD)
+		return (ft_strdup("\tsuspended\t"));
+	else if (st == SUSPOUT)
+		return (ft_strdup("\tsuspended (tty output)\t"));
+	else if (st == SUSPINT)
+		return (ft_strdup("\tsuspended (tty input)\t"));
+	return (ft_strdup("\tsuspended\t"));
+}
 
-void			jobs_sig(int pid)
+void			jobs_sig(int pid, int st)
 {
 	pid_t			done_pid;
-	int				st;
 	char			*msg;
-	int d;
+	t_job			*job;
 
-	d = 0;
-
+	job = NULL;
 	msg = NULL;
-	st = 0;
 	if (pid == 0)
-		done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG);
+		done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
 	else
 		done_pid = pid;
-	// printf ("\n-pid - %d %d\n", done_pid, st);
-	if (g_pipe_pid)
-		pipe_and_done_pid(done_pid);
+	if (done_pid <= 0)
+		return ;
 	g_wait_flags = done_pid;
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);
@@ -87,19 +79,33 @@ void			jobs_sig(int pid)
 	{
 		if (st == SUSPCHLD)
 			g_res_exec = 1;
-		if (g_pipe_pid)
-			while (g_pipe_pid[d])
-				kill(SIGTSTP, g_pipe_pid[d++]);
-		return (sig_per_stop(done_pid, NULL, ft_xstrdup("  suspended\t"),
-							g_pjobs));
+		return (sig_per_stop(done_pid, NULL, st_sif(st), g_pjobs));
 	}
-	else if (g_subjob && pid_checl(done_pid, g_subjob->job))
+	else if (g_subjob && process_finder(done_pid, g_subjob))
 	{
 		msg_cntr(st);
-		if (pipe_jobs_check() > 0)
-			deletejob(&g_subjob, g_subjob->num);
+		if ((job = process_finder(done_pid, g_subjob)))
+		{
+			job->done = 1;
+			if (st == 0 || st == 256)
+			{
+				free(job->status);
+				job->status = ft_xstrdup("\tDone\t\t");
+			}
+			if (pipe_jobs_check(g_subjob->job) > 0)
+				deletejob(&g_subjob, g_subjob->num);
+		}
 		return ;
 	}
-	if (pipe_jobs_check() > 0)
-		pjobs_sig(st, done_pid);
+	else
+	{
+		job = process_finder(done_pid, job_finder(done_pid, g_pjobs));
+		job->done = 1;
+		free(job->status);
+		job->status = that_sig(st, NULL);
+	}
+	if (pipe_jobs_check(job_finder(done_pid, g_pjobs)->job) > 0)
+		pjobs_sig(st, done_pid, 1);
+	else
+		pjobs_sig(st, done_pid, 0);
 }

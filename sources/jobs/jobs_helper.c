@@ -6,29 +6,11 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 19:22:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/12 21:35:07 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 20:59:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-
-t_job		*job_finder(int pid, t_pjobs *local)
-{
-	t_job *h;
-
-	while (local)
-	{
-		h = local->job;
-		while (h)
-		{
-			if (h->pid == pid)
-				return (h);
-			h = h->next;
-		}
-		local = local->next;
-	}
-	return (NULL);
-}
 
 t_pjobs		*jobs_find_num(t_pjobs *local, int num)
 {
@@ -43,13 +25,37 @@ t_pjobs		*jobs_find_num(t_pjobs *local, int num)
 	return (local);
 }
 
-t_job		*pid_checl(int pid, t_job *job)
+t_job		*process_finder(int pid, t_pjobs *first_job)
 {
-	while (job)
+	t_job *job;
+
+	if (first_job)
 	{
-		if (job->pid == pid)
-			return (job);
-		job = job->next;
+		job = first_job->job;
+		while (job)
+			{
+				if (job->pid == pid)
+					return (job);
+				job = job->next;
+			}
+	}
+	return (NULL);
+}
+
+t_pjobs		*job_finder(int pid, t_pjobs *local)
+{
+	t_job *job;
+
+	while (local)
+	{
+		job = local->job;
+		while (job)
+		{
+			if (job->pid == pid)
+				return (local);
+			job = job->next;
+		}
+		local = local->next;
 	}
 	return (NULL);
 }

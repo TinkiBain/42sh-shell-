@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/18 22:17:59 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 23:04:04 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,36 @@ static void		def_kill_or_done(t_job *first, int sig, char *name)
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, name);
 	}
-	if (!(first->next))
-		deletejob(&g_pjobs, first->num);
-	else
-	{
-		free(first->status);
-		first->status = ft_xstrdup("Done\t\t");
-	}
+	deletejob(&g_pjobs, first->num);
 }
 
-void			pjobs_sig(int sig, int done_pid)
+void			pjobs_sig(int st, int done_pid, int del)
 {
 	t_pjobs			*first;
 	t_job			*job;
+	char			*msg;
 
+	msg = NULL;
 	job = NULL;
-	job = job_finder(done_pid, g_pjobs);
-	if (job == NULL)
+	first = job_finder(done_pid, g_pjobs);
+	if (first == NULL)
 		return ;
-	first = jobs_find_num(g_pjobs, job->num);
-	if (done_pid != 0 && sig != SUSPINT && sig != SUSPOUT && !(job->next))
-		def_kill_or_done(job, sig, first->name);
-	else if (sig == SUSPINT || sig == SUSPOUT
-			|| ft_strcmp(first->status, "Done\t\t"))
+	job = process_finder(done_pid, first);
+	if (done_pid != 0 && !(WIFSTOPPED(st)) && del)
+		def_kill_or_done(job, st, first->name);
+	if (!job->done)
 	{
-		free(first->status);
-		if (sig == SUSPINT)
-			first->status = ft_xstrdup(" suspended (tty input)\t");
-		if (sig == SUSPOUT)
-			first->status = ft_xstrdup(" suspended (tty output)\t");
-		else
-			first->status = ft_xstrdup(" suspended \t\t");
 		free(job->status);
-		job->status = ft_xstrdup("suspended");
+		if (st == SUSPINT || st == SUSPOUT)
+		{
+			if (st == SUSPINT)
+				job->status = ft_xstrdup("\tsuspended (tty input)\t");
+			else if (st == SUSPOUT)
+				job->status = ft_xstrdup("\tsuspended (tty output)\t");
+			else
+				job->status = ft_xstrdup(" suspended \t\t");
+		}
+		free(first->status);
+		first->status = ft_xstrdup("suspended");
 	}
 }

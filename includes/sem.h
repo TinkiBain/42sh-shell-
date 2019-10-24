@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:27:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/19 20:47:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 18:32:59 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	clear_sem(void);
 void	reserve_sem(int semnum, int n);
 void	release_sem(int semnum, int n);
 void	set_sem(int semnum, int val);
+void	reserve_sem_while(int semnum, int n);
+
 
 int		get_sem(int semnum);
 

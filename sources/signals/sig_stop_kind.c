@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/18 22:44:08 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/23 23:03:56 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		sigstop(char *msg)
 	job = first->job;
 	while (job)
 	{
-		if (ft_strcmp(first->status, "Done\t\t"))
+		if (!job->done)
 		{
 			free(job->status);
 			job->status = ft_xstrdup(msg);
@@ -41,9 +41,13 @@ static void		sig_change_status(t_job *job, char *msg)
 {
 	while (job)
 	{
-		kill(job->pid, SIGTSTP);
-		free(job->status);
-		job->status = ft_xstrdup(msg);
+		if (!job->done)
+		{
+			job->done = 2;
+			kill(job->pid, SIGTSTP);
+			free(job->status);
+			job->status = ft_xstrdup(msg);
+		}
 		job = job->next;
 	}
 }
@@ -51,10 +55,9 @@ static void		sig_change_status(t_job *job, char *msg)
 void			sig_per_stop(int done_pid, t_job *job,
 								char *msg, t_pjobs *first)
 {
-	tcsetpgrp(0, getpid());
 	while (first)
 	{
-		if ((pid_checl(done_pid, first->job)))
+		if (process_finder(done_pid, job_finder(done_pid, first)))
 		{
 			job = first->job;
 			if (ft_strcmp(job->status, msg))
@@ -67,12 +70,11 @@ void			sig_per_stop(int done_pid, t_job *job,
 		}
 		first = first->next;
 	}
-	sig_change_status(job, msg);
-	if (g_subjob && pid_checl(done_pid, g_subjob->job))
+	if (g_subjob && (job = process_finder(done_pid, job_finder(done_pid, g_subjob))))
 	{
 		sigstop(msg);
-		if (g_subjob->workgpid == 0)
-			deletejob(&g_subjob, g_subjob->num);
+		sig_change_status(job, msg);
+		deletejob(&g_subjob, g_subjob->num);
 	}
 	free(msg);
 }

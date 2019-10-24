@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 22:59:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:35:35 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int					g_wait_flags;
 char				*g_tty;
 char				*g_tty_name;
 int					*g_open_fd;
-int					*g_pipe_pid;
 t_alias				*g_alias;
 t_dict				*g_func_defs;
 int					g_open;

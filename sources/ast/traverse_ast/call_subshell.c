@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/21 19:56:40 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:39:48 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int					call_subshell(char *str, t_pjobs *local)
 	if (local->flag == 1)
 		ft_printf("[%d] [%d]\n", local->num, pid);
 	else
-		ft_waitpid(pid);
+		ft_waitpid(pid, NULL);
 	return (0);
 }
