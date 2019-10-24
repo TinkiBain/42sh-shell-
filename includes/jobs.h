@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 22:26:30 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 19:48:56 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_pjobs				*jobs_started(char *str, int sep);
 t_pjobs				*ft_addjob(char *name, int flag);
 t_pjobs				*jobs_last_elem(t_pjobs *job);
 t_job				*process_finder(int pid, t_pjobs *first_job);
-void				jobs_sig(int pid, int st);
+void				jobs_sig(int st);
 void				freedsubjob(t_job **new);
 void				deletejob(t_pjobs **alst, int num);
 int					jobs(t_pjobs *local_job, int iter, const char *cmd);

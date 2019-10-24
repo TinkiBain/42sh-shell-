@@ -107,7 +107,7 @@ void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq, int sep)
 	{
 		if (local->flag == 1)
 			ft_printf("[%d]", local->num);
-		traverse_pipe(pipe_seq, 0, local, &counter);
+		traverse_pipe(pipe_seq, 0, &local, &counter);
 		if (local->flag == 0)
 			tcsetpgrp(0, local->workgpid);
 		pipe_av(counter);

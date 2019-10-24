@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 22:26:29 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 19:48:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char *st_sif(int st)
 	return (ft_strdup("\tsuspended\t"));
 }
 
-void			jobs_sig(int pid, int st)
+void			jobs_sig(int st)
 {
 	pid_t			done_pid;
 	char			*msg;
@@ -66,10 +66,7 @@ void			jobs_sig(int pid, int st)
 
 	job = NULL;
 	msg = NULL;
-	if (pid == 0)
-		done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
-	else
-		done_pid = pid;
+	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
 	if (done_pid <= 0)
 		return ;
 	g_wait_flags = done_pid;

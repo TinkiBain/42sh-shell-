@@ -42,7 +42,7 @@ int		check_name(char *str);
 
 void	traverse_ast(t_complete_cmd *root);
 void	traverse_pipe_sequence(t_pipe_sequence *elem, int sep);
-void	traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs *local,
+void	traverse_pipe(t_pipe_sequence *pipe_seq, int fd, t_pjobs **local,
 															int *counter);
 int		traverse_redirect_list(t_redirect_list *list);
 void	traverse_command(t_command *cmd, int in_fork, t_pjobs *local);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 17:24:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 19:49:26 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	signals(int signo)
 
 	st = 0;
 	if (signo == SIGCHLD)
-		jobs_sig(0, st);
+		jobs_sig(st);
 	else if (signo == SIGTTOU)
 		tcsetpgrp(1, getpid());
 	else if (signo == SIGTTIN)
