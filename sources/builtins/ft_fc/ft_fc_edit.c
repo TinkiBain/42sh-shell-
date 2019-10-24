@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 18:51:07 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 20:28:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 22:24:21 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				ft_fc_edit(const char **fc_argv, t_cmd_opt opt, t_pjobs **local)
 		return (1);
 	if (access(argv[0], X_OK) == -1)
 		return (clear(vec, argv, 1));
-	if (ft_fc_edit_run_editor(argv) != 0)
+	if (ft_fc_edit_run_editor(argv, local) != 0)
 		return (clear(vec, argv, 1));
 	if (ft_fc_edit_execute(TMP_PATH, local) != 0)
 		return (clear(vec, argv, 1));
