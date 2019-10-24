@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/23 23:03:09 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:25:42 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "variables.h"
 #include "defs.h"
 #include "xfuncs.h"
-
-#define DEFAULT_PROMPT			"\\033[0;31m%w >\\033[0m "
 
 extern char	**g_var;
 

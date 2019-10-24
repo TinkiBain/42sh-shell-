@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 22:26:13 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:25:50 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define PROJECT_NAME			"42sh"
 # define VERSION				"0.1"
+
+# define DEFAULT_PROMPT			"%red%w >%eoc "
 
 # define TMP_PATH				"/tmp/" PROJECT_NAME "_tmp"
 # define DEFAULT_TEXTEDITOR		"/usr/bin/vim"

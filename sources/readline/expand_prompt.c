@@ -6,11 +6,12 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:33:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 23:02:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:22:08 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expand_prompt.h"
+#include "colors.h"
 
 static void		convert_escapes(t_string *str)
 {
@@ -69,5 +70,15 @@ void			expand_prompt(t_string *str)
 	str_xreplace(str, "%s", g_project_name);
 	str_xreplace(str, "%v", VERSION);
 	str_xreplace(str, "%w", (p = getcwd_tilde()));
+	str_xreplace(str, "%black", COLOR_BLACK);
+	str_xreplace(str, "%red", COLOR_RED);
+	str_xreplace(str, "%green", COLOR_GREEN);
+	str_xreplace(str, "%yellow", COLOR_YELLOW);
+	str_xreplace(str, "%blue", COLOR_BLUE);
+	str_xreplace(str, "%purple", COLOR_PURPLE);
+	str_xreplace(str, "%cyan", COLOR_CYAN);
+	str_xreplace(str, "%white", COLOR_WHITE);
+	str_xreplace(str, "%grey", COLOR_GREY);
+	str_xreplace(str, "%eoc", COLOR_EOC);
 	free(p);
 }
