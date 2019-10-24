@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/14 01:22:39 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:53:52 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static int		call_if_other_builtin(int ac, const char **av, t_pjobs *local)
 		return (ft_history(av + 1));
 	else if (ft_strequ(*av, "["))
 		return (ft_square_test(ac, av));
+	else if (ft_strequ(*av, "help"))
+		return (ft_help());
 	return (0);
 }
 
