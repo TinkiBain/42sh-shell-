@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 17:35:33 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/24 17:59:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	clear_line(t_line *line, int clear_flag, t_history **history)
 		str_delete(&line->result);
 	ft_lstdel(&(line->undo), del_undo_one);
 	if (!g_eof && g_opt.rl_gnl == 0)
-		ft_putstr("\n");
+		ft_putstr_fd("\n", 0);
 }
 
 /*
