@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:06:10 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 22:22:11 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:47:37 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define COLOR_REVVID			"\033[7;37m"
 # define COLOR_REVVID_BOLD		"\033[1;7m"
 # define COLOR_BGYELLOW			"\033[103;30m"
+# define COLOR_BOLD				"\033[1m"
 
 # define COLOR_EOC				"\033[0m"
 

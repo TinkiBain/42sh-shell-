@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic.h                                        :+:      :+:    :+:   */
+/*   arithmetic.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARIFMETIC_H
-# define ARIFMETIC_H
+#ifndef arithmetic_H
+# define arithmetic_H
 
 # include "lexer.h"
 # include "sh.h"
@@ -57,24 +57,24 @@
 # define LOGICAL_NOT	39
 # define UNAR_PLUS		40
 
-t_lex		*g_error_arifmetic;
+t_lex		*g_error_arithmetic;
 t_lex		*g_lex_arif;
 
-t_lex		*arifmetic_lexer(char *str);
-char		*arifmetic_lexer_great(char *str, t_lex **lex);
-char		*arifmetic_lexer_less(char *str, t_lex **lex);
-char		*arifmetic_lexer_assignment(char *str, t_lex **lex);
-char		*arifmetic_lexer_or(char *str, t_lex **lex);
-char		*arifmetic_lexer_and(char *str, t_lex **lex);
-char		*arifmetic_lexer_plus(char *str, t_lex **lex);
-char		*arifmetic_lexer_minus(char *str, t_lex **lex);
-char		*arifmetic_lexer_multi(char *str, t_lex **lex);
-char		*arifmetic_lexer_division(char *str, t_lex **lex);
-char		*arifmetic_lexer_module(char *str, t_lex **lex);
-char		*arifmetic_lexer_check_token(char *str, t_lex **lex);
-char		*arifmetic_lexer_var(char *str, t_lex **lex);
-char		*arifmetic_lexer_digit(char *str, t_lex **lex);
-char		*arifmetic_exp(char *str);
+t_lex		*arithmetic_lexer(char *str);
+char		*arithmetic_lexer_great(char *str, t_lex **lex);
+char		*arithmetic_lexer_less(char *str, t_lex **lex);
+char		*arithmetic_lexer_assignment(char *str, t_lex **lex);
+char		*arithmetic_lexer_or(char *str, t_lex **lex);
+char		*arithmetic_lexer_and(char *str, t_lex **lex);
+char		*arithmetic_lexer_plus(char *str, t_lex **lex);
+char		*arithmetic_lexer_minus(char *str, t_lex **lex);
+char		*arithmetic_lexer_multi(char *str, t_lex **lex);
+char		*arithmetic_lexer_division(char *str, t_lex **lex);
+char		*arithmetic_lexer_module(char *str, t_lex **lex);
+char		*arithmetic_lexer_check_token(char *str, t_lex **lex);
+char		*arithmetic_lexer_var(char *str, t_lex **lex);
+char		*arithmetic_lexer_digit(char *str, t_lex **lex);
+char		*arithmetic_exp(char *str);
 char		*arithmetic_print_lex_error(char *str);
 void		*arithmetic_error(char *str, t_lex *begin);
 long		expr(void);

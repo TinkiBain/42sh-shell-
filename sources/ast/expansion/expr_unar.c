@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expr_unar.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 17:22:19 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 18:55:51 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 long		expr_unar(void)
 {
@@ -27,7 +27,7 @@ long		expr_unar(void)
 	}
 	else
 		left_value = expr_suffix();
-	if (g_error_arifmetic)
+	if (g_error_arithmetic)
 		return (0);
 	if (type == MINUS)
 		return (left_value * -1);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 21:07:20 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char			*tdq(char *str, t_pjobs **local)
 	while (str[0] && str[i] != '\0')
 	{
 		tdq_while(&i, &str, local);
-		if (g_opt.arifmetic_error)
+		if (g_opt.arithmetic_error)
 			return (str);
 		i++;
 		i = (ft_strlen(str) < (size_t)i) ? 0 : i;

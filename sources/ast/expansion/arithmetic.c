@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic.c                                        :+:      :+:    :+:   */
+/*   arithmetic.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 int				expr_sign(char **str)
 {
@@ -67,7 +67,7 @@ long			expr_digit(void)
 	return (value);
 }
 
-char			*arifmetic_exp(char *str)
+char			*arithmetic_exp(char *str)
 {
 	char	*tmp;
 	long	rez;
@@ -79,16 +79,16 @@ char			*arifmetic_exp(char *str)
 	str[ft_strlen(str) - 2] = '\0';
 	str = ft_strtrim(str);
 	free(tmp);
-	g_error_arifmetic = NULL;
-	lex = arifmetic_lexer(str);
+	g_error_arithmetic = NULL;
+	lex = arithmetic_lexer(str);
 	g_lex_arif = lex;
-	if (g_error_arifmetic)
+	if (g_error_arithmetic)
 		return (arithmetic_print_lex_error(str));
 	if (lex)
 		rez = expr();
-	if (g_lex_arif && !g_error_arifmetic)
-		g_error_arifmetic = g_lex_arif;
-	if (g_error_arifmetic)
+	if (g_lex_arif && !g_error_arithmetic)
+		g_error_arithmetic = g_lex_arif;
+	if (g_error_arithmetic)
 		return (arithmetic_error(str, lex));
 	lexer_free_all(lex);
 	free(str);

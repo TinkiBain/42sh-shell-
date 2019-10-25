@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_lexer_logical_op.c                       :+:      :+:    :+:   */
+/*   arithmetic_lexer_logical_op.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
-char		*arifmetic_lexer_great(char *str, t_lex **lex)
+char		*arithmetic_lexer_great(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '>')
@@ -36,7 +36,7 @@ char		*arifmetic_lexer_great(char *str, t_lex **lex)
 	return (str);
 }
 
-char		*arifmetic_lexer_less(char *str, t_lex **lex)
+char		*arithmetic_lexer_less(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '<')
@@ -60,7 +60,7 @@ char		*arifmetic_lexer_less(char *str, t_lex **lex)
 	return (str);
 }
 
-char		*arifmetic_lexer_assignment(char *str, t_lex **lex)
+char		*arithmetic_lexer_assignment(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')
@@ -73,7 +73,7 @@ char		*arifmetic_lexer_assignment(char *str, t_lex **lex)
 	return (str);
 }
 
-char		*arifmetic_lexer_or(char *str, t_lex **lex)
+char		*arithmetic_lexer_or(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '|')
@@ -91,7 +91,7 @@ char		*arifmetic_lexer_or(char *str, t_lex **lex)
 	return (str);
 }
 
-char		*arifmetic_lexer_and(char *str, t_lex **lex)
+char		*arithmetic_lexer_and(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '&')

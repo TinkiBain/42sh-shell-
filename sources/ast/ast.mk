@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    ast.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/05 19:44:23 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/15 17:13:12 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,10 +73,10 @@ SRCS_AST_REDIRECT=\
 AST_EXPANSION_DIR=expansion
 
 SRCS_AST_EXPANSION=\
-	arifmetic.c						arifmetic_lexer.c\
-	arifmetic_lexer_check_token.c	arifmetic_lexer_digit.c\
-	arifmetic_lexer_logical_op.c	arifmetic_lexer_simple_operations.c\
-	arifmetic_lexer_var.c			arithmetic_error.c\
+	arithmetic.c						arithmetic_lexer.c\
+	arithmetic_lexer_check_token.c	arithmetic_lexer_digit.c\
+	arithmetic_lexer_logical_op.c	arithmetic_lexer_simple_operations.c\
+	arithmetic_lexer_var.c			arithmetic_error.c\
 	back_bigest_eq.c				back_smaller_eq.c\
 	check_spec_symbol.c				dollar.c\
 	dollar_brace.c					dollar_brace_forward.c\

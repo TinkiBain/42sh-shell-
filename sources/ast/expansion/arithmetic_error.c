@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   arithmetic_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 19:19:40 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/15 17:25:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:42:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 extern t_opt	g_opt;
 
@@ -23,15 +23,15 @@ void			arithmetic_error_norma(t_lex *begin)
 
 void			*arithmetic_error(char *str, t_lex *begin)
 {
-	if (g_error_arifmetic->type == DIVISION_NULL && (g_opt.arifmetic_error = 1))
+	if (g_error_arithmetic->type == DIVISION_NULL && (g_opt.arithmetic_error = 1))
 		print_error_vaarg("%s: division by 0 ", str);
-	else if (g_error_arifmetic->type >= 3 && g_error_arifmetic->type <= 12)
+	else if (g_error_arithmetic->type >= 3 && g_error_arithmetic->type <= 12)
 		print_error_vaarg("%s: attempted assignment to non-variable ", str);
 	else
 		print_error_vaarg("%s: syntax error: operand expected", str);
 	ft_putstr_fd("(error token is \"", STDERR);
-	if (g_error_arifmetic->type == DIVISION_NULL)
-		lexer_free_all(g_error_arifmetic);
+	if (g_error_arithmetic->type == DIVISION_NULL)
+		lexer_free_all(g_error_arithmetic);
 	if (!g_lex_arif)
 		arithmetic_error_norma(begin);
 	while (g_lex_arif)
@@ -50,8 +50,8 @@ void			*arithmetic_error(char *str, t_lex *begin)
 char			*arithmetic_print_lex_error(char *str)
 {
 	print_error_vaarg("%s: syntax error: operand expected "
-			"(error token is \"%s\")\n", str, g_error_arifmetic->lexem);
-	lexer_free_all(g_error_arifmetic);
+			"(error token is \"%s\")\n", str, g_error_arithmetic->lexem);
+	lexer_free_all(g_error_arithmetic);
 	lexer_free_all(g_lex_arif);
 	free(str);
 	return (NULL);

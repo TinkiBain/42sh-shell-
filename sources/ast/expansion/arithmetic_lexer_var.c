@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_lexer_var.c                              :+:      :+:    :+:   */
+/*   arithmetic_lexer_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
-char		*arifmetic_lexer_check_suffix(char *str, t_lex **lex, char c)
+char		*arithmetic_lexer_check_suffix(char *str, t_lex **lex, char c)
 {
 	if (*(str + 1) == c)
 	{
@@ -25,7 +25,7 @@ char		*arifmetic_lexer_check_suffix(char *str, t_lex **lex, char c)
 	return (str);
 }
 
-char		*arifmetic_lexer_var(char *str, t_lex **lex)
+char		*arithmetic_lexer_var(char *str, t_lex **lex)
 {
 	char	*begin;
 
@@ -35,6 +35,6 @@ char		*arifmetic_lexer_var(char *str, t_lex **lex)
 	begin = ft_xstrndup(begin, str - begin);
 	init_lex(VAR, begin, lex);
 	if (*str == '+' || *str == '-')
-		str = arifmetic_lexer_check_suffix(str, lex, *str);
+		str = arithmetic_lexer_check_suffix(str, lex, *str);
 	return (str);
 }

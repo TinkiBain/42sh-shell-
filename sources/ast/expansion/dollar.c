@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:39:09 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 21:01:49 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			dollar(int *j, char **str, t_pjobs **local)
 		word_not_found(str, j, l);
 		return ;
 	}
-	if (g_opt.arifmetic_error)
+	if (g_opt.arithmetic_error)
 		return ;
 	if ((*str)[(*j) + 1] == '$')
 		(*j) += 1;

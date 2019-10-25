@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_lexer.c                                  :+:      :+:    :+:   */
+/*   arithmetic_lexer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
-char		*arifmetic_lexer_bracket(char *str, t_lex **lex)
+char		*arithmetic_lexer_bracket(char *str, t_lex **lex)
 {
 	if (*str == '(')
 		init_lex(LBRACKET_ARIF, ft_xstrdup("("), lex);
@@ -22,7 +22,7 @@ char		*arifmetic_lexer_bracket(char *str, t_lex **lex)
 	return (str);
 }
 
-char		*arifmetic_lexer_not(char *str, t_lex **lex)
+char		*arithmetic_lexer_not(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')
@@ -35,7 +35,7 @@ char		*arifmetic_lexer_not(char *str, t_lex **lex)
 	return (str);
 }
 
-t_lex		*arifmetic_lexer(char *str)
+t_lex		*arithmetic_lexer(char *str)
 {
 	t_lex	*lex;
 	char	*begin;
@@ -47,18 +47,18 @@ t_lex		*arifmetic_lexer(char *str)
 		while (ft_isspace(*str))
 			++str;
 		if (ft_isalpha(*str))
-			str = arifmetic_lexer_var(str, &lex);
+			str = arithmetic_lexer_var(str, &lex);
 		else if (ft_isdigit(*str))
-			str = arifmetic_lexer_digit(str, &lex);
+			str = arithmetic_lexer_digit(str, &lex);
 		else if (*str == '(' || *str == ')')
-			str = arifmetic_lexer_bracket(str, &lex);
+			str = arithmetic_lexer_bracket(str, &lex);
 		else if (*str == '!')
-			str = arifmetic_lexer_not(str, &lex);
+			str = arithmetic_lexer_not(str, &lex);
 		else
-			str = arifmetic_lexer_check_token(str, &lex);
+			str = arithmetic_lexer_check_token(str, &lex);
 	}
 	if (!str)
-		init_lex(DIGIT, begin, &g_error_arifmetic);
+		init_lex(DIGIT, begin, &g_error_arithmetic);
 	while (lex && lex->back)
 		lex = lex->back;
 	return (lex);

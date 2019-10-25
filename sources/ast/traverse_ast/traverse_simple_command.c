@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:34:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 21:00:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void			traverse_simple_command(t_simple_cmd *cmd, int in_fork,
 	prefix_vars = vec_create(0, sizeof(char *));
 	if (traverse_cmd_pref(cmd->cmd_pref, &prefix_vars, local) == -1
 			|| traverse_cmd_suf(cmd->cmd_suf, &av, local) == -1
-			|| g_opt.arifmetic_error)
+			|| g_opt.arithmetic_error)
 		return (traverse_cmd_error(in_fork, av, prefix_vars));
 	if (in_fork && prefix_vars.len)
 		handle_previx_vars((const char **)prefix_vars.v, &environ);

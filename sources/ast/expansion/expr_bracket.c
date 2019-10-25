@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expr_bracket.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 20:01:02 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 19:21:47 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 long		expr_bracket(void)
 {
@@ -20,7 +20,7 @@ long		expr_bracket(void)
 	{
 		g_lex_arif = g_lex_arif->next;
 		return_value = expr();
-		if (g_error_arifmetic)
+		if (g_error_arithmetic)
 			return (0);
 		if (g_lex_arif->type != RBRACKET_ARIF)
 		{

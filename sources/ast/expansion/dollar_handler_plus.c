@@ -6,12 +6,12 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 17:58:57 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 21:01:59 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 extern t_opt	g_opt;
 
@@ -73,7 +73,7 @@ static char		*next_char_check(char *str, int *j, t_pjobs **local)
 	{
 		tmp = ft_xstrjoin("$", str);
 		tmp[ft_strlen(str) - ft_strlen(parser_find_dollar(tmp)) + 2] = '\0';
-		return (arifmetic_exp(tmp));
+		return (arithmetic_exp(tmp));
 	}
 	else if (*str && *str == '(')
 	{
@@ -95,7 +95,7 @@ char			*ft_dollar_word(char *str, int k, int *j, t_pjobs **local)
 	flag = 0;
 	if ((tmp = next_char_check(str, j, local)))
 		return (tmp);
-	else if (g_opt.arifmetic_error)
+	else if (g_opt.arithmetic_error)
 		return (NULL);
 	else
 		while (str[i] && check_spec_symbol(str[i]) && str[i] != '$')

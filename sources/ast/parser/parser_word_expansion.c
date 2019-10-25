@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_word_expansion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:29:58 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 19:16:30 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "sh.h"
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 static char	*parser_strchr(char *str, char c)
 {

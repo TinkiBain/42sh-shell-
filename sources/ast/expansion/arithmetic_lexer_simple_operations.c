@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_lexer_simple_operations.c                :+:      :+:    :+:   */
+/*   arithmetic_lexer_simple_operations.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
-char	*arifmetic_lexer_module(char *str, t_lex **lex)
+char	*arithmetic_lexer_module(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')
@@ -25,7 +25,7 @@ char	*arifmetic_lexer_module(char *str, t_lex **lex)
 	return (str);
 }
 
-char	*arifmetic_lexer_division(char *str, t_lex **lex)
+char	*arithmetic_lexer_division(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')
@@ -38,7 +38,7 @@ char	*arifmetic_lexer_division(char *str, t_lex **lex)
 	return (str);
 }
 
-char	*arifmetic_lexer_multi(char *str, t_lex **lex)
+char	*arithmetic_lexer_multi(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')
@@ -51,7 +51,7 @@ char	*arifmetic_lexer_multi(char *str, t_lex **lex)
 	return (str);
 }
 
-char	*arifmetic_lexer_minus(char *str, t_lex **lex)
+char	*arithmetic_lexer_minus(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')
@@ -69,7 +69,7 @@ char	*arifmetic_lexer_minus(char *str, t_lex **lex)
 	return (str);
 }
 
-char	*arifmetic_lexer_plus(char *str, t_lex **lex)
+char	*arithmetic_lexer_plus(char *str, t_lex **lex)
 {
 	++str;
 	if (*str == '=')

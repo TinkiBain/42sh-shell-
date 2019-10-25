@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/24 18:32:56 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCLUDES:=\
 	-I libft/includes
 
 SH_INCLUDES=\
-	arifmetic.h		ast.h			defs.h			dictionary.h\
+	arithmetic.h		ast.h			defs.h			dictionary.h\
 	error.h			expansion.h		hash.h			jobs.h\
 	lexer.h			parser.h		redirect.h		sem.h\
 	sh.h			variables.h		xfuncs.h

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expr_return_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 17:30:17 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 19:20:42 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 long		expr_return_value(void)
 {
@@ -18,7 +18,7 @@ long		expr_return_value(void)
 
 	if (!g_lex_arif || (g_lex_arif->type != DIGIT && g_lex_arif->type != VAR))
 	{
-		init_lex(EOF_AR, NULL, &g_error_arifmetic);
+		init_lex(EOF_AR, NULL, &g_error_arithmetic);
 		return (0);
 	}
 	return_value = 0;

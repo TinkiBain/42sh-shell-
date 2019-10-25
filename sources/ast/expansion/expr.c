@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   expr.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 22:31:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/14 01:22:18 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 long		expr_check_type(long var_value, int type, long value)
 {
-	if (!g_error_arifmetic &&
+	if (!g_error_arithmetic &&
 			(type == DIV_ASSIGNMENT || type == MOD_ASSIGNMENT) && value == 0)
-		init_lex(DIVISION_NULL, NULL, &g_error_arifmetic);
-	if (g_error_arifmetic)
+		init_lex(DIVISION_NULL, NULL, &g_error_arithmetic);
+	if (g_error_arithmetic)
 		return (0);
 	if (type == ASSIGNMENT)
 		return (value);
@@ -59,7 +59,7 @@ long		expr(void)
 		g_lex_arif = g_lex_arif->next;
 		value = expr();
 		value = expr_check_type(var_value, type, value);
-		if (g_error_arifmetic)
+		if (g_error_arithmetic)
 			return (0);
 		var = ft_xstrjoin(var, "=");
 		var = ft_xstrrejoin(var, ft_itoa_base(value, 10), 3);

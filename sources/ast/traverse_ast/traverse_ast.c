@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 20:29:59 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void			traverse_and_or(t_and_or *elem, int sep, int init_flag)
 	flag = init_flag;
 	if (elem->next)
 		traverse_and_or(elem->next, sep, flag);
-	if (g_opt.arifmetic_error)
+	if (g_opt.arithmetic_error)
 		return ;
 	if (!flag || (flag == AND_IF && !g_res_exec)
 				|| (flag == OR_IF && g_res_exec))
@@ -53,7 +53,7 @@ static void			traverse_list(t_pars_list *list, int sep)
 
 	if (list->sep != JOB && list->next)
 		traverse_list(list->next, list->next->sep);
-	if (g_opt.arifmetic_error)
+	if (g_opt.arithmetic_error)
 		return ;
 	if (cmd_is_subshell(list->and_or, list->sep))
 	{
@@ -71,7 +71,7 @@ void				traverse_ast(t_complete_cmd *root)
 	if (!root)
 		return ;
 	signal_monitor();
-	g_opt.arifmetic_error = 0;
+	g_opt.arithmetic_error = 0;
 	root->list->sep = root->sep;
 	if (g_opt.is_subshell)
 	{

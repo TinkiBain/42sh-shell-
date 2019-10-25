@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_lexer_digit.c                            :+:      :+:    :+:   */
+/*   arithmetic_lexer_digit.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
-char	*arifmetic_lexer_digit(char *str, t_lex **lex)
+char	*arithmetic_lexer_digit(char *str, t_lex **lex)
 {
 	char	*begin;
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arifmetic_lexer_check_token.c                      :+:      :+:    :+:   */
+/*   arithmetic_lexer_check_token.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
-char		*arifmetic_lexer_check_token(char *str, t_lex **lex)
+char		*arithmetic_lexer_check_token(char *str, t_lex **lex)
 {
 	if (*str == '+')
-		return (arifmetic_lexer_plus(str, lex));
+		return (arithmetic_lexer_plus(str, lex));
 	else if (*str == '-')
-		return (arifmetic_lexer_minus(str, lex));
+		return (arithmetic_lexer_minus(str, lex));
 	else if (*str == '=')
-		return (arifmetic_lexer_assignment(str, lex));
+		return (arithmetic_lexer_assignment(str, lex));
 	else if (*str == '*')
-		return (arifmetic_lexer_multi(str, lex));
+		return (arithmetic_lexer_multi(str, lex));
 	else if (*str == '/')
-		return (arifmetic_lexer_division(str, lex));
+		return (arithmetic_lexer_division(str, lex));
 	else if (*str == '%')
-		return (arifmetic_lexer_module(str, lex));
+		return (arithmetic_lexer_module(str, lex));
 	else if (*str == '<')
-		return (arifmetic_lexer_less(str, lex));
+		return (arithmetic_lexer_less(str, lex));
 	else if (*str == '>')
-		return (arifmetic_lexer_great(str, lex));
+		return (arithmetic_lexer_great(str, lex));
 	else if (*str == '&')
-		return (arifmetic_lexer_and(str, lex));
+		return (arithmetic_lexer_and(str, lex));
 	else if (*str == '|')
-		return (arifmetic_lexer_or(str, lex));
+		return (arithmetic_lexer_or(str, lex));
 	return (NULL);
 }

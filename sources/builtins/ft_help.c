@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_help.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 18:45:31 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 19:10:34 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/25 16:48:49 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		ft_help(void)
 		"blue, purple, cyan, white, grey) - enable color\n"
 		"%eoc - disable color\n"
 		"\n"
-		"Made by ggwin-go, dwisoky, jterry, gmelisan and wtalea\n";
+		COLOR_BOLD "Made by ggwin-go, dwisoky, jterry, gmelisan and wtalea\n\n"
+		COLOR_EOC;
 	ft_putstr(msg);
 	return (0);
 }

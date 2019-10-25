@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expr_get_var_value.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 20:10:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/11 19:40:43 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arifmetic.h"
+#include "arithmetic.h"
 
 long		expr_get_var_value(void)
 {
@@ -35,6 +35,6 @@ long		expr_get_var_value(void)
 			return (expr_atoll(begin, 16));
 		return (expr_atoll(begin, 10));
 	}
-	g_error_arifmetic = g_lex_arif;
+	g_error_arithmetic = g_lex_arif;
 	return (0);
 }
