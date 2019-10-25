@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 20:24:24 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 19:23:48 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ extern int	g_term_broken;
 static void	signals(int signo)
 {
 	extern t_line	*g_line;
-	int st;
+	int				st;
 
 	st = 0;
 	if (signo == SIGCHLD)

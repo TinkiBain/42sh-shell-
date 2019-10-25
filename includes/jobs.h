@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 19:48:56 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/25 19:32:41 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char				*stop_signals(int st, char *name);
 char				*that_sig(int st, char *name);
 void				sig_per_stop(int done_pid, t_job *job, char *msg,
 								t_pjobs *first);
-void				pjobs_sig(int sig, int done_pid, int del);
+void				not_stop_sig(int st, int done_pid);
+int					pipe_jobs_check(t_job *main_job);
+void				msg_cntr(int st);
 
 #endif

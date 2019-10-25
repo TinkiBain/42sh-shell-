@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 19:22:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 20:59:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 19:34:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_job		*process_finder(int pid, t_pjobs *first_job)
 	{
 		job = first_job->job;
 		while (job)
-			{
-				if (job->pid == pid)
-					return (job);
-				job = job->next;
-			}
+		{
+			if (job->pid == pid)
+				return (job);
+			job = job->next;
+		}
 	}
 	return (NULL);
 }

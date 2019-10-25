@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 21:11:51 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 19:19:03 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 19:25:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ char			*terminal_signals(int st, char *name)
 		msg = ft_xstrjoin("\thangup\t", name);
 	else if (st == SIGKILL)
 		msg = ft_xstrjoin("\tkill\t", name);
-	// else if (st == SIGPIPE)
-	// 	msg = ft_xstrjoin("\twrite on a pipe with no one to read it\t", name);
 	else if (st == SIGPROF)
 		msg = ft_xstrjoin("\tprofiling timer expired\t", name);
 	else if (st == SIGTERM)

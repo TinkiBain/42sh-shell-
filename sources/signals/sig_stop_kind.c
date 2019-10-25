@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 23:03:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 19:22:16 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void			sig_per_stop(int done_pid, t_job *job,
 		}
 		first = first->next;
 	}
-	if (g_subjob && (job = process_finder(done_pid, job_finder(done_pid, g_subjob))))
+	if (g_subjob && (job = process_finder(done_pid,
+					job_finder(done_pid, g_subjob))))
 	{
 		sigstop(msg);
 		sig_change_status(job, msg);

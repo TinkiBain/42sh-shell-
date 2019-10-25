@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/23 23:04:04 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 19:33:34 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,11 @@ static void		def_kill_or_done(t_job *first, int sig, char *name)
 	deletejob(&g_pjobs, first->num);
 }
 
-void			pjobs_sig(int st, int done_pid, int del)
+static void		pjobs_sig(int st, int done_pid, int del)
 {
 	t_pjobs			*first;
 	t_job			*job;
-	char			*msg;
 
-	msg = NULL;
-	job = NULL;
 	first = job_finder(done_pid, g_pjobs);
 	if (first == NULL)
 		return ;
@@ -60,4 +57,44 @@ void			pjobs_sig(int st, int done_pid, int del)
 		free(first->status);
 		first->status = ft_xstrdup("suspended");
 	}
+}
+
+static void		sub_job_handler(int st, t_job *job, int done_pid)
+{
+	msg_cntr(st);
+	if ((job = process_finder(done_pid, g_subjob)))
+	{
+		job->done = 1;
+		if (st == 0 || st == 256)
+		{
+			free(job->status);
+			job->status = ft_xstrdup("\tDone\t\t");
+		}
+		if (pipe_jobs_check(g_subjob->job) > 0)
+			deletejob(&g_subjob, g_subjob->num);
+	}
+	return ;
+}
+
+void			not_stop_sig(int st, int done_pid)
+{
+	t_job			*job;
+
+	job = NULL;
+	if (g_subjob && process_finder(done_pid, g_subjob))
+	{
+		sub_job_handler(st, job, done_pid);
+		return ;
+	}
+	else
+	{
+		job = process_finder(done_pid, job_finder(done_pid, g_pjobs));
+		job->done = 1;
+		free(job->status);
+		job->status = that_sig(st, NULL);
+	}
+	if (pipe_jobs_check(job_finder(done_pid, g_pjobs)->job) > 0)
+		pjobs_sig(st, done_pid, 1);
+	else
+		pjobs_sig(st, done_pid, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 17:21:25 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 19:35:05 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int				pipe_av(int counter)
 	reserve_sem(SEMPIPE, 1);
 	while (len <= counter)
 	{
-		// print_error_vaarg ("after release(%d) - %d\n", len, get_sem(0));
 		release_sem(SEMPIPE, len);
-		// print_error_vaarg ("befor release(%d) - %d\n", len, get_sem(0));
 		len++;
 	}
 	return (1);
@@ -31,8 +29,8 @@ int				pipe_av(int counter)
 
 static int		pipe_all_pids_check(t_job *local)
 {
-	int st;
-	t_job *job;
+	int		st;
+	t_job	*job;
 
 	job = local;
 	st = 0;
@@ -53,7 +51,6 @@ static int		pipe_all_pids_check(t_job *local)
 int				ft_waitpid(pid_t pid, t_job *local)
 {
 	int i;
-
 
 	i = 0;
 	if (!(local))

@@ -19,6 +19,7 @@ a.out
 # Temporary files
 *.DS_Store
 *.swp
+*.swm
 *.swo
 test*
 
