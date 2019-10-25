@@ -6,13 +6,15 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 19:23:48 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 23:44:11 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void	sigh_exit(int signo)
+extern t_opt g_opt;
+
+void		sigh_exit(int signo)
 {
 	term_restore();
 	ft_putchar('\n');
@@ -32,6 +34,7 @@ static void	signals(int signo)
 	extern t_line	*g_line;
 	int				st;
 
+
 	st = 0;
 	if (signo == SIGCHLD)
 		jobs_sig(st);
@@ -41,16 +44,45 @@ static void	signals(int signo)
 		tcsetpgrp(0, getpid());
 	else if (signo == SIGINT && tcgetpgrp(0) != getpid())
 		ft_putstr("\n");
-	else if (signo == SIGINT)
-		exit(0);
 	else if (signo == SIGTERM)
 		reset_line(g_line);
 }
 
+int			g_cont_flag;
+
+static void	sig_cont_standart(int signo)
+{
+	t_pjobs			*childs;
+	t_job			*job;
+
+	signo = 0;
+	childs = g_pjobs;
+	while (childs)
+	{
+		job = childs->job;
+		while (job)
+		{
+			kill(job->pid, SIGCONT);
+			job = job->next;
+		}
+		childs = childs->next;
+	}
+	childs = g_subjob;
+	while (childs)
+	{
+		job = childs->job;
+		while (job)
+		{
+			kill(job->pid, SIGCONT);
+			job = job->next;
+		}
+		childs = childs->next;
+	}
+	g_cont_flag = 1;
+}
+
 static void	signal_sigwinch(int signo)
 {
-	extern t_opt	g_opt;
-
 	if (signo == SIGWINCH)
 	{
 		loginfo("SIGWINCH caught: [%dx%d]",
@@ -62,10 +94,22 @@ static void	signal_sigwinch(int signo)
 
 void		signal_monitor(void)
 {
+	struct sigaction new_action, old_action;
+	new_action.sa_handler = sig_cont_standart;
+
+	if (g_cont_flag == 0)
+	{
+		sigaction(SIGCONT, &new_action, &old_action);
+		if (g_cont_flag == 1)
+			raise(SIGCONT);
+	}
+	else
+	{
+		sigaction(SIGCONT, &old_action, NULL);
+		g_cont_flag = 0;
+	}
 	signal(SIGQUIT, signals);
-	signal(SIGCONT, signals);
 	signal(SIGCHLD, signals);
-	signal(SIGTSTP, signals);
 	signal(SIGTTOU, signals);
 	signal(SIGPIPE, signals);
 	signal(SIGTTIN, signals);

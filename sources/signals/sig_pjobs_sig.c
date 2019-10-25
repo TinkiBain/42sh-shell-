@@ -6,11 +6,15 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 19:33:34 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 23:41:38 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern t_opt g_opt;
+
+#define NONNORMEXIT 256
 
 static void		def_kill_or_done(t_job *first, int sig, char *name)
 {
@@ -21,9 +25,9 @@ static void		def_kill_or_done(t_job *first, int sig, char *name)
 		ft_printf("[%d]\t%s\n", first->num, msg);
 		free(msg);
 	}
-	else if (sig != 2)
+	else if (sig != SIGINT && !g_opt.is_subshell)
 	{
-		if (sig == 0 || sig == 256)
+		if ((sig == 0 || sig == NONNORMEXIT) )
 			ft_printf("[%d]\tDone  \t\t%s\n", first->num, name);
 		else
 			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, name);

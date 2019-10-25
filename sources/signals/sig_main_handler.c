@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 19:32:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 23:03:23 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,37 @@ char			*st_sif(int st)
 	return (ft_strdup("\tsuspended\t"));
 }
 
+extern t_opt g_opt;
+
 void			jobs_sig(int st)
 {
 	pid_t			done_pid;
 	char			*msg;
+	t_job			*job;
 
+	job = NULL;
 	msg = NULL;
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
+	//printf ("~~~~~~~~~~~~~~~~~~~~~~~~~~~%d %d %d~~~~~~~~~~~~~~~~~~~~~~~\n", done_pid, g_opt.is_subshell, st);
 	if (done_pid <= 0)
 		return ;
 	g_wait_flags = done_pid;
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);
+	if ((st == SUSPINT || st == SIGINT) && g_opt.is_subshell)
+		exit(130);
 	if (WIFSTOPPED(st))
 	{
+		if (g_opt.is_subshell == 1)
+		{
+			job = g_subjob->job;
+			while (job)
+			{
+				kill(SIGTSTP, job->pid);
+				job = job->next;
+			}
+			raise(SIGTSTP);
+		}
 		if (st == SUSPCHLD)
 			g_res_exec = 1;
 		return (sig_per_stop(done_pid, NULL, st_sif(st), g_pjobs));

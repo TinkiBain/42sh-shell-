@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 20:27:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_alias
 }					t_alias;
 
 void				signal_monitor();
+void				sigh_exit(int signo);
 void				shell_init(int ac, char **av);
 int					check_binary(char *path);
 void				shell_clear(void);
