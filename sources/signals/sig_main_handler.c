@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/24 20:46:52 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 15:45:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			jobs_sig(int st)
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
 	if (done_pid <= 0)
 		return ;
-	printf ("%d    %d\n", done_pid, st);
+	//printf ("%d    %d\n", done_pid, st);
 	g_wait_flags = done_pid;
 	if (WIFEXITED(st))
 		g_res_exec = WEXITSTATUS(st);

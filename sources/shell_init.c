@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 20:45:52 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:02:33 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void				shell_init(int ac, char **av)
 	extern t_alias	*g_alias;
 	int				fd;
 
-	printf("Us shell %d\n", getpid());
 	setpgid(getpid(), getpid());
 	fd = get_fd(ac, av);
 	g_alias = NULL;

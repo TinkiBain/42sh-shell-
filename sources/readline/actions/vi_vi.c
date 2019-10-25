@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 09:00:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 19:41:09 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/25 16:35:49 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,19 @@ static void	start_vi(char **argv)
 	t_pjobs		*local;
 
 	local = jobs_started(ft_xstrdup("vi mode"), 0);
-	pid = fork();
-	local = ljobs_started(ft_xstrdup("vi mode"), local->flag, local->num, pid);
-	if (pid == 0
-		&& execve(argv[0], argv, environ) < 0)
-		loginfo("vi_vi(): execve error");
-	else if (pid > 0)
-		ft_waitpid(pid, NULL);
-	else
+	if ((pid = fork()) < 0)
+	{
+		setpgid(getpid(), getpid());
+		tcsetpgrp(0, getpid());
 		loginfo("vi_vi(): fork error");
+		return ;
+	}
+	local = ljobs_started(ft_xstrdup("vi mode"), local->flag, local->num, pid);
+	if (pid == 0 && execve(argv[0], argv, environ) < 0)
+		loginfo("vi_vi(): execve error");
+	setpgid(pid, pid);
+	tcsetpgrp(0, pid);
+	ft_waitpid(pid, NULL);
 }
 
 static void	read_file(int fd, t_line *line)
