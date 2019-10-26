@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_monitor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 23:44:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/26 19:30:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,12 @@ static void	signal_sigwinch(int signo)
 
 void		signal_monitor(void)
 {
-	struct sigaction new_action, old_action;
-	new_action.sa_handler = sig_cont_standart;
+	struct sigaction new_action;
+	struct sigaction old_action;
 
+	bzero(&new_action, sizeof(new_action));
+	bzero(&old_action, sizeof(old_action));
+	new_action.sa_handler = sig_cont_standart;
 	if (g_cont_flag == 0)
 	{
 		sigaction(SIGCONT, &new_action, &old_action);
