@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/21 19:43:51 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:11:04 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ static void		print_options(int is_minus_o)
 	format = (is_minus_o) ? "%-15s\t%s\n" : "set %so %s\n";
 	if (is_minus_o)
 	{
-		ft_printf(format, "vi", (g_opt.vi_mode) ? "on" : "off");
-		ft_printf(format, "emacs", (g_opt.emacs_mode) ? "on" : "off");
 		ft_printf(format, "color", (g_opt.enable_color) ? "on" : "off");
-		ft_printf(format, "noclobber", (g_opt.noclobber) ? "on" : "off");
+		ft_printf(format, "emacs", (g_opt.emacs_mode) ? "on" : "off");
 		ft_printf(format, "history", (g_opt.history) ? "on" : "off");
+		ft_printf(format, "noclobber", (g_opt.noclobber) ? "on" : "off");
 		ft_printf(format, "promptsp", (g_opt.promptsp) ? "on" : "off");
+		ft_printf(format, "vi", (g_opt.vi_mode) ? "on" : "off");
 	}
 	else
 	{
-		ft_printf(format, (g_opt.vi_mode) ? "+" : "-", "vi");
-		ft_printf(format, (g_opt.emacs_mode) ? "+" : "-", "emacs");
 		ft_printf(format, (g_opt.enable_color) ? "+" : "-", "color");
-		ft_printf(format, (g_opt.noclobber) ? "+" : "-", "noclobber");
+		ft_printf(format, (g_opt.emacs_mode) ? "+" : "-", "emacs");
 		ft_printf(format, (g_opt.history) ? "+" : "-", "history");
+		ft_printf(format, (g_opt.noclobber) ? "+" : "-", "noclobber");
 		ft_printf(format, (g_opt.promptsp) ? "+" : "-", "promptsp");
+		ft_printf(format, (g_opt.vi_mode) ? "+" : "-", "vi");
 	}
 }
 
