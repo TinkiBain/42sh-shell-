@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:29:56 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/09/13 16:59:29 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/26 21:01:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ char		*parser_check_alias(char *str)
 	lex->next = g_lex->next;
 	while (lex->back)
 		lex = lex->back;
-	if (g_lex->back)
-		g_lex->back->next = lex;
-	else
-		g_lex->next = lex;
-	g_lex = lex;
-	if (lex->type == WORD)
-		return (lex->lexem);
+	g_lex->type = lex->type;
+	if (g_lex->lexem)
+		free(g_lex->lexem);
+	g_lex->lexem = lex->lexem;
+	g_lex->next = lex->next;
+	free(lex);
+	if (g_lex->type == WORD)
+		return (g_lex->lexem);
 	return (NULL);
 }
