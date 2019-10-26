@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_case_clause.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 19:07:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 20:58:02 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/26 16:39:38 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void			traverse_case_clause(t_case_clause *list, t_pjobs **local)
 				traverse_compound_list(elem->case_item->compound_list, local);
 				return ;
 			}
+			if (g_is_interrupt)
+				return ;
 			pattern = pattern->next_pattern;
 		}
 		elem = elem->next;

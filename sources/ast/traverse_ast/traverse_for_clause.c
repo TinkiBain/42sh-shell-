@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_for_clause.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 20:58:09 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/26 16:38:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ void			traverse_for_clause(t_for_clause *list, t_pjobs **local)
 	char		*var;
 	t_wordlist	*wordlist;
 
+	g_is_interrupt = 0;
 	if (check_name(list->name) || (check_readonly_var(list->name,
 													ft_strlen(list->name))))
 		return ;
 	var_name = ft_xstrjoin(list->name, "=");
 	wordlist = list->wordlist;
-	while (wordlist)
+	while (wordlist && !g_is_interrupt)
 	{
 		wordlist->word = tdq(wordlist->word, local);
 		var = ft_xstrjoin(var_name, wordlist->word);
