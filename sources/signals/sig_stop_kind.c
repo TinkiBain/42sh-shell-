@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_stop_kind.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 19:22:16 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/26 15:42:20 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void			sig_per_stop(int done_pid, t_job *job,
 		sig_change_status(job, msg);
 		deletejob(&g_subjob, g_subjob->num);
 	}
+	g_is_interrupt = 1;
 	free(msg);
 }
