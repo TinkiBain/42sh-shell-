@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 21:09:18 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 16:29:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 static int	history_open(t_history *history)
 {
-	int		fd;
-	char	*s_max;
+	int				fd;
+	char			*s_max;
+	char			*lgn;
+	struct passwd	*pw;
+	extern t_opt	g_opt;
 
+	pw = NULL;
+	if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL) {
+		g_opt.history = 0;
+		return (-1);
+	}
 	fd = -1;
-	history->path = tdq(ft_xstrdup(get_var_value("HISTPATH")), NULL);
+	history->path = ft_strjoin(pw->pw_dir, "/." PROJECT_NAME ".history");
 	s_max = ft_xstrdup(get_var_value("HISTSIZE"));
 	history->max_size = s_max ? ft_atoi(s_max) + 1 : 0;
 	ft_strdel(&s_max);

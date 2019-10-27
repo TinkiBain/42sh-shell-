@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loginfo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 21:07:45 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 16:30:26 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@ void		logopen(void)
 	char			*path;
 	extern t_opt	g_opt;
 	struct stat		st;
+	char			*lgn;
+	struct passwd	*pw;
 
+	pw = NULL;
+	if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL) {
+		// 
+		return ;
+	}
 	if (!DEBUG)
 		return ;
-	path = tdq(ft_xstrdup(get_var_value("LOGPATH")), NULL);
+	path = ft_strjoin(pw->pw_dir, "/." PROJECT_NAME ".log");
 	if (stat(path, &st) == 0 && st.st_size >= LOGSIZE)
 		g_logfd = open(path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU);
 	else

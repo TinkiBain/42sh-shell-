@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 20:28:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 17:25:42 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/27 16:32:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ static void	set_default_vars(void)
 {
 	char	*tmp;
 
-	set_var_if_not_exist("HISTPATH=~/." PROJECT_NAME ".history", &g_var, 1);
 	set_var_if_not_exist("HISTSIZE=" DEFAULT_HISTSIZE, &g_var, 1);
-	set_var_if_not_exist("LOGPATH=~/." PROJECT_NAME ".log", &g_var, 1);
 	set_var_if_not_exist("FCEDIT=/usr/bin/vim", &g_var, 1);
 	set_var_if_not_exist("PS1=" DEFAULT_PROMPT, &g_var, 1);
 	set_var_if_not_exist("PS2=heredoc> ", &g_var, 1);
