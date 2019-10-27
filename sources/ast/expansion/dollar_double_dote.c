@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 18:34:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/13 17:54:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 21:45:07 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ char			*double_dote(char *str, char *value, char *buf, char *name)
 		if (!buf)
 			return (dd_qwest(str, value, name));
 	}
-	return (ft_xstrdup(buf));
+	g_opt.arithmetic_error = 1;
+	print_error_vaarg("unrecognized modifier `%c'\n", str[1]);
+	return (NULL);
 }
