@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/26 15:37:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/27 18:37:32 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_alias				*g_alias;
 t_dict				*g_func_defs;
 int					g_open;
 int					g_is_interrupt;
+int					g_cont_flag;
+
 
 void				preliminary_check_fd(void)
 {

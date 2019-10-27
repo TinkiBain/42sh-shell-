@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 19:32:41 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 18:36:42 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void				sig_per_stop(int done_pid, t_job *job, char *msg,
 void				not_stop_sig(int st, int done_pid);
 int					pipe_jobs_check(t_job *main_job);
 void				msg_cntr(int st);
+void				cont_sig_handler(void);
 
 #endif

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sig_monitor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/27 17:57:16 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/27 18:37:01 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-extern t_opt g_opt;
+extern t_opt	g_opt;
+extern int		g_term_broken;
 
 void		sigh_exit(int signo)
 {
@@ -26,8 +27,6 @@ void		sigh_exit(int signo)
 	else
 		print_error_exit(NULL, "Fatal error", 1);
 }
-
-extern int	g_term_broken;
 
 static void	signals(int signo)
 {
@@ -47,39 +46,6 @@ static void	signals(int signo)
 		reset_line(g_line);
 }
 
-int			g_cont_flag;
-
-static void	sig_cont_standart(int signo)
-{
-	t_pjobs			*childs;
-	t_job			*job;
-
-	signo = 0;
-	childs = g_pjobs;
-	while (childs)
-	{
-		job = childs->job;
-		while (job)
-		{
-			kill(job->pid, SIGCONT);
-			job = job->next;
-		}
-		childs = childs->next;
-	}
-	childs = g_subjob;
-	while (childs)
-	{
-		job = childs->job;
-		while (job)
-		{
-			kill(job->pid, SIGCONT);
-			job = job->next;
-		}
-		childs = childs->next;
-	}
-	g_cont_flag = 1;
-}
-
 static void	signal_sigwinch(int signo)
 {
 	if (signo == SIGWINCH)
@@ -93,23 +59,7 @@ static void	signal_sigwinch(int signo)
 
 void		signal_monitor(void)
 {
-	struct sigaction new_action;
-	struct sigaction old_action;
-
-	bzero(&new_action, sizeof(new_action));
-	bzero(&old_action, sizeof(old_action));
-	new_action.sa_handler = sig_cont_standart;
-	if (g_cont_flag == 0)
-	{
-		sigaction(SIGCONT, &new_action, &old_action);
-		if (g_cont_flag == 1)
-			raise(SIGCONT);
-	}
-	else
-	{
-		sigaction(SIGCONT, &old_action, NULL);
-		g_cont_flag = 0;
-	}
+	cont_sig_handler();
 	signal(SIGQUIT, signals);
 	signal(SIGCHLD, signals);
 	signal(SIGTTOU, signals);

@@ -6,7 +6,7 @@
 #    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr        #
+#    Updated: 2019/10/27 18:39:04 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ SRCS_JOBS=\
 SRCS_SIG=\
 	sig_kind_of_sig.c		sig_main_handler.c\
 	sig_monitor.c			sig_pjobs_sig.c\
-	sig_stop_kind.c
+	sig_stop_kind.c			sig_cont.c
 
 DICTIONARY_DIR=dictionary
 

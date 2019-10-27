@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_main_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/27 17:35:49 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/27 18:42:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,24 @@ char			*st_sif(int st)
 
 extern t_opt g_opt;
 
+static void		in_subshell(void)
+{
+	t_job			*job;
+
+	job = g_subjob->job;
+	while (job)
+	{
+		kill(SIGTSTP, job->pid);
+		job = job->next;
+	}
+	raise(SIGTSTP);
+}
+
 void			jobs_sig(int st)
 {
 	pid_t			done_pid;
 	char			*msg;
-	t_job			*job;
 
-	job = NULL;
 	msg = NULL;
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
 	if (done_pid <= 0)
@@ -81,15 +92,7 @@ void			jobs_sig(int st)
 	if (WIFSTOPPED(st))
 	{
 		if (g_opt.is_subshell == 1)
-		{
-			job = g_subjob->job;
-			while (job)
-			{
-				kill(SIGTSTP, job->pid);
-				job = job->next;
-			}
-			raise(SIGTSTP);
-		}
+			in_subshell();
 		if (st == SUSPCHLD)
 			g_res_exec = 1;
 		return (sig_per_stop(done_pid, NULL, st_sif(st), g_pjobs));
