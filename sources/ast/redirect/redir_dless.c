@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_dless.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/24 20:58:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 21:46:59 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	close_fd(int fd[2], int tmp)
 
 	close(fd[0]);
 	close(fd[1]);
-	if (g_opt.rl_in != (unsigned int)tmp)
+	if (!g_opt.rl_gnl && g_opt.rl_in != (unsigned int)tmp)
 	{
 		close(g_opt.rl_in);
 		g_opt.rl_in = tmp;
@@ -70,7 +70,8 @@ int			redir_dless(t_io_redirect *redir, t_pjobs **local)
 
 	if (pipe(pipefd) < 0)
 		exit(-1);
-	tmp = save_fd();
+	if (!g_opt.rl_gnl)
+		tmp = save_fd();
 	while (1)
 	{
 		str = ft_readline(g_opt.rl_gnl == 0 ?
