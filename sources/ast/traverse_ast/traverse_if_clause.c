@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_if_clause.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 15:16:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 20:33:38 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 17:00:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	traverse_else_part(t_else_part *elem, t_pjobs **local)
 		traverse_compound_list(elem->head_compound, local);
 	if (!g_res_exec)
 		traverse_compound_list(elem->compound_list, local);
-	else
+	else if (!g_is_interrupt)
 	{
 		if (elem->next_else_part)
 			traverse_else_part(elem->next_else_part, local);
@@ -38,6 +38,8 @@ static void	traverse_else_part(t_else_part *elem, t_pjobs **local)
 void		traverse_if_clause(t_if_clause *list, t_pjobs **local)
 {
 	traverse_compound_list(list->if_head, local);
+	if (g_is_interrupt)
+		return ;
 	if (!g_res_exec)
 		traverse_compound_list(list->if_body, local);
 	else if (list->else_part)

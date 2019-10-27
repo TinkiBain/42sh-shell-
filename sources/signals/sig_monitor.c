@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/26 19:30:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/27 17:57:16 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	signals(int signo)
 {
 	extern t_line	*g_line;
 	int				st;
-
 
 	st = 0;
 	if (signo == SIGCHLD)

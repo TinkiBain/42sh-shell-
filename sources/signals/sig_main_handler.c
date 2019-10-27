@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_main_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 23:03:23 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 17:35:49 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void			jobs_sig(int st)
 	job = NULL;
 	msg = NULL;
 	done_pid = waitpid(-1, &st, WUNTRACED | WNOHANG | WCONTINUED);
-	//printf ("~~~~~~~~~~~~~~~~~~~~~~~~~~~%d %d %d~~~~~~~~~~~~~~~~~~~~~~~\n", done_pid, g_opt.is_subshell, st);
 	if (done_pid <= 0)
 		return ;
 	g_wait_flags = done_pid;
@@ -77,6 +76,8 @@ void			jobs_sig(int st)
 		g_res_exec = WEXITSTATUS(st);
 	if ((st == SUSPINT || st == SIGINT) && g_opt.is_subshell)
 		exit(130);
+	if ((st == SUSPINT || st == SIGINT))
+		g_is_interrupt = 1;
 	if (WIFSTOPPED(st))
 	{
 		if (g_opt.is_subshell == 1)

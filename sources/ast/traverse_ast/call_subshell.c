@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/26 18:45:28 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/27 18:14:03 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int					call_subshell(char *str, t_pjobs **local)
 
 	if (g_opt.is_subshell && g_opt.is_single_cmd)
 	{
-		// printf ("pid %d\n", getpid());
 		execute_line(str);
 		exit(g_res_exec);
 	}
