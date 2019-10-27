@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 23:41:38 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/27 18:25:52 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ static void		pjobs_sig(int st, int done_pid, int del)
 	if (first == NULL)
 		return ;
 	job = process_finder(done_pid, first);
+	printf ("%d %d %d\n",st , done_pid, del);
 	if (done_pid != 0 && !(WIFSTOPPED(st)) && del)
 		def_kill_or_done(job, st, first->name);
-	if (!job->done)
+	else if (!job->done)
 	{
 		free(job->status);
 		if (st == SUSPINT || st == SUSPOUT)
