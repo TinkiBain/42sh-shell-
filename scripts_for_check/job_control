@@ -1,0 +1,44 @@
+
+printf "\n\033[0;32m# Job control. \033[0m"
+printf "\n\033[1;34m# Message indicating that the "ls" command is being executed \033[0m \n"
+cd /tmp
+mkfifo fifo
+ls -lR /usr >fifo 2>&1 &
+kill -s SIGTSTP %
+jobs
+
+printf "\n\033[1;34m# Message indicating that 5 instances of emacs are stopped in the background \033[0m \n"
+emacs -nw &
+emacs -nw &
+emacs -nw &
+emacs -nw &
+emacs -nw &
+jobs
+
+printf "\n\033[1;34m# The "ls" command launched above must be the only one left \033[0m \n"
+kill -9 %
+kill -9 %
+kill -9 %
+kill -9 %
+kill -9 %
+jobs
+kill -9 %
+
+printf "\n\033[1;34m# Output of the "ls | cat -e" command \033[0m \n"
+ls | cat -e &
+jobs
+
+printf "\n\033[1;34m# Message indicating that the order is suspended \033[0m \n"
+ls -Rl / 2>&1 &
+kill -s SIGTSTP %
+jobs
+
+printf "\n\033[1;34m# PID of the command "ls" from the previous test \033[0m \n"
+ps a | grep "ls -Rl /" | grep -v 'grep' | cut -d ' ' -f 1
+
+printf "\n\033[1;34m# Message indicating that the order has ended \033[0m \n"
+kill -9 $(ps a | grep "ls -Rl /" | grep -v 'grep' | cut -d ' ' -f 1)
+jobs
+
+printf "\n\033[1;34m# Output should display nothing for (ps a | grep "ls -Rl /" | grep -v 'grep') \033[0m \n"
+ps a | grep "ls -Rl /" | grep -v 'grep'
