@@ -6,11 +6,36 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 18:09:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/28 21:00:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+char		*check_path(char *path)
+{
+	struct stat		stat_path;
+	struct stat		stat_cwd;
+	char			*cwd;
+	
+	if (!path)
+		return (getcwd(NULL, 1024));
+	cwd = getcwd(NULL, 1024);
+	if (stat(path, &stat_path) == -1)
+	{
+		free(path);
+		return (cwd);
+	}
+	stat(cwd, &stat_cwd);
+	if (stat_path.st_ino == stat_cwd.st_ino &&
+			stat_path.st_dev == stat_cwd.st_dev)
+	{
+		free(cwd);
+		return (path);
+	}
+	free(path);
+	return (cwd);
+}
 
 const char	*check_flag(const char **av, int *flag)
 {
@@ -119,8 +144,7 @@ int			ft_cd(const char **av)
 		path = ft_xstrdup(get_var_value("PWD"));
 	else
 		path = getcwd(NULL, 1024);
-	if (!path)
-		path = ft_xstrdup(getcwd(NULL, 1024));
+	path = check_path(path);
 	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
 		return (cd_norm(path, tmp, flag));
 	if ((curpath = check_cdpath(tmp)))

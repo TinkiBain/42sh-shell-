@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/28 19:38:20 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/28 21:00:34 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void		check_full_path_back(char *curpath, int *i)
 	else
 		ft_strcpy(&curpath[j + 1], &curpath[*i + 3]);
 	*i = j;
+	if (*i < 0)
+		*i = 0;
 }
 
 void		check_full_path(char *curpath)
@@ -49,7 +51,7 @@ void		check_full_path(char *curpath)
 	int		i;
 
 	i = 0;
-	if (curpath)
+	if (!curpath)
 		return ;
 	while (curpath[i])
 	{
