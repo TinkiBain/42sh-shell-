@@ -3,6 +3,8 @@ RED='\033[0;34m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+DEFAULT_DIR=$PWD
+
 printf "\n$GREEN# MANDATORY PART. $NC\n"
 
 printf "\n$GREEN# Prerequisites from minishell. $NC"
@@ -53,6 +55,7 @@ cat err
 cat out
 rm -f err out
 cd ${OLDPWD}
+rm -f err out
 
 printf "\n$BLUE# Error message indicating that the file descriptor is invalid $NC \n"
 cat <&40
@@ -225,3 +228,5 @@ ls -1 | grep testdir
 
 printf "\n$BLUE# Output should display \"0\", then \"1\" $NC \n"
 true; echo ${?}; false; echo ${?}
+
+cd $DEFAULT_DIR

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/10/27 18:39:04 by jterry           ###   ########.fr        #
+#    Updated: 2019/10/28 22:41:44 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -205,6 +205,6 @@ else
 endif
 
 vg:
-	valgrind --leak-check=full --sigill-diagnostics=yes ./$(NAME) $(ARG)
+	valgrind --leak-check=full --sigill-diagnostics=yes -v ./$(NAME) $(ARG)
 
 re: fclean all
