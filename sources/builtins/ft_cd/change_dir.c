@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/28 19:33:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/28 19:38:20 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void		check_full_path(char *curpath)
 	int		i;
 
 	i = 0;
+	if (curpath)
+		return ;
 	while (curpath[i])
 	{
 		if (ft_strnequ(&curpath[i], "/../", 4) ||
@@ -60,6 +62,7 @@ void		check_full_path(char *curpath)
 		else
 			++i;
 	}
+	i = 0;
 	while (curpath[i])
 	{
 		if (curpath[i] == '/' &&
@@ -68,7 +71,6 @@ void		check_full_path(char *curpath)
 		else
 			++i;
 	}
-	i = 0;
 }
 
 int			cd_norm(char *path, const char *tmp, int flag)
