@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:33:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/28 19:17:49 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:24:07 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static char		*getcwd_expand(void)
 	pwd = ft_xstrdup(get_var_value("PWD"));
 	ft_bzero(&st_cwd, sizeof(st_cwd));
 	ft_bzero(&st_pwd, sizeof(st_pwd));
-	if (stat(cwd, &st_cwd) < 0)
+	if (stat(cwd ? cwd : "", &st_cwd) < 0)
 		loginfo("stat returned -1 (%s)", cwd);
-	else if (stat(pwd, &st_pwd) < 0)
+	else if (stat(pwd ? pwd : "", &st_pwd) < 0)
 		loginfo("stat returned -1 (%s)", pwd);
 	if (st_cwd.st_ino == st_pwd.st_ino)
 	{
