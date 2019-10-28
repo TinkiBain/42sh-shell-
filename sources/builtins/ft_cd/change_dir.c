@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 16:04:32 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/24 19:59:01 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:33:39 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int			cd_norm(char *path, const char *tmp, int flag)
 int			change_dir(char *curpath, const char *av, int flag)
 {
 	char	*arr_for_env[3];
+	char	*p;
 
 	if (!ft_strequ(curpath, "."))
 		check_full_path(curpath);
@@ -90,7 +91,8 @@ int			change_dir(char *curpath, const char *av, int flag)
 		return (cd_error(av, curpath));
 	if (curpath[ft_strlen(curpath) - 1] == '/' && ft_strlen(curpath) != 1)
 		curpath[ft_strlen(curpath) - 1] = '\0';
-	arr_for_env[0] = ft_xstrjoin("OLDPWD=", get_var_value("PWD"));
+	p = get_var_value("PWD");
+	arr_for_env[0] = (p) ? ft_xstrjoin("OLDPWD=", p) : ft_xstrdup("OLDPWD=");
 	if (!flag)
 		arr_for_env[1] = ft_xstrjoin("PWD=", curpath);
 	else
