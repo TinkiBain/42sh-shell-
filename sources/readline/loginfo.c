@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/27 16:30:26 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/28 17:38:05 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,22 @@ void		logopen(void)
 	char			*lgn;
 	struct passwd	*pw;
 
-	pw = NULL;
-	if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL) {
-		// 
-		return ;
-	}
 	if (!DEBUG)
 		return ;
-	path = ft_strjoin(pw->pw_dir, "/." PROJECT_NAME ".log");
-	if (stat(path, &st) == 0 && st.st_size >= LOGSIZE)
-		g_logfd = open(path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU);
-	else
-		g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
-	if (g_logfd < 0)
+	pw = NULL;
+	path = NULL;
+	if ((lgn = getlogin()) && (pw = getpwnam(lgn)))
 	{
-		g_logfd = open(DEF_LOGPATH, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
+		path = ft_strjoin(pw->pw_dir, "/." PROJECT_NAME ".log");
+		if (stat(path, &st) == 0 && st.st_size >= LOGSIZE)
+			g_logfd = open(path, O_RDWR | O_TRUNC | O_CREAT, S_IRWXU);
+		else
+			g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		if (g_logfd < 0)
-			ft_fdprintf(STDERR, "Error while opening logfile: %s\n",
-															DEF_LOGPATH);
-		loginfo("Error while opening logfile: %s", path);
+			ft_fdprintf(STDERR, "Error while opening logfile: %s\n", path);
 	}
+	else
+		ft_fdprintf(STDERR, "Error while opening logfile: %s\n", path);
 	ft_strdel(&path);
 	loginfo("=== START ===");
 	loginfo("tty: %s", ttyname(g_opt.rl_in));

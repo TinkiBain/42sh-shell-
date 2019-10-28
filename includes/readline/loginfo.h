@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:04:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/09 15:32:32 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/28 17:48:54 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stdarg.h>
 # include <execinfo.h>
 # include "ft_readline.h"
-
-# define DEF_LOGPATH		"./." PROJECT_NAME ".log"
 
 /*
 ** 100 Mb log limit. Truncates on startup.

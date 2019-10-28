@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/27 16:29:54 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/28 17:17:04 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	history_open(t_history *history)
 	extern t_opt	g_opt;
 
 	pw = NULL;
-	if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL) {
+	if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL)
+	{
 		g_opt.history = 0;
 		return (-1);
 	}

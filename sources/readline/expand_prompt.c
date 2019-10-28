@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:33:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 17:22:08 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/28 17:40:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void			expand_prompt(t_string *str)
 	convert_escapes(str);
 	str_xreplace(str, "%s", g_project_name);
 	str_xreplace(str, "%v", VERSION);
+	str_xreplace(str, "%u", getlogin());
 	str_xreplace(str, "%w", (p = getcwd_tilde()));
 	str_xreplace(str, "%black", COLOR_BLACK);
 	str_xreplace(str, "%red", COLOR_RED);
