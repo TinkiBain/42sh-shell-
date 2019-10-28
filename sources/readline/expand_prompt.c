@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:33:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/28 17:40:33 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/28 19:17:49 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static void		convert_escapes(t_string *str)
 	}
 }
 
-static char		*getcwd_tilde(void)
+static char		*getcwd_tilde(char *s)
 {
 	t_string	path;
 	char		*home;
 	char		*loc;
 	size_t		i;
 
-	path.s = getcwd(NULL, 0);
+	path.s = s;
 	str_fixlen(&path);
 	home = get_var_value("HOME");
 	if (!home)
@@ -61,6 +61,33 @@ static char		*getcwd_tilde(void)
 	return (path.s);
 }
 
+static char		*getcwd_expand(void)
+{
+	struct stat		st_cwd;
+	struct stat		st_pwd;
+	char			*cwd;
+	char			*pwd;
+
+	cwd = getcwd(NULL, 0);
+	pwd = ft_xstrdup(get_var_value("PWD"));
+	ft_bzero(&st_cwd, sizeof(st_cwd));
+	ft_bzero(&st_pwd, sizeof(st_pwd));
+	if (stat(cwd, &st_cwd) < 0)
+		loginfo("stat returned -1 (%s)", cwd);
+	else if (stat(pwd, &st_pwd) < 0)
+		loginfo("stat returned -1 (%s)", pwd);
+	if (st_cwd.st_ino == st_pwd.st_ino)
+	{
+		free(cwd);
+		return (getcwd_tilde(pwd));
+	}
+	else
+	{
+		free(pwd);
+		return (getcwd_tilde(cwd));
+	}
+}
+
 void			expand_prompt(t_string *str)
 {
 	extern char	*g_project_name;
@@ -70,7 +97,7 @@ void			expand_prompt(t_string *str)
 	str_xreplace(str, "%s", g_project_name);
 	str_xreplace(str, "%v", VERSION);
 	str_xreplace(str, "%u", getlogin());
-	str_xreplace(str, "%w", (p = getcwd_tilde()));
+	str_xreplace(str, "%w", (p = getcwd_expand()));
 	str_xreplace(str, "%black", COLOR_BLACK);
 	str_xreplace(str, "%red", COLOR_RED);
 	str_xreplace(str, "%green", COLOR_GREEN);
