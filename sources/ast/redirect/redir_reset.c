@@ -6,11 +6,13 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:08:30 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 12:32:37 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/29 16:53:27 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern char		g_tty_name[3][1024];
 
 static void		close_all_fd(void)
 {
@@ -35,19 +37,14 @@ void			redir_reset(void)
 
 	close_all_fd();
 	i = 0;
-	if (!g_tty)
-		return ;
 	while (i < 3)
 	{
-		if (!ttyname(i))
+		fd = open(g_tty_name[i], O_RDWR);
+		if (fd > -1)
 		{
-			fd = open(g_tty, O_RDWR);
-			if (fd > -1)
-			{
-				dup2(fd, i);
-				if (fd != i)
-					close(fd);
-			}
+			dup2(fd, i);
+			if (fd != i)
+				close(fd);
 		}
 		++i;
 	}

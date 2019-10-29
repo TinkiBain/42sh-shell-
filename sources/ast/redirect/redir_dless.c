@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 19:46:10 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/27 21:46:59 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/28 22:34:21 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static void	close_fd(int fd[2], int tmp)
 static int	save_fd(void)
 {
 	int				old_fd;
-	extern char		*g_tty_name;
+	extern char		g_tty_name[3][1024];
 	extern t_opt	g_opt;
 	extern int		g_open;
 
 	old_fd = g_opt.rl_in;
-	if (g_tty_name)
+	if (g_tty_name[0])
 	{
 		g_opt.rl_in = g_open;
 	}

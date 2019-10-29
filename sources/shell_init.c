@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/27 18:37:32 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/29 16:53:26 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ t_pjobs				*g_subjob;
 int					g_line_num;
 int					g_eof;
 int					g_wait_flags;
-char				*g_tty;
-char				*g_tty_name;
+char				g_tty_name[3][1024];
 int					*g_open_fd;
 t_alias				*g_alias;
 t_dict				*g_func_defs;
@@ -38,7 +37,7 @@ int					g_cont_flag;
 
 void				preliminary_check_fd(void)
 {
-	extern char		*g_tty_name;
+	extern char		g_tty_name[3][1024];
 	extern t_opt	g_opt;
 
 	if (fcntl(0, F_GETFL) < -1)
@@ -52,8 +51,10 @@ void				preliminary_check_fd(void)
 			g_opt.rl_gnl = 1;
 		}
 	}
-	g_tty_name = ttyname(0);
-	g_open = open(g_tty_name, O_RDWR);
+	fcntl(0, F_GETPATH, g_tty_name[0]);
+	fcntl(1, F_GETPATH, g_tty_name[1]);
+	fcntl(2, F_GETPATH, g_tty_name[2]);
+	g_open = open(g_tty_name[0], O_RDWR);
 }
 
 static void			fill_options(int rl_in)

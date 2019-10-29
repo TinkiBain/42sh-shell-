@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:15:13 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/26 15:39:00 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/28 22:21:25 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 
 extern char						*g_project_name;
 extern int						g_res_exec;
-extern char						*g_tty;
 extern int						*g_open_fd;
 extern int						g_is_interrupt;
 extern char						*g_shell_path;

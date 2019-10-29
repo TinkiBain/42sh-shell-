@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 16:51:48 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/15 20:39:52 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/28 22:21:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void			redir_set(void)
 {
-	extern	char *g_tty;
-
-	g_tty = ttyname(0);
 	if (!g_open_fd)
 	{
 		g_open_fd = (int *)ft_xmemalloc(sizeof(int) * 1);
