@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/06 17:08:30 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/29 16:53:27 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/29 18:21:09 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			redir_reset(void)
 	i = 0;
 	while (i < 3)
 	{
-		fd = open(g_tty_name[i], O_RDWR);
+		fd = open(g_tty_name[i], O_RDWR | O_APPEND);
 		if (fd > -1)
 		{
 			dup2(fd, i);

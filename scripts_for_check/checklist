@@ -16,7 +16,7 @@ printf "\n$BLUE# Non-existent command ; return code (must not be 0) $NC \n"
 doesnotexist
 echo ${?}
 
-printf "\n$BLUE# Launch file with insufficient permi-fssion ; return code (must not be 0) $NC \n"
+printf "\n$BLUE# Launch file with insufficient permission ; return code (must not be 0) $NC \n"
 ./author
 echo ${?}
 

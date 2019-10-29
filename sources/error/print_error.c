@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 17:35:34 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/29 18:21:45 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void			print_error(const char *info, const char *msg)
 	t_string	tmp;
 	char		*p;
 
-	// reserve_sem(SEMPRINT, 1);
-	tmp = str_xcreate(1024);
+	tmp = str_xcreate(0);
 	str_xaddback(&tmp, g_project_name, ft_strlen(g_project_name));
 	str_xaddback(&tmp, ": ", 2);
 	if (g_opt.rl_gnl != 0)
@@ -71,7 +70,6 @@ void			print_error(const char *info, const char *msg)
 	write(STDERR, tmp.s, tmp.len);
 	loginfo("! Error: %s (\"%s\")", msg, info);
 	str_delete(&tmp);
-	// release_sem(SEMPRINT, 1);
 }
 
 void			print_error_exit(const char *info, const char *msg,
