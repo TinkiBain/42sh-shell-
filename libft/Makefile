@@ -13,7 +13,7 @@
 NAME=libft.a
 
 CC=clang
-FLAGS=-Wall -Wextra -Werror -MMD
+FLAGS=-Wall -Wextra -Werror
 FLAGS+=-g
 
 RED=\033[0;31m
@@ -43,11 +43,13 @@ $(NAME): $(LIBFT_OBJS_SUBDIRS) $(LIBFT_OBJS)
 	@ranlib $(NAME)
 	@printf "$(GREEN)Bin $(NAME) is ready to use!$(NC)\n"
 
+-include $(LIBFT_OBJS:.o=.d)
+
 $(LIBFT_OBJS_SUBDIRS):
 	@mkdir -p $@
 
-$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_SRCS_DIR)/%.c# $(LIBFT_HEADERS)
-	@$(CC) $(FLAGS) $(LIBFT_INCLUDES) -c $< -o $@
+$(LIBFT_OBJS_DIR)/%.o: $(LIBFT_SRCS_DIR)/%.c
+	@$(CC) $(FLAGS) $(LIBFT_INCLUDES) -c $< -o $@ -MMD
 
 clean:
 ifneq ($(LIBFT_OBJS_CLEAN),)
