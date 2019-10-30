@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 07:27:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/09/05 21:39:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:59:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_string		find_common_part(char **arr, int n)
 	int			min;
 	char		prev;
 
-	res = str_create(0);
+	res = str_xcreate(0);
 	if (arr == NULL)
 		return (res);
 	min = get_min_len(arr, n);

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/17 16:22:40 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/15 03:52:02 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:59:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int				vi_input_one(t_line *line)
 {
 	int		ret;
 
-	line->keybuf = str_create(KEYBUF_SIZE);
+	line->keybuf = str_xcreate(KEYBUF_SIZE);
 	while ((ret = read(g_opt.rl_in, line->keybuf.s, KEYBUF_SIZE - 1)) &&
 			*line->keybuf.s != NL)
 	{

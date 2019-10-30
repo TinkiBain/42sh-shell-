@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:26:20 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 20:31:41 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 18:06:45 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		handle_last_cmd_in_pipe(int fd, t_command *cmd, t_pjobs **local, in
 		dup2(fd, 0);
 		close(fd);
 		release_sem(SEMPIPE, 1);
-		reserve_sem(SEMPIPE, *counter);
+		reserve_sem(SEMPIPE, *counter, 0);
 		// print_error_vaarg ("loop  reserve(%d) - %s\n", *counter, get_process_name(cmd));
 		traverse_command(cmd, 1, local);
 		exit(g_res_exec);
@@ -51,7 +51,7 @@ static void		inside_fork(int fd, int pipefd[2], t_pjobs **local,
 	close(pipefd[1]);
 	if (fd == 0 && (*local)->flag == 0)
 		tcsetpgrp(0, getpid());
-	reserve_sem(SEMPIPE, *counter);
+	reserve_sem(SEMPIPE, *counter, 0);
 	// print_error_vaarg ("loop  reserve(%d) - %s\n", *counter, get_process_name(cmd));
 	traverse_command(cmd, 1, local);
 	exit(g_res_exec);

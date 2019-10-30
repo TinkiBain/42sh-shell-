@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 23:45:47 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/08/27 00:30:15 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 17:59:34 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			pull_escseqs(t_vector *vec, t_string *str)
 	char		c;
 
 	*vec = vec_xcreate(0, sizeof(t_escseq));
-	new = str_create(0);
+	new = str_xcreate(0);
 	i = 0;
 	sub = 0;
 	while ((c = str_get(*str, i)))

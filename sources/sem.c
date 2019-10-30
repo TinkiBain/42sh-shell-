@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/23 18:31:49 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 18:46:37 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void				clear_sem(void)
 	g_semid = 0;
 }
 
-void				reserve_sem(int semnum, int n)
+void				reserve_sem(int semnum, int n, int whl)
 {
 	struct sembuf	sops;
 
@@ -41,21 +41,11 @@ void				reserve_sem(int semnum, int n)
 		return ;
 	sops.sem_num = semnum;
 	sops.sem_op = -n;
-	sops.sem_flg = SEM_UNDO;
-	if (semop(g_semid, &sops, 1) == -1)
-		;
-}
-
-void				reserve_sem_while(int semnum, int n)
-{
-	struct sembuf	sops;
-
-	if (!g_semid)
-		return ;
-	sops.sem_num = semnum;
-	sops.sem_op = -n;
-	sops.sem_flg = SEM_UNDO;
-	while (semop(g_semid, &sops, 1) == -1)
+	sops.sem_flg = 0;
+	if (whl)
+		while (semop(g_semid, &sops, 1) == -1)
+			;
+	else if (semop(g_semid, &sops, 1) == -1)
 		;
 }
 
@@ -80,15 +70,15 @@ void				set_sem(int semnum, int val)
 		loginfo("Error while set_sem(%d, %d)", semnum, val);
 }
 
-
-int					get_sem(int semnum)
-{
-	extern int		g_semid;
-	union semun		arg;
-
-	ft_bzero(&arg, sizeof(arg));
-	if (g_semid)
-		return (semctl(g_semid, semnum, GETVAL, arg));
-	return (0);
-}
-
+/*
+** int					get_sem(int semnum)
+** {
+** 	extern int		g_semid;
+** 	union semun		arg;
+** 
+** 	ft_bzero(&arg, sizeof(arg));
+** 	if (g_semid)
+** 		return (semctl(g_semid, semnum, GETVAL, arg));
+** 	return (0);
+** }
+*/
