@@ -75,22 +75,27 @@ ps a | grep 'base64' | grep -v 'grep'
 
 printf "\n$BLUE# Output should display of 2 'ls'. An additional file, \"test_file\", must appear in the second output $NC \n"
 rm -f ${PWD}/test_file
-ls -1; touch test_file; ls -1
+ls -1; touch ${PWD}/test_file; ls -1
+rm -f ${PWD}/test_file
 
 printf "\n$BLUE# Output should display \"stayin' alive\" $NC \n"
 exit 1 | exit 2 | exit 3; echo "stayin' alive"
 
 printf "\n$BLUE# Optional error message indicating that it is impossible to write to stdout; \"out2\" $NC \n"
 echo out >&-; echo out2
+sleep 0.1
 
 printf "\n$BLUE# Optional error message indicating that it is impossible to write to stdout; \"out2\" $NC \n"
 echo out >&- | echo out2
+sleep 0.1
 
 printf "\n$BLUE# Optional error message indicating that it is impossible to write to stdout $NC \n"
 echo out >&- && echo out2
+sleep 0.1
 
 printf "\n$BLUE# Optional error message indicating that it is impossible to write to stdout; \"out2\" $NC \n"
 echo out >&- || echo out2
+sleep 0.1
 
 printf "\n$BLUE# Output should display sentense $NC \n"
 cat << END
@@ -98,22 +103,26 @@ hello world
 and good
 morning!
 END
+sleep 0.1
 
 printf "\n$BLUE# Output should display \"hi\" $NC \n"
 cat << EO\
 F
 hi
 EOF
+sleep 0.1
 
 printf "\n$BLUE# Output should display \"abc\" \"def$\" \"ghi$\" $NC \n"
 cat > /tmp/heredoc-append << FIN
 abc
 FIN
+sleep 0.1
 cat -e >> /tmp/heredoc-append << FIN
 def
 ghi
 FIN
 cat /tmp/heredoc-append
+sleep 1
 
 printf "\n$BLUE# Output should display three strings in alphabetical order $NC \n"
 cat << EOF | sort
@@ -121,6 +130,7 @@ abd
 abc
 abb
 EOF
+sleep 0.1
 
 printf "\n$GREEN# Built-ins (without checking exit). $NC"
 printf "\n$BLUE# Check \"cd /Users; pwd\" $NC \n"
@@ -191,29 +201,29 @@ printf "\n$BLUE# Output should display all internal shell and environment variab
 set
 
 printf "\n$BLUE# Output should display \"a=hello\" and \"b=world\"$NC \n"
-set | grep -E '(a|b)='
+set | grep -E '(a|b)=' | grep -v _=
 
 printf "\n$BLUE# Output should display all environment variables only $NC \n"
 env
 
 printf "\n$BLUE# Output should display nothing for (env | grep -E '(a|b)=') $NC \n"
-env | grep -E '(a|b)='
+env | grep -E '(a|b)=' | grep -v _=
 
 printf "\n$BLUE# Output should display \"world\" $NC \n"
 export b
 printenv b
 
 printf "\n$BLUE# Output should display \"ONESHOT=\" $NC \n"
-ONESHOT= env | grep ONESHOT
+ONESHOT= env | grep ONESHOT | grep -v _=
 
 printf "\n$BLUE# Output should display nothing for (env | grep ONESHOT) $NC \n"
-env | grep ONESHOT
+env | grep ONESHOT | grep -v _=
 
 printf "\n$BLUE# Output should display nothing for (env | grep -E '(a|b)=') $NC \n"
 unset a b
-env | grep -E '(a|b)='
+env | grep -E '(a|b)=' | grep -v _=
 printf "\n$BLUE# Output should display nothing for (set | grep -E '(a|b)=') $NC \n"
-set | grep -E '(a|b)='
+set | grep -E '(a|b)=' | grep -v _=
 
 printf "\n$BLUE# Output should display return code (must be 0) $NC \n"
 cd /tmp

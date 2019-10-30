@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 17:46:30 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/15 19:14:08 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 22:56:21 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static int		ft_sighandler(const char *str)
 		return (SIGKILL);
 	else if (!ft_strcmp(str, "SIGTTOU"))
 		return (SIGTTOU);
+	else if (!ft_strcmp(str, "SIGTSTP"))
+		return (SIGTSTP);
 	return (-1);
 }
 

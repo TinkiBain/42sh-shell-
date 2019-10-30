@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 16:29:42 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 17:59:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:05:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char		*ft_readline(char *prompt, enum e_rl_mode mode)
 	g_line = &line;
 	tcsetpgrp(0, getpid());
 	g_wait_flags = 0;
-	if (!g_opt.emacs_mode && !g_opt.vi_mode)
+	if ((!g_opt.emacs_mode && !g_opt.vi_mode) || g_opt.rl_gnl)
 		return (gnl(prompt));
 	term_init();
 	term_setup();

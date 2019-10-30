@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_stop_kind.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/26 15:42:20 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/30 22:51:00 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void			sig_per_stop(int done_pid, t_job *job,
 {
 	while (first)
 	{
-		if (process_finder(done_pid, job_finder(done_pid, first)))
+		if ((job = process_finder(done_pid, job_finder(done_pid, first))))
 		{
-			job = first->job;
+			first = jobs_find_num(first, job->num);
 			if (ft_strcmp(job->status, msg))
 				ft_printf("\n42sh: %s%s\n", msg,
 					jobs_find_num(first, job->num)->name);

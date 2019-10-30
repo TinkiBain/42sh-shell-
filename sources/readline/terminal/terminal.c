@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/30 20:23:24 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 22:50:31 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void			term_restore(void)
 {
 	if (g_term_broken)
 	{
-		// term_putstr(g_cap.kp_end);
-		// term_putstr(g_cap.cur_show);
+		term_putstr(g_cap.kp_end);
+		term_putstr(g_cap.cur_show);
 		tcsetattr(g_opt.rl_in, TCSANOW, &g_init_tios);
 		clear_termcap();
 		g_term_broken = 0;

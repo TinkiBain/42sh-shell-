@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/27 18:44:53 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 22:51:11 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void		pjobs_sig(int st, int done_pid, int del)
 			else if (st == SUSPOUT)
 				job->status = ft_xstrdup("\tsuspended (tty output)\t");
 			else
-				job->status = ft_xstrdup(" suspended \t\t");
+				job->status = ft_xstrdup("\tsuspended \t\t");
 		}
 		free(first->status);
-		first->status = ft_xstrdup("suspended");
+		first->status = ft_xstrdup("\tsuspended\t\t");
 	}
 }
 

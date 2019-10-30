@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/30 19:59:54 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/30 21:05:53 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,7 @@ void				preliminary_check_fd(void)
 	if (fcntl(0, F_GETFL) < -1)
 		exit(0);
 	if (!isatty(0))
-	{
-		if (g_opt.vi_mode || g_opt.emacs_mode)
-		{
-			g_opt.vi_mode = 0;
-			g_opt.emacs_mode = 0;
-			g_opt.rl_gnl = 1;
-		}
-	}
+		g_opt.rl_gnl = 1;
 	fcntl(0, F_GETPATH, g_tty_name[0]);
 	fcntl(1, F_GETPATH, g_tty_name[1]);
 	fcntl(2, F_GETPATH, g_tty_name[2]);

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 14:22:58 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/09 17:27:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 22:51:41 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@ static int	res_for_cmd_not_found(const char *cmd)
 {
 	print_error_vaarg("type: %s: not found\n", cmd);
 	return (1);
+}
+
+static void	print_bin_path(const char *cmd, char *path)
+{
+	char	*s;
+
+	if (path)
+	{
+		s = ft_xstrjoin(cmd, " is hashed (");
+		s = ft_xstrrejoin(s, path, 1);
+		s = ft_xstrrejoin(s, ")", 1);
+	}
+	else
+		s = ft_xstrjoin(cmd, " is a shell builtin");
+	ft_putendl(s);
+	ft_strdel(&s);
 }
 
 int			ft_type(const char **av)
@@ -29,15 +45,12 @@ int			ft_type(const char **av)
 		{
 			if (is_builtin((char *)*av))
 			{
-				ft_putstr(*av);
-				ft_putendl(" is a shell builtin");
+				print_bin_path(*av, NULL);
 				res = 1;
 			}
 			else if ((path = get_bin((char *)*av)))
 			{
-				ft_putstr(*av);
-				ft_putstr(" is ");
-				ft_putendl(path);
+				print_bin_path(*av, path);
 				res = 1;
 			}
 			else
