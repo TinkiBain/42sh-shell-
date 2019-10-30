@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 17:13:04 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/16 17:45:25 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:11:27 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		complete_isspace_check(t_string str, int i)
 		return (0);
 	if (ft_isspace(c))
 		return (1);
-	return (0);					/* TODO: check for quotes */
+	return (0);
 }
 
 void	complete_unescape(t_string *str)

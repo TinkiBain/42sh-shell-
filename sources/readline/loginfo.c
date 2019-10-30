@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/02 23:02:35 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/28 17:38:05 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:17:01 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void		logopen(void)
 	if (!DEBUG)
 		return ;
 	pw = NULL;
-	path = NULL;
-	if ((lgn = getlogin()) && (pw = getpwnam(lgn)))
+	lgn = getlogin();
+	if ((lgn) && (pw = getpwnam(lgn)))
 	{
 		path = ft_strjoin(pw->pw_dir, "/." PROJECT_NAME ".log");
 		if (stat(path, &st) == 0 && st.st_size >= LOGSIZE)
@@ -35,12 +35,11 @@ void		logopen(void)
 			g_logfd = open(path, O_RDWR | O_APPEND | O_CREAT, S_IRWXU);
 		if (g_logfd < 0)
 			ft_fdprintf(STDERR, "Error while opening logfile: %s\n", path);
+		ft_strdel(&path);
 	}
 	else
-		ft_fdprintf(STDERR, "Error while opening logfile: %s\n", path);
-	ft_strdel(&path);
-	loginfo("=== START ===");
-	loginfo("tty: %s", ttyname(g_opt.rl_in));
+		ft_fdprintf(STDERR, "Can't find HOME for logfile");
+	loginfo("=== START ===\ntty: %s, pid: %d", ttyname(g_opt.rl_in), getpid());
 }
 
 void		logclose(void)

@@ -6,22 +6,17 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 10:37:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/18 20:29:26 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 20:23:24 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "terminal.h"
+#include "utils.h"
 
 struct termios	g_init_tios;
 t_cap			g_cap;
 int				g_term_broken;
 extern t_opt	g_opt;
-
-static int		ft_putint(int c)
-{
-	write(g_opt.rl_out, &c, 1);
-	return (0);
-}
 
 void			term_init(void)
 {

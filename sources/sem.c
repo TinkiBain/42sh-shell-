@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 17:25:33 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/30 18:46:37 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:27:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void				set_sem(int semnum, int val)
 ** {
 ** 	extern int		g_semid;
 ** 	union semun		arg;
-** 
+**
 ** 	ft_bzero(&arg, sizeof(arg));
 ** 	if (g_semid)
 ** 		return (semctl(g_semid, semnum, GETVAL, arg));
