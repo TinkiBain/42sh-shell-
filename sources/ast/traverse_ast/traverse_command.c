@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_command.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 18:14:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/27 18:14:33 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/30 19:37:04 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void		traverse_command(t_command *cmd, int in_fork, t_pjobs **local)
 {
 	extern t_opt	g_opt;
 
-	// if (!g_opt.is_subshell)
 	g_is_interrupt = 0;
 	if (cmd->simple_command)
 		traverse_simple_command(cmd->simple_command, in_fork, local);

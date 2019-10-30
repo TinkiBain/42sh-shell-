@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arithmetic.h                                        :+:      :+:    :+:   */
+/*   arithmetic.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/12 19:26:22 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/10/30 19:17:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef arithmetic_H
-# define arithmetic_H
+#ifndef ARITHMETIC_H
+# define ARITHMETIC_H
 
 # include "lexer.h"
 # include "sh.h"

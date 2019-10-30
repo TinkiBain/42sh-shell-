@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arithmetic_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 19:19:40 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/25 16:42:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 19:19:56 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void			arithmetic_error_norma(t_lex *begin)
 
 void			*arithmetic_error(char *str, t_lex *begin)
 {
-	if (g_error_arithmetic->type == DIVISION_NULL && (g_opt.arithmetic_error = 1))
+	if (g_error_arithmetic->type == DIVISION_NULL
+											&& (g_opt.arithmetic_error = 1))
 		print_error_vaarg("%s: division by 0 ", str);
 	else if (g_error_arithmetic->type >= 3 && g_error_arithmetic->type <= 12)
 		print_error_vaarg("%s: attempted assignment to non-variable ", str);

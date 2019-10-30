@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   history_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 18:36:32 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/28 17:17:04 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 19:58:14 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "history.h"
 
-static int	history_open(t_history *history)
+extern t_opt	g_opt;
+
+static int		history_open(t_history *history)
 {
-	int				fd;
 	char			*s_max;
 	char			*lgn;
 	struct passwd	*pw;
-	extern t_opt	g_opt;
+	int				fd;
 
-	pw = NULL;
-	if ((lgn = getlogin()) == NULL || (pw = getpwnam(lgn)) == NULL)
+	if ((lgn = getlogin()) == NULL)
+	{
+		g_opt.history = 0;
+		return (-1);
+	}
+	if ((pw = getpwnam(lgn)) == NULL)
 	{
 		g_opt.history = 0;
 		return (-1);
@@ -38,7 +43,7 @@ static int	history_open(t_history *history)
 	return (fd);
 }
 
-void		history_load(t_history *history)
+void			history_load(t_history *history)
 {
 	int			fd;
 	t_string	str;

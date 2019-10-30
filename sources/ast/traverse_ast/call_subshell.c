@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_subshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 14:06:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/27 18:14:03 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/10/30 19:35:53 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_opt		g_opt;
 
-int					call_subshell(char *str, t_pjobs **local)
+void				call_subshell(char *str, t_pjobs **local)
 {
 	extern char		**environ;
 	pid_t			pid;
@@ -41,5 +41,4 @@ int					call_subshell(char *str, t_pjobs **local)
 		ft_printf("[%d] [%d]\n", (*local)->num, pid);
 	else
 		ft_waitpid(pid, NULL);
-	return (0);
 }

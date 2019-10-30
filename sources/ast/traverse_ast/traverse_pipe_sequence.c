@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/25 23:16:29 by jterry           ###   ########.fr       */
+/*   Updated: 2019/10/30 19:40:06 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void			pipe_seq_without_pipe(t_command *cmd, t_pjobs **local)
 
 	if (cmd->simple_command)
 	{
-		cmd->simple_command->cmd_name = tdq(cmd->simple_command->cmd_name, local);
+		cmd->simple_command->cmd_name = tdq(cmd->simple_command->cmd_name,
+																	local);
 		if ((cmd_name = cmd->simple_command->cmd_name))
 		{
 			if (is_builtin(cmd_name))
@@ -102,7 +103,6 @@ void				traverse_pipe_sequence(t_pipe_sequence *pipe_seq, int sep)
 
 	pjobs_name = get_job_name(pipe_seq->lex_begin, pipe_seq->lex_end);
 	local = jobs_started(pjobs_name, sep);
-	//printf ("|||||||||||||||%s|||||||||||||%s\n", g_subjob->name, local->name);
 	counter = 1;
 	if (pipe_seq->next)
 	{

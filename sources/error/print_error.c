@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 22:35:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/30 19:04:21 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:07:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void			print_error(const char *info, const char *msg)
 	char		*p;
 
 	tmp = str_xcreate(0);
-
 	str_xaddnback(&tmp, 2, g_project_name, ": ");
 	if (g_opt.rl_gnl != 0)
 	{

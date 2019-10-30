@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:41:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/16 17:33:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/10/30 19:55:21 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		get_start(t_line *line)
 
 	i = line->cpos - 1;
 	while ((c = str_get(*line->str, i))
-		   && !complete_isspace_check(*line->str, i) && c != '/')
+			&& !complete_isspace_check(*line->str, i) && c != '/')
 		i--;
 	return (++i);
 }
