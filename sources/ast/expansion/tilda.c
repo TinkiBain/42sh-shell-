@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/01 19:01:13 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/01 19:04:05 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char			*user_founder(char *str)
 		return (NULL);
 	}
 	free(tmp);
-	tmp = ft_xstrdup(pas->pw_dir);
+	tmp = (p) ? ft_xstrjoin(pas->pw_dir, p) : ft_xstrdup(pas->pw_dir);
 	return (tmp);
 }
 
