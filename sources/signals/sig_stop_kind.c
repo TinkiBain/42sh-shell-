@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/30 22:51:00 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 18:54:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static void		sigstop(char *msg)
 		if (!job->done)
 		{
 			free(job->status);
-			job->status = ft_xstrdup(msg);
+			if (msg)
+				job->status = ft_xstrdup(msg);
+			else
+				job->status = ft_xstrdup("\tUnknown exit status\t");
 		}
 		job = job->next;
 	}
@@ -46,7 +49,10 @@ static void		sig_change_status(t_job *job, char *msg)
 			job->done = 2;
 			kill(job->pid, SIGTSTP);
 			free(job->status);
-			job->status = ft_xstrdup(msg);
+			if (msg)
+				job->status = ft_xstrdup(msg);
+			else
+				job->status = ft_xstrdup("\tUnknown exit status\t");
 		}
 		job = job->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/01 18:25:47 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 19:47:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static void		pjobs_sig(int st, int done_pid, int del)
 			else
 				job->status = ft_xstrdup("\tsuspended \t\t");
 		}
+		else
+			job->status = ft_xstrdup("\tsuspended \t\t");		
 		free(first->status);
 		first->status = ft_xstrdup("\tsuspended\t\t");
 	}
@@ -94,8 +96,11 @@ void			not_stop_sig(int st, int done_pid)
 	{
 		job = process_finder(done_pid, job_finder(done_pid, g_pjobs));
 		job->done = 1;
-		free(job->status);
-		job->status = that_sig(st, NULL);
+		if (that_sig(st, NULL))
+		{
+			free(job->status);
+			job->status = that_sig(st, NULL);
+		}
 	}
 	if (pipe_jobs_check(job_finder(done_pid, g_pjobs)->job) > 0)
 		pjobs_sig(st, done_pid, 1);

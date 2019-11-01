@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_pipe_sequence.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 19:46:45 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/30 19:40:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/01 19:49:35 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void			pipe_seq_simple_builtin(t_command *cmd, t_pjobs **local)
 {
 	pid_t			pid;
 
-	if ((*local)->flag == 0)
+	if ((*local)->flag == 0 || ft_strequ("fc", cmd->simple_command->cmd_name))
 		traverse_command(cmd, 0, local);
 	else if ((*local)->flag == 1)
 	{
@@ -32,7 +32,7 @@ static void			pipe_seq_simple_builtin(t_command *cmd, t_pjobs **local)
 			print_error_exit("fork error", NULL, 1);
 		setpgid(pid, pid);
 		(*local) = ljobs_started(get_process_name(cmd),
-					(*local)->flag, (*local)->num, pid);
+				(*local)->flag, (*local)->num, pid);
 		ft_printf("[%d] [%d]\n", (*local)->num, pid);
 	}
 }
