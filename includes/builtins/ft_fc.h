@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fc.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 14:12:39 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/11/01 19:03:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 01:21:44 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_cmd_opt
 }				t_cmd_opt;
 
 t_vector		ft_fc_build_vector(const char **argv, int *start, t_cmd_opt opt,
-			void (*get_first_last)(const char **, t_dlist **, t_dlist **));
+				void (*get_first_last)(const char **, t_dlist **, t_dlist **));
 t_dlist			*ft_fc_find_arg(const char *str);
 t_dlist			*ft_fc_find_arg_number(const char *str);
 
