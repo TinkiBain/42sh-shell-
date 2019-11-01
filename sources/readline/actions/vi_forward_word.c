@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 10:53:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/11/01 22:40:14 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/11/02 01:10:20 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static	void		signs_go(char *str, int *i)
 	}
 	while (*(str + *i) && (ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i))
 				&& !ft_isspace(*(str + *i))) && *(str + *i + 1) &&
-			(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))
-			 && !ft_isspace(*(str + *i + 1))))
+				(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))
+				&& !ft_isspace(*(str + *i + 1))))
 		++(*i);
 }
 
@@ -45,12 +45,12 @@ static	void		alnum_go(char *str, int *i)
 {
 	if (*(str + *i + 1) && ft_isspace(*(str + *i + 1)) &&
 			(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))
-			 && !ft_isspace(*(str + *i + 1))))
+			&& !ft_isspace(*(str + *i + 1))))
 	{
 		++(*i);
 		if (ft_isspace(*(str + *i)))
 			for_space_go(str, i);
-		else 
+		else
 			signs_go(str, i);
 	}
 	else

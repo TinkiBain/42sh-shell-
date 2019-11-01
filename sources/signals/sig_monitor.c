@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:10:32 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/27 18:37:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 01:10:50 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void	signals(int signo)
 		ft_putstr("\n");
 	else if (signo == SIGTERM)
 		reset_line(g_line);
+	else if (signo == SIGILL)
+		;
 }
 
 static void	signal_sigwinch(int signo)
@@ -60,6 +62,7 @@ static void	signal_sigwinch(int signo)
 void		signal_monitor(void)
 {
 	cont_sig_handler();
+	signal(SIGILL, signals);
 	signal(SIGQUIT, signals);
 	signal(SIGCHLD, signals);
 	signal(SIGTTOU, signals);

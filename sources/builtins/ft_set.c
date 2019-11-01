@@ -6,15 +6,21 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/01 20:09:50 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/02 00:52:09 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-extern t_opt	g_opt;
+extern t_opt					g_opt;
+extern char						**g_var;
 
-static void		print_options(int is_minus_o)
+#define FLAG_DEFAULT			0
+#define FLAG_PRINT_VARS_NAME	1
+#define FLAG_PRINT_OPTS			2
+#define FLAG_SET_OPT			4
+
+static void						print_options(int is_minus_o)
 {
 	char	*format;
 
@@ -30,115 +36,103 @@ static void		print_options(int is_minus_o)
 	}
 	else
 	{
-		ft_printf(format, (g_opt.enable_color) ? "+" : "-", "color");
-		ft_printf(format, (g_opt.emacs_mode) ? "+" : "-", "emacs");
-		ft_printf(format, (g_opt.history) ? "+" : "-", "history");
-		ft_printf(format, (g_opt.noclobber) ? "+" : "-", "noclobber");
-		ft_printf(format, (g_opt.promptsp) ? "+" : "-", "promptsp");
-		ft_printf(format, (g_opt.vi_mode) ? "+" : "-", "vi");
+		ft_printf(format, (g_opt.enable_color) ? "-" : "+", "color");
+		ft_printf(format, (g_opt.emacs_mode) ? "-" : "+", "emacs");
+		ft_printf(format, (g_opt.history) ? "-" : "+", "history");
+		ft_printf(format, (g_opt.noclobber) ? "-" : "+", "noclobber");
+		ft_printf(format, (g_opt.promptsp) ? "-" : "+", "promptsp");
+		ft_printf(format, (g_opt.vi_mode) ? "-" : "+", "vi");
 	}
 }
 
-static void		handle_set_minus_o(const char **av)
+static void						handle_set_opt(const char *opt, char sign)
 {
-	if (!*(++av))
-		print_options(1);
-	else
+	if (ft_strequ(opt, "vi"))
 	{
-		if (ft_strequ(*(av), "vi"))
-		{
-			g_opt.vi_mode = 1;
-			g_opt.emacs_mode = 0;
-		}
-		else if (ft_strequ(*(av), "emacs"))
-		{
-			g_opt.emacs_mode = 1;
-			g_opt.vi_mode = 0;
-		}
-		else if (ft_strequ(*(av), "color"))
-			g_opt.enable_color = 1;
-		else if (ft_strequ(*(av), "noclobber"))
-			g_opt.noclobber = 1;
-		else if (ft_strequ(*(av), "history"))
-			g_opt.history = 1;
-		else if (ft_strequ(*(av), "promptsp"))
-			g_opt.promptsp = 1;
-		set_var_shellopts();
+		g_opt.vi_mode = (sign == '-') ? 1 : 0;
+		g_opt.emacs_mode = (sign == '-') ? 0 : g_opt.emacs_mode;
 	}
+	else if (ft_strequ(opt, "emacs"))
+	{
+		g_opt.emacs_mode = (sign == '-') ? 1 : 0;
+		g_opt.vi_mode = (sign == '-') ? 0 : g_opt.vi_mode;
+	}
+	else if (ft_strequ(opt, "color"))
+		g_opt.enable_color = (sign == '-') ? 1 : 0;
+	else if (ft_strequ(opt, "noclobber"))
+		g_opt.noclobber = (sign == '-') ? 1 : 0;
+	else if (ft_strequ(opt, "history"))
+		g_opt.history = (sign == '-') ? 1 : 0;
+	else if (ft_strequ(opt, "promptsp"))
+		g_opt.promptsp = (sign == '-') ? 1 : 0;
+	set_var_shellopts();
 }
 
-static void		handle_set_arg(const char **av)
+static void						handle_set_arg(const char **av, int flag)
 {
-	if (ft_strequ(*(av), "-o"))
-		handle_set_minus_o(av);
-	else if (ft_strequ(*(av), "+o"))
+	char	sign;
+
+	while (*av)
 	{
-		if (!*(++av))
-			print_options(0);
-		else
+		if (((sign = **av) == '-' || sign == '+') && ft_strchr(*(av), 'o'))
 		{
-			if (ft_strequ(*(av), "vi"))
-				g_opt.vi_mode = 0;
-			else if (ft_strequ(*(av), "emacs"))
-				g_opt.emacs_mode = 0;
-			else if (ft_strequ(*(av), "color"))
-				g_opt.enable_color = 0;
-			else if (ft_strequ(*(av), "noclobber"))
-				g_opt.noclobber = 0;
-			else if (ft_strequ(*(av), "history"))
-				g_opt.history = 0;
-			else if (ft_strequ(*(av), "promptsp"))
-				g_opt.promptsp = 0;
-			set_var_shellopts();
+			if (*(av + 1) && **(av + 1) != '-' && **(av + 1) != '+')
+				handle_set_opt(*(++av), sign);
+			else if (flag == FLAG_PRINT_OPTS)
+				print_options((sign == '-') ? 1 : 0);
 		}
+		++av;
 	}
-	else if (ft_strequ(*av, "-p"))
-		print_var_names();
 }
 
-static int		check_flags(const char **av)
+static int						local_check_flags(const char **av,
+												int *flag, char *c)
 {
 	char		*tmp;
 
-	if (**av == '-')
-		while ((tmp = (char *)*av))
+	while ((tmp = (char *)*av))
+	{
+		if (*tmp == '-' || *tmp == '+')
 		{
-			if (*(tmp++) == '-')
+			while (*(++tmp))
 			{
-				while (*tmp)
+				if (*tmp == 'o')
 				{
-					if (*tmp != 'o' && *tmp != 'p')
-					{
-						tmp = ft_xstrjoin("-", &*tmp);
-						tmp = ft_xstrrejoin(tmp, ": invalid option", 1);
-						print_error("set", tmp);
-						ft_putendl_fd("set: usage: set [-p] [-o option]",
-															STDERR);
-						return (1);
-					}
-					++tmp;
+					if (*(av + 1) && **(av + 1) != '-' && **(av + 1) != '+')
+						*flag = FLAG_SET_OPT;
+					else if (*flag < FLAG_PRINT_OPTS)
+						*flag = FLAG_PRINT_OPTS;
 				}
+				else if (*tmp == 'p')
+					*flag = (*flag == 0) ? FLAG_PRINT_VARS_NAME : *flag;
+				else if ((*c = *tmp) == *tmp)
+					return (1);
 			}
-			++av;
 		}
+		++av;
+	}
 	return (0);
 }
 
-int				ft_set(const char **av)
+int								ft_set(const char **av)
 {
-	extern char	**g_var;
+	int			flag;
+	char		c;
 
+	flag = 0;
 	if (!g_var)
 		return (1);
-	if (check_flags(av))
-		return (2);
-	if (av)
+	if (local_check_flags(av, &flag, &c))
 	{
-		if (!*av)
-			print_vars(1);
-		else
-			while (*av)
-				handle_set_arg(av++);
+		print_error_vaarg("set: -%c: invalid option\n"
+						"set: usage: set [-p] [-o option]\n", c);
+		return (2);
 	}
+	if (flag == FLAG_SET_OPT || flag == FLAG_PRINT_OPTS)
+		handle_set_arg(av, flag);
+	else if (flag == FLAG_PRINT_VARS_NAME)
+		print_var_names();
+	else
+		print_vars(1);
 	return (0);
 }

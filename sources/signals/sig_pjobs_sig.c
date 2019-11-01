@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/01 19:47:10 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 01:10:56 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ static void		def_kill_or_done(t_job *first, int sig, char *name)
 
 static void		pjobs_sig(int st, int done_pid, int del)
 {
-	t_pjobs			*first;
-	t_job			*job;
+	t_pjobs		*first;
+	t_job		*job;
 
-	first = job_finder(done_pid, g_pjobs);
-	if (first == NULL)
+	if ((first = job_finder(done_pid, g_pjobs)) == NULL)
 		return ;
 	job = process_finder(done_pid, first);
 	if (done_pid != 0 && !(WIFSTOPPED(st)) && del)
@@ -59,7 +58,7 @@ static void		pjobs_sig(int st, int done_pid, int del)
 				job->status = ft_xstrdup("\tsuspended \t\t");
 		}
 		else
-			job->status = ft_xstrdup("\tsuspended \t\t");		
+			job->status = ft_xstrdup("\tsuspended \t\t");
 		free(first->status);
 		first->status = ft_xstrdup("\tsuspended\t\t");
 	}

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/17 22:04:36 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/15 18:40:24 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/01 20:54:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			check_and_add_flags(const char *str, int *opt)
 			*opt |= FLAG_F;
 		else
 		{
-			print_error_vaarg("export: -%c: invalid option", *str);
+			print_error_vaarg("export: -%c: invalid option\n", *str);
 			ft_putendl_fd("export: usage: export [-nf] [name[=value] ...]"
 														" or export -p", 2);
 			return (1);
