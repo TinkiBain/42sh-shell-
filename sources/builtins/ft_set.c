@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 00:52:09 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/02 01:17:15 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ int								ft_set(const char **av)
 	flag = 0;
 	if (!g_var)
 		return (1);
+	if (!*av)
+	{
+		print_vars(1);
+		return (0);
+	}
 	if (local_check_flags(av, &flag, &c))
 	{
 		print_error_vaarg("set: -%c: invalid option\n"
@@ -132,7 +137,5 @@ int								ft_set(const char **av)
 		handle_set_arg(av, flag);
 	else if (flag == FLAG_PRINT_VARS_NAME)
 		print_var_names();
-	else
-		print_vars(1);
 	return (0);
 }
