@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilda.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/01 18:59:21 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 19:01:13 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static char			*user_founder(char *str)
 
 	p = ft_strchr(str, '/');
 	tmp = (p) ? ft_xstrndup(str + 1, p - str - 1) : ft_xstrdup(&str[1]);
-	printf ("%s\n", tmp);
 	pas = getpwnam(tmp);
 	if (!pas)
 	{
