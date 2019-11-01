@@ -6,7 +6,7 @@
 #    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 13:08:26 by gmelisan          #+#    #+#              #
-#    Updated: 2019/10/24 18:54:25 by gmelisan         ###   ########.fr        #
+#    Updated: 2019/11/01 18:39:41 by dwisoky          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS_BUILTIN_FC=\
 	ft_fc_reexec.c
 
 SRCS_BUILTIN_CD=\
-	change_dir.c			ft_cd.c
+	change_dir.c			ft_cd.c\
+	check_flag.c
 
 BUILTINS_SUBDIRS=\
 	$(BUILTINS_CD_DIR)\

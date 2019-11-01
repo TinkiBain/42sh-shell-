@@ -6,11 +6,31 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 18:38:37 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/14 01:54:34 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/01 18:39:03 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
+
+extern t_alias	*g_alias;
+
+int		alias_free_all(void)
+{
+	t_alias			*tmp;
+
+	while (g_alias)
+	{
+		if (g_alias->head)
+			free(g_alias->head);
+		if (g_alias->body_alias)
+			free(g_alias->body_alias);
+		tmp = g_alias->next;
+		free(g_alias);
+		g_alias = tmp;
+	}
+	g_alias = NULL;
+	return (0);
+}
 
 int		unalias_delete_one(const char *str, t_alias *alias)
 {

@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/28 21:00:11 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/01 18:41:07 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char		*check_path(char *path)
 	struct stat		stat_path;
 	struct stat		stat_cwd;
 	char			*cwd;
-	
+
 	if (!path)
 		return (getcwd(NULL, 1024));
 	cwd = getcwd(NULL, 1024);
@@ -35,41 +35,6 @@ char		*check_path(char *path)
 	}
 	free(path);
 	return (cwd);
-}
-
-const char	*check_flag(const char **av, int *flag)
-{
-	while (*av)
-	{
-		if (**av == '-' && *(*av + 1))
-		{
-			++(*av);
-			while (**av)
-			{
-				if (**av == 'L')
-					*flag = 0;
-				else if (**av == 'P')
-					*flag = 1;
-				else
-				{
-					*flag = -1;
-					return (cd_error_invalid_flag(**av));
-				}
-				++(*av);
-			}
-		}
-		else
-			return (*av);
-		++av;
-	}
-	return (NULL);
-}
-
-void		*cd_error_invalid_flag(char c)
-{
-	print_error_vaarg("cd: -%c: invalid option\n", c);
-	ft_putstr_fd("cd: usage: cd [-L|-P] [dir]\n", STDERR);
-	return (NULL);
 }
 
 int			change_dir_variable(const char *dir, int flag)
@@ -133,7 +98,7 @@ int			ft_cd(const char **av)
 	int			flag;
 
 	flag = 0;
-	tmp = check_flag(av, &flag);
+	tmp = cd_check_flag(av, &flag);
 	if (flag < 0)
 		return (1);
 	if (!tmp || ft_strequ(tmp, "-"))
