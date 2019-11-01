@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 16:17:19 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/01 18:37:39 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/01 18:46:42 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int			ft_help(void);
 **		Secondary functions
 */
 
-int		alias_free_all();
-int		change_dir(char *curpath, const char *av, int flag);
-void	*cd_error_invalid_flag(char c);
-int		is_builtin(const char *cmd);
+int			alias_free_all();
+int			change_dir(char *curpath, const char *av, int flag);
+void		*cd_error_invalid_flag(char c);
+int			is_builtin(const char *cmd);
 
-void	ft_getopt_clear(void);
-void	ft_getopt_init(char *cmd_name);
+void		ft_getopt_clear(void);
+void		ft_getopt_init(char *cmd_name);
 
 #endif
