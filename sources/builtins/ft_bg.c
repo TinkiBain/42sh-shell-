@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 14:00:29 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/15 18:20:28 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 18:28:14 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_bg_part(t_pjobs *local, int *pids, int iter)
 	{
 		pids[iter++] = local->job->pid;
 		free(local->job->status);
-		local->job->status = ft_xstrdup(" running\t\t");
+		local->job->status = ft_xstrdup("\tcontinue\t\t");
 		local->job = local->job->next;
 	}
 	local->job = job;
@@ -57,7 +57,7 @@ int			ft_bg(t_pjobs *local_job, const char *name)
 		return (bg_null_error(name));
 	setpgid(local->workgpid, 0);
 	free(local->status);
-	local->status = ft_xstrdup(" running\t\t");
+	local->status = ft_xstrdup("\tcontinue\t\t");
 	ft_bg_part(local, pids, iter);
 	return (1);
 }
