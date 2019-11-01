@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:51:08 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/25 16:36:04 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 22:24:32 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		vi_paste_before(t_line *line);
 void		vi_yank_to_motion(t_line *line);
 void		vi_yank_to_end(t_line *line);
 
+void		for_space_go(char *str, int *i);
 void		undo(t_line *line);
 void		undo_all(t_line *line);
 

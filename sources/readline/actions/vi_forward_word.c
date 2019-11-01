@@ -6,36 +6,57 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 10:53:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/13 12:40:07 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/11/01 22:40:14 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "actions.h"
 
-static	void		alnum_go(char *str, int *i)
-{
-	while (*(str + *i) && ft_isalnum(*(str + *i)))
-		++(*i);
-}
-
-static	void		space_go(char *str, int *i)
+void				for_space_go(char *str, int *i)
 {
 	while (*(str + *i) && ft_isspace(*(str + *i)))
 		++(*i);
 	if (ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i)))
 		while (*(str + *i) && (ft_isprint(*(str + *i)) &&
-					!ft_isalnum(*(str + *i))))
+					!ft_isalnum(*(str + *i))) && *(str + *i + 1) &&
+				(ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i))))
 			++(*i);
 	else if (ft_isalnum(*(str + *i)))
-		while (*(str + *i) && ft_isalnum(*(str + *i)))
+		while (*(str + *i) && ft_isalnum(*(str + *i)) && *(str + *i + 1)
+				&& ft_isalnum(*(str + *i + 1)))
 			++(*i);
 }
 
 static	void		signs_go(char *str, int *i)
 {
-	while (*(str + *i) && (ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i))
-				&& !ft_isspace(*(str + *i))))
+	if (*(str + *i + 1) && ft_isspace(*(str + *i + 1)))
+	{
 		++(*i);
+		for_space_go(str, i);
+	}
+	while (*(str + *i) && (ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i))
+				&& !ft_isspace(*(str + *i))) && *(str + *i + 1) &&
+			(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))
+			 && !ft_isspace(*(str + *i + 1))))
+		++(*i);
+}
+
+static	void		alnum_go(char *str, int *i)
+{
+	if (*(str + *i + 1) && ft_isspace(*(str + *i + 1)) &&
+			(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))
+			 && !ft_isspace(*(str + *i + 1))))
+	{
+		++(*i);
+		if (ft_isspace(*(str + *i)))
+			for_space_go(str, i);
+		else 
+			signs_go(str, i);
+	}
+	else
+		while (*(str + *i) && ft_isalnum(*(str + *i)) && *(str + *i + 1) &&
+				ft_isalnum(*(str + *i + 1)))
+			++(*i);
 }
 
 static	void		forward_go(char *str, int *cpos)
@@ -44,7 +65,7 @@ static	void		forward_go(char *str, int *cpos)
 
 	i = *cpos;
 	if (ft_isspace(*(str + i)))
-		space_go(str, &i);
+		for_space_go(str, &i);
 	else if (ft_isalnum(*(str + i)))
 		alnum_go(str, &i);
 	else if (ft_isprint(*(str + i)) && !ft_isalnum(*(str + i)))
