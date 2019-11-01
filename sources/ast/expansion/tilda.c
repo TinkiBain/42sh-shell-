@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 18:08:41 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/14 01:22:50 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 18:59:21 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ static char			*user_founder(char *str)
 {
 	char			*tmp;
 	struct passwd	*pas;
+	char			*p;
 
-	tmp = ft_xstrdup(&str[1]);
+	p = ft_strchr(str, '/');
+	tmp = (p) ? ft_xstrndup(str + 1, p - str - 1) : ft_xstrdup(&str[1]);
+	printf ("%s\n", tmp);
 	pas = getpwnam(tmp);
 	if (!pas)
 	{
