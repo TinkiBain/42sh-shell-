@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 17:38:16 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/24 18:11:04 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/01 20:09:50 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ static void		handle_set_minus_o(const char **av)
 
 static void		handle_set_arg(const char **av)
 {
-	if (ft_strequ(*av, "-p"))
-		print_var_names();
-	else if (ft_strequ(*(av), "-o"))
+	if (ft_strequ(*(av), "-o"))
 		handle_set_minus_o(av);
 	else if (ft_strequ(*(av), "+o"))
 	{
@@ -94,6 +92,36 @@ static void		handle_set_arg(const char **av)
 			set_var_shellopts();
 		}
 	}
+	else if (ft_strequ(*av, "-p"))
+		print_var_names();
+}
+
+static int		check_flags(const char **av)
+{
+	char		*tmp;
+
+	if (**av == '-')
+		while ((tmp = (char *)*av))
+		{
+			if (*(tmp++) == '-')
+			{
+				while (*tmp)
+				{
+					if (*tmp != 'o' && *tmp != 'p')
+					{
+						tmp = ft_xstrjoin("-", &*tmp);
+						tmp = ft_xstrrejoin(tmp, ": invalid option", 1);
+						print_error("set", tmp);
+						ft_putendl_fd("set: usage: set [-p] [-o option]",
+															STDERR);
+						return (1);
+					}
+					++tmp;
+				}
+			}
+			++av;
+		}
+	return (0);
 }
 
 int				ft_set(const char **av)
@@ -102,6 +130,8 @@ int				ft_set(const char **av)
 
 	if (!g_var)
 		return (1);
+	if (check_flags(av))
+		return (2);
 	if (av)
 	{
 		if (!*av)
