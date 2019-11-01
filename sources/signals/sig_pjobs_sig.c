@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/30 22:51:11 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/01 18:19:27 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		def_kill_or_done(t_job *first, int sig, char *name)
 {
 	char *msg;
 
-	if ((msg = that_sig(sig, g_pjobs->name)))
+	if ((msg = that_sig(sig, first->name)))
 	{
 		ft_printf("[%d]\t%s\n", first->num, msg);
 		free(msg);

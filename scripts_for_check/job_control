@@ -24,7 +24,9 @@ sleep 1
 emacs -nw &
 sleep 1
 emacs -nw &
+sleep 1
 jobs
+sleep 1
 
 printf "\n$BLUEm# The "ls" command launched above must be the only one left $NC \n"
 kill -9 %
@@ -38,10 +40,12 @@ sleep 1
 kill -9 %
 sleep 1
 jobs
+sleep 1
 kill -9 %
 
 printf "\n$BLUEm# Output of the "ls | cat -e" command $NC \n"
 ls | cat -e &
+sleep 1
 jobs
 
 printf "\n$BLUEm# Message indicating that the order is suspended $NC \n"
@@ -57,6 +61,7 @@ sleep 1
 
 printf "\n$BLUEm# Message indicating that the order has ended $NC \n"
 kill -9 %
+sleep 1
 jobs
 
 printf "\n$BLUEm# Output should display nothing for (ps a | grep \"ls -Rl /\" | grep -v 'grep') $NC \n"
