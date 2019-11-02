@@ -73,8 +73,8 @@ char		*ft_readline(char *prompt, enum e_rl_mode mode)
 	g_eof = 0;
 	g_line_num++;
 	g_line = &line;
-	tcsetpgrp(0, getpid());
 	g_wait_flags = 0;
+	tcsetpgrp(0, getpid());
 	if ((!g_opt.emacs_mode && !g_opt.vi_mode) || g_opt.rl_gnl)
 		return (gnl(prompt));
 	term_init();

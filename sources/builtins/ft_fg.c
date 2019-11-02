@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 13:58:52 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/01 18:29:07 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 17:02:33 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int			fg_null_error(const char *name)
 
 void		closer(t_job *job, int *pids)
 {
+	extern int g_wait_flags;
+
+	g_wait_flags = 0;
 	killpg(job->pid, SIGCONT);
 	tcsetpgrp(0, job->pid);
 	if (job->next)
