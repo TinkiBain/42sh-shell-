@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_jobs_list_sig.c                                    :+:      :+:    :+:   */
+/*   sig_jobs_list_sig.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/02 15:22:09 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:28:27 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,20 +91,17 @@ void			not_stop_sig(int st, int done_pid)
 		sub_job_handler(st, job);
 		return ;
 	}
-	else
+	job = process_finder(done_pid, job_finder(done_pid, g_jobs_list));
+	if (!job)
 	{
-		job = process_finder(done_pid, job_finder(done_pid, g_jobs_list));
-		if (!job)
-		{
-			g_res_exec = 1;
-			ft_exit(0, NULL);
-		}
-		job->done = 1;
-		if (that_sig(st, NULL))
-		{
-			free(job->status);
-			job->status = that_sig(st, NULL);
-		}
+		g_res_exec = 1;
+		ft_exit(0, NULL);
+	}
+	job->done = 1;
+	if (that_sig(st, NULL))
+	{
+		free(job->status);
+		job->status = that_sig(st, NULL);
 	}
 	if (pipe_jobs_check(job_finder(done_pid, g_jobs_list)->job) > 0)
 		pjobs_sig(st, done_pid, 1);

@@ -6,13 +6,14 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 17:23:02 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/02 19:09:38 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:29:30 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag, int list_num)
+t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag,
+													int list_num)
 {
 	t_pjobs		*local;
 

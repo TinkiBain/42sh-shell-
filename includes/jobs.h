@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/02 19:09:48 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:29:55 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ t_pjobs				*ljobs_started(char *str, int flag, int num, int pid);
 t_pjobs				*job_finder(int pid, t_pjobs *local);
 t_pjobs				*jobs_find_num(t_pjobs *local, int num);
 t_pjobs				*name_proc_hendl(t_pjobs *local_job, char *name);
-t_pjobs				*subjob_changer(char *str, t_pjobs **gjobs, int flag, int list_num);
+t_pjobs				*subjob_changer(char *str, t_pjobs **gjobs, int flag,
+															int list_num);
 t_pjobs				*jobs_started(char *str, int sep);
 t_pjobs				*ft_addjob(char *name, int flag, int list_num);
 t_pjobs				*jobs_last_elem(t_pjobs *job);
