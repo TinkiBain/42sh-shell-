@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
+#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/11/02 16:59:58 by jterry           ###   ########.fr        #
+#    Updated: 2019/11/02 19:37:40 by ggwin-go         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME=42sh
 
 CC=clang
 FLAGS=-Wall -Wextra -Werror
-FLAGS+=-g
 
 INCLUDES:=\
 	-I includes\
