@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:20:00 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/11/02 20:14:06 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/02 20:37:23 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int			arithmetic_lexer_is_token(char str)
 {
 	if (str == '+' || str == '=' || str == '*' || str == '/' || str == '%'
-			|| str == '<' || str == '>' || str == '&' || str == '|')
+			|| str == '<' || str == '>' || str == '&' || str == '|'
+			|| str == '-')
 		return (1);
 	return (0);
 }
