@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 17:21:28 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/30 19:20:34 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/02 20:14:11 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ t_lex		*arithmetic_lexer(char *str)
 		begin = str;
 		while (ft_isspace(*str))
 			++str;
-		if (ft_isalpha(*str))
-			str = arithmetic_lexer_var(str, &lex);
+		if (arithmetic_lexer_is_token(*str))
+			str = arithmetic_lexer_check_token(str, &lex);
 		else if (ft_isdigit(*str))
 			str = arithmetic_lexer_digit(str, &lex);
 		else if (*str == '(' || *str == ')')
@@ -55,7 +55,7 @@ t_lex		*arithmetic_lexer(char *str)
 		else if (*str == '!')
 			str = arithmetic_lexer_not(str, &lex);
 		else
-			str = arithmetic_lexer_check_token(str, &lex);
+			str = arithmetic_lexer_var(str, &lex);
 	}
 	if (!str)
 		init_lex(DIGIT, begin, &g_error_arithmetic);

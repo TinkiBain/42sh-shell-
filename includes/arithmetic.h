@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 19:39:31 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/30 19:17:53 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/02 20:17:09 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ long		expr_return_value(void);
 long		expr_digit(void);
 long		expr_bracket(void);
 long		expr_atoll(char *str, int base);
+int			arithmetic_lexer_is_token(char str);
 
 #endif
