@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_arr_names.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wtalea <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:34:35 by wtalea            #+#    #+#             */
-/*   Updated: 2019/10/13 12:23:06 by wtalea           ###   ########.fr       */
+/*   Updated: 2019/11/02 17:26:40 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static	void	add_names_alias(t_alias *alias, int *j)
 {
 	while (alias)
 	{
-		if (find_name(alias->head, g_cmd_names))
+		if (!get_bin(alias->head) && find_name(alias->head, g_cmd_names))
 		{
 			*(g_cmd_names + *j) = alias->head;
 			++(*j);
