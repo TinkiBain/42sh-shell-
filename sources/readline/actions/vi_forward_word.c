@@ -6,7 +6,7 @@
 /*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 10:53:56 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/11/02 01:10:20 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/11/02 16:36:08 by wtalea           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void				for_space_go(char *str, int *i)
 	if (ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i)))
 		while (*(str + *i) && (ft_isprint(*(str + *i)) &&
 					!ft_isalnum(*(str + *i))) && *(str + *i + 1) &&
-				(ft_isprint(*(str + *i)) && !ft_isalnum(*(str + *i))))
+				(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))))
 			++(*i);
 	else if (ft_isalnum(*(str + *i)))
 		while (*(str + *i) && ft_isalnum(*(str + *i)) && *(str + *i + 1)
@@ -29,7 +29,8 @@ void				for_space_go(char *str, int *i)
 
 static	void		signs_go(char *str, int *i)
 {
-	if (*(str + *i + 1) && ft_isspace(*(str + *i + 1)))
+	if (*(str + *i + 1) && (ft_isspace(*(str + *i + 1)) ||
+				ft_isalnum(*(str + *i + 1))))
 	{
 		++(*i);
 		for_space_go(str, i);
@@ -43,9 +44,9 @@ static	void		signs_go(char *str, int *i)
 
 static	void		alnum_go(char *str, int *i)
 {
-	if (*(str + *i + 1) && ft_isspace(*(str + *i + 1)) &&
+	if (*(str + *i + 1) && (ft_isspace(*(str + *i + 1)) ||
 			(ft_isprint(*(str + *i + 1)) && !ft_isalnum(*(str + *i + 1))
-			&& !ft_isspace(*(str + *i + 1))))
+			&& !ft_isspace(*(str + *i + 1)))))
 	{
 		++(*i);
 		if (ft_isspace(*(str + *i)))
