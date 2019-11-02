@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 20:19:57 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 12:31:19 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/02 18:51:42 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ t_pattern			*parser_pattern(void)
 	if (ft_strequ(g_lex->lexem, "esac"))
 	{
 		g_error_lex = g_lex->next;
+		return (NULL);
+	}
+	if (g_lex->type != WORD)
+	{
+		g_error_lex = g_lex;
 		return (NULL);
 	}
 	list = parser_init_pattern();
