@@ -6,7 +6,7 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 21:05:54 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/11/01 18:41:07 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/02 18:01:05 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,22 @@ int			change_dir_variable(const char *dir, int flag)
 	return (change_dir((char *)dir, (char *)dir, flag));
 }
 
-char		*check_cdpath(const char *curpath)
+char		*check_cdpath(const char *curpath, char *path)
 {
 	struct stat	st;
 	char		**arr_cd_path;
 	char		*cdpath;
 	int			i;
 
-	i = 0;
-	cdpath = get_var_value("CDPATH");
-	if (!cdpath)
+	i = -1;
+	if (!(cdpath = get_var_value("CDPATH")))
 		return (NULL);
 	arr_cd_path = ft_strsplit(cdpath, ':');
-	while (arr_cd_path[i])
+	while (arr_cd_path[++i])
 	{
 		arr_cd_path[i] = ft_xstrrejoin(arr_cd_path[i], "/", 1);
 		cdpath = ft_xstrjoin(arr_cd_path[i], curpath);
-		if (stat(cdpath, &st))
+		if (stat(cdpath, &st) == -1)
 			free(cdpath);
 		else if (st.st_mode & S_IFDIR)
 			break ;
@@ -87,6 +86,8 @@ char		*check_cdpath(const char *curpath)
 		cdpath = NULL;
 	}
 	ft_free_ptr_array((void ***)&arr_cd_path);
+	if (cdpath)
+		free(path);
 	return (cdpath);
 }
 
@@ -112,7 +113,7 @@ int			ft_cd(const char **av)
 	path = check_path(path);
 	if (ft_strnequ(tmp, "./", 2) || ft_strnequ(tmp, "../", 3))
 		return (cd_norm(path, tmp, flag));
-	if ((curpath = check_cdpath(tmp)))
+	if ((curpath = check_cdpath(tmp, path)))
 		return (change_dir(curpath, tmp, flag));
 	curpath = ft_xstrrejoin(path, "/", 1);
 	return (change_dir(ft_xstrrejoin(curpath, tmp, 1), tmp, flag));
