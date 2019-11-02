@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:32:41 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/11/02 17:29:30 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/11/02 17:39:12 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int			ft_fc_edit_run_editor(char **argv, t_pjobs **local)
 		loginfo("ft_fc(): fork error (%s %s)", argv[0], argv[1]);
 		return (1);
 	}
-	
 	if (pid == 0)
 	{
 		if ((*local)->flag == 1)
