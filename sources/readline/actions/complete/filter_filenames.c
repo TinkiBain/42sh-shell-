@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 21:35:15 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/24 21:08:58 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:01:54 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ static t_vector	build(DIR *dir, t_string *query, t_string *path)
 
 	vec = vec_xcreate(0, sizeof(char *));
 	if (!dir)
+	{
+		str_delete(query);
+		str_delete(path);
 		return (vec);
+	}
 	str_xaddback(path, "/", 1);
 	while (dir && (ent = readdir(dir)))
 		add_one(&vec, query, path, ent->d_name);

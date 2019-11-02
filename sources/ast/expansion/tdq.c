@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/14 16:13:52 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 16:39:54 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:15:25 by gmelisan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			tdq_while(int *i, char **str, t_pjobs **local)
 		dollar(i, str, local);
 }
 
-int zopa(char *str)
+int				check_quotes(char *str)
 {
 	int i;
 
@@ -53,7 +53,7 @@ int zopa(char *str)
 			while (str[i++] && str[i] != '\'')
 				;
 		else if (str[i] == '\"')
-			while(str[i++] && str[i] != '\"')
+			while (str[i++] && str[i] != '\"')
 			{
 				if (str[i] == '\\')
 					i++;
@@ -74,11 +74,8 @@ char			*tdq(char *str, t_pjobs **local)
 
 	if (!str)
 		return (NULL);
-	if (zopa(str) == 0)
-	{
-		free(str);
-		return (ft_xstrdup(str));
-	}
+	if (check_quotes(str) == 0)
+		return (str);
 	i = 0;
 	tmp = str;
 	while (str[0] && str[i] != '\0')
@@ -93,9 +90,8 @@ char			*tdq(char *str, t_pjobs **local)
 	{
 		str = cleaner(str);
 		if ((tmp = tilda_check(str)) != NULL)
-			str = tmp;
+			return (tmp);
+		return (str);
 	}
-	else
-		str = cleaner(str);
-	return (str);
+	return (cleaner(str));
 }
