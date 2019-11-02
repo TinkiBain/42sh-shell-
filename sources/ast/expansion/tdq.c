@@ -42,6 +42,31 @@ void			tdq_while(int *i, char **str, t_pjobs **local)
 		dollar(i, str, local);
 }
 
+int zopa(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'')
+			while (str[i++] && str[i] != '\'')
+				;
+		else if (str[i] == '\"')
+			while(str[i++] && str[i] != '\"')
+			{
+				if (str[i] == '\\')
+					i++;
+			}
+		else if (str[i] == '\\')
+			i++;
+		if (!str[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 char			*tdq(char *str, t_pjobs **local)
 {
 	char	*tmp;
@@ -49,6 +74,11 @@ char			*tdq(char *str, t_pjobs **local)
 
 	if (!str)
 		return (NULL);
+	if (zopa(str) == 0)
+	{
+		free(str);
+		return (ft_xstrdup(str));
+	}
 	i = 0;
 	tmp = str;
 	while (str[0] && str[i] != '\0')
