@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/10 12:44:55 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/01 20:08:31 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 15:23:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			msg_cntr(int st)
 	char *msg;
 
 	msg = NULL;
-	if ((msg = that_sig(st, g_subjob->name)))
+	if ((msg = that_sig(st, g_cur_job->name)))
 		print_error(NULL, msg);
 	if (msg)
 		free(msg);
@@ -64,7 +64,7 @@ static void		in_subshell(void)
 {
 	t_job			*job;
 
-	job = g_subjob->job;
+	job = g_cur_job->job;
 	while (job)
 	{
 		kill(SIGTSTP, job->pid);
@@ -95,7 +95,7 @@ void			jobs_sig(int st)
 			in_subshell();
 		if (st == SUSPCHLD)
 			g_res_exec = 1;
-		return (sig_per_stop(done_pid, NULL, st_sif(st), g_pjobs));
+		return (sig_per_stop(done_pid, NULL, st_sif(st), g_jobs_list));
 	}
 	not_stop_sig(st, done_pid);
 }

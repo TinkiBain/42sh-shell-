@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 21:17:32 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/10/30 20:00:35 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/02 16:40:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	traverse_command(t_command *cmd, int in_fork, t_pjobs **local);
 void	traverse_simple_command(t_simple_cmd *cmd, int in_fork,
 													t_pjobs **local);
 void	traverse_compound_command(t_compound_cmd *cmd, t_pjobs **local);
-void	traverse_compound_list(t_compound_list *list, t_pjobs **local);
+void	traverse_compound_list(t_compound_list *list);
 void	traverse_if_clause(t_if_clause *list, t_pjobs **local);
 void	traverse_for_clause(t_for_clause *list, t_pjobs **local);
-void	traverse_while_clause(t_while_clause *list, t_pjobs **local);
-void	traverse_until_clause(t_while_clause *list, t_pjobs **local);
+void	traverse_while_clause(t_while_clause *list);
+void	traverse_until_clause(t_while_clause *list);
 void	traverse_case_clause(t_case_clause *list, t_pjobs **local);
 void	traverse_function_definition(t_func_definition *func);
 

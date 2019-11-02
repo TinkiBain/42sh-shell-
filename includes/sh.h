@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 17:44:12 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/11/02 01:25:14 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/02 16:59:47 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ t_complete_cmd		*exec_ast(char *buf, t_lex **lex);
 
 int					alias_size_list(t_alias *alias);
 int					func_size_list(t_dict *func);
+
+void				ft_nanosleep(long sec, long nsec);
 
 #endif

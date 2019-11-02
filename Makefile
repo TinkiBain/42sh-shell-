@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+         #
+#    By: jterry <jterry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/10 17:38:22 by ggwin-go          #+#    #+#              #
-#    Updated: 2019/11/02 00:53:56 by ggwin-go         ###   ########.fr        #
+#    Updated: 2019/11/02 16:59:58 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ include $(SRCS_DIR)/$(BUILTINS_DIR)/builtins.mk
 SRCS_WITHOUT_DIR=\
 	execute_line.c			main.c\
 	sem.c					shell_clear.c\
-	shell_init.c
+	shell_init.c			ft_nanosleep.c
 
 JOBS_DIR=jobs
 
@@ -65,7 +65,7 @@ SRCS_JOBS=\
 
 SRCS_SIG=\
 	sig_kind_of_sig.c		sig_main_handler.c\
-	sig_monitor.c			sig_pjobs_sig.c\
+	sig_monitor.c			sig_jobs_list_sig.c\
 	sig_stop_kind.c			sig_cont.c
 
 DICTIONARY_DIR=dictionary

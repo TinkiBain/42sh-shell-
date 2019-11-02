@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmelisan <gmelisan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 01:24:52 by gmelisan          #+#    #+#             */
-/*   Updated: 2019/10/30 21:05:53 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:23:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char				*g_shell_path;
 char				**g_var;
 char				**g_prefix_vars;
 char				**g_var_names;
-t_pjobs				*g_pjobs;
-t_pjobs				*g_subjob;
+t_pjobs				*g_jobs_list;
+t_pjobs				*g_cur_job;
 int					g_line_num;
 int					g_eof;
 int					g_wait_flags;

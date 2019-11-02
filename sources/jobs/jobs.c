@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 17:04:18 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 22:39:01 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 15:23:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				jobs(t_pjobs *local_job, int iter, const char *cmd)
 	if (local_job)
 	{
 		first = local_job;
-		order = order_creat(g_pjobs, jobs_list_counter(g_pjobs));
+		order = order_creat(g_jobs_list, jobs_list_counter(g_jobs_list));
 		while (order[++iter] != 0)
 			while (local_job)
 			{

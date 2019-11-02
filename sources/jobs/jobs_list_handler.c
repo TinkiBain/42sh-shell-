@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 18:24:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 23:16:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:08:46 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,32 @@ static void		freedjob(t_pjobs **new)
 
 void			deletejob(t_pjobs **alst, int num)
 {
-	t_pjobs		*prew;
+	t_pjobs		*prev;
 	t_pjobs		*new;
 
-	prew = (*alst);
-	while (prew && prew->num != num)
+	prev = (*alst);
+	while (prev && prev->num != num)
 	{
-		if (prew == (*alst))
-			new = prew;
+		if (prev == (*alst))
+			new = prev;
 		else
 			new = new->next;
-		prew = prew->next;
+		prev = prev->next;
 	}
 	if ((*alst)->num == num)
 	{
-		prew = (*alst)->next;
+		prev = (*alst)->next;
 		freedjob(alst);
-		(*alst) = prew;
+		(*alst) = prev;
 	}
 	else
 	{
-		new->next = prew->next;
-		freedjob(&prew);
+		new->next = prev->next;
+		freedjob(&prev);
 	}
 }
 
-static int		ft_num_job(t_pjobs *localjob)
+int				ft_num_job(t_pjobs *localjob)
 {
 	int			min;
 	t_pjobs		*first;
@@ -87,7 +87,7 @@ static int		ft_num_job(t_pjobs *localjob)
 	return (min);
 }
 
-t_pjobs			*ft_addjob(char *path, int flag)
+t_pjobs			*ft_addjob(char *path, int flag, int list_num)
 {
 	t_pjobs		*new;
 
@@ -95,9 +95,12 @@ t_pjobs			*ft_addjob(char *path, int flag)
 		return (NULL);
 	new->flag = flag;
 	new->name = path;
-	new->status = ft_xstrdup(" running\t");
+	new->status = ft_xstrdup("\trunning\t\t");
 	new->next = NULL;
-	new->num = ft_num_job(g_pjobs);
+	if (flag || list_num)
+		new->num = ft_num_job(g_jobs_list);
+	else
+		new->num = 1;
 	new->workgpid = 0;
 	new->job = NULL;
 	return (new);

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traverse_while_clause.c                            :+:      :+:    :+:   */
+/*   ft_nanosleep.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/19 19:15:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 17:28:12 by jterry           ###   ########.fr       */
+/*   Created: 2019/11/02 16:59:00 by jterry            #+#    #+#             */
+/*   Updated: 2019/11/02 16:59:20 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sh.h"
+#include <time.h>
 
-/*
-** while_clause	: While compound_list Do compound_list Done
-*/
-
-void	traverse_while_clause(t_while_clause *list)
+void				ft_nanosleep(long sec, long nsec)
 {
-	deletejob(&g_cur_job, 1);
-	if (list->compound_list)
-		while (1 && !g_is_interrupt)
-		{
-			traverse_compound_list(list->compound_list);
-			if (g_res_exec || g_is_interrupt)
-				break ;
-			traverse_compound_list(list->do_group);
-		}
+	struct timespec tw;
+	struct timespec tr;
+
+	tw.tv_sec = sec;
+	tw.tv_nsec = nsec;
+	nanosleep(&tw, &tr);
 }

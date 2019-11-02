@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 18:35:43 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/27 18:42:43 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 15:23:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static void	sig_cont_standart(int signo)
 	t_job			*job;
 
 	signo = 0;
-	childs = g_pjobs;
+	childs = g_jobs_list;
 	while (childs)
 	{
 		job = childs->job;
 		sender_sig(job);
 		childs = childs->next;
 	}
-	childs = g_subjob;
+	childs = g_cur_job;
 	while (childs)
 	{
 		job = childs->job;

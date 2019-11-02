@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   traverse_ast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 19:23:21 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 01:26:41 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/02 16:19:08 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ void				traverse_ast(t_complete_cmd *root)
 			g_opt.is_single_cmd = 0;
 	}
 	traverse_list(root->list, root->sep);
-	if (g_subjob)
-		deletejob(&g_subjob, g_subjob->num);
+	if (g_cur_job)
+		deletejob(&g_cur_job, g_cur_job->num);
 }

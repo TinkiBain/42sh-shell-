@@ -6,20 +6,20 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 17:23:02 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/25 23:16:35 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:09:38 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag)
+t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag, int list_num)
 {
 	t_pjobs		*local;
 
 	local = NULL;
 	if (!(*gjobs))
 	{
-		(*gjobs) = ft_addjob(str, flag ? 1 : 0);
+		(*gjobs) = ft_addjob(str, flag ? 1 : 0, list_num);
 		local = (*gjobs);
 	}
 	else
@@ -27,7 +27,7 @@ t_pjobs			*subjob_changer(char *str, t_pjobs **gjobs, int flag)
 		local = (*gjobs);
 		while (local->next)
 			local = local->next;
-		local->next = ft_addjob(str, flag ? 1 : 0);
+		local->next = ft_addjob(str, flag ? 1 : 0, list_num);
 		local = local->next;
 	}
 	return (local);
@@ -41,7 +41,7 @@ t_pjobs			*jobs_started(char *str, int sep)
 	if (sep == JOB)
 		flag = 1;
 	if (flag)
-		return (subjob_changer(str, &g_pjobs, flag));
+		return (subjob_changer(str, &g_jobs_list, flag, 1));
 	else
-		return (subjob_changer(str, &g_subjob, flag));
+		return (subjob_changer(str, &g_cur_job, flag, 0));
 }

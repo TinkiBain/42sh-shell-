@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/27 18:36:42 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:09:48 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ typedef struct		s_pjobs
 	struct s_job	*job;
 }					t_pjobs;
 
-extern t_pjobs		*g_pjobs;
-extern t_pjobs		*g_subjob;
+extern t_pjobs		*g_jobs_list;
+extern t_pjobs		*g_cur_job;
 extern int			g_wait_flags;
 
 t_pjobs				*ljobs_started(char *str, int flag, int num, int pid);
 t_pjobs				*job_finder(int pid, t_pjobs *local);
 t_pjobs				*jobs_find_num(t_pjobs *local, int num);
 t_pjobs				*name_proc_hendl(t_pjobs *local_job, char *name);
-t_pjobs				*subjob_changer(char *str, t_pjobs **gjobs, int flag);
+t_pjobs				*subjob_changer(char *str, t_pjobs **gjobs, int flag, int list_num);
 t_pjobs				*jobs_started(char *str, int sep);
-t_pjobs				*ft_addjob(char *name, int flag);
+t_pjobs				*ft_addjob(char *name, int flag, int list_num);
 t_pjobs				*jobs_last_elem(t_pjobs *job);
 t_job				*process_finder(int pid, t_pjobs *first_job);
 void				jobs_sig(int st);
@@ -63,6 +63,7 @@ int					jobs_list_counter(t_pjobs *local_job);
 int					find_highnum(t_pjobs *local);
 int					ft_waitpid(pid_t pid, t_job *local);
 int					pipe_av(int counter);
+int					ft_num_job(t_pjobs *localjob);
 
 char				*core_dump_signals(int st, char *name);
 char				*ignored_signals(int st, char *name);

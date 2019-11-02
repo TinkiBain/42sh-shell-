@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:36:27 by jterry            #+#    #+#             */
-/*   Updated: 2019/10/30 18:54:41 by gmelisan         ###   ########.fr       */
+/*   Updated: 2019/11/02 18:46:10 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,12 @@ static int		pipe_all_pids_check(t_job *local)
 	{
 		if (!job->done)
 		{
-			if (waitpid(job->pid, &st, WUNTRACED | WNOHANG) > 0)
-				job->done = 1;
+			while (job)
+			{
+				if (waitpid(job->pid, &st, WUNTRACED | WNOHANG) > 0)
+					job->done = 1;
+				job = job->next;
+			}
 			job = local;
 			continue ;
 		}

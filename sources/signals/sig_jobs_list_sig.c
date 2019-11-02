@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_pjobs_sig.c                                    :+:      :+:    :+:   */
+/*   sig_jobs_list_sig.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:28:50 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/02 01:10:56 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 15:22:09 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ extern t_opt g_opt;
 
 #define NONNORMEXIT 256
 
-static void		def_kill_or_done(t_job *first, int sig, char *name)
+static void		def_kill_or_done(t_job *first, int sig, char *name, int num)
 {
 	char *msg;
 
 	if ((msg = that_sig(sig, first->name)))
 	{
-		ft_printf("[%d]\t%s\n", first->num, msg);
+		ft_printf("[%d]\t%s\n", num, msg);
 		free(msg);
 	}
 	else if (sig != SIGINT && !g_opt.is_subshell)
 	{
 		if ((sig == 0 || sig == NONNORMEXIT))
-			ft_printf("[%d]\tDone  \t\t%s\n", first->num, name);
+			ft_printf("[%d]\tDone  \t\t%s\n", num, name);
 		else
-			ft_printf("[%d]\tExit %d\t\t%s\n", first->num, sig, name);
+			ft_printf("[%d]\tExit %d\t\t%s\n", num, sig, name);
 	}
-	deletejob(&g_pjobs, first->num);
+	deletejob(&g_jobs_list, num);
 }
 
 static void		pjobs_sig(int st, int done_pid, int del)
@@ -40,11 +40,11 @@ static void		pjobs_sig(int st, int done_pid, int del)
 	t_pjobs		*first;
 	t_job		*job;
 
-	if ((first = job_finder(done_pid, g_pjobs)) == NULL)
+	if ((first = job_finder(done_pid, g_jobs_list)) == NULL)
 		return ;
 	job = process_finder(done_pid, first);
 	if (done_pid != 0 && !(WIFSTOPPED(st)) && del)
-		def_kill_or_done(job, st, first->name);
+		def_kill_or_done(job, st, first->name, first->num);
 	else if (!job->done)
 	{
 		free(job->status);
@@ -64,10 +64,10 @@ static void		pjobs_sig(int st, int done_pid, int del)
 	}
 }
 
-static void		sub_job_handler(int st, t_job *job, int done_pid)
+static void		sub_job_handler(int st, t_job *job)
 {
 	msg_cntr(st);
-	if ((job = process_finder(done_pid, g_subjob)))
+	if (job)
 	{
 		job->done = 1;
 		if (st == 0 || st == 256)
@@ -75,8 +75,8 @@ static void		sub_job_handler(int st, t_job *job, int done_pid)
 			free(job->status);
 			job->status = ft_xstrdup("\tDone\t\t");
 		}
-		if (pipe_jobs_check(g_subjob->job) > 0)
-			deletejob(&g_subjob, g_subjob->num);
+		if (pipe_jobs_check(g_cur_job->job) > 0)
+			deletejob(&g_cur_job, g_cur_job->num);
 	}
 	return ;
 }
@@ -86,14 +86,19 @@ void			not_stop_sig(int st, int done_pid)
 	t_job			*job;
 
 	job = NULL;
-	if (g_subjob && process_finder(done_pid, g_subjob))
+	if (g_cur_job && (job = process_finder(done_pid, g_cur_job)))
 	{
-		sub_job_handler(st, job, done_pid);
+		sub_job_handler(st, job);
 		return ;
 	}
 	else
 	{
-		job = process_finder(done_pid, job_finder(done_pid, g_pjobs));
+		job = process_finder(done_pid, job_finder(done_pid, g_jobs_list));
+		if (!job)
+		{
+			g_res_exec = 1;
+			ft_exit(0, NULL);
+		}
 		job->done = 1;
 		if (that_sig(st, NULL))
 		{
@@ -101,7 +106,7 @@ void			not_stop_sig(int st, int done_pid)
 			job->status = that_sig(st, NULL);
 		}
 	}
-	if (pipe_jobs_check(job_finder(done_pid, g_pjobs)->job) > 0)
+	if (pipe_jobs_check(job_finder(done_pid, g_jobs_list)->job) > 0)
 		pjobs_sig(st, done_pid, 1);
 	else
 		pjobs_sig(st, done_pid, 0);

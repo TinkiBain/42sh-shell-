@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   call_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 22:41:23 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 01:25:46 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/02 15:23:26 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static int		call_if_other_builtin(int ac, const char **av, t_pjobs **local)
 	if (ft_strequ(*av, "fc"))
 		return (ft_fc(ac, av, local));
 	else if (ft_strequ(*av, "jobs"))
-		return (jobs(g_pjobs, -1, *(av + 1)));
+		return (jobs(g_jobs_list, -1, *(av + 1)));
 	else if (ft_strequ(*av, "fg"))
-		return (ft_fg(g_pjobs, *(av + 1)));
+		return (ft_fg(g_jobs_list, *(av + 1)));
 	else if (ft_strequ(*av, "bg"))
-		return (ft_bg(g_pjobs, *(av + 1)));
+		return (ft_bg(g_jobs_list, *(av + 1)));
 	else if (ft_strequ(*av, "kill"))
-		return (ft_kill(av + 1, g_pjobs, 15));
+		return (ft_kill(av + 1, g_jobs_list, 15));
 	else if (ft_strequ(*av, "alias"))
 		return (ft_alias(av + 1));
 	else if (ft_strequ(*av, "unalias"))
@@ -66,7 +66,7 @@ static int		call_if_other_builtin(int ac, const char **av, t_pjobs **local)
 static int		call_if_builtin(int ac, const char **av, t_pjobs **local)
 {
 	if (**av == '%')
-		return (ft_fg(g_pjobs, *av));
+		return (ft_fg(g_jobs_list, *av));
 	else if (ft_strequ(*av, "exit"))
 		return (ft_exit(ac, av));
 	else if (ft_strequ(*av, "cd"))

@@ -6,7 +6,7 @@
 /*   By: jterry <jterry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 17:21:21 by jterry            #+#    #+#             */
-/*   Updated: 2019/11/01 18:54:46 by jterry           ###   ########.fr       */
+/*   Updated: 2019/11/02 19:10:18 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static void		sigstop(char *msg)
 	t_job		*job;
 
 	job = NULL;
-	setpgid(g_subjob->job->pid, 0);
-	ft_printf("\n42sh: %s\t%s\n", msg, g_subjob->name);
-	first = subjob_changer(ft_xstrdup(g_subjob->name), &g_pjobs, 0);
-	first->job = g_subjob->job;
-	g_subjob->job = NULL;
+	setpgid(g_cur_job->job->pid, 0);
+	first = subjob_changer(ft_xstrdup(g_cur_job->name), &g_jobs_list, 0, 1);
+	first->job = g_cur_job->job;
+	g_cur_job->job = NULL;
 	free(first->status);
 	first->status = ft_xstrdup(msg);
 	job = first->job;
@@ -76,12 +75,12 @@ void			sig_per_stop(int done_pid, t_job *job,
 		}
 		first = first->next;
 	}
-	if (g_subjob && (job = process_finder(done_pid,
-					job_finder(done_pid, g_subjob))))
+	if (g_cur_job && (job = process_finder(done_pid,
+					job_finder(done_pid, g_cur_job))))
 	{
 		sigstop(msg);
 		sig_change_status(job, msg);
-		deletejob(&g_subjob, g_subjob->num);
+		deletejob(&g_cur_job, g_cur_job->num);
 	}
 	g_is_interrupt = 1;
 	free(msg);
