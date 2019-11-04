@@ -6,11 +6,12 @@
 /*   By: dwisoky <dwisoky@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:34:52 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/13 18:06:29 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/04 15:33:28 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "parser.h"
 
 char		*lexer_find_char(char *str, char c)
 {
@@ -25,7 +26,7 @@ char		*lexer_find_char(char *str, char c)
 			if (!*str)
 				return (str);
 		}
-		else if (*str == '$')
+		else if (c != '\'' && *str == '$')
 			str = lexer_find_dollar(str + 1);
 		++str;
 	}

@@ -6,7 +6,7 @@
 /*   By: dwisoky <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:29:24 by dwisoky           #+#    #+#             */
-/*   Updated: 2019/10/01 20:06:29 by dwisoky          ###   ########.fr       */
+/*   Updated: 2019/11/04 15:31:10 by dwisoky          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ char		*lexer_find_dollar(char *str)
 		bracket_close = ')';
 	else
 		bracket_close = '}';
-	if (*str == '(' && *(str + 1) == '(')
-		count_bracket = 2;
 	while (*(++str) && count_bracket)
 	{
 		if (*str == '\\' || *str == '\'' || *str == '"')
