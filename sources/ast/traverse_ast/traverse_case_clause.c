@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 19:07:01 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 19:54:06 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:26:15 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			traverse_case_clause(t_case_clause *list, t_pjobs **local)
 	t_pattern	*pattern;
 	char		*target;
 
-	deletejob(&g_cur_job, 1);
+	// deletejob(&g_cur_job, 1);
 	list->word = tdq(list->word, local);
 	elem = list->case_list;
 	target = list->word;

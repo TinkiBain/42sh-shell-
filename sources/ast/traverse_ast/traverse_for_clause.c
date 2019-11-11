@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:11:03 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 19:39:58 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:26:10 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			traverse_for_clause(t_for_clause *list, t_pjobs **local)
 	char		*var;
 	t_wordlist	*wordlist;
 
-	deletejob(&g_cur_job, 1);
+	// deletejob(&g_cur_job, 1);
 	if (check_name(list->name) || (check_readonly_var(list->name,
 													ft_strlen(list->name))))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: ggwin-go <ggwin-go@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 19:15:50 by ggwin-go          #+#    #+#             */
-/*   Updated: 2019/11/02 19:39:45 by ggwin-go         ###   ########.fr       */
+/*   Updated: 2019/11/10 18:25:54 by ggwin-go         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	traverse_while_clause(t_while_clause *list)
 {
-	deletejob(&g_cur_job, 1);
+	// deletejob(&g_cur_job, 1);
 	if (list->compound_list)
 		while (1 && !g_is_interrupt)
 		{
