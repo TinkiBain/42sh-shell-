@@ -74,8 +74,8 @@ A shell compliant with the [POSIX Standard](https://pubs.opengroup.org/onlinepub
 # Authors
 Name|Mail|Github
 :-:|:-:|:--
-Aleksandr | ggwin-go@student.21-school.ru |https://gitlab.com/ZaprAlex https://github.com/ZaprAlex
-Aleksey | dwisoky@student.21-school.ru |https://github.com/
-Vladimir | gmelisan@student.21-school.ru |https://gitlab.com/nefyodovve
-Danila | jterry@student.21-school.ru |https://gitlab.com/itynol
-Kirill | wtalea@student.21-school.ru |https://gitlab.com/wtalea
+Aleksandr | ggwin-go@student.21-school.ru |https://github.com/ZaprAlex
+Aleksey | dwisoky@student.21-school.ru |https://github.com/TinkiBain
+Vladimir | gmelisan@student.21-school.ru |https://github.com/nefyodovve
+Danila | jterry@student.21-school.ru |https://github.com/itynol
+Kirill | wtalea@student.21-school.ru |https://github.com/wtalea
